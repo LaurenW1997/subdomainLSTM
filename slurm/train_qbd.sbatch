@@ -6,7 +6,6 @@
 #SBATCH -N 1
 #SBATCH -n 8
 #SBATCH --gres=gpu:1
-#SBATCH --mem=64G
 #SBATCH -t 12:00:00
 #SBATCH -o /work/yixuan97/subdomainLSTM/logs/%x_%j.out
 #SBATCH -e /work/yixuan97/subdomainLSTM/logs/%x_%j.err
