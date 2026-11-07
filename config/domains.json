@@ -1,0 +1,6 @@
+{
+  "_comment": "Bounding boxes read from the ROMS .full grids on QBD (grid/<domain>/<domain>_roms_grid.nc.full), 2026-11-06.",
+  "Louisiana100m": {"lon_min": -94.111, "lon_max": -88.394, "lat_min": 28.737, "lat_max": 31.142},
+  "Texas100m":     {"lon_min": -99.027, "lon_max": -95.236, "lat_min": 25.852, "lat_max": 29.129},
+  "Galveston100m": {"lon_min": -96.711, "lon_max": -94.036, "lat_min": 28.739, "lat_max": 31.161}
+}
