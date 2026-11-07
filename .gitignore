@@ -1,0 +1,32 @@
+# data and model artifacts
+data/
+*.nc
+*.npz
+*.npy
+*.h5
+*.pt
+*.pth
+*.keras
+*.parquet
+*.csv
+!config/**/*.csv
+
+# logs / runtime
+logs/
+*.log
+*.err
+*.out
+slurm-*.out
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
