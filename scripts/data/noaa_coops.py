@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pandas as pd
@@ -16,6 +17,7 @@ from common import END, HOURLY, census, get, load_raw, log, raw_path, save_raw, 
 
 URL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
 SRC = "NOAA_COOPS"
+PAUSE = 0.6  # seconds between calls; CO-OPS throttles aggressive clients with HTTP 403 "Forbidden"
 
 
 def call(station: str, product: str, begin: pd.Timestamp, end: pd.Timestamp, datum: str, tag: str,
@@ -28,10 +30,24 @@ def call(station: str, product: str, begin: pd.Timestamp, end: pd.Timestamp, dat
               "begin_date": begin.strftime("%Y%m%d %H:%M"), "end_date": end.strftime("%Y%m%d %H:%M")}
     if interval:
         params["interval"] = interval
-    r = get(URL, params)
-    j = r.json()
-    save_raw(p, json.dumps(j))
-    return j
+    delay = 5.0
+    for attempt in range(8):
+        r = get(URL, params)
+        try:
+            j = r.json()
+        except ValueError:
+            j = {"message": r.text[:200]}
+        msg = str(j.get("message") or (j.get("error") or {}).get("message") or "")
+        # CO-OPS throttling returns {"message": "Forbidden"}; back off and retry, never cache it
+        if "Forbidden" in msg or "Too Many" in msg or r.status_code == 403:
+            log.warning("%s %s throttled (attempt %d); sleeping %.0fs", station, tag, attempt + 1, delay)
+            time.sleep(delay)
+            delay = min(delay * 2, 300)
+            continue
+        save_raw(p, json.dumps(j))
+        time.sleep(PAUSE)
+        return j
+    raise RuntimeError(f"{station} {tag}: throttled repeatedly")
 
 
 def series(j: dict, key: str) -> pd.Series:
@@ -48,7 +64,8 @@ def pick_datum(station: str) -> str:
     """NAVD if the station has it, otherwise MSL."""
     j = call(station, "hourly_height", pd.Timestamp(f"{END.year - 1}-06-01"), pd.Timestamp(f"{END.year - 1}-06-02"),
              "NAVD", "datum_probe", refresh=True)
-    return "MSL" if "error" in j else "NAVD"
+    msg = str((j.get("error") or {}).get("message") or "")
+    return "MSL" if "datum" in msg.lower() else "NAVD"
 
 
 def run_station(row: pd.Series, refresh: bool) -> None:
@@ -87,7 +104,7 @@ def run_station(row: pd.Series, refresh: bool) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--stations", nargs="*")
-    ap.add_argument("--workers", type=int, default=3)
+    ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--refresh", action="store_true")
     a = ap.parse_args()
     df = census(SRC)
