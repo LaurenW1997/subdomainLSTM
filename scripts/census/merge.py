@@ -59,7 +59,10 @@ def main() -> None:
     end = pd.to_datetime(df["record_end"], errors="coerce").fillna(pd.Timestamp("2026-11-07"))
     df["years"] = ((end - start).dt.days / 365.25).round(1)
     df["coastal"] = df.apply(coastal_flag, axis=1)
-    df["training_eligible"] = df["active"] & (df["years"] >= MIN_YEARS)
+    # CRMS/CIMS metadata carries no period of record; treat unknown length as
+    # provisionally eligible and flag it (resolved once the hourly archive is read)
+    df["years_known"] = df["years"].notna()
+    df["training_eligible"] = df["active"] & ((df["years"] >= MIN_YEARS) | ~df["years_known"])
 
     # cross-source duplicate groups
     df["dup_group"] = ""
@@ -88,7 +91,8 @@ def main() -> None:
     for c in dom.columns:
         m = dom[c] == 1
         print(f"  {c:14s} {m.sum():4d} {int(df.loc[m, 'active'].sum()):4d} {int(df.loc[m, 'training_eligible'].sum()):4d}", file=sys.stderr)
-    print(f"\ndup groups: {gid}", file=sys.stderr)
+    print(f"\ndup groups: {gid}; eligible with unknown record length: "
+          f"{int((df['training_eligible'] & ~df['years_known']).sum())}", file=sys.stderr)
 
 
 if __name__ == "__main__":

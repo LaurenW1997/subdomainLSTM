@@ -18,7 +18,8 @@ def main() -> None:
     fig, axes = plt.subplots(2, 1, figsize=(14, 12), subplot_kw={"projection": ccrs.PlateCarree()})
     for ax, subset, title in [
         (axes[0], df, f"all sources in bbox (n={len(df)})"),
-        (axes[1], df[df["training_eligible"]], f"active and >= 3 yr record (n={int(df['training_eligible'].sum())})"),
+        (axes[1], df[df["training_eligible"]],
+         f"active and >= 3 yr record, or record length unknown (n={int(df['training_eligible'].sum())})"),
     ]:
         ax.set_extent([-99.3, -88.0, 25.5, 31.5])
         ax.add_feature(cfeature.LAND.with_scale("10m"), facecolor="#f0f0f0")
