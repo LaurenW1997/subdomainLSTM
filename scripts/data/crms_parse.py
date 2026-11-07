@@ -25,12 +25,18 @@ COLS = {
     "Time (hh:mm:ss)": "time",
     "Time Zone": "tz",
     "Adjusted Water Elevation to Datum (ft)": "elev_ft",
+    "Raw Water Elevation to Datum (ft)": "elev_raw_ft",
     "Adjusted Water Level (ft)": "wl_ft",
+    "Raw Water Level (ft)": "wl_raw_ft",
     "Geoid": "geoid",
     "Latitude": "lat",
     "Longitude": "lon",
 }
 TZ_OFFSET = {"CST": 6, "CDT": 5, "UTC": 0, "GMT": 0}
+# preference order: adjusted NAVD88 elevation, raw NAVD88 elevation, adjusted sensor level, raw sensor level
+VALUE_COLS = ["elev_ft", "elev_raw_ft", "wl_ft", "wl_raw_ft"]
+DATUM_LABEL = {"elev_ft": "NAVD88(adjusted)", "elev_raw_ft": "NAVD88(raw)",
+               "wl_ft": "sensor_datum(adjusted)", "wl_raw_ft": "sensor_datum(raw)"}
 
 
 def main() -> None:
@@ -57,10 +63,9 @@ def main() -> None:
         t = pd.to_datetime(chunk["date"] + " " + chunk["time"], format="%m/%d/%Y %H:%M:%S", errors="coerce")
         off = chunk["tz"].map(TZ_OFFSET).fillna(6).astype(int)
         chunk = chunk.assign(t_utc=t + pd.to_timedelta(off, unit="h"),
-                             elev_ft=pd.to_numeric(chunk["elev_ft"], errors="coerce"),
-                             wl_ft=pd.to_numeric(chunk["wl_ft"], errors="coerce"))
+                             **{c: pd.to_numeric(chunk[c], errors="coerce") for c in VALUE_COLS})
         for st, g in chunk.groupby("station", sort=False):
-            parts.setdefault(st, []).append(g[["t_utc", "elev_ft", "wl_ft", "geoid", "lat", "lon"]])
+            parts.setdefault(st, []).append(g[["t_utc", *VALUE_COLS, "geoid", "lat", "lon"]])
         if i % 10 == 0:
             log.info("chunk %d: %d rows kept so far, %d stations", i, n_rows, len(parts))
         if a.limit_chunks and i + 1 >= a.limit_chunks:
@@ -70,15 +75,18 @@ def main() -> None:
 
     for st, lst in parts.items():
         df = pd.concat(lst, ignore_index=True).dropna(subset=["t_utc"])
-        has_datum = df["elev_ft"].notna().mean() > 0.5
-        v = (df["elev_ft"] if has_datum else df["wl_ft"]) * FT
-        s = pd.Series(v.values, index=df["t_utc"].values)
+        counts = {c: int(df[c].notna().sum()) for c in VALUE_COLS}
+        col = next((c for c in VALUE_COLS if counts[c] >= 0.5 * max(counts.values()) and counts[c] > 0), None)
+        if col is None:
+            continue
+        s = pd.Series((df[col] * FT).values, index=df["t_utc"].values)
         h = to_hourly(s)
         if h.dropna().empty:
             continue
         geoids = sorted(df["geoid"].dropna().unique())
         write_hourly(SRC, st, h, {"name": st, "lat": float(df["lat"].iloc[-1]), "lon": float(df["lon"].iloc[-1]),
-                                  "datum": f"NAVD88({'/'.join(geoids)})" if has_datum else "sensor_datum(Adjusted Water Level)",
+                                  "datum": f"{DATUM_LABEL[col]}|geoid={'/'.join(geoids)}", "value_column": col,
+                                  "column_counts": counts, "realtime": st.endswith("-RT"),
                                   "native_units": "ft", "native_interval": "hourly", "domains": "Louisiana100m"})
     log.info("done: %d stations", len(parts))
 
