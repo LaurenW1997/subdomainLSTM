@@ -53,6 +53,7 @@ def main() -> None:
     ap.add_argument("--hidden", type=int, default=128)
     ap.add_argument("--layers", type=int, default=2)
     ap.add_argument("--lr", type=float, default=1e-3)
+    ap.add_argument("--lookback", type=int, default=72)
     ap.add_argument("--eval-stride", type=int, default=6)
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
@@ -60,8 +61,8 @@ def main() -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(a.seed); rng = np.random.default_rng(a.seed)
 
-    sm = StationMatrix(Path(a.dataset))
-    print(f"device={device} stations={sm.S} hours={sm.T} train_end_idx={sm.t_train_end}", flush=True)
+    sm = StationMatrix(Path(a.dataset), lookback=a.lookback)
+    print(f"device={device} stations={sm.S} hours={sm.T} lookback={sm.lookback} train_end_idx={sm.t_train_end}", flush=True)
     model = GlobalLSTM(sm.S, hidden=a.hidden, layers=a.layers).to(device)
     print(f"params={sum(p.numel() for p in model.parameters()):,}", flush=True)
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-4)

@@ -21,7 +21,7 @@ import pandas as pd
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "train"))
-from data import HORIZON, LOOKBACK, StationMatrix, to_torch  # noqa: E402
+from data import HORIZON, StationMatrix, to_torch  # noqa: E402
 from model import GlobalLSTM  # noqa: E402
 
 REPRESENTATIVE = [  # (source, station_id, short label)
@@ -63,7 +63,7 @@ def per_station_eval(model, sm, device, stride=6, batch=8192):
 
 def forecast_series(model, sm, device, s: int, t_lo: int, t_hi: int):
     """Hourly forecasts for one station for every origin in [t_lo, t_hi)."""
-    t0 = np.arange(max(t_lo, LOOKBACK), min(t_hi, sm.T - HORIZON - 1))
+    t0 = np.arange(max(t_lo, sm.lookback), min(t_hi, sm.T - HORIZON - 1))
     feats, ss, y, ym = sm.window(np.full(len(t0), s), t0)
     ok = feats[:, :, 1].mean(1) >= 0.7
     pred = np.full((len(t0), HORIZON), np.nan, np.float32)
@@ -81,8 +81,8 @@ def main() -> None:
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cpu")
-    sm = StationMatrix(Path(a.dataset))
     ck = torch.load(Path(a.run) / "best.pt", map_location=device)
+    sm = StationMatrix(Path(a.dataset), lookback=ck["args"].get("lookback", 72))
     model = GlobalLSTM(ck["n_stations"], hidden=ck["args"]["hidden"], layers=ck["args"]["layers"]).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()
     st = sm.stations.reset_index()

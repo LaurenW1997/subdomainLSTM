@@ -14,8 +14,9 @@ MIN_INPUT_VALID = 0.7
 
 
 class StationMatrix:
-    def __init__(self, dataset_dir: Path):
+    def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK):
         d = Path(dataset_dir)
+        self.lookback = int(lookback)
         self.values = np.load(d / "values.npy", mmap_mode="r")          # [S, T] normalised later
         self.time = pd.to_datetime(np.load(d / "time.npy"))
         self.stations = pd.read_csv(d / "stations.csv", index_col="row")
@@ -36,14 +37,14 @@ class StationMatrix:
     def split_range(self, split: str) -> tuple[int, int]:
         """Index range of forecast-origin times t0 (last observed hour) for a split."""
         if split == "train":
-            return LOOKBACK, self.t_train_end - HORIZON
+            return self.lookback, self.t_train_end - HORIZON
         if split == "val":
             return self.t_train_end, self.t_val_end - HORIZON
         return self.t_val_end, self.T - HORIZON - 1
 
     def window(self, s: np.ndarray, t0: np.ndarray):
         """Batch of windows. s, t0: int arrays [B]. t0 = index of the last observed hour."""
-        idx_in = t0[:, None] + np.arange(-LOOKBACK + 1, 1)[None, :]           # [B, L]
+        idx_in = t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]      # [B, L]
         idx_out = t0[:, None] + np.arange(1, HORIZON + 1)[None, :]             # [B, H]
         x = self.norm_filled[s[:, None], idx_in]
         m = self.mask[s[:, None], idx_in].astype(np.float32)
@@ -60,7 +61,7 @@ class StationMatrix:
         while need > 0:
             s = rng.integers(0, self.S, need * 2)
             t0 = rng.integers(lo, hi, need * 2)
-            ok_in = self.mask[s[:, None], t0[:, None] + np.arange(-LOOKBACK + 1, 1)[None, :]].mean(1) >= MIN_INPUT_VALID
+            ok_in = self.mask[s[:, None], t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]].mean(1) >= MIN_INPUT_VALID
             ok_out = self.mask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].any(1)
             ok = ok_in & ok_out
             out_s.append(s[ok][:need]); out_t.append(t0[ok][:need])
@@ -73,7 +74,7 @@ class StationMatrix:
         t0 = np.arange(lo, hi, stride)
         S, T0 = [], []
         for s in range(self.S):
-            ok_in = self.mask[s][t0[:, None] + np.arange(-LOOKBACK + 1, 1)[None, :]].mean(1) >= MIN_INPUT_VALID
+            ok_in = self.mask[s][t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]].mean(1) >= MIN_INPUT_VALID
             ok_out = self.mask[s][t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].any(1)
             tt = t0[ok_in & ok_out]
             S.append(np.full(len(tt), s)); T0.append(tt)

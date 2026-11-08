@@ -8,13 +8,16 @@ Output (DATA_ROOT/<out>/):
   excluded.csv  every inventory station that did NOT make it, with the reason
   meta.json     split boundaries, thresholds
 
-Cleaning (v1): values outside [RANGE_LO, RANGE_HI] m are fill values -> NaN;
+Cleaning (v2): values outside [RANGE_LO, RANGE_HI] m are fill values -> NaN;
 datum corrections from config/datum_corrections.csv (shift or drop the segment
-before a break date); optional whole-source exclusion; 8-sigma despike.
+before a break date); optional whole-source exclusion; isolated-spike filter
+(a single hour that departs from the 5-hour running median by more than
+max(SPIKE_MIN_M, SPIKE_K x typical hourly change) AND is a local extreme).
+Sustained highs (real floods) are kept.
 Selection: >= MIN_YEARS valid hours overall, >= MIN_TRAIN_YEARS inside the
 training period, and a non-degenerate train-period standard deviation.
 
-Usage: python build_dataset.py [--out dataset_v1] [--exclude-source USACE_SWG ...]
+Usage: python build_dataset.py [--out dataset_v2] [--exclude-source USACE_SWG ...]
                                [--corrections ../../config/datum_corrections.csv]
 """
 from __future__ import annotations
@@ -39,7 +42,22 @@ MIN_YEARS = 3.0
 MIN_TRAIN_YEARS = 1.0
 MIN_STD_M = 0.02
 RANGE_LO, RANGE_HI = -60.0, 200.0             # metres; anything outside is a fill value
-DESPIKE_SIGMA = 8.0
+SPIKE_MIN_M = 0.5        # metres; never flag departures smaller than this
+SPIKE_K = 10.0           # x the station's typical (median) absolute hourly change
+
+
+def despike(s: pd.Series) -> pd.Series:
+    """Remove isolated one-hour spikes only; keep sustained extremes."""
+    v = s.to_numpy(dtype=np.float64)
+    rm = s.rolling(5, center=True, min_periods=3).median().to_numpy()
+    dev = v - rm
+    step = np.nanmedian(np.abs(np.diff(v[np.isfinite(v)]))) if np.isfinite(v).sum() > 10 else 0.0
+    thr = max(SPIKE_MIN_M, SPIKE_K * step)
+    prev = np.roll(v, 1); nxt = np.roll(v, -1)
+    local_ext = ((v > prev) & (v > nxt)) | ((v < prev) & (v < nxt))
+    bad = np.isfinite(dev) & (np.abs(dev) > thr) & local_ext
+    out = s.copy(); out[bad] = np.nan
+    return out
 
 
 def apply_corrections(s: pd.Series, corr: pd.DataFrame) -> tuple[pd.Series, str]:
@@ -57,7 +75,7 @@ def apply_corrections(s: pd.Series, corr: pd.DataFrame) -> tuple[pd.Series, str]
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="dataset_v1")
+    ap.add_argument("--out", default="dataset_v2")
     ap.add_argument("--exclude-source", action="append", default=[])
     ap.add_argument("--corrections", default=str(REPO / "config" / "datum_corrections.csv"))
     a = ap.parse_args()
@@ -88,6 +106,9 @@ def main() -> None:
         if len(corr):
             s, corr_note = apply_corrections(s, corr)
         s = s.reindex(time_index)
+        n_before = int(s.notna().sum())
+        s = despike(s)
+        n_spk = n_before - int(s.notna().sum())
         v = s.to_numpy(dtype=np.float32)
         tr = s[:TRAIN_END]
         n_train = int(tr.notna().sum())
@@ -96,14 +117,12 @@ def main() -> None:
         mean, std = float(tr.mean()), float(tr.std())
         if not np.isfinite(std) or std < MIN_STD_M:
             exclude(r, "flat", f"train std {std:.3f} m < {MIN_STD_M}"); continue
-        bad = np.abs(v - mean) > DESPIKE_SIGMA * std
-        v[bad] = np.nan
         rows.append({
             "source": r["source"], "station_id": str(r["station_id"]), "name": r.get("name", ""),
             "lat": r["lat"], "lon": r["lon"], "domains": r.get("domains", ""), "datum": r.get("datum", ""),
             "mean_m": mean, "std_m": std,
             "n_train": n_train, "n_val": int(s[TRAIN_END:VAL_END].notna().sum()),
-            "n_test": int(s[VAL_END:].notna().sum()), "n_despiked": int(bad.sum()),
+            "n_test": int(s[VAL_END:].notna().sum()), "n_despiked": n_spk,
             "n_range_filtered": n_range, "correction": corr_note,
         })
         mats.append(v)
@@ -116,7 +135,7 @@ def main() -> None:
     meta = {"start": str(START), "end": str(END), "train_end": str(TRAIN_END), "val_end": str(VAL_END),
             "n_stations": int(len(st)), "n_excluded": int(len(ex)), "n_hours": int(len(time_index)),
             "min_years": MIN_YEARS, "min_train_years": MIN_TRAIN_YEARS, "min_std_m": MIN_STD_M,
-            "range_m": [RANGE_LO, RANGE_HI], "despike_sigma": DESPIKE_SIGMA,
+            "range_m": [RANGE_LO, RANGE_HI], "spike_min_m": SPIKE_MIN_M, "spike_k": SPIKE_K,
             "excluded_sources": a.exclude_source, "corrections": a.corrections,
             "n_corrected_stations": int((st.correction != "").sum()),
             "valid_fraction": float(np.isfinite(values).mean())}
