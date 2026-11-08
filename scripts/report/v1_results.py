@@ -123,7 +123,7 @@ def main() -> None:
     dom_all.to_csv(out / "02_domain_summary.csv")
     dom_src.to_csv(out / "02_domain_source_summary.csv")
 
-    md = ["## 三个 domain 整体（测试集 2024-01 至 2026-11，所有站，单位 cm）", "",
+    md = ["## 三个 domain 整体（测试集，所有站，单位 cm）", "",
           "| domain | 站数 | 1 h | 2 h | 3 h | 4 h | 5 h | **6 h** | 6 h 四分位 (25%–75%) | 6 h < 5 cm 的站 | 6 h < 10 cm 的站 | 6 h pooled |",
           "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for k, r in dom_all.iterrows():
@@ -144,7 +144,7 @@ def main() -> None:
     for i, dd in enumerate(data, 1):
         ax.scatter(rng.normal(i, 0.06, len(dd)), dd, s=5, alpha=.35, color="C3")
     ax.set_xticks(range(1, 4)); ax.set_xticklabels([f"{d}\n{len(dd)} stations" for d, dd in zip(DOMS, data)])
-    ax.set_ylim(0, 40); ax.set_ylabel("6 h RMSE per station, test 2024-26 (cm)"); ax.grid(axis="y", alpha=.3)
+    ax.set_ylim(0, 40); ax.set_ylabel("6 h RMSE per station, test period (cm)"); ax.grid(axis="y", alpha=.3)
     ax.set_title("Per-station 6 h RMSE by domain (box = 25-75%, line = median)")
     fig.tight_layout(); fig.savefig(out / "02_domains_boxplot.png", dpi=150); plt.close(fig)
     # ---- RMSE vs lead time
@@ -183,7 +183,7 @@ def main() -> None:
         axes[0].set_ylabel("water level (m)"); axes[0].legend(fontsize=7, loc="upper left")
         ax = axes[3]
         ax.bar(hs, [r[f"rmse_{h}h_cm"] for h in hs], 0.6, color="C3")
-        ax.set_xlabel("lead time (h)"); ax.set_ylabel("RMSE, test 2024-26 (cm)"); ax.set_xticks(hs); ax.grid(axis="y", alpha=.3)
+        ax.set_xlabel("lead time (h)"); ax.set_ylabel("RMSE, test period (cm)"); ax.set_xticks(hs); ax.grid(axis="y", alpha=.3)
         fig.suptitle(f"{src} {sid} - {label}", fontsize=11); fig.tight_layout()
         fig.savefig(out / f"02_station_{sid}.png", dpi=130); plt.close(fig)
     pd.DataFrame(series).to_csv(out / "02_station_forecasts.csv", index=False)

@@ -181,7 +181,7 @@ def main() -> None:
         ax.bar(x + (k - 1) * w, vals, w, label=p, color=c)
     ax.set_xticks(x); ax.set_xticklabels([f"{t}\n({(rows.type == t).sum()})" for t in types], fontsize=8)
     ax.set_ylabel("median 6 h RMSE (cm)"); ax.legend(title="period"); ax.grid(axis="y", alpha=.3)
-    ax.set_title("6 h RMSE by station type and period, test 2024-26")
+    ax.set_title("6 h RMSE by station type and period, test period")
     fig.tight_layout(); fig.savefig(out / "04_error_split.png", dpi=150)
 
 
