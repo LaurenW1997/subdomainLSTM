@@ -18,10 +18,11 @@ module purge
 module load pytorch/2.10.0
 ROOT=/work/yixuan97/subdomainLSTM
 RUN=${RUN_NAME:-v0_gpu}
+DATASET=${DATASET:-dataset}
 cd $ROOT/repo/scripts/train
 export OMP_NUM_THREADS=8
 nvidia-smi -L || true
 python -c "import torch, pandas; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'pandas', pandas.__version__)"
-python train.py --dataset $ROOT/data/dataset --out $ROOT/runs/$RUN \
+python train.py --dataset $ROOT/data/$DATASET --out $ROOT/runs/$RUN \
   --epochs ${EPOCHS:-20} --steps ${STEPS:-2000} --batch ${BATCH:-1024} \
   --hidden ${HIDDEN:-128} --layers ${LAYERS:-2} --lr ${LR:-1e-3}
