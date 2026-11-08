@@ -90,7 +90,7 @@ def fetch_noaa(station: str, datum: str, begin: pd.Timestamp, end: pd.Timestamp,
 # ----------------------------------------------------------------------------- features
 def time_features(index: pd.DatetimeIndex) -> np.ndarray:
     hours = index.hour.to_numpy() + index.minute.to_numpy() / 60
-    doy = index.dayofyear.to_numpy() + hours / 24
+    doy = index.day_of_year.to_numpy() + hours / 24
     return np.stack([np.sin(2 * np.pi * hours / 24), np.cos(2 * np.pi * hours / 24),
                      np.sin(2 * np.pi * doy / 365.25), np.cos(2 * np.pi * doy / 365.25)], 1).astype(np.float32)
 
@@ -103,7 +103,7 @@ def main() -> None:
     ap.add_argument("--sources", nargs="*", default=["USGS", "NOAA_COOPS"])
     a = ap.parse_args()
 
-    cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.utcnow().tz_localize(None).floor("h") - pd.Timedelta(hours=1)
+    cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.now("UTC").tz_localize(None).floor("h") - pd.Timedelta(hours=1)
     run_dir = Path(a.model)
     out = Path(a.out) / cycle.strftime("%Y%m%dT%H"); raw_dir = out / "raw"; raw_dir.mkdir(parents=True, exist_ok=True)
     ck = torch.load(run_dir / "best.pt", map_location="cpu")
@@ -181,7 +181,7 @@ def main() -> None:
     df.to_csv(out / "forecast.csv", index=False)
     manifest = {"cycle_utc": str(cycle), "model": str(run_dir), "checkpoint_args": ck["args"], "lookback_h": lookback,
                 "horizon_h": HORIZON, "n_stations": int(len(df)), "status_counts": df.status.value_counts().to_dict(),
-                "sources": a.sources, "generated_utc": str(pd.Timestamp.utcnow().tz_localize(None).floor("s"))}
+                "sources": a.sources, "generated_utc": str(pd.Timestamp.now("UTC").tz_localize(None).floor("s"))}
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1, default=str))
     log.info("wrote %s: %s", out / "forecast.csv", manifest["status_counts"])
 
