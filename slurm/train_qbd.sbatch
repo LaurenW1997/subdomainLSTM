@@ -25,4 +25,4 @@ nvidia-smi -L || true
 python -c "import torch, pandas; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'pandas', pandas.__version__)"
 python train.py --dataset $ROOT/data/$DATASET --out $ROOT/runs/$RUN \
   --epochs ${EPOCHS:-20} --steps ${STEPS:-2000} --batch ${BATCH:-1024} \
-  --hidden ${HIDDEN:-128} --layers ${LAYERS:-2} --lr ${LR:-1e-3} --lookback ${LOOKBACK:-72}
+  --hidden ${HIDDEN:-128} --layers ${LAYERS:-2} --lr ${LR:-1e-3} --lookback ${LOOKBACK:-72} ${EXTRA:-}

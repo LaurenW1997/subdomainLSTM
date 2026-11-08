@@ -45,15 +45,15 @@ WINDOWS = {  # label -> (start, end) UTC
 DOMS = ["Louisiana100m", "Galveston100m", "Texas100m"]
 
 
-def per_station_eval(model, sm, device, stride=6, batch=8192):
-    S, T0 = sm.eval_origins("test", stride)
+def per_station_eval(model, sm, device, stride=6, batch=8192, t_hi=None):
+    S, T0 = sm.eval_origins("test", stride, t_hi=t_hi)
     std = sm.stations["std_m"].to_numpy(np.float32)
     se = np.zeros((sm.S, HORIZON)); n = np.zeros((sm.S, HORIZON))
     with torch.no_grad():
         for i in range(0, len(S), batch):
-            feats, s, y, ym = sm.window(S[i:i + batch], T0[i:i + batch])
-            f, st, _, _ = to_torch((feats, s, y, ym), device)
-            pred = model(f, st).cpu().numpy()
+            feats, fut, s, y, ym = sm.window(S[i:i + batch], T0[i:i + batch])
+            f, fu, st, _, _ = to_torch((feats, fut, s, y, ym), device)
+            pred = model(f, st, fu).cpu().numpy()
             err = (pred - y) * std[s][:, None]
             for h in range(HORIZON):
                 np.add.at(se[:, h], s, np.where(ym[:, h], err[:, h] ** 2, 0))
@@ -64,31 +64,36 @@ def per_station_eval(model, sm, device, stride=6, batch=8192):
 def forecast_series(model, sm, device, s: int, t_lo: int, t_hi: int):
     """Hourly forecasts for one station for every origin in [t_lo, t_hi)."""
     t0 = np.arange(max(t_lo, sm.lookback), min(t_hi, sm.T - HORIZON - 1))
-    feats, ss, y, ym = sm.window(np.full(len(t0), s), t0)
+    feats, fut, ss, y, ym = sm.window(np.full(len(t0), s), t0)
     ok = feats[:, :, 1].mean(1) >= 0.7
+    if sm.use_wind:
+        ok &= feats[:, :, 8].mean(1) >= 0.7
     pred = np.full((len(t0), HORIZON), np.nan, np.float32)
     with torch.no_grad():
         if ok.any():
-            f, st, _, _ = to_torch((feats[ok], ss[ok], y[ok], ym[ok]), device)
-            pred[ok] = model(f, st).cpu().numpy()
+            f, fu, st, _, _ = to_torch((feats[ok], fut[ok], ss[ok], y[ok], ym[ok]), device)
+            pred[ok] = model(f, st, fu).cpu().numpy()
     mean, std = sm.stations.loc[s, "mean_m"], sm.stations.loc[s, "std_m"]
     return t0, pred * std + mean
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dataset", required=True); ap.add_argument("--run", required=True); ap.add_argument("--out", required=True)
+    ap.add_argument("--dataset", required=True); ap.add_argument("--run", required=True); ap.add_argument("--out", required=True); ap.add_argument("--test-end", help="last test origin, e.g. 2025-12-31T17")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cpu")
     ck = torch.load(Path(a.run) / "best.pt", map_location=device)
-    sm = StationMatrix(Path(a.dataset), lookback=ck["args"].get("lookback", 72))
-    model = GlobalLSTM(ck["n_stations"], hidden=ck["args"]["hidden"], layers=ck["args"]["layers"]).to(device)
+    sm = StationMatrix(Path(a.dataset), lookback=ck["args"].get("lookback", 72), use_wind=ck["args"].get("wind", False),
+                       use_future_wind=ck["args"].get("future_wind", False), use_q=ck["args"].get("discharge", False))
+    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
+                       n_future=ck.get("n_future", 0)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()
     st = sm.stations.reset_index()
 
     # ---- per station, per horizon
-    se, n = per_station_eval(model, sm, device)
+    t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))) if a.test_end else None
+    se, n = per_station_eval(model, sm, device, t_hi=t_hi)
     rows = st[["row", "source", "station_id", "name", "lat", "lon", "domains", "std_m"]].copy()
     for h in range(HORIZON):
         rows[f"rmse_{h+1}h_cm"] = 100 * np.sqrt(se[:, h] / np.maximum(n[:, h], 1))

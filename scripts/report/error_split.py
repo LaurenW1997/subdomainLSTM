@@ -81,14 +81,16 @@ def storm_days(sm: StationMatrix, st: pd.DataFrame, lo: int, hi: int) -> dict[st
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dataset", required=True); ap.add_argument("--run", required=True); ap.add_argument("--out", required=True)
+    ap.add_argument("--dataset", required=True); ap.add_argument("--run", required=True); ap.add_argument("--out", required=True); ap.add_argument("--test-end", help="last test origin, e.g. 2025-12-31T17")
     ap.add_argument("--census", default=str(REPO / "config" / "stations_census.csv"))
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cpu")
     ck = torch.load(Path(a.run) / "best.pt", map_location=device)
-    sm = StationMatrix(Path(a.dataset), lookback=ck["args"].get("lookback", 72))
-    model = GlobalLSTM(ck["n_stations"], hidden=ck["args"]["hidden"], layers=ck["args"]["layers"]).to(device)
+    sm = StationMatrix(Path(a.dataset), lookback=ck["args"].get("lookback", 72), use_wind=ck["args"].get("wind", False),
+                       use_future_wind=ck["args"].get("future_wind", False), use_q=ck["args"].get("discharge", False))
+    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
+                       n_future=ck.get("n_future", 0)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()
     st = sm.stations.reset_index()
     st["station_id"] = st.station_id.astype(str)
@@ -98,13 +100,15 @@ def main() -> None:
     st["type"] = st.apply(station_type, axis=1)
 
     lo, hi = sm.split_range("test")
+    if a.test_end:
+        hi = min(hi, int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))))
     hi = hi + HORIZON + 1
     sdays = storm_days(sm, st, lo, hi)
     dates = sm.time.date
     is_storm = {dom: np.array([d in days for d in dates]) for dom, days in sdays.items()}
 
     # evaluate every 6 h origin, keep per-sample squared errors with their period label
-    S, T0 = sm.eval_origins("test", 6)
+    S, T0 = sm.eval_origins("test", 6, t_hi=hi - HORIZON - 1)
     std = st["std_m"].to_numpy(np.float32)
     se = {p: np.zeros((sm.S, HORIZON)) for p in PERIODS}; n = {p: np.zeros((sm.S, HORIZON)) for p in PERIODS}
     # per-station high-water threshold over the test period
@@ -114,9 +118,9 @@ def main() -> None:
     with torch.no_grad():
         for i in range(0, len(S), 8192):
             s, t0 = S[i:i + 8192], T0[i:i + 8192]
-            feats, _, y, ym = sm.window(s, t0)
-            f, stt, _, _ = to_torch((feats, s, y, ym), device)
-            pred = model(f, stt).cpu().numpy()
+            feats, fut, _, y, ym = sm.window(s, t0)
+            f, fu, stt, _, _ = to_torch((feats, fut, s, y, ym), device)
+            pred = model(f, stt, fu).cpu().numpy()
             err2 = ((pred - y) * std[s][:, None]) ** 2
             tv = t0 + HORIZON                                                   # label by the 6 h target time
             storm = np.array([is_storm.get(dom_first[ss], np.zeros(sm.T, bool))[t] for ss, t in zip(s, tv)])
