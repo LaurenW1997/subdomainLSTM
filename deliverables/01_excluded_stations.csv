@@ -1,0 +1,1009 @@
+﻿source,station_id,name,lat,lon,domains,stage,reason,detail
+CRMS,AT04-01,AT04-01 (Atchafalaya),29.502195485539527,-91.27097204224219,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,AT04-02,AT04-02 (Atchafalaya),29.448555515982765,-91.2849719998782,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,AT04-03,AT04-03 (Atchafalaya),29.410611031069923,-91.26811080011534,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,AT04-04,AT04-04 (Atchafalaya),29.383471256649685,-91.37636100699027,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,AT04-06,AT04-06 (Atchafalaya),29.464861507538142,-91.32758338704465,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-05,BA01-05 (Barataria),29.645769504569653,-90.30686478941048,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-06,BA01-06 (Barataria),29.63417367045972,-90.06604743089233,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-08,BA01-08 (Barataria),29.853062051800954,-90.31673499241549,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-09,BA01-09 (Barataria),29.631008089224075,-90.34091961899122,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-127,BA01-127 (Barataria),29.871749008116527,-90.2602587197564,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-128,BA01-128 (Barataria),29.87314531759339,-90.26843778410998,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-129,BA01-129 (Barataria),29.85872250270554,-90.28808807710469,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-20,BA01-20 (Barataria),29.90415184561492,-90.3090844842367,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-21,BA01-21 (Barataria),29.89139860027859,-90.27224589441084,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-22,BA01-22 (Barataria),29.88498848571078,-90.27150969867758,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-23,BA01-23 (Barataria),29.86163673362699,-90.26019371168645,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-24,BA01-24 (Barataria),29.871821603139214,-90.2983207649339,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-25,BA01-25 (Barataria),29.857911017586027,-90.3030625179703,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-26,BA01-26 (Barataria),29.8559811398056,-90.26713619292741,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-27,BA01-27 (Barataria),29.871582675291798,-90.26050129561747,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-28,BA01-28 (Barataria),29.87313867633927,-90.26811714001195,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-29,BA01-29 (Barataria),29.85895139594997,-90.28869240562071,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA01-30,BA01-30 (Barataria),29.86908777254711,-90.2472403666732,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-104,BA02-104 (Barataria),29.549075826475462,-90.22705187528692,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-105,BA02-105 (Barataria),29.549073451697446,-90.22704613757084,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-108,BA02-108 (Barataria),29.55271223814174,-90.22744511689879,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-109,BA02-109 (Barataria),29.552712103564172,-90.22743867301767,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-53,BA02-53 (Barataria),29.51006747068121,-90.23340277586166,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-54,BA02-54 (Barataria),29.55374386698655,-90.2303105240507,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-55,BA02-55 (Barataria),29.547847809630905,-90.25315185189271,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA02-58,BA02-58 (Barataria),29.535725577086044,-90.22930472466845,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA03c-16,BA03c-16 (Barataria),29.687367852524236,-90.01652343290412,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA03c-60,BA03c-60 (Barataria),29.704299482947928,-90.08424717964988,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-08,BA20-08 (Barataria),29.69514262408574,-90.1606711331502,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-11,BA20-11 (Barataria),29.711342177387966,-90.1424841054916,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-20,BA20-20 (Barataria),29.683246007221317,-90.12431183888303,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-90R,BA20-90R (Barataria),29.663489953085364,-90.12433736624051,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-91R,BA20-91R (Barataria),29.72489677905234,-90.13887583887778,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA20-98R,BA20-98R (Barataria),29.676039233833144,-90.16802327716874,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA23-01,BA23-01 (Barataria),29.601566790205045,-90.08738882333402,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA23-02R,BA23-02R (Barataria),29.60129900758671,-90.0726674196959,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-01,BA34-01 (Barataria),29.911412483027437,-90.73016927043929,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-02R,BA34-02R (Barataria),29.889792211436745,-90.66487747384117,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-03R,BA34-03R (Barataria),29.924947177567134,-90.78133134295776,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-04R,BA34-04R (Barataria),29.918658555588173,-90.85263842571399,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-05R,BA34-05R (Barataria),29.891362553360874,-90.7851902417628,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-06R,BA34-06R (Barataria),29.885701804701277,-90.81848841339854,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-07R,BA34-07R (Barataria),29.923272217747797,-90.72462944279076,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-08,BA34-08 (Barataria),29.923537246716077,-90.7073893709801,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-09R,BA34-09R (Barataria),29.95705537101173,-90.72732281735078,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA34-10R,BA34-10R (Barataria),29.99427674091221,-90.88622717745989,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-01,BAFS-01 (Barataria),29.2480441625582,-90.20730297972439,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-02,BAFS-02 (Barataria),29.82076735278219,-90.06802230021017,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-03,BAFS-03 (Barataria),29.82293265012203,-90.4765694970675,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-04,BAFS-04 (Barataria),29.68189147309057,-90.18668063473515,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-05,BAFS-05 (Barataria),29.639423156588354,-90.09461661415558,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-06,BAFS-06 (Barataria),29.57731701471404,-90.38067046000708,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-09,BAFS-09 (Barataria),29.374463438784293,-89.60092506768245,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-10,BAFS-10 (Barataria),29.26570381575327,-89.94630014680502,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-17BT,BAFS-17BT (Barataria),29.122870475735102,-89.89693882768414,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BAFS-17SF,BAFS-17SF (Barataria),29.12287272886454,-89.89693875998216,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-01,BS03a-01 (Breton Sound),29.827595179798507,-89.95433923821088,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-02,BS03a-02 (Breton Sound),29.797912454930263,-89.88059792098916,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-03,BS03a-03 (Breton Sound),29.801455062402553,-89.93765320509144,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-04,BS03a-04 (Breton Sound),29.788650459561055,-89.96261467969808,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-05R,BS03a-05R (Breton Sound),29.823331983976484,-89.87935242713303,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-06R,BS03a-06R (Breton Sound),29.7408935379804,-89.91269167454045,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-07R,BS03a-07R (Breton Sound),29.837997031740155,-89.87980648703733,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS03a-66R,BS03a-66R (Breton Sound),29.736909309475305,-89.92418655946881,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS08-01,BS08-01 (Breton Sound),29.77611586514477,-89.94145156222332,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS08-02,BS08-02 (Breton Sound),29.710597720876585,-89.79983801645542,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS08-05,BS08-05 (Breton Sound),29.718666666983047,-89.72397222191066,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS08-06,BS08-06 (Breton Sound),29.57055476405125,-89.70388866262122,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BS08-20,BS08-20 (Breton Sound),29.801214756071424,-89.90779752426643,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0058-M01,CRMS0058-M01 (Pontchartrain),30.166508150789323,-90.5374308227322,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0115-W01,CRMS0115-W01 (Breton Sound),29.780957264474036,-89.91684952339789,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0120-W01,CRMS0120-W01 (Breton Sound),29.84450046439049,-89.85650321982277,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0151-H01,CRMS0151-H01 (Mississippi River),29.207535677285907,-89.13751371861126,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0197-H01,CRMS0197-H01 (Barataria),29.911637701142734,-90.94584407379425,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0241-H01,CRMS0241-H01 (Barataria),29.71298664042481,-90.5080850345281,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0484-H01,CRMS0484-H01 (Atchafalaya),29.489407530923494,-91.44956445210003,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0528-H01,CRMS0528-H01 (Teche/Vermilion),29.827964649249992,-91.91454946793087,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0638-W01,CRMS0638-W01 (Calcasieu/Sabine),29.867988979613504,-93.51052163417876,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS0651-W01,CRMS0651-W01 (Calcasieu/Sabine),29.962331121136273,-93.51064036187387,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS1858-W01,CRMS1858-W01 (Calcasieu/Sabine),29.839001599341294,-93.51059153737305,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS3296-W01,CRMS3296-W01 (Terrebonne),29.38984685019547,-90.47916470380041,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS5672-H01,CRMS5672-H01 (Barataria),29.868697019760685,-90.84643211879006,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS5770-H01,CRMS5770-H01 (Terrebonne),29.75823905965474,-90.90501834237473,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CRMS5858-H01,CRMS5858-H01 (Pontchartrain),30.318393856250502,-90.6837847389888,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS02-RC-T,CS02-RC-T (Calcasieu/Sabine),29.98688207971155,-93.42543452006495,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS09-02R,CS09-02R (Calcasieu/Sabine),30.052897778611406,-93.37461388093892,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS09-04,CS09-04 (Calcasieu/Sabine),30.037912527437268,-93.36422262213327,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS09-05,CS09-05 (Calcasieu/Sabine),30.030096474217466,-93.36534655702891,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS09-18R,CS09-18R (Calcasieu/Sabine),30.027284652004727,-93.35236627331832,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS09-21,CS09-21 (Calcasieu/Sabine),30.04279353276247,-93.34971128577101,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS17-01R,CS17-01R (Calcasieu/Sabine),29.8632201834212,-93.2381514688471,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS17-02R,CS17-02R (Calcasieu/Sabine),29.860542740506137,-93.23400002216954,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS17-06R,CS17-06R (Calcasieu/Sabine),29.85421713520958,-93.19914973406034,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS17-11,CS17-11 (Calcasieu/Sabine),29.914213557256776,-93.20215635782955,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS17-12,CS17-12 (Calcasieu/Sabine),29.823217734404288,-93.24315296844333,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS21-07R,CS21-07R (Calcasieu/Sabine),30.002376630652428,-93.25700220172078,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS21-19,CS21-19 (Calcasieu/Sabine),30.03868453554536,-93.27163131137192,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS21-26,CS21-26 (Calcasieu/Sabine),30.034874747211713,-93.26120398095755,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS21-29,CS21-29 (Calcasieu/Sabine),30.03642152899344,-93.2593896874317,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS21-98,CS21-98 (Calcasieu/Sabine),30.037023502456183,-93.26300658500814,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS23-01,CS23-01 (Calcasieu/Sabine),29.878004666709323,-93.47091082991008,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS23-02,CS23-02 (Calcasieu/Sabine),29.83525393729144,-93.52954594080597,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS23-04,CS23-04 (Calcasieu/Sabine),29.941379395801377,-93.51964670824681,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS23-BL-T,CS23-BL-T (Calcasieu/Sabine),29.927819339880955,-93.40757241096826,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS24-27R,CS24-27R (Calcasieu/Sabine),30.062113128247855,-93.67321767019133,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS27-22,CS27-22 (Calcasieu/Sabine),30.05856444521517,-93.66477478764256,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS31-01,CS31-01 (Calcasieu/Sabine),29.770832446920203,-93.52980541085157,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS31-02,CS31-02 (Calcasieu/Sabine),29.778306368573762,-93.5706667315672,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS31-03,CS31-03 (Calcasieu/Sabine),29.7709991476832,-93.5132778317601,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-01,CS32-01 (Calcasieu/Sabine),29.964857037444144,-93.64417587489856,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-02,CS32-02 (Calcasieu/Sabine),29.878399503608186,-93.64903404127253,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-03,CS32-03 (Calcasieu/Sabine),29.87769537621747,-93.76993625307924,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-04,CS32-04 (Calcasieu/Sabine),29.996929619525066,-93.75655325355525,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-05,CS32-05 (Calcasieu/Sabine),29.93863444025289,-93.68271939737375,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-06,CS32-06 (Calcasieu/Sabine),29.904873409522793,-93.71397206466668,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-07,CS32-07 (Calcasieu/Sabine),29.875416677464944,-93.69558329735298,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,CS32-08,CS32-08 (Calcasieu/Sabine),29.836067980109103,-93.64945082076942,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPBS01,DCPBS01 (Breton Sound),29.640278348738878,-89.56305544766774,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPBS02,DCPBS02 (Breton Sound),29.531389193801594,-89.56305576405701,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPTE01,DCPTE01 (Terrebonne),29.489165602280412,-90.71472239905876,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPTE02,DCPTE02 (Terrebonne),29.489165602280412,-90.71472239905876,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPTE04,DCPTE04 (Terrebonne),29.3677778791288,-90.60166636646356,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,DCPTE05,DCPTE05 (Terrebonne),29.455276848108827,-90.42194461129257,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-06,ME04-06 (Mermentau),29.749174972246845,-92.26035333330482,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-143R,ME04-143R (Mermentau),29.7194775108475,-92.36750013660667,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-15R,ME04-15R (Mermentau),29.757925058172027,-92.26413275102327,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-16R,ME04-16R (Mermentau),29.757914318539225,-92.26382448277802,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-19,ME04-19 (Mermentau),29.69986575306542,-92.31643033738064,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-26R,ME04-26R (Mermentau),29.670589564087045,-92.26743946254388,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-29,ME04-29 (Mermentau),29.65278948819459,-92.28668023885652,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-36R,ME04-36R (Mermentau),29.600499398950106,-92.32229649036341,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-43R,ME04-43R (Teche/Vermilion),29.66412104623532,-92.25127540391767,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME04-50R,ME04-50R (Mermentau),29.624222252460463,-92.33320429525587,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME11-02,ME11-02 (Mermentau),29.83877508867644,-92.87594619476785,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME11-12,ME11-12 (Mermentau),29.840835101185036,-92.9000012920401,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME11-72,ME11-72 (Mermentau),29.838696509065336,-92.90038643175072,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME16-01,ME16-01 (Mermentau),29.63680627444213,-92.5703888370047,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME16-02,ME16-02 (Mermentau),29.63461077358463,-92.56894413289581,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME16-03,ME16-03 (Mermentau),29.621705915729066,-92.59132115885573,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME16-04R,ME16-04R (Mermentau),29.576666870093227,-92.5351941441389,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,ME16-05R,ME16-05R (Mermentau),29.712110306509558,-92.58311122244898,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO06-01,PO06-01 (Pontchartrain),30.20319412295334,-89.72705773304173,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO06-03,PO06-03 (Pontchartrain),30.20319517532935,-89.7130568588808,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO06-06,PO06-06 (Pontchartrain),30.19514424067558,-89.7533315917028,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO06-11,PO06-11 (Pontchartrain),30.233193489308352,-89.74005883960876,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO06-60,PO06-60 (Pontchartrain),30.205113926151512,-89.7007003716965,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO16-01,PO16-01 (Pontchartrain),30.052720161182272,-89.87627446871775,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO16-04,PO16-04 (Pontchartrain),30.039007960496903,-89.87226775622678,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO16-12R,PO16-12R (Pontchartrain),30.13077159704925,-89.89223576335739,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO17-43,PO17-43 (Pontchartrain),30.048525429065837,-90.35075347460557,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO17-44R,PO17-44R (Pontchartrain),30.04259738769937,-90.34472666664324,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,PO24-04,PO24-04 (Breton Sound),29.82002371815803,-89.65723144227668,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,SWMP0024,SWMP0024 (Barataria),29.38589444412147,-89.90201388883902,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-09,TE01-09 (Terrebonne),29.448363298097604,-90.53967502322196,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-12R,TE01-12R (Terrebonne),29.423648402626615,-90.5220705742316,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-13R,TE01-13R (Terrebonne),29.421780089349394,-90.54148313029145,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-14R,TE01-14R (Terrebonne),29.434112097193434,-90.54760748946718,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-15R,TE01-15R (Terrebonne),29.432240663856668,-90.46161633050536,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE01-16R,TE01-16R (Terrebonne),29.509948803858723,-90.56214559792278,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-09,TE02-09 (Terrebonne),29.41241357272697,-90.73688020774271,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-12,TE02-12 (Terrebonne),29.409003707090953,-90.75195077632075,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-14,TE02-14 (Terrebonne),29.40321666355531,-90.7541162371163,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-24,TE02-24 (Terrebonne),29.46298427514398,-90.75094824796926,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-26,TE02-26 (Terrebonne),29.475915665958016,-90.72422369143058,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-27,TE02-27 (Terrebonne),29.437136363631677,-90.7280680362641,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE02-30,TE02-30 (Terrebonne),29.40269883949283,-90.74575900655957,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE03-02,TE03-02 (Terrebonne),29.383507008935702,-90.60683391036919,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE03-09,TE03-09 (Terrebonne),29.431509068797773,-90.58148210919136,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE03-20R,TE03-20R (Terrebonne),29.437287444933638,-90.56701998457032,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE07b-14,TE07b-14 (Terrebonne),29.42716564514964,-90.62105225572458,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE10-01R,TE10-01R (Terrebonne),29.43636366418403,-90.47468390217284,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE26-02R,TE26-02R (Terrebonne),29.29488991905533,-91.3131223560573,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE26-03,TE26-03 (Terrebonne),29.2942570088671,-91.29561129445732,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE26-04,TE26-04 (Terrebonne),29.28804457452375,-91.2540631482535,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-04R,TE28-04R (Terrebonne),29.377659283109374,-91.01181080337427,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-05R,TE28-05R (Terrebonne),29.415521622852676,-90.93030919219433,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-06R,TE28-06R (Terrebonne),29.402330836992327,-90.912952242251,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-07R,TE28-07R (Terrebonne),29.41726896114464,-90.966722537033,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-219R,TE28-219R (Terrebonne),29.415363247363015,-90.92955241480327,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE28-400,TE28-400 (Terrebonne),29.383750950276877,-90.96675147266274,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-01,TE32-01 (Terrebonne),29.469918931295055,-90.65631504473843,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-02,TE32-02 (Terrebonne),29.43910965174384,-90.6645927901257,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-03R,TE32-03R (Terrebonne),29.44151152088899,-90.61939584531733,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-04R,TE32-04R (Terrebonne),29.39198542416765,-90.63503383658966,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-05R,TE32-05R (Terrebonne),29.42739472985234,-90.62213473781664,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-33R,TE32-33R (Terrebonne),29.51757450653976,-90.67661360416756,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-34R,TE32-34R (Terrebonne),29.488296741757324,-90.71364179499564,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-35R,TE32-35R (Terrebonne),29.489300501096814,-90.69665986834401,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE32-36R,TE32-36R (Terrebonne),29.434637813184924,-90.70233909453331,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TE39-01,TE39-01 (Terrebonne),29.366145143960164,-90.89534168228866,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV04-01R,TV04-01R (Teche/Vermilion),29.638821309176652,-91.55733315352639,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV04-02,TV04-02 (Teche/Vermilion),29.66854378387178,-91.56928093421573,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV04-03,TV04-03 (Teche/Vermilion),29.690766202191142,-91.60733738755373,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV04-04R,TV04-04R (Teche/Vermilion),29.727986186381596,-91.60816825280916,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV04-22,TV04-22 (Teche/Vermilion),29.667528420066304,-91.56988877372414,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV06-01,TV06-01 (Teche/Vermilion),29.603770399557085,-91.85739668187702,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV06-02,TV06-02 (Teche/Vermilion),29.54721625733268,-91.89484365265679,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV06-03R,TV06-03R (Teche/Vermilion),29.598435142580893,-91.86981762668356,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV14-01,TV14-01 (Teche/Vermilion),29.57102129195799,-91.7540351657567,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV14-02,TV14-02 (Teche/Vermilion),29.55756469702019,-91.77349138722285,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV14-03R,TV14-03R (Teche/Vermilion),29.524065916445128,-91.77190945391253,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV14-04R,TV14-04R (Teche/Vermilion),29.587683430330163,-91.80774215413682,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,TV14-23,TV14-23 (Teche/Vermilion),29.55756469702019,-91.77349138722285,Louisiana100m,census->download,inactive,catalog marks station inactive
+CRMS,BA0066-09F-RT,BA0066-09F-RT (Barataria),29.790399999595767,-90.03540000015435,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,BA0066-09P-RT,BA0066-09P-RT (Barataria),29.790200000413652,-90.03470000046553,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,BA01-11,BA01-11 (Barataria),29.790258298291718,-90.42339828481114,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,BA01-12,BA01-12 (Barataria),29.859574591604563,-90.25981159518653,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,BA01-13,BA01-13 (Barataria),29.8440386208936,-90.17260136873743,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,BA03c-61,BA03c-61 (Barataria),29.623137569883482,-90.0314562851757,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0329-M01,CRMS0329-M01 (Terrebonne),29.47971860986576,-91.10497282200052,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0367-M02,CRMS0367-M02 (Terrebonne),29.63019834067149,-90.57295567758648,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0411-H02 ,CRMS0411-H02  (Terrebonne),29.49935144190957,-90.95445170007659,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0411-M01,CRMS0411-M01 (Terrebonne),29.497787697666723,-90.95104170146004,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0663-W01,CRMS0663-W01 (Calcasieu/Sabine),30.01313340311655,-93.69909498121804,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS0677-W01,CRMS0677-W01 (Calcasieu/Sabine),29.853578718290013,-93.5417141371931,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS2154-W01,CRMS2154-W01 (Calcasieu/Sabine),29.84620804185077,-93.69704872869427,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS2881-M01,CRMS2881-M01 (Terrebonne),29.472497024236443,-91.01251952564186,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS2887-M01,CRMS2887-M01 (Terrebonne),29.520886866570073,-90.91506796046379,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CRMS6401-H01,CRMS6401-H01 (Atchafalaya),29.421433302901328,-91.30519861108374,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-GBI,CS04a-GBI (Calcasieu/Sabine),29.863188426127394,-93.24073344619465,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-GBI-T,CS04a-GBI-T (Calcasieu/Sabine),29.86481045473107,-93.23200869436937,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-GBO,CS04a-GBO (Calcasieu/Sabine),29.861306251564475,-93.23348119666882,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-GBO-T,CS04a-GBO-T (Calcasieu/Sabine),29.861976368205713,-93.23726195661717,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-LAM,CS04a-LAM (Calcasieu/Sabine),29.841533103482927,-93.23845584549106,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-PEC,CS04a-PEC (Calcasieu/Sabine),29.914215817890117,-93.20215344933673,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS04a-PEC-T,CS04a-PEC-T (Calcasieu/Sabine),29.912888507427773,-93.20259621616901,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS21-15R-T,CS21-15R-T (Calcasieu/Sabine),30.04286675965997,-93.27579992039662,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-01R,CS23-01R (Calcasieu/Sabine),29.908927501301978,-93.38153645786889,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-03,CS23-03 (Calcasieu/Sabine),29.879874777894635,-93.53100350590344,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-05,CS23-05 (Calcasieu/Sabine),29.962487027693317,-93.52888118558613,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-BC-T,CS23-BC-T (Calcasieu/Sabine),29.879268066504245,-93.52927090997177,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-BS-T,CS23-BS-T (Calcasieu/Sabine),29.834784458403703,-93.52959521969771,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-HIG-T,CS23-HIG-T (Calcasieu/Sabine),29.909115787266277,-93.38196188515971,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS23-WC-T,CS23-WC-T (Calcasieu/Sabine),29.865140765756287,-93.45264810028135,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS27-03,CS27-03 (Calcasieu/Sabine),30.05826811157439,-93.59524938299998,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,CS27-19,CS27-19 (Calcasieu/Sabine),30.04556356842825,-93.72770226227676,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,ME14-01,ME14-01 (Mermentau),29.644416060952068,-92.49000004737594,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,ME14-02R,ME14-02R (Mermentau),29.616332220741402,-92.44977801902661,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,ME14-23,ME14-23 (Mermentau),29.65144484936639,-92.49016673814398,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,ME14-24,ME14-24 (Mermentau),29.64458267342513,-92.4697779203149,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,PO0063-11F-RT,PO0063-11F-RT (Pontchartrain),29.986200000026574,-90.34900000040547,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,PO0063-11P-RT,PO0063-11P-RT (Pontchartrain),29.985900000004747,-90.34900000026205,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,PONCON-0001,PONCON-0001 (Pontchartrain),30.064860525754543,-88.9491346889121,Louisiana100m,census->download,no_data_downloaded,interval_min=15; parameter=water_level
+CRMS,PONCON-0002,PONCON-0002 (Pontchartrain),29.99644754095126,-88.9701096858816,Louisiana100m,census->download,no_data_downloaded,interval_min=15; parameter=water_level
+CRMS,PONCON-0003,PONCON-0003 (Pontchartrain),30.090294521937206,-89.02739466625654,Louisiana100m,census->download,no_data_downloaded,interval_min=15; parameter=water_level
+CRMS,TV13A-01,TV13A-01 (Teche/Vermilion),29.8378007528339,-91.98294448739901,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,TV13A-2R,TV13A-2R (Teche/Vermilion),29.819242196750913,-92.03432788654965,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,TV13A-3R,TV13A-3R (Teche/Vermilion),29.82420864970836,-92.03768076100181,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+CRMS,TV13A-4R,TV13A-4R (Teche/Vermilion),29.82796413258922,-92.03311044305507,Louisiana100m,census->download,no_data_downloaded,interval_min=60; parameter=water_level
+TCOON,003,Rincon del San Jose,26.80138888888889,-97.47055555555556,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,008,USS Lexington,27.81416666666667,-97.39833333333334,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,009,Port Aransas,27.83972222222222,-97.07249999999999,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,013,S. Bird Island,27.484444444444446,-97.31805555555555,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,014,Bob Hall Pier,27.580833333333334,-97.21638888888889,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,015,Rockport,28.024166666666666,-97.04777777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,017,Port Mansfield,26.559444444444445,-97.42444444444445,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,018,Port Isabel,26.061111111111114,-97.21527777777779,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,022,Galveston Pier 21,29.309722222222224,-94.79138888888889,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,033,Port Lavaca,28.640277777777776,-96.60944444444443,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,036,Copano Bay,28.11416666666667,-97.02416666666666,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,042,Nueces Delta 2,27.88861111111111,-97.56944444444444,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,051,S. Padre Island Coast Guard Sta.,26.072499999999998,-97.16694444444445,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,068,Baffin Bay,27.296944444444446,-97.40472222222223,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,069,Nueces Delta Weather Station,27.8975,-97.61638888888888,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,072,SALT01,27.839166666666664,-97.44388888888889,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,074,SALT03,27.85138888888889,-97.48194444444445,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,076,SALT05,27.891666666666666,-97.61027777777777,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,126,Texas Point,29.678055555555556,-93.83694444444444,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,127,GBRA Station #1,28.259722222222223,-96.77361111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,130,GBRA Station #2,28.40722222222222,-96.71194444444444,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,132,Bahia Grande Water Quality Station #1,26.030833333333334,-97.29666666666667,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,134,Bahia Grande Water Quality Station #3,26.01972222222222,-97.27444444444444,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,138,Packery Current Meter #2,27.622777777777777,-97.21527777777779,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,145,MANERR Station #1 (Mesquite Bay),28.138333333333332,-96.82833333333333,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,146,MANERR Station #2 (Copano East),28.13222222222222,-97.03444444444445,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,147,MANERR Station #3 (Copano West),28.083888888888886,-97.20083333333334,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,148,MANERR Station #4 (Aransas Bay),27.97972222222222,-97.0286111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,149,MANERR Station #5 (Port Aransas),27.838055555555556,-97.05027777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,152,USCG Freeport,28.943055555555556,-95.30222222222221,Texas100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,164,"Range A Rear, Port of Pascagoula",30.343333333333334,-88.5125,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,165,"Dock C, West Harbor, Port of Pascagoula",30.355555555555558,-88.56666666666666,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,168,"Buoy 34, Sabine Ship Channel Entrance",29.628888888888888,-93.81611111111111,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,170,National Park Service - Baffin Bay,27.296944444444446,-97.40472222222223,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,171,National Park Service - Bird Island,27.484444444444446,-97.31805555555555,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,175,"Day Marker 32, Port of Gulfport",30.239166666666666,-88.99972222222222,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,180,"Buoy 11, Houston/Galveston Ports",29.342222222222222,-94.74083333333333,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,181,Realitos Peninsula,26.26222222222222,-97.28527777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,185,Nueces Bay,27.8325,-97.48583333333333,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,190,USCG Sabine CU,29.72833333333333,-93.86999999999999,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,191,Port of Beaumont CU,30.079444444444444,-94.08583333333333,Louisiana100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,192,Sabine Front Range CU,29.758055555555554,-93.89,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,193,West Port Arthur Bridge CU,29.823888888888888,-93.96416666666667,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,194,Rainbow Bridge CU,29.979166666666664,-93.87138888888889,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,200,Sargent,28.77138888888889,-95.61666666666666,Texas100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,201,Matagorda City,28.71,-95.91388888888889,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,202,Aransas Wildlife Refuge,28.2275,-96.79638888888888,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,223,Port Arthur CU,29.866944444444446,-93.93083333333334,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,229,Cameron Fishing Pier CU,29.764166666666668,-93.34277777777777,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,230,I-210 Bridge,30.199722222222224,-93.28,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,236,Corpus Christi Meteorological TAMUCC,27.715,-97.3286111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,242,Oso Creek Water Level Station #1,27.721666666666664,-97.45777777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,243,Oso Creek Water Level Station #2,27.68861111111111,-97.42916666666667,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,244,Oso Creek Water Level Station #3,27.656666666666666,-97.40138888888889,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,248,Galveston Railroad Bridge,29.302222222222223,-94.8963888888889,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,256,Corpus Christi Meteorological Station #7,27.86777777777778,-97.63166666666666,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,270,Freeport Harbor Channel (SPIP),28.93638888888889,-95.29472222222222,Texas100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,271,Matagorda Bay Entrance Channel,28.42666666666667,-96.33,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,272,Aransas Pass Channel,27.836944444444445,-97.04027777777777,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,273,Brazos Santiago Pass,26.06722222222222,-97.1538888888889,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,274,UTMSI Pier Current Meter,27.838055555555556,-97.05,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,275,Corpus Christi Meteorological Rodd Field,27.676111111111112,-97.35249999999999,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,276,Corpus Christi Meteorological Carmel,27.731666666666666,-97.37777777777777,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,277,Corpus Christi Meteorological Cedar Pass,27.685,-97.41666666666667,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,278,Corpus Christi Meteorological Del-Mar East,27.764166666666668,-97.40416666666667,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,279,Corpus Christi Meteorological Del-Mar West,27.773333333333333,-97.44,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,281,Buoy 06 Port Aransas,27.825833333333332,-97.01972222222223,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,282,Enbridge Ingleside Current Meter,27.8175,-97.20916666666668,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,287,Enbridge Ingleside Meteorological,27.828333333333333,-97.20111111111112,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,288,Enbridge Ingleside Water Level,27.81861111111111,-97.20861111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,289,La Quinta North,27.878888888888888,-97.28583333333333,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,290,Enbridge Ingleside Visibility,27.81861111111111,-97.20861111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,291,Viola Turning Basin Visibility,27.84111111111111,-97.52027777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,292,Tule Visibiliity,27.81861111111111,-97.45833333333334,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,293,UTMSI Visibility,27.83833333333333,-97.05194444444444,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,294,Aquarium Visibility,27.813333333333333,-97.39305555555556,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,295,Viola Meteorological,27.84111111111111,-97.52027777777778,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,296,Harbor Island Visibility,27.84583333333333,-97.06222222222222,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,297,La Quinta Visibility,27.878888888888888,-97.28583333333333,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,298,UTMSI FAML Current Meter,27.83972222222222,-97.07249999999999,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,299,Cheniere Sabine LNG Current Meter,29.742222222222225,-93.8736111111111,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,316,La Quinta Meteorological,27.88138888888889,-97.285,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,317,Harbor Island Current Meter,27.846666666666664,-97.06055555555555,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,321,Freeport Channel Buoy 06,28.924166666666668,-95.28166666666667,Texas100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,326,Freeport Surfside Marina AWAC,28.955,-95.29388888888889,Texas100m;Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,328,Viola Turning Basin Water Level,27.841666666666665,-97.52,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,329,610 Bridge Current Meter,29.725555555555555,-95.26694444444445,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,330,Matagorda Entrance Channel CM,28.42666666666667,-96.33,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,331,Marker 19 Current Meter,28.4475,-96.3561111111111,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,332,Gal-Tex Pilots East End CM,29.318055555555556,-94.78083333333333,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,333,Galveston Channel West End,29.309166666666666,-94.82055555555556,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,504,Rainbow Bridge,29.981111111111108,-93.88444444444445,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,507,Eagle Point,29.481111111111108,-94.91694444444445,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,517,Lynchburg,29.765,-95.07805555555555,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,518,Rollover Pass,29.515,-94.51305555555555,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,524,Port Arthur,29.866944444444446,-93.93083333333334,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,526,San Luis Pass,29.075555555555557,-95.12249999999999,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,529,"Galveston Bay Entrance, North Jetty",29.358055555555556,-94.72583333333334,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,601,TABS Buoy B,28.98222222222222,-94.90111111111112,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,602,TABS Buoy D,27.93277777777778,-96.80749999999999,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,603,TABS Buoy F,28.836944444444445,-94.23444444444445,Galveston100m,census->download,inactive,catalog marks station inactive
+TCOON,604,TABS Buoy J,26.188055555555557,-97.05055555555555,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,605,TABS Buoy R,29.647222222222222,-93.63944444444445,Louisiana100m,census->download,inactive,catalog marks station inactive
+TCOON,607,TABS Buoy W,28.350555555555555,-96.00555555555556,Texas100m,census->download,inactive,catalog marks station inactive
+TCOON,608,TABS Buoy K,26.216666666666665,-96.49972222222222,Texas100m,census->download,inactive,catalog marks station inactive
+USACE_MVK,Bogalusa,"Pearl River @ Bogalusa, LA",30.79326,-89.82091,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Bush,"Bogue Chitto @ Bush, LA",30.6294,-89.8973,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Franklinton,"Bogue Chitto River @ Franklinton, LA",30.84296,-90.16203,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 1-Lock Chamber,Pearl L&D #1 Lock ,30.4564,-89.7797,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 1-Upper Pool,Pearl L&D #1 Upper,30.4564,-89.7797,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 2-Lock Chamber,Pearl L&D #2 Lock,30.5931,-89.8644,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 2-Upper Pool,Pearl L&D #2 Upper,30.5931,-89.8644,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 3-Lock Chamber,Pearl L&D #3 Lock ,30.6381,-89.8681,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl L&D 3-Upper Pool,Pearl L&D #3 Upper,30.6381,-89.8681,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pearl River,"Pearl River @ Pearl River, LA",30.385,-89.7367,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Pools Bluff,"Pearl River @ Pools Bluff, LA",30.7058,-89.8464,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Simmsport,Atchafalaya Riv @ Simmsport,30.9825,-91.79833,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVK,Walkiah Bluff DS,Walkiah Bluff Downstream,30.57011,-89.81158,Louisiana100m,census->download,inactive,record_end=2014-02-25
+USACE_MVK,Walkiah Bluff US,Walkiah Bluff Upstream,30.57162,-89.80669,Louisiana100m,census->download,inactive,record_end=2023-08-31
+USACE_MVK,Baton Rouge,"Mississippi River @ Baton Rouge, LA",30.44567,-91.19156,Louisiana100m,census->download,no_data_downloaded,interval_min=1Day; parameter=Stage
+USACE_MVK,New Orleans,"Mississippi River @ New Orleans, LA",29.93472,-90.13611,Louisiana100m,census->download,no_data_downloaded,interval_min=1Day; parameter=Stage
+USACE_MVK,Red River Lndg,"Mississippi River @ Red River Landing, LA",30.96083,-91.66444,Louisiana100m,census->download,no_data_downloaded,interval_min=1Day; parameter=Stage
+USACE_MVN,Tangipahoa_River-Robert,Tangipahoa River at Robert (85402),30.50658,-90.36175,Louisiana100m,census->download,catalog_record_too_short,catalog years=0.0
+USACE_MVN,17thStCanal-CanalSide,17th Street Canal 2-ICS Canal-,30.01408,-90.12206,Louisiana100m,census->download,inactive,record_end=2018-11-30
+USACE_MVN,17thStCanal-Cherry,17th Street Canal 5-Cherry St.,30.00008,-90.11678,Louisiana100m,census->download,inactive,record_end=2021-01-15
+USACE_MVN,17thStCanal-Geneva,17th Street Canal 3-Geneva St.,30.00023,-90.11676,Louisiana100m,census->download,inactive,record_end=2019-04-03
+USACE_MVN,17thStCanal-Georgia,17th Street Canal 4-Georgia Ct,30.00892,-90.12283,Louisiana100m,census->download,inactive,record_end=2019-04-03
+USACE_MVN,17thStCanal-I10,17th Street Canal 6 at I-10,29.98355,-90.11678,Louisiana100m,census->download,inactive,record_end=2021-01-15
+USACE_MVN,17thStCanal-LandSide,17th Street Canal 1-ICS Lake-s,30.01408,-90.12206,Louisiana100m,census->download,inactive,record_end=2018-11-30
+USACE_MVN,Algiers_Lock,Mississippi River at Algiers Lock (01380),29.91599,-89.97108,Louisiana100m,census->download,inactive,record_end=2026-01-01
+USACE_MVN,Algiers_Lock_GIWW,Algiers Lock At GIWW (76240),29.9143,-89.97336,Louisiana100m,census->download,inactive,record_end=2023-12-25
+USACE_MVN,Alliance,Mississippi River at Alliance (01390),29.68454,-89.9699,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Amite_River-DenhamSprings,Amite River near Denham Springs (85040),30.46408,-90.99038,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Arm_Grand_Lake,Arm of Grand Lake,30.05389,-91.50528,Louisiana100m,census->download,inactive,record_end=2026-09-12
+USACE_MVN,Atch_Bay_Mouth,Mouth of Atchafalaya River at Atchafalaya Bay (88600),29.43025,-91.33389,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Avoca_ISL_Cutoff,Avoca Island Cutoff South of Morgan City (03820),29.53333,-91.24944,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,B_Segnette_NGate,Bayou Segnette Sector Gate- Protected Side (82745),29.89707,-90.15628,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,B_Segnette_SGate,Bayou Segnette Sector Gate- Flood Side (82742),29.89681,-90.15668,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,B_Teche_PortBarr,Bayou Teche at Port Barre (64050),30.54639,-91.9675,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Baldwin,Charenton Drainage Canal at Baldwin,29.82306,-91.54167,Louisiana100m,census->download,inactive,record_end=2019-10-02
+USACE_MVN,Barataria_Bay_WW,Barataria Waterway at Lafitte (82875),29.66944,-90.11056,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,BayouCourtableau,Bayou Courtableau at Courtableau (58350),30.54556,-91.87444,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Bienvenue-East,Bayou Bienvenue Floodgate - East/Flood Side (76025),29.99871,-89.91534,Louisiana100m,census->download,inactive,record_end=2022-10-11
+USACE_MVN,Bayou_Bienvenue-West,Bayou Bienvenue Floodgate - West/Protected Side (76024),29.99784,-89.91652,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Black-Gibson,Bayou Black at Gibson (52840),29.68715,-90.99149,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Black-Greenwood,Bayou Black at Greenwood (52880),29.62056,-90.90417,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Boeuf-Amelia,Bayou Boeuf at Amelia (52800),29.8691,-90.59499,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Boeuf-Kraemer,Bayou Boeuf near Kraemer (82725),29.86917,-90.59528,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Boeuf_Lock-East,Bayou Boeuf Lock - East (76360),29.68304,-91.17109,Louisiana100m,census->download,inactive,record_end=2026-07-23
+USACE_MVN,Bayou_Boeuf_Lock-West,Bayou Boeuf Lock - West (76400),29.68273,-91.18056,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Close,Bayou Close near Krotz Springs (49355),30.535,-91.70028,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Cocodrie-Clearwater,Bayou Cocodrie near Clearwater ,31.00028,-92.38028,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Cocodrie-Landry,Bayou Cocodrie at St. Landry (61720),30.84464,-92.25957,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Cocodrie-White,Bayou Cocodrie at Whiteville (61760),30.77797,-92.19179,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Des_Allemands,Bayou Des Allemands at Des Allemands (82700),29.82389,-90.47667,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Dupre-East,Bayou Dupre Sector Gate - East (76010),29.93518,-89.8366,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Dupre-West,Bayou Dupre Sector Gate - West (76005),29.93462,-89.83719,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Fordoche,Bayou Fordoche near Krotz Springs (49255),30.48611,-91.81111,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_La_Rompe,Bayou La Rompe at Lake Long (03210),30.23319,-91.58967,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Rouge,WABPL Borrow Pit at Bayou Rouge (58050),30.75556,-91.91111,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Sara,Bayou Sara (01140),30.76393,-91.38667,Louisiana100m,census->download,inactive,record_end=2015-12-20
+USACE_MVN,Bayou_Segnette,Bayou Segnette at Lapalco (82740),29.89389,-90.15806,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_Sorrel_Lck,EABPL Borrow Pit (FWS) at Bayou Sorrel Lock (49630),30.13355,-91.32287,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bayou_St_John,Bayou St John,30.02425,-90.08272,Louisiana100m,census->download,inactive,record_end=2019-02-12
+USACE_MVN,Belle_Chasse,Mississippi River at Belle Chase,29.85694,-89.97778,Louisiana100m,census->download,inactive,record_end=2020-03-25
+USACE_MVN,Belle_R_PierrePass,Belle River at Pierre Pass,29.90778,-91.21639,Louisiana100m,census->download,inactive,record_end=2015-01-31
+USACE_MVN,Berwick_Lock-West,Atchafalaya River at Berwick Lock West (03750),29.71969,-91.22471,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Big_Alabama,Big Alabama Bayou (FWS) at Sherburne (49400),30.71111,-91.0,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Blind_Tensus_Cut,Blind Tensas Cut nr Little Tensas Bayou (03315),30.20797,-91.53367,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bonnet_Carre,Mississippi River at Bonnet Carre (01280),29.99739,-90.42482,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Bonnet_Carre_N,Mississippi River North of Bonne Carre (01275),30.00203,-90.46608,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Boomtown,Harvey Canal at Boomtown Casino (76230),29.84806,-90.06083,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Buffalo_Cove,Buffalo Cove at Round Island near Charenton (49235),29.98333,-91.525,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Caernarvon_SG_N,Caernarvon Canal Sector Gate (N) Protected Side (85765),29.85883,-89.90686,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Caernarvon_SG_S,Caernarvon Canal Sector Gate (S) Protected Side (85760),29.85867,-89.90683,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Calcasieu_Lock-East,IWW at Calcasieu Lock - East (76880),30.08634,-93.29138,Louisiana100m,census->download,inactive,record_end=2026-09-12
+USACE_MVN,Calcasieu_Lock-West,IWW at Calcasieu Lock -West (76960),30.08872,-93.29489,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Calumet,Wax Lake Outlet At Calumet (03720),29.6977,-91.3728,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Cameron,Calcasieu River near Cameron (73650),29.77581,-93.34792,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,CatfishPoint_Nth,Catfish Point Control Structure - North (70675),29.86359,-92.84843,Louisiana100m,census->download,inactive,record_end=2026-09-13
+USACE_MVN,CatfishPoint_Sth,Catfish Point Control Structure - South (70750),29.86293,-92.84924,Louisiana100m,census->download,inactive,record_end=2026-09-13
+USACE_MVN,Charenton_Canal,Charenton Drainage Canal at Charenton Floodgate (64400),29.90205,-91.51926,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Chef_Menteur,Chef Pass near Hwy 90 (85750),30.06674,-89.80103,Louisiana100m,census->download,inactive,record_end=2024-02-20
+USACE_MVN,Chef_Pass_LA,Chef Pass near Hwy 90 (85750LA),30.06819,-89.80298,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Chicot_Pass,Chicot Pass near West Fork (03465),30.06801,-91.47404,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Chicot_Pass-Myette,"Chicot Pass near Myette Point near Charenton, LA (03540)",30.06801,-91.47404,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Choctaw_Bayou,"Choctaw Bayou near Rosedale, LA (52390)",30.47667,-91.38778,Louisiana100m,census->download,inactive,record_end=2026-03-03
+USACE_MVN,Cocodrie,Bayou Petit Caillou at Cocodrie (76305),29.25425,-90.66353,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,College_Point,Mississippi River at  College Point (01240),29.99556,-90.83583,Louisiana100m,census->download,inactive,record_end=2015-12-12
+USACE_MVN,Courtableau_Abve,Bayou Courtableau Above Drainage Str (58400 ),30.53422,-91.85944,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Crewboat_Channel,Crewboat Channel at Wax Lake Outlet nr Calumet (03830),29.54,-91.43556,Louisiana100m,census->download,inactive,record_end=2018-10-21
+USACE_MVN,Cross_Bayou-North,Cross Bayou Canal - North of Drainage Control Str (85661),29.98622,-90.34902,Louisiana100m,census->download,inactive,record_end=2026-08-27
+USACE_MVN,Cross_Bayou-South,Cross Bayou Canal - South of Drainage Control Str (85660),29.98589,-90.34903,Louisiana100m,census->download,inactive,record_end=2026-06-18
+USACE_MVN,Cyremort_Point,"Cypremort Point, LA",29.71306,-91.88028,Louisiana100m,census->download,inactive,record_end=2020-10-17
+USACE_MVN,Donaldsonville,Mississippi River at Donaldsonville (01220),30.10105,-90.95972,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,EABPL_Borrow_Pit,"EABPL Borrow Pit (FWS) nr Ramah, La (49542)",30.36929,-91.51965,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,East_Calumet_FG,Bayou Teche at East Calumet Floodgate (64700),29.7021,-91.36828,Louisiana100m,census->download,inactive,record_end=2026-04-06
+USACE_MVN,Empire,Mississippi River at Empire (01440),29.38937,-89.59646,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Empire_FloodGate-Landside,Empire Floodgate Land Side (01442),29.37694,-89.60167,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Empire_FloodGate-WaterSide,Empire Floodgate Water Side (01441),29.37667,-89.60167,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,False_River,False River at New Roads (52330),30.69111,-91.43833,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Freshwater_Lock_N,Freshwater Canal at Freshwater Bayou Lock - North (76592),29.55469,-92.30459,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,GIWW_Bayou_Sale,GIWW at Bayou Sale Ridge (76560),29.68083,-91.47056,Louisiana100m,census->download,inactive,record_end=2026-04-06
+USACE_MVN,GIWW_Houma_LA661,GIWW at Houma LA 661 (76321),29.56778,-90.71556,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,GIWW_Paris_Rd,GIWW near Paris Road Bridge (76040),30.00671,-89.93736,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,GIWW_Pierre_Pass,GIWW at Pierre Pass,29.90917,-91.21778,Louisiana100m,census->download,inactive,record_end=2015-01-31
+USACE_MVN,GSML1,GIWW mile 103,29.64358,-91.30012,Louisiana100m,census->download,inactive,record_end=2014-05-20
+USACE_MVN,GoldenMeadow_SFG,Golden Meadow Floodgate-South,29.3425,-90.24639,Louisiana100m,census->download,inactive,record_end=2014-05-08
+USACE_MVN,Golden_Meadow_NFG,Golden Meadow Floodgate - NFG,29.34278,-91.24608,Louisiana100m,census->download,inactive,record_end=2023-11-07
+USACE_MVN,Grand Pass_USGS,Grand Pass USGS,30.12278,-89.25028,Louisiana100m,census->download,inactive,record_end=2022-04-12
+USACE_MVN,Grand_Chenieer,Mermentau River at Grand Chenieer (70900),29.77035,-93.01353,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Hackberry,Calcasieu River at Hackberry (73600),30.006,-93.33433,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Harvey_Canal_Lap,Harvey Canal at Lapalco Blvd (76220),29.87056,-90.06932,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Harvey_Canal_Sth,Harvey Canal Lapalco Blvd South,29.84836,-90.05987,Louisiana100m,census->download,inactive,record_end=2020-06-23
+USACE_MVN,Harvey_Lock,Mississippi River at Harvey Lock (01320),29.91004,-90.08406,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Harvey_Lock_GIWW,Harvey Lock at GIWW (76200),29.9085,-90.08341,Louisiana100m,census->download,inactive,record_end=2026-08-13
+USACE_MVN,Head_of_Passes,Mississippi River at Head of Passes (01545),29.13378,-89.24653,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Hero_Canal_FS,Hero Canal Control Structure -(W) Flood Side (82762),29.79039,-90.03541,Louisiana100m,census->download,inactive,record_end=2021-01-03
+USACE_MVN,Hero_Canal_PS,Hero Canal Control Structure -(E) Protected Side (82760),29.79016,-90.03467,Louisiana100m,census->download,inactive,record_end=2021-01-03
+USACE_MVN,IHNC_Lock,Mississippi River at IHNC Lock (01340),29.96441,-90.02743,Louisiana100m,census->download,inactive,record_end=2026-09-10
+USACE_MVN,IHNC_NewOrleans,Inner Harbor Navigation Canal at New Orleans (76160),29.96648,-90.02675,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,IHNC_S_Seabrook,Seabrook Bridge - Inner Harbor Nav Canal (76060),30.02417,-90.03129,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,IHNC_SurgeBar_E,IHNC Surge Barrier East / Flood Side (76030),30.01239,-89.90053,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,IHNC_SurgeBar_W,IHNC Surge Barrier West / Protected Side(76032),30.01239,-89.90063,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,IWW_Morley,"Intracoastal Waterway at Morley, LA (52441)",30.395,-91.32306,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,IWW_PortAllen,Port Allen Lock - Intracoastal Waterway (52415),30.43202,-91.21021,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Keelboat_Pass,Keelboat Pass below Lake Chicot (03615),30.03845,-91.45583,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Knox_Ldg,Mississippi River near Knox Landing (01080),31.07361,-91.58194,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Krotz_Springs,Atchafalaya River at Krotz Springs (03075),30.56883,-91.7615,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lacassine_Refuge,Mermentau River at Lacassine Refuge (70600),30.0025,-92.78111,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lake_Charles,Calcasieu River at Lake Charles (73550),30.21308,-93.25694,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lake_Palourde,Lake Palourde near Morgan City (52750),29.71944,-91.18722,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lake_Pon_Lkfront,Lake Pontchartrain at Lakefront Airport (85670),30.03994,-90.01881,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lake_Pon_Mandvil,Lake Pont at Mandeville (85575),30.3658,-90.09229,Louisiana100m,census->download,inactive,record_end=2023-11-16
+USACE_MVN,Lake_Pont-WestEnd,Lake Pontchartrain at West End (85625),30.02216,-90.11564,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lake_Pont_BC_I10,Lake Pontchartrain at Bonnet Carre I-10 Bridge (85552),30.06785,-90.38994,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Latenache_Above,Bayou Latenache Above Pointe Coupe Drainage Strct (40900),30.72876,-91.73328,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Latenache_Below,Bayou Latenache Below Pointe Coupe Drainage Strct (43500),30.72824,-91.73293,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Leland_Lock-East,IWW at Leland Bowman Lock - East (76720),29.78521,-92.20414,Louisiana100m,census->download,inactive,record_end=2026-03-03
+USACE_MVN,Leland_Lock-West,IWW at Leland Bowman Lock - West (76800),29.78702,-92.20925,Louisiana100m,census->download,inactive,record_end=2023-11-16
+USACE_MVN,LitteBayouSorrel,Little Bayou Sorrel At Junction with GIWW (49725),29.79536,-91.17583,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Little_ Alabama,Little Alabama Bayou at Sherbourne (49365),30.49642,-91.71864,Louisiana100m,census->download,inactive,record_end=2026-08-14
+USACE_MVN,London_Canal-CanalSide,London Canal 2-ICS Canalside,30.02594,-90.07198,Louisiana100m,census->download,inactive,record_end=2018-12-09
+USACE_MVN,London_Canal-Filmore,London Ave Canal 5-Filmore Ave,30.01172,-90.07006,Louisiana100m,census->download,inactive,record_end=2019-04-07
+USACE_MVN,London_Canal-Harrison,London Ave Canal 7-Harrison Av,29.99994,-90.06914,Louisiana100m,census->download,inactive,record_end=2020-11-28
+USACE_MVN,London_Canal-LakeSide,London Canal 1-ICS Lakeside,30.02606,-90.07203,Louisiana100m,census->download,inactive,record_end=2018-12-09
+USACE_MVN,London_Canal-Mirabeau,London Ave Canal 6-Mirabeau Av,30.00746,-90.06971,Louisiana100m,census->download,inactive,record_end=2019-04-07
+USACE_MVN,London_Canal-Prentiss,London Ave Canal 4-Prentiss Ave,30.01706,-90.07051,Louisiana100m,census->download,inactive,record_end=2021-01-15
+USACE_MVN,London_Canal-ProtectedSide3,London Ave Canal 8-PS3,29.9892,-90.06814,Louisiana100m,census->download,inactive,record_end=2020-11-28
+USACE_MVN,London_Canal-Simon,London Ave Canal 3-Simon Dr,30.02319,-90.0709,Louisiana100m,census->download,inactive,record_end=2021-01-15
+USACE_MVN,Luke's_Landing,East Cote Blanche Bay at Luke's Landing (88800),29.60108,-91.53998,Louisiana100m,census->download,inactive,record_end=2025-11-02
+USACE_MVN,Lwr_Grand_Fausse,Lower Grand River at Lake Fausse (58700),30.06231,-91.60808,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Lwr_Grand_Sorrel,Lower Grand River at Bayou Sorrel Lock (52560),30.13194,-91.32278,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,MRGL1,Morgan City/USGS,29.69261,-91.21183,Louisiana100m,census->download,inactive,record_end=2025-02-11
+USACE_MVN,Melville,Atchafalaya River at Melville (03060),30.69056,-91.73611,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Natalbany_River-Baptist,"Natalbany River near Baptist, LA (85390)",30.50436,-90.54592,Louisiana100m,census->download,inactive,record_end=2025-05-23
+USACE_MVN,New_Henderson,WABPL Borrow Pit (LS) at New Henderson (58600),30.31376,-91.78904,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,OAC_CanalSide,Orleans Ave Canal 2-ICS Canal-,30.02402,-90.09893,Louisiana100m,census->download,inactive,record_end=2018-12-22
+USACE_MVN,OAC_ChapelleSt,Orleans Ave Canal 4-Chapelle S,30.01342,-90.09917,Louisiana100m,census->download,inactive,record_end=2022-12-27
+USACE_MVN,OAC_HarrisonAve,Orleans Ave Canal 6-Harrison A,30.00383,-90.10008,Louisiana100m,census->download,inactive,record_end=2019-04-07
+USACE_MVN,OAC_LakeSide,Orleans Ave Canal 1-ICS Lake-s,30.02445,-90.09907,Louisiana100m,census->download,inactive,record_end=2018-12-22
+USACE_MVN,OAC_LaneSt,Orleans Ave Canal 5-Lane St.,30.00803,-90.09988,Louisiana100m,census->download,inactive,record_end=2019-04-07
+USACE_MVN,OAC_Polk,Orleans Ave Canal 7-Polk St.,29.99843,-90.1009,Louisiana100m,census->download,inactive,record_end=2019-04-06
+USACE_MVN,OAC_Pump_Sta_7,Orleans Ave Canal 8-PS7,29.99525,-90.10133,Louisiana100m,census->download,inactive,record_end=2019-04-06
+USACE_MVN,OAC_RobertELee,Orleans Ave Canal 3-Robert E L,30.0187,-90.09867,Louisiana100m,census->download,inactive,record_end=2022-12-31
+USACE_MVN,ORCC-Auxiliary_Structure_Inflow,Old River Auxiliary Inflow near Knox Landing,31.06459,-91.58765,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,ORCC-Auxiliary_Structure_Outflow,Old River Auxiliary Outflow near Knox Landing,31.06578,-91.59164,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,ORCC-LowSill_Structure_Inflow,Old River LowSill Inflow Channel near Knox Landing,31.07789,-91.59774,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,ORCC-LowSill_Structure_Outflow,Old River Lowsill Outflow Channel near Knox Landing,31.07566,-91.59967,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Oakville_Lev_FS,Oakville Levee Pump Station - Flood Side/South (82770),29.78365,-90.03289,Louisiana100m,census->download,inactive,record_end=2022-05-10
+USACE_MVN,Oakville_Lev_PS,Oakville Leeve PS,29.78403,-90.03278,Louisiana100m,census->download,inactive,record_end=2022-05-10
+USACE_MVN,Pierre_P_P_Part,Pierre Pass at Pierre Part (52680),29.96389,-91.20889,Louisiana100m,census->download,inactive,record_end=2014-03-27
+USACE_MVN,Pointe_Coupee,Drainage Canal at Pointe Coupee (40700),30.726,-91.73897,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Port_Allen_Lock_OD,Port Allen Lock (52415),30.43202,-91.21021,Louisiana100m,census->download,inactive,record_end=2023-06-02
+USACE_MVN,Reserve,Mississippi River at  Reserve (01260),30.05442,-90.56872,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Rigolets,Rigolets near Lake Pontchartrain (85700),30.16339,-89.73791,Louisiana100m,census->download,inactive,record_end=2024-02-20
+USACE_MVN,Rigolets_LA,Rigolets at Hwy 90 (85700LA),30.17039,-89.73446,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,SWPass_BHP,Mississippi River Southwest Pass Mile 7.5 BHP (01575),29.05638,-89.30863,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,SWPass_EJetty,Mississippi River Southwest Pass at East Jetty (01670),28.93231,-89.40711,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,S_Pass_PortEads,Mississippi River South Pass at Port Eads (01850),29.01472,-89.16583,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,SaltWatBarrier_E,Calcasieu River Salt Water Barrier - East (73472),30.25396,-93.21811,Louisiana100m,census->download,inactive,record_end=2025-10-29
+USACE_MVN,SaltWatBarrier_W,Calcasieu River Salt Water Barrier - West (73473),30.25395,-93.21877,Louisiana100m,census->download,inactive,record_end=2025-10-29
+USACE_MVN,Schooner_Bayou_E,Schooner Bayou Control Structure - East (76600),29.75782,-92.26377,Louisiana100m,census->download,inactive,record_end=2025-08-21
+USACE_MVN,Schooner_Bayou_W,Schooner Bayou Control Structure - West (76680),29.75779,-92.26419,Louisiana100m,census->download,inactive,record_end=2025-08-21
+USACE_MVN,Seabrook_Brdge_N,Seabrook Floodgate Closure Structure - Lake Side (76065),30.03042,-90.03467,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Seabrook_Brdge_S,Seabrook Floodgate - IHNC Side (76062),30.03024,-90.03462,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Sellars_Canal_LA,Sellars Canal at Hwy 90 HSDRRS (82720LA),29.91187,-90.27053,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Sellers_Canal,Sellers Canal at Hwy 90,29.9125,-90.27306,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Six_Mile_Lake,Six Mile Lake NE of Verdunville (03645),29.76592,-91.38967,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,St_Fran_Cast_NE,NE Corner of Casting Yard (01143),30.7674,-91.38024,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,St_Fran_Cast_SW,SW Corner of Casting Yard (01142),30.76622,-91.3928,Louisiana100m,census->download,inactive,record_end=2026-09-09
+USACE_MVN,St_Francisville,Mississippi River nr St. Francisville (01145),30.70286,-91.34419,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tangipahoa_River-Amite,"Tangipahoa River near Amite, LA",30.72907,-90.48426,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tangipahoa_River-Kentwood,"Tangipahoa River near Kentwood, LA - 07375300",30.93768,-90.49037,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tchefuncte_River-Folsom,Tchefuncte River near Folsom (85500),30.61583,-90.24861,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Terrebone_Laf_DC,Lafourche Canal at Chacahoula (52900),29.68304,-90.89021,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tickfaw_River-Holden,Tickfaw River at Holden (85302),30.5038,-90.67732,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tickfaw_River-Liverpool,Tickfaw River @ Liverpool,30.93074,-90.67343,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Tickfaw_River-Springfield,Tickfaw River Near Springfield (85300),30.37656,-90.55111,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Upper_Grand_FWS,Upper Grand River (Flood Water Side) (49570),30.22433,-91.42325,Louisiana100m,census->download,inactive,record_end=2022-12-22
+USACE_MVN,Upper_Grand_LS,Upper Grand River (LS) at Dike (52280),30.22583,-91.41972,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Venice,Mississippi River at Venice (01480),29.27328,-89.35243,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Vermilion_River-Surrey,Vermilion River at Surrey St,30.21742,-91.9929,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Verret,Verret at LA 46 (82716),29.86056,-89.77417,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Walker_DS_FS,Walker Drainage Structure - Flood Side (85667),29.99041,-90.29094,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Walker_DS_PS,Walker Drainage Structure - Protected Side (85666),29.99022,-90.29073,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Wax_Lake_East,Wax Lake East Drainage Area at Control Structure (76480),29.64222,-91.3207,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,WestCC _FS,West Closure Complex - Flood Side (76265),29.81576,-90.06858,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,WestCC_PS,GIWW at West Closure Complex Protected Side (76260),29.81587,-90.06858,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,West_Bay,Mississippi River at West Bay (01515),29.24013,-89.2984,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,West_Bay_Receive,West Bay Receiving Area,29.21924,-89.31508,Louisiana100m,census->download,inactive,record_end=2023-11-16
+USACE_MVN,West_Calumet_FG,Bayou Teche at West Calumet Floodgate (64650),29.70399,-91.37523,Louisiana100m,census->download,inactive,record_end=2026-04-29
+USACE_MVN,West_Pointe,Mississippi River at West Pointe a la Hache (01400),29.57111,-89.79694,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Western_TieIn_FS,Western Tie-In Sector Gate - Flood Side (82715),29.90964,-90.27321,Louisiana100m,census->download,inactive,record_end=2026-08-02
+USACE_MVN,Western_TieIn_PS,Western Tie-In Sector Gate - Protected Side (82718),29.91,-90.27338,Louisiana100m,census->download,inactive,record_end=2026-08-02
+USACE_MVN,Whiskey_Bay,Whiskey Bay Pilot Channel Below Head (03240),30.38525,-91.68931,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Workman_Canal,Workman Canal near I-10 (49415),30.38694,-91.55722,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_MVN,Baton_Rouge,Mississippi River at Baton Rouge (01160),29.42916,-91.20694,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_MVN,Butte_LaRose,Atchafalaya River at Butte La Rose (03120),30.2828,-91.68794,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_MVN,Morgan_City,Atchafalaya River at Morgan City (03780),29.69734,-91.21083,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_MVN,New_Orleans,Mississippi River at New Orleans (Carrollton) (01300),29.93472,-90.13611,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_MVN,Red_River_Ldg,Mississippi River at Red River Landing (01120),30.96083,-91.66444,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_MVN,Simmesport,Atchafalaya River at Simmesport (03045),30.9825,-91.79833,Louisiana100m,census->download,no_data_downloaded,interval_min=~1Day; parameter=Stage
+USACE_SWF,ALNT2,"Chocolate Bayou nr Alvin, TX",29.36917,-95.32056,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BACT2,"Colorado Rv nr Bay City, TX",28.97415,-96.01246,Texas100m;Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BBZT2,"Brazos Rv  Bryan, TX",30.62667,-96.54389,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BEMT2,"Mill Ck nr Bellville, TX",29.88083,-96.205,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BFOT2,"Berry Bayou at Nevada St, Houston, TX",29.65662,-95.2291,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BIPT2,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",30.17882,-94.18879,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BKHT2,"Brickhouse Gully at Costa Rica St, Houston, TX",29.828,-95.46938,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,BRVT2,"Sabine Rv nr Burkeville, TX",31.06389,-93.51944,Louisiana100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,CBST2,"Colorado Rv at Columbus, TX",29.70611,-96.53667,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,CDOT2,CDOT2,29.19028,-96.06972,Galveston100m,census->download,inactive,record_end=2018-04-19
+USACE_SWF,CLDT2,CLDT2,30.33639,-95.10389,Galveston100m,census->download,inactive,record_end=2026-09-10
+USACE_SWF,CUET2,"Guadalupe Rv at Cuero, TX",29.09028,-97.32944,Texas100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,DEHT2,DEHT2,29.85134,-95.488,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,DIBT2,"Neches Rv nr Diboll, TX",31.13278,-94.80972,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,DUPT2,"Guadalupe Rv nr Bloomington, TX",28.66194,-96.96528,Texas100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,EVDT2,"Neches Rv at Evadale, TX",30.35556,-94.09306,Louisiana100m;Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,GABT2,"Garners Bayou nr Humble, TX",29.93386,-95.23396,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,GBLT2,GBLT2,29.83717,-95.23327,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,HCCT2,"Clear Ck nr Friendswood, TX",29.51746,-95.17854,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,HCDT2,"Cedar Bayou nr Crosby, TX",29.97272,-94.98576,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,HPDT2,"Brazos Rv nr Hempstead, TX",30.12889,-96.1875,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,HSIT2,HSIT2,29.67417,-95.28917,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,JSPT2,Sam Rayburn Reservoir,31.06056,-94.10583,Louisiana100m;Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,JSPT2-Alt,Sam Rayburn Reservoir,31.06056,-94.10583,Louisiana100m;Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,KOUT2,"Village Ck nr Kountze, TX",30.39778,-94.26333,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,LIVT2,"Long King Ck at Livingston, TX",30.71611,-94.95861,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,LYNT2,"Davidson Ck nr Lyons, TX",30.41944,-96.54,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,MDST2,"Bedias Ck nr Madisonville, TX",30.88417,-95.7775,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,NGET2,NGET2,30.97361,-96.24139,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,NSBT2,NSBT2,30.15667,-94.11417,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,OALT2,OALT2,30.88667,-95.08028,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,RMOT2,"Brazos Rv at Richmond, TX",29.58222,-95.7575,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,ROKT2,"Neches Rv nr Rockland, TX",31.02472,-94.39861,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,ROST2,"Brazos Rv nr Rosharon, TX",29.34944,-95.58222,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,RVRT2,TRINITY RIVER AT RIVERSIDE,30.85917,-95.39861,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,RYET2,"Menard Ck nr Rye, TX",30.48139,-94.77972,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,SCDT2,Coleto Ck  Schroeder,28.86139,-97.22611,Texas100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,SMAT2,"S Mayde Ck nr Addicks, TX",29.80106,-95.69245,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,SMVT2,"Yegua Ck nr Somerville, TX",30.32167,-96.50722,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,SOLT2,Pine Island Bayou Sour Lake,30.10583,-94.33444,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,SOMT2,Somerville Lake,30.32222,-96.52556,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,TBFT2,"Neches Rv nr Town Bluff, TX",30.79083,-94.15083,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,TBLT2,B. A. Steinhagen Lake,30.79528,-94.18,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,VICT2,"Guadalupe Rv at Victoria, TX",28.79278,-97.01278,Texas100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,WHAT2,"Colorado Rv at Wharton, TX",29.30889,-96.10361,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWF,WSVT2,TRINITY RIVER AT WALLISVILLE,29.81222,-94.73111,Galveston100m,census->download,inactive,record_end=2026-09-14
+USACE_SWG,ARPT2-WL45,Addicks Res Piezometer WL45,29.79052,-95.63718,Galveston100m,census->download,inactive,record_end=2017-01-03
+USACE_SWG,ARPT2-WL46,Addicks Reservoir Piezometer,29.79028,-95.62389,Galveston100m,census->download,inactive,record_end=2017-01-03
+USACE_SWG,ARPT2-WLN45,Addicks Reservoir Piezometer,29.79056,-95.64139,Galveston100m,census->download,inactive,record_end=2017-01-03
+USACE_SWG,ARPT2-WLN46,Addicks Reservoir Piezometer,29.79028,-95.62389,Galveston100m,census->download,inactive,record_end=2017-01-03
+USACE_SWG,ARPT2-WLN47,Addicks Reservoir Piezometer,29.79056,-95.62372,Galveston100m,census->download,inactive,record_end=2017-01-03
+USACE_SWG,Addicks,Addicks Reservoir,29.79061,-95.62379,Galveston100m,census->download,inactive,record_end=2024-10-01
+USACE_SWG,BAKT2-WL1,BAKT2-WL1,29.77444,-95.64694,Galveston100m,census->download,inactive,record_end=2017-02-10
+USACE_SWG,BAKT2-WL2,BAKT2-WL2,29.77444,-95.64694,Galveston100m,census->download,inactive,record_end=2017-02-10
+USACE_SWG,BAKT2-WL3,BAKT2-WL3,29.77444,-95.64694,Galveston100m,census->download,inactive,record_end=2017-02-10
+USACE_SWG,Barker,Barker Reservoir,29.76972,-95.64659,Galveston100m,census->download,inactive,record_end=2024-10-02
+USACE_SWG,CBST2-Alt,CBST2-Alt,29.70611,-96.53667,Galveston100m,census->download,inactive,record_end=2025-08-06
+USACE_SWG,GBHT2,"Greens Bayou nr Houston, TX",29.91828,-95.30688,Galveston100m,census->download,inactive,record_end=2017-08-19
+USACE_SWG,HGBT2,HGBT2,29.95689,-95.41799,Galveston100m,census->download,inactive,record_end=2017-08-20
+USACE_SWG,LCTT2,"Lk Conroe nr Conroe, TX",30.35854,-95.56105,Galveston100m,census->download,inactive,record_end=2020-01-12
+USACE_SWG,LVDT2,LVDT2,30.63333,-95.01,Galveston100m,census->download,inactive,record_end=2025-06-10
+USACE_SWG,LWCT2,"Willow Ck nr Tomball, TX",30.1055,-95.54661,Galveston100m,census->download,inactive,record_end=2017-08-20
+USACE_SWG,MOKT2,MOKT2,29.44722,-94.92,Galveston100m,census->download,inactive,record_end=2017-02-10
+USACE_SWG,MTPT2,MTPT2,28.92778,-96.17083,Texas100m;Galveston100m,census->download,inactive,record_end=2025-08-06
+USACE_SWG,PBST2,"Panther Br nr Spring, TX",30.13083,-95.48111,Galveston100m,census->download,inactive,record_end=2025-08-06
+USACE_SWG,PTET2,PTET2,30.08583,-95.29972,Galveston100m,census->download,inactive,record_end=2025-08-06
+USACE_SWG,RBUT2,"8211503 - Rincon Bayou Channel nr Calallen, TX",27.89697,-97.62555,Texas100m,census->download,inactive,record_end=2025-04-29
+USACE_SWG,REFT2,"Mission Rv at Refugio, TX",28.29167,-97.27889,Texas100m,census->download,inactive,record_end=2025-08-06
+USACE_SWG,SPNT2,"Spring Ck nr Spring, TX",30.11028,-95.43611,Galveston100m,census->download,inactive,record_end=2017-08-20
+USACE_SWG,WRST2,"Fifteenmile Ck nr Weser, TX",28.8975,-97.35472,Texas100m,census->download,inactive,record_end=2025-08-06
+USGS,02471089,"BAYOU HERON AT BAYOU HERON RD NR PECAN, MS",30.4136111,-88.4016667,Louisiana100m,census->download,catalog_record_too_short,catalog years=0.9
+USGS,02480212,"PASCAGOULA RIVER AT MI 1 AT PASCAGOULA, MS",30.36777778,-88.5630556,Louisiana100m,census->download,inactive,record_end=2023-07-11
+USGS,02480285,"WEST PASCAGOULA RIVER AT HWY 90 AT GAUTIER, MS",30.38269444,-88.6084444,Louisiana100m,census->download,inactive,record_end=2023-07-11
+USGS,02480287,"GRAVELINE BAYOU NEAR GAUTIER, MS",30.36288889,-88.6947222,Louisiana100m,census->download,inactive,record_end=2023-07-11
+USGS,02480345,"TCHOUTACABOUFFA RIVER TRIB NEAR WHITE PLAINS, MS",30.5910972,-88.9068417,Louisiana100m,census->download,inactive,record_end=2024-08-08
+USGS,02480605,"TCHOUTACABOUFFA RIVER AT CEDAR LAKE, MS",30.4596418,-88.9391993,Louisiana100m,census->download,inactive,record_end=1998-09-29
+USGS,02481251,"TURKEY CREEK AT AIRPORT ROAD AT GULFPORT, MS",30.4184361,-89.0825028,Louisiana100m,census->download,inactive,record_end=2024-08-08
+USGS,02481270,"BACK BAY OF BILOXI NEAR BILOXI, MISS.",30.4157534,-88.9758669,Louisiana100m,census->download,inactive,record_end=2023-04-26
+USGS,07373500,"WEST FORK THOMPSON CR NR WAKEFIELD, LA.",30.92240137,-91.293166,Louisiana100m,census->download,inactive,record_end=2026-11-07
+USGS,07374540,"Mississippi River at Buras, LA",29.35713889,-89.5238611,Louisiana100m,census->download,inactive,record_end=2016-02-25
+USGS,07380107,"Muddy Creek at Manchac Acres Rd near Oak Grove, LA",30.32852706,-90.94648899,Louisiana100m,census->download,inactive,record_end=2022-01-19
+USGS,073801175,"Grays Creek at Hwy 16 near Port Vincent, LA",30.41177778,-90.9151389,Louisiana100m,census->download,inactive,record_end=2016-08-14
+USGS,07380125,"Henderson Bayou Trib. No.2 nr Duplessis, LA",30.29908344,-90.9187102,Louisiana100m,census->download,inactive,record_end=2016-08-15
+USGS,07380185,"W Colyell Cr. at Joe May Rd near Port Vincent, LA",30.42158054,-90.8648207,Louisiana100m,census->download,inactive,record_end=2016-08-12
+USGS,073802375,"Lake Salvador near Lafitte, LA",29.77138889,-90.1933333,Louisiana100m,census->download,inactive,record_end=2013-10-22
+USGS,07380245,"Southwestern Louisiana Canal E of Leeville, LA",29.25938889,-90.1399806,Louisiana100m,census->download,inactive,record_end=2025-11-18
+USGS,073802514,Barataria Waterway at Champagne Bay nr Grand Isle,29.3336111,-89.9885,Louisiana100m,census->download,inactive,record_end=2021-08-29
+USGS,07380255,"Bayou Dupont nr Round Lake S of Myrtle Grove, LA",29.576733,-89.986408,Louisiana100m,census->download,inactive,record_end=2025-11-20
+USGS,07380335,"Little Lake Near Cutoff, LA",29.51774321,-90.1814766,Louisiana100m,census->download,inactive,record_end=2021-08-28
+USGS,07380400,"Bayou Lafourche at Donaldsonville, LA",30.10088889,-90.9934722,Louisiana100m,census->download,inactive,record_end=2019-03-01
+USGS,07381328,"Houma Navigation Canal at Dulac, LA",29.38522075,-90.729812,Louisiana100m,census->download,inactive,record_end=2019-10-01
+USGS,07381331,"GIWW at Houma, LA",29.59805556,-90.71,Louisiana100m,census->download,inactive,record_end=2019-10-21
+USGS,073813375,"Bayou Terrebonne at Ctrl Str near Lapeyrouse, LA",29.38888889,-90.5877778,Louisiana100m,census->download,inactive,record_end=2017-09-07
+USGS,073816501,"Avoca Island Cutoff south of Morgan City, LA",29.5386111,-91.2458333,Louisiana100m,census->download,inactive,record_end=2019-03-14
+USGS,073816503,"Bayou Penchant S of Morgan City, LA",29.58555556,-91.1552778,Louisiana100m,census->download,inactive,record_end=2022-12-07
+USGS,07381654,Atchafalaya Bay at Eugene Island,29.3791111,-91.3818056,Louisiana100m,census->download,inactive,record_end=2012-10-01
+USGS,07385790,"Charenton Drainage Canal at Baldwin, LA",29.82305556,-91.5416667,Louisiana100m,census->download,inactive,record_end=2019-10-22
+USGS,08042455,"Hillebrandt Bayou at US 90, Beaumont, TX",30.06783333,-94.1570278,Galveston100m,census->download,inactive,record_end=2026-01-15
+USGS,08067654,"Live Oak Branch at Estates Dr, Conroe, TX",30.325294,-95.491464,Galveston100m,census->download,inactive,record_end=2026-03-11
+USGS,08068020,"E Fk Crystal Ck at FM 1485 nr Cut and Shoot, TX",30.2949,-95.3521056,Galveston100m,census->download,inactive,record_end=2024-08-18
+USGS,08071280,"Luce Bayou abv Lk Houston nr Huffman, TX",30.10966019,-95.0599294,Galveston100m,census->download,inactive,record_end=2022-09-21
+USGS,08072700,"S Mayde Ck nr Addicks, TX",29.80106159,-95.692447,Galveston100m,census->download,inactive,record_end=2015-10-01
+USGS,08111110,"New Year Ck at FM 1155 nr Chappell Hill, TX",30.21231389,-96.2429583,Galveston100m,census->download,inactive,record_end=2025-08-25
+USGS,08211503,"Rincon Bayou Channel nr Calallen, TX",27.8969652,-97.6255509,Texas100m,census->download,inactive,record_end=2019-08-07
+USGS,08470500,"Arroyo Colorado at FM 106, Rio Hondo, TX",26.23527778,-97.58472222,Texas100m,census->download,inactive,record_end=2025-08-25
+USGS,292859090004000,"Barataria Waterway S of Lafitte, LA",29.48305556,-90.0111111,Louisiana100m,census->download,inactive,record_end=2020-03-03
+USGS,293229091230800,CRMS0465-H01-RT,29.541389,-91.385556,Louisiana100m,census->download,inactive,record_end=2025-07-31
+USGS,294736091164200,American Pass at Little Bayou Sorrel,29.79333333,-91.2783333,Louisiana100m,census->download,inactive,record_end=2015-11-05
+USGS,295349093303800,CRMS0641,29.89694444,-93.5105556,Louisiana100m,census->download,inactive,record_end=2012-08-01
+USGS,295827090052800,"Bayou Saint John Southlake at New Orleans ,LA",29.97416667,-90.0911111,Louisiana100m,census->download,inactive,record_end=2015-07-27
+USGS,295906090054200,"City Park South Lagoon at New Orleans, LA",29.985,-90.095,Louisiana100m,census->download,inactive,record_end=2015-07-27
+USGS,300009090051600,"City Park East Lagoon at New Orleans, LA",30.0025,-90.0877778,Louisiana100m,census->download,inactive,record_end=2015-07-29
+USGS,300026090050800,"Bayou Saint John Midlake at New Orleans, LA",30.0072222,-90.0855556,Louisiana100m,census->download,inactive,record_end=2015-06-24
+USGS,300034090055300,"City Park West Lagoon at New Orleans, LA",30.00944444,-90.0980556,Louisiana100m,census->download,inactive,record_end=2015-07-29
+USGS,300127090045800,"Bayou Saint John inside gate at New Orleans, LA",30.02416667,-90.0827778,Louisiana100m,census->download,inactive,record_end=2015-07-27
+USGS,300128090045800,"Bayou Saint John outside gate at New Orleans, LA",30.02444444,-90.0827778,Louisiana100m,census->download,inactive,record_end=2015-07-27
+USGS,300602090375100,CRMS5373-H01-RT,30.100556,-90.630833,Louisiana100m,census->download,inactive,record_end=2024-12-05
+USGS,300722089150100,Mississippi Sound near Grand Pass,30.12277778,-89.2502778,Louisiana100m,census->download,inactive,record_end=2025-01-27
+CRMS,BA0066-06F-RT,BA0066-06F-RT,29.8157,-90.0685,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,BA0066-06P-RT,BA0066-06P-RT,29.81592,-90.0703,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,BA0066-08F-RT,BA0066-08F-RT,29.8968,-90.1567,Louisiana100m,download->dataset,too_short,2.4 valid years < 3.0
+CRMS,BA0066-10F-RT,BA0066-10F-RT,29.7836,-90.0329,Louisiana100m,download->dataset,too_short,1.9 valid years < 3.0
+CRMS,BA0066-10P-RT,BA0066-10P-RT,29.784,-90.0328,Louisiana100m,download->dataset,too_short,1.9 valid years < 3.0
+CRMS,BA01-07,BA01-07,29.5733831,-90.16131536,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,BA01-40,BA01-40,29.89234615,-90.27565021,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,BA01-41,BA01-41,29.87048798,-90.2590384,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,BA01-42,BA01-42,29.85407435,-90.30058665,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,BA03C-16,BA03C-16,29.68736785,-90.01652343,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,BA03C-60,BA03C-60,29.70429948,-90.08424718,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,BA04-07,BA04-07,29.52408406,-89.78029347,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,BA04-10,BA04-10,29.49999069,-89.8171685,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,BA04-17,BA04-17,29.52061244,-89.82440788,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+CRMS,BA04-55,BA04-55,29.50060873,-89.75529281,Louisiana100m,download->dataset,too_short,2.3 valid years < 3.0
+CRMS,BA04-56,BA04-56,29.47828503,-89.76138854,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+CRMS,BA239-Carpes1,BA239-Carpes1,29.78568898,-90.08475333,Louisiana100m,download->dataset,too_short,1.5 valid years < 3.0
+CRMS,BA239-Carpes2,BA239-Carpes2,29.77802228,-90.07330345,Louisiana100m,download->dataset,too_short,1.6 valid years < 3.0
+CRMS,BS08-30,BS08-30,29.84777849,-89.93750011,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,BS08-31,BS08-31,29.8169435,-89.96222247,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CRMS0008-H01,CRMS0008-H01,30.24245515,-90.68971395,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,CRMS0008-W01,CRMS0008-W01,30.2284139,-90.68523893,Louisiana100m,download->dataset,too_short,2.6 valid years < 3.0
+CRMS,CRMS0058-H01,CRMS0058-H01,30.16553268,-90.5378363,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,CRMS0058-W01,CRMS0058-W01,30.16561051,-90.53742041,Louisiana100m,download->dataset,too_short,2.1 valid years < 3.0
+CRMS,CRMS0059-H01,CRMS0059-H01,30.09624183,-90.5461879,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,CRMS0059-W01,CRMS0059-W01,30.09313466,-90.54306972,Louisiana100m,download->dataset,too_short,2.2 valid years < 3.0
+CRMS,CRMS0065-H01,CRMS0065-H01,30.12277874,-90.80990882,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,CRMS0065-W01,CRMS0065-W01,30.12334512,-90.81019114,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,CRMS0089-H01,CRMS0089-H01,30.13158148,-90.58073574,Louisiana100m,download->dataset,too_short,1.6 valid years < 3.0
+CRMS,CRMS0089-W01,CRMS0089-W01,30.13157706,-90.58073761,Louisiana100m,download->dataset,too_short,1.7 valid years < 3.0
+CRMS,CRMS0128-H01,CRMS0128-H01,29.83121397,-89.94819795,Louisiana100m,download->dataset,too_short,2.1 valid years < 3.0
+CRMS,CRMS0128-M100,CRMS0128-M100,29.83164057,-89.94792639,Louisiana100m,download->dataset,too_short,2.4 valid years < 3.0
+CRMS,CRMS0161-H02,CRMS0161-H02,29.29686,-89.176235,Louisiana100m,download->dataset,too_short,0.2 valid years < 3.0
+CRMS,CRMS0184-W01,CRMS0184-W01,29.80255397,-90.07168932,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,CRMS0189-M100,CRMS0189-M100,29.80908177,-90.26377975,Louisiana100m,download->dataset,too_short,2.3 valid years < 3.0
+CRMS,CRMS0190-W01,CRMS0190-W01,29.5259667,-90.26148514,Louisiana100m,download->dataset,too_short,0.7 valid years < 3.0
+CRMS,CRMS0192-M100,CRMS0192-M100,29.85350738,-90.54168785,Louisiana100m,download->dataset,too_short,2.5 valid years < 3.0
+CRMS,CRMS0192-W01,CRMS0192-W01,29.85355208,-90.54166605,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0206-W01,CRMS0206-W01,29.83886287,-90.66582263,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0211-M100,CRMS0211-M100,29.77714768,-90.47517597,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,CRMS0211-W01,CRMS0211-W01,29.77714787,-90.4751863,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0218-W01,CRMS0218-W01,29.76985667,-90.69962243,Louisiana100m,download->dataset,too_short,0.6 valid years < 3.0
+CRMS,CRMS0273-H01,CRMS0273-H01,29.81765276,-90.32295227,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+CRMS,CRMS0278-M100,CRMS0278-M100,29.8098036,-90.2283265,Louisiana100m,download->dataset,too_short,2.3 valid years < 3.0
+CRMS,CRMS0287-M100,CRMS0287-M100,29.68618414,-90.01482319,Louisiana100m,download->dataset,too_short,2.1 valid years < 3.0
+CRMS,CRMS0294-M100,CRMS0294-M100,29.41915098,-90.94912529,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,CRMS0296-M100,CRMS0296-M100,29.41709707,-90.9167776,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,CRMS0296-W01,CRMS0296-W01,29.4170795,-90.91680823,Louisiana100m,download->dataset,too_short,0.7 valid years < 3.0
+CRMS,CRMS0301-M100,CRMS0301-M100,29.50606793,-91.22740678,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+CRMS,CRMS0329-M100,CRMS0329-M100,29.47977428,-91.1049845,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,CRMS0335-W01,CRMS0335-W01,29.2691272,-90.38675035,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0355-W01,CRMS0355-W01,29.29685367,-90.54090246,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0365-M100,CRMS0365-M100,29.47054919,-91.19889542,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+CRMS,CRMS0367-M100,CRMS0367-M100,29.63028927,-90.5729948,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,CRMS0381-M100,CRMS0381-M100,29.44715874,-90.85427454,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,CRMS0385-W01,CRMS0385-W01,29.41025163,-90.6031587,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,CRMS0398-W01,CRMS0398-W01,29.38624178,-90.91727605,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0403-W01,CRMS0403-W01,29.76724186,-91.13743307,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0414-W01,CRMS0414-W01,29.70026553,-90.94362995,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS0484-H02,CRMS0484-H02,29.48425487,-91.45109711,Louisiana100m,download->dataset,too_short,0.5 valid years < 3.0
+CRMS,CRMS0498-H02,CRMS0498-H02,29.49869805,-91.8396526,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+CRMS,CRMS0542-M100,CRMS0542-M100,29.80269353,-91.63553907,Louisiana100m,download->dataset,too_short,0.4 valid years < 3.0
+CRMS,CRMS0542-W01,CRMS0542-W01,29.80269396,-91.63558045,Louisiana100m,download->dataset,too_short,0.0 valid years < 3.0
+CRMS,CRMS0544-H01,CRMS0544-H01,29.68677739,-91.57612189,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,CRMS0575-W01,CRMS0575-W01,29.94056825,-92.94799239,Louisiana100m,download->dataset,too_short,1.0 valid years < 3.0
+CRMS,CRMS0589-W01,CRMS0589-W01,29.6647954,-92.82303445,Louisiana100m,download->dataset,too_short,1.0 valid years < 3.0
+CRMS,CRMS0599-H01,CRMS0599-H01,29.61003843,-92.66320731,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,CRMS0600-W01,CRMS0600-W01,29.57763533,-92.54183623,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+CRMS,CRMS0608-W01,CRMS0608-W01,29.67201247,-92.66676499,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CRMS0626-W01,CRMS0626-W01,29.69372643,-92.60439459,Louisiana100m,download->dataset,too_short,0.3 valid years < 3.0
+CRMS,CRMS0630-H01,CRMS0630-H01,29.78277395,-92.7941697,Louisiana100m,download->dataset,too_short,0.6 valid years < 3.0
+CRMS,CRMS0635-W01,CRMS0635-W01,29.91882413,-93.4793391,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,CRMS0644-W01,CRMS0644-W01,29.83169502,-93.29283648,Louisiana100m,download->dataset,too_short,1.5 valid years < 3.0
+CRMS,CRMS0648-W01,CRMS0648-W01,29.83800339,-93.16888531,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,CRMS0672-W01,CRMS0672-W01,29.83174133,-93.41672529,Louisiana100m,download->dataset,too_short,0.4 valid years < 3.0
+CRMS,CRMS0691-W01,CRMS0691-W01,29.96244004,-93.10440072,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,CRMS1838-W01,CRMS1838-W01,29.7854331,-93.69605824,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,CRMS1965-H01,CRMS1965-H01,29.63401253,-92.48387923,Louisiana100m,download->dataset,too_short,2.5 valid years < 3.0
+CRMS,CRMS2785-M100,CRMS2785-M100,29.50371776,-91.04006374,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+CRMS,CRMS2881-M100,CRMS2881-M100,29.47252966,-91.01228818,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+CRMS,CRMS2939-W01,CRMS2939-W01,29.5975918,-90.57516158,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS2991-M100,CRMS2991-M100,29.63692843,-90.44576508,Louisiana100m,download->dataset,too_short,2.6 valid years < 3.0
+CRMS,CRMS3166-M100,CRMS3166-M100,29.85856832,-90.28848546,Louisiana100m,download->dataset,too_short,2.4 valid years < 3.0
+CRMS,CRMS3565-W01,CRMS3565-W01,29.49880888,-90.10221232,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+CRMS,CRMS3590-H01,CRMS3590-H01,29.48391532,-89.94993916,Louisiana100m,download->dataset,too_short,2.2 valid years < 3.0
+CRMS,CRMS4245-M100,CRMS4245-M100,29.67194904,-90.13552945,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+CRMS,CRMS4355-M100,CRMS4355-M100,29.84028676,-89.82402137,Louisiana100m,download->dataset,too_short,2.8 valid years < 3.0
+CRMS,CRMS4548-H02,CRMS4548-H02,29.86210747,-89.67109498,Louisiana100m,download->dataset,too_short,0.6 valid years < 3.0
+CRMS,CRMS4548-H03,CRMS4548-H03,29.85868932,-89.67714647,Louisiana100m,download->dataset,too_short,0.5 valid years < 3.0
+CRMS,CRMS5536-W01,CRMS5536-W01,29.97048415,-91.13025006,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS6042-W01,CRMS6042-W01,29.63780375,-91.35268294,Louisiana100m,download->dataset,too_short,0.8 valid years < 3.0
+CRMS,CRMS6302-H01,CRMS6302-H01,30.04168936,-93.42910984,Louisiana100m,download->dataset,too_short,0.2 valid years < 3.0
+CRMS,CS04a-EC6-T,CS04a-EC6-T,29.85460156,-93.20006611,Louisiana100m,download->dataset,too_short,0.2 valid years < 3.0
+CRMS,CS04a-EC7-T,CS04a-EC7-T,29.86301463,-93.14296967,Louisiana100m,download->dataset,too_short,0.3 valid years < 3.0
+CRMS,CS04a-LAM-T,CS04a-LAM-T,29.84966335,-93.23905491,Louisiana100m,download->dataset,too_short,0.4 valid years < 3.0
+CRMS,CS20-03,CS20-03,29.80870529,-93.39931787,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CS20-07,CS20-07,29.83009555,-93.44805775,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CS20-09,CS20-09,29.82998347,-93.42810589,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CS20-17,CS20-17,29.80465885,-93.43194867,Louisiana100m,download->dataset,too_short,0.1 valid years < 3.0
+CRMS,CS32-PR1R,CS32-PR1R,29.95074684,-93.75439897,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,CS32-PR2,CS32-PR2,29.95291328,-93.75429097,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,CS54DO-01,CS54DO-01,29.8676537,-93.25617245,Louisiana100m,download->dataset,too_short,0.2 valid years < 3.0
+CRMS,CS54DO-02R,CS54DO-02R,29.86752911,-93.26443505,Louisiana100m,download->dataset,too_short,0.2 valid years < 3.0
+CRMS,CS59-01,CS59-01,29.78258902,-93.42068055,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+CRMS,PO0063-12F-RT,PO0063-12F-RT,29.9904,-90.2909,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+CRMS,PO0063-12P-RT,PO0063-12P-RT,29.9902,-90.2907,Louisiana100m,download->dataset,too_short,1.8 valid years < 3.0
+CRMS,PO0174-H01,PO0174-H01,29.783827,-89.37193,Louisiana100m,download->dataset,too_short,2.6 valid years < 3.0
+CRMS,PO24-01,PO24-01,29.81976148,-89.61483859,Louisiana100m,download->dataset,too_short,1.3 valid years < 3.0
+CRMS,PO24-03,PO24-03,29.82175139,-89.6557546,Louisiana100m,download->dataset,too_short,1.2 valid years < 3.0
+CRMS,TE72-01,TE72-01,29.34095579,-91.09976621,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,TE72-02,TE72-02,29.35984255,-91.10481396,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,TE72-03,TE72-03,29.38716173,-91.03164978,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,TE72-04,TE72-04,29.38146182,-91.03450583,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+CRMS,TV63-01,TV63-01,29.72957894,-92.22732596,Louisiana100m,download->dataset,too_short,1.0 valid years < 3.0
+CRMS,TV63-02,TV63-02,29.70113514,-92.22452537,Louisiana100m,download->dataset,too_short,1.0 valid years < 3.0
+CRMS,CRMS0188-M100,CRMS0188-M100,29.79357471,-90.13560548,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0219-M100,CRMS0219-M100,29.8065308,-90.3188295,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0268-M100,CRMS0268-M100,29.79724649,-90.60309375,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0273-M100,CRMS0273-M100,29.81730203,-90.32290695,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0290-M100,CRMS0290-M100,29.47966296,-91.04308422,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+CRMS,CRMS0312-H02,CRMS0312-H02,29.50860677,-90.38617154,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0327-M100,CRMS0327-M100,29.44511726,-91.06853908,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0331-M100,CRMS0331-M100,29.58282077,-90.54357279,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0371-M100,CRMS0371-M100,29.42697136,-91.07094393,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0382-M100,CRMS0382-M100,29.43384152,-90.8542352,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0409-M100,CRMS0409-M100,29.47875653,-90.91974502,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0411-M100,CRMS0411-M100,29.49787524,-90.95116048,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS0508-H02,CRMS0508-H02,29.63472714,-92.2206443,Louisiana100m,download->dataset,too_short_in_train,0.3 valid years in 2010-2022 < 1.0
+CRMS,CRMS0570-H02,CRMS0570-H02,29.79793397,-92.38823562,Louisiana100m,download->dataset,too_short_in_train,0.3 valid years in 2010-2022 < 1.0
+CRMS,CRMS0624-H02,CRMS0624-H02,29.85877471,-92.89776773,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS0635-H02,CRMS0635-H02,29.91301978,-93.47226711,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS0641-H02,CRMS0641-H02,29.8946126,-93.51024299,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS0665-H02,CRMS0665-H02,29.9540924,-93.68373727,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS0693-H02,CRMS0693-H02,29.87927062,-93.62752424,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS0694-H03,CRMS0694-H03,29.87887274,-93.5465522,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+CRMS,CRMS2862-M100,CRMS2862-M100,29.54953865,-91.07741165,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+CRMS,CRMS2887-M100,CRMS2887-M100,29.52095385,-90.91516845,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+CRMS,CRMS2939-M100,CRMS2939-M100,29.59764515,-90.57511901,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+NOAA_COOPS,8775132,La Quinta Channel North,27.8804,-97.2735,Texas100m,download->dataset,too_short_in_train,0.9 valid years in 2010-2022 < 1.0
+USACE_SWG,ACET2,"San Diego Ck at Alice, TX",27.76664,-98.07556,Texas100m,download->dataset,source_excluded,0 fill values; min=2.1 m max=2.5 m
+USACE_SWG,ADBT2,"Buffalo Bayou nr Addicks, TX",29.7619,-95.60578,Galveston100m,download->dataset,source_excluded,3 fill values; min=13.9 m max=23.4 m
+USACE_SWG,ADDT2,Addicks Reservoir,29.79111,-95.62333,Galveston100m,download->dataset,source_excluded,0 fill values; min=20.6 m max=30.2 m
+USACE_SWG,ADDT2-Alt,Addicks Reservoir,29.79111,-95.62333,Galveston100m,download->dataset,source_excluded,246 fill values; min=0.0 m max=33.2 m
+USACE_SWG,AICT2,"San Fernando Ck at Alice, TX",27.77222,-98.03333,Texas100m,download->dataset,source_excluded,17 fill values; min=-0.4 m max=3.5 m
+USACE_SWG,ARPT2,Langham Ck at Addicks Res,29.79028,-95.62389,Galveston100m,download->dataset,source_excluded,0 fill values; min=16.7 m max=20.2 m
+USACE_SWG,BAHT2,Buffalo Bayou State Hwy 6,29.76938,-95.64317,Galveston100m,download->dataset,source_excluded,78 fill values; min=17.1 m max=25.5 m
+USACE_SWG,BAKT2,"Barker Res nr Addicks, TX",29.76995,-95.64717,Galveston100m,download->dataset,source_excluded,0 fill values; min=21.1 m max=28.6 m
+USACE_SWG,BAKT2-ALT,"Barker Res nr Addicks, TX",29.77444,-95.64694,Galveston100m,download->dataset,source_excluded,247 fill values; min=-3.6 m max=118.5 m
+USACE_SWG,BBAT2,"Bear Ck nr Barker, TX",29.83056,-95.68667,Galveston100m,download->dataset,source_excluded,20 fill values; min=14.5 m max=35.7 m
+USACE_SWG,BBCT2,"Buffalo Bayou nr Fulshear, TX",29.72301,-95.76717,Galveston100m,download->dataset,source_excluded,7 fill values; min=26.8 m max=31.2 m
+USACE_SWG,BBKT2,"Buffalo Bayou nr Katy, TX",29.74306,-95.80667,Galveston100m,download->dataset,source_excluded,6 fill values; min=0.0 m max=45.7 m
+USACE_SWG,BBST2,"Buffalo Bayou at Houston, TX",29.76023,-95.40855,Galveston100m,download->dataset,source_excluded,5 fill values; min=0.1 m max=11.1 m
+USACE_SWG,CAAT2,"Nueces Rv at Calallen, TX",27.88278,-97.625,Texas100m,download->dataset,source_excluded,1 fill values; min=0.0 m max=2.6 m
+USACE_SWG,CBVT2,"Nueces Rv at Bluntzer, TX",27.9375,-97.77556,Texas100m,download->dataset,source_excluded,4 fill values; min=0.6 m max=9.0 m
+USACE_SWG,CCDT2,"8206910 - Choke Canyon Res OWC nr Three Rivers, TX",28.4861,-98.24168,Texas100m,download->dataset,source_excluded,1 fill values; min=1.1 m max=7.0 m
+USACE_SWG,CCGT2,CCGT2,29.97356,-95.59855,Galveston100m,download->dataset,source_excluded,0 fill values; min=30.3 m max=39.0 m
+USACE_SWG,CODT2,"8164450 - Sandy Ck nr Ganado, TX",29.16025,-96.54636,Galveston100m,download->dataset,source_excluded,2 fill values; min=0.0 m max=8.7 m
+USACE_SWG,CTDT2,CTDT2,28.48361,-98.24556,Texas100m,download->dataset,source_excluded,29 fill values; min=15.6 m max=140.8 m
+USACE_SWG,EDNT2,"Lavaca Rv nr Edna, TX",28.95972,-96.68611,Texas100m;Galveston100m,download->dataset,source_excluded,135 fill values; min=1.2 m max=9.6 m
+USACE_SWG,FRRT2,"San Casimiro Ck nr Freer, TX",27.96472,-98.96667,Texas100m,download->dataset,source_excluded,1 fill values; min=0.0 m max=8.6 m
+USACE_SWG,GNDT2,"8164503 - W Mustang Ck nr Ganado, TX",29.07186,-96.46803,Texas100m;Galveston100m,download->dataset,source_excluded,2 fill values; min=1.1 m max=6.2 m
+USACE_SWG,GRIT2,"Trinity Rv nr Goodrich, TX",30.57194,-94.94861,Galveston100m,download->dataset,source_excluded,3 fill values; min=1.1 m max=14.7 m
+USACE_SWG,GWLT2,"8210400 - Lagarto Ck nr George West, TX",28.05974,-98.09695,Texas100m,download->dataset,source_excluded,248 fill values; min=1.1 m max=2.4 m
+USACE_SWG,HCHT2,HCHT2,29.95889,-95.7175,Galveston100m,download->dataset,source_excluded,1 fill values; min=38.0 m max=45.5 m
+USACE_SWG,HOCT2,HOCT2,29.92083,-95.84,Galveston100m,download->dataset,source_excluded,0 fill values; min=46.1 m max=51.8 m
+USACE_SWG,HPOT2,HPOT2,29.74939,-95.29105,Galveston100m,download->dataset,source_excluded,0 fill values; min=0.1 m max=4.7 m
+USACE_SWG,KHOT2,KHOT2,29.95,-95.80806,Galveston100m,download->dataset,source_excluded,0 fill values; min=44.1 m max=49.5 m
+USACE_SWG,LBYT2,LBYT2,30.0575,-94.81806,Galveston100m,download->dataset,source_excluded,2 fill values; min=1.8 m max=9.9 m
+USACE_SWG,LCAT2,"Langham Ck nr Addicks, TX",29.83,-95.62,Galveston100m,download->dataset,source_excluded,0 fill values; min=26.9 m max=31.3 m
+USACE_SWG,LLYT2,LLYT2,29.86717,-95.64661,Galveston100m,download->dataset,source_excluded,22 fill values; min=29.3 m max=33.4 m
+USACE_SWG,LMCT2,"E Mustang Ck nr Louise, TX",29.07056,-96.41694,Texas100m;Galveston100m,download->dataset,source_excluded,1 fill values; min=0.1 m max=11.4 m
+USACE_SWG,LSNT2,"8164390 - Navidad Rv at Strane Pk nr Edna, TX",29.06554,-96.67414,Texas100m;Galveston100m,download->dataset,source_excluded,20 fill values; min=1.2 m max=8.5 m
+USACE_SWG,LTXT2,"Lk Texana nr Edna, TX",28.89167,-96.5775,Texas100m;Galveston100m,download->dataset,source_excluded,38 fill values; min=11.5 m max=13.9 m
+USACE_SWG,MBFT2,MBFT2,29.94167,-94.77417,Galveston100m,download->dataset,source_excluded,2 fill values; min=0.3 m max=8.1 m
+USACE_SWG,MTBT2,"Nueces Rv nr Mathis, TX",28.03806,-97.86,Texas100m,download->dataset,source_excluded,0 fill values; min=-0.2 m max=9.0 m
+USACE_SWG,MTHT2,"Lk Corpus Christi nr Mathis, TX",28.03806,-97.87083,Texas100m,download->dataset,source_excluded,1121 fill values; min=24.0 m max=28.9 m
+USACE_SWG,MYAT2,"8207500 - Atascosa Rv nr McCoy, TX",28.86498,-98.33835,Texas100m,download->dataset,source_excluded,2 fill values; min=1.2 m max=6.3 m
+USACE_SWG,PPTT2,PPTT2,29.74667,-95.52333,Galveston100m,download->dataset,source_excluded,25 fill values; min=8.3 m max=60.9 m
+USACE_SWG,RMYT2,"Trinity Rv at Romayor, TX",30.425,-94.85056,Galveston100m,download->dataset,source_excluded,354 fill values; min=3.2 m max=13.0 m
+USACE_SWG,SPAT2,"8164350 - Navidad Rv nr Speaks, TX",29.32191,-96.70914,Galveston100m,download->dataset,source_excluded,2 fill values; min=0.6 m max=8.5 m
+USACE_SWG,THET2,"Nueces Rv nr Three Rivers, TX",28.42722,-98.17778,Texas100m,download->dataset,source_excluded,1 fill values; min=0.3 m max=17.2 m
+USACE_SWG,TIDT2,"Frio Rv at Tilden, TX",28.46722,-98.54722,Texas100m,download->dataset,source_excluded,1 fill values; min=0.3 m max=84.0 m
+USACE_SWG,TILT2,"Nueces Rv nr Tilden, TX",28.30861,-98.55694,Texas100m,download->dataset,source_excluded,1049 fill values; min=-0.4 m max=6.9 m
+USACE_SWG,TNLT2,"San Miguel Ck nr Tilden, TX",28.58722,-98.54556,Texas100m,download->dataset,source_excluded,201 fill values; min=0.2 m max=6.1 m
+USACE_SWG,WSBT2,Buffalo Bayou  Houston,29.76217,-95.55772,Galveston100m,download->dataset,source_excluded,4 fill values; min=3.7 m max=33.1 m
+USACE_SWG,WTTT2,"Atascosa Rv at Whitsett, TX",28.62194,-98.28111,Texas100m,download->dataset,source_excluded,1 fill values; min=0.0 m max=9.6 m
+USGS,08211800,"San Diego Ck at Alice, TX",27.76663889,-98.0755556,Texas100m,download->dataset,flat,train std 0.013 m < 0.02
+USGS,07377780,"White Bayou at State Hwy 64 near Zachary, LA",30.6493524,-91.1314954,Louisiana100m,download->dataset,too_short,0.6 valid years < 3.0
+USGS,07378650,"Jones Cr. at Old Hammond Hwy near Baton Rouge, LA",30.4407463,-91.044548,Louisiana100m,download->dataset,too_short,0.5 valid years < 3.0
+USGS,07378722,"Claycut Bayou at Antioch Rd near Baton Rouge, LA",30.38685874,-91.0073244,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+USGS,07379503,CORPORATION C.AT E.ROOSEVELT ST. AT B. R. LA.,30.421858,-91.1767736,Louisiana100m,download->dataset,too_short,2.6 valid years < 3.0
+USGS,07381500,"Atchafalaya R @ Krotz Springs, LA",30.5468588,-91.7512264,Louisiana100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,07383360,"Little River at Boggy Bayou Rd e of Marksville, LA",31.14191667,-92.0094722,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+USGS,07383510,"Bayou Des Glaises Div Ch nr Moreauville, LA.",31.00019819,-91.9668075,Louisiana100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,07386190,"Bayou Fusilier Abv Weir at Arnaudville, La",30.39669444,-91.9317778,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08011000,"Byu Plaquemine Brule nr Crowley, LA",30.23616667,-92.3964167,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+USGS,08012540,"Intracoastal Canal @ Creole Ferry @ Gibbstown, LA.",29.93405556,-93.0794167,Louisiana100m,download->dataset,too_short,2.3 valid years < 3.0
+USGS,08012900,"Calcasieu R @ Hineston, LA",31.12888889,-92.7620833,Louisiana100m,download->dataset,too_short,2.4 valid years < 3.0
+USGS,08013710,"Ouiska Chitto Creek at Hwy 399 NW of Sugartown, LA",30.89491667,-93.0715278,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08013970,"Tenmile Creek northwest of Elizabeth, LA",30.8896111,-92.8298889,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+USGS,08014990,"Bundick Creek north of Dry Creek, LA",30.68475,-93.0436667,Louisiana100m,download->dataset,too_short,2.9 valid years < 3.0
+USGS,08016300,"Beckwith Creek Near Singer, LA.",30.64258333,-93.3831111,Louisiana100m,download->dataset,too_short,2.5 valid years < 3.0
+USGS,08016800,"Bear Head Ck nr Starks, LA",30.33344444,-93.6295278,Louisiana100m,download->dataset,too_short,2.5 valid years < 3.0
+USGS,08026290,"Sabine Rv at CR 2082 nr Burkeville, TX",30.96949167,-93.5721778,Louisiana100m,download->dataset,too_short,2.2 valid years < 3.0
+USGS,08027700,"Anacoco lk nr Leesville, LA",31.09466667,-93.3885833,Louisiana100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08029600,"Simms Branch nr Call, TX",30.52497778,-93.741475,Louisiana100m,download->dataset,too_short,2.7 valid years < 3.0
+USGS,08065500,"Trinity Rv nr Midway, TX",31.0746349,-95.6994155,Galveston100m,download->dataset,too_short,1.4 valid years < 3.0
+USGS,08065700,"Caney Ck nr Madisonville, TX",30.93716944,-95.9356611,Galveston100m,download->dataset,too_short,2.6 valid years < 3.0
+USGS,08065900,"Trinity Rv at FM 3478 nr Trinity, TX",30.92581944,-95.52885,Galveston100m,download->dataset,too_short,1.8 valid years < 3.0
+USGS,08065950,"Nelson Ck nr Riverside, TX",30.8944111,-95.5144611,Galveston100m,download->dataset,too_short,1.7 valid years < 3.0
+USGS,08065980,"Harmon Ck nr Riverside, TX",30.8607861,-95.4335528,Galveston100m,download->dataset,too_short,1.8 valid years < 3.0
+USGS,08066138,"Tantabogue Ck at FM 230 nr Lovelady, TX",31.10249444,-95.4722167,Galveston100m,download->dataset,too_short,0.0 valid years < 3.0
+USGS,08066143,"White Rock Ck at SH 94 nr Trinity, TX",30.96842778,-95.3334778,Galveston100m,download->dataset,too_short,1.6 valid years < 3.0
+USGS,08067505,"Cedar Bayou at I-10 nr Mont Belvieu, TX",29.82151389,-94.9097056,Galveston100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,08067656,"Alligator Ck at TX 105, Conroe, TX",30.313731,-95.469186,Galveston100m,download->dataset,too_short,2.3 valid years < 3.0
+USGS,08067690,"Lake Ck nr Dobbin, TX",30.37152778,-95.7691389,Galveston100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,08068002,"Stewarts Ck at Silverdale Dr nr Conroe, TX",30.30150833,-95.4379972,Galveston100m,download->dataset,too_short,2.8 valid years < 3.0
+USGS,08069800,"E Fk San Jacinto Rv at SH 150 nr Coldspring, TX",30.56694444,-95.1913889,Galveston100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,08069840,"Winters Bayou at SH 150 nr Coldspring, TX",30.5448,-95.2913972,Galveston100m,download->dataset,too_short,1.2 valid years < 3.0
+USGS,08069852,"Winters Bayou at Tony Tap Rd nr Cleveland, TX",30.4289472,-95.1946056,Galveston100m,download->dataset,too_short,1.2 valid years < 3.0
+USGS,08070550,"Spring Branch at SH 242 nr Splendora, TX",30.2198111,-95.2492083,Galveston100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08070900,"Peach Ck nr Cleveland, TX",30.3271611,-95.22665,Galveston100m,download->dataset,too_short,1.3 valid years < 3.0
+USGS,08072150,"San Jacinto Rv at Lynchburg Ferry nr Highlands, TX",29.76488889,-95.07875,Galveston100m,download->dataset,too_short,0.2 valid years < 3.0
+USGS,08111080,"Grassy Ck at SH 105 nr Navasota, TX",30.35330556,-95.9962778,Galveston100m,download->dataset,too_short,2.7 valid years < 3.0
+USGS,08111090,"Rocky Ck at SH 105 nr Brenham, TX",30.22,-96.3031722,Galveston100m,download->dataset,too_short,1.7 valid years < 3.0
+USGS,08117301,"Brazos Rv at COE Flood Gates nr Freeport, TX",28.8980278,-95.3816078,Texas100m;Galveston100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08161400,"LCRA Colorado Rv nr Altair, TX",29.58,-96.4172222,Galveston100m,download->dataset,too_short,3.0 valid years < 3.0
+USGS,08161500,"LCRA Colorado Rv nr Garwood, TX",29.515,-96.4083333,Galveston100m,download->dataset,too_short,2.9 valid years < 3.0
+USGS,08161950,"LCRA Colorado Rv nr Glen Flora, TX",29.33613889,-96.1980556,Galveston100m,download->dataset,too_short,0.8 valid years < 3.0
+USGS,08163880,"Chicolette Ck at US 77 nr Yoakum, TX",29.09466667,-96.9872333,Texas100m,download->dataset,too_short,2.4 valid years < 3.0
+USGS,08189298,"Medio Ck nr Normanna, TX",28.51549167,-97.7813917,Texas100m,download->dataset,too_short,0.6 valid years < 3.0
+USGS,08189320,"Medio Ck at SH 202 nr Beeville, TX",28.381675,-97.5950167,Texas100m,download->dataset,too_short,0.5 valid years < 3.0
+USGS,08189520,"Devils Run Ck at US 77 nr Woodsboro, TX",28.21693333,-97.3516944,Texas100m,download->dataset,too_short,1.2 valid years < 3.0
+USGS,08189585,"Poesta Ck at FM 351 nr Beeville, TX",28.411425,-97.7806222,Texas100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,08207290,"Atascosa Rv at FM 476 nr Pleasanton, TX",29.0,-98.5116667,Texas100m,download->dataset,too_short,0.3 valid years < 3.0
+USGS,08212820,"Petronila Ck at FM 665 nr Driscoll, TX",27.66525,-97.7022778,Texas100m,download->dataset,too_short,0.0 valid years < 3.0
+USGS,08473251,"Donna ID Canal at E Levee Rd nr Donna, TX",26.098239,-98.07215,Texas100m,download->dataset,too_short,0.6 valid years < 3.0
+USGS,08474395,"Brazos Santiago Pass at South Padre Island, TX",26.067444,-97.154833,Texas100m,download->dataset,too_short,2.4 valid years < 3.0
+USGS,295847093420600,CRMS2166-H01-RT,29.97993889,-93.7017194,Louisiana100m,download->dataset,too_short,1.1 valid years < 3.0
+USGS,300740090382500,"Maurepas Swamp nr Hope Canal, N of Garyville, La",30.1276611,-90.6403694,Louisiana100m,download->dataset,too_short,1.4 valid years < 3.0
+USGS,302144090052401,Lake Pontchartrain at Mandeville,30.36251808,-90.09022193,Louisiana100m,download->dataset,too_short,2.5 valid years < 3.0
+USGS,07373300,"Byu Sara nr St. Francisville, LA",30.84483333,-91.4051111,Louisiana100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,07373700,"Thompson Ck nr Starhill, LA",30.7473611,-91.2855833,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+USGS,07380106,"Muddy Creek at Hwy 42 near Oak Grove, LA",30.32055556,-90.9541667,Louisiana100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,07380210,"Amite River Diversion south of Whitehall, LA",30.2268611,-90.6880556,Louisiana100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,073802302,"Pass Manchac nr. Lake Maurepas, LA",30.28356667,-90.3978389,Louisiana100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,07381588,"Intracoastal Waterway southwest of Pierre Part, LA",29.92238889,-91.2393611,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+USGS,07385450,"Bayou Teche @ Port Barre, LA.",30.558028,-91.957944,Louisiana100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,07385500,"BAYOU TECHE @ ARNAUDVILLE, LA",30.3974195,-91.9306728,Louisiana100m,download->dataset,too_short_in_train,0.9 valid years in 2010-2022 < 1.0
+USGS,07386655,"Vermillion Rvr N. of I-10 at Lafayette, La",30.27191667,-91.9840556,Louisiana100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,07386700,"Ruth Canal near Ruth, LA",30.2432549,-91.8848389,Louisiana100m,download->dataset,too_short_in_train,0.7 valid years in 2010-2022 < 1.0
+USGS,07386956,"Vermilion River at Hwy 92 at Milton, LA",30.103667,-92.079806,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+USGS,07386962,"Vermilion River at Woodlawn, LA",30.061139,-92.079139,Louisiana100m,download->dataset,too_short_in_train,0.4 valid years in 2010-2022 < 1.0
+USGS,08010050,"Bayou Des Cannes west of Iota, LA",30.3329722,-92.5427778,Louisiana100m,download->dataset,too_short_in_train,0.3 valid years in 2010-2022 < 1.0
+USGS,08010120,"Bayou Mallet at Hwy 91 north of Iota, LA",30.39444444,-92.4976944,Louisiana100m,download->dataset,too_short_in_train,0.3 valid years in 2010-2022 < 1.0
+USGS,08011020,"Bayou Plaquemine Brule @ Esterwood, LA.",30.19808333,-92.4634722,Louisiana100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08012300,"Byu Queue De Tortue @ Riceville, LA",30.08152778,-92.5064722,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08012400,"Mermentau River @ Lake Arthur, LA",30.07283333,-92.6592778,Louisiana100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+USGS,08012470,"Bayou Lacassine near Lake Arthur, LA",30.07,-92.8788611,Louisiana100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+USGS,08015620,"Barnes Creek at Topsy Bel Rd SW of Reeves, LA",30.4676111,-93.0941111,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08015910,"Calcasieu River at Hwy 171 at Moss Bluff, LA",30.2861111,-93.1889167,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08016450,"Beckwith Ck east of Dequincy, LA",30.44158333,-93.3530833,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08016600,"Hickory Branch nr Kernan, LA",30.5013611,-93.2796389,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08016910,"Buxton Creek at Hwy 27 nr DeQuincy, LA",30.4231111,-93.4246111,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08017028,"West Fork Calcasieu River at Moss Bluff, LA",30.29666667,-93.2488333,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08029520,"Big Cow Ck at FM 1416 nr Call, TX",30.6050111,-93.7944833,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08031005,"Cow Bayou at IH 10 nr Vidor, TX",30.13067778,-93.9163444,Louisiana100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08041790,"Neches Rv at Beaumont, TX",30.09442778,-94.0909417,Louisiana100m;Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08041940,"Green Pond Gully at FM 365 nr China, TX",29.94571944,-94.3262889,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08041970,"Mayhaw Bayou at SH 73 nr Hamshire, TX",29.82546944,-94.295325,Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08042468,"Willow Marsh Bayou at US 90 nr Beaumont, TX",30.0638111,-94.2177444,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08042470,"Willow Marsh Bayou at I-10 nr Beaumont, TX",30.01472778,-94.1812056,Galveston100m,download->dataset,too_short_in_train,1.0 valid years in 2010-2022 < 1.0
+USGS,08042515,"Rhodair Gully at US 69 nr Nederland, TX",29.98205833,-94.0295611,Louisiana100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08042522,"Taylor-Alligator Bayou Pump Sta nr Port Arthur, TX",29.86215948,-93.9826717,Louisiana100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08042539,"Spindletop Bayou at SH 65 nr Stowell, TX",29.7924361,-94.4237694,Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08066850,"Luce Bayou ITP Canal at Capers Ridge nr Hardin, TX",30.21041667,-94.8690139,Galveston100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08067215,"Old Rv Cutoff nr Moss Bluff, TX",29.90161516,-94.76994166,Galveston100m,download->dataset,too_short_in_train,0.2 valid years in 2010-2022 < 1.0
+USGS,08067252,"Trinity Rv at Wallisville, TX",29.8124434,-94.7313087,Galveston100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08067520,"Goose Ck nr McNair, TX",29.8014972,-95.0047444,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08067552,"West Sandy Ck at FM 1791 nr Richards, TX",30.60388333,-95.7252222,Galveston100m,download->dataset,too_short_in_train,0.4 valid years in 2010-2022 < 1.0
+USGS,08067555,"East Sandy Ck at FM 1374 nr New Waverly, TX",30.58396389,-95.5662611,Galveston100m,download->dataset,too_short_in_train,0.4 valid years in 2010-2022 < 1.0
+USGS,08067575,"Caney Ck at FM 1375 nr Richards, TX",30.52829167,-95.6793306,Galveston100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08067585,"Little Lake Ck at FM 149 nr Montgomery, TX",30.44693056,-95.6972333,Galveston100m,download->dataset,too_short_in_train,0.1 valid years in 2010-2022 < 1.0
+USGS,08067653,"W Fk San Jacinto Rv at FM 2854, Conroe, TX",30.31453889,-95.51145,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08068025,"Crystal Ck at FM 1314 nr Conroe, TX",30.2413861,-95.3829806,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08070220,"Caney Ck at FM 1097 nr Willis, TX",30.4547972,-95.4236389,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08071250,"Luce Bayou at SH-99 nr Huffman, TX",30.12597778,-95.0494861,Galveston100m,download->dataset,too_short_in_train,0.3 valid years in 2010-2022 < 1.0
+USGS,08076990,"Clear Ck at FM 865 nr Pearland, TX",29.58546667,-95.3520472,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08077110,"Hickory Sl at FM 865 nr Pearland, TX",29.56640556,-95.3507361,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08077640,"Dickinson Bayou at FM 517 nr Alvin, TX",29.436075,-95.1701306,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08077670,"Highland Bayou at FM 646 nr Santa Fe, TX",29.38055833,-95.0900528,Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08077888,"Mustang Bayou at SH 6 nr Alvin, TX",29.4365111,-95.2662889,Galveston100m,download->dataset,too_short_in_train,0.4 valid years in 2010-2022 < 1.0
+USGS,08078400,"Austin Bayou at SH 35 nr Liverpool, TX",29.28088333,-95.3317917,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08078890,"Oyster Ck at FM 1464 nr Sugar Land, TX",29.61920556,-95.6836083,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08078910,"Oyster Ck at FM 1092 nr Missouri City, TX",29.57348056,-95.5639333,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08078935,"Oyster Ck at FM 1462 nr Rosharon, TX",29.352775,-95.5189806,Galveston100m,download->dataset,too_short_in_train,0.7 valid years in 2010-2022 < 1.0
+USGS,08108710,"Walnut Ck at FM 46 nr Bremond, TX",31.1214861,-96.6172417,Galveston100m,download->dataset,too_short_in_train,0.9 valid years in 2010-2022 < 1.0
+USGS,08111070,"Navasota Rv at SH 6 nr Navasota, TX",30.41840278,-96.1066167,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08117375,"Little Bernard Ck at I-10 nr Sealy, TX",29.761675,-96.205325,Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08117403,"West Bernard Ck at US 59 nr Hungerford, TX",29.4009722,-96.0682917,Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08117720,"San Bernard Rv at FM 521 nr Cedar Lane, TX",29.01100278,-95.58825,Texas100m;Galveston100m,download->dataset,too_short_in_train,0.0 valid years in 2010-2022 < 1.0
+USGS,08117857,"Linnville Bayou at SH 35 nr Van Vleck, TX",29.07003333,-95.7889167,Texas100m;Galveston100m,download->dataset,too_short_in_train,0.5 valid years in 2010-2022 < 1.0
+USGS,08117858,"Linnville Bayou at FM 521 nr Cedar Lane, TX",28.95151389,-95.7112278,Texas100m;Galveston100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08162580,"Juanita Ck at SH 71 nr Midfield, TX",28.97359167,-96.2085194,Texas100m;Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08164410,"W Sandy Ck at FM 2437 nr Sheridan, TX",29.45140278,-96.6736056,Galveston100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08189590,"Poesta Ck at Beeville, TX",28.39894167,-97.7476528,Texas100m,download->dataset,too_short_in_train,0.6 valid years in 2010-2022 < 1.0
+USGS,08189718,"Chiltipin Ck at US 77 nr Sinton, TX",28.04569167,-97.525175,Texas100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08474095,"N Main Drain at Boca Chica Hwy, Brownsville, TX",25.9216111,-97.4754167,Texas100m,download->dataset,too_short_in_train,0.7 valid years in 2010-2022 < 1.0
+USGS,08474107,"Town Resaca at E 6th St, Brownsville, TX",25.91444444,-97.4918889,Texas100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08474108,"N Main Drain at Manzano St, Brownsville, TX",25.89402778,-97.4528889,Texas100m,download->dataset,too_short_in_train,0.9 valid years in 2010-2022 < 1.0
+USGS,08474110,"Cameron Co Ditch 1 at FM 802, Brownsville, TX",25.94083333,-97.4256944,Texas100m,download->dataset,too_short_in_train,0.9 valid years in 2010-2022 < 1.0
+USGS,08474115,"Resaca del Rancho Viejo, Brownsville, TX",25.95733333,-97.4215,Texas100m,download->dataset,too_short_in_train,0.8 valid years in 2010-2022 < 1.0
+USGS,08474320,"North Main Drain at Ostos Rd, Brownsville, TX",25.95666667,-97.3754167,Texas100m,download->dataset,too_short_in_train,0.4 valid years in 2010-2022 < 1.0
