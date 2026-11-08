@@ -4,8 +4,11 @@
   q.npy                   : upstream discharge of the station's mapped gauge
                             (config/station_discharge_map.csv), log1p(m^3/s) z-scored per
                             gauge over the training period; NaN where no gauge / no data
+  q_norm.csv              : per-gauge mean/std of log1p(Q) over the train period (needed by the
+                            operational script to normalise live discharge the same way)
+  wind_coverage.csv       : per-station fraction of hours with wind (0 = never had wind in training)
 values.npy, time.npy, stations.csv, meta.json are copied unchanged.
-Usage: python build_extras.py --src dataset_v2 --out dataset_v3 [--wind-dir DATA_ROOT/wind]
+Usage: python build_extras.py --src dataset_v2 --out dataset_v3 [--wind-dir DATA_ROOT/wind] [--meta-only]
 """
 from __future__ import annotations
 
@@ -27,6 +30,7 @@ def main() -> None:
     ap.add_argument("--src", default="dataset_v2"); ap.add_argument("--out", default="dataset_v3")
     ap.add_argument("--wind-dir", default=str(DATA_ROOT / "wind"))
     ap.add_argument("--map", default=str(REPO / "config" / "station_discharge_map.csv"))
+    ap.add_argument("--meta-only", action="store_true", help="only (re)write q_norm.csv and wind_coverage.csv for an existing --out")
     a = ap.parse_args()
     src, out, wdir = DATA_ROOT / a.src, DATA_ROOT / a.out, Path(a.wind_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -43,7 +47,11 @@ def main() -> None:
     assert (cells.station_id.to_numpy() == st.station_id.to_numpy()).all(), "wind cells.csv station order != stations.csv"
     assert (np.load(wdir / "time.npy") == np.load(src / "time.npy")).all(), "wind time axis != dataset time axis"
     u = np.load(wdir / "aorc_u10.npy"); v = np.load(wdir / "aorc_v10.npy")
-    np.save(out / "wind_u.npy", u.astype(np.float32)); np.save(out / "wind_v.npy", v.astype(np.float32))
+    if not a.meta_only:
+        np.save(out / "wind_u.npy", u.astype(np.float32)); np.save(out / "wind_v.npy", v.astype(np.float32))
+    cov = st[["source", "station_id"]].copy(); cov["wind_valid_frac"] = (np.isfinite(u) & np.isfinite(v)).mean(1)
+    cov.to_csv(out / "wind_coverage.csv", index=False)
+    print(f"wind coverage: {int((cov.wind_valid_frac == 0).sum())} stations never have wind")
     wmeta = json.loads((wdir / "meta.json").read_text())
     print(f"wind: valid fraction {np.isfinite(u).mean():.3f}, last valid hour {wmeta.get('last_valid_hour')}")
 
@@ -51,7 +59,7 @@ def main() -> None:
     m = pd.read_csv(a.map, dtype=str)
     assert (m.station_id.to_numpy() == st.station_id.to_numpy()).all(), "discharge map station order != stations.csv"
     train_end = pd.Timestamp(meta["train_end"])
-    gauges = {}
+    gauges, norm = {}, []
     for gid in m.gauge_id.dropna().unique():
         p = DATA_ROOT / "hourly" / "USGS_Q" / f"{gid}.parquet"
         if not p.exists():
@@ -63,7 +71,10 @@ def main() -> None:
         mu, sd = float(tr.mean()), float(tr.std())
         if not np.isfinite(sd) or sd < 1e-3:
             print("flat discharge at", gid); continue
-        gauges[gid] = ((x - mu) / sd).to_numpy(np.float32)
+        gauges[gid] = ((x - mu) / sd).to_numpy(np.float32); norm.append({"gauge_id": gid, "mu_log1p": mu, "sd_log1p": sd})
+    pd.DataFrame(norm).to_csv(out / "q_norm.csv", index=False)
+    if a.meta_only:
+        print("meta only: wrote q_norm.csv, wind_coverage.csv ->", out); return
     q = np.full((S, T), np.nan, np.float32)
     n_with = 0
     for i, gid in enumerate(m.gauge_id):

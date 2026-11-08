@@ -50,6 +50,8 @@
 
 ## 三、业务化（和加输入并行准备）
 
+2026-11-08：业务脚本已支持风 + 流量模型（`runs/v3_wind_q`）。风用 HRRR（见 `scripts/operational/README.md`），流量用 USGS 00060 实时接口。17Z 周期实跑 418 站、48 秒。
+
 - 跟现有 AI_P2M 一样的节奏：每 6 小时一个周期，在 sv7 取数、QBD 或 sv7 推断（模型很小，CPU 几秒钟就够，不一定要用 QBD）、结果推到 sv6 的网站目录。
 - 训练用的 CRMS 数据滞后 3–4 个月，业务时拿不到实时值，所以业务上 CRMS 站先不出预报，等确认 CPRA 有没有实时接口再说。USGS 和 NOAA 站可以直接上。
 - 第一次业务试跑（2026-11-08 13Z）：模型里的 403 个 USGS 站有 372 个实时接口还在出数，31 个取不到（其中包括 2026 年 7 月 USGS 停止实时发布、移交 CPRA 的那批路州站，如 Barataria Bay N of Grand Isle、Bayou Grand Caillou at Dulac、Crewboat Channel）；NOAA 54 站 52 个有数（Carrollton 8761955 和 Sabine Offshore Light 8771367 当前无数据）。这些站在输出里标 `no_data_returned`，业务上会自动跳过。

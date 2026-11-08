@@ -85,7 +85,7 @@ Louisiana 和 Texas 都是风带来的改善；Galveston 的中位数由 Houston
 
 ## 对业务化的影响
 
-- 要接实时风：训练用的是 AORC 再分析（1 km），业务要用系统里 ROMS 自己用的 RRFS/NAM 风场预报，取每个站最近 72 小时 + 未来 6 小时的 10 m 风 u、v。`scripts/operational/forecast.py` 目前只支持只用水位的模型，加风输入是下一步。
+- 实时风已接上（2026-11-08）：训练用的是 AORC 再分析（1 km），业务用 NOAA HRRR（3 km、逐小时、AWS 公开）代替——过去 72 小时取逐时分析场，未来 6 小时取最新周期的 f01–f06，每站取最近格点。没用系统驱动 ROMS 的 NAM，因为它 3 小时一场、NOMADS 只留两天，拼不出 72 小时逐时。`scripts/operational/forecast.py` 现在按模型自动加风和流量输入，17Z 实跑 418 站 48 秒。
 - 流量实时值和水位走同一个 USGS 接口（要素 00060），加上去没有额外成本。
 - 两个离岸站（Eugene Island 8764314、Sabine Offshore Light 8771367）AORC 没有格点，没有风输入，仍用只用水位的模型或者取最近陆地格点。
 
