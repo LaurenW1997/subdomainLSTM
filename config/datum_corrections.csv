@@ -1,0 +1,24 @@
+source,station_id,name,action,break_date,offset_m,note
+USGS,08068400,"Panther Br at Gosling Rd, The Woodlands, TX",shift_before,2010-10-01,37.875,gage height -> NAVD88 elevation at water-year boundary
+USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",shift_before,2010-09-21,37.853,same
+USGS,08068720,"Cypress Ck at Katy-Hockley Rd nr Hockley, TX",shift_before,2012-09-29,30.313,same
+USGS,08068740,"Cypress Ck at House-Hahl Rd nr Cypress, TX",shift_before,2012-09-30,29.998,same
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",shift_before,2010-09-17,29.758,same
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",shift_before,2012-10-01,28.598,same
+USGS,08068800,"Cypress Ck at Grant Rd nr Cypress, TX",shift_before,2011-10-01,23.74,same
+USGS,08068900,"Cypress Ck at Stuebner-Airline Rd nr Westfield, TX",shift_before,2011-09-17,20.818,same
+USGS,08069000,"Cypress Ck nr Westfield, TX",shift_before,2011-10-01,18.536,same
+USGS,08070200,"E Fk San Jacinto Rv nr New Caney, TX",shift_before,2016-09-30,12.962,same
+USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",shift_before,2016-10-12,8.155,same
+USGS,08075780,"Greens Bayou at Cutten Rd nr Houston, TX",shift_before,2010-09-29,-1.469,gauge datum change at water-year boundary
+USGS,08075500,"Sims Bayou at Houston, TX",shift_before,2016-09-28,-1.459,same
+USGS,08076700,"Greens Bayou at Ley Rd, Houston, TX",shift_before,2016-09-27,-1.189,same
+USGS,08075730,"Vince Bayou at Pasadena, TX",shift_before,2016-10-06,-1.121,same
+USGS,08074250,"Brickhouse Gully at Costa Rica St, Houston, TX",shift_before,2016-09-12,-1.746,"same (Sep 2016, Houston)"
+USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",shift_before,2016-09-17,-1.734,"same (Sep 2016, Houston)"
+USGS,08067118,"Lk Charlotte nr Anahuac, TX",shift_before,2022-09-17,-1.677,datum change Sep 2022
+CRMS,CRMS0153-H01,CRMS0153-H01,shift_before,2013-10-06,-1.301,CRMS adjusted elevation step 2013-10
+CRMS,BA0066-10P-RT,BA0066-10P-RT,shift_before,2018-04-16,2.259,raw water level sensor reset 2018-04
+CRMS,BA0066-10F-RT,BA0066-10F-RT,shift_before,2018-04-16,1.935,same
+CRMS,CRMS0219-M01,CRMS0219-M01,shift_before,2018-04-26,-1.03,CRMS adjusted elevation step 2018-04
+NOAA_COOPS,8771367,Sabine Offshore Light,drop_before,2021-01-05,,"pre-2021 segment on a different reference (-8 m), only a few months"
