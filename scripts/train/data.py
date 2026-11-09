@@ -24,7 +24,8 @@ WIND_SCALE = 10.0   # m/s -> O(1)
 
 class StationMatrix:
     def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK, use_wind: bool = False,
-                 use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None):
+                 use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
+                 no_wind_stations: Path | str | None = None):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -56,11 +57,20 @@ class StationMatrix:
         self.t_train_end = int(np.searchsorted(self.time.values, np.datetime64(self.meta["train_end"])))
         self.t_val_end = int(np.searchsorted(self.time.values, np.datetime64(self.meta["val_end"])))
         self.t_end = self.T
+        # stations whose wind input is switched off (far-inland rivers where wind only adds noise):
+        # u, v and the wind mask are set to 0 for them, and the wind-availability rule in _ok is skipped
+        self.wind_off = np.zeros(self.S, bool)
+        if no_wind_stations:
+            sub = pd.read_csv(no_wind_stations, dtype=str)
+            key = set(zip(sub.source, sub.station_id))
+            self.wind_off = np.array([(s, str(i)) in key for s, i in zip(self.stations.source, self.stations.station_id)])
         if use_wind:
             u = np.load(d / "wind_u.npy", mmap_mode="r")[self.rows].astype(np.float32) / WIND_SCALE
             v = np.load(d / "wind_v.npy", mmap_mode="r")[self.rows].astype(np.float32) / WIND_SCALE
             self.wmask = np.isfinite(u) & np.isfinite(v)
             self.u, self.v = np.nan_to_num(u), np.nan_to_num(v)
+            if self.wind_off.any():
+                self.u[self.wind_off] = 0.0; self.v[self.wind_off] = 0.0; self.wmask[self.wind_off] = False
             # evaluation/training only where wind exists (AORC ends before the water-level record)
             has = np.where(self.wmask.any(0))[0]
             self.t_end = int(has.max()) + 1
@@ -105,10 +115,11 @@ class StationMatrix:
         idx_in = t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]
         ok = self.mask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
         ok &= self.mask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].any(1)
-        if self.use_wind:   # require the wind to exist over the window (and the target hours if fed to the head)
-            ok &= self.wmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
+        if self.use_wind:   # require the wind to exist over the window (and the target hours if fed to the head),
+            need = ~self.wind_off[s]   # except at stations whose wind input is switched off
+            ok &= (~need) | (self.wmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID)
             if self.use_future_wind:
-                ok &= self.wmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
+                ok &= (~need) | self.wmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
         return ok
 
     def sample_train(self, batch: int, rng: np.random.Generator):
