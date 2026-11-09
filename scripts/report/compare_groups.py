@@ -22,7 +22,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[2]
 RUNS = {"obs": "v3_obs", "v4": "v4_wind_q", "tidal": "v5_tidal", "river": "v5_river", "river_wq": "v5_river_wq"}
-LAB = {"obs": "只用水位（全局）", "v4": "v4 全局（风+流量）", "split": "分组模型（潮汐组：风；河流组：流量）", "river_wq": "河流组（风+流量）"}
+LAB = {"obs": "只用水位（全局模型）", "v4": "全局模型（风+流量）", "split": "分组模型（潮汐组：风；河流组：流量）", "river_wq": "河流组（风+流量）"}
 TYPES = ["tide gauge", "marsh", "estuary / tidal channel", "lake", "river / canal", "urban creek (Houston)"]
 DOMS = ["Louisiana100m", "Galveston100m", "Texas100m"]
 BIG = "Mississippi|Atchafalaya|Brazos Rv|Sabine Rv|Neches Rv|Trinity Rv|Colorado Rv|Pearl River"
@@ -61,9 +61,9 @@ def main() -> None:
         r = {"分组": label, "站数": len(s)}
         for k in keys:
             r[LAB[k] if k in LAB else k] = round(s[f"r6_{k}"].median(), 2)
-        r["分组 − v4 (6 h)"] = f"{(s.r6_split - s.r6_v4).median():+.2f}"
+        r["分组 − 全局 (6 h)"] = f"{(s.r6_split - s.r6_v4).median():+.2f}"
         r["变好 ≥0.5"] = int((s.d_split_v4 <= -0.5).sum()); r["变差 ≥0.5"] = int((s.d_split_v4 >= 0.5).sum())
-        r["< 5 cm 的站 (v4 → 分组)"] = f"{(s.r6_v4 < 5).mean()*100:.0f}% → {(s.r6_split < 5).mean()*100:.0f}%"
+        r["< 5 cm 的站 (全局 → 分组)"] = f"{(s.r6_v4 < 5).mean()*100:.0f}% → {(s.r6_split < 5).mean()*100:.0f}%"
         return r
 
     L = ["# 09 一个全局模型 对 两个分组模型（表格）", "",
@@ -77,15 +77,15 @@ def main() -> None:
     rg = b[b.group == "river"].copy()
     rows = []
     for label, s in (("河流组全部", rg), ("大河站", rg[rg.big_river]), ("河流 / 运河（非大河）", rg[(rg.type == "river / canal") & ~rg.big_river]), ("Houston 城市溪流", rg[rg.type == "urban creek (Houston)"])):
-        rows.append({"分组": label, "站数": len(s), "只用水位（全局）": round(s.r6_obs.median(), 2), "v4 全局（风+流量）": round(s.r6_v4.median(), 2),
+        rows.append({"分组": label, "站数": len(s), "只用水位（全局模型）": round(s.r6_obs.median(), 2), "全局模型（风+流量）": round(s.r6_v4.median(), 2),
                      "河流组（风+流量）": round(s.r6_river_wq.median(), 2), "河流组（只流量，无风）": round(s.r6_river.median(), 2)})
     L += ["## 河流组：分组的作用 和 去掉风的作用 分开看", "", md(pd.DataFrame(rows)), "",
-          "“河流组（风+流量）”和 v4 的差别只在于单独训练；“河流组（只流量）”再去掉风。", ""]
+          "“河流组（风+流量）”和全局模型的差别只在于单独训练；“河流组（只流量）”再去掉风。", ""]
     big = b[b.big_river].sort_values("r6_v4", ascending=False)[["station_id", "name", "r6_obs", "r6_v4", "r6_river_wq", "r6_split", "d_split_v4"]].round(2)
-    big.columns = ["站号", "站名", "只用水位", "v4 全局", "河流组（风+流量）", "河流组（只流量）", "分组 − v4"]
+    big.columns = ["站号", "站名", "只用水位", "全局模型（风+流量）", "河流组（风+流量）", "河流组（只流量）", "分组 − 全局"]
     L += ["## 大河站逐站（6 h RMSE，cm）", "", md(big), ""]
     ch = b.reindex(b.d_split_v4.abs().sort_values(ascending=False).index).head(15)[["station_id", "name", "type", "r6_v4", "r6_split", "d_split_v4"]].round(2)
-    ch.columns = ["站号", "站名", "类型", "v4 全局", "分组", "分组 − v4"]
+    ch.columns = ["站号", "站名", "类型", "全局模型", "分组模型", "分组 − 全局"]
     L += ["## 变化最大的 15 个站", "", md(ch), ""]
     (out / "09_groups_tables.md").write_text("\n".join(L), encoding="utf-8")
 
