@@ -26,7 +26,8 @@ def load(run: Path, dataset: Path, device):
         return None if not p else (p if Path(p).exists() else str(Path(__file__).resolve().parents[2] / "config" / Path(p).name))
     sm = StationMatrix(dataset, lookback=ck["args"].get("lookback", 72), use_wind=ck["args"].get("wind", False),
                        use_future_wind=ck["args"].get("future_wind", False), use_q=ck["args"].get("discharge", False),
-                       stations=local(ck["args"].get("stations")), no_wind_stations=local(ck["args"].get("no_wind_stations")))
+                       stations=local(ck["args"].get("stations")), no_wind_stations=local(ck["args"].get("no_wind_stations")),
+                       use_rain=ck["args"].get("rain", False), use_future_rain=ck["args"].get("future_rain", False), rain_var=ck["args"].get("rain_var", "p15"))
     model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
                        n_future=ck.get("n_future", 0)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()

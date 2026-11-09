@@ -25,10 +25,12 @@ WIND_SCALE = 10.0   # m/s -> O(1)
 class StationMatrix:
     def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK, use_wind: bool = False,
                  use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
-                 no_wind_stations: Path | str | None = None):
+                 no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
+                 rain_var: str = "p15"):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
+        self.use_rain, self.use_future_rain, self.rain_var = use_rain, use_rain and use_future_rain, rain_var
         self.values = np.load(d / "values.npy", mmap_mode="r")          # [S, T] metres
         self.time = pd.to_datetime(np.load(d / "time.npy"))
         self.stations = pd.read_csv(d / "stations.csv", index_col="row", dtype={"station_id": str})
@@ -78,8 +80,14 @@ class StationMatrix:
             q = np.load(d / "q.npy", mmap_mode="r")[self.rows].astype(np.float32)
             self.qmask = np.isfinite(q)
             self.q = np.nan_to_num(q)
-        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0)
-        self.n_future = 2 * HORIZON if self.use_future_wind else 0
+        if use_rain:   # EXPERIMENT: hourly rain (mm/h) at the station cell ("p") or 15 km box mean ("p15"), log1p-scaled
+            r = np.load(d / f"rain_{rain_var}.npy", mmap_mode="r")[self.rows].astype(np.float32)
+            self.rmask = np.isfinite(r)
+            self.rain = np.log1p(np.nan_to_num(np.clip(r, 0, None)))
+            if not use_wind:
+                has = np.where(self.rmask.any(0))[0]; self.t_end = int(has.max()) + 1
+        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0)
+        self.n_future = (2 * HORIZON if self.use_future_wind else 0) + (HORIZON if self.use_future_rain else 0)
 
     def split_range(self, split: str) -> tuple[int, int]:
         """Index range of forecast-origin times t0 (last observed hour) for a split."""
@@ -102,11 +110,15 @@ class StationMatrix:
                       self.wmask[s[:, None], idx_in].astype(np.float32)[..., None]]
         if self.use_q:
             parts += [self.q[s[:, None], idx_in][..., None], self.qmask[s[:, None], idx_in].astype(np.float32)[..., None]]
+        if self.use_rain:
+            parts += [self.rain[s[:, None], idx_in][..., None], self.rmask[s[:, None], idx_in].astype(np.float32)[..., None]]
         feats = np.concatenate(parts, -1)
+        fut_parts = []
         if self.use_future_wind:
-            future = np.concatenate([self.u[s[:, None], idx_out], self.v[s[:, None], idx_out]], 1).astype(np.float32)
-        else:
-            future = np.zeros((len(s), 0), np.float32)
+            fut_parts += [self.u[s[:, None], idx_out], self.v[s[:, None], idx_out]]
+        if self.use_future_rain:
+            fut_parts.append(self.rain[s[:, None], idx_out])
+        future = np.concatenate(fut_parts, 1).astype(np.float32) if fut_parts else np.zeros((len(s), 0), np.float32)
         y = self.norm[s[:, None], idx_out]
         ym = np.isfinite(y)
         return feats, future, s, np.nan_to_num(y, nan=0.0), ym
@@ -120,6 +132,10 @@ class StationMatrix:
             ok &= (~need) | (self.wmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID)
             if self.use_future_wind:
                 ok &= (~need) | self.wmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
+        if self.use_rain:   # rain comes from the same AORC grid as the wind: same availability rule
+            ok &= self.rmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
+            if self.use_future_rain:
+                ok &= self.rmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
         return ok
 
     def sample_train(self, batch: int, rng: np.random.Generator):

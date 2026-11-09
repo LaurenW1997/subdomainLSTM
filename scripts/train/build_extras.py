@@ -31,6 +31,7 @@ def main() -> None:
     ap.add_argument("--wind-dir", default=str(DATA_ROOT / "wind"))
     ap.add_argument("--map", default=str(REPO / "config" / "station_discharge_map.csv"))
     ap.add_argument("--meta-only", action="store_true", help="only (re)write q_norm.csv and wind_coverage.csv for an existing --out")
+    ap.add_argument("--rain-dir", help="EXPERIMENT: DATA_ROOT/precip from aorc_precip.py -> rain_p.npy, rain_p15.npy copied into --out")
     a = ap.parse_args()
     src, out, wdir = DATA_ROOT / a.src, DATA_ROOT / a.out, Path(a.wind_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -54,6 +55,18 @@ def main() -> None:
     print(f"wind coverage: {int((cov.wind_valid_frac == 0).sum())} stations never have wind")
     wmeta = json.loads((wdir / "meta.json").read_text())
     print(f"wind: valid fraction {np.isfinite(u).mean():.3f}, last valid hour {wmeta.get('last_valid_hour')}")
+
+    # ---- rain (experiment): same station order / hour axis checks as the wind
+    if a.rain_dir and not a.meta_only:
+        rdir = Path(a.rain_dir)
+        rc = pd.read_csv(rdir / "cells.csv", dtype={"station_id": str})
+        assert (rc.station_id.to_numpy() == st.station_id.to_numpy()).all(), "rain cells.csv station order != stations.csv"
+        assert (np.load(rdir / "time.npy") == np.load(src / "time.npy")).all(), "rain time axis != dataset time axis"
+        for k in ("p", "p15"):
+            r = np.load(rdir / f"aorc_{k}.npy")
+            np.save(out / f"rain_{k}.npy", r.astype(np.float32))
+            print(f"rain_{k}: valid fraction {np.isfinite(r).mean():.3f}, mean {np.nanmean(r):.3f} mm/h")
+        meta.setdefault("extras", {})["rain"] = json.loads((rdir / "meta.json").read_text())
 
     # ---- discharge
     m = pd.read_csv(a.map, dtype=str)
