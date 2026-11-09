@@ -96,9 +96,9 @@ def main() -> None:
     np.save(out / "q.npy", q)
     print(f"discharge: {len(gauges)} gauges, {n_with}/{S} stations with a series, valid fraction {np.isfinite(q).mean():.3f}")
 
-    meta.update({"extras": {"wind": wmeta, "discharge": {"map": a.map, "n_gauges": len(gauges), "n_stations_with_q": n_with,
-                                                        "transform": "log1p(m3/s) z-scored per gauge over train period"}},
-                 "source_dataset": a.src})
+    meta.setdefault("extras", {}).update({"wind": wmeta, "discharge": {"map": a.map, "n_gauges": len(gauges), "n_stations_with_q": n_with,
+                                                        "transform": "log1p(m3/s) z-scored per gauge over train period"}})
+    meta["source_dataset"] = a.src
     (out / "meta.json").write_text(json.dumps(meta, indent=1))
     print("->", out)
 
