@@ -48,13 +48,14 @@ def series(model, sm, device, s: int, lo: int, hi: int):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--run-a", required=True); ap.add_argument("--run-b", required=True)
+    ap.add_argument("--dataset-b", help="dataset for run B when its inputs differ (e.g. another discharge mapping); default = --dataset")
     ap.add_argument("--label-a", default="water level only"); ap.add_argument("--label-b", default="wind + discharge")
     ap.add_argument("--out", required=True); ap.add_argument("--stations", nargs="+", required=True); ap.add_argument("--test-end", default="2025-12-31T17")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cpu")
     sm_a, model_a = load(Path(a.run_a), Path(a.dataset), device)
-    sm_b, model_b = load(Path(a.run_b), Path(a.dataset), device)
+    sm_b, model_b = load(Path(a.run_b), Path(a.dataset_b or a.dataset), device)
     st = sm_a.stations.reset_index(); st["station_id"] = st.station_id.astype(str)
     lo, hi = sm_a.split_range("test")
     hi = min(hi, int(np.searchsorted(sm_a.time.values, np.datetime64(a.test_end)))) + HORIZON
