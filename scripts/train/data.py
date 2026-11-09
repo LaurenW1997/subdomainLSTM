@@ -24,14 +24,25 @@ WIND_SCALE = 10.0   # m/s -> O(1)
 
 class StationMatrix:
     def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK, use_wind: bool = False,
-                 use_future_wind: bool = False, use_q: bool = False):
+                 use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
         self.values = np.load(d / "values.npy", mmap_mode="r")          # [S, T] metres
         self.time = pd.to_datetime(np.load(d / "time.npy"))
-        self.stations = pd.read_csv(d / "stations.csv", index_col="row")
+        self.stations = pd.read_csv(d / "stations.csv", index_col="row", dtype={"station_id": str})
         self.meta = json.loads((d / "meta.json").read_text())
+        # optional subset of stations (CSV with source, station_id): a separate model for one station group
+        self.rows = np.arange(self.values.shape[0])
+        if stations:
+            sub = pd.read_csv(stations, dtype=str)
+            key = set(zip(sub.source, sub.station_id))
+            keep = np.array([(s, str(i)) in key for s, i in zip(self.stations.source, self.stations.station_id)])
+            self.rows = np.where(keep)[0]
+            self.values = np.asarray(self.values)[self.rows]
+            self.stations = self.stations.iloc[self.rows].reset_index(drop=True)
+            self.stations.index.name = "row"
+            self.stations["dataset_row"] = self.rows
         self.S, self.T = self.values.shape
         mean = self.stations["mean_m"].to_numpy(np.float32)[:, None]
         std = self.stations["std_m"].to_numpy(np.float32)[:, None]
@@ -46,15 +57,15 @@ class StationMatrix:
         self.t_val_end = int(np.searchsorted(self.time.values, np.datetime64(self.meta["val_end"])))
         self.t_end = self.T
         if use_wind:
-            u = np.load(d / "wind_u.npy").astype(np.float32) / WIND_SCALE
-            v = np.load(d / "wind_v.npy").astype(np.float32) / WIND_SCALE
+            u = np.load(d / "wind_u.npy", mmap_mode="r")[self.rows].astype(np.float32) / WIND_SCALE
+            v = np.load(d / "wind_v.npy", mmap_mode="r")[self.rows].astype(np.float32) / WIND_SCALE
             self.wmask = np.isfinite(u) & np.isfinite(v)
             self.u, self.v = np.nan_to_num(u), np.nan_to_num(v)
             # evaluation/training only where wind exists (AORC ends before the water-level record)
             has = np.where(self.wmask.any(0))[0]
             self.t_end = int(has.max()) + 1
         if use_q:
-            q = np.load(d / "q.npy").astype(np.float32)
+            q = np.load(d / "q.npy", mmap_mode="r")[self.rows].astype(np.float32)
             self.qmask = np.isfinite(q)
             self.q = np.nan_to_num(q)
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0)

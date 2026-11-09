@@ -22,8 +22,11 @@ from model import GlobalLSTM  # noqa: E402
 
 def load(run: Path, dataset: Path, device):
     ck = torch.load(run / "best.pt", map_location=device)
+    sub = ck["args"].get("stations")
+    if sub and not Path(sub).exists():                       # trained on another machine: same file under this repo's config/
+        sub = str(Path(__file__).resolve().parents[2] / "config" / Path(sub).name)
     sm = StationMatrix(dataset, lookback=ck["args"].get("lookback", 72), use_wind=ck["args"].get("wind", False),
-                       use_future_wind=ck["args"].get("future_wind", False), use_q=ck["args"].get("discharge", False))
+                       use_future_wind=ck["args"].get("future_wind", False), use_q=ck["args"].get("discharge", False), stations=sub)
     model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
                        n_future=ck.get("n_future", 0)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()

@@ -1,0 +1,1011 @@
+source,station_id,name,domains,type,group
+USACE_MVN,Pass_Manchac,Pass Manchac near Pontchatoula (85420),Louisiana100m,river / canal,river
+NOAA_COOPS,8741533,Pascagoula NOAA Lab,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8760721,Pilottown,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8760922,"Pilots Station East, S.W. Pass",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8761305,Shell Beach,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8761724,Grand Isle,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8761927,New Canal Station,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8761955,Carrollton,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8762075,"Port Fourchon, Belle Pass",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8762482,"West Bank 1, Bayou Gauche",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8764044,"Berwick, Atchafalaya River",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8764314,"Eugene Island, North of, Atchafalaya Bay",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8766072,Freshwater Canal Locks,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8767816,Lake Charles,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8767961,Bulk Terminal,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8768094,Calcasieu Pass,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8770475,Port Arthur,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8770520,Rainbow Bridge,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",Galveston100m,tide gauge,tidal
+NOAA_COOPS,8770777,Manchester,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8770808,High Island,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8770822,"Texas Point, Sabine Pass",Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8770971,Rollover Pass,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",Galveston100m,tide gauge,tidal
+NOAA_COOPS,8771341,"Galveston Bay Entrance, North Jetty",Galveston100m,tide gauge,tidal
+NOAA_COOPS,8771367,Sabine Offshore Light,Louisiana100m,tide gauge,tidal
+NOAA_COOPS,8771450,Galveston Pier 21,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8771486,Galveston Railroad Bridge,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8771972,San Luis Pass,Galveston100m,tide gauge,tidal
+NOAA_COOPS,8772471,Freeport Harbor,Texas100m;Galveston100m,tide gauge,tidal
+NOAA_COOPS,8772985,Sargent,Texas100m;Galveston100m,tide gauge,tidal
+NOAA_COOPS,8773037,Seadrift,Texas100m,tide gauge,tidal
+NOAA_COOPS,8773146,Matagorda City,Texas100m,tide gauge,tidal
+NOAA_COOPS,8773259,Port Lavaca,Texas100m,tide gauge,tidal
+NOAA_COOPS,8773701,Port O'Connor,Texas100m,tide gauge,tidal
+NOAA_COOPS,8773767,Matagorda Bay Entrance Channel,Texas100m,tide gauge,tidal
+NOAA_COOPS,8774230,Aransas Wildlife Refuge,Texas100m,tide gauge,tidal
+NOAA_COOPS,8774513,Copano Bay,Texas100m,tide gauge,tidal
+NOAA_COOPS,8774770,Rockport,Texas100m,tide gauge,tidal
+NOAA_COOPS,8775222,Viola Turning Basin,Texas100m,tide gauge,tidal
+NOAA_COOPS,8775237,Port Aransas,Texas100m,tide gauge,tidal
+NOAA_COOPS,8775241,"Aransas, Aransas Pass",Texas100m,tide gauge,tidal
+NOAA_COOPS,8775283,"Enbridge, Ingleside",Texas100m,tide gauge,tidal
+NOAA_COOPS,8775296,"USS Lexington, Corpus Christi Bay",Texas100m,tide gauge,tidal
+NOAA_COOPS,8775792,Packery Channel,Texas100m,tide gauge,tidal
+NOAA_COOPS,8776139,S. Bird Island,Texas100m,tide gauge,tidal
+NOAA_COOPS,8776604,Baffin Bay,Texas100m,tide gauge,tidal
+NOAA_COOPS,8777812,Rincon Del San Jose,Texas100m,tide gauge,tidal
+NOAA_COOPS,8778490,Port Mansfield,Texas100m,tide gauge,tidal
+NOAA_COOPS,8779280,Realitos Peninsula,Texas100m,tide gauge,tidal
+NOAA_COOPS,8779748,South Padre Island CG Station,Texas100m,tide gauge,tidal
+NOAA_COOPS,8779749,SPI Brazos Santiago,Texas100m,tide gauge,tidal
+NOAA_COOPS,8779770,Port Isabel,Texas100m,tide gauge,tidal
+USGS,02479000,"PASCAGOULA RIVER AT MERRILL, MS",Louisiana100m,river / canal,river
+USGS,02475000,"LEAF RIVER NR MCLAIN, MS",Louisiana100m,river / canal,river
+USGS,02479130,"BLACK CREEK NR BROOKLYN, MS",Louisiana100m,river / canal,river
+USGS,02479155,"CYPRESS CREEK NR JANICE, MS",Louisiana100m,river / canal,river
+USGS,02479160,"BLACK CREEK NR WIGGINS, MS",Louisiana100m,river / canal,river
+USGS,02479500,"ESCATAWPA RIVER NEAR WILMER, AL",Louisiana100m,river / canal,river
+USGS,02479300,"RED CREEK AT VESTRY, MS",Louisiana100m,river / canal,river
+USGS,02479310,"PASCAGOULA RIVER AT GRAHAM FERRY, MS",Louisiana100m,river / canal,river
+USGS,0248018020,"ESCATAWPA RIVER AT I-10 NR ORANGE GROVE, MS",Louisiana100m,river / canal,river
+USGS,02480590,"TCHOUTACABOUFFA RIVER NR D'IBERVILLE, MS",Louisiana100m,river / canal,river
+USGS,02481130,"BILOXI RIVER NR LYMAN, MS",Louisiana100m,river / canal,river
+USGS,02481000,"BILOXI RIVER AT WORTHAM, MS",Louisiana100m,river / canal,river
+USGS,02481299,"OLD FORT BAYOU AT OCEAN SPRINGS, MS",Louisiana100m,estuary / tidal channel,tidal
+USGS,02481510,"WOLF RIVER NR LANDON, MS",Louisiana100m,river / canal,river
+USGS,02489500,"Pearl River near Bogalusa, LA",Louisiana100m,river / canal,river
+USGS,02481521,"WOLF RIVER AT BELLE FERRY ROAD NEAR LONG BEACH, MS",Louisiana100m,estuary / tidal channel,tidal
+USGS,02481660,"JOURDAN RIVER NR BAY ST LOUIS, MS",Louisiana100m,river / canal,river
+USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",Louisiana100m,river / canal,river
+USGS,02491500,"Bogue Chitto River at Franklinton, LA",Louisiana100m,river / canal,river
+USGS,02491800,"Bogue Chitto at Enon, LA",Louisiana100m,river / canal,river
+USGS,02492000,"Bogue Chitto River near Bush, LA",Louisiana100m,river / canal,river
+USGS,02492110,"EAST PEARL RIVER AB WILSON SL AT WALKIAH BLUFF, MS",Louisiana100m,river / canal,river
+USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,Louisiana100m,river / canal,river
+USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,Louisiana100m,river / canal,river
+USGS,02492343,"EAST HOBOLOCHITTO CREEK NR CAESAR, MS",Louisiana100m,river / canal,river
+USGS,02492360,"WEST HOBOLOCHITTO CREEK NR MCNEILL, MS",Louisiana100m,river / canal,river
+USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",Louisiana100m,river / canal,river
+USGS,02492700,"Pearl River at I-10 near Slidell, LA",Louisiana100m,river / canal,river
+USGS,02492600,"Pearl River at Pearl River, LA",Louisiana100m,river / canal,river
+USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,Louisiana100m,river / canal,river
+USGS,07374000,"Mississippi River at Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,073745245,"Caernarvon Canal Sector Gate at Caernarvon, La",Louisiana100m,river / canal,river
+USGS,073745235,"Bayou Dupre Sector Gate near Violet, LA",Louisiana100m,river / canal,river
+USGS,073745253,"Reggio Canal near Wills Point, LA",Louisiana100m,river / canal,river
+USGS,07374525,"Mississippi River at Belle Chasse, LA",Louisiana100m,river / canal,river
+USGS,073745257,Crooked B. NW of L. Cuatro Caballo near Delacroix,Louisiana100m,estuary / tidal channel,tidal
+USGS,073745258,"Cow Bayou at American Bay nr Pointe-A-La-Hache, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07374526,"Black Bay nr Snake Island nr Pointe-A-La-Hache, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,073745275,"Black Bay nr Stone Island nr Pointe-A-La-Hache, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07374527,"Northeast Bay Gardene near Point-A-LA-Hache, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07375000,"Tchefuncte River near Folsom, LA",Louisiana100m,river / canal,river
+USGS,07374581,"Bayou Liberty near Slidell,LA",Louisiana100m,river / canal,river
+USGS,07375050,"Tchefuncte River near Covington, LA",Louisiana100m,river / canal,river
+USGS,07375170,"Bogue Falaya at Covington, LA",Louisiana100m,river / canal,river
+USGS,07375105,Bogue Falaya River near Camp Covington,Louisiana100m,river / canal,river
+USGS,07375175,"Bogue Falaya River at Boston St. at Covington, LA",Louisiana100m,river / canal,river
+USGS,07375222,"Abita River north of Abita Springs, LA",Louisiana100m,river / canal,river
+USGS,07375410,"Tangipahoa River at Tangipahoa, La",Louisiana100m,river / canal,river
+USGS,07375230,"Tchefuncte River at Madisonville, LA",Louisiana100m,river / canal,river
+USGS,07375300,"Tangipahoa River near Kentwood, LA",Louisiana100m,river / canal,river
+USGS,07375280,"TANGIPAHOA RIVER AT OSYKA, MS",Louisiana100m,river / canal,river
+USGS,07375450,"Tangipahoa R nr Tickfaw, La.",Louisiana100m,river / canal,river
+USGS,07375480,"CHAPPEPEELA CREEK SOUTHEAST OF LORANGER, LA.",Louisiana100m,river / canal,river
+USGS,07375430,"Tangipahoa River near Amite, LA",Louisiana100m,river / canal,river
+USGS,07375500,"Tangipahoa River at Robert, LA",Louisiana100m,river / canal,river
+USGS,07375650,"Tangipahoa River near Ponchatoula, LA",Louisiana100m,river / canal,river
+USGS,07375800,"Tickfaw River at Liverpool, LA",Louisiana100m,river / canal,river
+USGS,07375960,"Tickfaw River at Montpelier, LA",Louisiana100m,river / canal,river
+USGS,07376300,"Tickfaw River Near Springfield, La.",Louisiana100m,river / canal,river
+USGS,07376000,"Tickfaw River at Holden, LA",Louisiana100m,river / canal,river
+USGS,07376500,"Natalbany River at Baptist, LA",Louisiana100m,river / canal,river
+USGS,07377000,"Amite River near Darlington, LA",Louisiana100m,river / canal,river
+USGS,07377150,"Amite River at Grangeville, LA",Louisiana100m,river / canal,river
+USGS,07377210,"Sandy Creek nr Pride, LA",Louisiana100m,river / canal,river
+USGS,07377230,"Little Sandy Creek at Peairs Rd SE of Milldale, LA",Louisiana100m,river / canal,river
+USGS,07377243,"Sandy Ck at Alph. Forbes nr Greenwell Springs, LA",Louisiana100m,river / canal,river
+USGS,07377500,"Comite River near Olive Branch, LA",Louisiana100m,river / canal,river
+USGS,07377300,"Amite River at Magnolia, LA",Louisiana100m,river / canal,river
+USGS,07377750,"Comite River near Zachary, LA",Louisiana100m,river / canal,river
+USGS,07377754,"Comite River near Baker, LA",Louisiana100m,river / canal,river
+USGS,07377600,"Comite R. at Pt. Hudson-Pride Rd near Milldale, LA",Louisiana100m,river / canal,river
+USGS,07377760,"Comite River at Comite Dr near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378000,"Comite River near Comite, LA",Louisiana100m,river / canal,river
+USGS,07378008,"Hurricane Creek at Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378075,"Beaver Bayou at Denham Road nr Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378100,"Beaver Bayou at Wax Rd near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378083,"Beaver Bayou at Hooper Road near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07378500,"Amite River near Denham Springs, LA",Louisiana100m,river / canal,river
+USGS,07378745,"Alligator Bayou near Kleinpeter, LA",Louisiana100m,river / canal,river
+USGS,07378746,"Bayou Manchac at Alligator B. near Kleinpeter, LA",Louisiana100m,river / canal,river
+USGS,07378810,"Bayou Fountain at Bluebonnet Blvd near  B.R., LA",Louisiana100m,river / canal,river
+USGS,07378748,"Bluff Swamp near Kleinpeter, LA",Louisiana100m,river / canal,river
+USGS,07379000,"Ward Creek at Government St at Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07379075,Old Ward Crk Div. at Highland Rd. nr Baton Rouge,Louisiana100m,river / canal,river
+USGS,07379100,"North Branch Ward Creek at Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07379960,"Dawson Cr. at Bluebonnet Blvd near Baton Rouge, LA",Louisiana100m,river / canal,river
+USGS,07380102,"Welsh Gully at J. Broussard Rd nr Prairieville, LA",Louisiana100m,river / canal,river
+USGS,07380101,"Bayou Manchac near Little Prairie, LA",Louisiana100m,river / canal,river
+USGS,07380126,"Henderson Bayou near Port Vincent, LA",Louisiana100m,river / canal,river
+USGS,07380120,"Amite River at Port Vincent, LA",Louisiana100m,river / canal,river
+USGS,07380200,"Amite River near French Settlement, LA",Louisiana100m,river / canal,river
+USGS,07380212,"Airline Canal at Blind River near Gramercy, LA",Louisiana100m,river / canal,river
+USGS,07380127,"Henderson Bayou Pump Station near Port Vincent, LA",Louisiana100m,river / canal,river
+USGS,07380215,"Amite River at Hwy 22 near Maurepas, LA",Louisiana100m,river / canal,river
+USGS,073802220,"Panama Canal at Hwy 44 near Gonzales, LA",Louisiana100m,river / canal,river
+USGS,0738022295,"Grand Goudine at Babin Rd Near Duplessis, LA",Louisiana100m,river / canal,river
+USGS,0738022395,"Black Bayou at Hwy 621 near Prairieville, LA",Louisiana100m,river / canal,river
+USGS,073802225,"Bayou Conway near Sorrento, LA",Louisiana100m,river / canal,river
+USGS,073802245,"Black Bayou E of Gonzales, LA",Louisiana100m,river / canal,river
+USGS,073802280,"New River north of Sorrento, La",Louisiana100m,river / canal,river
+USGS,073802273,"Bayou Francois at Hwy 61 Near Gonzales, LA",Louisiana100m,river / canal,river
+USGS,073802284,"New River Canal east of Sorrento, LA",Louisiana100m,river / canal,river
+USGS,073802282,"New River Canal near Sorrento, LA",Louisiana100m,river / canal,river
+USGS,073802332,Inner Harbor Navigation Canal nr Seabrook bridge,Louisiana100m,river / canal,river
+USGS,07380238,"Naomi Diversion Canal near Naomi, LA",Louisiana100m,river / canal,river
+USGS,073802339,"GIWW East Storm Surge Barrier at New Orleans, LA",Louisiana100m,river / canal,river
+USGS,07380251,"Barataria Bay N of Grand Isle, LA",Louisiana100m,lake,tidal
+USGS,073802511,"Barataria Waterway at Mud Lake S of Lafitte, LA",Louisiana100m,river / canal,river
+USGS,07380249,"Caminada Pass NW of Grand Isle, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,073802512,"Hackberry Bay NW of Grand Isle, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07380260,"Empire Waterway south of Empire, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07380330,"Bayou Perot at Point Legard near Cutoff, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,073802516,"Barataria Pass at Grand Isle, LA",Louisiana100m,river / canal,river
+USGS,07380401,"Bayou Lafourche SW of Donaldsonville, LA",Louisiana100m,river / canal,river
+USGS,07380500,"Bayou Lafourche at Napoleonville, LA",Louisiana100m,river / canal,river
+USGS,07381150,"Bayou Lafourche at Lockport, LA",Louisiana100m,river / canal,river
+USGS,07381000,"Bayou Lafourche at Thibodaux, LA",Louisiana100m,river / canal,river
+USGS,07381235,"GIWW West of Bayou Lafourche at Larose, LA",Louisiana100m,river / canal,river
+USGS,07381324,"Bayou Grand Caillou at Dulac, LA",Louisiana100m,river / canal,river
+USGS,073813498,"Caillou Bay SW of Cocodrie, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07381350,"Company Canal at Hwy 1 at Lockport, LA",Louisiana100m,river / canal,river
+USGS,07381349,"Caillou Lake (Sister Lake) SW of Dulac, LA",Louisiana100m,lake,tidal
+USGS,07381427,"Bayou Grosse Tete S. of I10 at Grosse Tete, LA",Louisiana100m,river / canal,river
+USGS,07381429,"Choctaw Bayou at I-10 east of Grosse Tete, LA",Louisiana100m,river / canal,river
+USGS,07381412,INTRACOASTAL WATERWAY NR PORT ALLEN LA,Louisiana100m,river / canal,river
+USGS,07381355,"Company Canal at Salt Barrier near Lockport, LA",Louisiana100m,river / canal,river
+USGS,07381452,"Choctaw Bayou at Hwy 404 W of White Castle, LA",Louisiana100m,river / canal,river
+USGS,07381460,"Bayou Milhomme near Stephensville, LA",Louisiana100m,river / canal,river
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",Louisiana100m,river / canal,river
+USGS,07381454,"Belle River at Hwy 70 near Pierre Part, LA",Louisiana100m,river / canal,river
+USGS,073814675,"Bayou Boeuf at Railroad Bridge at Amelia, LA",Louisiana100m,river / canal,river
+USGS,07381482,Old River Outflow Channel below Hydropower Channel,Louisiana100m,river / canal,river
+USGS,073815450,"Chicot Pass near Myette Point near Charenton, LA",Louisiana100m,river / canal,river
+USGS,07381490,"Atchafalaya River at Simmesport, LA",Louisiana100m,river / canal,river
+USGS,07381515,"Atchafalaya River at Butte La Rose, LA",Louisiana100m,river / canal,river
+USGS,07381567,"Buffalo Cove at Round Island near Charenton, LA",Louisiana100m,river / canal,river
+USGS,073815925,"Crewboat Channel at Wax Lake Outlet nr Calumet, LA",Louisiana100m,river / canal,river
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",Louisiana100m,river / canal,river
+USGS,073815963,"Murphy Lake near Bayou Sorrel, LA",Louisiana100m,lake,tidal
+USGS,073815945,"Bayou Teche E of Calumet Flood Gate at Calumet, LA",Louisiana100m,river / canal,river
+USGS,07381600,"Lower Atchafalaya River at Morgan City, LA",Louisiana100m,river / canal,river
+USGS,073816525,Mouth of Atchafalaya River at Atchafalaya Bay,Louisiana100m,river / canal,river
+USGS,07382000,"Bayou Cocodrie near Clearwater, LA",Louisiana100m,river / canal,river
+USGS,07381670,"GIWW at Bayou Sale Ridge near Franklin, LA",Louisiana100m,river / canal,river
+USGS,07383500,"Bayou Des Glaises Diversion Ch. at Moreauville, LA",Louisiana100m,river / canal,river
+USGS,07382500,"Bayou Courtableau at Washington, LA",Louisiana100m,river / canal,river
+USGS,07384400,"State Canal near Krotz Springs, LA",Louisiana100m,river / canal,river
+USGS,07385700,"Bayou Teche at Keystone L&D nr St. Martinville, LA",Louisiana100m,river / canal,river
+USGS,07385702,Bayou Teche below Keystone L&D nr St. Martinville,Louisiana100m,river / canal,river
+USGS,07385765,"Bayou Teche at Adeline Bridge near Jeanerette, LA",Louisiana100m,river / canal,river
+USGS,07385820,"Bayou Teche W of Calumet Flood Gate at Calumet, LA",Louisiana100m,river / canal,river
+USGS,07386600,"Vermilion River (B. Vermilion) near Carencro, LA",Louisiana100m,river / canal,river
+USGS,07386850,"Vermilion River near Lafayette, LA",Louisiana100m,river / canal,river
+USGS,07386940,"Vermilion River at Hwy 733 near Lafayette, LA",Louisiana100m,river / canal,river
+USGS,07386880,"Vermilion River at Surrey St. at Lafayette, LA",Louisiana100m,river / canal,river
+USGS,07386980,"Vermilion River at Perry, LA",Louisiana100m,river / canal,river
+USGS,08010000,"Bayou Des Cannes near Eunice, LA",Louisiana100m,river / canal,river
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,07387040,"Vermilion Bay near Cypremort Point, LA",Louisiana100m,lake,tidal
+USGS,08012000,"Bayou Nezpique near Basile, LA",Louisiana100m,river / canal,river
+USGS,08012150,"Mermentau River At Mermentau, LA",Louisiana100m,river / canal,river
+USGS,08013250,"Calcasieu River near Oakdale, LA",Louisiana100m,river / canal,river
+USGS,08013000,"Calcasieu River nr Glenmora, LA",Louisiana100m,river / canal,river
+USGS,08013500,"Calcasieu River near Oberlin, LA",Louisiana100m,river / canal,river
+USGS,08014500,"Ouiska Chitto Creek Near Oberlin, LA",Louisiana100m,river / canal,river
+USGS,08014881,"Bundick Lake at Spillway near DeRidder, LA",Louisiana100m,lake,tidal
+USGS,08015500,"Calcasieu River near Kinder, LA",Louisiana100m,river / canal,river
+USGS,08014800,"Bundick Creek near DeRidder, LA",Louisiana100m,river / canal,river
+USGS,08017044,"Calcasieu River at I-10 at Lake Charles, LA",Louisiana100m,river / canal,river
+USGS,08017095,"North Calcasieu Lake near Hackberry, LA",Louisiana100m,lake,tidal
+USGS,08017118,"Calcasieu River at Cameron, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,08026000,"Sabine Rv nr Burkeville, TX",Louisiana100m,river / canal,river
+USGS,08028500,"Sabine Rv nr Bon Wier, TX",Louisiana100m,river / canal,river
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",Louisiana100m,river / canal,river
+USGS,08029500,"Big Cow Ck nr Newton, TX",Louisiana100m,river / canal,river
+USGS,08030520,"Sabine Rv at Intl Paper nr Orange, TX",Louisiana100m,river / canal,river
+USGS,08030540,"Sabine Rv (at Navy Pier) at Orange, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08030500,"Sabine Rv nr Ruliff, TX",Louisiana100m,river / canal,river
+USGS,08030530,"Sabine Rv at I-10 nr Orange, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08030730,"Adams Bayou at FM 3247 nr Orange, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08031010,"Cow Bayou at FM 1442 nr Orangefield, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08030800,"Adams Bayou at SH87 nr Orange, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08031000,"Cow Bayou nr Mauriceville, TX",Louisiana100m,river / canal,river
+USGS,08031050,"Cow Bayou at SH 87 nr Bridge City, TX",Louisiana100m,estuary / tidal channel,tidal
+USGS,08033350,"Piney Ck at US 59 nr Corrigan, TX",Galveston100m,river / canal,river
+USGS,08033000,"Neches Rv nr Diboll, TX",Galveston100m,river / canal,river
+USGS,08031020,"Cole Ck at I-10 nr Orange, TX",Louisiana100m,river / canal,river
+USGS,08033500,"Neches Rv nr Rockland, TX",Galveston100m,river / canal,river
+USGS,08040600,"Neches Rv nr Town Bluff, TX",Galveston100m,river / canal,river
+USGS,08041300,"Village Ck at US Hwy 69 nr Village Mills, TX",Galveston100m,river / canal,river
+USGS,08041000,"Neches Rv at Evadale, TX",Louisiana100m;Galveston100m,river / canal,river
+USGS,08041500,"Village Ck nr Kountze, TX",Galveston100m,river / canal,river
+USGS,08041700,"Pine Island Bayou nr Sour Lake, TX",Galveston100m,river / canal,river
+USGS,08041749,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08041788,"Bairds Bayou at I-10 nr Beaumont, TX",Louisiana100m;Galveston100m,river / canal,river
+USGS,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",Galveston100m,urban creek (Houston),river
+USGS,08065820,"Larrison Ck at FM 1428 nr Midway, TX",Galveston100m,river / canal,river
+USGS,08065800,"Bedias Ck nr Madisonville, TX",Galveston100m,river / canal,river
+USGS,08065925,"Nelson Ck at FM 247 nr Huntsville, TX",Galveston100m,river / canal,river
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",Galveston100m,river / canal,river
+USGS,08066000,"Trinity Rv at Riverside, TX",Galveston100m,river / canal,river
+USGS,08066175,"Kickapoo Ck at Onalaska, TX",Galveston100m,river / canal,river
+USGS,08066200,"Long King Ck at Livingston, TX",Galveston100m,river / canal,river
+USGS,08066380,"Big Ck at SH 150 nr Shepherd, TX",Galveston100m,river / canal,river
+USGS,08066250,"Trinity Rv nr Goodrich, TX",Galveston100m,river / canal,river
+USGS,08066300,"Menard Ck nr Rye, TX",Galveston100m,urban creek (Houston),river
+USGS,08066500,"Trinity Rv at Romayor, TX",Galveston100m,urban creek (Houston),river
+USGS,08067000,"Trinity Rv at Liberty, TX",Galveston100m,urban creek (Houston),river
+USGS,08067070,"CWA Canal nr Dayton, TX",Galveston100m,urban creek (Houston),river
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08067118,"Lk Charlotte nr Anahuac, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08067250,"Trinity Rv at IH 10 nr Wallisville, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08067280,"Turtle Bayou at I-10 nr Hankamer, TX",Galveston100m,urban creek (Houston),river
+USGS,08067500,"Cedar Bayou nr Crosby, TX",Galveston100m,urban creek (Houston),river
+USGS,08067525,"Goose Ck at Baytown, TX",Galveston100m,urban creek (Houston),river
+USGS,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",Galveston100m,river / canal,river
+USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",Galveston100m,urban creek (Houston),river
+USGS,08067920,"Lake Ck at Sendera Ranch Rd nr Conroe, TX",Galveston100m,urban creek (Houston),river
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",Galveston100m,urban creek (Houston),river
+USGS,08068275,"Spring Ck nr Tomball, TX",Galveston100m,urban creek (Houston),river
+USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",Galveston100m,urban creek (Houston),river
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",Galveston100m,urban creek (Houston),river
+USGS,08068325,"Willow Ck nr Tomball, TX",Galveston100m,urban creek (Houston),river
+USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",Galveston100m,urban creek (Houston),river
+USGS,08068400,"Panther Br at Gosling Rd, The Woodlands, TX",Galveston100m,urban creek (Houston),river
+USGS,08068450,"Panther Br nr Spring, TX",Galveston100m,urban creek (Houston),river
+USGS,08068500,"Spring Ck nr Spring, TX",Galveston100m,urban creek (Houston),river
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",Galveston100m,urban creek (Houston),river
+USGS,08068720,"Cypress Ck at Katy-Hockley Rd nr Hockley, TX",Galveston100m,urban creek (Houston),river
+USGS,08068740,"Cypress Ck at House-Hahl Rd nr Cypress, TX",Galveston100m,urban creek (Houston),river
+USGS,08068780,"Little Cypress Ck nr Cypress, TX",Galveston100m,urban creek (Houston),river
+USGS,08068900,"Cypress Ck at Stuebner-Airline Rd nr Westfield, TX",Galveston100m,urban creek (Houston),river
+USGS,08068800,"Cypress Ck at Grant Rd nr Cypress, TX",Galveston100m,urban creek (Houston),river
+USGS,08069000,"Cypress Ck nr Westfield, TX",Galveston100m,urban creek (Houston),river
+USGS,08069500,"W Fk San Jacinto Rv nr Humble, TX",Galveston100m,urban creek (Houston),river
+USGS,08070000,"E Fk San Jacinto Rv nr Cleveland, TX",Galveston100m,urban creek (Houston),river
+USGS,08070200,"E Fk San Jacinto Rv nr New Caney, TX",Galveston100m,urban creek (Houston),river
+USGS,08070500,"Caney Ck nr Splendora, TX",Galveston100m,urban creek (Houston),river
+USGS,08071000,"Peach Ck at Splendora, TX",Galveston100m,urban creek (Houston),river
+USGS,08072000,"Lk Houston nr Sheldon, TX",Galveston100m,lake,tidal
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",Galveston100m,urban creek (Houston),river
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08072300,"Buffalo Bayou nr Katy, TX",Galveston100m,urban creek (Houston),river
+USGS,08072470,"Mason Ck at Prince Ck Court nr Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08072520,"Clodine Ditch at Noble Rd nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08072600,"Buffalo Bayou at State Hwy 6 nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08072680,"S Mayde Ck at Heathergold Dr nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08072730,"Bear Ck nr Barker, TX",Galveston100m,urban creek (Houston),river
+USGS,08072760,"Langham Ck at W Little York Rd nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08072800,"Langham Ck nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08073500,"Buffalo Bayou nr Addicks, TX",Galveston100m,urban creek (Houston),river
+USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",Galveston100m,urban creek (Houston),river
+USGS,08074000,"Buffalo Bayou at Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074500,"Whiteoak Bayou at Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074250,"Brickhouse Gully at Costa Rica St, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074540,"Little Whiteoak Bayou at Trimble St, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08074710,"Buffalo Bayou at Turning Basin, Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08074760,"Brays Bayou at Alief, TX",Galveston100m,urban creek (Houston),river
+USGS,08074800,"Keegans Bayou at Roark Rd nr Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08074810,"Brays Bayou at Gessner Dr, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075000,"Brays Bayou at Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075110,"Brays Bayou at MLK Jr Blvd, Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075500,"Sims Bayou at Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08075605,"Berry Bayou at Nevada St, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075730,"Vince Bayou at Pasadena, TX",Galveston100m,urban creek (Houston),river
+USGS,08075763,"Hunting Bayou at Hoffman St, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075770,"Hunting Bayou at IH 610, Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075780,"Greens Bayou at Cutten Rd nr Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08075900,"Greens Bayou nr US Hwy 75 nr Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08076000,"Greens Bayou nr Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08076180,"Garners Bayou nr Humble, TX",Galveston100m,urban creek (Houston),river
+USGS,08076500,"Halls Bayou at Houston, TX",Galveston100m,urban creek (Houston),river
+USGS,08076700,"Greens Bayou at Ley Rd, Houston, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08076997,"Clear Ck at Mykawa St nr Pearland, TX",Galveston100m,urban creek (Houston),river
+USGS,08077600,"Clear Ck nr Friendswood, TX",Galveston100m,urban creek (Houston),river
+USGS,08078080,"Bastrop Bayou at CR 288 nr Lake Jackson, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08078000,"Chocolate Bayou nr Alvin, TX",Galveston100m,river / canal,river
+USGS,08078940,"Oyster Ck at CR 34 nr Angleton, TX",Galveston100m,river / canal,river
+USGS,08079005,"Oyster Ck at CR 290 nr Angleton, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08078930,"Oyster Ck at CR 42 nr Rosharon, TX",Galveston100m,river / canal,river
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",Texas100m;Galveston100m,estuary / tidal channel,tidal
+USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",Galveston100m,river / canal,river
+USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",Galveston100m,river / canal,river
+USGS,08108780,"Little Brazos Rv at FM 485 nr Hearne, TX",Galveston100m,river / canal,river
+USGS,08079120,"Old Brazos Rv nr Freeport, TX",Texas100m;Galveston100m,estuary / tidal channel,tidal
+USGS,08109310,"Thompsons Ck at SH 47 nr Bryan, TX",Galveston100m,river / canal,river
+USGS,08110000,"Yegua Ck nr Somerville, TX",Galveston100m,river / canal,river
+USGS,08110200,"Brazos Rv at Washington, TX",Galveston100m,river / canal,river
+USGS,08110100,"Davidson Ck nr Lyons, TX",Galveston100m,river / canal,river
+USGS,08111006,"Mathis Ck at US 190 nr Kurten, TX",Galveston100m,river / canal,river
+USGS,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",Galveston100m,river / canal,river
+USGS,08111051,"Carters Ck at FM 60 nr College Station, TX",Galveston100m,river / canal,river
+USGS,08111056,"Peach Ck at SH 6 nr Millican, TX",Galveston100m,river / canal,river
+USGS,08111085,"New Year Ck at SH 105 nr Brenham, TX",Galveston100m,river / canal,river
+USGS,08111500,"Brazos Rv nr Hempstead, TX",Galveston100m,river / canal,river
+USGS,08111700,"Mill Ck nr Bellville, TX",Galveston100m,river / canal,river
+USGS,08111850,"Brazos Rv at San Felipe, TX",Galveston100m,river / canal,river
+USGS,08114000,"Brazos Rv at Richmond, TX",Galveston100m,urban creek (Houston),river
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",Galveston100m,urban creek (Houston),river
+USGS,08115000,"Big Ck nr Needville, TX",Galveston100m,urban creek (Houston),river
+USGS,08116850,"Brazos Rv nr West Columbia, TX",Galveston100m,estuary / tidal channel,tidal
+USGS,08116400,"Dry Ck nr Rosenberg, TX",Galveston100m,urban creek (Houston),river
+USGS,08116650,"Brazos Rv nr Rosharon, TX",Galveston100m,urban creek (Houston),river
+USGS,08117370,"San Bernard Rv nr Chesterville, TX",Galveston100m,river / canal,river
+USGS,08117705,"San Bernard Rv nr Sweeny, TX",Texas100m;Galveston100m,estuary / tidal channel,tidal
+USGS,08117500,"San Bernard Rv nr Boling, TX",Galveston100m,urban creek (Houston),river
+USGS,08117855,"Caney Ck at SH 35 nr Van Vleck, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08160800,"Redgate Ck nr Columbus, TX",Galveston100m,river / canal,river
+USGS,08162501,"Colorado Rv nr Wadsworth, TX",Texas100m;Galveston100m,estuary / tidal channel,tidal
+USGS,08162500,"Colorado Rv nr Bay City, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08162600,"Tres Palacios Rv nr Midfield, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08161000,"Colorado Rv at Columbus, TX",Galveston100m,river / canal,river
+USGS,08164000,"Lavaca Rv nr Edna, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08162000,"Colorado Rv at Wharton, TX",Galveston100m,river / canal,river
+USGS,08164350,"Navidad Rv nr Speaks, TX",Galveston100m,river / canal,river
+USGS,08164390,"Navidad Rv at Strane Pk nr Edna, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08164450,"Sandy Ck nr Ganado, TX",Galveston100m,river / canal,river
+USGS,08164503,"W Mustang Ck nr Ganado, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08164504,"E Mustang Ck nr Louise, TX",Texas100m;Galveston100m,river / canal,river
+USGS,08164600,"Garcitas Ck nr Inez, TX",Texas100m,river / canal,river
+USGS,08164800,"Placedo Ck nr Placedo, TX",Texas100m,river / canal,river
+USGS,08175800,"Guadalupe Rv at Cuero, TX",Texas100m,river / canal,river
+USGS,08176500,"Guadalupe Rv at Victoria, TX",Texas100m,river / canal,river
+USGS,08176550,"Fifteenmile Ck nr Weser, TX",Texas100m,river / canal,river
+USGS,08176900,"Coleto Ck at Arnold Rd Crsg nr Schroeder, TX",Texas100m,river / canal,river
+USGS,08177300,"Perdido Ck at FM 622 nr Fannin, TX",Texas100m,river / canal,river
+USGS,08177500,"Coleto Ck nr Victoria, TX",Texas100m,river / canal,river
+USGS,08177520,"Guadalupe Rv nr Bloomington, TX",Texas100m,river / canal,river
+USGS,08183200,"San Antonio Rv nr Floresville, TX",Texas100m,river / canal,river
+USGS,08183500,"San Antonio Rv nr Falls City, TX",Texas100m,river / canal,river
+USGS,08186500,"Ecleto Ck nr Runge, TX",Texas100m,river / canal,river
+USGS,08186000,"Cibolo Ck nr Falls City, TX",Texas100m,river / canal,river
+USGS,08187500,"Escondido Ck at Kenedy, TX",Texas100m,river / canal,river
+USGS,08188570,"San Antonio Rv nr McFaddin, TX",Texas100m,river / canal,river
+USGS,08188060,"San Antonio Rv at SH 72 nr Runge, TX",Texas100m,river / canal,river
+USGS,08188500,"San Antonio Rv at Goliad, TX",Texas100m,river / canal,river
+USGS,08188590,"North end of GBRA Calhoun Canal nr Long Mott,TX",Texas100m,river / canal,river
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",Texas100m,estuary / tidal channel,tidal
+USGS,08189200,"Copano Ck nr Refugio, TX",Texas100m,river / canal,river
+USGS,08189300,"Medio Ck nr Beeville, TX",Texas100m,river / canal,river
+USGS,08188800,"Guadalupe Rv nr Tivoli, TX",Texas100m,river / canal,river
+USGS,08189500,"Mission Rv at Refugio, TX",Texas100m,river / canal,river
+USGS,08189700,"Aransas Rv nr Skidmore, TX",Texas100m,river / canal,river
+USGS,08194200,"San Casimiro Ck nr Freer, TX",Texas100m,river / canal,river
+USGS,08194500,"Nueces Rv nr Tilden, TX",Texas100m,river / canal,river
+USGS,08206600,"Frio Rv at Tilden, TX",Texas100m,river / canal,river
+USGS,08206700,"San Miguel Ck nr Tilden, TX",Texas100m,river / canal,river
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",Texas100m,river / canal,river
+USGS,08207500,"Atascosa Rv nr McCoy, TX",Texas100m,river / canal,river
+USGS,08208000,"Atascosa Rv at Whitsett, TX",Texas100m,river / canal,river
+USGS,08210000,"Nueces Rv nr Three Rivers, TX",Texas100m,river / canal,river
+USGS,08210400,"Lagarto Ck nr George West, TX",Texas100m,river / canal,river
+USGS,08211000,"Nueces Rv nr Mathis, TX",Texas100m,river / canal,river
+USGS,08211200,"Nueces Rv at Bluntzer, TX",Texas100m,river / canal,river
+USGS,08211502,"Nueces Rv nr Odem, TX",Texas100m,river / canal,river
+USGS,08211500,"Nueces Rv at Calallen, TX",Texas100m,river / canal,river
+USGS,08211520,"Oso Ck at Corpus Christi, TX",Texas100m,river / canal,river
+USGS,08211900,"San Fernando Ck at Alice, TX",Texas100m,river / canal,river
+USGS,08212300,"Tranquitas Ck at Kingsville, TX",Texas100m,river / canal,river
+USGS,08212400,"Los Olmos Ck nr Falfurrias, TX",Texas100m,river / canal,river
+USGS,08474118,"Cameron Co Ditch 2 at FM 1847 nr Los Fresnos, TX",Texas100m,river / canal,river
+USGS,08474300,"Old Main Drain No 2 at SH 4, Brownsville, TX",Texas100m,river / canal,river
+USGS,292939089544400,"Wilkinson Bayou cutoff north of Wilkinson Bay, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,291929089562600,"Barataria Bay near Grand Terre Island, LA",Louisiana100m,lake,tidal
+USGS,292952089453800,CRMS0282-H01-RT,Louisiana100m,marsh,tidal
+USGS,292952090565300,CRMS0411-H01-RT,Louisiana100m,marsh,tidal
+USGS,292800090060000,"Little Lake near Bay Dosgris E of Galliano, LA",Louisiana100m,lake,tidal
+USGS,293809092361500,CRMS0609-H01-RT,Louisiana100m,marsh,tidal
+USGS,294045092492300,CRMS0615-H01-RT,Louisiana100m,marsh,tidal
+USGS,294717092250000,CRMS0568-H01-RT,Louisiana100m,marsh,tidal
+USGS,294925089532101,"Delacroix Canal near Caernarvon, LA",Louisiana100m,river / canal,river
+USGS,295231093100100,CRMS2418-H01-RT,Louisiana100m,marsh,tidal
+USGS,295011091184300,"Little Bayou Long North of Duck Lake, LA",Louisiana100m,river / canal,river
+USGS,2951190901217,"L. Cataouatche at Whiskey Canal S of Waggaman, LA",Louisiana100m,lake,tidal
+USGS,295744093303800,CRMS0651-H01-RT,Louisiana100m,marsh,tidal
+USGS,295124089542100,"Caernarvon Outfall Channel at Caernarvon, LA",Louisiana100m,river / canal,river
+USGS,295447091191500,Middle Fork Bayou Long at Bayou Long,Louisiana100m,river / canal,river
+USGS,295501090190400,"Davis Pond Freshwater Diversion near Boutte, LA",Louisiana100m,river / canal,river
+USGS,300312091320000,Arm of Grand Lake near Crook Chene Cove,Louisiana100m,lake,tidal
+USGS,300507091355600,Bayou Darby near Lake Fausse Point Cut,Louisiana100m,river / canal,river
+USGS,300703089522700,"Y-Pipeline Cnl in Byu Sauvage NWR at N.O. East, LA",Louisiana100m,marsh,tidal
+USGS,301001089442600,"Rigolets at Hwy 90 near Slidell, LA",Louisiana100m,estuary / tidal channel,tidal
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",Louisiana100m,lake,tidal
+USGS,301104089253400,MISSISSIPPI SOUND AT USGS ST JOSEPH ISLAND LIGHT,Louisiana100m,estuary / tidal channel,tidal
+USGS,301324090382400,CRMS0061-H01-RT,Louisiana100m,marsh,tidal
+USGS,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",Louisiana100m,river / canal,river
+USGS,301655091440800,"Pontoon Bridge Canal near Butte Larose, LA",Louisiana100m,river / canal,river
+USGS,301527088521500,MISSISSIPPI SOUND AT USGS EAST SHIP ISLAND LIGHT,Louisiana100m,estuary / tidal channel,tidal
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,Louisiana100m,estuary / tidal channel,tidal
+USGS,301849088350000,"MISSISSIPPI SOUND AT USGS ROUND ISLAND LIGHT, MS",Louisiana100m,estuary / tidal channel,tidal
+USGS,302020091435700,"Lake Pelba at I-10 near Henderson, LA",Louisiana100m,lake,tidal
+USGS,301912088583300,"MISSISSIPPI SOUND AT USGS GULFPORT LIGHT, MS",Louisiana100m,estuary / tidal channel,tidal
+USGS,302318088512600,"BILOXI BAY AT POINT CADET HARBOR AT BILOXI, MS",Louisiana100m,estuary / tidal channel,tidal
+CRMS,BA0066-05P-RT,BA0066-05P-RT,Louisiana100m,marsh,tidal
+CRMS,BA0066-07F-RT,BA0066-07F-RT,Louisiana100m,marsh,tidal
+CRMS,BA0066-07P-RT,BA0066-07P-RT,Louisiana100m,marsh,tidal
+CRMS,BA0066-08P-RT,BA0066-08P-RT,Louisiana100m,marsh,tidal
+CRMS,BA01-01,BA01-01,Louisiana100m,marsh,tidal
+CRMS,BA01-02,BA01-02,Louisiana100m,marsh,tidal
+CRMS,BA01-03,BA01-03,Louisiana100m,marsh,tidal
+CRMS,BA01-04,BA01-04,Louisiana100m,marsh,tidal
+CRMS,BA01-10,BA01-10,Louisiana100m,marsh,tidal
+CRMS,BA01-14,BA01-14,Louisiana100m,marsh,tidal
+CRMS,BA01-15,BA01-15,Louisiana100m,marsh,tidal
+CRMS,BA01-16,BA01-16,Louisiana100m,marsh,tidal
+CRMS,BA02-56,BA02-56,Louisiana100m,marsh,tidal
+CRMS,BA02-57,BA02-57,Louisiana100m,marsh,tidal
+CRMS,BA03C-61,BA03C-61,Louisiana100m,marsh,tidal
+CRMS,BS08-09,BS08-09,Louisiana100m,marsh,tidal
+CRMS,BS08-13,BS08-13,Louisiana100m,marsh,tidal
+CRMS,CRMS0002-H01,CRMS0002-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0003-H01,CRMS0003-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0006-H01,CRMS0006-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0008-H02,CRMS0008-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0030-H01,CRMS0030-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0033-H01,CRMS0033-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0034-H01,CRMS0034-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0035-H01,CRMS0035-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0038-H01,CRMS0038-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0039-H01,CRMS0039-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0046-H01,CRMS0046-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0047-H01,CRMS0047-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0056-H01,CRMS0056-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0058-H02,CRMS0058-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0059-H02,CRMS0059-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0061-H01,CRMS0061-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0063-H01,CRMS0063-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0065-H02,CRMS0065-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0086-H01,CRMS0086-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0089-H02,CRMS0089-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0090-W01,CRMS0090-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0097-H01,CRMS0097-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0103-H01,CRMS0103-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0108-H01,CRMS0108-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0114-H01,CRMS0114-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0114-W01,CRMS0114-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0115-H01,CRMS0115-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0115-M01,CRMS0115-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0117-H01,CRMS0117-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0117-W01,CRMS0117-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0118-H01,CRMS0118-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0119-H01,CRMS0119-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0120-H01,CRMS0120-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0121-H01,CRMS0121-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0125-H01,CRMS0125-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0128-M01,CRMS0128-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0128-W01,CRMS0128-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0129-H01,CRMS0129-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0131-H01,CRMS0131-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0132-H01,CRMS0132-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0135-H01,CRMS0135-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0136-H01,CRMS0136-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0139-H01,CRMS0139-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0146-H01,CRMS0146-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0147-H01,CRMS0147-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0148-H01,CRMS0148-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0153-H01,CRMS0153-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0154-H01,CRMS0154-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0156-H01,CRMS0156-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0157-H01,CRMS0157-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0159-H01,CRMS0159-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0161-H01,CRMS0161-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0162-H01,CRMS0162-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0163-H01,CRMS0163-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0164-H01,CRMS0164-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0171-H01,CRMS0171-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0172-H01,CRMS0172-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0173-H01,CRMS0173-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0174-H01,CRMS0174-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0175-H01,CRMS0175-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0176-H01,CRMS0176-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0176-H0X,CRMS0176-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS0178-H01,CRMS0178-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0179-H01,CRMS0179-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0181-H01,CRMS0181-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0185-H01,CRMS0185-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0188-H01,CRMS0188-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0188-M01,CRMS0188-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0189-H01,CRMS0189-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0189-M01,CRMS0189-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0190-H01,CRMS0190-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0190-M01,CRMS0190-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0192-H01,CRMS0192-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0192-M01,CRMS0192-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0194-W01,CRMS0194-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0197-W01,CRMS0197-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0200-W01,CRMS0200-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0206-H01,CRMS0206-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0209-H01,CRMS0209-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0211-H01,CRMS0211-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0211-M01,CRMS0211-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0217-H01,CRMS0217-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0218-H01,CRMS0218-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0219-M01,CRMS0219-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0219-W01,CRMS0219-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0220-H01,CRMS0220-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0220-H0X,CRMS0220-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS0224-H01,CRMS0224-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0225-H01,CRMS0225-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0226-H01,CRMS0226-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0232-H01,CRMS0232-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0234-H01,CRMS0234-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0237-H01,CRMS0237-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0237-H02,CRMS0237-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0241-W01,CRMS0241-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0248-H01,CRMS0248-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0251-H01,CRMS0251-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0253-H01,CRMS0253-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0258-H01,CRMS0258-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0260-H01,CRMS0260-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0261-H01,CRMS0261-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0263-H01,CRMS0263-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0268-H01,CRMS0268-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0268-M01,CRMS0268-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0272-H01,CRMS0272-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0273-M01,CRMS0273-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0273-W01,CRMS0273-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0276-H01,CRMS0276-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0278-H01,CRMS0278-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0278-M01,CRMS0278-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0282-H01,CRMS0282-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0287-H01,CRMS0287-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0287-M01,CRMS0287-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0290-H01,CRMS0290-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0290-M01,CRMS0290-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0292-H01,CRMS0292-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0293-H01,CRMS0293-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0294-H01,CRMS0294-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0294-M01,CRMS0294-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0296-H01,CRMS0296-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0296-M01,CRMS0296-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0301-H01,CRMS0301-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0301-M01,CRMS0301-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0302-H01,CRMS0302-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0303-H01,CRMS0303-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0305-H01,CRMS0305-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0307-H01,CRMS0307-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0309-H01,CRMS0309-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0310-H01,CRMS0310-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0311-H01,CRMS0311-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0312-H01,CRMS0312-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0312-M01,CRMS0312-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0315-H01,CRMS0315-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0318-H01,CRMS0318-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0319-H01,CRMS0319-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0322-H01,CRMS0322-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0324-H01,CRMS0324-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0326-H01,CRMS0326-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0327-H01,CRMS0327-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0327-M01,CRMS0327-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0329-H01,CRMS0329-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0331-H01,CRMS0331-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0331-M01,CRMS0331-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0332-H01,CRMS0332-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0335-H01,CRMS0335-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0336-H01,CRMS0336-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0337-H01,CRMS0337-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0338-H01,CRMS0338-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0341-H01,CRMS0341-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0345-H01,CRMS0345-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0347-H01,CRMS0347-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0354-H01,CRMS0354-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0355-H01,CRMS0355-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0365-H01,CRMS0365-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0365-M01,CRMS0365-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0367-H01,CRMS0367-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0367-M01,CRMS0367-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0369-H01,CRMS0369-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0371-H01,CRMS0371-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0371-M01,CRMS0371-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0374-H01,CRMS0374-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0376-H01,CRMS0376-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0377-H01,CRMS0377-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0381-H01,CRMS0381-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0381-M01,CRMS0381-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0382-H01,CRMS0382-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0382-M01,CRMS0382-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0383-H01,CRMS0383-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0385-H01,CRMS0385-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0386-H01,CRMS0386-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0387-H01,CRMS0387-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0390-H01,CRMS0390-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0392-H01,CRMS0392-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0394-H01,CRMS0394-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0394-M01,CRMS0394-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0395-H01,CRMS0395-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0395-M01,CRMS0395-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0396-H01,CRMS0396-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0396-M01,CRMS0396-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0397-H01,CRMS0397-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0398-H01,CRMS0398-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0399-H01,CRMS0399-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0400-H01,CRMS0400-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0403-H01,CRMS0403-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0409-H01,CRMS0409-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0409-M01,CRMS0409-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0411-H01,CRMS0411-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0414-H01,CRMS0414-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0416-H01,CRMS0416-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0421-H01,CRMS0421-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0434-H01,CRMS0434-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0461-H01,CRMS0461-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0463-H01,CRMS0463-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0463-M01,CRMS0463-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0464-H01,CRMS0464-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0464-M01,CRMS0464-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0465-H01,CRMS0465-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0465-M01,CRMS0465-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0479-H01,CRMS0479-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0482-H01,CRMS0482-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0488-H01,CRMS0488-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0488-H02,CRMS0488-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0489-H01,CRMS0489-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0490-H01,CRMS0490-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0490-W01,CRMS0490-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0493-H01,CRMS0493-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0493-H02,CRMS0493-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0494-H01,CRMS0494-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0494-H02,CRMS0494-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0496-H01,CRMS0496-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0496-H02,CRMS0496-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0498-H01,CRMS0498-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0499-H01,CRMS0499-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0501-H01,CRMS0501-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0504-H01,CRMS0504-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0507-H01,CRMS0507-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0508-H01,CRMS0508-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0511-H01,CRMS0511-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0511-H02,CRMS0511-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0511-W01,CRMS0511-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0513-H01,CRMS0513-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0514-H01,CRMS0514-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0514-H02,CRMS0514-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0517-H01,CRMS0517-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0520-H01,CRMS0520-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0522-H01,CRMS0522-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0522-W01,CRMS0522-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0523-H01,CRMS0523-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0524-H01,CRMS0524-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0524-W01,CRMS0524-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0527-H01,CRMS0527-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0527-H02,CRMS0527-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0527-H03,CRMS0527-H03,Louisiana100m,marsh,tidal
+CRMS,CRMS0529-H01,CRMS0529-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0529-H02,CRMS0529-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0530-H01,CRMS0530-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0530-W01,CRMS0530-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0531-H01,CRMS0531-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0532-H01,CRMS0532-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0535-H01,CRMS0535-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0536-H01,CRMS0536-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0536-W01,CRMS0536-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0541-H01,CRMS0541-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0542-H01,CRMS0542-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0542-M01,CRMS0542-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS0543-H01,CRMS0543-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0543-H02,CRMS0543-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0544-H02,CRMS0544-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0545-H01,CRMS0545-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0547-H01,CRMS0547-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0549-H01,CRMS0549-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0549-H02,CRMS0549-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0549-H03,CRMS0549-H03,Louisiana100m,marsh,tidal
+CRMS,CRMS0550-H01,CRMS0550-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0551-H01,CRMS0551-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0552-H01,CRMS0552-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0552-H02,CRMS0552-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0553-H01,CRMS0553-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0553-H02,CRMS0553-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0554-H01,CRMS0554-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0556-H01,CRMS0556-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0557-H01,CRMS0557-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0560-H01,CRMS0560-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0562-H01,CRMS0562-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0565-H01,CRMS0565-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0567-H01,CRMS0567-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0568-H01,CRMS0568-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0570-H01,CRMS0570-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0571-H01,CRMS0571-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0572-H01,CRMS0572-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0574-H01,CRMS0574-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0574-H02,CRMS0574-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0575-H01,CRMS0575-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0576-H01,CRMS0576-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0580-H01,CRMS0580-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0580-H02,CRMS0580-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0581-H01,CRMS0581-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0583-H01,CRMS0583-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0584-H01,CRMS0584-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0584-H02,CRMS0584-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0584-H03,CRMS0584-H03,Louisiana100m,marsh,tidal
+CRMS,CRMS0587-H01,CRMS0587-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0587-H02,CRMS0587-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0588-H01,CRMS0588-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0588-H02,CRMS0588-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0589-H01,CRMS0589-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0590-H01,CRMS0590-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0593-H01,CRMS0593-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0593-H02,CRMS0593-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0595-H01,CRMS0595-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0599-H02,CRMS0599-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0600-H01,CRMS0600-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0603-H01,CRMS0603-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0604-H01,CRMS0604-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0604-H02,CRMS0604-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0605-H01,CRMS0605-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0605-H02,CRMS0605-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0608-H01,CRMS0608-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0609-H01,CRMS0609-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0610-H01,CRMS0610-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0610-W01,CRMS0610-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0614-H01,CRMS0614-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0615-H01,CRMS0615-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0616-H01,CRMS0616-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0618-H01,CRMS0618-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0619-H01,CRMS0619-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0622-H01,CRMS0622-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0622-W01,CRMS0622-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0623-H01,CRMS0623-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0624-H01,CRMS0624-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0626-H01,CRMS0626-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0630-H02,CRMS0630-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0632-H01,CRMS0632-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0632-H02,CRMS0632-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0633-H01,CRMS0633-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0635-H01,CRMS0635-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0638-H01,CRMS0638-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0639-H01,CRMS0639-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0639-W01,CRMS0639-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0641-H01,CRMS0641-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0642-H01,CRMS0642-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0642-W01,CRMS0642-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0644-H01,CRMS0644-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0645-H01,CRMS0645-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0647-H01,CRMS0647-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0647-W01,CRMS0647-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0648-H01,CRMS0648-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0650-H01,CRMS0650-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0650-W01,CRMS0650-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0651-H01,CRMS0651-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0655-H01,CRMS0655-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0656-H01,CRMS0656-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0656-W01,CRMS0656-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS0658-H01,CRMS0658-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0660-H01,CRMS0660-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0661-H01,CRMS0661-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0662-H01,CRMS0662-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0663-H01,CRMS0663-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0665-H01,CRMS0665-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0669-H01,CRMS0669-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0672-H01,CRMS0672-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0677-H01,CRMS0677-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0680-H01,CRMS0680-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0682-H01,CRMS0682-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0683-H01,CRMS0683-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0684-H01,CRMS0684-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0685-H01,CRMS0685-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0687-H01,CRMS0687-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0691-H01,CRMS0691-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0693-H01,CRMS0693-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0694-H01,CRMS0694-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0694-H02,CRMS0694-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS0697-H01,CRMS0697-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS0978-H01,CRMS0978-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1024-H01,CRMS1024-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1069-H01,CRMS1069-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1100-H01,CRMS1100-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1130-H01,CRMS1130-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1205-H01,CRMS1205-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1277-H01,CRMS1277-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1409-H01,CRMS1409-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1409-H0X,CRMS1409-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS1413-H01,CRMS1413-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1413-W01,CRMS1413-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS1446-H01,CRMS1446-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1446-H0X,CRMS1446-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS1650-H01,CRMS1650-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1738-H01,CRMS1738-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1743-H01,CRMS1743-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1838-H01,CRMS1838-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1858-H01,CRMS1858-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS1965-H02,CRMS1965-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS2041-H01,CRMS2041-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2154-H01,CRMS2154-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2154-H0X,CRMS2154-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS2156-H01,CRMS2156-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2156-H0X,CRMS2156-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS2166-H01,CRMS2166-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2166-W01,CRMS2166-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS2189-H01,CRMS2189-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2189-H02,CRMS2189-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS2219-H01,CRMS2219-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2334-H01,CRMS2334-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2418-H01,CRMS2418-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2493-H01,CRMS2493-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2568-H01,CRMS2568-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2608-H01,CRMS2608-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2614-H01,CRMS2614-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2627-H01,CRMS2627-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2634-H01,CRMS2634-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2785-H01,CRMS2785-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2785-M01,CRMS2785-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS2825-H01,CRMS2825-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2830-H01,CRMS2830-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2854-H01,CRMS2854-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2862-H01,CRMS2862-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2862-M01,CRMS2862-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS2881-H01,CRMS2881-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2881-H0X,CRMS2881-H0X,Louisiana100m,marsh,tidal
+CRMS,CRMS2887-H01,CRMS2887-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2939-H01,CRMS2939-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS2939-M01,CRMS2939-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS2991-M01,CRMS2991-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS2991-W01,CRMS2991-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS3054-H01,CRMS3054-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3136-H01,CRMS3136-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3166-H01,CRMS3166-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3166-M01,CRMS3166-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS3169-H01,CRMS3169-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3169-M01,CRMS3169-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS3296-H01,CRMS3296-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3565-H01,CRMS3565-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3601-H01,CRMS3601-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3617-H01,CRMS3617-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3626-H01,CRMS3626-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3639-H01,CRMS3639-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3641-H01,CRMS3641-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3650-H01,CRMS3650-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3664-H01,CRMS3664-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3667-H01,CRMS3667-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3667-H02,CRMS3667-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS3680-H01,CRMS3680-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3784-H01,CRMS3784-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3800-H01,CRMS3800-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3913-H01,CRMS3913-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS3985-H01,CRMS3985-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4014-H01,CRMS4014-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4016-H01,CRMS4016-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4045-H01,CRMS4045-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4094-H01,CRMS4094-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4103-H01,CRMS4103-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4107-H01,CRMS4107-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4110-H01,CRMS4110-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4218-H01,CRMS4218-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4245-H01,CRMS4245-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4245-M01,CRMS4245-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS4355-H01,CRMS4355-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4355-M01,CRMS4355-M01,Louisiana100m,marsh,tidal
+CRMS,CRMS4406-H01,CRMS4406-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4407-H01,CRMS4407-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4448-H01,CRMS4448-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4455-H01,CRMS4455-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4529-H01,CRMS4529-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4548-H01,CRMS4548-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4551-H01,CRMS4551-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4557-H01,CRMS4557-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4572-H01,CRMS4572-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4596-H01,CRMS4596-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4626-H01,CRMS4626-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4690-H01,CRMS4690-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4779-H01,CRMS4779-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4782-H01,CRMS4782-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4808-H01,CRMS4808-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4809-H01,CRMS4809-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4809-W01,CRMS4809-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS4900-H01,CRMS4900-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS4938-H01,CRMS4938-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5003-H01,CRMS5003-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5035-H01,CRMS5035-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5116-W01,CRMS5116-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS5167-H01,CRMS5167-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5255-H01,CRMS5255-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5267-H01,CRMS5267-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5373-H01,CRMS5373-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5414-H01,CRMS5414-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5452-H01,CRMS5452-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5536-H01,CRMS5536-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5672-W01,CRMS5672-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS5770-W01,CRMS5770-W01,Louisiana100m,marsh,tidal
+CRMS,CRMS5845-H01,CRMS5845-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS5992-H01,CRMS5992-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6008-H01,CRMS6008-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6038-H01,CRMS6038-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6042-H01,CRMS6042-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6088-H01,CRMS6088-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6090-H01,CRMS6090-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6209-H01,CRMS6209-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6299-H01,CRMS6299-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6301-H01,CRMS6301-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6302-H02,CRMS6302-H02,Louisiana100m,marsh,tidal
+CRMS,CRMS6303-H01,CRMS6303-H01,Louisiana100m,marsh,tidal
+CRMS,CRMS6304-H01,CRMS6304-H01,Louisiana100m,marsh,tidal
+CRMS,CS20-106,CS20-106,Louisiana100m,marsh,tidal
+CRMS,CS20-14R,CS20-14R,Louisiana100m,marsh,tidal
+CRMS,CS20-15R,CS20-15R,Louisiana100m,marsh,tidal
+CRMS,CS27-25,CS27-25,Louisiana100m,marsh,tidal
+CRMS,DCPBA03,DCPBA03,Louisiana100m,marsh,tidal
+CRMS,DCPBA04,DCPBA04,Louisiana100m,marsh,tidal
+CRMS,DCPBA05,DCPBA05,Louisiana100m,marsh,tidal
+CRMS,DCPBA06,DCPBA06,Louisiana100m,marsh,tidal
+CRMS,DCPBA07,DCPBA07,Louisiana100m,marsh,tidal
+CRMS,DCPBA08,DCPBA08,Louisiana100m,marsh,tidal
+CRMS,DCPBA09,DCPBA09,Louisiana100m,marsh,tidal
+CRMS,DCPBS03,DCPBS03,Louisiana100m,marsh,tidal
+CRMS,DCPBS04,DCPBS04,Louisiana100m,marsh,tidal
+CRMS,DCPBS05,DCPBS05,Louisiana100m,marsh,tidal
+CRMS,DCPBS06,DCPBS06,Louisiana100m,marsh,tidal
+CRMS,DCPBS09,DCPBS09,Louisiana100m,marsh,tidal
+CRMS,DCPBS10,DCPBS10,Louisiana100m,marsh,tidal
+CRMS,DCPTE03,DCPTE03,Louisiana100m,marsh,tidal
+CRMS,DCPTE09,DCPTE09,Louisiana100m,marsh,tidal
+CRMS,ME11-01R,ME11-01R,Louisiana100m,marsh,tidal
+CRMS,ME16-06,ME16-06,Louisiana100m,marsh,tidal
+CRMS,PO0063-01F-RT,PO0063-01F-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-01P-RT,PO0063-01P-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-02F-RT,PO0063-02F-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-02P-RT,PO0063-02P-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-03F-RT,PO0063-03F-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-03P-RT,PO0063-03P-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-04F-RT,PO0063-04F-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-04P-RT,PO0063-04P-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-13F-RT,PO0063-13F-RT,Louisiana100m,marsh,tidal
+CRMS,PO0063-13P-RT,PO0063-13P-RT,Louisiana100m,marsh,tidal
+CRMS,PO142-01H01,PO142-01H01,Louisiana100m,marsh,tidal
+CRMS,PO142-02W01,PO142-02W01,Louisiana100m,marsh,tidal
+CRMS,PO24-02,PO24-02,Louisiana100m,marsh,tidal
+CRMS,PO24-05,PO24-05,Louisiana100m,marsh,tidal
+CRMS,SWMP0006,SWMP0006,Louisiana100m,marsh,tidal
+CRMS,SWMP0012,SWMP0012,Louisiana100m,marsh,tidal
+CRMS,SWMP0013,SWMP0013,Louisiana100m,marsh,tidal
+CRMS,SWMP0015,SWMP0015,Louisiana100m,marsh,tidal
+CRMS,SWMP0017,SWMP0017,Louisiana100m,marsh,tidal
+CRMS,SWMP0022,SWMP0022,Louisiana100m,marsh,tidal
+CRMS,TE26-01R,TE26-01R,Louisiana100m,marsh,tidal
+CRMS,TE26-05,TE26-05,Louisiana100m,marsh,tidal
+CRMS,TE26-06,TE26-06,Louisiana100m,marsh,tidal
+CRMS,TE26-07,TE26-07,Louisiana100m,marsh,tidal
+CRMS,TE28-01,TE28-01,Louisiana100m,marsh,tidal
+CRMS,TE28-02,TE28-02,Louisiana100m,marsh,tidal
+CRMS,TE28-03,TE28-03,Louisiana100m,marsh,tidal
+CRMS,TE28-218,TE28-218,Louisiana100m,marsh,tidal
+CRMS,TE45-H01,TE45-H01,Louisiana100m,marsh,tidal
+CRMS,TE45-H02,TE45-H02,Louisiana100m,marsh,tidal
+CRMS,TV21CR01-H01,TV21CR01-H01,Louisiana100m,marsh,tidal
+CRMS,TV21CR02-H01,TV21CR02-H01,Louisiana100m,marsh,tidal

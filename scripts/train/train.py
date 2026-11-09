@@ -1,7 +1,7 @@
 """Train the global LSTM and report per-horizon RMSE on val/test.
 
 Usage: python train.py --dataset DIR --out DIR [--epochs 20 --steps 2000 --batch 1024 ...]
-                       [--wind] [--future-wind] [--discharge] [--test-end 2025-12-31T23]
+                       [--wind] [--future-wind] [--discharge] [--test-end 2025-12-31T23] [--stations config/stations_river.csv]
 """
 from __future__ import annotations
 
@@ -55,12 +55,14 @@ def main() -> None:
     ap.add_argument("--future-wind", action="store_true", help="also feed the wind of the 6 target hours to the head")
     ap.add_argument("--discharge", action="store_true", help="add upstream discharge as input")
     ap.add_argument("--test-end", help="last test origin (UTC hour), e.g. 2025-12-31T17, for like-for-like comparisons")
+    ap.add_argument("--stations", help="CSV (source, station_id) restricting the model to one station group")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(a.seed); rng = np.random.default_rng(a.seed)
 
-    sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge)
+    sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations)
+    sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))) if a.test_end else None
     print(f"device={device} stations={sm.S} hours={sm.T} lookback={sm.lookback} n_feat={sm.n_feat} n_future={sm.n_future} "
           f"train_end_idx={sm.t_train_end} t_end={sm.t_end} test_t_hi={t_hi}", flush=True)
