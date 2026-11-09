@@ -68,27 +68,27 @@ USGS,02481130,"BILOXI RIVER NR LYMAN, MS",Louisiana100m,03170009,02481510,"WOLF 
 USGS,02481000,"BILOXI RIVER AT WORTHAM, MS",Louisiana100m,03170009,02481510,"WOLF RIVER NR LANDON, MS",same_huc8
 USGS,02481299,"OLD FORT BAYOU AT OCEAN SPRINGS, MS",Louisiana100m,03170009,02481510,"WOLF RIVER NR LANDON, MS",same_huc8
 USGS,02481510,"WOLF RIVER NR LANDON, MS",Louisiana100m,03170009,02481510,"WOLF RIVER NR LANDON, MS",same_huc8
-USGS,02489500,"Pearl River near Bogalusa, LA",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
+USGS,02489500,"Pearl River near Bogalusa, LA",Louisiana100m,03180004,02489000,"PEARL RIVER NR COLUMBIA, MS",same_river_upstream
 USGS,02481521,"WOLF RIVER AT BELLE FERRY ROAD NEAR LONG BEACH, MS",Louisiana100m,03170009,02481510,"WOLF RIVER NR LANDON, MS",same_huc8
 USGS,02481660,"JOURDAN RIVER NR BAY ST LOUIS, MS",Louisiana100m,03170009,02481510,"WOLF RIVER NR LANDON, MS",same_huc8
-USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
+USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
 USGS,02491500,"Bogue Chitto River at Franklinton, LA",Louisiana100m,03180005,02492000,"Bogue Chitto River near Bush, LA",same_huc8
 USGS,02491800,"Bogue Chitto at Enon, LA",Louisiana100m,03180005,02492000,"Bogue Chitto River near Bush, LA",same_huc8
 USGS,02492000,"Bogue Chitto River near Bush, LA",Louisiana100m,03180005,02492000,"Bogue Chitto River near Bush, LA",same_huc8
 USGS,02492110,"EAST PEARL RIVER AB WILSON SL AT WALKIAH BLUFF, MS",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
-USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
-USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
+USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
+USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
 USGS,02492343,"EAST HOBOLOCHITTO CREEK NR CAESAR, MS",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
 USGS,02492360,"WEST HOBOLOCHITTO CREEK NR MCNEILL, MS",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
-USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
+USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
 USGS,02492700,"Pearl River at I-10 near Slidell, LA",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
-USGS,02492600,"Pearl River at Pearl River, LA",Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
-USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,Louisiana100m,03180004,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",same_huc8
+USGS,02492600,"Pearl River at Pearl River, LA",Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
+USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,Louisiana100m,03180004,02489500,"Pearl River near Bogalusa, LA",same_river_upstream
 USGS,07374000,"Mississippi River at Baton Rouge, LA",Louisiana100m,08070100,07374000,"Mississippi River at Baton Rouge, LA",same_huc8
 USGS,073745245,"Caernarvon Canal Sector Gate at Caernarvon, La",Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
 USGS,073745235,"Bayou Dupre Sector Gate near Violet, LA",Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
 USGS,073745253,"Reggio Canal near Wills Point, LA",Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
-USGS,07374525,"Mississippi River at Belle Chasse, LA",Louisiana100m,08090100,07374525,"Mississippi River at Belle Chasse, LA",same_huc8
+USGS,07374525,"Mississippi River at Belle Chasse, LA",Louisiana100m,08090100,07374000,"Mississippi River at Baton Rouge, LA",same_river_upstream
 USGS,073745257,Crooked B. NW of L. Cuatro Caballo near Delacroix,Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
 USGS,073745258,"Cow Bayou at American Bay nr Pointe-A-La-Hache, LA",Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
 USGS,07374526,"Black Bay nr Snake Island nr Pointe-A-La-Hache, LA",Louisiana100m,08090203,07374525,"Mississippi River at Belle Chasse, LA",manual_coastal_basin
@@ -115,25 +115,25 @@ USGS,07375960,"Tickfaw River at Montpelier, LA",Louisiana100m,08070203,07376000,
 USGS,07376300,"Tickfaw River Near Springfield, La.",Louisiana100m,08070203,07376000,"Tickfaw River at Holden, LA",same_huc8
 USGS,07376000,"Tickfaw River at Holden, LA",Louisiana100m,08070203,07376000,"Tickfaw River at Holden, LA",same_huc8
 USGS,07376500,"Natalbany River at Baptist, LA",Louisiana100m,08070203,07376000,"Tickfaw River at Holden, LA",same_huc8
-USGS,07377000,"Amite River near Darlington, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07377000,"Amite River near Darlington, LA",Louisiana100m,08070202,07377300,"Amite River at Magnolia, LA",same_river_upstream
 USGS,07377150,"Amite River at Grangeville, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377210,"Sandy Creek nr Pride, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377230,"Little Sandy Creek at Peairs Rd SE of Milldale, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377243,"Sandy Ck at Alph. Forbes nr Greenwell Springs, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377500,"Comite River near Olive Branch, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377300,"Amite River at Magnolia, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07377750,"Comite River near Zachary, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07377750,"Comite River near Zachary, LA",Louisiana100m,08070202,07377500,"Comite River near Olive Branch, LA",same_river_upstream
 USGS,07377754,"Comite River near Baker, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377600,"Comite R. at Pt. Hudson-Pride Rd near Milldale, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07377760,"Comite River at Comite Dr near Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07378000,"Comite River near Comite, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",Louisiana100m,08070202,07377500,"Comite River near Olive Branch, LA",same_river_upstream
+USGS,07378000,"Comite River near Comite, LA",Louisiana100m,08070202,07377500,"Comite River near Olive Branch, LA",same_river_upstream
 USGS,07378008,"Hurricane Creek at Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07378075,"Beaver Bayou at Denham Road nr Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",Louisiana100m,08070202,07378000,"Comite River near Comite, LA",same_river_upstream
 USGS,07378100,"Beaver Bayou at Wax Rd near Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07378083,"Beaver Bayou at Hooper Road near Baton Rouge, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07378500,"Amite River near Denham Springs, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07378500,"Amite River near Denham Springs, LA",Louisiana100m,08070202,07377000,"Amite River near Darlington, LA",same_river_upstream
 USGS,07378745,"Alligator Bayou near Kleinpeter, LA",Louisiana100m,08070204,07380120,"Amite River at Port Vincent, LA",manual_coastal_basin
 USGS,07378746,"Bayou Manchac at Alligator B. near Kleinpeter, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07378810,"Bayou Fountain at Bluebonnet Blvd near  B.R., LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
@@ -146,7 +146,7 @@ USGS,07379960,"Dawson Cr. at Bluebonnet Blvd near Baton Rouge, LA",Louisiana100m
 USGS,07380102,"Welsh Gully at J. Broussard Rd nr Prairieville, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07380101,"Bayou Manchac near Little Prairie, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07380126,"Henderson Bayou near Port Vincent, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
-USGS,07380120,"Amite River at Port Vincent, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
+USGS,07380120,"Amite River at Port Vincent, LA",Louisiana100m,08070202,07378500,"Amite River near Denham Springs, LA",same_river_upstream
 USGS,07380200,"Amite River near French Settlement, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
 USGS,07380212,"Airline Canal at Blind River near Gramercy, LA",Louisiana100m,08070204,07380120,"Amite River at Port Vincent, LA",manual_coastal_basin
 USGS,07380127,"Henderson Bayou Pump Station near Port Vincent, LA",Louisiana100m,08070202,07380120,"Amite River at Port Vincent, LA",same_huc8
@@ -190,7 +190,7 @@ USGS,07381454,"Belle River at Hwy 70 near Pierre Part, LA",Louisiana100m,0809030
 USGS,073814675,"Bayou Boeuf at Railroad Bridge at Amelia, LA",Louisiana100m,08090302,07381490,"Atchafalaya River at Simmesport, LA",manual_coastal_basin
 USGS,07381482,Old River Outflow Channel below Hydropower Channel,Louisiana100m,08040301,,,none
 USGS,073815450,"Chicot Pass near Myette Point near Charenton, LA",Louisiana100m,08080101,07381490,"Atchafalaya River at Simmesport, LA",same_huc8
-USGS,07381490,"Atchafalaya River at Simmesport, LA",Louisiana100m,08080101,07381490,"Atchafalaya River at Simmesport, LA",same_huc8
+USGS,07381490,"Atchafalaya River at Simmesport, LA",Louisiana100m,08080101,07381482,Old River Outflow Channel below Hydropower Channel,same_river_upstream
 USGS,07381515,"Atchafalaya River at Butte La Rose, LA",Louisiana100m,08080101,07381490,"Atchafalaya River at Simmesport, LA",same_huc8
 USGS,07381567,"Buffalo Cove at Round Island near Charenton, LA",Louisiana100m,08080101,07381490,"Atchafalaya River at Simmesport, LA",same_huc8
 USGS,073815925,"Crewboat Channel at Wax Lake Outlet nr Calumet, LA",Louisiana100m,08080101,07381490,"Atchafalaya River at Simmesport, LA",same_huc8
@@ -228,13 +228,13 @@ USGS,08014800,"Bundick Creek near DeRidder, LA",Louisiana100m,08080204,08014500,
 USGS,08017044,"Calcasieu River at I-10 at Lake Charles, LA",Louisiana100m,08080206,08012150,"Mermentau River At Mermentau, LA",manual_coastal_basin
 USGS,08017095,"North Calcasieu Lake near Hackberry, LA",Louisiana100m,08080206,08012150,"Mermentau River At Mermentau, LA",manual_coastal_basin
 USGS,08017118,"Calcasieu River at Cameron, LA",Louisiana100m,08080206,08012150,"Mermentau River At Mermentau, LA",manual_coastal_basin
-USGS,08026000,"Sabine Rv nr Burkeville, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
-USGS,08028500,"Sabine Rv nr Bon Wier, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
+USGS,08026000,"Sabine Rv nr Burkeville, TX",Louisiana100m,12010005,08025360,"Sabine Rv at Toledo Bd Res nr Burkeville, TX",same_river_upstream
+USGS,08028500,"Sabine Rv nr Bon Wier, TX",Louisiana100m,12010005,08026000,"Sabine Rv nr Burkeville, TX",same_river_upstream
 USGS,08028000,"Bayou Anacoco near Rosepine, LA",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
 USGS,08029500,"Big Cow Ck nr Newton, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
 USGS,08030520,"Sabine Rv at Intl Paper nr Orange, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
 USGS,08030540,"Sabine Rv (at Navy Pier) at Orange, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
-USGS,08030500,"Sabine Rv nr Ruliff, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
+USGS,08030500,"Sabine Rv nr Ruliff, TX",Louisiana100m,12010005,08028500,"Sabine Rv nr Bon Wier, TX",same_river_upstream
 USGS,08030530,"Sabine Rv at I-10 nr Orange, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
 USGS,08030730,"Adams Bayou at FM 3247 nr Orange, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
 USGS,08031010,"Cow Bayou at FM 1442 nr Orangefield, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
@@ -244,28 +244,28 @@ USGS,08031050,"Cow Bayou at SH 87 nr Bridge City, TX",Louisiana100m,12010005,080
 USGS,08033350,"Piney Ck at US 59 nr Corrigan, TX",Galveston100m,12020002,08033000,"Neches Rv nr Diboll, TX",same_huc8
 USGS,08033000,"Neches Rv nr Diboll, TX",Galveston100m,12020002,08033000,"Neches Rv nr Diboll, TX",same_huc8
 USGS,08031020,"Cole Ck at I-10 nr Orange, TX",Louisiana100m,12010005,08030500,"Sabine Rv nr Ruliff, TX",same_huc8
-USGS,08033500,"Neches Rv nr Rockland, TX",Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
-USGS,08040600,"Neches Rv nr Town Bluff, TX",Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
+USGS,08033500,"Neches Rv nr Rockland, TX",Galveston100m,12020003,08033000,"Neches Rv nr Diboll, TX",same_river_upstream
+USGS,08040600,"Neches Rv nr Town Bluff, TX",Galveston100m,12020003,08033500,"Neches Rv nr Rockland, TX",same_river_upstream
 USGS,08041300,"Village Ck at US Hwy 69 nr Village Mills, TX",Galveston100m,12020006,08041500,"Village Ck nr Kountze, TX",same_huc8
-USGS,08041000,"Neches Rv at Evadale, TX",Louisiana100m;Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
+USGS,08041000,"Neches Rv at Evadale, TX",Louisiana100m;Galveston100m,12020003,08040600,"Neches Rv nr Town Bluff, TX",same_river_upstream
 USGS,08041500,"Village Ck nr Kountze, TX",Galveston100m,12020006,08041500,"Village Ck nr Kountze, TX",same_huc8
 USGS,08041700,"Pine Island Bayou nr Sour Lake, TX",Galveston100m,12020007,08041700,"Pine Island Bayou nr Sour Lake, TX",same_huc8
 USGS,08041749,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
-USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
+USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",Galveston100m,12020003,08041000,"Neches Rv at Evadale, TX",same_river_upstream
 USGS,08041788,"Bairds Bayou at I-10 nr Beaumont, TX",Louisiana100m;Galveston100m,12020003,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",same_huc8
 USGS,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",Galveston100m,12040202,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",same_huc8
 USGS,08065820,"Larrison Ck at FM 1428 nr Midway, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
 USGS,08065800,"Bedias Ck nr Madisonville, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
 USGS,08065925,"Nelson Ck at FM 247 nr Huntsville, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
 USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
-USGS,08066000,"Trinity Rv at Riverside, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
+USGS,08066000,"Trinity Rv at Riverside, TX",Galveston100m,12030202,08065350,"Trinity Rv nr Crockett, TX",same_river_upstream
 USGS,08066175,"Kickapoo Ck at Onalaska, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
 USGS,08066200,"Long King Ck at Livingston, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
 USGS,08066380,"Big Ck at SH 150 nr Shepherd, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
-USGS,08066250,"Trinity Rv nr Goodrich, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
+USGS,08066250,"Trinity Rv nr Goodrich, TX",Galveston100m,12030202,08065350,"Trinity Rv nr Crockett, TX",same_river_upstream
 USGS,08066300,"Menard Ck nr Rye, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
-USGS,08066500,"Trinity Rv at Romayor, TX",Galveston100m,12030202,08066500,"Trinity Rv at Romayor, TX",same_huc8
-USGS,08067000,"Trinity Rv at Liberty, TX",Galveston100m,12030203,08067000,"Trinity Rv at Liberty, TX",same_huc8
+USGS,08066500,"Trinity Rv at Romayor, TX",Galveston100m,12030202,08066250,"Trinity Rv nr Goodrich, TX",same_river_upstream
+USGS,08067000,"Trinity Rv at Liberty, TX",Galveston100m,12030203,08066500,"Trinity Rv at Romayor, TX",same_river_upstream
 USGS,08067070,"CWA Canal nr Dayton, TX",Galveston100m,12030203,08067000,"Trinity Rv at Liberty, TX",same_huc8
 USGS,08067100,"Trinity Rv nr Moss Bluff, TX",Galveston100m,12030203,08067000,"Trinity Rv at Liberty, TX",same_huc8
 USGS,08067118,"Lk Charlotte nr Anahuac, TX",Galveston100m,12030203,08067000,"Trinity Rv at Liberty, TX",same_huc8
@@ -274,11 +274,11 @@ USGS,08067280,"Turtle Bayou at I-10 nr Hankamer, TX",Galveston100m,12030203,0806
 USGS,08067500,"Cedar Bayou nr Crosby, TX",Galveston100m,12040203,08067500,"Cedar Bayou nr Crosby, TX",same_huc8
 USGS,08067525,"Goose Ck at Baytown, TX",Galveston100m,12040203,08067500,"Cedar Bayou nr Crosby, TX",same_huc8
 USGS,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",Galveston100m,12040101,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",same_huc8
-USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",Galveston100m,12040101,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",same_huc8
+USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",Galveston100m,12040101,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",same_river_upstream
 USGS,08067920,"Lake Ck at Sendera Ranch Rd nr Conroe, TX",Galveston100m,12040101,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",same_huc8
-USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",Galveston100m,12040101,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",same_huc8
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",Galveston100m,12040101,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",same_river_upstream
 USGS,08068275,"Spring Ck nr Tomball, TX",Galveston100m,12040102,08068500,"Spring Ck nr Spring, TX",same_huc8
-USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",Galveston100m,12040101,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",same_huc8
+USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",Galveston100m,12040101,08068000,"W Fk San Jacinto Rv nr Conroe, TX",same_river_upstream
 USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",Galveston100m,12040102,08068500,"Spring Ck nr Spring, TX",same_huc8
 USGS,08068325,"Willow Ck nr Tomball, TX",Galveston100m,12040102,08068500,"Spring Ck nr Spring, TX",same_huc8
 USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",Galveston100m,12040102,08068500,"Spring Ck nr Spring, TX",same_huc8
@@ -307,11 +307,11 @@ USGS,08072600,"Buffalo Bayou at State Hwy 6 nr Addicks, TX",Galveston100m,120401
 USGS,08072680,"S Mayde Ck at Heathergold Dr nr Addicks, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
 USGS,08072730,"Bear Ck nr Barker, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
 USGS,08072760,"Langham Ck at W Little York Rd nr Addicks, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
-USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
+USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",Galveston100m,12040104,08073000,"Addicks Res nr Addicks, TX",same_river_upstream
 USGS,08072800,"Langham Ck nr Addicks, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
-USGS,08073500,"Buffalo Bayou nr Addicks, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
-USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
-USGS,08073700,"Buffalo Bayou at Piney Point, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
+USGS,08073500,"Buffalo Bayou nr Addicks, TX",Galveston100m,12040104,08072500,"Barker Res nr Addicks, TX",same_river_upstream
+USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",Galveston100m,12040104,08073500,"Buffalo Bayou nr Addicks, TX",same_river_upstream
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",Galveston100m,12040104,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",same_river_upstream
 USGS,08074000,"Buffalo Bayou at Houston, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
 USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
 USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",Galveston100m,12040104,08073700,"Buffalo Bayou at Piney Point, TX",same_huc8
@@ -345,39 +345,39 @@ USGS,08078940,"Oyster Ck at CR 34 nr Angleton, TX",Galveston100m,12040205,,,none
 USGS,08079005,"Oyster Ck at CR 290 nr Angleton, TX",Texas100m;Galveston100m,12040205,,,none
 USGS,08078930,"Oyster Ck at CR 42 nr Rosharon, TX",Galveston100m,12040205,,,none
 USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",Texas100m;Galveston100m,12040205,,,none
-USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
-USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
+USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",Galveston100m,12070101,08098290,"Brazos Rv nr Highbank, TX",same_river_upstream
+USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",Galveston100m,12070101,08098290,"Brazos Rv nr Highbank, TX",same_river_upstream
 USGS,08108780,"Little Brazos Rv at FM 485 nr Hearne, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
-USGS,08079120,"Old Brazos Rv nr Freeport, TX",Texas100m;Galveston100m,12040205,,,none
+USGS,08079120,"Old Brazos Rv nr Freeport, TX",Texas100m;Galveston100m,12040205,08116850,"Brazos Rv nr West Columbia, TX",same_river_upstream
 USGS,08109310,"Thompsons Ck at SH 47 nr Bryan, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
 USGS,08110000,"Yegua Ck nr Somerville, TX",Galveston100m,12070102,08110000,"Yegua Ck nr Somerville, TX",same_huc8
-USGS,08110200,"Brazos Rv at Washington, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
+USGS,08110200,"Brazos Rv at Washington, TX",Galveston100m,12070101,08108700,"Brazos Rv at SH 21 nr Bryan, TX",same_river_upstream
 USGS,08110100,"Davidson Ck nr Lyons, TX",Galveston100m,12070102,08110000,"Yegua Ck nr Somerville, TX",same_huc8
 USGS,08111006,"Mathis Ck at US 190 nr Kurten, TX",Galveston100m,12070103,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",same_huc8
 USGS,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",Galveston100m,12070103,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",same_huc8
 USGS,08111051,"Carters Ck at FM 60 nr College Station, TX",Galveston100m,12070103,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",same_huc8
 USGS,08111056,"Peach Ck at SH 6 nr Millican, TX",Galveston100m,12070103,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",same_huc8
 USGS,08111085,"New Year Ck at SH 105 nr Brenham, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
-USGS,08111500,"Brazos Rv nr Hempstead, TX",Galveston100m,12070101,08111500,"Brazos Rv nr Hempstead, TX",same_huc8
+USGS,08111500,"Brazos Rv nr Hempstead, TX",Galveston100m,12070101,08110200,"Brazos Rv at Washington, TX",same_river_upstream
 USGS,08111700,"Mill Ck nr Bellville, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
-USGS,08111850,"Brazos Rv at San Felipe, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
-USGS,08114000,"Brazos Rv at Richmond, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
-USGS,08114100,"Brazos Rv nr Sugar Land, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
+USGS,08111850,"Brazos Rv at San Felipe, TX",Galveston100m,12070104,08111500,"Brazos Rv nr Hempstead, TX",same_river_upstream
+USGS,08114000,"Brazos Rv at Richmond, TX",Galveston100m,12070104,08111850,"Brazos Rv at San Felipe, TX",same_river_upstream
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",Galveston100m,12070104,08114000,"Brazos Rv at Richmond, TX",same_river_upstream
 USGS,08115000,"Big Ck nr Needville, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
 USGS,08116850,"Brazos Rv nr West Columbia, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
 USGS,08116400,"Dry Ck nr Rosenberg, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
-USGS,08116650,"Brazos Rv nr Rosharon, TX",Galveston100m,12070104,08116650,"Brazos Rv nr Rosharon, TX",same_huc8
+USGS,08116650,"Brazos Rv nr Rosharon, TX",Galveston100m,12070104,08114100,"Brazos Rv nr Sugar Land, TX",same_river_upstream
 USGS,08117370,"San Bernard Rv nr Chesterville, TX",Galveston100m,12090401,08117500,"San Bernard Rv nr Boling, TX",same_huc8
 USGS,08117705,"San Bernard Rv nr Sweeny, TX",Texas100m;Galveston100m,12090401,08117500,"San Bernard Rv nr Boling, TX",same_huc8
 USGS,08117500,"San Bernard Rv nr Boling, TX",Galveston100m,12090401,08117500,"San Bernard Rv nr Boling, TX",same_huc8
 USGS,08117855,"Caney Ck at SH 35 nr Van Vleck, TX",Texas100m;Galveston100m,12090402,,,none
 USGS,08160800,"Redgate Ck nr Columbus, TX",Galveston100m,12090301,08161000,"Colorado Rv at Columbus, TX",same_huc8
-USGS,08162501,"Colorado Rv nr Wadsworth, TX",Texas100m;Galveston100m,12090402,,,none
-USGS,08162500,"Colorado Rv nr Bay City, TX",Texas100m;Galveston100m,12090302,08162500,"Colorado Rv nr Bay City, TX",same_huc8
+USGS,08162501,"Colorado Rv nr Wadsworth, TX",Texas100m;Galveston100m,12090402,08162500,"Colorado Rv nr Bay City, TX",same_river_upstream
+USGS,08162500,"Colorado Rv nr Bay City, TX",Texas100m;Galveston100m,12090302,08162000,"Colorado Rv at Wharton, TX",same_river_upstream
 USGS,08162600,"Tres Palacios Rv nr Midfield, TX",Texas100m;Galveston100m,12100401,08162600,"Tres Palacios Rv nr Midfield, TX",same_huc8
-USGS,08161000,"Colorado Rv at Columbus, TX",Galveston100m,12090301,08161000,"Colorado Rv at Columbus, TX",same_huc8
+USGS,08161000,"Colorado Rv at Columbus, TX",Galveston100m,12090301,08160400,"Colorado Rv abv La Grange, TX",same_river_upstream
 USGS,08164000,"Lavaca Rv nr Edna, TX",Texas100m;Galveston100m,12100101,08164000,"Lavaca Rv nr Edna, TX",same_huc8
-USGS,08162000,"Colorado Rv at Wharton, TX",Galveston100m,12090302,08162500,"Colorado Rv nr Bay City, TX",same_huc8
+USGS,08162000,"Colorado Rv at Wharton, TX",Galveston100m,12090302,08161000,"Colorado Rv at Columbus, TX",same_river_upstream
 USGS,08164350,"Navidad Rv nr Speaks, TX",Galveston100m,12100102,08164390,"Navidad Rv at Strane Pk nr Edna, TX",same_huc8
 USGS,08164390,"Navidad Rv at Strane Pk nr Edna, TX",Texas100m;Galveston100m,12100102,08164390,"Navidad Rv at Strane Pk nr Edna, TX",same_huc8
 USGS,08164450,"Sandy Ck nr Ganado, TX",Galveston100m,12100102,08164390,"Navidad Rv at Strane Pk nr Edna, TX",same_huc8
@@ -385,8 +385,8 @@ USGS,08164503,"W Mustang Ck nr Ganado, TX",Texas100m;Galveston100m,12100102,0816
 USGS,08164504,"E Mustang Ck nr Louise, TX",Texas100m;Galveston100m,12100102,08164390,"Navidad Rv at Strane Pk nr Edna, TX",same_huc8
 USGS,08164600,"Garcitas Ck nr Inez, TX",Texas100m,12100402,08164600,"Garcitas Ck nr Inez, TX",same_huc8
 USGS,08164800,"Placedo Ck nr Placedo, TX",Texas100m,12100402,08164600,"Garcitas Ck nr Inez, TX",same_huc8
-USGS,08175800,"Guadalupe Rv at Cuero, TX",Texas100m,12100204,08188800,"Guadalupe Rv nr Tivoli, TX",same_huc8
-USGS,08176500,"Guadalupe Rv at Victoria, TX",Texas100m,12100204,08188800,"Guadalupe Rv nr Tivoli, TX",same_huc8
+USGS,08175800,"Guadalupe Rv at Cuero, TX",Texas100m,12100204,08173900,"Guadalupe Rv at Gonzales, TX",same_river_upstream
+USGS,08176500,"Guadalupe Rv at Victoria, TX",Texas100m,12100204,08175800,"Guadalupe Rv at Cuero, TX",same_river_upstream
 USGS,08176550,"Fifteenmile Ck nr Weser, TX",Texas100m,12100204,08188800,"Guadalupe Rv nr Tivoli, TX",same_huc8
 USGS,08176900,"Coleto Ck at Arnold Rd Crsg nr Schroeder, TX",Texas100m,12100204,08188800,"Guadalupe Rv nr Tivoli, TX",same_huc8
 USGS,08177300,"Perdido Ck at FM 622 nr Fannin, TX",Texas100m,12100204,08188800,"Guadalupe Rv nr Tivoli, TX",same_huc8
