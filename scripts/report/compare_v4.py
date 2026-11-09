@@ -57,7 +57,9 @@ def med_table(df: pd.DataFrame, by: str, order=None) -> pd.DataFrame:
         if len(s) == 0:
             continue
         rows.append({by: g, "站数": len(s), **{lab: round(s[f"r6_{k}"].median(), 2) for k, _, lab in RUNS},
-                     "变好 ≥0.5 cm": int((s.d_new_old <= -0.5).sum()), "变差 ≥0.5 cm": int((s.d_new_old >= 0.5).sum())})
+                     "变好 ≥0.5 cm": int((s.d_new_old <= -0.5).sum()), "变差 ≥0.5 cm": int((s.d_new_old >= 0.5).sum()),
+                     "< 5 cm 的站 (v3 → v4)": f"{(s.r6_old < 5).mean()*100:.0f}% → {(s.r6_new < 5).mean()*100:.0f}%",
+                     "< 10 cm 的站": f"{(s.r6_old < 10).mean()*100:.0f}% → {(s.r6_new < 10).mean()*100:.0f}%"})
     return pd.DataFrame(rows)
 
 
@@ -111,6 +113,7 @@ def main() -> None:
               md(pd.DataFrame([{"提前": f"{h} h", **{lab: round(b[~b.remapped][f"r{h}_{k}"].median(), 2) for k, _, lab in RUNS}} for h in (1, 3, 6)])), ""]
     lines += ["## 按 domain（全部站）", "", md(med_table(b, "domains", DOMS)), ""]
     lines += ["## 按站点类型（全部站）", "", md(med_table(b, "type", TYPES)), ""]
+    lines += ["## 按数据源（全部站）", "", md(med_table(b, "source")), ""]
     rr = r.sort_values("d_new_old")
     cols = ["station_id", "name", "chain", "gauge_name", "r6_wind", "r6_old", "r6_new", "d_new_old"]
     tab = rr[cols].copy(); tab.columns = ["站号", "站名", "河流", "新配的上游站", "+风", "HUC8 配站", "同河上游", "新 − 旧"]
@@ -134,6 +137,25 @@ def main() -> None:
     ax.set_xticks(x); ax.set_xticklabels([f"{c}\n({int((r.chain == c).sum())})" for c in chains], fontsize=9)
     ax.set_ylabel("6 h RMSE 中位数 (cm)"); ax.set_title("改配同河上游流量站的站，按河流"); ax.legend(fontsize=9); ax.grid(axis="y", alpha=0.3)
     fig.tight_layout(); fig.savefig(out / "08_compare_bars.png", dpi=150); plt.close(fig)
+
+    # map of the 6 h RMSE change, re-mapped stations as squares
+    try:
+        import cartopy.crs as ccrs
+        import cartopy.feature as cf
+    except ImportError:
+        print("no cartopy; skip map"); ccrs = None
+    if ccrs is not None:
+        fig = plt.figure(figsize=(13, 5.2))
+        ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
+        ax.set_extent([-99.2, -88.0, 25.6, 31.2])
+        ax.add_feature(cf.LAND, facecolor="#f2f2f2"); ax.add_feature(cf.COASTLINE, lw=.5); ax.add_feature(cf.STATES, lw=.4)
+        u = b[~b.remapped]
+        ax.scatter(u.lon, u.lat, c=u.d_new_old.clip(-2, 2), cmap="RdBu_r", vmin=-2, vmax=2, s=10, edgecolor="k", lw=.1, transform=ccrs.PlateCarree(), zorder=4)
+        sc = ax.scatter(r.lon, r.lat, c=r.d_new_old.clip(-2, 2), cmap="RdBu_r", vmin=-2, vmax=2, s=70, marker="s", edgecolor="k", lw=.6, transform=ccrs.PlateCarree(), zorder=6)
+        cb = fig.colorbar(sc, ax=ax, shrink=.75, pad=.02); cb.set_label("change in 6 h RMSE, cm  (blue = better with same-river upstream gauge)")
+        ax.set_title(f"6 h RMSE change, HUC8 gauge (v3) -> same-river upstream gauge (v4). squares = {len(r)} re-mapped stations "
+                     f"(median {r.d_new_old.median():+.2f} cm), dots = unchanged stations (median {u.d_new_old.median():+.2f} cm)", fontsize=10)
+        fig.tight_layout(); fig.savefig(out / "08_change_map.png", dpi=150); plt.close(fig)
     print("\n".join(lines[:40]))
     print("->", out)
 
