@@ -6,6 +6,11 @@
 
 脚本 `scripts/report/event_plots.py`，可以指定任何站和起始日期：`--stations USGS:08114000 --start 2024-07-07 --days 4`。全部窗口的数字在 `event_windows.csv`。
 
+
+## 汇总：36 个站的 6 h RMSE 在哪（一站一行）
+
+`event_summary.csv`：每站全年（测试集 2024-01 → 2025-12）的 1 / 3 / 6 h RMSE（v4）、只用水位模型的 6 h RMSE，以及三个窗口各自的 6 h RMSE。
+
 ## Louisiana100m
 
 | 站 | 类型 | 全年 6 h RMSE | 窗口 | 起始 | 1 h | 3 h | 6 h | 图 |
