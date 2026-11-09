@@ -20,3 +20,90 @@ USGS,07374000,"Mississippi River at Baton Rouge, LA",typical (RMSE = station ave
 USGS,08074000,"Buffalo Bayou at Houston, TX",flood / storm (highest level),2024-07-06 19:00:00,96,19.37,31.6,46.18,61.42,78.55,96.34
 USGS,08074000,"Buffalo Bayou at Houston, TX",worst 6 h RMSE,2024-07-05 23:00:00,96,19.39,36.19,54.26,71.84,89.99,107.91
 USGS,08074000,"Buffalo Bayou at Houston, TX",typical (RMSE = station average),2025-09-06 23:00:00,96,4.28,9.35,14.44,19.3,23.76,27.76
+NOAA_COOPS,8761724,Grand Isle,flood / storm (highest level),2024-06-17 13:00:00,96,2.2,2.88,3.46,3.79,3.87,3.75
+NOAA_COOPS,8761724,Grand Isle,worst 6 h RMSE,2024-01-05 23:00:00,96,6.87,8.08,8.51,8.32,8.26,9.27
+NOAA_COOPS,8761724,Grand Isle,typical (RMSE = station average),2025-05-01 23:00:00,96,1.98,2.42,2.63,2.87,3.04,3.43
+NOAA_COOPS,8770475,Port Arthur,flood / storm (highest level),2024-07-06 19:00:00,96,4.5,5.48,6.4,7.18,8.15,8.98
+NOAA_COOPS,8770475,Port Arthur,worst 6 h RMSE,2024-05-28 23:00:00,96,5.74,7.14,7.82,8.34,8.49,8.36
+NOAA_COOPS,8770475,Port Arthur,typical (RMSE = station average),2025-06-07 23:00:00,96,3.52,4.09,4.18,4.49,4.83,4.75
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",flood / storm (highest level),2024-04-08 17:00:00,96,7.56,11.76,13.12,13.91,14.37,14.45
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",worst 6 h RMSE,2024-05-28 23:00:00,96,9.93,14.99,16.25,16.61,16.98,17.43
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",typical (RMSE = station average),2025-01-28 23:00:00,96,2.71,4.64,5.91,6.53,6.75,6.81
+CRMS,CRMS0603-H01,CRMS0603-H01,flood / storm (highest level),2025-05-15 17:00:00,96,0.16,0.21,0.25,0.28,0.31,0.35
+CRMS,CRMS0603-H01,CRMS0603-H01,worst 6 h RMSE,2025-02-13 23:00:00,96,1.7,2.49,3.12,3.65,4.12,4.5
+CRMS,CRMS0603-H01,CRMS0603-H01,typical (RMSE = station average),2024-03-18 23:00:00,96,0.37,0.48,0.66,0.8,0.97,1.09
+CRMS,CRMS0103-H01,CRMS0103-H01,flood / storm (highest level),2024-09-10 18:00:00,96,0.58,1.18,1.75,2.18,2.54,2.97
+CRMS,CRMS0103-H01,CRMS0103-H01,worst 6 h RMSE,2024-01-05 23:00:00,96,1.23,2.34,3.4,4.51,5.63,6.79
+CRMS,CRMS0103-H01,CRMS0103-H01,typical (RMSE = station average),2024-06-14 23:00:00,96,0.74,1.3,1.86,2.43,2.95,3.4
+CRMS,CRMS6090-H01,CRMS6090-H01,flood / storm (highest level),2024-02-02 12:00:00,96,0.71,1.02,1.44,1.84,2.19,2.48
+CRMS,CRMS6090-H01,CRMS6090-H01,worst 6 h RMSE,2024-01-06 23:00:00,96,2.31,4.75,6.94,9.06,11.25,13.17
+CRMS,CRMS6090-H01,CRMS6090-H01,typical (RMSE = station average),2024-07-06 23:00:00,96,2.84,4.69,5.52,5.99,6.56,6.84
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,flood / storm (highest level),2024-09-10 07:00:00,96,3.15,4.56,5.68,7.14,8.91,10.92
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,worst 6 h RMSE,2024-04-09 23:00:00,96,3.84,6.46,8.7,10.2,11.22,11.95
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,typical (RMSE = station average),2025-04-30 23:00:00,96,2.37,3.72,4.46,5.07,5.63,5.97
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",flood / storm (highest level),2024-09-10 05:00:00,96,2.58,3.22,4.42,5.74,7.01,7.87
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",worst 6 h RMSE,2024-09-11 23:00:00,96,2.48,3.16,4.4,5.71,7.11,8.04
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",typical (RMSE = station average),2025-12-16 23:00:00,96,0.86,1.25,1.58,2.06,2.43,2.78
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",flood / storm (highest level),2025-05-09 07:00:00,96,0.76,0.94,1.15,1.35,1.68,2.04
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",worst 6 h RMSE,2025-04-22 23:00:00,96,2.29,3.83,5.39,6.95,8.42,9.81
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",typical (RMSE = station average),2024-11-23 23:00:00,96,1.46,1.61,1.94,2.17,2.5,2.74
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",flood / storm (highest level),2024-04-09 04:00:00,96,6.58,20.15,36.22,53.61,70.35,85.85
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",worst 6 h RMSE,2024-04-08 23:00:00,96,6.58,20.15,36.24,53.63,70.38,85.89
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",typical (RMSE = station average),2024-02-07 23:00:00,96,1.37,3.63,7.4,12.32,17.84,23.62
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",flood / storm (highest level),2024-06-17 19:00:00,96,2.07,2.98,4.33,5.53,6.25,7.04
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",worst 6 h RMSE,2024-07-06 23:00:00,96,4.92,7.67,9.99,12.35,14.32,15.68
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",typical (RMSE = station average),2024-04-24 23:00:00,96,1.75,2.6,3.36,4.02,4.54,4.97
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",flood / storm (highest level),2024-07-06 15:00:00,96,5.06,6.77,7.84,9.36,11.58,14.59
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",worst 6 h RMSE,2024-07-06 23:00:00,96,4.74,6.46,7.7,9.24,11.53,14.65
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",typical (RMSE = station average),2025-06-17 23:00:00,96,2.56,3.17,3.96,4.74,5.52,5.94
+NOAA_COOPS,8770971,Rollover Pass,flood / storm (highest level),2024-07-06 20:00:00,96,8.62,14.78,19.5,22.57,24.07,24.53
+NOAA_COOPS,8770971,Rollover Pass,worst 6 h RMSE,2024-07-06 23:00:00,96,8.31,14.57,19.36,22.53,24.06,24.51
+NOAA_COOPS,8770971,Rollover Pass,typical (RMSE = station average),2025-11-09 23:00:00,96,2.25,3.76,4.9,5.79,6.44,6.92
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",flood / storm (highest level),2024-05-05 17:00:00,96,0.89,1.17,1.4,1.79,2.05,2.25
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",worst 6 h RMSE,2024-01-21 23:00:00,96,1.92,4.5,8.03,12.41,17.43,22.95
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",typical (RMSE = station average),2024-12-26 23:00:00,96,1.29,1.96,2.85,3.74,4.6,5.45
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",flood / storm (highest level),2024-07-06 18:00:00,96,17.84,37.96,57.19,73.81,89.14,103.9
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",worst 6 h RMSE,2024-07-05 23:00:00,96,17.57,37.5,57.06,75.02,92.03,107.74
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",typical (RMSE = station average),2024-01-06 23:00:00,96,6.93,12.24,14.89,17.38,19.82,21.03
+USGS,08161000,"Colorado Rv at Columbus, TX",flood / storm (highest level),2024-01-23 13:00:00,96,3.94,7.91,13.95,22.17,32.27,44.01
+USGS,08161000,"Colorado Rv at Columbus, TX",worst 6 h RMSE,2024-01-22 23:00:00,96,3.98,7.97,14.09,22.47,32.78,44.78
+USGS,08161000,"Colorado Rv at Columbus, TX",typical (RMSE = station average),2024-09-24 23:00:00,96,1.19,2.12,2.95,3.64,4.28,4.88
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",flood / storm (highest level),2025-06-11 04:00:00,96,4.06,9.75,17.17,25.18,33.31,41.33
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",worst 6 h RMSE,2025-05-02 23:00:00,96,7.72,14.33,22.25,31.2,41.24,51.39
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",typical (RMSE = station average),2025-11-25 23:00:00,96,1.04,2.04,2.76,3.28,3.73,4.24
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",flood / storm (highest level),2024-07-09 09:00:00,96,0.79,1.13,1.61,2.2,2.82,3.61
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",worst 6 h RMSE,2024-07-06 23:00:00,96,7.49,15.87,25.32,34.59,42.04,47.86
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",typical (RMSE = station average),2024-12-28 23:00:00,96,0.9,1.69,2.53,3.43,4.35,5.28
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",flood / storm (highest level),2024-07-06 14:00:00,96,8.11,17.12,25.79,33.36,39.49,44.55
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",worst 6 h RMSE,2024-04-07 23:00:00,96,15.01,27.14,35.67,42.47,48.2,53.1
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",typical (RMSE = station average),2024-05-25 23:00:00,96,2.72,5.82,8.34,10.34,11.96,13.25
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",flood / storm (highest level),2024-07-06 15:00:00,96,24.85,44.1,60.98,75.86,88.01,98.45
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",worst 6 h RMSE,2024-07-05 23:00:00,96,24.84,44.07,60.94,75.82,87.97,98.43
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",typical (RMSE = station average),2024-07-28 23:00:00,96,3.67,7.7,11.71,15.28,18.18,20.53
+NOAA_COOPS,8775792,Packery Channel,flood / storm (highest level),2024-06-18 16:00:00,96,1.06,1.59,2.2,2.68,3.24,3.75
+NOAA_COOPS,8775792,Packery Channel,worst 6 h RMSE,2024-04-07 23:00:00,96,1.7,2.5,3.05,3.54,4.0,4.44
+NOAA_COOPS,8775792,Packery Channel,typical (RMSE = station average),2025-05-02 23:00:00,96,1.13,1.6,1.95,2.09,2.21,2.46
+NOAA_COOPS,8773146,Matagorda City,flood / storm (highest level),2024-06-18 13:00:00,96,1.3,1.8,2.37,2.93,3.51,4.12
+NOAA_COOPS,8773146,Matagorda City,worst 6 h RMSE,2025-06-10 23:00:00,96,5.12,6.44,7.06,7.71,8.4,8.98
+NOAA_COOPS,8773146,Matagorda City,typical (RMSE = station average),2024-01-26 23:00:00,96,1.5,1.87,2.25,2.54,2.92,3.46
+NOAA_COOPS,8779748,South Padre Island CG Station,flood / storm (highest level),2024-06-18 11:00:00,96,2.18,3.46,4.6,5.92,7.15,8.16
+NOAA_COOPS,8779748,South Padre Island CG Station,worst 6 h RMSE,2024-06-19 23:00:00,96,2.12,3.23,4.35,5.61,6.8,7.84
+NOAA_COOPS,8779748,South Padre Island CG Station,typical (RMSE = station average),2025-11-26 23:00:00,96,2.1,2.32,2.41,3.15,3.56,4.06
+NOAA_COOPS,8773259,Port Lavaca,flood / storm (highest level),2024-06-18 19:00:00,96,1.35,2.34,3.18,4.11,4.97,5.8
+NOAA_COOPS,8773259,Port Lavaca,worst 6 h RMSE,2024-07-06 23:00:00,96,3.73,7.22,10.19,12.56,14.58,16.44
+NOAA_COOPS,8773259,Port Lavaca,typical (RMSE = station average),2024-02-16 23:00:00,96,1.23,1.98,2.58,3.28,3.99,4.63
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",flood / storm (highest level),2024-01-29 00:00:00,96,0.81,1.05,1.3,1.49,1.8,2.11
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",worst 6 h RMSE,2025-03-01 23:00:00,96,4.14,7.51,9.96,11.59,12.65,13.38
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",typical (RMSE = station average),2025-08-02 23:00:00,96,2.65,4.14,4.86,5.05,5.14,5.4
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",flood / storm (highest level),2024-07-25 20:00:00,96,1.46,2.8,4.29,5.86,7.5,9.21
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",worst 6 h RMSE,2024-01-02 23:00:00,96,6.22,11.57,15.57,18.88,21.66,24.09
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",typical (RMSE = station average),2025-01-03 23:00:00,96,1.31,2.73,3.99,5.15,6.24,7.23
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",flood / storm (highest level),2025-06-12 01:00:00,96,2.41,5.74,9.71,14.1,18.83,23.85
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",worst 6 h RMSE,2025-06-12 23:00:00,96,2.52,6.05,10.13,14.63,19.42,24.49
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",typical (RMSE = station average),2025-05-06 23:00:00,96,0.5,0.85,1.16,1.49,1.8,2.06
+USGS,08187500,"Escondido Ck at Kenedy, TX",flood / storm (highest level),2025-06-10 23:00:00,96,9.74,20.74,32.83,45.26,56.7,67.33
+USGS,08187500,"Escondido Ck at Kenedy, TX",worst 6 h RMSE,2025-06-10 23:00:00,96,9.74,20.74,32.83,45.26,56.7,67.33
+USGS,08187500,"Escondido Ck at Kenedy, TX",typical (RMSE = station average),2024-05-10 23:00:00,96,2.44,3.89,4.57,5.69,6.48,6.98
+USGS,08183200,"San Antonio Rv nr Floresville, TX",flood / storm (highest level),2025-06-12 12:00:00,96,4.24,11.23,20.33,30.54,41.49,53.05
+USGS,08183200,"San Antonio Rv nr Floresville, TX",worst 6 h RMSE,2025-06-12 23:00:00,96,4.45,11.59,20.48,29.61,38.78,48.1
+USGS,08183200,"San Antonio Rv nr Floresville, TX",typical (RMSE = station average),2025-04-24 23:00:00,96,0.57,1.27,2.53,4.24,6.21,8.45
