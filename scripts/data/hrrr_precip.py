@@ -24,7 +24,11 @@ import pandas as pd
 import pygrib
 import requests
 
-from common import DATA_ROOT, log
+from common import DATA_ROOT, log as _log
+
+
+def log(msg: str) -> None:
+    _log.info(msg)
 
 BASE = "https://noaa-hrrr-bdp-pds.s3.amazonaws.com"
 START_AXIS = pd.Timestamp("2010-01-01 00:00")
