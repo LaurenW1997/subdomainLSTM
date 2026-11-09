@@ -43,18 +43,30 @@ def forecasts(model, sm, device, s: int, t0s: np.ndarray) -> np.ndarray:
     return out
 
 
-def pick_windows(time: pd.DatetimeIndex, obs: np.ndarray, f6: np.ndarray, hours: int) -> dict[str, int]:
-    """Start index (into the test slice) of the flood/storm, worst and typical windows."""
+def pick_windows(time: pd.DatetimeIndex, obs: np.ndarray, f6: np.ndarray, hours: int, hurricane: tuple[str, int] | None = None) -> dict[str, int]:
+    """Start index (into the test slice) of the windows.
+    Default: flood/storm (highest level), worst 6 h RMSE, typical.
+    With `hurricane` = (name, start index): hurricane window, highest level outside +-7 days of it, typical."""
     n = len(obs) - hours
     starts = np.arange(0, n, 24)
     mx = np.array([np.nanmax(obs[i:i + hours]) if np.isfinite(obs[i:i + hours]).any() else -np.inf for i in starts])
     err = np.array([np.sqrt(np.nanmean((f6[i:i + hours] - obs[i:i + hours]) ** 2)) if np.isfinite(f6[i:i + hours] - obs[i:i + hours]).sum() > hours / 2 else np.nan for i in starts])
     overall = np.sqrt(np.nanmean((f6 - obs) ** 2))
-    w = {"flood / storm (highest level)": int(starts[np.nanargmax(mx)]),
-         "worst 6 h RMSE": int(starts[np.nanargmax(err)]),
-         "typical (RMSE = station average)": int(starts[np.nanargmin(np.abs(err - overall))])}
-    # centre the flood window on the peak
-    i = w["flood / storm (highest level)"]; k = int(np.nanargmax(obs[i:i + hours])); w["flood / storm (highest level)"] = max(0, min(n - 1, i + k - hours // 2))
+    if hurricane is not None:
+        name, h0 = hurricane
+        far = np.abs(starts - h0) > 7 * 24
+        mx2 = np.where(far, mx, -np.inf)
+        w = {f"hurricane {name}": int(max(0, min(n - 1, h0))),
+             "high water (highest level outside the hurricane)": int(starts[np.nanargmax(mx2)]),
+             "normal (typical 4 days)": int(starts[np.nanargmin(np.abs(err - overall))])}
+        key = "high water (highest level outside the hurricane)"
+    else:
+        w = {"flood / storm (highest level)": int(starts[np.nanargmax(mx)]),
+             "worst 6 h RMSE": int(starts[np.nanargmax(err)]),
+             "typical (RMSE = station average)": int(starts[np.nanargmin(np.abs(err - overall))])}
+        key = "flood / storm (highest level)"
+    # centre the highest-level window on the peak
+    i = w[key]; k = int(np.nanargmax(obs[i:i + hours])); w[key] = max(0, min(n - 1, i + k - hours // 2))
     return w
 
 
@@ -65,6 +77,8 @@ def main() -> None:
     ap.add_argument("--out", required=True); ap.add_argument("--stations", nargs="+", required=True)
     ap.add_argument("--days", type=float, default=4); ap.add_argument("--every", type=int, default=6, help="hours between drawn forecast origins")
     ap.add_argument("--start", nargs="*", help="explicit window starts (UTC) instead of automatic choice")
+    ap.add_argument("--hurricane", help="NAME:YYYY-MM-DD -> windows = hurricane / high water outside it / normal")
+    ap.add_argument("--prefix", default="event")
     ap.add_argument("--test-end", default="2025-12-31T17")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -92,6 +106,9 @@ def main() -> None:
         f6 = series(model, sm, device, s, lo, hi)
         if a.start:
             wins = {f"from {x}": int(np.searchsorted(time.values, np.datetime64(x))) for x in a.start}
+        elif a.hurricane:
+            hname, hdate = a.hurricane.split(":")
+            wins = pick_windows(time, obs, f6, hours, hurricane=(hname, int(np.searchsorted(time.values, np.datetime64(hdate)))))
         else:
             wins = pick_windows(time, obs, f6, hours)
         fig, axes = plt.subplots(len(wins), 1, figsize=(15, 3.6 * len(wins)))
@@ -130,9 +147,9 @@ def main() -> None:
                          **{f"rmse_{h + 1}h_cm": round(e[h], 2) for h in range(HORIZON)}})
         fig.suptitle(f"{src} {sid} - {name}: forecasts issued every {a.every} h, each line = the 1-6 h forecast from that origin", fontsize=11)
         fig.tight_layout(rect=(0, 0, 1, 0.97))
-        fig.savefig(out / f"event_{sid}.png", dpi=140); plt.close(fig)
+        fig.savefig(out / f"{a.prefix}_{sid}.png", dpi=140); plt.close(fig)
         print(key, name, {k: str(time[v])[:13] for k, v in wins.items()})
-    pd.DataFrame(rows).to_csv(out / "event_windows.csv", index=False)
+    pd.DataFrame(rows).to_csv(out / f"{a.prefix}_windows.csv", index=False)
 
 
 if __name__ == "__main__":
