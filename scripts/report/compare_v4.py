@@ -153,7 +153,7 @@ def main() -> None:
         ax.scatter(u.lon, u.lat, c=u.d_new_old.clip(-2, 2), cmap="RdBu_r", vmin=-2, vmax=2, s=10, edgecolor="k", lw=.1, transform=ccrs.PlateCarree(), zorder=4)
         sc = ax.scatter(r.lon, r.lat, c=r.d_new_old.clip(-2, 2), cmap="RdBu_r", vmin=-2, vmax=2, s=70, marker="s", edgecolor="k", lw=.6, transform=ccrs.PlateCarree(), zorder=6)
         cb = fig.colorbar(sc, ax=ax, shrink=.75, pad=.02); cb.set_label("change in 6 h RMSE, cm  (blue = better with same-river upstream gauge)")
-        ax.set_title(f"6 h RMSE change, HUC8 gauge (v3) -> same-river upstream gauge (v4). squares = {len(r)} re-mapped stations "
+        ax.set_title(f"6 h RMSE change when the discharge input is taken from the same-river upstream gauge instead of the HUC8 gauge. squares = {len(r)} re-mapped stations "
                      f"(median {r.d_new_old.median():+.2f} cm), dots = unchanged stations (median {u.d_new_old.median():+.2f} cm)", fontsize=10)
         fig.tight_layout(); fig.savefig(out / "08_change_map.png", dpi=150); plt.close(fig)
     print("\n".join(lines[:40]))

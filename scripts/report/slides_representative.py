@@ -77,7 +77,7 @@ def main() -> None:
 
     # 1. overview: map
     n += 1; sl = prs.slides.add_slide(blank)
-    text(sl, 0.5, 0.35, 12.3, 0.5, "Representative stations: 6 h water-level forecasts of the LSTM (v4: water level + wind + upstream discharge)", size=18, bold=True)
+    text(sl, 0.5, 0.35, 12.3, 0.5, "Representative stations: 1–6 h water-level forecasts of the LSTM (inputs: water level, wind, upstream discharge)", size=18, bold=True)
     sl.shapes.add_picture(str(D / "map.png"), Inches(0.85), Inches(0.95), width=Inches(11.6))
     cnt = s.groupby(["domain", "type"]).size()
     lines = ["Test period 2024-01 to 2025-12. Forecasts issued every hour; the plots show the 1–6 h trajectory issued every 6 h.",
@@ -96,8 +96,8 @@ def main() -> None:
         "   high water — the 4 days around the highest observed level outside the hurricane;",
         "   normal — 4 days whose 6 h error equals the station's whole-year error.",
         "",
-        "Black: observation. Red: the v4 model's 1–6 h forecast issued every 6 h, drawn from the observation at the issue time.",
-        "Blue dashed: the water-level-only model (no wind, no discharge), same issue times.",
+        "Black: observation. Red: the LSTM with water level + wind + upstream discharge, 1–6 h forecast issued every 6 h, drawn from the observation at the issue time.",
+        "Blue dashed: the same LSTM trained on water level alone (no wind, no discharge), same issue times.",
         "The RMSE in each window title uses every hourly issue time in the window, not only the drawn ones.",
         "",
         "Whole-year RMSE is the test-period RMSE of all hourly forecasts (2024-01 to 2025-12). All errors in cm.",
@@ -137,14 +137,14 @@ def main() -> None:
             sl.shapes.add_picture(str(img), Inches(0.4), Inches(1.1), height=Inches(6.1))
             x = 9.1
             text(sl, x, 1.15, 3.8, 0.3, "6 h RMSE, cm", size=12, bold=True)
-            rows = [("whole year, v4", fmt(r.r6_new)), ("whole year, water level only", fmt(r.r6_obs)),
+            rows = [("whole year, with wind + discharge", fmt(r.r6_new)), ("whole year, water level only", fmt(r.r6_obs)),
                     (f"hurricane window ({r.hurricane_start})", fmt(r["hurricane_6h"])),
                     (f"high-water window ({r.high_water_start})", fmt(r["high water_6h"])),
                     (f"normal window ({r.normal_start})", fmt(r["normal_6h"]))]
             y = 1.5
             for lab, val in rows:
                 text(sl, x, y, 3.0, 0.3, lab, size=11); text(sl, x + 3.0, y, 0.8, 0.3, val, size=11, align=PP_ALIGN.RIGHT); y += 0.32
-            text(sl, x, y + 0.1, 3.8, 0.3, "1 / 3 / 6 h, whole year, v4", size=12, bold=True)
+            text(sl, x, y + 0.1, 3.8, 0.3, "1 / 3 / 6 h, whole year, with wind + discharge", size=12, bold=True)
             text(sl, x, y + 0.42, 3.8, 0.3, f"{r.r1_new:.1f} / {r.r3_new:.1f} / {r.r6_new:.1f} cm", size=11)
             text(sl, x, y + 1.0, 3.8, 2.6, NOTE.get(r.station_id, ""), size=11)
             slide_number(sl, n)
@@ -154,9 +154,9 @@ def main() -> None:
         g = s[s.domain == dom]
         n += 1; sl = prs.slides.add_slide(blank)
         text(sl, 0.5, 0.35, 12.3, 0.5, f"{dom}: summary (6 h RMSE, cm)", size=18, bold=True)
-        cols = ["station", "type", "year v4", "year level-only", "hurricane", "high water", "normal", "1 h", "3 h"]
+        cols = ["station", "type", "year, wind + discharge", "year, level only", "hurricane", "high water", "normal", "1 h", "3 h"]
         tbl = sl.shapes.add_table(len(g) + 1, len(cols), Inches(0.5), Inches(1.1), Inches(12.3), Inches(0.4 * (len(g) + 1))).table
-        widths = [3.0, 2.2, 1.0, 1.4, 1.1, 1.2, 1.0, 0.7, 0.7]
+        widths = [2.7, 2.1, 1.7, 1.2, 1.1, 1.2, 1.0, 0.6, 0.7]
         for j, wdt in enumerate(widths):
             tbl.columns[j].width = Inches(wdt)
         def cell(i, j, v, bold=False, align=PP_ALIGN.LEFT):
@@ -171,7 +171,7 @@ def main() -> None:
             for j, v in enumerate(vals):
                 cell(i, j, v, align=PP_ALIGN.LEFT if j < 2 else PP_ALIGN.RIGHT)
         # plain table style: remove banding by setting all fills to none already; borders stay default
-        text(sl, 0.5, 1.2 + 0.4 * (len(g) + 1) + 0.2, 12.3, 0.6, f"Hurricane window: {HURR[dom]}. year = whole test period 2024-01 to 2025-12; windows = 4 days.", size=11)
+        text(sl, 0.5, 1.2 + 0.4 * (len(g) + 1) + 0.2, 12.3, 0.6, f"Hurricane window: {HURR[dom]}. year = whole test period 2024-01 to 2025-12; windows = 4 days; all values are 6 h RMSE of the LSTM with wind + discharge except the level-only column.", size=11)
         slide_number(sl, n)
 
     # 5. what the set shows

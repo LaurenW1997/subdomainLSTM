@@ -5,7 +5,7 @@ Inputs (deliverables/10_representative/):
   {la,gal,tx}_windows.csv           per-window 1-6 h RMSE from event_plots.py --hurricane (copied from sv7)
 Outputs (same folder):
   map.png                           all chosen stations, colour = type, label = short name, domain boxes
-  range_<domain>.png                per station: 6 h RMSE full year (v4 and water-level-only) and in the hurricane / high-water / normal windows
+  range_<domain>.png                per station: 6 h RMSE full year (with and without wind + discharge) and in the hurricane / high-water / normal windows
   summary.csv / summary.md          one row per station
 Usage: python representative.py [--map-only]
 """
@@ -88,8 +88,8 @@ def main() -> None:
     s.to_csv(D / "summary.csv", index=False)
     cols = ["domain", "type", "short", "r1_new", "r3_new", "r6_new", "r6_obs", "hurricane_6h", "high water_6h", "normal_6h", "hurricane_start", "high_water_start", "normal_start"]
     md = s[cols].copy(); md.columns = ["domain", "type", "station", "year 1 h", "year 3 h", "year 6 h", "water-level-only 6 h", "hurricane 6 h", "high water 6 h", "normal 6 h", "hurricane window", "high-water window", "normal window"]
-    lines = ["# Representative stations: 6 h RMSE (cm), v4 model (wind + discharge)", "",
-             "year = whole test period 2024-01 to 2025-12; hurricane / high water / normal = 4-day windows (all forecast origins in the window). water-level-only = model without wind and discharge, whole test period.", "",
+    lines = ["# Representative stations: 6 h RMSE (cm) of the LSTM with water level + wind + upstream discharge", "",
+             "year = whole test period 2024-01 to 2025-12; hurricane / high water / normal = 4-day windows (all forecast origins in the window). water-level-only = the same LSTM trained on water level alone (no wind, no discharge), whole test period.", "",
              "| " + " | ".join(md.columns) + " |", "|" + "---|" * len(md.columns)]
     for _, r in md.iterrows():
         lines.append("| " + " | ".join(f"{v:.1f}" if isinstance(v, float) else str(v) for v in r.values) + " |")
@@ -98,19 +98,19 @@ def main() -> None:
     # error-range comparison per domain
     for dom, g in s.groupby("domain", sort=False):
         g = g.sort_values(["type", "r6_new"])
-        fig, ax = plt.subplots(figsize=(11, 0.55 * len(g) + 1.6))
+        fig, ax = plt.subplots(figsize=(11, 0.55 * len(g) + 2.3))
         y = np.arange(len(g))
-        ax.barh(y + 0.3, g.r6_obs, 0.18, color="#bbbbbb", label="whole year, water level only")
-        ax.barh(y + 0.1, g.r6_new, 0.18, color="#222222", label="whole year, v4")
-        ax.barh(y - 0.1, g["high water_6h"], 0.18, color="#7a7a7a", label="high-water window, v4")
-        ax.barh(y - 0.3, g["hurricane_6h"], 0.18, color="#ffffff", edgecolor="#222222", hatch="///", label="hurricane window, v4")
-        ax.scatter(g["normal_6h"], y, marker="|", s=120, color="k", zorder=5, label="normal window, v4")
+        ax.barh(y + 0.3, g.r6_obs, 0.18, color="#bbbbbb", label="whole year — water level only")
+        ax.barh(y + 0.1, g.r6_new, 0.18, color="#222222", label="whole year — water level + wind + upstream discharge")
+        ax.barh(y - 0.1, g["high water_6h"], 0.18, color="#7a7a7a", label="high-water window — with wind + discharge")
+        ax.barh(y - 0.3, g["hurricane_6h"], 0.18, color="#ffffff", edgecolor="#222222", hatch="///", label="hurricane window — with wind + discharge")
+        ax.scatter(g["normal_6h"], y, marker="|", s=120, color="k", zorder=5, label="normal window — with wind + discharge")
         ax.set_yticks(y); ax.set_yticklabels([f"{r.short}  ({r.type})" for _, r in g.iterrows()], fontsize=9)
-        ax.invert_yaxis(); ax.set_xlabel("6 h RMSE (cm)"); ax.set_xscale("log")
+        ax.invert_yaxis(); ax.set_xlabel("6 h RMSE (cm), log scale"); ax.set_xscale("log")
         ax.set_xticks([1, 2, 5, 10, 20, 50, 100]); ax.set_xticklabels(["1", "2", "5", "10", "20", "50", "100"])
         ax.grid(axis="x", alpha=.3, which="both"); ax.set_title(dom, fontsize=11, loc="left")
         for sp in ("top", "right"): ax.spines[sp].set_visible(False)
-        ax.legend(fontsize=8, frameon=False, loc="lower right")
+        ax.legend(fontsize=9, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3)
         fig.tight_layout(); fig.savefig(D / f"range_{dom}.png", dpi=170); plt.close(fig)
     print(s[["domain", "short", "r6_new", "hurricane_6h", "high water_6h", "normal_6h"]].round(1).to_string(index=False))
 

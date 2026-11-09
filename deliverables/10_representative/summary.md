@@ -1,6 +1,6 @@
-# Representative stations: 6 h RMSE (cm), v4 model (wind + discharge)
+# Representative stations: 6 h RMSE (cm) of the LSTM with water level + wind + upstream discharge
 
-year = whole test period 2024-01 to 2025-12; hurricane / high water / normal = 4-day windows (all forecast origins in the window). water-level-only = model without wind and discharge, whole test period.
+year = whole test period 2024-01 to 2025-12; hurricane / high water / normal = 4-day windows (all forecast origins in the window). water-level-only = the same LSTM trained on water level alone (no wind, no discharge), whole test period.
 
 | domain | type | station | year 1 h | year 3 h | year 6 h | water-level-only 6 h | hurricane 6 h | high water 6 h | normal 6 h | hurricane window | high-water window | normal window |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
