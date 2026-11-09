@@ -108,16 +108,77 @@ def lead_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) 
     return out
 
 
+def map_fig(run: str = "v4_wind_q", min_n: int = 720, rep: Path | None = None) -> Path:
+    """All test stations coloured by 6 h RMSE; representative stations outlined."""
+    import cartopy.crs as ccrs
+    import cartopy.feature as cf
+    from matplotlib.colors import LogNorm
+    a = pd.read_csv(REPO / "runs" / run / "per_station_test.csv", dtype={"station_id": str})
+    a = a[a.n_6h >= min_n]
+    doms = {"Louisiana100m": (-94.11, -88.39, 28.74, 31.14), "Texas100m": (-99.03, -95.24, 25.85, 29.13), "Galveston100m": (-96.71, -94.04, 28.74, 31.16)}
+    fig = plt.figure(figsize=(11, 4.8))
+    ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
+    ax.set_extent([-99.3, -88.0, 25.6, 31.4])
+    ax.add_feature(cf.LAND, facecolor="#f3f3f3"); ax.add_feature(cf.COASTLINE, lw=.5); ax.add_feature(cf.STATES, lw=.35, edgecolor="#888888")
+    for dom, (x0, x1, y0, y1) in doms.items():
+        ax.plot([x0, x1, x1, x0, x0], [y0, y0, y1, y1, y0], color="k", lw=.7, ls=(0, (4, 3)), transform=ccrs.PlateCarree())
+        ax.text(x0 + .08, y1 - .1, dom, fontsize=9, va="top", transform=ccrs.PlateCarree())
+    a = a.sort_values("rmse_6h_cm")
+    sc = ax.scatter(a.lon, a.lat, c=a.rmse_6h_cm.clip(1, 40), s=12, cmap="viridis", norm=LogNorm(1, 40), edgecolor="none", transform=ccrs.PlateCarree(), zorder=5)
+    if rep is not None and rep.exists():
+        r = pd.read_csv(rep, dtype={"station_id": str})
+        ax.scatter(r.lon, r.lat, s=60, facecolor="none", edgecolor="k", lw=0.9, marker="s", transform=ccrs.PlateCarree(), zorder=6, label=f"{len(r)} representative stations")
+        ax.legend(loc="lower right", frameon=False)
+    cb = fig.colorbar(sc, ax=ax, shrink=.8, pad=.015, ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_yticklabels(["1", "2", "5", "10", "20", "40"])
+    cb.set_label("6 h RMSE (cm), Jan 2024 – Dec 2025")
+    ax.set_title(f"{len(a)} stations, LSTM with water level, wind and upstream discharge", loc="left")
+    fig.tight_layout()
+    out = OUT / "rmse_map.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
+def box_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+    """Per-station 6 h RMSE by station type, with and without wind + discharge."""
+    g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
+    a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
+    b = pd.read_csv(REPO / "runs" / run_b / "per_station_test.csv", dtype={"station_id": str})
+    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n)
+    a, b = a[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"]), b[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"])
+    types = [t for t in TYPE_ORDER if (a.type == t).sum() >= 5]
+    fig, ax = plt.subplots(figsize=(8.2, 3.8))
+    pos = np.arange(len(types))
+    for off, df, fc, lab in ((-0.18, b, "white", "water level only"), (0.18, a, "#4d4d4d", "water level + wind + upstream discharge")):
+        data = [df[df.type == t].rmse_6h_cm.to_numpy() for t in types]
+        bp = ax.boxplot(data, positions=pos + off, widths=0.3, showfliers=False, patch_artist=True,
+                        medianprops=dict(color="k" if fc == "white" else "white", lw=1.2), boxprops=dict(facecolor=fc, color="k", lw=0.7),
+                        whiskerprops=dict(color="k", lw=0.7), capprops=dict(color="k", lw=0.7))
+        bp["boxes"][0].set_label(lab)
+    ax.set_yscale("log"); ax.set_yticks([1, 2, 5, 10, 20, 50]); ax.set_yticklabels(["1", "2", "5", "10", "20", "50"])
+    ax.set_xticks(pos); ax.set_xticklabels([TYPE_LABEL[t] + "\n" + f"(n = {(a.type == t).sum()})" for t in types])
+    ax.set_ylabel("6 h RMSE (cm), per station"); ax.grid(axis="y", color="#dddddd", lw=0.5, which="both"); ax.set_axisbelow(True)
+    ax.legend(frameon=False, loc="upper left")
+    ax.set_title("Test period Jan 2024 – Dec 2025; box = interquartile range, whiskers = 1.5 IQR, outliers hidden", loc="left")
+    fig.tight_layout()
+    out = OUT / "rmse_box_by_type.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("station"); s.add_argument("csv"); s.add_argument("--title", default=""); s.add_argument("--out")
-    sub.add_parser("lead")
+    sub.add_parser("lead"); sub.add_parser("map"); sub.add_parser("box")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "station":
         print("->", station_fig(Path(a.csv), a.title, Path(a.out) if a.out else None))
-    else:
+    elif a.cmd == "lead":
         print("->", lead_fig())
+    elif a.cmd == "map":
+        print("->", map_fig(rep=REPO / "deliverables" / "10_representative" / "stations.csv"))
+    else:
+        print("->", box_fig())
 
 
 if __name__ == "__main__":
