@@ -96,9 +96,25 @@
 
 表格 `09_groups_tables.md`，逐站 `09_groups_per_station.csv`，柱状图 `09_groups_bars.png`；结果在 `runs/v5_tidal`、`v5_river`、`v5_river_wq`。
 
+## 十、全局模型 + 15 个站风置零的结果（2026-11-09，SuperMike-3 作业 933491，run `v6_wind_q`）
+
+和第四节的全局模型完全一样，只是 `config/stations_wind_hurts.csv` 里 15 个站的风输入在训练和预报时都置零。
+
+| | 站数 | 只用水位 | 全局模型，所有站给风 | 全局模型，15 站不给风 |
+|---|---|---|---|---|
+| 全部 847 站 6 h 中位数 (cm) | 847 | 5.15 | 4.54 | 4.51 |
+| 风置零的 15 站 | 15 | 5.98 | 8.07 | **5.77** |
+| 其余 832 站 | 832 | 5.13 | 4.50 | 4.46 |
+
+- 15 个站里 7 个好了 0.5 cm 以上、1 个差了 0.5 cm 以上。Brazos 一整条河回到只用水位的水平：Rosharon 10.3 → 7.3、Sugar Land 9.7 → 5.8、Richmond 6.9 → 4.6、Hempstead 6.0 → 5.2、San Felipe 3.7 → 3.2、Hearne 9.6 → 8.5；Nueces Bluntzer 1.8 → 1.3。Beryl 那个假涨水尖峰没有了。
+- 没变的：Sabine Burkeville（水电调峰）、Atchafalaya Simmesport、Sabine Bon Wier、Calcasieu Oberlin——它们的误差本来就不是风造成的。Mississippi Baton Rouge 没有回到 3.7（4.56 → 4.80）：去掉它自己的风不够，说明它的变差来自共享权重里学到的东西，不是它自己那条风输入；这个站只能用只用水位的模型或者单独处理。
+- 其余 832 站的变化中位 0.04 cm、最大 0.88 cm，就是两次训练之间的随机差异，没有副作用。
+
+**业务模型改用 `v6_wind_q`**：全部站 6 h 中位数 4.51 cm，Brazos 下游不再有风造成的假涨水。目录里 `best.pt`、`stations.csv`、`wind_coverage.csv`、`q_norm.csv`、`no_wind_stations.csv` 齐全，`forecast.py` 会按名单对这些站喂零风。表格 `09_mask_tables.md`，逐站 `09_mask_per_station.csv`。
+
 ## 七、现在就能定的几件事
 
-1. **业务模型用 v4**（或 v5 分组版，看结果）。中位数 4.5 cm，潮汐类站已经是可以上线的水平。
+1. **业务模型用 `v6_wind_q`**（全局模型，15 个大河站风置零，见第十节）。中位数 4.5 cm，潮汐类站已经是可以上线的水平。
 2. **评价口径加一项**：除了全年 RMSE 中位数，每次改动都报事件窗口的 1 / 3 / 6 h 误差（已有脚本）。
 3. **4 个站从统计里拿掉**：Pearl River 三个船闸（闸室充放水）、GBRA 灌溉渠（泵开关），和自然水体无关。
 4. **两个决定要组里给**：(a) 城市溪流那一半误差要不要用降雨（直接加，还是经 WRF-Hydro）；(b) 大坝下游接不接放水预报。不给这两个决定，模型剩下能改的只有大河站的风置零那 0.5–1 cm。
