@@ -47,7 +47,7 @@
 
 ## 第二部分：模式平均水面（2026-11-09 补上）
 
-从组里的 ROMS 预报存档（QBD `results/<domain>/<周期>/NAM/ocean_his_*.nc`，只读）抽了每个站最近水格点的 zeta：每个周期取前 24 小时，Louisiana 51 个周期（2026-07 起）、Texas 68 个（2026-04 起）、Galveston 51 个，脚本 `scripts/data/roms_zeta_at_stations.py`（在 QBD 用 `/work/yixuan97/conda_envs/cfml` 的 python 跑）和 `scripts/data/model_offset.py`。站点格点是 ROMS 算的水格点时用该格点的 zeta；否则用 1 km 以内最近的 ROMS 水格点；再远的不算（54 行：NOAA 31、USGS 23，其中 38 行用站点自己的格点）。站点格点由 WRF-Hydro 算的（河流、河道，Louisiana 域 27 个水格点站都是），模式水位要从 WRF-Hydro 输出取，这里没做。
+从组里的 ROMS 预报存档（QBD `results/<domain>/<周期>/NAM/ocean_his_*.nc`，只读）抽了每个站最近水格点的 zeta：每个周期取前 24 小时，Louisiana 51 个周期（2026-07 起）、Texas 68 个（2026-04 起）、Galveston 51 个，脚本 `scripts/data/roms_zeta_at_stations.py`（在 QBD 用 `/work/yixuan97/conda_envs/cfml` 的 python 跑）和 `scripts/data/model_offset.py`。站点格点是 ROMS 算的水格点时用该格点的 zeta；否则用 1 km 以内最近的 ROMS 水格点；再远的不算（65 行有站点基准的偏移，其中 54 行能同时给出 NAVD88 版本）。站点格点由 WRF-Hydro 算的（河流、河道，Louisiana 域 27 个水格点站都是），模式水位要从 WRF-Hydro 输出取，这里没做。
 
 | 列 | 含义 |
 |---|---|
@@ -55,7 +55,8 @@
 | `model_cell` | `own` = 用站点自己的格点；`nearest_roms` = 用 1 km 内最近的 ROMS 水格点 |
 | `model_bad_frac` | 模式值不合理（|zeta| > 5 m）的小时比例，已剔除。Texas100m 的 2026-04-15 周期是发散的（zeta 100 多米）。没有做干湿筛选：耦合系统里每个格点都有水位 |
 | `model_zeta_mean_m` | 同期模式 zeta 平均 |
-| `obs_mean_matched_navd88_m` | 同期观测平均（NAVD88） |
+| `obs_mean_matched_station_datum_m`, `obs_mean_matched_navd88_m` | 同期观测平均（站点基准 / NAVD88） |
+| `model_to_station_datum_add_m` | **模式 zeta 加上它 = 站点基准里的水位**（观测减模式的中位数，直接在站点基准里算，所以没有 NAVD88 基准的站也有值） |
 | `offset_obs_minus_model_m` | **观测减模式的中位数**，就是偏移的第二部分；`_mean_m` 是均值 |
 | `corr_obs_model` | 两者逐小时的相关系数，低于 0.3 说明格点或模式有问题，偏移不可信 |
 | `rmse_model_after_offset_cm` | 去掉偏移后模式对观测的 RMSE，供参考 |
@@ -68,7 +69,7 @@
 
 观测和 LSTM 预报都在站点自己的基准里（LSTM 的输出是观测水位加增量，和观测同一基准），所以最省事的是把模式换到站点基准：
 
-- **模式 zeta + `model_to_station_datum_add_m`** → 和观测、LSTM 直接画在一起，三条线接得上。这个数 = `offset_obs_minus_model_m` − `to_navd88_add_m`，已经算好。
+- **模式 zeta + `model_to_station_datum_add_m`** → 和观测、LSTM 直接画在一起，三条线接得上。这是直接在站点基准里算的观测减模式，65 行有值，包括只有 MSL 基准的 NOAA 站（Grand Isle 等）。
 - 要在 NAVD88 里画：观测和 LSTM 各加 `to_navd88_add_m`，模式加 `offset_obs_minus_model_m`。
 
 两种画法里模式都经过了经验偏移修正（去掉了 0.3–0.5 m 的平均偏差），图注要写明"模式已按 2026 年 7–11 月的平均差订正"。想展示模式原始偏差的话，模式不加 `offset_obs_minus_model_m`，只把观测和 LSTM 加 `to_navd88_add_m`。

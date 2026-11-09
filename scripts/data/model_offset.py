@@ -47,28 +47,29 @@ def main() -> None:
             k = row_of.get((r.source, sid))
             if k is None:
                 continue
-            obs = pd.Series(np.asarray(vals[k]), index=t).reindex(zw.index)
-            add = r.to_navd88_add_m
-            if pd.isna(add):
-                continue
-            both = pd.DataFrame({"m": zw, "o": obs + add}).dropna()
+            obs = pd.Series(np.asarray(vals[k]), index=t).reindex(zw.index)          # station's own datum
+            both = pd.DataFrame({"m": zw, "o": obs}).dropna()
             if len(both) < MIN_HOURS:
                 continue
+            add = r.to_navd88_add_m                                                     # NaN when the station datum cannot be tied to NAVD88
+            diff = both.o - both.m                                                      # obs (station datum) - model
+            off_sd = float(diff.median())
             out[(sid, dom)] = {"n_hours_matched": len(both), "model_cell": "own" if own else "nearest_roms", "model_bad_frac": round(float(bad.mean()), 3),
-                               "model_zeta_mean_m": round(float(both.m.mean()), 3), "obs_mean_matched_navd88_m": round(float(both.o.mean()), 3),
-                               "offset_obs_minus_model_m": round(float((both.o - both.m).median()), 3),   # median: robust to odd cycles
-                               "offset_obs_minus_model_mean_m": round(float((both.o - both.m).mean()), 3),
+                               "model_zeta_mean_m": round(float(both.m.mean()), 3),
+                               "obs_mean_matched_station_datum_m": round(float(both.o.mean()), 3),
+                               "obs_mean_matched_navd88_m": round(float(both.o.mean() + add), 3) if pd.notna(add) else np.nan,
+                               "model_to_station_datum_add_m": round(off_sd, 3),                         # model zeta + this = station-datum level
+                               "offset_obs_minus_model_m": round(off_sd + add, 3) if pd.notna(add) else np.nan,   # same, in NAVD88
+                               "offset_obs_minus_model_mean_m": round(float(diff.mean() + add), 3) if pd.notna(add) else np.nan,
                                "corr_obs_model": round(float(np.corrcoef(both.o, both.m)[0, 1]), 3),
-                               "rmse_model_after_offset_cm": round(float(100 * np.sqrt(((both.o - both.m) - (both.o - both.m).median()) ** 2).mean()), 1)}
+                               "rmse_model_after_offset_cm": round(float(100 * np.sqrt(((diff - off_sd) ** 2).mean())), 1)}
     res = pd.DataFrame.from_dict(out, orient="index")
     res.index = pd.MultiIndex.from_tuples(res.index, names=["station_id", "domain"])
     res = res.reset_index()
-    for c in res.columns[2:]:
+    for c in list(res.columns[2:]) + ["model_to_station_datum_add_m"]:
         if c in g.columns:
             g = g.drop(columns=c)
     g = g.merge(res, on=["station_id", "domain"], how="left")
-    # one number for plotting: model zeta + this = water level in the station's own datum (same frame as observation and LSTM forecast)
-    g["model_to_station_datum_add_m"] = np.round(g.offset_obs_minus_model_m - g.to_navd88_add_m, 3)
     g.to_csv(REPO / "config" / "operational_stations_grid_datum.csv", index=False)
     done = g.dropna(subset=["offset_obs_minus_model_m"])
     print(f"{len(done)} (station, domain) rows with a model offset; by domain:")
