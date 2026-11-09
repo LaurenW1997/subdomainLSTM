@@ -1,0 +1,7 @@
+source,station_id,name,rmse_6h_a_cm,rmse_6h_b_cm,n
+USGS,08114000,"Brazos Rv at Richmond, TX",7.709397,7.106956,17463
+USGS,08026000,"Sabine Rv nr Burkeville, TX",21.296335,21.483334,17364
+USGS,08066250,"Trinity Rv nr Goodrich, TX",10.305988,10.428751,17464
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",30.746904,30.242916,17464
+USGS,08162000,"Colorado Rv at Wharton, TX",5.4037943,5.140767,17461
+USGS,08067000,"Trinity Rv at Liberty, TX",4.624132,4.0740285,17463

@@ -53,7 +53,7 @@ def med_table(df: pd.DataFrame, by: str, order=None) -> pd.DataFrame:
     rows = []
     groups = order if order is not None else sorted(df[by].dropna().unique())
     for g in groups:
-        s = df[df[by] == g]
+        s = df[df[by].astype(str).str.contains(g, regex=False)] if by == "domains" else df[df[by] == g]
         if len(s) == 0:
             continue
         rows.append({by: g, "站数": len(s), **{lab: round(s[f"r6_{k}"].median(), 2) for k, _, lab in RUNS},
