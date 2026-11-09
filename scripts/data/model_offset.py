@@ -67,6 +67,8 @@ def main() -> None:
         if c in g.columns:
             g = g.drop(columns=c)
     g = g.merge(res, on=["station_id", "domain"], how="left")
+    # one number for plotting: model zeta + this = water level in the station's own datum (same frame as observation and LSTM forecast)
+    g["model_to_station_datum_add_m"] = np.round(g.offset_obs_minus_model_m - g.to_navd88_add_m, 3)
     g.to_csv(REPO / "config" / "operational_stations_grid_datum.csv", index=False)
     done = g.dropna(subset=["offset_obs_minus_model_m"])
     print(f"{len(done)} (station, domain) rows with a model offset; by domain:")

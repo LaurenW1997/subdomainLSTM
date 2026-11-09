@@ -64,6 +64,17 @@
 
 把两部分合起来：**站点值 + `to_navd88_add_m` = NAVD88 值；模式 zeta + `offset_obs_minus_model_m` ≈ 同一站的 NAVD88 值。**
 
+## 画"观测 + LSTM 6 小时预报 + 模式预报"同一张图时怎么用
+
+观测和 LSTM 预报都在站点自己的基准里（LSTM 的输出是观测水位加增量，和观测同一基准），所以最省事的是把模式换到站点基准：
+
+- **模式 zeta + `model_to_station_datum_add_m`** → 和观测、LSTM 直接画在一起，三条线接得上。这个数 = `offset_obs_minus_model_m` − `to_navd88_add_m`，已经算好。
+- 要在 NAVD88 里画：观测和 LSTM 各加 `to_navd88_add_m`，模式加 `offset_obs_minus_model_m`。
+
+两种画法里模式都经过了经验偏移修正（去掉了 0.3–0.5 m 的平均偏差），图注要写明"模式已按 2026 年 7–11 月的平均差订正"。想展示模式原始偏差的话，模式不加 `offset_obs_minus_model_m`，只把观测和 LSTM 加 `to_navd88_add_m`。
+
+取模式值：`cell_model` 为 ROMS 的站用 `i_xi_roms`, `j_eta_roms`（0 起算）取 zeta；为 WRF-Hydro 的站要从 WRF-Hydro 输出取，这张表没有它的偏移。`corr_obs_model` < 0.3 的站偏移不可信。
+
 ## 注意
 
 - 河流站多数落在 WRF-Hydro 算的格点上：Louisiana 域 54 个水格点站里 27 个归 ROMS、27 个归 WRF-Hydro；Galveston 域 149 站里 131 个是 h < 0 的陆地格点（休斯顿溪流在 100 m 网格里没有河道），归 WRF-Hydro。这些站要和 WRF-Hydro 的输出比，不是 ROMS 的 zeta。
