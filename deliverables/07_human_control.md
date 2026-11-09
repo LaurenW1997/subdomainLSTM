@@ -52,6 +52,10 @@ Whiteoak、Brays、Greens、Sims、Hunting Bayou 等 Houston 溪流，Ward Creek
    - 第二步（更有用，要新写一个下载器）：给水库下游站加**未来 6 小时的放水或水位预报**作为未来输入，和未来风一样喂给输出头。来源两个：CWMS 的 Flow-Out 预报（只有 Addicks / Barker），NWS NWPS 预报（69 个站有，6 小时一个值，插值到逐时）。NWS 预报有历史存档（IEM / NWS archive）可以做训练，但要先查存档的完整程度。
 3. **大河站（Mississippi Baton Rouge、Belle Chasse、Atchafalaya）不需要调度数据**，误差 4–5 cm 已经很小；它们在 06 里被风弄差了 0.5–1.4 cm，更该做的是对这类站把风输入置零。
 
+## 进度
+
+- 2026-11-08：第一步已执行。`scripts/data/remap_same_river.py` 把 49 个河流链上的站改配成同一条河上游的站或放水站（Sabine、Neches、Trinity、West Fork San Jacinto、Buffalo Bayou、Brazos、Colorado、Guadalupe、Pearl、Amite / Comite、Atchafalaya），流量控制站从 58 个增加到 92 个（87 个有数据）。原来的 HUC8 规则给这些站配的几乎都是**下游**站（Burkeville → Ruliff、Goodrich → Romayor、Town Bluff → 盐水坝、Addicks 出口 → Piney Point），没有任何提前量，这也是 06 里"流量没用"的一个原因。Addicks / Barker 两个闸门出流站 USGS 只从 2023-11 开始有数据，训练期全空，自动被跳过（Buffalo Bayou 上游两站暂无流量输入）。新数据集 dataset_v4（= v3 换 q），QBD 作业 1170403，run `v4_wind_q`，和 v3_wind_q 同样 40 轮、同样的测试截止，结果出来后写进 08。
+
 ## 数据接口备忘
 
 - USACE CWMS：`https://cwms-data.usace.army.mil/cwms-data/catalog/TIMESERIES?office=SWG&like=.*Addicks.*`，取数 `/timeseries?office=SWG&name=ADDT2-Gated_Total.Flow.Inst.1Hour.0.USGS-Rev&begin=...&end=...&unit=cms`，请求头 `accept: application/json;version=2`。办公室代码：SWG Galveston、SWF Fort Worth、MVN New Orleans、MVK Vicksburg。
