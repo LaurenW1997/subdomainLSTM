@@ -10,6 +10,7 @@ Inputs
 Output
   config/operational_stations_grid_datum.csv          one row per (station, domain)
 Index convention: i = xi_rho (column, 0-based), j = eta_rho (row, 0-based); Fortran/ROMS 1-based = +1.
+Coupled-model convention: mask_rho = 1 -> ROMS computes the cell, 0 -> WRF-Hydro computes it; water = h > 0, land = h < 0.
 Usage: python station_grid_map.py
 """
 from __future__ import annotations
@@ -56,12 +57,18 @@ def main() -> None:
             # outside the curvilinear grid proper (bbox is larger than the grid): distance > ~0.2 km from the nearest centre
             if d > 0.25:
                 continue
-            wet = mask[j, i] > 0.5
-            iw, jw, dw = (i, j, d) if wet else nearest(lon, lat, r.lon, r.lat, valid=mask > 0.5)
+            # coupled system: mask_rho = 1 -> cell computed by ROMS, 0 -> by WRF-Hydro; water where h > 0, land where h < 0
+            water = h[j, i] > 0
+            roms = mask[j, i] > 0.5
+            iw, jw, dw = (i, j, d) if water else nearest(lon, lat, r.lon, r.lat, valid=h > 0)
+            ir, jr, dr = (i, j, d) if (water and roms) else nearest(lon, lat, r.lon, r.lat, valid=(h > 0) & (mask > 0.5))
             rows.append({"source": r.source, "station_id": r.station_id, "name": r["name"], "lat": r.lat, "lon": r.lon, "station_datum": r.datum,
-                         "domain": dom, "i_xi": i, "j_eta": j, "cell_is_wet": bool(wet), "dist_cell_km": round(d, 3), "h_cell_m": round(float(h[j, i]), 2),
-                         "i_xi_wet": iw, "j_eta_wet": jw, "dist_wet_km": round(dw, 3), "h_wet_m": round(float(h[jw, iw]), 2),
-                         "cell_lon": round(float(lon[jw, iw]), 5), "cell_lat": round(float(lat[jw, iw]), 5)})
+                         "domain": dom, "i_xi": i, "j_eta": j, "dist_cell_km": round(d, 3), "h_cell_m": round(float(h[j, i]), 2),
+                         "cell_is_water": bool(water), "cell_model": "ROMS" if roms else "WRF-Hydro",
+                         "i_xi_water": iw, "j_eta_water": jw, "dist_water_km": round(dw, 3), "h_water_m": round(float(h[jw, iw]), 2),
+                         "water_cell_model": "ROMS" if mask[jw, iw] > 0.5 else "WRF-Hydro",
+                         "i_xi_roms": ir, "j_eta_roms": jr, "dist_roms_km": round(dr, 3), "h_roms_m": round(float(h[jr, ir]), 2),
+                         "cell_lon": round(float(lon[j, i]), 5), "cell_lat": round(float(lat[j, i]), 5)})
     g = pd.DataFrame(rows)
     # ---- datum information
     cd = pd.read_csv(GM / "noaa_coops_datums.csv", dtype={"station_id": str})
@@ -80,8 +87,8 @@ def main() -> None:
     g["obs_mean_2012_2016_navd88_m"] = np.round(g.obs_mean_2012_2016_m + g.to_navd88_add_m, 3)
     g["grid_vertical_reference_assumed"] = "NAVD88 (bathymetry from NCEI DEMs; to be confirmed by the group)"
     g["station_to_grid_ref_add_m"] = g.to_navd88_add_m        # equal to the NAVD88 conversion under that assumption
-    cols = ["source", "station_id", "name", "lat", "lon", "domain", "i_xi", "j_eta", "cell_is_wet", "dist_cell_km", "h_cell_m",
-            "i_xi_wet", "j_eta_wet", "dist_wet_km", "h_wet_m", "cell_lon", "cell_lat",
+    cols = ["source", "station_id", "name", "lat", "lon", "domain", "i_xi", "j_eta", "dist_cell_km", "h_cell_m", "cell_is_water", "cell_model",
+            "i_xi_water", "j_eta_water", "dist_water_km", "h_water_m", "water_cell_model", "i_xi_roms", "j_eta_roms", "dist_roms_km", "h_roms_m", "cell_lon", "cell_lat",
             "station_datum", "to_navd88_add_m", "grid_vertical_reference_assumed", "station_to_grid_ref_add_m",
             "obs_mean_2019_2023_navd88_m", "obs_mean_2012_2016_navd88_m", "obs_frac_2019_2023",
             "coops_msl_minus_navd88_m", "coops_MSL_m_stnd", "coops_NAVD88_m_stnd", "coops_MLLW_m_stnd", "coops_epoch",
@@ -89,7 +96,9 @@ def main() -> None:
     g = g[cols].sort_values(["domain", "source", "station_id"])
     out = REPO / "config" / "operational_stations_grid_datum.csv"
     g.to_csv(out, index=False)
-    print(g.groupby("domain").agg(n=("station_id", "count"), wet=("cell_is_wet", "sum"), dist_wet_median_km=("dist_wet_km", "median"), dist_wet_max_km=("dist_wet_km", "max")).round(2))
+    print(g.groupby("domain").agg(n=("station_id", "count"), water=("cell_is_water", "sum"), roms=("cell_model", lambda s: (s == "ROMS").sum()),
+                                  dist_water_median_km=("dist_water_km", "median"), dist_roms_median_km=("dist_roms_km", "median")).round(2))
+    print(g.groupby(["domain", "cell_is_water", "cell_model"]).size())
     print("stations in >= 1 domain:", g.station_id.nunique(), "of", len(op), "| NAVD88 conversion available:", g.to_navd88_add_m.notna().sum(), "rows")
     print("->", out)
 

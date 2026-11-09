@@ -18,10 +18,13 @@
 | 列 | 含义 |
 |---|---|
 | `i_xi`, `j_eta` | 离站点最近的 rho 格点，**0 起算**（Python / netCDF 下标；ROMS Fortran 下标 +1）。i 沿 xi，j 沿 eta |
-| `cell_is_wet` | 该格点 `mask_rho` 是否为水（1 = 水） |
+| `cell_is_water` | 该格点是不是水：按水深 `h` 的正负判断（h > 0 水，h < 0 陆地） |
+| `cell_model` | 该格点由哪个模式算：`mask_rho` = 1 → ROMS，0 → WRF-Hydro（耦合系统的分工，不是干湿） |
 | `dist_cell_km` | 站点到该格点中心的距离 |
-| `h_cell_m` | 该格点的模式水深 `h`（米，向下为正；负值是干地高程，用于干湿） |
-| `i_xi_wet`, `j_eta_wet`, `dist_wet_km`, `h_wet_m`, `cell_lon`, `cell_lat` | 最近的**水格点**。站点本身就在水格点时和上面相同 |
+| `h_cell_m` | 该格点的水深 `h`（米，向下为正；负值是陆地高程） |
+| `i_xi_water`, `j_eta_water`, `dist_water_km`, `h_water_m`, `water_cell_model` | 最近的**水格点**（h > 0，不分哪个模式算）及它由谁算。站点本身在水格点时和上面相同 |
+| `i_xi_roms`, `j_eta_roms`, `dist_roms_km`, `h_roms_m` | 最近的 **ROMS 水格点**（h > 0 且 mask = 1），用来取 ROMS 的 zeta |
+| `cell_lon`, `cell_lat` | 站点所在格点的中心坐标 |
 | `station_datum` | 站点数据的基准：`NAVD88`、`MSL`（NOAA 11 站没有 NAVD88 基准）、`gauge_datum(NGVD29;alt_ft=…)`（USGS 水尺零点高程，NGVD29，英尺）或未知 |
 | `to_navd88_add_m` | **把该站的水位值换成 NAVD88 要加的数**：NAVD88 站 0；MSL 站 = CO-OPS 的 MSL − NAVD88；水尺站 = 水尺零点的 NAVD88 高程（VDatum 把 NGVD29 转 NAVD88）。空值 = 基准未知，换不了 |
 | `grid_vertical_reference_assumed` | 网格水深的垂直基准。Texas100m 网格文件写明水深来自 NCEI 1/9 和 1/3 弧秒 DEM，这些 DEM 以 NAVD88 为基准；Louisiana、Galveston 的网格文件没写来源，**按同样假设处理，需要组里确认** |
@@ -44,26 +47,27 @@
 
 ## 第二部分：模式平均水面（2026-11-09 补上）
 
-从组里的 ROMS 预报存档（QBD `results/<domain>/<周期>/NAM/ocean_his_*.nc`，只读）抽了每个站最近水格点的 zeta：每个周期取前 24 小时，Louisiana 51 个周期（2026-07 起）、Texas 68 个（2026-04 起）、Galveston 51 个，脚本 `scripts/data/roms_zeta_at_stations.py`（在 QBD 用 `/work/yixuan97/conda_envs/cfml` 的 python 跑）和 `scripts/data/model_offset.py`。只对站点本身在水格点、或离最近水格点不到 1 km 的站算（52 行：NOAA 31、USGS 21）；河流站在 ROMS 里是陆地，这一项为空。
+从组里的 ROMS 预报存档（QBD `results/<domain>/<周期>/NAM/ocean_his_*.nc`，只读）抽了每个站最近水格点的 zeta：每个周期取前 24 小时，Louisiana 51 个周期（2026-07 起）、Texas 68 个（2026-04 起）、Galveston 51 个，脚本 `scripts/data/roms_zeta_at_stations.py`（在 QBD 用 `/work/yixuan97/conda_envs/cfml` 的 python 跑）和 `scripts/data/model_offset.py`。站点格点是 ROMS 算的水格点时用该格点的 zeta；否则用 1 km 以内最近的 ROMS 水格点；再远的不算（54 行：NOAA 31、USGS 23，其中 38 行用站点自己的格点）。站点格点由 WRF-Hydro 算的（河流、河道，Louisiana 域 27 个水格点站都是），模式水位要从 WRF-Hydro 输出取，这里没做。
 
 | 列 | 含义 |
 |---|---|
 | `n_hours_matched` | 观测和模式都有值的小时数 |
-| `cell_dry_frac`, `model_bad_frac` | 格点干出（zeta ≤ −h + 0.1）和模式值不合理（|zeta| > 5 m）的小时比例，这些小时已剔除。Texas100m 的 2026-04-15 周期是发散的（zeta 100 多米），已剔除 |
+| `model_cell` | `own` = 用站点自己的格点；`nearest_roms` = 用 1 km 内最近的 ROMS 水格点 |
+| `model_bad_frac` | 模式值不合理（|zeta| > 5 m）的小时比例，已剔除。Texas100m 的 2026-04-15 周期是发散的（zeta 100 多米）。没有做干湿筛选：耦合系统里每个格点都有水位 |
 | `model_zeta_mean_m` | 同期模式 zeta 平均 |
 | `obs_mean_matched_navd88_m` | 同期观测平均（NAVD88） |
 | `offset_obs_minus_model_m` | **观测减模式的中位数**，就是偏移的第二部分；`_mean_m` 是均值 |
 | `corr_obs_model` | 两者逐小时的相关系数，低于 0.3 说明格点或模式有问题，偏移不可信 |
 | `rmse_model_after_offset_cm` | 去掉偏移后模式对观测的 RMSE，供参考 |
 
-结果：三个域的模式平均 zeta 都在 −0.1 到 −0.2 m，观测平均在 +0.3 到 +0.55 m（NAVD88），所以 **观测 − 模式 ≈ +0.3 到 +0.55 m**，Louisiana 中位 0.37、Galveston 0.34、Texas 0.47；潮位站相关系数 0.6–0.85。也就是说不管网格零面名义上是什么，把模式 zeta 换到 NAVD88 要加 0.3 到 0.5 m，各站的具体值在表里。异常：Packery Channel（8775792）模式值 1.3 m、相关 0.1，格点落在结构物上，不要用；Sargent（8772985）在 Galveston 网格里相关 0，用 Texas 网格那一行；New Canal、Bayou Perot 相关偏低。
+结果：三个域的模式平均 zeta 都在 −0.1 到 −0.2 m，观测平均在 +0.3 到 +0.55 m（NAVD88），所以 **观测 − 模式 ≈ +0.3 到 +0.55 m**，Louisiana 中位 0.37、Galveston 0.32、Texas 0.47；潮位站相关系数 0.6–0.85。也就是说不管网格零面名义上是什么，把模式 zeta 换到 NAVD88 要加 0.3 到 0.5 m，各站的具体值在表里。相关系数低于 0.3 的行偏移不可信：Packery Channel（8775792，最近 ROMS 格点在结构物上）、Rollover Pass（8770971，Galveston 域）、Vermilion Bay、IHNC Seabrook、Bayou Perot、Lake Cataouatche、Wilkinson Bayou、Little Lake、Pontchartrain Mandeville、Seadrift。
 
 把两部分合起来：**站点值 + `to_navd88_add_m` = NAVD88 值；模式 zeta + `offset_obs_minus_model_m` ≈ 同一站的 NAVD88 值。**
 
 ## 注意
 
-- 大部分 USGS 河流站在 ROMS 网格里是**陆地格点**（100 m 网格不解析小河道）：Galveston 域 138 个 USGS 站没有一个落在水格点上，最近水格点中位 47 km。这些站属于 WRF-Hydro 河网而不是 ROMS，表里仍给出 ROMS 的最近格点和最近水格点，但距离大的不应该用 ROMS 的 zeta 去比。给 WRF-Hydro 河网配格点是另一张表（没做）。
-- NOAA 潮位站和海湾里的 USGS 站绝大多数落在水格点上，距离 20–50 m。
+- 河流站多数落在 WRF-Hydro 算的格点上：Louisiana 域 54 个水格点站里 27 个归 ROMS、27 个归 WRF-Hydro；Galveston 域 149 站里 131 个是 h < 0 的陆地格点（休斯顿溪流在 100 m 网格里没有河道），归 WRF-Hydro。这些站要和 WRF-Hydro 的输出比，不是 ROMS 的 zeta。
+- NOAA 潮位站和海湾里的 USGS 站绝大多数落在 ROMS 的水格点上，到格点中心 20–50 m。
 - Louisiana 业务网格（`.sub`）北界 30.40N，Baton Rouge、Pontchartrain 北岸等站只在 `_full` 网格里。
 - 13 个 USGS 站基准未知（`gauge_datum(nan)`），1 个（Old Brazos nr Freeport 08079120）VDatum 换算失败，这些行的换算列为空。
 - CRMS 站不在这张表里（业务系统不用）。

@@ -4,9 +4,9 @@ over the same hours (ROMS forecast archive, first 24 h of each cycle, Jul-Nov 20
 Inputs: config/operational_stations_grid_datum.csv, config/gridmap/zeta/<domain>_zeta.csv (from roms_zeta_at_stations.py),
         the hourly observation matrix (dataset values.npy / time.npy / stations.csv; path via --dataset).
 Adds to config/operational_stations_grid_datum.csv:
-  n_hours_matched, cell_dry_frac, model_bad_frac, model_zeta_mean_m, obs_mean_matched_navd88_m,
+  n_hours_matched, model_cell, model_bad_frac, model_zeta_mean_m, obs_mean_matched_navd88_m,
   offset_obs_minus_model_m (median), offset_obs_minus_model_mean_m, corr_obs_model, rmse_model_after_offset_cm
-Dry hours (zeta <= -h + 0.1 m at the wet cell) and impossible values (|zeta| > 5 m, blown-up cycles) are excluded. Station cells that are land in ROMS keep NaN here.
+Impossible values (|zeta| > 5 m, blown-up cycles) are excluded; no wet/dry filtering (coupled model: every cell has a water level). Station cells that are land in ROMS keep NaN here.
 Usage: python model_offset.py --dataset DIR
 """
 from __future__ import annotations
@@ -18,7 +18,6 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[2]
-DCRIT = 0.1
 MIN_HOURS = 200
 ZMAX = 5.0      # |zeta| above this is not sea level
 
@@ -38,13 +37,13 @@ def main() -> None:
         gd = g[g.domain == dom].set_index("station_id")
         for sid, zz in z.groupby("station_id"):
             r = gd.loc[sid]
-            if not bool(r.cell_is_wet) and r.dist_wet_km > 1.0:        # station is land in ROMS and the nearest water is > 1 km away
+            own = bool(r.cell_is_water) and r.cell_model == "ROMS"       # station cell is water and computed by ROMS
+            if not own and r.dist_roms_km > 1.0:                           # otherwise use the nearest ROMS water cell, only if within 1 km
                 continue
-            h = float(r.h_wet_m)
             zz = zz.drop_duplicates("time_utc").set_index("time_utc").sort_index()
-            dry = zz.zeta_wet_m <= (-h + DCRIT)
-            bad = zz.zeta_wet_m.abs() > ZMAX                             # blown-up or fill values (e.g. Texas100m cycle 20260415)
-            zw = zz.zeta_wet_m.where(~dry & ~bad)
+            zsel = zz.zeta_cell_m if own else zz.zeta_wet_m                # zeta_wet_m = nearest ROMS water cell (extraction step)
+            bad = zsel.abs() > ZMAX                                        # blown-up or fill values (e.g. Texas100m cycle 20260415)
+            zw = zsel.where(~bad)
             k = row_of.get((r.source, sid))
             if k is None:
                 continue
@@ -55,7 +54,7 @@ def main() -> None:
             both = pd.DataFrame({"m": zw, "o": obs + add}).dropna()
             if len(both) < MIN_HOURS:
                 continue
-            out[(sid, dom)] = {"n_hours_matched": len(both), "cell_dry_frac": round(float(dry.mean()), 3), "model_bad_frac": round(float(bad.mean()), 3),
+            out[(sid, dom)] = {"n_hours_matched": len(both), "model_cell": "own" if own else "nearest_roms", "model_bad_frac": round(float(bad.mean()), 3),
                                "model_zeta_mean_m": round(float(both.m.mean()), 3), "obs_mean_matched_navd88_m": round(float(both.o.mean()), 3),
                                "offset_obs_minus_model_m": round(float((both.o - both.m).median()), 3),   # median: robust to odd cycles
                                "offset_obs_minus_model_mean_m": round(float((both.o - both.m).mean()), 3),
