@@ -191,7 +191,13 @@ def main() -> None:
     slide_number(sl, n)
 
     out = D / "representative_stations.pptx"
-    prs.save(out); print("->", out, n, "slides")
+    try:
+        prs.save(out)
+    except PermissionError:                       # the deck is open in PowerPoint: write a dated copy instead
+        import datetime
+        out = D / f"representative_stations_{datetime.date.today():%Y%m%d}.pptx"
+        prs.save(out)
+    print("->", out, n, "slides")
 
 
 if __name__ == "__main__":
