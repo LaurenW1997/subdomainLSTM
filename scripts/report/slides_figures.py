@@ -24,27 +24,25 @@ R = REPO / "deliverables" / "10_representative"
 FONT = "Times New Roman"; BLACK = RGBColor(0, 0, 0)
 PREFIX = {"Louisiana100m": "la", "Galveston100m": "gal", "Texas100m": "tx"}
 HURR = {"Louisiana100m": "Francine, September 2024", "Galveston100m": "Beryl, July 2024", "Texas100m": "Beryl, July 2024"}
-TYPE_EN = {"tide gauge": "tide gauge", "marsh": "marsh (CRMS)", "estuary / tidal channel": "estuary / tidal channel", "river / canal": "river", "urban creek (Houston)": "urban creek (Houston)"}
+TYPE_EN = {"tide gauge": "tide gauge", "marsh": "marsh (USGS)", "estuary / tidal channel": "estuary / tidal channel", "river / canal": "river", "urban creek (Houston)": "urban creek (Houston)"}
 NOTE = {
-    "8761724": "Open coast. Tide dominates; errors stay near 4 cm except in the Francine surge hours.",
-    "8761927": "Lake Pontchartrain. Wind set-up is the main signal; the wind input halves the error on windy days.",
-    "8747437": "Mississippi Sound. The 1.75 m Francine surge is followed at all leads; the 6 h forecast peaks about 1 h late.",
-    "CRMS0367-H01": "Terrebonne marsh, slow water. Errors under 1 cm in quiet weeks; 5 cm in the Francine window.",
-    "CRMS0517-H01": "Teche/Vermilion marsh. One of the largest wind gains among marsh stations (12.9 to 9.7 cm over the year).",
+    "8761724": "Open coast. Tide dominates; 3.7 cm over the year, 8 cm in the Francine surge hours.",
+    "8761927": "Lake Pontchartrain. Wind set-up is the main signal; the wind input cuts the error by a third (6.8 vs 9.6 cm in the Francine window).",
+    "8747437": "Mississippi Sound. The 1.8 m Francine surge is followed at all leads: 10 cm with wind, 33 cm without.",
     "07387050": "Vermilion Bay. Shallow bay pushed by wind; the hurricane window is three times the normal error.",
-    "301429089145600": "Mississippi Sound light. Storm set-up resolved by the wind input.",
-    "07381590": "Wax Lake Outlet, Atchafalaya distributary. River plus tide; Francine window 16 cm, otherwise 2 to 5 cm.",
-    "07374000": "Lower Mississippi. Slow river; the water-level-only model is better here (3.7 vs 4.6 cm) because wind is noise so far inland.",
-    "07379050": "Baton Rouge urban creek. Rises of 3 m in two hours from local rainfall; the 6 h forecast cannot see them coming.",
-    "8771450": "Galveston Pier 21. Beryl window 12 cm; normal weeks 5 cm.",
-    "8770613": "Upper Galveston Bay. The 2.1 m Beryl surge is followed at all leads (14.7 cm vs 27.6 cm without wind).",
-    "08072050": "San Jacinto River above the bay. Tide plus Lake Houston releases; Beryl window 26 cm.",
-    "08074000": "Buffalo Bayou downtown. Beryl rise of 7 m: 1 h forecast on time, 3 h two hours late, 6 h five hours late; recession well captured.",
-    "08114000": "Brazos River at Richmond. Upstream discharge helps every month; a false spike during Beryl (wind) remains in the 6 h forecast.",
+    "301429089145600": "Mississippi Sound light. Storm set-up resolved by the wind input (11 vs 26 cm in the Francine window).",
+    "07381590": "Wax Lake Outlet, Atchafalaya distributary. River plus tide; Francine window 14 cm, otherwise 2 to 5 cm.",
+    "07374000": "Lower Mississippi, far inland. Wind input switched off here; the water-level-only model is still better (3.7 vs 4.8 cm): the slow river needs no extra input.",
+    "07379050": "Baton Rouge urban creek. Rises of 3 m in two hours from local rainfall; the 6 h forecast cannot see them coming (84 cm in the high-water window).",
+    "8771450": "Galveston Pier 21. Beryl window 12 cm (15 without wind); normal weeks 5 cm.",
+    "8770613": "Upper Galveston Bay. The 2.1 m Beryl surge is followed at all leads (15 cm vs 28 cm without wind).",
+    "08072050": "San Jacinto River above the bay. Tide plus Lake Houston releases; Beryl window 20 cm (38 without wind).",
+    "08074000": "Buffalo Bayou downtown. Beryl rise of 9 m: 1 h forecast on time, 3 h two hours late, 6 h five hours late; recession well captured.",
+    "08114000": "Brazos River at Richmond. Wind switched off, upstream discharge kept: 4.6 cm over the year; Beryl window 31 cm from the river flood.",
     "08066250": "Trinity River below Lake Livingston dam. Releases are scheduled by the operator; no input anticipates them.",
-    "08068310": "Spring Creek, The Woodlands. Typical Houston creek: quiet weeks 12 cm, Beryl window 46 cm.",
-    "08074500": "Whiteoak Bayou, Houston. Largest errors in the set: 33 cm over the year, 130 cm in the Beryl window.",
-    "8774770": "Rockport, Aransas Bay. Best station class: 2 cm over the year, 3 cm during Beryl.",
+    "08068310": "Spring Creek, The Woodlands. Typical Houston creek: quiet weeks 12 cm, Beryl window 42 cm.",
+    "08074500": "Whiteoak Bayou, Houston. Largest errors in the set: 33 cm over the year, 144 cm in the Beryl window.",
+    "8774770": "Rockport, Aransas Bay. Best station class: 2 cm over the year, 3.5 cm during Beryl.",
     "8773259": "Port Lavaca, Matagorda Bay. Beryl window 16 cm, otherwise 5 cm.",
     "08188810": "Lower Guadalupe, tidal. Hurricane window 10 cm; river rises 2 cm.",
     "08211500": "Nueces River at Calallen, below the saltwater dam. Nearly flat; 2.4 cm over the year.",
@@ -86,23 +84,25 @@ def main() -> None:
         text(sl, 12.5, 7.05, 0.6, 0.3, str(n), size=10, align=PP_ALIGN.RIGHT)
         return sl
 
-    sl = new("Where the 6 h forecast error is: 847 stations, test period January 2024 to December 2025")
+    per = pd.read_csv(REPO / "runs" / "v6_wind_q" / "per_station_test.csv", dtype={"station_id": str})
+    n_all = int(((per.n_6h >= 720) & (per.source != "CRMS")).sum())
+    sl = new(f"Where the 6 h forecast error is: {n_all} stations, test period January 2024 to December 2025")
     picture(sl, F / "rmse_map.png", 0.5, 0.95, 12.3, 5.1)
-    text(sl, 0.5, 6.2, 12.3, 1.0, ["LSTM with water level, wind (past 72 h and next 6 h) and upstream discharge as inputs. Colour: RMSE of the 6 h forecast over the whole test period. "
-                                    "Squares: the 23 stations shown on the following slides.",
-                                    "Coastal marsh and open-coast gauges are mostly below 5 cm; the Houston creeks and the small creeks around Baton Rouge are above 10 cm."], size=12)
+    text(sl, 0.5, 6.2, 12.3, 1.0, ["LSTM with water level, wind (past 72 h and next 6 h) and upstream discharge as inputs; wind switched off at 15 inland river stations where it only added noise. Colour: RMSE of the 6 h forecast over the whole test period. "
+                                    f"Squares: the {len(st)} stations shown on the following slides. CRMS marsh stations are not shown (training only, not operational).",
+                                    "Open-coast and bay gauges are mostly below 5 cm; the Houston creeks and the small creeks around Baton Rouge are above 10 cm."], size=12)
 
     sl = new("Error grows with lead time; wind and discharge help the tidal station types, not the creeks")
     picture(sl, F / "rmse_vs_lead.png", 0.5, 0.95, 8.3, 5.8)
     text(sl, 9.1, 1.1, 3.8, 5.5, ["Median RMSE over the stations of each type, 1 to 6 h lead. Solid: with wind and upstream discharge. Dashed: water level only. Shading: interquartile range.",
-                                   "", "Tide gauges, marsh, lakes and estuaries: the inputs lower the error at every lead, most at 4 to 6 h.",
-                                   "", "Rivers: no change in the median; the gain is at mid-river stations only.",
+                                   "", "Tide gauges, lakes and estuaries: the inputs lower the error at every lead, most at 4 to 6 h.",
+                                   "", "Rivers: small gain in the median; mid-river stations gain, the far-inland ones run without wind.",
                                    "", "Urban creeks: no change. Flash rises from local rainfall are not visible in any current input."], size=12)
 
     sl = new("Spread across stations within each type")
     picture(sl, F / "rmse_box_by_type.png", 0.5, 0.95, 12.3, 5.2)
-    text(sl, 0.5, 6.25, 12.3, 0.9, ["Per-station 6 h RMSE, whole test period. White: water level only. Grey: with wind and upstream discharge.",
-                                    "Within every tidal type the whole distribution shifts down; for rivers and urban creeks the two distributions overlap."], size=12)
+    text(sl, 0.5, 6.25, 12.3, 0.9, ["Per-station 6 h RMSE, whole test period, CRMS marsh stations excluded. White: water level only. Grey: with wind and upstream discharge.",
+                                    "For tide gauges, lakes and estuaries the whole distribution shifts down; for rivers and urban creeks the two distributions overlap."], size=12)
 
     sl = new("How to read the station slides")
     text(sl, 0.5, 1.1, 12.3, 5.5, [
@@ -143,12 +143,12 @@ def main() -> None:
                 yy += 0.3
             text(sl, 7.2, y0, 5.7, 2.0, NOTE.get(r.station_id, ""), size=12)
 
-    sl = new("What the 23 stations show")
-    tide = st[st.type.isin(["tide gauge", "marsh", "estuary / tidal channel"])]; riv = st[st.type == "river / canal"]; urb = st[st.type == "urban creek (Houston)"]
+    sl = new(f"What the {len(st)} stations show")
+    tide = st[st.type.isin(["tide gauge", "estuary / tidal channel"])]; riv = st[st.type == "river / canal"]; urb = st[st.type == "urban creek (Houston)"]
     text(sl, 0.5, 1.1, 12.3, 5.8, [
-        f"Tide gauges, marsh and estuaries ({len(tide)} stations): whole-year 6 h RMSE {tide.r6_new.min():.1f} to {tide.r6_new.max():.1f} cm. Hurricane windows are two to three times the whole-year value. The wind input gives most of the improvement over the water-level-only model and it shows in the surge hours (Bay Waveland, Morgans Point).",
+        f"Tide gauges and estuaries ({len(tide)} stations): whole-year 6 h RMSE {tide.r6_new.min():.1f} to {tide[tide.station_id != '08074000'].r6_new.max():.1f} cm (Buffalo Bayou downtown, a tidal urban bayou, 28 cm). Hurricane windows are two to three times the whole-year value. The wind input gives most of the improvement over the water-level-only model and it shows in the surge hours (Bay Waveland, Morgans Point).",
         "",
-        f"Rivers ({len(riv)} stations): whole-year 2 to 11 cm. Large rivers are quiet most of the year; the first hours of a rise carry the error. Upstream discharge helps mid-river stations (Brazos at Richmond) and cannot anticipate dam releases (Trinity below Lake Livingston). For the far-inland Mississippi the wind input only adds noise.",
+        f"Rivers ({len(riv)} stations): whole-year 2 to 11 cm. Large rivers are quiet most of the year; the first hours of a rise carry the error. Upstream discharge helps mid-river stations (Brazos at Richmond) and cannot anticipate dam releases (Trinity below Lake Livingston). At the far-inland rivers (Mississippi at Baton Rouge, Brazos) the wind input is switched off.",
         "",
         f"Urban and small creeks ({len(urb) + 1} stations including Ward Creek): whole-year 13 to 33 cm, hurricane windows 30 to 130 cm. The forecast lags the rise by about its own lead time: a 6 h forecast reacts six hours late. Local rainfall, the cause of these rises, is not among the inputs.",
         "",

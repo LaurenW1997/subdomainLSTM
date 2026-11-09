@@ -29,7 +29,7 @@ plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9, "axes.tit
                      "xtick.major.width": 0.6, "ytick.major.width": 0.6, "axes.spines.top": False, "axes.spines.right": False})
 LEAD_COL = {1: "#9ecae1", 3: "#3182bd", 6: "#08306b"}
 TYPE_ORDER = ["tide gauge", "marsh", "estuary / tidal channel", "lake", "river / canal", "urban creek (Houston)"]
-TYPE_LABEL = {"tide gauge": "tide gauge", "marsh": "marsh (CRMS)", "estuary / tidal channel": "estuary / tidal channel", "lake": "lake",
+TYPE_LABEL = {"tide gauge": "tide gauge", "marsh": "marsh (USGS)", "estuary / tidal channel": "estuary / tidal channel", "lake": "lake",
               "river / canal": "river", "urban creek (Houston)": "urban creek (Houston)"}
 TYPE_COL = {"tide gauge": "#0072B2", "marsh": "#009E73", "estuary / tidal channel": "#CC79A7", "lake": "#56B4E9", "river / canal": "#E69F00", "urban creek (Houston)": "#D55E00"}
 WIN_LABEL = {"hurricane": "Hurricane", "high water": "High water", "normal": "Normal"}
@@ -74,11 +74,11 @@ def station_fig(csv: Path, title: str, out: Path | None = None, leads=(1, 3, 6))
     return out
 
 
-def lead_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+def lead_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
     b = pd.read_csv(REPO / "runs" / run_b / "per_station_test.csv", dtype={"station_id": str})
-    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n)
+    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n) & (a.source != "CRMS")   # CRMS stations are training-only (not operational)
     a, b = a[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"]), b[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"])
     leads = np.arange(1, 7)
     fig, ax = plt.subplots(figsize=(8.2, 4.0))
@@ -100,21 +100,21 @@ def lead_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) 
     extra = [Line2D([], [], color="k", lw=1.6, marker="o", ms=3.2), Line2D([], [], color="k", lw=1.0, ls=(0, (3, 2)))]
     leg1 = ax.legend(h1, l1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, title="station type" + "\n" + "(band: interquartile range)", title_fontsize=8.5, alignment="left")
     ax.add_artist(leg1)
-    ax.legend(extra, ["water level + wind" + "\n" + "+ upstream discharge", "water level only"], loc="upper left", bbox_to_anchor=(1.01, 0.38), frameon=False, title="inputs", title_fontsize=8.5, alignment="left")
-    ax.set_title("Test period Jan 2024 – Dec 2025, 847 stations", loc="left")
+    leg2 = ax.legend(extra, ["water level + wind" + "\n" + "+ upstream discharge", "water level only"], loc="upper left", bbox_to_anchor=(1.01, 0.38), frameon=False, title="inputs", title_fontsize=8.5, alignment="left")
+    ax.set_title(f"Test period Jan 2024 – Dec 2025, {len(a)} stations (CRMS marsh stations excluded)", loc="left")
     fig.tight_layout()
     out = OUT / "rmse_vs_lead.png"
-    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05, bbox_extra_artists=[leg1, leg2]); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05, bbox_extra_artists=[leg1, leg2]); plt.close(fig)
     return out
 
 
-def map_fig(run: str = "v4_wind_q", min_n: int = 720, rep: Path | None = None) -> Path:
+def map_fig(run: str = "v6_wind_q", min_n: int = 720, rep: Path | None = None) -> Path:
     """All test stations coloured by 6 h RMSE; representative stations outlined."""
     import cartopy.crs as ccrs
     import cartopy.feature as cf
     from matplotlib.colors import LogNorm
     a = pd.read_csv(REPO / "runs" / run / "per_station_test.csv", dtype={"station_id": str})
-    a = a[a.n_6h >= min_n]
+    a = a[(a.n_6h >= min_n) & (a.source != "CRMS")]   # CRMS stations are training-only (not operational)
     doms = {"Louisiana100m": (-94.11, -88.39, 28.74, 31.14), "Texas100m": (-99.03, -95.24, 25.85, 29.13), "Galveston100m": (-96.71, -94.04, 28.74, 31.16)}
     fig = plt.figure(figsize=(11, 4.8))
     ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
@@ -131,19 +131,19 @@ def map_fig(run: str = "v4_wind_q", min_n: int = 720, rep: Path | None = None) -
         ax.legend(loc="lower right", frameon=False)
     cb = fig.colorbar(sc, ax=ax, shrink=.8, pad=.015, ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_yticklabels(["1", "2", "5", "10", "20", "40"])
     cb.set_label("6 h RMSE (cm), Jan 2024 – Dec 2025")
-    ax.set_title(f"{len(a)} stations, LSTM with water level, wind and upstream discharge", loc="left")
+    ax.set_title(f"{len(a)} stations, LSTM with water level, wind and upstream discharge (CRMS marsh stations excluded)", loc="left")
     fig.tight_layout()
     out = OUT / "rmse_map.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     return out
 
 
-def box_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+def box_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
     """Per-station 6 h RMSE by station type, with and without wind + discharge."""
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
     b = pd.read_csv(REPO / "runs" / run_b / "per_station_test.csv", dtype={"station_id": str})
-    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n)
+    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n) & (a.source != "CRMS")   # CRMS stations are training-only (not operational)
     a, b = a[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"]), b[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"])
     types = [t for t in TYPE_ORDER if (a.type == t).sum() >= 5]
     fig, ax = plt.subplots(figsize=(8.2, 3.8))
@@ -158,7 +158,7 @@ def box_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) -
     ax.set_xticks(pos); ax.set_xticklabels([TYPE_LABEL[t] + "\n" + f"(n = {(a.type == t).sum()})" for t in types])
     ax.set_ylabel("6 h RMSE (cm), per station"); ax.grid(axis="y", color="#dddddd", lw=0.5, which="both"); ax.set_axisbelow(True)
     ax.legend(frameon=False, loc="upper left")
-    ax.set_title("Test period Jan 2024 – Dec 2025; box = interquartile range, whiskers = 1.5 IQR, outliers hidden", loc="left")
+    ax.set_title(f"Test period Jan 2024 – Dec 2025, {len(a)} stations (CRMS excluded); box = interquartile range, whiskers = 1.5 IQR, outliers hidden", loc="left")
     fig.tight_layout()
     out = OUT / "rmse_box_by_type.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
