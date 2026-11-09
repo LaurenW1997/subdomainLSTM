@@ -190,6 +190,19 @@ def main() -> None:
         cov = pd.read_csv(run_dir / "wind_coverage.csv", dtype={"station_id": str})
         assert (cov.station_id.to_numpy() == st.station_id.to_numpy()).all(), "wind_coverage.csv does not match stations.csv"
         wind_cov = cov.wind_valid_frac.to_numpy()
+        # stations trained with the wind input switched off (config/stations_wind_hurts.csv at training time):
+        # feed zeros and no wind mask, exactly as in training, and do not require wind for them
+        wind_off = np.zeros(len(st), bool)
+        nw = args.get("no_wind_stations")
+        if nw:
+            nwf = run_dir / "no_wind_stations.csv"
+            if not nwf.exists():
+                nwf = REPO / "config" / Path(nw).name
+            sub = pd.read_csv(nwf, dtype=str)
+            keyset = set(zip(sub.source, sub.station_id))
+            wind_off = np.array([(s_, str(i_)) in keyset for s_, i_ in zip(st.source, st.station_id)])
+            manifest_extra["wind_off_stations"] = int(wind_off.sum())
+            log.info("wind input switched off at %d stations (%s)", wind_off.sum(), nwf.name)
         t = time.time()
         u_p, v_p, u_f, v_f, prov = station_wind(st, index, future_index, Path(a.wind_cache) if a.wind_cache else Path(a.out) / "wind")
         manifest_extra["wind"] = {"source": "HRRR conus wrfsfc, 10 m UGRD/VGRD, nearest cell", "seconds": round(time.time() - t),
@@ -228,7 +241,13 @@ def main() -> None:
         m = valid.to_numpy(np.float32)
         parts = [np.nan_to_num(x)[:, None], m[:, None], tf]
         fut = np.zeros(0, np.float32)
-        if use_wind:
+        if use_wind and wind_off[i]:                  # wind switched off for this station at training time
+            L = len(index)
+            parts += [np.zeros((L, 1), np.float32), np.zeros((L, 1), np.float32), np.zeros((L, 1), np.float32)]
+            rec["wind_valid_frac"] = 0.0
+            if use_future:
+                fut = np.zeros(2 * HORIZON, np.float32)
+        elif use_wind:
             if wind_cov[i] == 0:                      # station never had wind in training (offshore, no AORC cell)
                 rec["status"] = "no_wind_in_training"; recs.append(rec); continue
             wm = np.isfinite(u_p[i]) & np.isfinite(v_p[i])
