@@ -1,0 +1,25 @@
+source,station_id,name,window,start,hours,rmse_1h_cm,rmse_2h_cm,rmse_3h_cm,rmse_4h_cm,rmse_5h_cm,rmse_6h_cm
+NOAA_COOPS,8771450,Galveston Pier 21,hurricane Beryl,2024-07-07 00:00:00,96,4.47,6.48,7.59,8.96,10.58,12.17
+NOAA_COOPS,8771450,Galveston Pier 21,high water (highest level outside the hurricane),2024-06-17 16:00:00,96,2.66,4.24,4.98,5.02,4.62,5.38
+NOAA_COOPS,8771450,Galveston Pier 21,normal (typical 4 days),2024-07-23 23:00:00,96,3.96,5.27,5.39,5.35,5.3,5.44
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",hurricane Beryl,2024-07-07 00:00:00,96,4.71,6.47,7.73,9.3,11.59,14.74
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",high water (highest level outside the hurricane),2024-06-17 20:00:00,96,2.96,4.48,5.58,6.81,7.87,8.66
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",normal (typical 4 days),2025-06-17 23:00:00,96,2.56,3.17,3.96,4.74,5.52,5.94
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",hurricane Beryl,2024-07-07 00:00:00,96,4.6,9.68,14.11,18.2,22.25,26.03
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",high water (highest level outside the hurricane),2024-05-02 15:00:00,96,2.29,4.89,8.23,11.86,15.88,20.35
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",normal (typical 4 days),2024-11-13 23:00:00,96,1.94,3.93,5.51,6.67,7.67,8.58
+USGS,08074000,"Buffalo Bayou at Houston, TX",hurricane Beryl,2024-07-07 00:00:00,96,10.72,23.34,39.48,56.49,75.32,94.3
+USGS,08074000,"Buffalo Bayou at Houston, TX",high water (highest level outside the hurricane),2025-01-25 04:00:00,96,7.7,20.21,33.49,46.65,59.11,70.29
+USGS,08074000,"Buffalo Bayou at Houston, TX",normal (typical 4 days),2025-09-06 23:00:00,96,4.28,9.35,14.44,19.3,23.76,27.76
+USGS,08114000,"Brazos Rv at Richmond, TX",hurricane Beryl,2024-07-07 00:00:00,96,11.04,23.13,36.8,49.85,59.76,66.39
+USGS,08114000,"Brazos Rv at Richmond, TX",high water (highest level outside the hurricane),2024-05-10 02:00:00,96,1.06,1.52,2.33,3.32,4.33,5.4
+USGS,08114000,"Brazos Rv at Richmond, TX",normal (typical 4 days),2024-01-02 23:00:00,96,1.15,2.17,3.26,4.5,5.82,7.04
+USGS,08066250,"Trinity Rv nr Goodrich, TX",hurricane Beryl,2024-07-07 00:00:00,96,6.31,13.79,20.61,26.88,32.7,37.91
+USGS,08066250,"Trinity Rv nr Goodrich, TX",high water (highest level outside the hurricane),2024-05-01 21:00:00,96,3.02,5.78,9.13,13.07,17.58,22.57
+USGS,08066250,"Trinity Rv nr Goodrich, TX",normal (typical 4 days),2025-06-02 23:00:00,96,1.45,2.95,4.75,6.7,8.61,10.44
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",hurricane Beryl,2024-07-07 00:00:00,96,5.43,11.3,19.77,28.96,37.61,45.66
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",high water (highest level outside the hurricane),2024-05-02 13:00:00,96,3.8,7.92,11.95,14.96,17.05,18.75
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",normal (typical 4 days),2024-08-31 23:00:00,96,2.75,4.75,6.91,8.94,10.68,12.24
+USGS,08074500,"Whiteoak Bayou at Houston, TX",hurricane Beryl,2024-07-07 00:00:00,96,21.79,45.01,70.2,93.15,113.19,130.28
+USGS,08074500,"Whiteoak Bayou at Houston, TX",high water (highest level outside the hurricane),2024-07-24 16:00:00,96,24.46,48.26,66.11,77.42,84.37,88.54
+USGS,08074500,"Whiteoak Bayou at Houston, TX",normal (typical 4 days),2024-07-21 23:00:00,96,13.21,24.94,29.78,30.69,30.9,31.37

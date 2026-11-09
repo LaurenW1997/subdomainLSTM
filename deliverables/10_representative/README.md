@@ -1,0 +1,9 @@
+# 10 代表性站点：每个 domain 每类站几个，飓风 / 涨水 / 平常三个窗口
+
+23 个站：Louisiana100m 10（潮位站 3、湿地 2、河口 2、河流 3），Galveston100m 8（潮位站 2、河口 2、河流 2、城市溪流 2），Texas100m 5（潮位站 2、河口 1、河流 2）。清单 `stations.csv`，位置图 `map.png`。
+
+每站一张图（`la_*.png`、`gal_*.png`、`tx_*.png`）：三个 4 天窗口——**飓风**（Louisiana 用 Francine 2024-09-10 起，Galveston / Texas 用 Beryl 2024-07-07 起）、**涨水**（飓风之外观测最高的 4 天）、**平常**（6 h 误差等于全年平均的 4 天）。黑线观测，红线 v4 模型每 6 小时起报的 1–6 h 预报轨迹，蓝虚线只用水位的模型。子图标题是窗口内所有起报时刻的 1 / 3 / 6 h RMSE。
+
+误差范围对比：`range_<domain>.png`，每站五个数——全年（v4 和只用水位）、涨水窗、飓风窗、平常窗的 6 h RMSE，对数坐标。汇总表 `summary.csv` / `summary.md`。
+
+幻灯片 `representative_stations.pptx`（32 页，白底黑字 Times New Roman，无标题页）：位置图、读图说明、每个 domain 一页误差范围 + 每站一页、每个 domain 一页汇总表、一页总结。脚本：`scripts/report/event_plots.py --hurricane`、`scripts/report/representative.py`、`scripts/report/slides_representative.py`。

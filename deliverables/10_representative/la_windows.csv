@@ -1,0 +1,31 @@
+source,station_id,name,window,start,hours,rmse_1h_cm,rmse_2h_cm,rmse_3h_cm,rmse_4h_cm,rmse_5h_cm,rmse_6h_cm
+NOAA_COOPS,8761724,Grand Isle,hurricane Francine,2024-09-10 00:00:00,96,2.44,3.11,3.74,4.69,5.76,6.85
+NOAA_COOPS,8761724,Grand Isle,high water (highest level outside the hurricane),2024-06-17 13:00:00,96,2.2,2.88,3.46,3.79,3.87,3.75
+NOAA_COOPS,8761724,Grand Isle,normal (typical 4 days),2025-05-01 23:00:00,96,1.98,2.42,2.63,2.87,3.04,3.43
+NOAA_COOPS,8761927,New Canal Station,hurricane Francine,2024-09-10 00:00:00,96,5.53,3.86,5.57,5.38,5.84,6.28
+NOAA_COOPS,8761927,New Canal Station,high water (highest level outside the hurricane),2024-06-18 00:00:00,96,1.66,1.84,2.1,2.45,2.56,2.76
+NOAA_COOPS,8761927,New Canal Station,normal (typical 4 days),2024-10-01 23:00:00,96,1.41,1.8,2.22,2.7,3.28,3.81
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,hurricane Francine,2024-09-10 00:00:00,96,3.12,4.98,6.36,7.33,8.68,10.75
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,high water (highest level outside the hurricane),2024-01-07 02:00:00,96,3.34,6.31,8.92,10.8,12.13,13.3
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,normal (typical 4 days),2024-03-13 23:00:00,96,3.39,5.94,7.22,7.3,6.64,6.48
+CRMS,CRMS0367-H01,CRMS0367-H01,hurricane Francine,2024-09-10 00:00:00,96,1.4,1.92,2.77,3.67,4.48,5.15
+CRMS,CRMS0367-H01,CRMS0367-H01,high water (highest level outside the hurricane),2024-06-19 01:00:00,96,0.35,0.45,0.6,0.7,0.84,0.92
+CRMS,CRMS0367-H01,CRMS0367-H01,normal (typical 4 days),2024-07-09 23:00:00,96,1.85,1.95,2.3,2.58,2.87,3.09
+CRMS,CRMS0517-H01,CRMS0517-H01,hurricane Francine,2024-09-10 00:00:00,96,7.47,11.76,16.21,19.25,21.57,23.04
+CRMS,CRMS0517-H01,CRMS0517-H01,high water (highest level outside the hurricane),2024-04-08 17:00:00,96,8.15,12.09,13.95,15.77,16.6,16.8
+CRMS,CRMS0517-H01,CRMS0517-H01,normal (typical 4 days),2024-02-17 23:00:00,96,3.49,5.28,6.15,6.8,7.43,7.75
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",hurricane Francine,2024-09-10 00:00:00,96,3.7,7.03,9.95,12.8,15.68,18.59
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",high water (highest level outside the hurricane),2024-11-03 09:00:00,96,1.23,2.3,3.35,4.44,5.55,6.69
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",normal (typical 4 days),2025-05-10 23:00:00,96,1.79,3.15,4.05,4.92,5.7,6.35
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,hurricane Francine,2024-09-10 00:00:00,96,3.21,4.62,5.73,7.19,8.96,11.01
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,high water (highest level outside the hurricane),2024-01-07 02:00:00,96,3.19,5.67,7.63,8.98,9.83,10.65
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,normal (typical 4 days),2025-04-30 23:00:00,96,2.37,3.72,4.46,5.07,5.63,5.97
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",hurricane Francine,2024-09-10 00:00:00,96,2.78,5.91,9.23,12.24,14.4,16.17
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",high water (highest level outside the hurricane),2025-05-01 00:00:00,96,1.58,1.81,2.01,2.14,2.26,2.24
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",normal (typical 4 days),2024-10-27 23:00:00,96,1.2,2.24,3.22,4.06,4.76,5.19
+USGS,07374000,"Mississippi River at Baton Rouge, LA",hurricane Francine,2024-09-10 00:00:00,96,2.21,3.51,4.69,6.02,7.58,9.31
+USGS,07374000,"Mississippi River at Baton Rouge, LA",high water (highest level outside the hurricane),2025-04-29 12:00:00,96,0.93,1.21,1.76,2.37,2.91,3.74
+USGS,07374000,"Mississippi River at Baton Rouge, LA",normal (typical 4 days),2025-04-02 23:00:00,96,1.16,1.76,2.36,3.19,4.02,4.83
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",hurricane Francine,2024-09-10 00:00:00,96,3.11,7.19,12.21,17.6,23.4,29.46
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",high water (highest level outside the hurricane),2025-03-28 02:00:00,96,15.99,38.5,57.29,70.43,79.19,84.91
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",normal (typical 4 days),2025-10-21 23:00:00,96,6.39,10.79,14.99,19.67,23.54,26.3

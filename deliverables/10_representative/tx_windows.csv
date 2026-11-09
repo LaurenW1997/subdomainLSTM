@@ -1,0 +1,16 @@
+source,station_id,name,window,start,hours,rmse_1h_cm,rmse_2h_cm,rmse_3h_cm,rmse_4h_cm,rmse_5h_cm,rmse_6h_cm
+NOAA_COOPS,8774770,Rockport,hurricane Beryl,2024-07-07 00:00:00,96,1.25,1.79,2.19,2.65,2.95,3.34
+NOAA_COOPS,8774770,Rockport,high water (highest level outside the hurricane),2024-06-18 18:00:00,96,0.98,1.42,1.95,2.32,2.94,3.58
+NOAA_COOPS,8774770,Rockport,normal (typical 4 days),2024-09-07 23:00:00,96,0.7,1.07,1.38,1.68,1.95,2.21
+NOAA_COOPS,8773259,Port Lavaca,hurricane Beryl,2024-07-07 00:00:00,96,3.69,7.2,10.19,12.56,14.57,16.43
+NOAA_COOPS,8773259,Port Lavaca,high water (highest level outside the hurricane),2024-06-18 19:00:00,96,1.35,2.34,3.18,4.11,4.97,5.8
+NOAA_COOPS,8773259,Port Lavaca,normal (typical 4 days),2024-02-16 23:00:00,96,1.23,1.98,2.58,3.28,3.99,4.63
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",hurricane Beryl,2024-07-07 00:00:00,96,4.01,6.66,8.34,9.29,10.01,10.54
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",high water (highest level outside the hurricane),2024-01-29 00:00:00,96,0.81,1.05,1.3,1.49,1.8,2.11
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",normal (typical 4 days),2025-08-02 23:00:00,96,2.65,4.14,4.86,5.05,5.14,5.4
+USGS,08211500,"Nueces Rv at Calallen, TX",hurricane Beryl,2024-07-07 00:00:00,96,0.53,1.05,1.55,2.01,2.46,2.93
+USGS,08211500,"Nueces Rv at Calallen, TX",high water (highest level outside the hurricane),2024-06-18 18:00:00,96,0.36,0.58,0.83,1.07,1.31,1.56
+USGS,08211500,"Nueces Rv at Calallen, TX",normal (typical 4 days),2025-01-21 23:00:00,96,0.43,0.9,1.39,1.82,2.18,2.48
+USGS,08176500,"Guadalupe Rv at Victoria, TX",hurricane Beryl,2024-07-07 00:00:00,96,2.02,4.07,5.88,7.76,9.57,11.23
+USGS,08176500,"Guadalupe Rv at Victoria, TX",high water (highest level outside the hurricane),2024-01-26 18:00:00,96,2.07,3.2,4.44,5.83,7.47,9.62
+USGS,08176500,"Guadalupe Rv at Victoria, TX",normal (typical 4 days),2024-06-02 23:00:00,96,2.05,4.12,5.69,6.94,8.01,8.9
