@@ -38,9 +38,27 @@
 模型里每个点的水位 zeta 是相对于网格的零面；站点水位是相对于站点自己的基准。要把两者对上，要走两步：
 
 1. **站点基准 → 网格基准**（几何的、固定的）：`station_to_grid_ref_add_m`。假设网格基准是 NAVD88，那 369 个 NAVD88 的 USGS 站和 43 个 NAVD88 的 NOAA 站加 0，11 个 MSL 的 NOAA 站加 CO-OPS 的 MSL − NAVD88，20 个水尺站加水尺零点高程。
-2. **模式自己的平均水面 ≠ 网格零面**（动态的）：即使水深是 NAVD88 基准，模式跑出来的平均 zeta 也不是 0，而是当地平均海面相对 NAVD88 的高度（墨西哥湾北岸现在约 +0.1 到 +0.3 m，路易斯安那因为地面下沉更大）再加上模式自身偏差。对比时应该用同一段时间的平均值去掉这一项：`offset_2 = mean(观测 NAVD88) − mean(模式 zeta)`。`obs_mean_2019_2023_navd88_m` 给出了观测这一边；模式那一边要从 ROMS 存档算，有了存档可以一行代码补上。
+2. **模式自己的平均水面 ≠ 网格零面**（动态的）：即使水深是 NAVD88 基准，模式跑出来的平均 zeta 也不是 0，而是当地平均海面相对 NAVD88 的高度再加上模式自身偏差。用同一段时间的平均值去掉这一项：`offset_obs_minus_model_m = 观测(NAVD88) − 模式 zeta`，见下一节。
 
-两个数都在这张表里（第 2 步只有观测侧），拼起来就是每个站的总偏移。
+两个数都在这张表里，拼起来就是每个站的总偏移。
+
+## 第二部分：模式平均水面（2026-11-09 补上）
+
+从组里的 ROMS 预报存档（QBD `results/<domain>/<周期>/NAM/ocean_his_*.nc`，只读）抽了每个站最近水格点的 zeta：每个周期取前 24 小时，Louisiana 51 个周期（2026-07 起）、Texas 68 个（2026-04 起）、Galveston 51 个，脚本 `scripts/data/roms_zeta_at_stations.py`（在 QBD 用 `/work/yixuan97/conda_envs/cfml` 的 python 跑）和 `scripts/data/model_offset.py`。只对站点本身在水格点、或离最近水格点不到 1 km 的站算（52 行：NOAA 31、USGS 21）；河流站在 ROMS 里是陆地，这一项为空。
+
+| 列 | 含义 |
+|---|---|
+| `n_hours_matched` | 观测和模式都有值的小时数 |
+| `cell_dry_frac`, `model_bad_frac` | 格点干出（zeta ≤ −h + 0.1）和模式值不合理（|zeta| > 5 m）的小时比例，这些小时已剔除。Texas100m 的 2026-04-15 周期是发散的（zeta 100 多米），已剔除 |
+| `model_zeta_mean_m` | 同期模式 zeta 平均 |
+| `obs_mean_matched_navd88_m` | 同期观测平均（NAVD88） |
+| `offset_obs_minus_model_m` | **观测减模式的中位数**，就是偏移的第二部分；`_mean_m` 是均值 |
+| `corr_obs_model` | 两者逐小时的相关系数，低于 0.3 说明格点或模式有问题，偏移不可信 |
+| `rmse_model_after_offset_cm` | 去掉偏移后模式对观测的 RMSE，供参考 |
+
+结果：三个域的模式平均 zeta 都在 −0.1 到 −0.2 m，观测平均在 +0.3 到 +0.55 m（NAVD88），所以 **观测 − 模式 ≈ +0.3 到 +0.55 m**，Louisiana 中位 0.37、Galveston 0.34、Texas 0.47；潮位站相关系数 0.6–0.85。也就是说不管网格零面名义上是什么，把模式 zeta 换到 NAVD88 要加 0.3 到 0.5 m，各站的具体值在表里。异常：Packery Channel（8775792）模式值 1.3 m、相关 0.1，格点落在结构物上，不要用；Sargent（8772985）在 Galveston 网格里相关 0，用 Texas 网格那一行；New Canal、Bayou Perot 相关偏低。
+
+把两部分合起来：**站点值 + `to_navd88_add_m` = NAVD88 值；模式 zeta + `offset_obs_minus_model_m` ≈ 同一站的 NAVD88 值。**
 
 ## 注意
 

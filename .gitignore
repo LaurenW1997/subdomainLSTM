@@ -33,3 +33,4 @@ Thumbs.db
 
 # grid coordinate extracts (large, regenerate from QBD grids)
 config/gridmap/*.nc
+config/gridmap/zeta/*.csv
