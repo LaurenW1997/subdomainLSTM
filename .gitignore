@@ -30,3 +30,6 @@ __pycache__/
 .idea/
 .DS_Store
 Thumbs.db
+
+# grid coordinate extracts (large, regenerate from QBD grids)
+config/gridmap/*.nc
