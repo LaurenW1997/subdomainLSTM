@@ -1,0 +1,124 @@
+"""Publication-style figures (deliverable 11).
+
+  station  : one station, three 4-day windows side by side; observation + forecasts valid at each hour for
+             1 h, 3 h and 6 h lead (continuous lines), 24 h around the window peak shaded; RMSE in a corner box.
+             Input: deliverables/11_figures/data/<prefix>_<station>.csv from extract_windows.py.
+  lead     : RMSE vs lead time (1-6 h) by station type, median and interquartile band, with and without
+             wind + discharge inputs. Input: runs/*/per_station_test.csv + config/station_groups.csv.
+Usage:
+  python paper_figs.py station deliverables/11_figures/data/la_8747437.csv --title "Bay Waveland, Mississippi Sound (NOAA 8747437)"
+  python paper_figs.py lead
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.dates as mdates
+import matplotlib.ticker
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+REPO = Path(__file__).resolve().parents[2]
+OUT = REPO / "deliverables" / "11_figures"
+plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9, "axes.titlesize": 9.5, "axes.labelsize": 9,
+                     "xtick.labelsize": 8.5, "ytick.labelsize": 8.5, "legend.fontsize": 8.5, "axes.linewidth": 0.6,
+                     "xtick.major.width": 0.6, "ytick.major.width": 0.6, "axes.spines.top": False, "axes.spines.right": False})
+LEAD_COL = {1: "#9ecae1", 3: "#3182bd", 6: "#08306b"}
+TYPE_ORDER = ["tide gauge", "marsh", "estuary / tidal channel", "lake", "river / canal", "urban creek (Houston)"]
+TYPE_LABEL = {"tide gauge": "tide gauge", "marsh": "marsh (CRMS)", "estuary / tidal channel": "estuary / tidal channel", "lake": "lake",
+              "river / canal": "river", "urban creek (Houston)": "urban creek (Houston)"}
+TYPE_COL = {"tide gauge": "#0072B2", "marsh": "#009E73", "estuary / tidal channel": "#CC79A7", "lake": "#56B4E9", "river / canal": "#E69F00", "urban creek (Houston)": "#D55E00"}
+WIN_LABEL = {"hurricane": "Hurricane", "high water": "High water", "normal": "Normal"}
+
+
+def rmse(a, b):
+    d = (a - b).dropna()
+    return float(np.sqrt((d ** 2).mean())) * 100 if len(d) else np.nan
+
+
+def station_fig(csv: Path, title: str, out: Path | None = None, leads=(1, 3, 6)) -> Path:
+    df = pd.read_csv(csv, parse_dates=["time"])
+    wins = list(dict.fromkeys(df.window))
+    fig, axes = plt.subplots(1, len(wins), figsize=(12.5, 3.6))
+    for k, (ax, w) in enumerate(zip(np.atleast_1d(axes), wins)):
+        d = df[df.window == w].set_index("time")
+        # shade 24 h around the peak
+        if d.obs.notna().any():
+            pk = d.obs.idxmax(); ax.axvspan(pk - pd.Timedelta(hours=12), pk + pd.Timedelta(hours=12), color="#000000", alpha=0.05, lw=0)
+        ax.plot(d.index, d.obs, color="k", lw=1.0, label="observed", zorder=5)
+        for h in leads:
+            ax.plot(d.index, d[f"f{h}"], color=LEAD_COL[h], lw=0.9, label=f"{h} h ahead", zorder=4)
+        kind = next((x for x in WIN_LABEL if w.startswith(x)), w)
+        name = w.replace("hurricane ", "").replace(" (highest level outside the hurricane)", "").replace(" (typical 4 days)", "")
+        label = f"Hurricane {name}" if kind == "hurricane" else WIN_LABEL[kind]
+        t0, t1 = d.index[0], d.index[-1]
+        span = f"{t0.day} {t0:%b}–{t1.day} {t1:%b %Y}"
+        txt = "RMSE " + ", ".join(f"{h} h {rmse(d[f'f{h}'], d.obs):.1f}" for h in leads) + " cm"
+        ax.set_title(f"({'abc'[k]}) {label}, {span}" + "\n" + txt, loc="left", fontsize=9, linespacing=1.4)
+        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
+        ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=[12]))
+        ax.grid(axis="y", color="#dddddd", lw=0.5); ax.set_axisbelow(True)
+        if k == 0:
+            ax.set_ylabel("Water level (m)")
+    handles, labels = np.atleast_1d(axes)[-1].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=len(labels), frameon=False, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    fig.suptitle(title, x=0.012, ha="left", fontsize=10.5, y=1.03)
+    out = out or OUT / f"station_{csv.stem.split('_', 1)[1]}.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
+def lead_fig(run_a: str = "v4_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+    g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
+    a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
+    b = pd.read_csv(REPO / "runs" / run_b / "per_station_test.csv", dtype={"station_id": str})
+    ok = (a.n_6h >= min_n) & (b.n_6h >= min_n)
+    a, b = a[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"]), b[ok].merge(g[["source", "station_id", "type"]], on=["source", "station_id"])
+    leads = np.arange(1, 7)
+    fig, ax = plt.subplots(figsize=(8.2, 4.0))
+    for t in TYPE_ORDER:
+        sa, sb = a[a.type == t], b[b.type == t]
+        if len(sa) < 5:
+            continue
+        med = [sa[f"rmse_{h}h_cm"].median() for h in leads]
+        q1 = [sa[f"rmse_{h}h_cm"].quantile(.25) for h in leads]; q3 = [sa[f"rmse_{h}h_cm"].quantile(.75) for h in leads]
+        medb = [sb[f"rmse_{h}h_cm"].median() for h in leads]
+        ax.fill_between(leads, q1, q3, color=TYPE_COL[t], alpha=0.08, lw=0)
+        ax.plot(leads, med, color=TYPE_COL[t], lw=1.6, marker="o", ms=3.2, label=f"{TYPE_LABEL[t]} (n = {len(sa)})")
+        ax.plot(leads, medb, color=TYPE_COL[t], lw=1.0, ls=(0, (3, 2)), alpha=0.9)
+    ax.set_yscale("log"); ax.set_yticks([1, 2, 5, 10, 20, 40]); ax.set_yticklabels(["1", "2", "5", "10", "20", "40"])
+    ax.set_xticks(leads); ax.set_xlabel("Lead time (h)"); ax.set_ylabel("RMSE (cm), median over stations")
+    ax.grid(axis="y", color="#dddddd", lw=0.5, which="both"); ax.set_axisbelow(True)
+    from matplotlib.lines import Line2D
+    h1, l1 = ax.get_legend_handles_labels()
+    extra = [Line2D([], [], color="k", lw=1.6, marker="o", ms=3.2), Line2D([], [], color="k", lw=1.0, ls=(0, (3, 2)))]
+    leg1 = ax.legend(h1, l1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, title="station type" + "\n" + "(band: interquartile range)", title_fontsize=8.5, alignment="left")
+    ax.add_artist(leg1)
+    ax.legend(extra, ["water level + wind" + "\n" + "+ upstream discharge", "water level only"], loc="upper left", bbox_to_anchor=(1.01, 0.38), frameon=False, title="inputs", title_fontsize=8.5, alignment="left")
+    ax.set_title("Test period Jan 2024 – Dec 2025, 847 stations", loc="left")
+    fig.tight_layout()
+    out = OUT / "rmse_vs_lead.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest="cmd", required=True)
+    s = sub.add_parser("station"); s.add_argument("csv"); s.add_argument("--title", default=""); s.add_argument("--out")
+    sub.add_parser("lead")
+    a = ap.parse_args()
+    OUT.mkdir(parents=True, exist_ok=True)
+    if a.cmd == "station":
+        print("->", station_fig(Path(a.csv), a.title, Path(a.out) if a.out else None))
+    else:
+        print("->", lead_fig())
+
+
+if __name__ == "__main__":
+    main()
