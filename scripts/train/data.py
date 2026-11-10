@@ -26,11 +26,12 @@ class StationMatrix:
     def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK, use_wind: bool = False,
                  use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
-                 rain_var: str = "p15"):
+                 rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly"):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
         self.use_rain, self.use_future_rain, self.rain_var = use_rain, use_rain and use_future_rain, rain_var
+        self.rain_fc, self.future_rain_form = rain_fc, future_rain_form      # future-rain source (None = observed) and form (hourly / 6 h total)
         self.values = np.load(d / "values.npy", mmap_mode="r")          # [S, T] metres
         self.time = pd.to_datetime(np.load(d / "time.npy"))
         self.stations = pd.read_csv(d / "stations.csv", index_col="row", dtype={"station_id": str})
@@ -86,8 +87,15 @@ class StationMatrix:
             self.rain = np.log1p(np.nan_to_num(np.clip(r, 0, None)))
             if not use_wind:
                 has = np.where(self.rmask.any(0))[0]; self.t_end = int(has.max()) + 1
+            if self.use_future_rain:
+                # the rain fed for the 6 target hours: observed (same array, a perfect forecast) or a forecast product
+                # (rain_fc = file stem, e.g. hrrr_lag1_p45.npy: HRRR rain by valid hour, NaN where no cycle was extracted)
+                fut = np.load(d / f"{rain_fc}.npy", mmap_mode="r")[self.rows].astype(np.float32) if rain_fc else r
+                self.futmask = np.isfinite(fut)
+                self.fut_mm = np.nan_to_num(np.clip(fut, 0, None))
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0)
-        self.n_future = (2 * HORIZON if self.use_future_wind else 0) + (HORIZON if self.use_future_rain else 0)
+        n_fr = 0 if not self.use_future_rain else (HORIZON if future_rain_form == "hourly" else 1)
+        self.n_future = (2 * HORIZON if self.use_future_wind else 0) + n_fr
 
     def split_range(self, split: str) -> tuple[int, int]:
         """Index range of forecast-origin times t0 (last observed hour) for a split."""
@@ -117,7 +125,8 @@ class StationMatrix:
         if self.use_future_wind:
             fut_parts += [self.u[s[:, None], idx_out], self.v[s[:, None], idx_out]]
         if self.use_future_rain:
-            fut_parts.append(self.rain[s[:, None], idx_out])
+            mm = self.fut_mm[s[:, None], idx_out]
+            fut_parts.append(np.log1p(mm) if self.future_rain_form == "hourly" else np.log1p(mm.sum(1, keepdims=True)))
         future = np.concatenate(fut_parts, 1).astype(np.float32) if fut_parts else np.zeros((len(s), 0), np.float32)
         y = self.norm[s[:, None], idx_out]
         ym = np.isfinite(y)
@@ -134,8 +143,8 @@ class StationMatrix:
                 ok &= (~need) | self.wmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
         if self.use_rain:   # rain comes from the same AORC grid as the wind: same availability rule
             ok &= self.rmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
-            if self.use_future_rain:
-                ok &= self.rmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
+            if self.use_future_rain:   # with a forecast product this also restricts origins to the hours a cycle was extracted for
+                ok &= self.futmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
         return ok
 
     def sample_train(self, batch: int, rng: np.random.Generator):
