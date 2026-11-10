@@ -1,0 +1,443 @@
+source,station_id,name,type,domain,lat,lon,r6_cm,frac_test,longest_gap_h,hurricane,hurr_start,hurr_frac,hurr_range_m,high_start,high_frac,high_range_m
+NOAA_COOPS,8741533,Pascagoula NOAA Lab,tide gauge,Louisiana100m,30.367777,-88.56306,5.35,1.0,0,Francine,2024-09-10 00,1.0,1.18,2024-01-07 00,1.0,1.45
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,tide gauge,Louisiana100m,30.326342,-89.3258,6.48,1.0,0,Francine,2024-09-10 00,1.0,1.81,2024-01-07 00,1.0,1.72
+NOAA_COOPS,8760721,Pilottown,tide gauge,Louisiana100m,29.179306,-89.258835,3.64,1.0,0,Francine,2024-09-10 00,1.0,0.72,2024-06-18 00,1.0,0.61
+NOAA_COOPS,8760922,"Pilots Station East, S.W. Pass",tide gauge,Louisiana100m,28.9322,-89.4075,3.86,1.0,0,Francine,2024-09-10 00,1.0,0.74,2024-09-25 00,1.0,0.7
+NOAA_COOPS,8761305,Shell Beach,tide gauge,Louisiana100m,29.86811,-89.67325,6.45,1.0,0,Francine,2024-09-10 00,1.0,0.9,2024-06-18 00,1.0,0.97
+NOAA_COOPS,8761724,Grand Isle,tide gauge,Louisiana100m,29.2633,-89.9567,3.65,0.9999,1,Francine,2024-09-10 00,1.0,0.69,2024-06-18 00,1.0,0.65
+NOAA_COOPS,8761927,New Canal Station,tide gauge,Louisiana100m,30.027222,-90.113335,3.9,1.0,0,Francine,2024-09-10 00,1.0,0.79,2024-06-18 00,1.0,0.58
+NOAA_COOPS,8761955,Carrollton,tide gauge,Louisiana100m,29.932888,-90.135475,5.23,0.9995,8,Francine,2024-09-10 00,1.0,0.83,2025-04-30 00,1.0,0.15
+NOAA_COOPS,8762075,"Port Fourchon, Belle Pass",tide gauge,Louisiana100m,29.1142,-90.1993,3.95,1.0,0,Francine,2024-09-10 00,1.0,0.7,2024-06-18 00,1.0,0.72
+NOAA_COOPS,8762482,"West Bank 1, Bayou Gauche",tide gauge,Louisiana100m,29.78861,-90.42028,1.64,1.0,0,Francine,2024-09-10 00,1.0,0.42,2025-04-05 00,1.0,0.41
+NOAA_COOPS,8764044,"Berwick, Atchafalaya River",tide gauge,Louisiana100m,29.6675,-91.23761,4.4,1.0,0,Francine,2024-09-10 00,1.0,0.61,2025-05-06 00,1.0,0.09
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",tide gauge,Louisiana100m,29.4496,-91.3381,7.31,0.9999,1,Francine,2024-09-10 00,1.0,0.92,2024-04-09 00,1.0,1.5
+NOAA_COOPS,8764314,"Eugene Island, North of, Atchafalaya Bay",tide gauge,Louisiana100m,29.3675,-91.3839,0.0,0.9999,1,Francine,2024-09-10 00,0.99,1.11,2024-04-09 00,1.0,1.59
+NOAA_COOPS,8766072,Freshwater Canal Locks,tide gauge,Louisiana100m,29.551695,-92.30519,9.73,0.9998,1,Francine,2024-09-10 00,1.0,1.49,2024-06-17 00,1.0,1.27
+NOAA_COOPS,8767816,Lake Charles,tide gauge,Louisiana100m,30.223612,-93.221664,5.49,1.0,0,Francine,2024-09-10 00,1.0,0.88,2024-07-07 00,1.0,1.14
+NOAA_COOPS,8767961,Bulk Terminal,tide gauge,Louisiana100m,30.1903,-93.3007,5.2,1.0,0,Francine,2024-09-10 00,1.0,0.85,2024-07-07 00,1.0,1.15
+NOAA_COOPS,8768094,Calcasieu Pass,tide gauge,Louisiana100m,29.768167,-93.34289,7.1,1.0,0,Francine,2024-09-10 00,1.0,1.08,2024-06-17 00,1.0,0.85
+NOAA_COOPS,8770475,Port Arthur,tide gauge,Louisiana100m,29.8667,-93.93,4.7,1.0,0,Francine,2024-09-10 00,1.0,0.8,2024-07-07 00,1.0,1.05
+NOAA_COOPS,8770520,Rainbow Bridge,tide gauge,Louisiana100m,29.98,-93.8817,4.12,1.0,0,Francine,2024-09-10 00,1.0,0.81,2024-07-07 00,1.0,1.07
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",tide gauge,Galveston100m,29.681667,-94.985,5.98,1.0,0,Beryl,2024-07-07 00,1.0,2.11,2024-06-18 00,1.0,0.71
+NOAA_COOPS,8770777,Manchester,tide gauge,Galveston100m,29.7263,-95.2658,7.59,1.0,0,Beryl,2024-07-07 00,1.0,3.2,2024-06-18 00,1.0,0.86
+NOAA_COOPS,8770808,High Island,tide gauge,Galveston100m,29.5947,-94.3903,6.76,0.969,543,Beryl,2024-07-07 00,1.0,1.28,2024-06-19 00,1.0,0.71
+NOAA_COOPS,8770822,"Texas Point, Sabine Pass",tide gauge,Louisiana100m,29.6893,-93.8418,7.47,1.0,0,Francine,2024-09-10 00,1.0,1.09,2024-07-07 00,1.0,1.48
+NOAA_COOPS,8770971,Rollover Pass,tide gauge,Galveston100m,29.515,-94.5133,7.06,1.0,0,Beryl,2024-07-07 00,1.0,1.98,2024-06-19 00,1.0,0.86
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",tide gauge,Galveston100m,29.481306,-94.91725,4.94,1.0,0,Beryl,2024-07-07 00,1.0,1.29,2024-06-18 00,1.0,0.76
+NOAA_COOPS,8771341,"Galveston Bay Entrance, North Jetty",tide gauge,Galveston100m,29.357462,-94.724724,6.31,1.0,0,Beryl,2024-07-07 00,1.0,1.74,2024-06-17 00,1.0,1.11
+NOAA_COOPS,8771367,Sabine Offshore Light,tide gauge,Louisiana100m,29.469,-93.72,0.0,0.6605,5955,Francine,2024-09-10 00,1.0,1.67,2024-07-07 00,1.0,2.08
+NOAA_COOPS,8771450,Galveston Pier 21,tide gauge,Galveston100m,29.31,-94.7933,5.4,1.0,0,Beryl,2024-07-07 00,1.0,1.39,2024-06-18 00,1.0,0.81
+NOAA_COOPS,8771486,Galveston Railroad Bridge,tide gauge,Galveston100m,29.3026,-94.8971,5.14,0.9576,744,Beryl,2024-07-07 00,1.0,1.47,2024-06-18 00,1.0,0.84
+NOAA_COOPS,8771972,San Luis Pass,tide gauge,Galveston100m,29.095,-95.1133,5.02,1.0,0,Beryl,2024-07-07 00,1.0,1.39,2024-06-18 00,1.0,0.91
+NOAA_COOPS,8772471,Freeport Harbor,tide gauge,Galveston100m,28.9357,-95.2942,6.06,1.0,0,Beryl,2024-07-07 00,1.0,0.97,2024-06-17 00,1.0,1.21
+NOAA_COOPS,8772985,Sargent,tide gauge,Galveston100m,28.771639,-95.61684,4.17,0.9859,248,Beryl,2024-07-07 00,0.333,1.21,2024-06-19 00,1.0,0.6
+NOAA_COOPS,8773037,Seadrift,tide gauge,Texas100m,28.4069,-96.7124,3.45,1.0,0,Beryl,2024-07-07 00,1.0,0.43,2024-06-19 00,1.0,0.5
+NOAA_COOPS,8773146,Matagorda City,tide gauge,Texas100m,28.71,-95.9139,3.09,1.0,0,Beryl,2024-07-07 00,1.0,1.04,2024-06-19 00,1.0,0.53
+NOAA_COOPS,8773259,Port Lavaca,tide gauge,Texas100m,28.6406,-96.6098,4.62,1.0,0,Beryl,2024-07-07 00,1.0,0.87,2024-06-19 00,1.0,0.76
+NOAA_COOPS,8773701,Port O'Connor,tide gauge,Texas100m,28.4517,-96.3883,3.95,0.9895,185,Beryl,2024-07-07 00,1.0,1.11,2024-06-19 00,1.0,0.64
+NOAA_COOPS,8773767,Matagorda Bay Entrance Channel,tide gauge,Texas100m,28.4269,-96.3301,5.23,1.0,0,Beryl,2024-07-07 00,1.0,1.18,2024-06-19 00,1.0,0.89
+NOAA_COOPS,8774230,Aransas Wildlife Refuge,tide gauge,Texas100m,28.2283,-96.795,2.87,0.9989,19,Beryl,2024-07-07 00,1.0,0.35,2024-06-19 00,1.0,0.46
+NOAA_COOPS,8774770,Rockport,tide gauge,Texas100m,28.021667,-97.04667,2.15,1.0,0,Beryl,2024-07-07 00,1.0,0.34,2024-06-19 00,1.0,0.53
+NOAA_COOPS,8775222,Viola Turning Basin,tide gauge,Texas100m,27.8461,-97.5207,3.85,1.0,0,Beryl,2024-07-07 00,1.0,0.58,2024-06-19 00,1.0,0.66
+NOAA_COOPS,8775237,Port Aransas,tide gauge,Texas100m,27.8397,-97.0725,4.26,1.0,0,Beryl,2024-07-07 00,1.0,0.76,2024-06-19 00,1.0,0.75
+NOAA_COOPS,8775241,"Aransas, Aransas Pass",tide gauge,Texas100m,27.8366,-97.0391,4.7,1.0,0,Beryl,2024-07-07 00,1.0,0.94,2024-06-19 00,1.0,0.92
+NOAA_COOPS,8775283,"Enbridge, Ingleside",tide gauge,Texas100m,27.818611,-97.20895,3.39,1.0,0,Beryl,2024-07-07 00,1.0,0.54,2024-06-19 00,1.0,0.59
+NOAA_COOPS,8775296,"USS Lexington, Corpus Christi Bay",tide gauge,Texas100m,27.8149,-97.3892,3.07,1.0,0,Beryl,2024-07-07 00,1.0,0.52,2024-06-19 00,1.0,0.66
+NOAA_COOPS,8775792,Packery Channel,tide gauge,Texas100m,27.6333,-97.2367,2.43,1.0,0,Beryl,2024-07-07 00,1.0,0.42,2024-06-19 00,1.0,0.54
+NOAA_COOPS,8776139,S. Bird Island,tide gauge,Texas100m,27.484362,-97.31811,1.9,1.0,0,Beryl,2024-07-07 00,1.0,0.25,2024-06-19 00,1.0,0.46
+NOAA_COOPS,8776604,Baffin Bay,tide gauge,Texas100m,27.297,-97.40517,2.07,1.0,0,Beryl,2024-07-07 00,1.0,0.16,2024-06-20 00,1.0,0.38
+NOAA_COOPS,8777812,Rincon Del San Jose,tide gauge,Texas100m,26.801195,-97.47056,3.52,0.9982,8,Beryl,2024-07-07 00,1.0,0.39,2025-04-03 00,1.0,0.94
+NOAA_COOPS,8778490,Port Mansfield,tide gauge,Texas100m,26.557638,-97.42572,2.42,1.0,0,Beryl,2024-07-07 00,1.0,0.25,2024-06-19 00,1.0,0.45
+NOAA_COOPS,8779280,Realitos Peninsula,tide gauge,Texas100m,26.2624,-97.2853,3.1,1.0,0,Beryl,2024-07-07 00,1.0,0.57,2024-06-19 00,1.0,0.65
+NOAA_COOPS,8779748,South Padre Island CG Station,tide gauge,Texas100m,26.0731,-97.1675,4.04,1.0,0,Beryl,2024-07-07 00,1.0,0.87,2024-06-18 00,1.0,0.9
+NOAA_COOPS,8779749,SPI Brazos Santiago,tide gauge,Texas100m,26.0675,-97.1548,4.39,1.0,0,Beryl,2024-07-07 00,1.0,0.94,2024-06-18 00,1.0,0.92
+NOAA_COOPS,8779770,Port Isabel,tide gauge,Texas100m,26.061167,-97.21553,4.09,1.0,0,Beryl,2024-07-07 00,1.0,0.85,2024-06-18 00,1.0,0.94
+USGS,02479000,"PASCAGOULA RIVER AT MERRILL, MS",river / canal,Louisiana100m,30.97805556,-88.7269444,5.03,0.9822,44,Francine,2024-09-10 00,1.0,0.69,2024-03-12 00,1.0,0.19
+USGS,02475000,"LEAF RIVER NR MCLAIN, MS",river / canal,Louisiana100m,31.10741389,-88.8083222,6.01,0.9573,16,Francine,2024-09-10 00,1.0,0.54,2024-03-10 00,1.0,0.54
+USGS,02479130,"BLACK CREEK NR BROOKLYN, MS",river / canal,Louisiana100m,31.05194444,-89.2041667,7.69,0.9994,8,Francine,2024-09-10 00,1.0,1.07,2025-04-06 00,1.0,2.72
+USGS,02479155,"CYPRESS CREEK NR JANICE, MS",river / canal,Louisiana100m,31.02527778,-89.0166667,10.97,1.0,0,Francine,2024-09-10 00,1.0,0.73,2024-01-24 00,1.0,5.4
+USGS,02479500,"ESCATAWPA RIVER NEAR WILMER, AL",river / canal,Louisiana100m,30.8624092,-88.417792,6.36,0.9948,51,Francine,2024-09-10 00,1.0,0.31,2025-04-06 00,1.0,3.6
+USGS,02479300,"RED CREEK AT VESTRY, MS",river / canal,Louisiana100m,30.7361111,-88.7811111,4.13,1.0,0,Francine,2024-09-10 00,1.0,2.37,2024-04-11 00,1.0,0.91
+USGS,02479310,"PASCAGOULA RIVER AT GRAHAM FERRY, MS",river / canal,Louisiana100m,30.61055556,-88.64138889,4.03,0.9832,197,Francine,2024-09-10 00,1.0,1.0,2024-01-29 00,1.0,0.16
+USGS,0248018020,"ESCATAWPA RIVER AT I-10 NR ORANGE GROVE, MS",river / canal,Louisiana100m,30.4586111,-88.45138889,6.92,0.9026,326,Francine,2024-09-10 00,0.854,0.76,2024-05-14 00,1.0,0.73
+USGS,02480590,"TCHOUTACABOUFFA RIVER NR D'IBERVILLE, MS",river / canal,Louisiana100m,30.4760307,-88.8933643,9.9,0.9924,89,Francine,2024-09-10 00,1.0,1.69,2024-05-13 00,1.0,2.21
+USGS,02481130,"BILOXI RIVER NR LYMAN, MS",river / canal,Louisiana100m,30.48833333,-89.0358333,11.61,0.9926,103,Francine,2024-09-10 00,1.0,3.51,2024-04-10 00,1.0,3.64
+USGS,02481000,"BILOXI RIVER AT WORTHAM, MS",river / canal,Louisiana100m,30.5586111,-89.1219444,9.28,1.0,0,Francine,2024-09-10 00,1.0,3.28,2024-04-09 00,1.0,4.65
+USGS,02481299,"OLD FORT BAYOU AT OCEAN SPRINGS, MS",estuary / tidal channel,Louisiana100m,30.41916667,-88.8280556,6.88,0.9991,6,Francine,2024-09-10 00,1.0,1.55,2024-01-07 00,1.0,1.76
+USGS,02481510,"WOLF RIVER NR LANDON, MS",river / canal,Louisiana100m,30.4836111,-89.2744444,8.78,0.9933,36,Francine,2024-09-10 00,1.0,2.96,2024-04-09 00,1.0,4.63
+USGS,02489500,"Pearl River near Bogalusa, LA",river / canal,Louisiana100m,30.7932614,-89.8209117,3.2,0.9987,4,Francine,2024-09-10 00,1.0,1.4,2024-03-16 00,1.0,0.14
+USGS,02481521,"WOLF RIVER AT BELLE FERRY ROAD NEAR LONG BEACH, MS",estuary / tidal channel,Louisiana100m,30.3933611,-89.2063889,8.52,0.9998,2,Francine,2024-09-10 00,1.0,1.69,2024-04-10 00,1.0,2.33
+USGS,02481660,"JOURDAN RIVER NR BAY ST LOUIS, MS",river / canal,Louisiana100m,30.3872222,-89.4413889,9.25,1.0,0,Francine,2024-09-10 00,1.0,1.78,2024-01-07 00,1.0,1.8
+USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",river / canal,Louisiana100m,30.70583333,-89.8463889,1.56,0.9995,2,Francine,2024-09-10 00,1.0,0.69,2024-02-03 00,1.0,0.08
+USGS,02491500,"Bogue Chitto River at Franklinton, LA",river / canal,Louisiana100m,30.84296176,-90.16203,5.1,1.0,0,Francine,2024-09-10 00,1.0,0.42,2025-05-07 00,1.0,3.27
+USGS,02491800,"Bogue Chitto at Enon, LA",river / canal,Louisiana100m,30.72019444,-90.0835,4.24,1.0,0,Francine,2024-09-10 00,1.0,0.81,2024-01-27 00,1.0,1.63
+USGS,02492000,"Bogue Chitto River near Bush, LA",river / canal,Louisiana100m,30.62935636,-89.8972956,3.02,0.9925,41,Francine,2024-09-10 00,1.0,1.9,2024-01-26 00,1.0,0.65
+USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,river / canal,Louisiana100m,30.63805556,-89.8680556,13.06,0.995,17,Francine,2024-09-10 00,1.0,0.69,2024-02-03 00,1.0,0.08
+USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,river / canal,Louisiana100m,30.59333333,-89.8644444,16.09,0.9993,2,Francine,2024-09-10 00,1.0,0.56,2024-01-26 00,1.0,0.77
+USGS,02492343,"EAST HOBOLOCHITTO CREEK NR CAESAR, MS",river / canal,Louisiana100m,30.57416667,-89.5947222,6.16,0.9762,133,Francine,2024-09-10 00,1.0,1.88,2024-01-24 00,1.0,4.02
+USGS,02492360,"WEST HOBOLOCHITTO CREEK NR MCNEILL, MS",river / canal,Louisiana100m,30.6622222,-89.6861111,9.64,0.9998,1,Francine,2024-09-10 00,1.0,2.26,2024-04-09 00,1.0,4.06
+USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",river / canal,Louisiana100m,30.4625,-89.695,4.06,0.9575,746,Francine,2024-09-10 00,1.0,2.6,2024-01-26 00,1.0,1.84
+USGS,02492700,"Pearl River at I-10 near Slidell, LA",river / canal,Louisiana100m,30.29788889,-89.7022306,1.2,0.9936,20,Francine,2024-09-10 00,1.0,0.81,2025-02-22 00,1.0,0.01
+USGS,02492600,"Pearl River at Pearl River, LA",river / canal,Louisiana100m,30.385193,-89.7367304,1.94,1.0,0,Francine,2024-09-10 00,1.0,1.94,2024-03-19 00,1.0,0.08
+USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,river / canal,Louisiana100m,30.45638889,-89.7797222,2.17,0.9995,1,Francine,2024-09-10 00,1.0,0.52,2024-01-24 00,1.0,0.45
+USGS,07374000,"Mississippi River at Baton Rouge, LA",river / canal,Louisiana100m,30.44566667,-91.1915556,4.8,0.9998,1,Francine,2024-09-10 00,1.0,0.4,2025-04-30 00,1.0,0.07
+USGS,073745245,"Caernarvon Canal Sector Gate at Caernarvon, La",river / canal,Louisiana100m,29.85888889,-89.9069444,2.93,0.9994,4,Francine,2024-09-10 00,1.0,0.56,2024-06-18 00,1.0,0.57
+USGS,073745235,"Bayou Dupre Sector Gate near Violet, LA",river / canal,Louisiana100m,29.93519444,-89.8365833,5.32,0.9975,43,Francine,2024-09-10 00,1.0,0.37,2024-10-05 00,1.0,0.57
+USGS,073745253,"Reggio Canal near Wills Point, LA",river / canal,Louisiana100m,29.78416667,-89.9375,2.43,0.9926,119,Francine,2024-09-10 00,1.0,0.71,2024-06-18 00,1.0,0.74
+USGS,07374525,"Mississippi River at Belle Chasse, LA",river / canal,Louisiana100m,29.85715084,-89.977847,4.41,0.7892,2158,Francine,2024-09-10 00,1.0,0.85,2025-04-29 00,1.0,0.2
+USGS,073745257,Crooked B. NW of L. Cuatro Caballo near Delacroix,estuary / tidal channel,Louisiana100m,29.71894017,-89.72408865,4.17,0.9998,1,Francine,2024-09-10 00,1.0,0.73,2025-10-03 00,1.0,0.73
+USGS,073745258,"Cow Bayou at American Bay nr Pointe-A-La-Hache, LA",estuary / tidal channel,Louisiana100m,29.57076989,-89.7039524,7.59,0.9999,1,Francine,2024-09-10 00,1.0,1.02,2024-06-18 00,1.0,1.04
+USGS,07374526,"Black Bay nr Snake Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,Louisiana100m,29.63354395,-89.5636694,6.8,0.9599,530,Francine,2024-09-10 00,1.0,1.16,2025-10-03 00,1.0,0.9
+USGS,073745275,"Black Bay nr Stone Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,Louisiana100m,29.56930556,-89.5122222,6.57,0.8832,936,Francine,2024-09-10 00,1.0,1.02,2024-06-18 00,1.0,0.9
+USGS,07374527,"Northeast Bay Gardene near Point-A-LA-Hache, LA",estuary / tidal channel,Louisiana100m,29.58600378,-89.6060434,6.73,0.7192,4917,Francine,2024-09-10 00,1.0,1.03,2025-10-03 00,1.0,0.88
+USGS,07375000,"Tchefuncte River near Folsom, LA",river / canal,Louisiana100m,30.6160223,-90.2486954,4.6,1.0,0,Francine,2024-09-10 00,1.0,1.29,2024-01-24 00,1.0,3.99
+USGS,07374581,"Bayou Liberty near Slidell,LA",river / canal,Louisiana100m,30.30130578,-89.83062149,5.68,1.0,0,Francine,2024-09-10 00,1.0,1.67,2024-04-09 00,1.0,1.69
+USGS,07375050,"Tchefuncte River near Covington, LA",river / canal,Louisiana100m,30.4941111,-90.1702222,7.6,0.9991,8,Francine,2024-09-10 00,1.0,4.1,2024-01-24 00,0.979,4.69
+USGS,07375170,"Bogue Falaya at Covington, LA",river / canal,Louisiana100m,30.49963635,-90.0845216,8.84,1.0,0,Francine,2024-09-10 00,1.0,4.69,2024-01-24 00,1.0,4.64
+USGS,07375105,Bogue Falaya River near Camp Covington,river / canal,Louisiana100m,30.55638889,-90.1461111,8.38,0.9932,119,Francine,2024-09-10 00,1.0,4.56,2024-01-23 00,1.0,5.28
+USGS,07375175,"Bogue Falaya River at Boston St. at Covington, LA",river / canal,Louisiana100m,30.47638889,-90.0894444,7.21,1.0,0,Francine,2024-09-10 00,1.0,3.37,2024-01-24 00,1.0,3.16
+USGS,07375222,"Abita River north of Abita Springs, LA",river / canal,Louisiana100m,30.48213676,-90.0389644,17.06,0.9934,115,Francine,2024-09-10 00,1.0,5.17,2024-01-24 00,1.0,4.65
+USGS,07375410,"Tangipahoa River at Tangipahoa, La",river / canal,Louisiana100m,30.876139,-90.495028,5.55,0.9995,9,Francine,2024-09-10 00,1.0,0.28,2025-05-07 00,1.0,2.82
+USGS,07375230,"Tchefuncte River at Madisonville, LA",river / canal,Louisiana100m,30.4040829,-90.1548009,4.05,0.9988,21,Francine,2024-09-10 00,1.0,1.07,2024-06-18 00,1.0,0.65
+USGS,07375300,"Tangipahoa River near Kentwood, LA",river / canal,Louisiana100m,30.93768029,-90.4903728,4.85,1.0,0,Francine,2024-09-10 00,1.0,0.47,2025-05-06 00,1.0,3.1
+USGS,07375280,"TANGIPAHOA RIVER AT OSYKA, MS",river / canal,Louisiana100m,31.0122222,-90.4611111,5.53,0.9982,8,Francine,2024-09-10 00,1.0,0.35,2025-05-06 00,1.0,2.15
+USGS,07375450,"Tangipahoa R nr Tickfaw, La.",river / canal,Louisiana100m,30.602689,-90.438978,6.05,0.9481,762,Francine,2024-09-10 00,1.0,0.64,2025-05-08 00,1.0,2.08
+USGS,07375480,"CHAPPEPEELA CREEK SOUTHEAST OF LORANGER, LA.",river / canal,Louisiana100m,30.6065,-90.332,7.15,1.0,0,Francine,2024-09-10 00,1.0,2.08,2024-01-24 00,1.0,3.97
+USGS,07375430,"Tangipahoa River near Amite, LA",river / canal,Louisiana100m,30.72907467,-90.48425869,4.12,1.0,0,Francine,2024-09-10 00,1.0,0.21,2025-05-07 00,1.0,2.68
+USGS,07375500,"Tangipahoa River at Robert, LA",river / canal,Louisiana100m,30.50658047,-90.3617524,4.71,0.9932,45,Francine,2024-09-10 00,1.0,1.92,2024-01-25 00,1.0,1.96
+USGS,07375650,"Tangipahoa River near Ponchatoula, LA",river / canal,Louisiana100m,30.44369444,-90.3345833,3.45,1.0,0,Francine,2024-09-10 00,1.0,2.13,2024-01-26 00,1.0,0.42
+USGS,07375800,"Tickfaw River at Liverpool, LA",river / canal,Louisiana100m,30.93073559,-90.6734317,4.76,0.9452,335,Francine,2024-09-10 00,1.0,0.09,2025-05-06 00,1.0,2.7
+USGS,07375960,"Tickfaw River at Montpelier, LA",river / canal,Louisiana100m,30.68629707,-90.6431509,3.99,0.9651,151,Francine,2024-09-10 00,1.0,0.27,2025-05-07 00,0.365,2.47
+USGS,07376300,"Tickfaw River Near Springfield, La.",river / canal,Louisiana100m,30.37655556,-90.5511111,3.04,0.8169,3212,Francine,2024-09-10 00,1.0,0.63,2025-10-04 00,1.0,0.39
+USGS,07376000,"Tickfaw River at Holden, LA",river / canal,Louisiana100m,30.5038016,-90.6773163,4.02,0.9999,1,Francine,2024-09-10 00,1.0,0.67,2025-05-10 00,1.0,1.66
+USGS,07376500,"Natalbany River at Baptist, LA",river / canal,Louisiana100m,30.50435795,-90.545924,10.13,1.0,0,Francine,2024-09-10 00,1.0,2.36,2024-01-24 00,1.0,3.02
+USGS,07377000,"Amite River near Darlington, LA",river / canal,Louisiana100m,30.8890694,-90.8445454,6.22,0.9902,32,Francine,2024-09-10 00,1.0,0.19,2025-05-07 00,1.0,3.58
+USGS,07377150,"Amite River at Grangeville, LA",river / canal,Louisiana100m,30.73629484,-90.84176699,5.3,0.6933,2483,Francine,2024-09-10 00,0.0,,2025-05-06 00,1.0,2.94
+USGS,07377210,"Sandy Creek nr Pride, LA",river / canal,Louisiana100m,30.670742,-90.960103,13.01,0.9909,108,Francine,2024-09-10 00,0.99,0.94,2024-02-29 00,1.0,4.25
+USGS,07377230,"Little Sandy Creek at Peairs Rd SE of Milldale, LA",river / canal,Louisiana100m,30.643686,-91.007464,9.23,0.9253,664,Francine,2024-09-10 00,1.0,1.02,2024-03-03 00,1.0,2.98
+USGS,07377243,"Sandy Ck at Alph. Forbes nr Greenwell Springs, LA",river / canal,Louisiana100m,30.621108,-90.982117,7.32,1.0,0,Francine,2024-09-10 00,1.0,0.87,2024-03-04 00,1.0,3.38
+USGS,07377500,"Comite River near Olive Branch, LA",river / canal,Louisiana100m,30.7565718,-91.0439935,8.87,0.9999,1,Francine,2024-09-10 00,1.0,0.5,2024-01-24 00,1.0,2.8
+USGS,07377300,"Amite River at Magnolia, LA",river / canal,Louisiana100m,30.5349106,-90.9806579,5.35,0.9903,158,Francine,2024-09-10 00,1.0,0.51,2024-01-26 00,1.0,1.13
+USGS,07377750,"Comite River near Zachary, LA",river / canal,Louisiana100m,30.64324138,-91.09455,11.04,1.0,0,Francine,2024-09-10 00,1.0,0.5,2025-12-03 00,1.0,3.25
+USGS,07377754,"Comite River near Baker, LA",river / canal,Louisiana100m,30.596297,-91.094272,9.18,0.9999,1,Francine,2024-09-10 00,1.0,0.39,2025-12-03 00,1.0,2.85
+USGS,07377600,"Comite R. at Pt. Hudson-Pride Rd near Milldale, LA",river / canal,Louisiana100m,30.70229538,-91.0512991,7.54,0.9521,493,Francine,2024-09-10 00,1.0,0.52,2024-01-24 00,1.0,2.42
+USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",river / canal,Louisiana100m,30.530744,-91.093717,12.61,0.9933,118,Francine,2024-09-10 00,1.0,0.5,2025-12-03 00,1.0,4.44
+USGS,07378000,"Comite River near Comite, LA",river / canal,Louisiana100m,30.512689,-91.0737158,19.48,0.9992,1,Francine,2024-09-10 00,1.0,1.13,2025-12-03 00,1.0,5.53
+USGS,07378008,"Hurricane Creek at Baton Rouge, LA",river / canal,Louisiana100m,30.48213429,-91.1281616,15.53,0.9978,16,Francine,2024-09-10 00,1.0,1.22,2024-05-15 00,1.0,1.89
+USGS,07378075,"Beaver Bayou at Denham Road nr Baton Rouge, LA",river / canal,Louisiana100m,30.58768705,-91.0248259,8.09,0.9997,1,Francine,2024-09-10 00,1.0,0.34,2024-09-04 00,1.0,2.37
+USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",river / canal,Louisiana100m,30.50574466,-91.0401038,20.9,0.9882,121,Francine,2024-09-10 00,1.0,2.06,2025-12-03 00,1.0,5.5
+USGS,07378100,"Beaver Bayou at Wax Rd near Baton Rouge, LA",river / canal,Louisiana100m,30.5429659,-91.020659,8.18,0.931,233,Francine,2024-09-10 00,1.0,0.56,2024-09-04 00,1.0,1.66
+USGS,07378083,"Beaver Bayou at Hooper Road near Baton Rouge, LA",river / canal,Louisiana100m,30.56102103,-91.0209368,17.85,0.9648,424,Francine,2024-09-10 00,1.0,1.35,2024-09-04 00,1.0,3.13
+USGS,07378500,"Amite River near Denham Springs, LA",river / canal,Louisiana100m,30.464079,-90.99038,11.49,0.9995,3,Francine,2024-09-10 00,1.0,2.13,2024-01-26 00,1.0,1.22
+USGS,07378745,"Alligator Bayou near Kleinpeter, LA",river / canal,Louisiana100m,30.32125,-91.0207222,4.94,0.9942,18,Francine,2024-09-10 00,1.0,0.62,2024-01-29 00,1.0,0.08
+USGS,07378746,"Bayou Manchac at Alligator B. near Kleinpeter, LA",river / canal,Louisiana100m,30.32138889,-91.0209444,7.4,0.9982,32,Francine,2024-09-10 00,1.0,1.11,2024-01-26 00,1.0,0.27
+USGS,07378748,"Bluff Swamp near Kleinpeter, LA",river / canal,Louisiana100m,30.323527,-91.0181576,4.57,0.9999,1,Francine,2024-09-10 00,1.0,0.43,2024-02-03 00,1.0,0.13
+USGS,07379000,"Ward Creek at Government St at Baton Rouge, LA",river / canal,Louisiana100m,30.44446855,-91.1431618,8.61,0.982,126,Francine,2024-09-10 00,1.0,0.57,2025-12-03 00,0.979,1.66
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",river / canal,Louisiana100m,30.4049139,-91.1034382,24.84,0.9998,1,Francine,2024-09-10 00,1.0,1.86,2025-03-28 00,1.0,3.79
+USGS,07379075,Old Ward Crk Div. at Highland Rd. nr Baton Rouge,river / canal,Louisiana100m,30.35519288,-91.0151022,11.01,0.9999,1,Francine,2024-09-10 00,1.0,1.63,2025-12-03 00,1.0,2.84
+USGS,07379100,"North Branch Ward Creek at Baton Rouge, LA",river / canal,Louisiana100m,30.41796914,-91.0914935,13.35,0.846,450,Francine,2024-09-10 00,1.0,1.08,2025-03-28 00,0.979,2.82
+USGS,07380102,"Welsh Gully at J. Broussard Rd nr Prairieville, LA",river / canal,Louisiana100m,30.3368601,-90.9689897,12.91,0.8543,857,Francine,2024-09-10 00,1.0,1.79,2025-07-29 00,1.0,2.54
+USGS,07380101,"Bayou Manchac near Little Prairie, LA",river / canal,Louisiana100m,30.34047129,-90.9173216,4.39,0.6972,326,Francine,2024-09-10 00,1.0,0.93,2024-01-27 00,1.0,0.89
+USGS,07380126,"Henderson Bayou near Port Vincent, LA",river / canal,Louisiana100m,30.2974416,-90.8837198,7.11,0.9998,3,Francine,2024-09-10 00,1.0,1.12,2025-03-28 00,1.0,1.68
+USGS,07380120,"Amite River at Port Vincent, LA",river / canal,Louisiana100m,30.3326939,-90.8520419,2.8,0.9999,1,Francine,2024-09-10 00,1.0,0.62,2024-01-27 00,1.0,0.52
+USGS,07380200,"Amite River near French Settlement, LA",river / canal,Louisiana100m,30.2754733,-90.7792616,2.22,0.9598,705,Francine,2024-09-10 00,1.0,0.53,2024-09-05 00,1.0,0.38
+USGS,07380212,"Airline Canal at Blind River near Gramercy, LA",river / canal,Louisiana100m,30.10158889,-90.7364889,2.6,0.9276,253,Francine,2024-09-10 00,0.25,0.41,2024-09-14 00,0.927,0.27
+USGS,07380127,"Henderson Bayou Pump Station near Port Vincent, LA",river / canal,Louisiana100m,30.31825,-90.8598611,3.32,0.9677,211,Francine,2024-09-10 00,1.0,0.63,2024-01-26 00,1.0,0.36
+USGS,07380215,"Amite River at Hwy 22 near Maurepas, LA",river / canal,Louisiana100m,30.30769444,-90.6087222,2.11,0.9908,112,Francine,2024-09-10 00,1.0,0.55,2024-06-19 00,1.0,0.3
+USGS,073802220,"Panama Canal at Hwy 44 near Gonzales, LA",river / canal,Louisiana100m,30.17077864,-90.9187206,5.79,0.9995,3,Francine,2024-09-10 00,1.0,1.38,2024-04-09 00,1.0,2.0
+USGS,0738022295,"Grand Goudine at Babin Rd Near Duplessis, LA",river / canal,Louisiana100m,30.2621648,-90.9634442,9.32,1.0,0,Francine,2024-09-10 00,1.0,1.82,2024-10-31 00,1.0,1.71
+USGS,0738022395,"Black Bayou at Hwy 621 near Prairieville, LA",river / canal,Louisiana100m,30.26944444,-90.9169444,13.3,0.5736,711,Francine,2024-09-10 00,0.406,1.6,2025-07-16 00,0.365,1.92
+USGS,073802225,"Bayou Conway near Sorrento, LA",river / canal,Louisiana100m,30.1732786,-90.861219,5.42,0.9999,1,Francine,2024-09-10 00,1.0,0.67,2025-07-25 00,1.0,0.17
+USGS,073802245,"Black Bayou E of Gonzales, LA",river / canal,Louisiana100m,30.23741844,-90.8700972,6.16,1.0,0,Francine,2024-09-10 00,1.0,1.02,2024-04-09 00,1.0,1.2
+USGS,073802280,"New River north of Sorrento, La",river / canal,Louisiana100m,30.215194,-90.819906,5.29,1.0,0,Francine,2024-09-10 00,1.0,0.6,2024-06-18 00,1.0,0.22
+USGS,073802273,"Bayou Francois at Hwy 61 Near Gonzales, LA",river / canal,Louisiana100m,30.2274186,-90.8995425,6.56,0.9999,1,Francine,2024-09-10 00,1.0,0.83,2024-04-09 00,1.0,1.33
+USGS,073802284,"New River Canal east of Sorrento, LA",river / canal,Louisiana100m,30.18925,-90.7812778,3.38,0.9932,39,Francine,2024-09-10 00,1.0,0.5,2024-04-09 00,1.0,0.65
+USGS,073802282,"New River Canal near Sorrento, LA",river / canal,Louisiana100m,30.18936433,-90.7862055,3.62,1.0,0,Francine,2024-09-10 00,1.0,0.53,2024-04-09 00,1.0,0.72
+USGS,073802332,Inner Harbor Navigation Canal nr Seabrook bridge,river / canal,Louisiana100m,30.03013889,-90.0341667,3.61,0.9962,67,Francine,2024-09-10 00,1.0,0.79,2024-06-18 00,1.0,0.71
+USGS,073802339,"GIWW East Storm Surge Barrier at New Orleans, LA",river / canal,Louisiana100m,30.01444444,-89.9019444,4.13,1.0,0,Francine,2024-09-10 00,1.0,0.82,2024-06-18 00,1.0,0.76
+USGS,073802511,"Barataria Waterway at Mud Lake S of Lafitte, LA",river / canal,Louisiana100m,29.4742722,-90.0066056,3.16,0.955,788,Francine,2024-09-10 00,0.0,,2024-06-18 00,1.0,0.53
+USGS,07380249,"Caminada Pass NW of Grand Isle, LA",estuary / tidal channel,Louisiana100m,29.2313611,-90.0485278,3.27,0.9999,1,Francine,2024-09-10 00,1.0,0.64,2024-06-18 00,1.0,0.62
+USGS,073802512,"Hackberry Bay NW of Grand Isle, LA",estuary / tidal channel,Louisiana100m,29.39858028,-90.0411947,6.6,0.9244,885,Francine,2024-09-10 00,0.448,0.51,2024-06-18 00,1.0,0.62
+USGS,07380260,"Empire Waterway south of Empire, LA",estuary / tidal channel,Louisiana100m,29.30452778,-89.597,4.06,0.9994,1,Francine,2024-09-10 00,1.0,1.01,2024-11-17 00,1.0,0.88
+USGS,07380330,"Bayou Perot at Point Legard near Cutoff, LA",estuary / tidal channel,Louisiana100m,29.56577778,-90.16555556,2.52,0.9965,6,Francine,2024-09-10 00,1.0,0.6,2024-06-18 00,1.0,0.38
+USGS,073802516,"Barataria Pass at Grand Isle, LA",river / canal,Louisiana100m,29.27283333,-89.9468056,4.1,0.9964,6,Francine,2024-09-10 00,1.0,0.7,2024-06-18 00,1.0,0.68
+USGS,07380401,"Bayou Lafourche SW of Donaldsonville, LA",river / canal,Louisiana100m,30.09658793,-91.0059332,3.33,1.0,0,Francine,2024-09-10 00,1.0,0.91,2024-04-09 00,1.0,0.69
+USGS,07380500,"Bayou Lafourche at Napoleonville, LA",river / canal,Louisiana100m,29.9415,-91.0232222,2.48,1.0,0,Francine,2024-09-10 00,1.0,1.12,2024-04-09 00,1.0,0.77
+USGS,07381150,"Bayou Lafourche at Lockport, LA",river / canal,Louisiana100m,29.64705556,-90.5367778,1.5,0.9919,142,Francine,2024-09-10 00,1.0,0.38,2024-09-06 00,1.0,0.19
+USGS,07381000,"Bayou Lafourche at Thibodaux, LA",river / canal,Louisiana100m,29.7979854,-90.8225932,3.11,0.9965,30,Francine,2024-09-10 00,1.0,1.42,2024-01-23 00,1.0,0.85
+USGS,07381324,"Bayou Grand Caillou at Dulac, LA",river / canal,Louisiana100m,29.38299869,-90.7153674,3.0,0.5933,7064,Francine,2024-09-10 00,1.0,0.54,2024-06-18 00,1.0,0.3
+USGS,073813498,"Caillou Bay SW of Cocodrie, LA",estuary / tidal channel,Louisiana100m,29.07805556,-90.8713889,5.75,0.9027,815,Francine,2024-09-10 00,0.49,1.4,2024-06-17 00,1.0,0.9
+USGS,07381350,"Company Canal at Hwy 1 at Lockport, LA",river / canal,Louisiana100m,29.64523908,-90.5448205,1.49,0.9888,195,Francine,2024-09-10 00,1.0,0.37,2024-09-06 00,1.0,0.2
+USGS,07381349,"Caillou Lake (Sister Lake) SW of Dulac, LA",lake,Louisiana100m,29.24916667,-90.9211111,6.3,0.9175,541,Francine,2024-09-10 00,1.0,1.8,2024-11-08 00,1.0,0.65
+USGS,07381427,"Bayou Grosse Tete S. of I10 at Grosse Tete, LA",river / canal,Louisiana100m,30.4147222,-91.4320833,3.28,1.0,0,Francine,2024-09-10 00,1.0,0.28,2025-05-09 00,1.0,0.62
+USGS,07381429,"Choctaw Bayou at I-10 east of Grosse Tete, LA",river / canal,Louisiana100m,30.44380348,-91.3478872,5.14,1.0,0,Francine,2024-09-10 00,1.0,0.27,2025-05-08 00,1.0,0.63
+USGS,07381412,INTRACOASTAL WATERWAY NR PORT ALLEN LA,river / canal,Louisiana100m,30.4322222,-91.2104722,4.44,1.0,0,Francine,2024-09-10 00,1.0,0.26,2025-05-08 00,1.0,0.38
+USGS,07381355,"Company Canal at Salt Barrier near Lockport, LA",river / canal,Louisiana100m,29.62733333,-90.5576667,1.46,0.9656,310,Francine,2024-09-10 00,1.0,0.34,2024-09-06 00,1.0,0.18
+USGS,07381452,"Choctaw Bayou at Hwy 404 W of White Castle, LA",river / canal,Louisiana100m,30.12633333,-91.2762778,1.4,1.0,0,Francine,2024-09-10 00,1.0,0.27,2024-01-27 00,1.0,0.08
+USGS,07381460,"Bayou Milhomme near Stephensville, LA",river / canal,Louisiana100m,29.78025,-91.1669167,1.81,0.9704,125,Francine,2024-09-10 00,0.521,0.35,2024-06-05 00,1.0,0.05
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",river / canal,Louisiana100m,30.1557222,-91.3313889,2.58,1.0,0,Francine,2024-09-10 00,1.0,0.21,2025-05-09 00,1.0,0.25
+USGS,07381454,"Belle River at Hwy 70 near Pierre Part, LA",river / canal,Louisiana100m,29.9091111,-91.2158333,1.28,1.0,0,Francine,2024-09-10 00,1.0,0.25,2024-06-04 00,1.0,0.03
+USGS,07381482,Old River Outflow Channel below Hydropower Channel,river / canal,Louisiana100m,31.06675,-91.6482778,8.35,0.9225,680,Francine,2024-09-10 00,1.0,0.4,2025-04-30 00,1.0,0.23
+USGS,073815450,"Chicot Pass near Myette Point near Charenton, LA",river / canal,Louisiana100m,29.89270406,-91.4456662,3.4,0.863,2212,Francine,2024-09-10 00,0.854,0.41,2025-05-06 00,1.0,0.07
+USGS,07381490,"Atchafalaya River at Simmesport, LA",river / canal,Louisiana100m,30.9825,-91.7983333,8.41,0.9643,257,Francine,2024-09-10 00,0.917,0.32,2025-04-30 00,0.917,0.15
+USGS,07381515,"Atchafalaya River at Butte La Rose, LA",river / canal,Louisiana100m,30.28158638,-91.6867797,4.1,0.9985,26,Francine,2024-09-10 00,1.0,0.36,2025-05-02 00,1.0,0.07
+USGS,07381567,"Buffalo Cove at Round Island near Charenton, LA",river / canal,Louisiana100m,29.9835356,-91.5251136,3.06,0.9627,360,Francine,2024-09-10 00,1.0,0.38,2025-05-06 00,1.0,0.07
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",river / canal,Louisiana100m,29.69798645,-91.3728855,5.24,0.9799,44,Francine,2024-09-10 00,1.0,0.72,2025-05-01 00,1.0,0.12
+USGS,073815963,"Murphy Lake near Bayou Sorrel, LA",lake,Louisiana100m,30.10655556,-91.3854167,1.63,0.985,120,Francine,2024-09-10 00,0.844,0.22,2025-05-08 00,0.948,0.09
+USGS,073815945,"Bayou Teche E of Calumet Flood Gate at Calumet, LA",river / canal,Louisiana100m,29.70241167,-91.3686858,4.03,0.9409,669,Francine,2024-09-10 00,0.979,0.67,2024-09-05 00,1.0,0.59
+USGS,07381600,"Lower Atchafalaya River at Morgan City, LA",river / canal,Louisiana100m,29.6928482,-91.2119507,4.27,0.9981,5,Francine,2024-09-10 00,1.0,0.58,2025-05-06 00,1.0,0.09
+USGS,073816525,Mouth of Atchafalaya River at Atchafalaya Bay,river / canal,Louisiana100m,29.43025,-91.3338889,7.28,0.9995,7,Francine,2024-09-10 00,1.0,0.95,2024-04-09 00,1.0,1.27
+USGS,07382000,"Bayou Cocodrie near Clearwater, LA",river / canal,Louisiana100m,31.00027778,-92.3802778,3.35,1.0,0,Francine,2024-09-10 00,1.0,0.68,2024-11-11 00,1.0,0.54
+USGS,07381670,"GIWW at Bayou Sale Ridge near Franklin, LA",river / canal,Louisiana100m,29.68083333,-91.4705556,5.42,0.9832,203,Francine,2024-09-10 00,1.0,0.73,2025-05-14 00,1.0,0.23
+USGS,07383500,"Bayou Des Glaises Diversion Ch. at Moreauville, LA",river / canal,Louisiana100m,31.0332528,-91.9826414,9.1,0.9235,1137,Francine,2024-09-10 00,1.0,0.58,2024-11-09 00,1.0,3.37
+USGS,07382500,"Bayou Courtableau at Washington, LA",river / canal,Louisiana100m,30.61825175,-92.0556741,3.92,0.9998,1,Francine,2024-09-10 00,1.0,0.62,2024-01-27 00,1.0,0.22
+USGS,07384400,"State Canal near Krotz Springs, LA",river / canal,Louisiana100m,30.56602634,-91.8315047,1.77,1.0,0,Francine,2024-09-10 00,1.0,0.36,2025-05-12 00,1.0,0.02
+USGS,07385700,"Bayou Teche at Keystone L&D nr St. Martinville, LA",river / canal,Louisiana100m,30.07103537,-91.8292836,2.11,0.9331,785,Francine,2024-09-10 00,0.74,0.1,2025-06-12 00,1.0,0.64
+USGS,07385702,Bayou Teche below Keystone L&D nr St. Martinville,river / canal,Louisiana100m,30.07075759,-91.8290058,8.83,0.9753,204,Francine,2024-09-10 00,1.0,0.56,2025-06-12 00,1.0,2.36
+USGS,07385765,"Bayou Teche at Adeline Bridge near Jeanerette, LA",river / canal,Louisiana100m,29.87937163,-91.5862248,3.25,1.0,0,Francine,2024-09-10 00,1.0,0.34,2025-06-12 00,1.0,0.5
+USGS,07385820,"Bayou Teche W of Calumet Flood Gate at Calumet, LA",river / canal,Louisiana100m,29.70409736,-91.3728854,4.75,0.9331,1174,Francine,2024-09-10 00,1.0,0.7,2025-06-28 00,1.0,0.22
+USGS,07386600,"Vermilion River (B. Vermilion) near Carencro, LA",river / canal,Louisiana100m,30.36825387,-91.9876184,12.96,0.993,68,Francine,2024-09-10 00,1.0,0.38,2025-05-08 00,1.0,0.49
+USGS,07386850,"Vermilion River near Lafayette, LA",river / canal,Louisiana100m,30.219367,-91.955952,8.39,0.887,1982,Francine,2024-09-10 00,1.0,0.36,2025-05-09 00,1.0,0.43
+USGS,07386940,"Vermilion River at Hwy 733 near Lafayette, LA",river / canal,Louisiana100m,30.14186928,-92.0756783,11.36,0.9922,37,Francine,2024-09-10 00,1.0,0.7,2024-11-12 00,1.0,2.7
+USGS,07386880,"Vermilion River at Surrey St. at Lafayette, LA",river / canal,Louisiana100m,30.2174229,-91.9928975,9.31,0.9924,19,Francine,2024-09-10 00,1.0,0.35,2025-04-23 00,1.0,2.31
+USGS,07386980,"Vermilion River at Perry, LA",river / canal,Louisiana100m,29.9511111,-92.1563611,7.53,0.9995,1,Francine,2024-09-10 00,1.0,0.88,2025-05-06 00,1.0,1.08
+USGS,08010000,"Bayou Des Cannes near Eunice, LA",river / canal,Louisiana100m,30.48288889,-92.4906944,16.57,0.9274,274,Francine,2024-09-10 00,0.99,0.95,2025-05-08 00,1.0,0.51
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",estuary / tidal channel,Louisiana100m,29.67444444,-92.1355556,7.48,0.9508,864,Francine,2024-09-10 00,1.0,1.37,2024-11-03 00,1.0,1.02
+USGS,07387040,"Vermilion Bay near Cypremort Point, LA",lake,Louisiana100m,29.71329139,-91.8804143,7.26,0.9744,181,Francine,2024-09-10 00,1.0,1.23,2024-11-03 00,1.0,1.0
+USGS,08012000,"Bayou Nezpique near Basile, LA",river / canal,Louisiana100m,30.48077778,-92.63175,5.26,0.9999,1,Francine,2024-09-10 00,1.0,1.66,2024-05-18 00,1.0,0.5
+USGS,08012150,"Mermentau River At Mermentau, LA",river / canal,Louisiana100m,30.19,-92.5905556,1.8,0.9614,537,Francine,2024-09-10 00,1.0,0.06,2025-05-11 00,1.0,0.21
+USGS,08013250,"Calcasieu River near Oakdale, LA",river / canal,Louisiana100m,30.822275,-92.6846694,3.5,1.0,0,Francine,2024-09-10 00,1.0,0.15,2024-04-12 00,1.0,1.77
+USGS,08013000,"Calcasieu River nr Glenmora, LA",river / canal,Louisiana100m,30.99666667,-92.6736111,3.87,0.9996,5,Francine,2024-09-10 00,1.0,0.25,2024-04-11 00,1.0,1.66
+USGS,08013500,"Calcasieu River near Oberlin, LA",river / canal,Louisiana100m,30.6404757,-92.8140368,4.23,0.9991,1,Francine,2024-09-10 00,1.0,0.4,2024-11-10 00,1.0,4.13
+USGS,08014500,"Ouiska Chitto Creek Near Oberlin, LA",river / canal,Louisiana100m,30.69875,-92.8931944,4.82,0.9751,203,Francine,2024-09-10 00,1.0,0.68,2025-05-07 00,1.0,4.58
+USGS,08014881,"Bundick Lake at Spillway near DeRidder, LA",lake,Louisiana100m,30.72666667,-93.095,1.77,0.9978,12,Francine,2024-09-10 00,1.0,0.04,2024-04-11 00,1.0,0.87
+USGS,08015500,"Calcasieu River near Kinder, LA",river / canal,Louisiana100m,30.50255556,-92.9154167,6.51,0.9334,194,Francine,2024-09-10 00,0.99,0.27,2025-05-08 00,0.979,1.64
+USGS,08014800,"Bundick Creek near DeRidder, LA",river / canal,Louisiana100m,30.81880557,-93.2301619,10.17,0.9999,1,Francine,2024-09-10 00,1.0,0.5,2024-04-09 00,1.0,5.95
+USGS,08017044,"Calcasieu River at I-10 at Lake Charles, LA",river / canal,Louisiana100m,30.23714987,-93.2473764,5.49,0.9994,2,Francine,2024-09-10 00,1.0,0.87,2024-07-07 00,1.0,1.18
+USGS,08017095,"North Calcasieu Lake near Hackberry, LA",lake,Louisiana100m,30.0318786,-93.2995989,5.11,0.9864,236,Francine,2024-09-10 00,1.0,0.85,2024-07-07 00,1.0,1.18
+USGS,08017118,"Calcasieu River at Cameron, LA",estuary / tidal channel,Louisiana100m,29.8157762,-93.349043,6.6,0.862,908,Francine,2024-09-10 00,1.0,0.96,2024-11-03 00,1.0,0.71
+USGS,08026000,"Sabine Rv nr Burkeville, TX",river / canal,Louisiana100m,31.06408004,-93.5196165,20.48,0.9975,40,Francine,2024-09-10 00,1.0,0.07,2024-06-08 00,1.0,0.66
+USGS,08028500,"Sabine Rv nr Bon Wier, TX",river / canal,Louisiana100m,30.74714557,-93.608508,8.08,1.0,0,Francine,2024-09-10 00,1.0,0.08,2024-06-09 00,1.0,0.2
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",river / canal,Louisiana100m,30.95297558,-93.3529587,12.12,0.9949,45,Francine,2024-09-10 00,1.0,0.26,2024-04-09 00,1.0,5.81
+USGS,08029500,"Big Cow Ck nr Newton, TX",river / canal,Louisiana100m,30.81888889,-93.7855556,8.29,0.999,15,Francine,2024-09-10 00,1.0,0.5,2024-04-09 00,1.0,3.7
+USGS,08030520,"Sabine Rv at Intl Paper nr Orange, TX",river / canal,Louisiana100m,30.19985278,-93.7184194,1.95,0.5575,1034,Francine,2024-09-10 00,1.0,0.37,2024-05-19 00,1.0,0.22
+USGS,08030540,"Sabine Rv (at Navy Pier) at Orange, TX",estuary / tidal channel,Louisiana100m,30.09798774,-93.7215544,4.06,1.0,0,Francine,2024-09-10 00,1.0,0.73,2024-07-07 00,1.0,0.98
+USGS,08030500,"Sabine Rv nr Ruliff, TX",river / canal,Louisiana100m,30.30381684,-93.7437784,3.55,0.9977,22,Francine,2024-09-10 00,1.0,0.13,2024-04-12 00,1.0,1.24
+USGS,08030530,"Sabine Rv at I-10 nr Orange, TX",estuary / tidal channel,Louisiana100m,30.127725,-93.7017833,3.9,1.0,0,Francine,2024-09-10 00,1.0,0.72,2024-05-20 00,1.0,0.15
+USGS,08030730,"Adams Bayou at FM 3247 nr Orange, TX",estuary / tidal channel,Louisiana100m,30.13194444,-93.7866111,6.47,1.0,0,Francine,2024-09-10 00,1.0,0.76,2024-05-01 00,1.0,1.71
+USGS,08031010,"Cow Bayou at FM 1442 nr Orangefield, TX",estuary / tidal channel,Louisiana100m,30.1079861,-93.8963417,6.27,1.0,0,Francine,2024-09-10 00,1.0,0.76,2024-05-02 00,1.0,1.73
+USGS,08030800,"Adams Bayou at SH87 nr Orange, TX",estuary / tidal channel,Louisiana100m,30.09347778,-93.7497889,4.2,1.0,0,Francine,2024-09-10 00,1.0,0.75,2024-07-07 00,1.0,1.02
+USGS,08031000,"Cow Bayou nr Mauriceville, TX",river / canal,Louisiana100m,30.18632045,-93.9085058,12.83,0.9994,8,Francine,2024-09-10 00,1.0,0.23,2024-05-02 00,1.0,1.38
+USGS,08031050,"Cow Bayou at SH 87 nr Bridge City, TX",estuary / tidal channel,Louisiana100m,30.04455278,-93.8214944,4.06,1.0,0,Francine,2024-09-10 00,1.0,0.75,2024-07-07 00,1.0,1.04
+USGS,08033350,"Piney Ck at US 59 nr Corrigan, TX",river / canal,Galveston100m,31.05039167,-94.8242639,9.8,0.9982,18,Beryl,2024-07-07 00,1.0,2.68,2024-04-28 00,1.0,4.19
+USGS,08033000,"Neches Rv nr Diboll, TX",river / canal,Galveston100m,31.1329682,-94.8099456,3.19,0.9968,17,Beryl,2024-07-07 00,1.0,2.16,2024-05-13 00,1.0,0.49
+USGS,08031020,"Cole Ck at I-10 nr Orange, TX",river / canal,Louisiana100m,30.132125,-93.8638139,10.79,0.9975,12,Francine,2024-09-10 00,1.0,0.32,2024-05-01 00,1.0,3.24
+USGS,08033500,"Neches Rv nr Rockland, TX",river / canal,Galveston100m,31.025,-94.3994444,5.45,1.0,0,Beryl,2024-07-07 00,1.0,1.97,2024-05-04 00,1.0,0.37
+USGS,08040600,"Neches Rv nr Town Bluff, TX",river / canal,Galveston100m,30.79103579,-94.1510237,10.51,0.9873,133,Beryl,2024-07-07 00,1.0,0.92,2024-05-16 00,1.0,0.58
+USGS,08041300,"Village Ck at US Hwy 69 nr Village Mills, TX",river / canal,Galveston100m,30.481425,-94.3946528,5.8,1.0,0,Beryl,2024-07-07 00,1.0,1.99,2024-05-02 00,1.0,1.98
+USGS,08041000,"Neches Rv at Evadale, TX",river / canal,Louisiana100m,30.35576944,-94.0932566,2.43,1.0,0,Francine,2024-09-10 00,1.0,0.46,2024-05-18 00,1.0,0.16
+USGS,08041500,"Village Ck nr Kountze, TX",river / canal,Galveston100m,30.3979862,-94.2635215,6.18,0.9819,149,Beryl,2024-07-07 00,1.0,2.17,2024-04-10 00,1.0,7.21
+USGS,08041700,"Pine Island Bayou nr Sour Lake, TX",river / canal,Galveston100m,30.1060464,-94.3346324,6.0,1.0,0,Beryl,2024-07-07 00,1.0,2.63,2024-05-04 00,1.0,0.45
+USGS,08041749,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",estuary / tidal channel,Galveston100m,30.17882253,-94.1887943,4.69,1.0,0,Beryl,2024-07-07 00,1.0,0.73,2024-05-04 00,1.0,0.56
+USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",estuary / tidal channel,Galveston100m,30.156878,-94.1143469,5.2,1.0,0,Beryl,2024-07-07 00,1.0,0.8,2024-05-05 00,1.0,0.29
+USGS,08041788,"Bairds Bayou at I-10 nr Beaumont, TX",river / canal,Louisiana100m,30.09553889,-94.0767722,4.91,0.9132,151,Francine,2024-09-10 00,0.625,0.84,2024-05-05 00,0.99,0.28
+USGS,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",urban creek (Houston),Galveston100m,29.67555556,-94.6661139,6.15,0.9999,1,Beryl,2024-07-07 00,1.0,2.13,2024-06-19 00,1.0,0.86
+USGS,08065820,"Larrison Ck at FM 1428 nr Midway, TX",river / canal,Galveston100m,30.949675,-95.7164278,17.21,0.7307,3572,Beryl,2024-07-07 00,1.0,1.07,2024-05-01 00,1.0,5.08
+USGS,08065800,"Bedias Ck nr Madisonville, TX",river / canal,Galveston100m,30.8847222,-95.7777778,13.74,0.9998,2,Beryl,2024-07-07 00,1.0,1.64,2024-05-01 00,1.0,2.7
+USGS,08065925,"Nelson Ck at FM 247 nr Huntsville, TX",river / canal,Galveston100m,30.8222611,-95.5946306,18.94,0.9917,39,Beryl,2024-07-07 00,1.0,1.63,2024-05-01 00,1.0,5.06
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",river / canal,Galveston100m,31.13739167,-95.4073028,16.91,0.9911,61,Beryl,2024-07-07 00,1.0,3.38,2025-06-11 00,1.0,4.07
+USGS,08066000,"Trinity Rv at Riverside, TX",river / canal,Galveston100m,30.85935514,-95.39883,2.67,1.0,0,Beryl,2024-07-07 00,1.0,0.61,2024-05-04 00,1.0,0.38
+USGS,08066175,"Kickapoo Ck at Onalaska, TX",river / canal,Galveston100m,30.88675,-95.0803889,17.54,0.9848,86,Beryl,2024-07-07 00,1.0,1.94,2024-05-01 00,0.375,5.65
+USGS,08066200,"Long King Ck at Livingston, TX",river / canal,Galveston100m,30.716306,-94.9588237,22.18,0.9998,3,Beryl,2024-07-07 00,1.0,2.96,2024-05-01 00,1.0,7.06
+USGS,08066380,"Big Ck at SH 150 nr Shepherd, TX",river / canal,Galveston100m,30.50217778,-95.0312889,12.02,0.9704,135,Beryl,2024-07-07 00,1.0,1.66,2024-05-01 00,1.0,4.29
+USGS,08066250,"Trinity Rv nr Goodrich, TX",river / canal,Galveston100m,30.57214544,-94.9488223,10.5,1.0,0,Beryl,2024-07-07 00,1.0,3.43,2024-05-02 00,1.0,3.02
+USGS,08066300,"Menard Ck nr Rye, TX",urban creek (Houston),Galveston100m,30.48138889,-94.7797222,10.94,0.9991,8,Beryl,2024-07-07 00,1.0,1.15,2024-05-02 00,1.0,4.19
+USGS,08066500,"Trinity Rv at Romayor, TX",urban creek (Houston),Galveston100m,30.4252067,-94.8507622,5.64,0.9802,174,Beryl,2024-07-07 00,1.0,2.44,2024-05-02 00,1.0,1.26
+USGS,08067000,"Trinity Rv at Liberty, TX",urban creek (Houston),Galveston100m,30.05771539,-94.8182567,3.93,0.9999,1,Beryl,2024-07-07 00,1.0,2.65,2024-05-05 00,1.0,0.29
+USGS,08067070,"CWA Canal nr Dayton, TX",urban creek (Houston),Galveston100m,29.96132898,-94.8102003,3.63,1.0,0,Beryl,2024-07-07 00,1.0,0.78,2025-05-12 00,1.0,0.35
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",estuary / tidal channel,Galveston100m,29.9418847,-94.774366,5.15,0.9977,15,Beryl,2024-07-07 00,1.0,1.5,2024-05-06 00,1.0,0.27
+USGS,08067118,"Lk Charlotte nr Anahuac, TX",estuary / tidal channel,Galveston100m,29.86744193,-94.7149197,1.93,0.9994,1,Beryl,2024-07-07 00,1.0,0.74,2024-05-06 00,1.0,0.27
+USGS,08067250,"Trinity Rv at IH 10 nr Wallisville, TX",estuary / tidal channel,Galveston100m,29.83707778,-94.7635944,4.8,0.9547,773,Beryl,2024-07-07 00,1.0,1.28,2024-05-06 00,0.99,0.24
+USGS,08067280,"Turtle Bayou at I-10 nr Hankamer, TX",urban creek (Houston),Galveston100m,29.84058056,-94.654225,2.31,0.9962,59,Beryl,2024-07-07 00,1.0,0.86,2024-05-02 00,1.0,0.82
+USGS,08067500,"Cedar Bayou nr Crosby, TX",urban creek (Houston),Galveston100m,29.97271914,-94.9857602,13.2,0.9991,16,Beryl,2024-07-07 00,1.0,3.47,2024-05-02 00,1.0,4.45
+USGS,08067525,"Goose Ck at Baytown, TX",urban creek (Houston),Galveston100m,29.77078197,-94.9996503,11.38,0.9936,112,Beryl,2024-07-07 00,1.0,2.76,2025-06-11 00,1.0,3.09
+USGS,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",river / canal,Galveston100m,30.6460298,-95.675224,10.68,0.9801,347,Beryl,2024-07-07 00,1.0,1.9,2024-05-01 00,1.0,4.15
+USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",urban creek (Houston),Galveston100m,30.34215289,-95.542998,17.67,0.9999,1,Beryl,2024-07-07 00,1.0,2.06,2024-05-01 00,1.0,3.32
+USGS,08067920,"Lake Ck at Sendera Ranch Rd nr Conroe, TX",urban creek (Houston),Galveston100m,30.25775,-95.5636944,10.85,0.9997,5,Beryl,2024-07-07 00,1.0,3.48,2024-05-02 00,1.0,2.63
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",urban creek (Houston),Galveston100m,30.24465738,-95.4571616,12.11,0.9991,1,Beryl,2024-07-07 00,1.0,3.19,2024-05-02 00,1.0,3.69
+USGS,08068275,"Spring Ck nr Tomball, TX",urban creek (Houston),Galveston100m,30.11993899,-95.6460559,9.25,1.0,0,Beryl,2024-07-07 00,1.0,2.81,2024-05-02 00,1.0,3.79
+USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",urban creek (Houston),Galveston100m,30.14116667,-95.3382222,10.93,0.9999,1,Beryl,2024-07-07 00,1.0,3.85,2024-05-02 00,1.0,5.13
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",urban creek (Houston),Galveston100m,30.1703611,-95.5416389,12.86,0.9999,1,Beryl,2024-07-07 00,1.0,3.73,2024-05-03 00,1.0,1.39
+USGS,08068325,"Willow Ck nr Tomball, TX",urban creek (Houston),Galveston100m,30.10549526,-95.5466084,19.47,1.0,0,Beryl,2024-07-07 00,1.0,4.54,2024-05-01 00,1.0,5.39
+USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",urban creek (Houston),Galveston100m,30.19055556,-95.4911111,20.7,0.9358,531,Beryl,2024-07-07 00,1.0,2.66,2024-07-22 00,1.0,2.67
+USGS,08068400,"Panther Br at Gosling Rd, The Woodlands, TX",urban creek (Houston),Galveston100m,30.192159,-95.4838288,17.71,0.9999,1,Beryl,2024-07-07 00,1.0,2.76,2024-07-22 00,1.0,2.89
+USGS,08068450,"Panther Br nr Spring, TX",urban creek (Houston),Galveston100m,30.1343832,-95.4777175,11.36,1.0,0,Beryl,2024-07-07 00,1.0,2.99,2024-05-01 00,1.0,3.28
+USGS,08068500,"Spring Ck nr Spring, TX",urban creek (Houston),Galveston100m,30.11049517,-95.4363275,15.78,0.9917,46,Beryl,2024-07-07 00,1.0,4.35,2024-05-03 00,1.0,2.29
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",urban creek (Houston),Galveston100m,29.92105823,-95.840229,7.33,0.9922,136,Beryl,2024-07-07 00,1.0,3.54,2024-07-27 00,1.0,0.26
+USGS,08068720,"Cypress Ck at Katy-Hockley Rd nr Hockley, TX",urban creek (Houston),Galveston100m,29.9502237,-95.8082835,7.8,0.9276,852,Beryl,2024-07-07 00,1.0,2.32,2024-07-25 00,1.0,1.47
+USGS,08068740,"Cypress Ck at House-Hahl Rd nr Cypress, TX",urban creek (Houston),Galveston100m,29.959112,-95.7177249,17.52,0.9993,3,Beryl,2024-07-07 00,1.0,3.26,2024-07-26 00,1.0,1.42
+USGS,08068780,"Little Cypress Ck nr Cypress, TX",urban creek (Houston),Galveston100m,30.01605437,-95.6974463,8.52,1.0,0,Beryl,2024-07-07 00,1.0,2.7,2024-07-25 00,1.0,3.36
+USGS,08068900,"Cypress Ck at Stuebner-Airline Rd nr Westfield, TX",urban creek (Houston),Galveston100m,30.00660994,-95.511885,25.4,0.9993,9,Beryl,2024-07-07 00,1.0,6.59,2024-01-23 00,1.0,2.02
+USGS,08068800,"Cypress Ck at Grant Rd nr Cypress, TX",urban creek (Houston),Galveston100m,29.97355566,-95.5985545,13.47,1.0,0,Beryl,2024-07-07 00,1.0,4.36,2024-07-26 00,1.0,2.37
+USGS,08069000,"Cypress Ck nr Westfield, TX",urban creek (Houston),Galveston100m,30.0357753,-95.428827,18.44,0.9998,2,Beryl,2024-07-07 00,1.0,5.76,2024-05-01 00,1.0,4.46
+USGS,08069500,"W Fk San Jacinto Rv nr Humble, TX",urban creek (Houston),Galveston100m,30.02716385,-95.2579888,4.77,0.9999,1,Beryl,2024-07-07 00,1.0,2.82,2024-05-03 00,1.0,1.69
+USGS,08070000,"E Fk San Jacinto Rv nr Cleveland, TX",urban creek (Houston),Galveston100m,30.33659809,-95.1040999,7.77,0.9999,1,Beryl,2024-07-07 00,1.0,3.1,2024-05-01 00,1.0,3.1
+USGS,08070200,"E Fk San Jacinto Rv nr New Caney, TX",urban creek (Houston),Galveston100m,30.14523056,-95.1246139,10.8,0.9884,106,Beryl,2024-07-07 00,1.0,1.9,2024-05-02 00,1.0,4.1
+USGS,08070500,"Caney Ck nr Splendora, TX",urban creek (Houston),Galveston100m,30.25965789,-95.3024361,12.23,0.9752,435,Beryl,2024-07-07 00,1.0,4.27,2024-05-01 00,1.0,6.49
+USGS,08071000,"Peach Ck at Splendora, TX",urban creek (Houston),Galveston100m,30.2327137,-95.1682662,7.97,1.0,0,Beryl,2024-07-07 00,1.0,2.38,2024-05-02 00,1.0,4.34
+USGS,08072000,"Lk Houston nr Sheldon, TX",lake,Galveston100m,29.91633316,-95.1413198,2.14,1.0,0,Beryl,2024-07-07 00,1.0,0.86,2024-05-02 00,1.0,1.3
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",urban creek (Houston),Galveston100m,29.7230092,-95.7671718,13.07,1.0,0,Beryl,2024-07-07 00,1.0,3.09,2024-04-08 00,1.0,2.4
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",estuary / tidal channel,Galveston100m,29.87633426,-95.0938189,8.34,0.9999,1,Beryl,2024-07-07 00,1.0,2.95,2024-05-03 00,1.0,2.41
+USGS,08072300,"Buffalo Bayou nr Katy, TX",urban creek (Houston),Galveston100m,29.74328664,-95.8068951,8.89,1.0,0,Beryl,2024-07-07 00,1.0,3.17,2024-04-08 00,1.0,2.45
+USGS,08072470,"Mason Ck at Prince Ck Court nr Houston, TX",urban creek (Houston),Galveston100m,29.7677295,-95.7285594,7.7,0.9995,1,Beryl,2024-07-07 00,1.0,2.56,2024-04-08 00,0.99,2.0
+USGS,08072520,"Clodine Ditch at Noble Rd nr Addicks, TX",urban creek (Houston),Galveston100m,29.7555972,-95.6457306,4.31,0.9955,79,Beryl,2024-07-07 00,1.0,1.75,2024-11-01 00,1.0,0.77
+USGS,08072600,"Buffalo Bayou at State Hwy 6 nr Addicks, TX",urban creek (Houston),Galveston100m,29.76938056,-95.6431667,12.05,0.9999,1,Beryl,2024-07-07 00,1.0,4.21,2024-07-30 00,1.0,0.63
+USGS,08072680,"S Mayde Ck at Heathergold Dr nr Addicks, TX",urban creek (Houston),Galveston100m,29.8051111,-95.7096111,20.77,0.9977,40,Beryl,2024-07-07 00,1.0,3.31,2024-04-08 00,1.0,3.3
+USGS,08072730,"Bear Ck nr Barker, TX",urban creek (Houston),Galveston100m,29.8307828,-95.6868912,13.66,0.9995,1,Beryl,2024-07-07 00,1.0,3.5,2024-04-08 00,0.99,2.31
+USGS,08072760,"Langham Ck at W Little York Rd nr Addicks, TX",urban creek (Houston),Galveston100m,29.86717035,-95.646612,12.48,0.9965,60,Beryl,2024-07-07 00,1.0,2.76,2024-04-08 00,1.0,1.97
+USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",urban creek (Houston),Galveston100m,29.79027778,-95.6238889,18.63,0.9999,1,Beryl,2024-07-07 00,1.0,4.24,2024-01-29 00,1.0,1.98
+USGS,08072800,"Langham Ck nr Addicks, TX",urban creek (Houston),Galveston100m,29.8357824,-95.6257783,14.34,0.9975,44,Beryl,2024-07-07 00,1.0,1.21,2025-01-08 00,1.0,2.26
+USGS,08073500,"Buffalo Bayou nr Addicks, TX",urban creek (Houston),Galveston100m,29.7618958,-95.6057782,21.01,0.9994,1,Beryl,2024-07-07 00,1.0,5.76,2024-11-01 00,1.0,3.91
+USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",urban creek (Houston),Galveston100m,29.76217336,-95.5577213,30.34,0.9999,1,Beryl,2024-07-07 00,1.0,6.87,2024-11-01 00,1.0,5.01
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",urban creek (Houston),Galveston100m,29.7468959,-95.5235538,31.42,1.0,0,Beryl,2024-07-07 00,1.0,7.09,2024-11-01 00,1.0,4.63
+USGS,08074000,"Buffalo Bayou at Houston, TX",estuary / tidal channel,Galveston100m,29.76022829,-95.4085505,27.86,0.9999,1,Beryl,2024-07-07 00,1.0,8.88,2025-01-25 00,1.0,4.42
+USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",urban creek (Houston),Galveston100m,29.87078073,-95.4804961,14.76,0.9791,268,Beryl,2024-07-07 00,1.0,4.19,2024-05-01 00,1.0,2.37
+USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",urban creek (Houston),Galveston100m,29.8513369,-95.4879965,16.24,0.9987,13,Beryl,2024-07-07 00,1.0,3.71,2024-05-12 00,1.0,2.41
+USGS,08074500,"Whiteoak Bayou at Houston, TX",urban creek (Houston),Galveston100m,29.77522777,-95.3971612,33.24,0.9984,1,Beryl,2024-07-07 00,0.99,9.02,2024-07-25 00,0.99,4.55
+USGS,08074250,"Brickhouse Gully at Costa Rica St, Houston, TX",urban creek (Houston),Galveston100m,29.82800424,-95.469385,17.13,0.6417,259,Beryl,2024-07-07 00,0.979,4.85,2024-07-25 00,0.979,3.4
+USGS,08074540,"Little Whiteoak Bayou at Trimble St, Houston, TX",urban creek (Houston),Galveston100m,29.79277778,-95.3680556,22.65,0.9982,1,Beryl,2024-07-07 00,1.0,6.86,2024-05-27 00,0.99,4.45
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",estuary / tidal channel,Galveston100m,29.76661676,-95.358549,21.64,0.9997,1,Beryl,2024-07-07 00,1.0,8.86,2025-11-29 00,1.0,3.65
+USGS,08074710,"Buffalo Bayou at Turning Basin, Houston, TX",estuary / tidal channel,Galveston100m,29.74939477,-95.2910473,7.47,0.9996,7,Beryl,2024-07-07 00,0.927,2.5,2024-06-18 00,1.0,0.84
+USGS,08074760,"Brays Bayou at Alief, TX",urban creek (Houston),Galveston100m,29.7091197,-95.583,10.6,0.9999,1,Beryl,2024-07-07 00,1.0,3.1,2024-11-01 00,0.99,1.9
+USGS,08074800,"Keegans Bayou at Roark Rd nr Houston, TX",urban creek (Houston),Galveston100m,29.65662136,-95.5621664,17.67,0.999,2,Beryl,2024-07-07 00,1.0,4.06,2024-11-01 00,1.0,2.66
+USGS,08074810,"Brays Bayou at Gessner Dr, Houston, TX",urban creek (Houston),Galveston100m,29.6727317,-95.5282765,21.26,1.0,0,Beryl,2024-07-07 00,1.0,5.66,2024-07-22 00,1.0,3.05
+USGS,08075000,"Brays Bayou at Houston, TX",urban creek (Houston),Galveston100m,29.69717469,-95.412162,28.06,0.9991,1,Beryl,2024-07-07 00,1.0,7.53,2025-11-28 00,1.0,3.96
+USGS,08075110,"Brays Bayou at MLK Jr Blvd, Houston, TX",estuary / tidal channel,Galveston100m,29.71416667,-95.3388889,27.56,0.9991,1,Beryl,2024-07-07 00,1.0,8.69,2025-11-29 00,1.0,4.29
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",urban creek (Houston),Galveston100m,29.61884399,-95.4460522,21.75,1.0,0,Beryl,2024-07-07 00,1.0,5.4,2025-04-20 00,1.0,3.63
+USGS,08075500,"Sims Bayou at Houston, TX",estuary / tidal channel,Galveston100m,29.67439687,-95.2893807,13.23,0.9979,36,Beryl,2024-07-07 00,1.0,5.95,2025-04-20 00,1.0,2.94
+USGS,08075605,"Berry Bayou at Nevada St, Houston, TX",urban creek (Houston),Galveston100m,29.65661915,-95.2291011,6.5,0.9994,1,Beryl,2024-07-07 00,1.0,2.28,2025-07-24 00,0.99,1.52
+USGS,08075730,"Vince Bayou at Pasadena, TX",urban creek (Houston),Galveston100m,29.69467363,-95.216323,10.86,0.9982,19,Beryl,2024-07-07 00,1.0,2.42,2025-04-20 00,1.0,1.91
+USGS,08075763,"Hunting Bayou at Hoffman St, Houston, TX",urban creek (Houston),Galveston100m,29.80883745,-95.3132696,13.84,0.9962,65,Beryl,2024-07-07 00,1.0,3.93,2024-05-27 00,1.0,2.21
+USGS,08075770,"Hunting Bayou at IH 610, Houston, TX",urban creek (Houston),Galveston100m,29.79328217,-95.2679907,19.55,1.0,0,Beryl,2024-07-07 00,1.0,4.4,2025-08-30 00,1.0,3.14
+USGS,08075780,"Greens Bayou at Cutten Rd nr Houston, TX",urban creek (Houston),Galveston100m,29.94911178,-95.5196633,9.49,0.9639,634,Beryl,2024-07-07 00,1.0,2.11,2024-05-27 00,1.0,1.54
+USGS,08075900,"Greens Bayou nr US Hwy 75 nr Houston, TX",urban creek (Houston),Galveston100m,29.95688886,-95.4179936,19.82,0.9999,1,Beryl,2024-07-07 00,1.0,5.12,2024-05-01 00,1.0,3.48
+USGS,08076000,"Greens Bayou nr Houston, TX",urban creek (Houston),Galveston100m,29.9182784,-95.3068796,22.62,0.9901,78,Beryl,2024-07-07 00,1.0,5.42,2025-11-29 00,1.0,3.85
+USGS,08076180,"Garners Bayou nr Humble, TX",urban creek (Houston),Galveston100m,29.93386089,-95.2339608,20.97,0.9963,20,Beryl,2024-07-07 00,1.0,5.55,2024-05-01 00,1.0,4.48
+USGS,08076500,"Halls Bayou at Houston, TX",urban creek (Houston),Galveston100m,29.86189143,-95.3349365,12.93,0.9992,11,Beryl,2024-07-07 00,1.0,3.55,2025-02-17 00,1.0,2.26
+USGS,08076700,"Greens Bayou at Ley Rd, Houston, TX",estuary / tidal channel,Galveston100m,29.8371695,-95.2332671,24.7,0.9667,35,Beryl,2024-07-07 00,1.0,8.09,2025-02-17 00,0.938,5.0
+USGS,08076997,"Clear Ck at Mykawa St nr Pearland, TX",urban creek (Houston),Galveston100m,29.5968991,-95.2974366,7.2,0.9999,1,Beryl,2024-07-07 00,1.0,2.84,2025-04-20 00,1.0,1.98
+USGS,08077600,"Clear Ck nr Friendswood, TX",urban creek (Houston),Galveston100m,29.51745517,-95.178544,9.03,1.0,0,Beryl,2024-07-07 00,1.0,4.07,2024-07-25 00,1.0,2.13
+USGS,08078080,"Bastrop Bayou at CR 288 nr Lake Jackson, TX",river / canal,Galveston100m,29.0684861,-95.427175,6.24,1.0,0,Beryl,2024-07-07 00,1.0,2.47,2024-07-26 00,1.0,1.15
+USGS,08078000,"Chocolate Bayou nr Alvin, TX",river / canal,Galveston100m,29.37154704,-95.3230673,14.96,0.9921,133,Beryl,2024-07-07 00,1.0,6.21,2024-07-25 00,1.0,1.25
+USGS,08078940,"Oyster Ck at CR 34 nr Angleton, TX",river / canal,Galveston100m,29.25361389,-95.5085917,7.53,0.9521,807,Beryl,2024-07-07 00,1.0,4.98,2024-07-26 00,1.0,0.23
+USGS,08079005,"Oyster Ck at CR 290 nr Angleton, TX",river / canal,Galveston100m,29.12537778,-95.4813722,4.86,1.0,0,Beryl,2024-07-07 00,1.0,4.26,2024-07-26 00,1.0,0.67
+USGS,08078930,"Oyster Ck at CR 42 nr Rosharon, TX",river / canal,Galveston100m,29.374525,-95.5272861,5.28,1.0,0,Beryl,2024-07-07 00,1.0,2.79,2024-07-25 00,1.0,0.85
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",estuary / tidal channel,Galveston100m,29.0536111,-95.4625,6.72,0.9863,16,Beryl,2024-07-07 00,1.0,3.23,2024-07-26 00,1.0,0.88
+USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",river / canal,Galveston100m,30.86508333,-96.6951667,8.5,1.0,0,Beryl,2024-07-07 00,1.0,0.44,2024-06-01 00,1.0,3.02
+USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",river / canal,Galveston100m,30.6268665,-96.544135,9.1,0.978,22,Beryl,2024-07-07 00,1.0,0.56,2024-06-02 00,1.0,2.6
+USGS,08108780,"Little Brazos Rv at FM 485 nr Hearne, TX",river / canal,Galveston100m,30.87944444,-96.6402778,6.73,1.0,0,Beryl,2024-07-07 00,1.0,0.07,2025-06-12 00,1.0,4.29
+USGS,08079120,"Old Brazos Rv nr Freeport, TX",estuary / tidal channel,Galveston100m,28.95108115,-95.3388276,6.02,1.0,0,Beryl,2024-07-07 00,1.0,2.24,2024-06-17 00,1.0,1.19
+USGS,08109310,"Thompsons Ck at SH 47 nr Bryan, TX",river / canal,Galveston100m,30.63758889,-96.4524611,17.7,0.9718,176,Beryl,2024-07-07 00,1.0,0.9,2024-05-15 00,1.0,5.59
+USGS,08110000,"Yegua Ck nr Somerville, TX",river / canal,Galveston100m,30.3218773,-96.5074683,7.28,0.9989,3,Beryl,2024-07-07 00,1.0,0.05,2024-04-23 00,1.0,0.79
+USGS,08110200,"Brazos Rv at Washington, TX",river / canal,Galveston100m,30.359175,-96.1549028,7.96,0.9661,27,Beryl,2024-07-07 00,1.0,0.48,2024-05-07 00,1.0,2.76
+USGS,08110100,"Davidson Ck nr Lyons, TX",river / canal,Galveston100m,30.41965196,-96.5402466,11.36,0.6161,1396,Beryl,2024-07-07 00,0.531,0.1,2024-05-16 00,1.0,3.86
+USGS,08111006,"Mathis Ck at US 190 nr Kurten, TX",river / canal,Galveston100m,30.7576111,-96.297475,12.54,0.8841,1306,Beryl,2024-07-07 00,1.0,0.15,2025-05-05 00,1.0,2.86
+USGS,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",river / canal,Galveston100m,30.9737987,-96.2416274,3.94,0.996,13,Beryl,2024-07-07 00,1.0,0.56,2024-05-02 00,1.0,3.35
+USGS,08111051,"Carters Ck at FM 60 nr College Station, TX",river / canal,Galveston100m,30.64173333,-96.308125,20.73,0.8462,1318,Beryl,2024-07-07 00,1.0,2.27,2024-05-15 00,0.99,5.58
+USGS,08111056,"Peach Ck at SH 6 nr Millican, TX",river / canal,Galveston100m,30.5124111,-96.2067,12.89,0.9657,315,Beryl,2024-07-07 00,1.0,0.33,2024-05-15 00,1.0,2.96
+USGS,08111085,"New Year Ck at SH 105 nr Brenham, TX",river / canal,Galveston100m,30.19580278,-96.3654028,9.76,0.9627,60,Beryl,2024-07-07 00,1.0,1.17,2024-01-22 00,0.958,3.48
+USGS,08111500,"Brazos Rv nr Hempstead, TX",river / canal,Galveston100m,30.12910626,-96.1877387,5.2,0.9995,3,Beryl,2024-07-07 00,1.0,0.33,2024-05-08 00,1.0,1.74
+USGS,08111700,"Mill Ck nr Bellville, TX",river / canal,Galveston100m,29.88106145,-96.2052402,5.32,1.0,0,Beryl,2024-07-07 00,1.0,0.58,2024-01-23 00,1.0,2.73
+USGS,08111850,"Brazos Rv at San Felipe, TX",river / canal,Galveston100m,29.80833333,-96.0955556,3.2,1.0,0,Beryl,2024-07-07 00,1.0,0.2,2024-05-09 00,1.0,1.13
+USGS,08114000,"Brazos Rv at Richmond, TX",urban creek (Houston),Galveston100m,29.5824589,-95.7577275,4.59,0.9999,1,Beryl,2024-07-07 00,1.0,1.82,2024-05-10 00,1.0,0.41
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",urban creek (Houston),Galveston100m,29.56768889,-95.6681417,5.77,0.9986,23,Beryl,2024-07-07 00,1.0,2.71,2024-05-10 00,1.0,0.54
+USGS,08115000,"Big Ck nr Needville, TX",urban creek (Houston),Galveston100m,29.47190769,-95.8030067,14.55,0.9693,85,Beryl,2024-07-07 00,0.969,4.66,2024-01-21 00,1.0,3.66
+USGS,08116850,"Brazos Rv nr West Columbia, TX",estuary / tidal channel,Galveston100m,29.1444131,-95.6060571,9.42,1.0,0,Beryl,2024-07-07 00,1.0,4.07,2024-05-22 00,1.0,0.94
+USGS,08116400,"Dry Ck nr Rosenberg, TX",urban creek (Houston),Galveston100m,29.51190593,-95.7468942,17.07,0.9956,2,Beryl,2024-07-07 00,1.0,3.86,2024-05-30 00,1.0,1.88
+USGS,08116650,"Brazos Rv nr Rosharon, TX",urban creek (Houston),Galveston100m,29.34968614,-95.5824635,7.25,0.9988,21,Beryl,2024-07-07 00,1.0,5.6,2024-05-12 00,1.0,0.52
+USGS,08117370,"San Bernard Rv nr Chesterville, TX",river / canal,Galveston100m,29.66075,-96.2436667,2.99,1.0,0,Beryl,2024-07-07 00,1.0,0.67,2024-01-23 00,1.0,1.91
+USGS,08117705,"San Bernard Rv nr Sweeny, TX",estuary / tidal channel,Galveston100m,29.11194444,-95.6766667,8.34,0.9992,13,Beryl,2024-07-07 00,1.0,3.14,2024-07-28 00,1.0,2.71
+USGS,08117500,"San Bernard Rv nr Boling, TX",urban creek (Houston),Galveston100m,29.31357967,-95.8938421,11.8,0.9981,2,Beryl,2024-07-07 00,1.0,5.34,2024-01-27 00,0.99,1.21
+USGS,08117855,"Caney Ck at SH 35 nr Van Vleck, TX",river / canal,Galveston100m,29.0417222,-95.8635194,5.14,0.9993,9,Beryl,2024-07-07 00,1.0,4.55,2024-07-27 00,1.0,0.84
+USGS,08160800,"Redgate Ck nr Columbus, TX",river / canal,Galveston100m,29.79911967,-96.5321933,4.83,0.9996,7,Beryl,2024-07-07 00,1.0,0.81,2024-01-22 00,1.0,1.99
+USGS,08162501,"Colorado Rv nr Wadsworth, TX",estuary / tidal channel,Galveston100m,28.77416667,-95.9975,6.0,0.9982,19,Beryl,2024-07-07 00,1.0,2.05,2024-01-26 00,1.0,3.14
+USGS,08162500,"Colorado Rv nr Bay City, TX",river / canal,Galveston100m,28.9741462,-96.0124588,13.23,0.9996,3,Beryl,2024-07-07 00,0.969,3.84,2024-01-26 00,1.0,6.66
+USGS,08162600,"Tres Palacios Rv nr Midfield, TX",river / canal,Galveston100m,28.92803769,-96.1710747,13.64,0.9946,79,Beryl,2024-07-07 00,1.0,7.83,2025-06-11 00,1.0,7.9
+USGS,08161000,"Colorado Rv at Columbus, TX",river / canal,Galveston100m,29.7063454,-96.5369155,4.96,0.9939,20,Beryl,2024-07-07 00,1.0,0.18,2024-01-24 00,1.0,7.63
+USGS,08164000,"Lavaca Rv nr Edna, TX",river / canal,Galveston100m,28.95998449,-96.6863668,7.97,0.9784,161,Beryl,2024-07-07 00,1.0,0.4,2024-01-25 00,1.0,4.18
+USGS,08162000,"Colorado Rv at Wharton, TX",river / canal,Galveston100m,29.30913668,-96.1038482,4.3,0.9998,3,Beryl,2024-07-07 00,1.0,0.74,2024-01-25 00,1.0,6.05
+USGS,08164350,"Navidad Rv nr Speaks, TX",river / canal,Galveston100m,29.321914,-96.7091425,9.16,0.9951,9,Beryl,2024-07-07 00,1.0,0.04,2024-01-24 00,1.0,4.34
+USGS,08164390,"Navidad Rv at Strane Pk nr Edna, TX",river / canal,Galveston100m,29.06553568,-96.6741434,8.59,0.9272,253,Beryl,2024-07-07 00,1.0,0.12,2024-01-26 00,1.0,5.65
+USGS,08164450,"Sandy Ck nr Ganado, TX",river / canal,Galveston100m,29.1602539,-96.5463608,4.46,0.9462,239,Beryl,2024-07-07 00,1.0,1.61,2024-01-25 00,1.0,2.08
+USGS,08164503,"W Mustang Ck nr Ganado, TX",river / canal,Galveston100m,29.07185833,-96.4680278,7.58,0.9993,12,Beryl,2024-07-07 00,1.0,3.2,2024-01-24 00,1.0,1.36
+USGS,08164504,"E Mustang Ck nr Louise, TX",river / canal,Galveston100m,29.07081227,-96.4171913,15.74,0.9968,40,Beryl,2024-07-07 00,1.0,3.98,2025-06-13 00,1.0,2.91
+USGS,08164600,"Garcitas Ck nr Inez, TX",river / canal,Texas100m,28.8913759,-96.8191486,7.02,1.0,0,Beryl,2024-07-07 00,1.0,0.05,2024-02-02 00,1.0,4.64
+USGS,08164800,"Placedo Ck nr Placedo, TX",river / canal,Texas100m,28.72527137,-96.7688702,17.17,0.9996,3,Beryl,2024-07-07 00,1.0,0.11,2025-06-11 00,1.0,7.72
+USGS,08175800,"Guadalupe Rv at Cuero, TX",river / canal,Texas100m,29.09053147,-97.3297129,5.66,0.9994,11,Beryl,2024-07-07 00,1.0,0.38,2024-01-25 00,1.0,3.61
+USGS,08176500,"Guadalupe Rv at Victoria, TX",river / canal,Texas100m,28.7930456,-97.0130429,9.26,0.9998,1,Beryl,2024-07-07 00,1.0,0.53,2024-01-27 00,1.0,5.49
+USGS,08176550,"Fifteenmile Ck nr Weser, TX",river / canal,Texas100m,28.89776103,-97.3549922,9.06,0.9995,7,Beryl,2024-07-07 00,1.0,0.01,2024-02-02 00,1.0,3.35
+USGS,08176900,"Coleto Ck at Arnold Rd Crsg nr Schroeder, TX",river / canal,Texas100m,28.86165308,-97.2263791,8.33,1.0,0,Beryl,2024-07-07 00,1.0,0.54,2024-02-02 00,1.0,4.18
+USGS,08177300,"Perdido Ck at FM 622 nr Fannin, TX",river / canal,Texas100m,28.7516564,-97.3172142,8.51,0.9997,3,Beryl,2024-07-07 00,1.0,0.12,2024-12-23 00,1.0,3.17
+USGS,08177500,"Coleto Ck nr Victoria, TX",river / canal,Texas100m,28.73110317,-97.1386004,9.89,1.0,0,Beryl,2024-07-07 00,1.0,0.03,2024-02-02 00,1.0,5.24
+USGS,08177520,"Guadalupe Rv nr Bloomington, TX",river / canal,Texas100m,28.66194444,-96.9652778,4.58,0.9995,2,Beryl,2024-07-07 00,1.0,0.39,2024-01-27 00,1.0,0.49
+USGS,08183200,"San Antonio Rv nr Floresville, TX",river / canal,Texas100m,29.11,-98.1744444,11.19,0.9998,2,Beryl,2024-07-07 00,1.0,0.7,2025-06-13 00,1.0,7.82
+USGS,08183500,"San Antonio Rv nr Falls City, TX",river / canal,Texas100m,28.95163797,-98.0641989,3.67,0.9996,2,Beryl,2024-07-07 00,1.0,0.24,2025-06-13 00,1.0,1.78
+USGS,08186500,"Ecleto Ck nr Runge, TX",river / canal,Texas100m,28.92025074,-97.7722462,9.83,0.7155,4771,Beryl,2024-07-07 00,0.0,,2024-12-24 00,1.0,4.12
+USGS,08186000,"Cibolo Ck nr Falls City, TX",river / canal,Texas100m,29.01413629,-97.9303065,6.42,0.9997,1,Beryl,2024-07-07 00,1.0,0.65,2025-06-12 00,1.0,3.93
+USGS,08187500,"Escondido Ck at Kenedy, TX",river / canal,Texas100m,28.81998007,-97.859168,6.93,1.0,0,Beryl,2024-07-07 00,1.0,0.1,2025-06-11 00,1.0,3.8
+USGS,08188570,"San Antonio Rv nr McFaddin, TX",river / canal,Texas100m,28.53125,-97.0426944,3.45,0.9999,1,Beryl,2024-07-07 00,1.0,0.18,2024-01-27 00,1.0,1.38
+USGS,08188060,"San Antonio Rv at SH 72 nr Runge, TX",river / canal,Texas100m,28.84869444,-97.7371389,10.06,0.9708,349,Beryl,2024-07-07 00,1.0,0.49,2025-06-14 00,1.0,3.6
+USGS,08188500,"San Antonio Rv at Goliad, TX",river / canal,Texas100m,28.6492861,-97.3848583,9.62,0.9962,2,Beryl,2024-07-07 00,1.0,0.57,2025-06-15 00,0.958,3.51
+USGS,08188590,"North end of GBRA Calhoun Canal nr Long Mott,TX",river / canal,Texas100m,28.50548889,-96.7814278,32.24,0.9944,91,Beryl,2024-07-07 00,1.0,1.31,2025-10-09 00,1.0,2.09
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",estuary / tidal channel,Texas100m,28.4783224,-96.8627751,5.43,0.9986,1,Beryl,2024-07-07 00,1.0,0.62,2024-01-29 00,1.0,0.17
+USGS,08189200,"Copano Ck nr Refugio, TX",river / canal,Texas100m,28.30360538,-97.1125039,3.28,1.0,0,Beryl,2024-07-07 00,1.0,0.02,2024-07-27 00,1.0,1.78
+USGS,08189300,"Medio Ck nr Beeville, TX",river / canal,Texas100m,28.4830428,-97.6566862,5.0,0.9988,11,Beryl,2024-07-07 00,1.0,0.0,2025-06-11 00,1.0,2.5
+USGS,08188800,"Guadalupe Rv nr Tivoli, TX",river / canal,Texas100m,28.50582149,-96.8847203,6.04,0.9999,1,Beryl,2024-07-07 00,1.0,0.58,2024-01-29 00,1.0,0.21
+USGS,08189500,"Mission Rv at Refugio, TX",river / canal,Texas100m,28.29193875,-97.2791751,6.08,0.9806,264,Beryl,2024-07-07 00,1.0,0.26,2025-06-13 00,1.0,3.85
+USGS,08189700,"Aransas Rv nr Skidmore, TX",river / canal,Texas100m,28.28249389,-97.6208513,10.06,0.999,2,Beryl,2024-07-07 00,1.0,0.04,2024-07-27 00,1.0,5.05
+USGS,08194200,"San Casimiro Ck nr Freer, TX",river / canal,Texas100m,27.96501329,-98.9669678,5.69,0.9978,10,Beryl,2024-07-07 00,1.0,0.01,2024-06-20 00,1.0,4.8
+USGS,08194500,"Nueces Rv nr Tilden, TX",river / canal,Texas100m,28.30888906,-98.5572384,4.65,0.9977,21,Beryl,2024-07-07 00,1.0,0.06,2024-06-26 00,1.0,2.63
+USGS,08206600,"Frio Rv at Tilden, TX",river / canal,Texas100m,28.46749279,-98.5475174,4.61,0.9889,42,Beryl,2024-07-07 00,0.99,0.05,2025-07-21 00,1.0,2.66
+USGS,08206700,"San Miguel Ck nr Tilden, TX",river / canal,Texas100m,28.58748787,-98.5458513,7.79,0.9953,8,Beryl,2024-07-07 00,1.0,0.05,2025-06-14 00,1.0,2.54
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",river / canal,Texas100m,28.48610326,-98.2416752,3.36,0.9999,1,Beryl,2024-07-07 00,1.0,0.02,2025-06-12 00,1.0,2.07
+USGS,08207500,"Atascosa Rv nr McCoy, TX",river / canal,Texas100m,28.86497693,-98.3383454,9.97,1.0,0,Beryl,2024-07-07 00,1.0,0.56,2024-08-27 00,1.0,4.07
+USGS,08208000,"Atascosa Rv at Whitsett, TX",river / canal,Texas100m,28.62220899,-98.2813988,7.64,0.9952,33,Beryl,2024-07-07 00,1.0,0.64,2025-06-13 00,1.0,3.74
+USGS,08210000,"Nueces Rv nr Three Rivers, TX",river / canal,Texas100m,28.42749545,-98.1780625,5.26,0.9987,6,Beryl,2024-07-07 00,0.99,0.21,2025-06-12 00,1.0,4.19
+USGS,08210400,"Lagarto Ck nr George West, TX",river / canal,Texas100m,28.05973533,-98.0969482,1.91,0.9958,74,Beryl,2024-07-07 00,1.0,0.02,2025-05-07 00,0.646,0.91
+USGS,08211000,"Nueces Rv nr Mathis, TX",river / canal,Texas100m,28.03834719,-97.8602769,3.1,0.9999,1,Beryl,2024-07-07 00,1.0,0.16,2024-08-12 00,1.0,0.26
+USGS,08211200,"Nueces Rv at Bluntzer, TX",river / canal,Texas100m,27.93779594,-97.7758308,1.32,0.9977,20,Beryl,2024-07-07 00,1.0,0.1,2025-03-27 00,1.0,0.95
+USGS,08211502,"Nueces Rv nr Odem, TX",river / canal,Texas100m,27.8952986,-97.6288843,5.26,0.9952,83,Beryl,2024-07-07 00,1.0,0.59,2024-06-19 00,1.0,0.92
+USGS,08211500,"Nueces Rv at Calallen, TX",river / canal,Texas100m,27.88307697,-97.625273,2.38,0.9954,79,Beryl,2024-07-07 00,1.0,0.14,2024-06-19 00,1.0,0.35
+USGS,08211520,"Oso Ck at Corpus Christi, TX",river / canal,Texas100m,27.71141879,-97.5019377,6.98,0.998,17,Beryl,2024-07-07 00,1.0,0.01,2024-06-20 00,1.0,3.17
+USGS,08211900,"San Fernando Ck at Alice, TX",river / canal,Texas100m,27.77252575,-98.033613,1.83,0.9913,50,Beryl,2024-07-07 00,1.0,0.05,2024-06-19 00,0.677,1.69
+USGS,08212300,"Tranquitas Ck at Kingsville, TX",river / canal,Texas100m,27.52614624,-97.8674982,5.57,0.9993,5,Beryl,2024-07-07 00,1.0,0.07,2024-09-15 00,1.0,1.63
+USGS,08212400,"Los Olmos Ck nr Falfurrias, TX",river / canal,Texas100m,27.26448618,-98.1358378,1.74,0.9999,1,Beryl,2024-07-07 00,1.0,0.0,2024-07-27 00,1.0,1.23
+USGS,08474118,"Cameron Co Ditch 2 at FM 1847 nr Los Fresnos, TX",river / canal,Texas100m,26.04375,-97.4788611,7.36,0.9997,2,Beryl,2024-07-07 00,1.0,0.29,2025-03-27 00,1.0,3.4
+USGS,08474300,"Old Main Drain No 2 at SH 4, Brownsville, TX",river / canal,Texas100m,25.9172222,-97.3778333,6.19,1.0,0,Beryl,2024-07-07 00,1.0,0.36,2024-09-09 00,1.0,2.28
+USGS,292939089544400,"Wilkinson Bayou cutoff north of Wilkinson Bay, LA",estuary / tidal channel,Louisiana100m,29.49413889,-89.9123056,5.55,0.6524,6096,Francine,2024-09-10 00,0.208,0.69,2024-09-02 00,1.0,1.05
+USGS,291929089562600,"Barataria Bay near Grand Terre Island, LA",lake,Louisiana100m,29.3247222,-89.9405,4.54,0.8571,1125,Francine,2024-09-10 00,0.542,0.65,2024-11-17 00,1.0,0.83
+USGS,292952089453800,CRMS0282-H01-RT,marsh,Louisiana100m,29.49777778,-89.7605556,4.62,0.9775,307,Francine,2024-09-10 00,1.0,1.13,2024-11-17 00,1.0,0.87
+USGS,292952090565300,CRMS0411-H01-RT,marsh,Louisiana100m,29.49777778,-90.9480556,1.72,0.9672,552,Francine,2024-09-10 00,0.99,0.34,2024-06-19 00,1.0,0.12
+USGS,292800090060000,"Little Lake near Bay Dosgris E of Galliano, LA",lake,Louisiana100m,29.46666667,-90.1,2.69,0.9431,842,Francine,2024-09-10 00,1.0,0.55,2024-04-09 00,1.0,0.8
+USGS,293809092361500,CRMS0609-H01-RT,marsh,Louisiana100m,29.63583333,-92.6041667,1.74,0.9227,744,Francine,2024-09-10 00,1.0,0.26,2024-06-19 00,1.0,0.35
+USGS,294045092492300,CRMS0615-H01-RT,marsh,Louisiana100m,29.67916667,-92.8230556,1.1,0.9347,1105,Francine,2024-09-10 00,1.0,0.13,2024-07-07 00,1.0,0.4
+USGS,294717092250000,CRMS0568-H01-RT,marsh,Louisiana100m,29.78805556,-92.4166667,2.66,0.9818,5,Francine,2024-09-10 00,0.979,0.29,2025-05-13 00,1.0,0.2
+USGS,294925089532101,"Delacroix Canal near Caernarvon, LA",river / canal,Louisiana100m,29.8236111,-89.8891667,2.44,0.9615,676,Francine,2024-09-10 00,1.0,0.69,2024-06-18 00,1.0,0.71
+USGS,295231093100100,CRMS2418-H01-RT,marsh,Louisiana100m,29.87527778,-93.1669444,1.01,0.8809,1434,Francine,2024-09-10 00,1.0,0.09,2024-05-17 00,1.0,0.11
+USGS,295011091184300,"Little Bayou Long North of Duck Lake, LA",river / canal,Louisiana100m,29.8365,-91.3119167,2.62,0.7997,3290,Francine,2024-09-10 00,1.0,0.37,2024-06-04 00,1.0,0.04
+USGS,2951190901217,"L. Cataouatche at Whiskey Canal S of Waggaman, LA",lake,Louisiana100m,29.85527778,-90.20472222,3.99,1.0,0,Francine,2024-09-10 00,1.0,0.86,2025-04-04 00,1.0,0.68
+USGS,295744093303800,CRMS0651-H01-RT,marsh,Louisiana100m,29.9622222,-93.5105556,1.01,0.9912,98,Francine,2024-09-10 00,1.0,0.03,2024-06-03 00,0.99,0.05
+USGS,295124089542100,"Caernarvon Outfall Channel at Caernarvon, LA",river / canal,Louisiana100m,29.85355556,-89.9076944,4.05,0.9999,1,Francine,2024-09-10 00,1.0,0.73,2024-06-18 00,1.0,0.72
+USGS,295447091191500,Middle Fork Bayou Long at Bayou Long,river / canal,Louisiana100m,29.91305556,-91.3208333,1.96,0.9921,46,Francine,2024-09-10 00,0.708,0.3,2025-05-08 00,1.0,0.08
+USGS,295501090190400,"Davis Pond Freshwater Diversion near Boutte, LA",river / canal,Louisiana100m,29.91694444,-90.3177778,4.68,0.9999,1,Francine,2024-09-10 00,1.0,0.58,2025-04-30 00,0.99,0.33
+USGS,300312091320000,Arm of Grand Lake near Crook Chene Cove,lake,Louisiana100m,30.05388889,-91.5052778,1.21,0.9005,1744,Francine,2024-09-10 00,1.0,0.09,2025-05-06 00,1.0,0.08
+USGS,300507091355600,Bayou Darby near Lake Fausse Point Cut,river / canal,Louisiana100m,30.08527778,-91.5988889,3.16,0.9392,304,Francine,2024-09-10 00,0.99,0.37,2025-05-06 00,1.0,0.07
+USGS,300703089522700,"Y-Pipeline Cnl in Byu Sauvage NWR at N.O. East, LA",marsh,Louisiana100m,30.1175,-89.8741667,0.66,0.926,866,Francine,2024-09-10 00,1.0,0.23,2024-09-14 00,1.0,0.05
+USGS,301001089442600,"Rigolets at Hwy 90 near Slidell, LA",estuary / tidal channel,Louisiana100m,30.16694444,-89.7405556,4.12,1.0,0,Francine,2024-09-10 00,1.0,1.14,2024-04-09 00,1.0,0.98
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",lake,Louisiana100m,30.19963889,-90.12275,2.85,0.9998,2,Francine,2024-09-10 00,1.0,0.91,2024-06-18 00,1.0,0.65
+USGS,301324090382400,CRMS0061-H01-RT,marsh,Louisiana100m,30.22333333,-90.64,2.57,0.8968,1155,Francine,2024-09-10 00,1.0,0.6,2025-10-05 00,1.0,0.23
+USGS,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",river / canal,Louisiana100m,30.1947222,-89.5341667,5.26,1.0,0,Francine,2024-09-10 00,1.0,1.45,2024-06-18 00,1.0,0.84
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,estuary / tidal channel,Louisiana100m,30.23825405,-89.24281939,5.88,0.9816,243,Francine,2024-09-10 00,1.0,1.56,2024-01-07 00,1.0,1.69
+USGS,301849088350000,"MISSISSIPPI SOUND AT USGS ROUND ISLAND LIGHT, MS",estuary / tidal channel,Louisiana100m,30.30805556,-88.58388889,4.91,0.9363,1118,Francine,2024-09-10 00,1.0,1.17,2024-01-07 00,1.0,1.46
+USGS,302020091435700,"Lake Pelba at I-10 near Henderson, LA",lake,Louisiana100m,30.33888889,-91.7325,1.55,0.9355,281,Francine,2024-09-10 00,1.0,0.19,2025-05-11 00,1.0,0.02
+USGS,302318088512600,"BILOXI BAY AT POINT CADET HARBOR AT BILOXI, MS",estuary / tidal channel,Louisiana100m,30.38833333,-88.8572222,7.83,0.9797,164,Francine,2024-09-10 00,1.0,2.09,2024-01-07 00,1.0,1.76
