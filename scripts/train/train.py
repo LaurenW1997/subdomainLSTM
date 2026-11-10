@@ -64,6 +64,7 @@ def main() -> None:
     ap.add_argument("--future-rain-form", default="hourly", choices=["hourly", "total"], help="future rain as 6 hourly values or one 6 h total")
     ap.add_argument("--fill", default="zero", choices=["zero", "ffill"], help="EXPERIMENT: fill missing hours with the station mean (zero) or the last valid value (ffill)")
     ap.add_argument("--delta-norm", action="store_true", help="EXPERIMENT: predict and score the change in units of each station's typical 6 h change")
+    ap.add_argument("--delta-power", type=float, default=1.0, help="EXPERIMENT: 1 = scale by the 6 h-change std, 0 = by the level std, in between = geometric mix")
     ap.add_argument("--delta-feat", action="store_true", help="EXPERIMENT: extra input channel, recent level relative to the last hour in 6 h-change units")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -72,7 +73,7 @@ def main() -> None:
 
     sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations, no_wind_stations=a.no_wind_stations,
                        use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form,
-                       fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat)
+                       fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat, delta_power=a.delta_power)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     n_val = len(sm.eval_origins("val", a.eval_stride)[0])
     assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"

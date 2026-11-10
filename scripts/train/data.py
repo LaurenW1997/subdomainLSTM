@@ -28,7 +28,7 @@ class StationMatrix:
                  use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
-                 fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False):
+                 fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -74,6 +74,8 @@ class StationMatrix:
             r = np.nanstd(dd, axis=1)
         del dd
         self.rscale = np.clip(np.where(np.isfinite(r) & (r > 0), r, 1.0), 1e-3, None).astype(np.float32)
+        # delta_power < 1 moves the scale part of the way from the level std (0) to the 6 h-change std (1)
+        self.rscale = (self.rscale ** float(delta_power)).astype(np.float32)
         # stations whose wind input is switched off (far-inland rivers where wind only adds noise):
         # u, v and the wind mask are set to 0 for them, and the wind-availability rule in _ok is skipped
         self.wind_off = np.zeros(self.S, bool)
