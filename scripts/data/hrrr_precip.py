@@ -90,7 +90,11 @@ def main() -> None:
 
     # ---- grid -> station cells (one full message)
     sess = requests.Session()
-    b = fetch_apcp(origins[0], 1, sess)
+    b = None
+    for t0 in origins[::4]:                         # first cycle with a usable file (the archive's first days are incomplete)
+        b = fetch_apcp(t0, 1, sess)
+        if b is not None:
+            break
     g = pygrib.fromstring(b)
     lat, lon = g.latlons()
     lon = np.where(lon > 180, lon - 360, lon)
