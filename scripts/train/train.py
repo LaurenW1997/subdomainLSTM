@@ -62,13 +62,17 @@ def main() -> None:
     ap.add_argument("--rain-var", default="p15", choices=["p", "p15"], help="rain at the station cell (p) or 15 km box mean (p15)")
     ap.add_argument("--rain-fc", help="future rain from a forecast product instead of observed: file stem in the dataset dir, e.g. hrrr_lag1_p45")
     ap.add_argument("--future-rain-form", default="hourly", choices=["hourly", "total"], help="future rain as 6 hourly values or one 6 h total")
+    ap.add_argument("--fill", default="zero", choices=["zero", "ffill"], help="EXPERIMENT: fill missing hours with the station mean (zero) or the last valid value (ffill)")
+    ap.add_argument("--delta-norm", action="store_true", help="EXPERIMENT: predict and score the change in units of each station's typical 6 h change")
+    ap.add_argument("--delta-feat", action="store_true", help="EXPERIMENT: extra input channel, recent level relative to the last hour in 6 h-change units")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(a.seed); rng = np.random.default_rng(a.seed)
 
     sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations, no_wind_stations=a.no_wind_stations,
-                       use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form)
+                       use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form,
+                       fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     n_val = len(sm.eval_origins("val", a.eval_stride)[0])
     assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"
@@ -76,7 +80,9 @@ def main() -> None:
     t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))) if a.test_end else None
     print(f"device={device} stations={sm.S} hours={sm.T} lookback={sm.lookback} n_feat={sm.n_feat} n_future={sm.n_future} "
           f"train_end_idx={sm.t_train_end} t_end={sm.t_end} test_t_hi={t_hi}", flush=True)
-    model = GlobalLSTM(sm.S, n_feat=sm.n_feat, hidden=a.hidden, layers=a.layers, n_future=sm.n_future).to(device)
+    model = GlobalLSTM(sm.S, n_feat=sm.n_feat, hidden=a.hidden, layers=a.layers, n_future=sm.n_future, delta_scale=a.delta_norm).to(device)
+    if a.delta_norm:
+        model.rscale.copy_(torch.from_numpy(sm.rscale).to(device))
     print(f"params={sum(p.numel() for p in model.parameters()):,}", flush=True)
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-4)
     sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.epochs * a.steps, pct_start=0.1)
@@ -87,7 +93,8 @@ def main() -> None:
         for _ in range(a.steps):
             f, fu, s, y, ym = to_torch(sm.sample_train(a.batch, rng), device)
             pred = model(f, s, fu)
-            loss = ((pred - y) ** 2 * ym).sum() / ym.sum().clamp(min=1)
+            err = (pred - y) / model.rscale[s][:, None] if a.delta_norm else pred - y      # error in 6 h-change units or in level-std units
+            loss = (err ** 2 * ym).sum() / ym.sum().clamp(min=1)
             opt.zero_grad(set_to_none=True); loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step(); sched.step(); losses.append(loss.item())

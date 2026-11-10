@@ -27,7 +27,8 @@ class StationMatrix:
     def __init__(self, dataset_dir: Path, lookback: int = LOOKBACK, use_wind: bool = False,
                  use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
-                 rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly"):
+                 rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
+                 fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -54,6 +55,12 @@ class StationMatrix:
         self.norm = ((np.asarray(self.values) - mean) / std).astype(np.float32)   # in-memory, NaN kept
         self.mask = np.isfinite(self.norm)
         self.norm_filled = np.nan_to_num(self.norm, nan=0.0)
+        self.fill, self.delta_norm, self.delta_feat = fill, delta_norm, delta_feat
+        if fill == "ffill":   # EXPERIMENT: a missing hour takes the last valid value instead of the station mean (the mask channel still marks it)
+            idx = np.where(self.mask, np.arange(self.T, dtype=np.int32)[None, :], 0).astype(np.int32)
+            np.maximum.accumulate(idx, axis=1, out=idx)
+            self.norm_filled = np.nan_to_num(np.take_along_axis(self.norm, idx, 1), nan=0.0)
+            del idx
         hours = self.time.hour.to_numpy() + self.time.minute.to_numpy() / 60
         doy = self.time.day_of_year.to_numpy() + hours / 24
         self.tfeat = np.stack([np.sin(2 * np.pi * hours / 24), np.cos(2 * np.pi * hours / 24),
@@ -61,6 +68,12 @@ class StationMatrix:
         self.t_train_end = int(np.searchsorted(self.time.values, np.datetime64(self.meta["train_end"])))
         self.t_val_end = int(np.searchsorted(self.time.values, np.datetime64(self.meta["val_end"])))
         self.t_end = self.T
+        # typical 6 h change of each station in z-score units (train period): the scale of what a 6 h forecast has to get right
+        dd = self.norm[:, HORIZON:self.t_train_end] - self.norm[:, :self.t_train_end - HORIZON]
+        with np.errstate(all="ignore"):
+            r = np.nanstd(dd, axis=1)
+        del dd
+        self.rscale = np.clip(np.where(np.isfinite(r) & (r > 0), r, 1.0), 1e-3, None).astype(np.float32)
         # stations whose wind input is switched off (far-inland rivers where wind only adds noise):
         # u, v and the wind mask are set to 0 for them, and the wind-availability rule in _ok is skipped
         self.wind_off = np.zeros(self.S, bool)
@@ -94,7 +107,7 @@ class StationMatrix:
                 fut = np.load(d / f"{rain_fc}.npy", mmap_mode="r")[self.rows].astype(np.float32) if rain_fc else r
                 self.futmask = np.isfinite(fut)
                 self.fut_mm = np.nan_to_num(np.clip(fut, 0, None))
-        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0)
+        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0)
         n_fr = 0 if not self.use_future_rain else (HORIZON if future_rain_form == "hourly" else 1)
         self.n_future = (2 * HORIZON if self.use_future_wind else 0) + n_fr
 
@@ -121,6 +134,9 @@ class StationMatrix:
             parts += [self.q[s[:, None], idx_in][..., None], self.qmask[s[:, None], idx_in].astype(np.float32)[..., None]]
         if self.use_rain:
             parts += [self.rain[s[:, None], idx_in][..., None], self.rmask[s[:, None], idx_in].astype(np.float32)[..., None]]
+        if self.delta_feat:   # recent level relative to the last hour, in units of the station's typical 6 h change (kept last)
+            rel = (self.norm_filled[s[:, None], idx_in] - self.norm_filled[s, t0][:, None]) / self.rscale[s][:, None]
+            parts.append(np.clip(rel, -20, 20)[..., None])
         feats = np.concatenate(parts, -1)
         fut_parts = []
         if self.use_future_wind:
