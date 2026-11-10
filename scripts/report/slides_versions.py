@@ -92,6 +92,30 @@ def main() -> None:
         "Rivers: the versions are within 0.3 cm of each other at every lead, except observed future rainfall.",
         "Urban creeks: the versions separate after 2 h. The HRRR-rainfall version is 1.4 cm below the operational one at 6 h; observed rainfall is 5 cm below."], size=12)
 
+    # ---- maps: 6 h RMSE at every station, version by version, and the change of each step
+    r6 = {k: per[run].rmse_6h_cm.to_numpy() for k, run, _, _ in MAIN}
+    above = {k: int((v > 10).sum()) for k, v in r6.items()}
+    sl = new("Station by station: 6 h RMSE of the five main versions")
+    picture(sl, F / "versions_map_rmse.png", 0.3, 0.95, 12.7, 5.1)
+    text(sl, 0.5, 6.15, 12.3, 1.0, [
+        f"Stations above 10 cm: {above['wl']} with water level only, {above['q']} in the operational version, {above['rain_fc']} with HRRR rainfall, {above['rain_obs']} with observed rainfall.",
+        "The dark stations sit in the same two places in every map: the Houston creeks and the small rivers north and east of Baton Rouge. "
+        "The coast is light from the second map on."], size=12)
+
+    def count(a, b):
+        dd = r6[a] - r6[b]; return int((dd <= -0.5).sum()), int((dd >= 0.5).sum())
+
+    sl = new("Station by station: what each step changed")
+    picture(sl, F / "versions_map_change.png", 0.3, 1.0, 12.7, 3.4)
+    b1, w1 = count("q", "wl"); b2, w2 = count("rain_fc", "q"); b3, w3 = count("rain_obs", "q")
+    text(sl, 0.5, 4.5, 12.3, 2.5, [
+        f"Left, wind and discharge: {b1} stations better and {w1} worse by 0.5 cm or more. The gain follows the coast and the bays; inland stations do not change.",
+        f"Middle, HRRR rainfall on top of the operational version: {b2} better, {w2} worse. The gain is in Houston and around Baton Rouge, where the rain-fed creeks are. "
+        "Most of the stations that get worse are rivers; the two largest losses are at the Pearl River navigation locks (2 to 7 cm and 13 to 19 cm), where the level is set by gate operation.",
+        f"Right, the same step with observed rainfall: {b3} better, {w3} worse. Same places as the middle map, several times stronger. "
+        "The difference between the middle and the right map is the error of the rainfall forecast.",
+        "Colour scale limited to 5 cm in both directions; larger changes take the end colour."], size=12)
+
     # ---- 4 tried and set aside
     sl = new("Also tried: changes that made no measurable difference")
     rows = [("Change", "6 h RMSE, all stations (cm)", "Reference (cm)", True)]

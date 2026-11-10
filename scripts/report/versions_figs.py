@@ -2,10 +2,11 @@
 
   bars     : 6 h RMSE of each version, one panel per station type (pooled RMSE for all stations, median station per type)
   lead     : median RMSE vs lead time for the five main versions, three station types
+  maps     : 6 h RMSE at every station for the five main versions, and the change at every station for three steps
   stations : one figure per station in deliverables/17_versions/data: two event windows (rows) x five versions (columns),
              observation and the 1-6 h forecast issued at every 00/06/12/18 UTC origin
 Stations: operational only (CRMS excluded), >= 720 test samples in every version.
-Usage: python versions_figs.py bars | lead | stations
+Usage: python versions_figs.py bars | lead | maps | stations
 Also writes deliverables/17_versions/versions_table.csv (bars) for the slides.
 """
 from __future__ import annotations
@@ -166,14 +167,74 @@ def stations() -> None:
         print("->", station_fig(sid, f"{str(r['name']).title() if str(r['name']).isupper() else r['name']} ({r.source.replace('NOAA_COOPS', 'NOAA')} {sid})"))
 
 
+EXTENT = [-99.3, -88.0, 25.6, 31.4]
+SEQ = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"]            # one hue, light -> dark (magnitude)
+DIV = ["#104281", "#3987e5", "#9ec5f4", "#d6d5cf", "#f3b08f", "#eb6834", "#9c3a12"]   # blue = better, grey = no change, orange = worse
+
+
+def _base(ax):
+    import cartopy.crs as ccrs
+    import cartopy.feature as cf
+    ax.set_extent(EXTENT, crs=ccrs.PlateCarree())
+    ax.add_feature(cf.LAND, facecolor="#f4f4f1"); ax.add_feature(cf.COASTLINE, lw=0.4, edgecolor="#7a7a74")
+    ax.add_feature(cf.STATES, lw=0.3, edgecolor="#a3a39c")
+    for sp in ax.spines.values():
+        sp.set_linewidth(0.5); sp.set_edgecolor("#7a7a74")
+
+
+def maps() -> tuple[Path, Path]:
+    """(1) 6 h RMSE at every station for the five main versions; (2) change at every station for three steps."""
+    import cartopy.crs as ccrs
+    from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
+    d = load_runs([r for _, r, _, _ in MAIN])
+    pc = ccrs.PlateCarree()
+    n = len(next(iter(d.values())))
+    # ---- (1) absolute RMSE, one map per version
+    cmap = LinearSegmentedColormap.from_list("seq", SEQ); norm = LogNorm(1, 40)
+    fig = plt.figure(figsize=(13.0, 5.5))
+    for k, (key, run, title, _) in enumerate(MAIN):
+        ax = fig.add_subplot(2, 3, k + 1, projection=pc); _base(ax)
+        x = d[run].sort_values("rmse_6h_cm")
+        sc = ax.scatter(x.lon, x.lat, c=x.rmse_6h_cm.clip(1, 40), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
+        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} stations above 10 cm", loc="left", fontsize=9)
+    cax = fig.add_axes([0.70, 0.30, 0.25, 0.03])
+    cb = fig.colorbar(sc, cax=cax, orientation="horizontal", ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_xticklabels(["1", "2", "5", "10", "20", "40"])
+    cb.set_label("6 h RMSE (cm), January 2024 to December 2025"); cb.outline.set_linewidth(0.5)
+    fig.text(0.70, 0.19, f"{n} operational stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="top", linespacing=1.4)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.95, bottom=0.02, wspace=0.03, hspace=0.12)
+    out1 = OUT / "versions_map_rmse.png"
+    fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    # ---- (2) change maps
+    steps = [("v6_wind_q", "v3_obs", "Wind and upstream discharge" + "\n" + "operational minus water level only"),
+             ("v9_fc1_t45", "v6_wind_q", "Rainfall with HRRR forecast" + "\n" + "minus operational"),
+             ("v7_rain_p15", "v6_wind_q", "Rainfall, next 6 h observed (upper bound)" + "\n" + "minus operational")]
+    cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
+    fig = plt.figure(figsize=(13.0, 3.1))
+    for k, (a, b, title) in enumerate(steps):
+        ax = fig.add_subplot(1, 3, k + 1, projection=pc); _base(ax)
+        diff = d[a].rmse_6h_cm.to_numpy() - d[b].rmse_6h_cm.to_numpy()
+        o = np.argsort(np.abs(diff))
+        sc = ax.scatter(d[a].lon.to_numpy()[o], d[a].lat.to_numpy()[o], c=np.clip(diff[o], -5, 5), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
+        ax.set_title(title + f"   —   {(diff <= -0.5).sum()} better, {(diff >= 0.5).sum()} worse by 0.5 cm or more", loc="left", fontsize=9, linespacing=1.3)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.88, bottom=0.2, wspace=0.03)
+    cax = fig.add_axes([0.35, 0.10, 0.30, 0.035])
+    cb = fig.colorbar(sc, cax=cax, orientation="horizontal", extend="both", ticks=[-5, -2.5, 0, 2.5, 5]); cb.outline.set_linewidth(0.5)
+    cb.set_label("change in 6 h RMSE (cm): blue = smaller error, orange = larger error")
+    out2 = OUT / "versions_map_change.png"
+    fig.savefig(out2, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out1, out2
+
+
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps"]); a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "bars":
         print("->", bars())
     elif a.cmd == "lead":
         print("->", lead())
+    elif a.cmd == "maps":
+        print("->", maps())
     else:
         stations()
 
