@@ -6,4 +6,4 @@
 
 误差范围对比：`range_<domain>.png`，每站五个数——全年（加风和流量的模型、只用水位的模型）、涨水窗、飓风窗、平常窗的 6 h RMSE，对数坐标。汇总表 `summary.csv` / `summary.md`。
 
-幻灯片 `representative_stations.pptx`（32 页，白底黑字 Times New Roman，无标题页）：位置图、读图说明、每个 domain 一页误差范围 + 每站一页、每个 domain 一页汇总表、一页总结。脚本：`scripts/report/event_plots.py --hurricane`、`scripts/report/representative.py`、`scripts/report/slides_representative.py`。
+幻灯片已改到 `../11_figures/forecast_figures.pptx`（当前业务模型，不含 CRMS 站）；这里原来的幻灯片 2026-11-09 删除。
