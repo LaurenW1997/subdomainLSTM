@@ -74,7 +74,7 @@ def station_fig(csv: Path, title: str, out: Path | None = None, leads=(1, 3, 6))
     return out
 
 
-def lead_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+def lead_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720, label_a: str | None = None, label_b: str | None = None) -> Path:
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
     b = pd.read_csv(REPO / "runs" / run_b / "per_station_test.csv", dtype={"station_id": str})
@@ -100,7 +100,7 @@ def lead_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) 
     extra = [Line2D([], [], color="k", lw=1.6, marker="o", ms=3.2), Line2D([], [], color="k", lw=1.0, ls=(0, (3, 2)))]
     leg1 = ax.legend(h1, l1, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, title="station type" + "\n" + "(band: interquartile range)", title_fontsize=8.5, alignment="left")
     ax.add_artist(leg1)
-    leg2 = ax.legend(extra, ["water level + wind" + "\n" + "+ upstream discharge", "water level only"], loc="upper left", bbox_to_anchor=(1.01, 0.38), frameon=False, title="inputs", title_fontsize=8.5, alignment="left")
+    leg2 = ax.legend(extra, [(label_a or "water level + wind | + upstream discharge").replace(" | ", "\n"), (label_b or "water level only").replace(" | ", "\n")], loc="upper left", bbox_to_anchor=(1.01, 0.38), frameon=False, title="inputs", title_fontsize=8.5, alignment="left")
     ax.set_title(f"Test period Jan 2024 – Dec 2025, {len(a)} stations (CRMS marsh stations excluded)", loc="left")
     fig.tight_layout()
     out = OUT / "rmse_vs_lead.png"
@@ -108,7 +108,7 @@ def lead_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) 
     return out
 
 
-def map_fig(run: str = "v6_wind_q", min_n: int = 720, rep: Path | None = None) -> Path:
+def map_fig(run: str = "v6_wind_q", min_n: int = 720, rep: Path | None = None, label: str | None = None) -> Path:
     """All test stations coloured by 6 h RMSE; representative stations outlined."""
     import cartopy.crs as ccrs
     import cartopy.feature as cf
@@ -131,14 +131,14 @@ def map_fig(run: str = "v6_wind_q", min_n: int = 720, rep: Path | None = None) -
         ax.legend(loc="lower right", frameon=False)
     cb = fig.colorbar(sc, ax=ax, shrink=.8, pad=.015, ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_yticklabels(["1", "2", "5", "10", "20", "40"])
     cb.set_label("6 h RMSE (cm), Jan 2024 – Dec 2025")
-    ax.set_title(f"{len(a)} stations, LSTM with water level, wind and upstream discharge (CRMS marsh stations excluded)", loc="left")
+    ax.set_title(f"{len(a)} stations (CRMS excluded), LSTM with {label or 'water level, wind and upstream discharge'}", loc="left")
     fig.tight_layout()
     out = OUT / "rmse_map.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     return out
 
 
-def box_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -> Path:
+def box_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720, label_a: str | None = None, label_b: str | None = None) -> Path:
     """Per-station 6 h RMSE by station type, with and without wind + discharge."""
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     a = pd.read_csv(REPO / "runs" / run_a / "per_station_test.csv", dtype={"station_id": str})
@@ -148,7 +148,7 @@ def box_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -
     types = [t for t in TYPE_ORDER if (a.type == t).sum() >= 5]
     fig, ax = plt.subplots(figsize=(8.2, 3.8))
     pos = np.arange(len(types))
-    for off, df, fc, lab in ((-0.18, b, "white", "water level only"), (0.18, a, "#4d4d4d", "water level + wind + upstream discharge")):
+    for off, df, fc, lab in ((-0.18, b, "white", (label_b or "water level only").replace(" | ", " ")), (0.18, a, "#4d4d4d", (label_a or "water level + wind + upstream discharge").replace(" | ", " "))):
         data = [df[df.type == t].rmse_6h_cm.to_numpy() for t in types]
         bp = ax.boxplot(data, positions=pos + off, widths=0.3, showfliers=False, patch_artist=True,
                         medianprops=dict(color="k" if fc == "white" else "white", lw=1.2), boxprops=dict(facecolor=fc, color="k", lw=0.7),
@@ -168,17 +168,19 @@ def box_fig(run_a: str = "v6_wind_q", run_b: str = "v3_obs", min_n: int = 720) -
 def main() -> None:
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("station"); s.add_argument("csv"); s.add_argument("--title", default=""); s.add_argument("--out")
-    sub.add_parser("lead"); sub.add_parser("map"); sub.add_parser("box")
+    for name in ("lead", "map", "box"):       # model pair and legend labels (" | " = line break in the lead-time legend)
+        q = sub.add_parser(name); q.add_argument("--run-a", default="v6_wind_q"); q.add_argument("--run-b", default="v3_obs")
+        q.add_argument("--label-a"); q.add_argument("--label-b")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "station":
         print("->", station_fig(Path(a.csv), a.title, Path(a.out) if a.out else None))
     elif a.cmd == "lead":
-        print("->", lead_fig())
+        print("->", lead_fig(a.run_a, a.run_b, label_a=a.label_a, label_b=a.label_b))
     elif a.cmd == "map":
-        print("->", map_fig(rep=REPO / "deliverables" / "10_representative" / "stations.csv"))
+        print("->", map_fig(a.run_a, rep=REPO / "deliverables" / "10_representative" / "stations.csv", label=a.label_a))
     else:
-        print("->", box_fig())
+        print("->", box_fig(a.run_a, a.run_b, label_a=a.label_a, label_b=a.label_b))
 
 
 if __name__ == "__main__":
