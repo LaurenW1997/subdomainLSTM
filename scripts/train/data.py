@@ -18,6 +18,7 @@ import torch
 
 LOOKBACK = 72   # hours of input
 HORIZON = 6     # hours ahead
+FC_STRIDE = 6   # hours between the origins a forecast-rain product was extracted for (hrrr_precip.py --stride)
 MIN_INPUT_VALID = 0.7
 WIND_SCALE = 10.0   # m/s -> O(1)
 
@@ -143,8 +144,10 @@ class StationMatrix:
                 ok &= (~need) | self.wmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
         if self.use_rain:   # rain comes from the same AORC grid as the wind: same availability rule
             ok &= self.rmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
-            if self.use_future_rain:   # with a forecast product this also restricts origins to the hours a cycle was extracted for
+            if self.use_future_rain:
                 ok &= self.futmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
+                if self.rain_fc:   # forecast product extracted for 6-hourly origins only: the valid hours of other origins would mix cycles
+                    ok &= (t0 % FC_STRIDE) == 0      # time axis starts at 00 UTC, so this is 00/06/12/18 UTC
         return ok
 
     def sample_train(self, batch: int, rng: np.random.Generator):
