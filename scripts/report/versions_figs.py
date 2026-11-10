@@ -225,9 +225,41 @@ def maps() -> tuple[Path, Path]:
     return out1, out2
 
 
+def detail_btr() -> Path:
+    """Mississippi River at Baton Rouge (USGS 07374000): 6 h-ahead forecast of the water-level-only and the operational
+    version, valid at every hour, in three 4-day periods. Input: data/btr_07374000_series.csv (hourly, from sv7)."""
+    d = pd.read_csv(OUT / "data" / "btr_07374000_series.csv", parse_dates=["time"]).set_index("time")
+    wins = [("2024-01-07", "(a) Storm surge reaching Baton Rouge at low river stage"),
+            ("2024-11-01", "(b) Low river: the tide is visible at Baton Rouge"),
+            ("2025-04-30", "(c) High river: slow and smooth")]
+    series = [("wl", "Water level only", "#2a78d6"), ("oper", "Water level + wind + upstream discharge (operational)", "#1baf7a")]
+    fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.5), gridspec_kw={"wspace": 0.2})
+    for ax, (t0, title) in zip(axes, wins):
+        w = d.loc[pd.Timestamp(t0):pd.Timestamp(t0) + pd.Timedelta(days=4)]
+        ax.plot(w.index, w.obs, color=INK, lw=1.2, label="observed", zorder=5)
+        txt = []
+        for key, lab, col in series:
+            ax.plot(w.index, w[key], color=col, lw=1.3, label=lab + ", 6 h ahead", zorder=4)
+            txt.append(f"{lab.split(' (')[0].split(' + ')[-1] if key == 'oper' else 'water level only'}: {np.sqrt(((w[key] - w.obs) ** 2).mean()) * 100:.1f} cm")
+        ax.set_title(f"{title}" + "\n" + f"6 h RMSE  water level only {np.sqrt(((w.wl - w.obs) ** 2).mean()) * 100:.1f} cm,  operational {np.sqrt(((w.oper - w.obs) ** 2).mean()) * 100:.1f} cm",
+                     loc="left", fontsize=9, linespacing=1.35)
+        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
+        ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
+        lo_, hi_ = w.obs.min(), w.obs.max(); pad = max(0.08, 0.15 * (hi_ - lo_)); ax.set_ylim(min(lo_, w.wl.min(), w.oper.min()) - pad, max(hi_, w.wl.max(), w.oper.max()) + pad)
+        ax.text(0.02, 0.03, f"{w.index[0].year}", transform=ax.transAxes, fontsize=8.5, color="#55554f")
+    axes[0].set_ylabel("Water level (m, NAVD88)")
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=3, frameon=False, bbox_to_anchor=(0.5, -0.1))
+    fig.suptitle("Mississippi River at Baton Rouge, LA (USGS 07374000)", x=0.012, ha="left", fontsize=10.5, y=1.06)
+    out = OUT / "detail_07374000.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr"]); a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "bars":
         print("->", bars())
@@ -235,6 +267,8 @@ def main() -> None:
         print("->", lead())
     elif a.cmd == "maps":
         print("->", maps())
+    elif a.cmd == "btr":
+        print("->", detail_btr())
     else:
         stations()
 
