@@ -6,9 +6,11 @@ slot would hold the HRRR forecast. This script pulls, for each test origin t0 (0
 
 Source: s3://noaa-hrrr-bdp-pds/hrrr.YYYYMMDD/conus/hrrr.tHHz.wrfsfcfFF.grib2, message "APCP:surface:(k-1)-k hour acc fcst"
         read by byte range through the .idx file (about 210 kB per message).
-Output: <out>/hrrr_lag<L>_p.npy, hrrr_lag<L>_p15.npy  float32 [n_stations, n_hours] indexed by VALID hour on the dataset time axis
-        (same axis as precip/aorc_p.npy); hours that are not a test-origin valid hour, or whose message failed, are NaN.
-        p = station's 3 km cell, p15 = mean of the 5 x 5 cells (15 km) around it. Also <out>/hrrr_cells.csv, hrrr_lag<L>_log.csv.
+Output: <out>/hrrr_lag<L>_p.npy, hrrr_lag<L>_p15.npy, hrrr_lag<L>_p45.npy  float32 [n_stations, n_hours] indexed by VALID hour on the
+        dataset time axis (same axis as precip/aorc_p.npy); hours that are not an origin's valid hour, or whose message failed, are NaN.
+        p = station's 3 km cell, p15 = mean of the 5 x 5 cells (15 km), p45 = mean of the 15 x 15 cells (45 km) around it.
+        Existing output arrays are loaded and filled in (so the period can be extended in several runs). Also hrrr_cells.csv, hrrr_lag<L>_log.csv.
+        HRRR archive on AWS starts 2014-07-30 (v1; v2 2016-08-23, v3 2018-07-12, v4 2020-12-02).
 Usage (sv7 venv has pygrib + requests): python hrrr_precip.py --stations DIR/stations.csv --start 2024-01-01 --end 2025-12-31 --lag 0 [--lag 1] [--threads 16]
 """
 from __future__ import annotations
@@ -34,7 +36,7 @@ BASE = "https://noaa-hrrr-bdp-pds.s3.amazonaws.com"
 START_AXIS = pd.Timestamp("2010-01-01 00:00")
 END_AXIS = pd.Timestamp("2026-11-07 00:00")
 HORIZON = 6
-BOX = 5          # 5 x 5 cells of 3 km = 15 km
+BOXES = {"p15": 5, "p45": 15}      # 5 x 5 cells of 3 km = 15 km; 15 x 15 = 45 km
 
 
 def url(cycle: pd.Timestamp, lead: int) -> str:
@@ -100,14 +102,20 @@ def main() -> None:
         iy[k], ix[k] = j, i
     pd.DataFrame({"source": st.source, "station_id": st.station_id, "lat": st.lat, "lon": st.lon, "iy": iy, "ix": ix,
                   "cell_lat": lat[iy, ix], "cell_lon": lon[iy, ix]}).to_csv(out / "hrrr_cells.csv", index=False)
-    off = np.arange(-(BOX // 2), BOX // 2 + 1)
-    jb = np.clip(iy[:, None, None] + off[None, :, None], 0, ny - 1)
-    ib = np.clip(ix[:, None, None] + off[None, None, :], 0, nx - 1)
-    jb, ib = np.broadcast_arrays(jb, ib)
+    boxes = {}
+    for name, nb in BOXES.items():
+        off = np.arange(-(nb // 2), nb // 2 + 1)
+        jb = np.clip(iy[:, None, None] + off[None, :, None], 0, ny - 1)
+        ib = np.clip(ix[:, None, None] + off[None, None, :], 0, nx - 1)
+        boxes[name] = np.broadcast_arrays(jb, ib)
     log(f"HRRR grid {ny} x {nx}; {S} stations mapped; {len(origins)} origins {origins[0]} .. {origins[-1]}; lags {a.lag}")
 
     for lag in a.lag:
-        p = np.full((S, T), np.nan, np.float32); p15 = np.full((S, T), np.nan, np.float32)
+        arrs = {}
+        for name in ["p"] + list(BOXES):
+            f = out / f"hrrr_lag{lag}_{name}.npy"
+            arrs[name] = np.load(f) if f.exists() else np.full((S, T), np.nan, np.float32)
+            assert arrs[name].shape == (S, T), f
         jobs = [(t0, t0 - pd.Timedelta(hours=lag), lead + lag, lead) for t0 in origins for lead in range(1, HORIZON + 1)]
         rows = []; t_start = time.time(); done = 0
 
@@ -128,17 +136,22 @@ def main() -> None:
                         v = values(bb)
                         ti = int((valid - START_AXIS) / pd.Timedelta(hours=1))
                         if 0 <= ti < T:
-                            p[:, ti] = v[iy, ix]
-                            p15[:, ti] = v[jb, ib].mean((1, 2))
+                            arrs["p"][:, ti] = v[iy, ix]
+                            for name, (jb, ib) in boxes.items():
+                                arrs[name][:, ti] = v[jb, ib].mean((1, 2))
                     except Exception as e:  # noqa: BLE001
                         ok = False; log(f"bad message {cyc} f{flead:02d}: {e}")
                 rows.append((t0, cyc, flead, valid, ok))
                 done += 1
                 if done % 2000 == 0:
                     log(f"lag {lag}: {done}/{len(jobs)} messages, {time.time() - t_start:.0f} s")
-        lg = pd.DataFrame(rows, columns=["origin", "cycle", "lead", "valid", "ok"]).sort_values(["origin", "lead"])
-        lg.to_csv(out / f"hrrr_lag{lag}_log.csv", index=False)
-        np.save(out / f"hrrr_lag{lag}_p.npy", p); np.save(out / f"hrrr_lag{lag}_p15.npy", p15)
+        lg = pd.DataFrame(rows, columns=["origin", "cycle", "lead", "valid", "ok"])
+        lf = out / f"hrrr_lag{lag}_log.csv"
+        if lf.exists():
+            lg = pd.concat([pd.read_csv(lf, parse_dates=["origin", "cycle", "valid"]), lg]).drop_duplicates(["origin", "lead"], keep="last")
+        lg = lg.sort_values(["origin", "lead"]); lg.to_csv(lf, index=False)
+        for name, arr in arrs.items():
+            np.save(out / f"hrrr_lag{lag}_{name}.npy", arr)
         n_full = lg.groupby("origin").ok.all().sum()
         log(f"lag {lag}: {lg.ok.mean():.3%} messages ok, {n_full}/{len(origins)} origins complete -> {out}/hrrr_lag{lag}_p*.npy")
 
