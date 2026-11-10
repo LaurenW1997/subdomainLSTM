@@ -63,7 +63,7 @@ def main() -> None:
     ap.add_argument("--run", default="v7_rain_p15"); ap.add_argument("--ref", default="v6_wind_q")
     ap.add_argument("--dataset", required=True); ap.add_argument("--hrrr-dir", required=True)
     ap.add_argument("--lags", type=int, nargs="+", default=[0, 1]); ap.add_argument("--stride", type=int, default=6)
-    ap.add_argument("--test-end", default="2025-12-31T17")
+    ap.add_argument("--test-end", default="2025-12-31T17"); ap.add_argument("--extra", nargs="*", help="runs trained with forecast rain to evaluate on the same pairs")
     a = ap.parse_args()
     device = torch.device("cpu"); torch.set_num_threads(32)
     sm, model = load(REPO / "runs" / a.run, Path(a.dataset), device)
@@ -71,8 +71,12 @@ def main() -> None:
     assert (sm.stations.station_id.to_numpy() == smr.stations.station_id.to_numpy()).all()
     assert sm.use_future_rain, "the run must use future rain"
     t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end)))
-    S, T0 = sm.eval_origins("test", a.stride, t_hi=t_hi)
-    S2, T02 = smr.eval_origins("test", a.stride, t_hi=t_hi)
+    # origins on the HRRR cycle hours (00/06/12/18 UTC). The split boundary is 23 UTC, so the default test origins
+    # (23/05/11/17 UTC) would pair each origin with the cycle issued one hour LATER than intended.
+    lo = sm.split_range("test")[0]; t_lo = -(-lo // a.stride) * a.stride
+    S, T0 = sm.eval_origins("test", a.stride, t_lo=t_lo, t_hi=t_hi)
+    S2, T02 = smr.eval_origins("test", a.stride, t_lo=t_lo, t_hi=t_hi)
+    assert (T0 % a.stride == 0).all() and set(pd.DatetimeIndex(sm.time[np.unique(T0)]).hour) <= {0, 6, 12, 18}
     both = pd.MultiIndex.from_arrays([S, T0]).isin(pd.MultiIndex.from_arrays([S2, T02]))
     S, T0 = S[both], T0[both]
     # HRRR forecast rain by valid hour, mm over the hour -> same log1p scaling as the model's AORC rain
@@ -103,6 +107,12 @@ def main() -> None:
         res, per = per_station(model, sm, S, T0, device, patch_with(fc[lag])); save(f"{a.run}_hrrr{lag}", res, per, f"HRRR forecast rain, cycle {lag} h before the origin")
     res, per = per_station(model, sm, S, T0, device, patch_zero); save(f"{a.run}_norain", res, per, "future rain set to zero")
     res, per = per_station(ref, smr, S, T0, device); save(f"{a.ref}_sameorig", res, per, "operational model (no rain), common origins")
+    for name in a.extra or []:      # models trained with forecast rain: their own inputs, same (station, origin) pairs
+        smx, mx = load(REPO / "runs" / name, Path(a.dataset), device)
+        assert (smx.stations.station_id.to_numpy() == sm.stations.station_id.to_numpy()).all()
+        okx = smx._ok(S, T0)
+        print(f"{name}: {int(okx.sum())}/{len(S)} common pairs usable", flush=True)
+        res, per = per_station(mx, smx, S[okx], T0[okx], device); save(f"{name}_sameorig", res, per, f"trained with forecast rain ({smx.rain_fc}, {smx.future_rain_form}), common origins")
 
 
 if __name__ == "__main__":

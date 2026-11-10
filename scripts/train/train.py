@@ -70,6 +70,9 @@ def main() -> None:
     sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations, no_wind_stations=a.no_wind_stations,
                        use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
+    n_val = len(sm.eval_origins("val", a.eval_stride)[0])
+    assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"
+    print(f"validation (station, origin) pairs: {n_val}", flush=True)
     t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))) if a.test_end else None
     print(f"device={device} stations={sm.S} hours={sm.T} lookback={sm.lookback} n_feat={sm.n_feat} n_future={sm.n_future} "
           f"train_end_idx={sm.t_train_end} t_end={sm.t_end} test_t_hi={t_hi}", flush=True)
@@ -96,6 +99,8 @@ def main() -> None:
             best = val["rmse_model_m"][-1]
             torch.save({"state_dict": model.state_dict(), "args": vars(a), "n_stations": sm.S,
                         "n_feat": sm.n_feat, "n_future": sm.n_future}, out / "best.pt")
+        torch.save({"state_dict": model.state_dict(), "args": vars(a), "n_stations": sm.S,
+                    "n_feat": sm.n_feat, "n_future": sm.n_future}, out / "last.pt")      # never lose a finished training
         (out / "history.json").write_text(json.dumps(history, indent=1))
 
     model.load_state_dict(torch.load(out / "best.pt", map_location=device)["state_dict"])

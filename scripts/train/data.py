@@ -155,7 +155,10 @@ class StationMatrix:
         out_s, out_t, need = [], [], batch
         while need > 0:
             s = rng.integers(0, self.S, need * 2)
-            t0 = rng.integers(lo, hi, need * 2)
+            if self.use_future_rain and self.rain_fc:      # forecast rain exists for the 6-hourly cycles only
+                t0 = rng.integers(-(-lo // FC_STRIDE), hi // FC_STRIDE, need * 2) * FC_STRIDE
+            else:
+                t0 = rng.integers(lo, hi, need * 2)
             ok = self._ok(s, t0)
             out_s.append(s[ok][:need]); out_t.append(t0[ok][:need])
             need -= int(ok.sum())
@@ -168,6 +171,10 @@ class StationMatrix:
             lo = max(lo, t_lo)
         if t_hi is not None:
             hi = min(hi, t_hi)
+        if self.use_future_rain and self.rain_fc:
+            # the split boundaries fall on 23 UTC; forecast rain is issued at 00/06/12/18 UTC -> start on a cycle hour
+            assert stride % FC_STRIDE == 0, "eval stride must be a multiple of the forecast-rain cycle spacing"
+            lo = -(-lo // FC_STRIDE) * FC_STRIDE
         t0 = np.arange(lo, hi, stride)
         S, T0 = [], []
         for s in range(self.S):
