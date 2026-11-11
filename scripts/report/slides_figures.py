@@ -115,7 +115,7 @@ def main() -> None:
         "   (b) high water — the 4 days around the highest observed level outside the hurricane;",
         "   (c) normal — 4 days whose 6 h error equals the station's whole-year error.",
         "",
-        "Black: observation. Blue lines, light to dark: the forecast valid at each hour that was issued 1, 3 and 6 hours earlier (model with rainfall).",
+        "Black: observation. Orange lines, pale to vivid: the forecast valid at each hour that was issued 1, 3 and 6 hours earlier (model with rainfall).",
         "Grey band: 24 hours around the window peak. RMSE in each panel title: all hourly forecasts in that window.",
         "",
         "Below each figure: whole-year 6 h RMSE with and without the rainfall input, and the three window values.",

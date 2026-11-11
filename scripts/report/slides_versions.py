@@ -120,7 +120,7 @@ def main() -> None:
     yb = picture(sl, F / "explain_scaling.png", 7.6, 1.0, 5.4, 4.6)
     text(sl, 7.6, yb + 0.1, 5.4, 1.4, [
         "Example. Left: operational version. Right: same inputs with the three changes. At high river (bottom) the observed level is smooth; "
-        "the operational 6 h forecast (dark line) wanders several cm around it, the other one follows it. Whole test period: 4.8 to 2.5 cm.",
+        "the operational 6 h forecast (red-orange line) wanders several cm around it, the other one follows it. Whole test period: 4.8 to 2.5 cm.",
         "On the following slides this version is labelled \"6 h-change scaling + gap filling\"."], size=11)
 
     # ---- 3 bars
@@ -197,8 +197,8 @@ def main() -> None:
         "   Top row: the hurricane — Francine, 10 to 14 September 2024, in Louisiana; Beryl, 7 to 11 July 2024, in Texas.",
         "   Bottom row: the highest water level at that station outside the hurricane.",
         "",
-        "Black: observed water level. Blue lines, light to dark: the forecast valid at each hour that was issued 1, 3 and 6 hours earlier. A forecast is issued every hour.",
-        "A dark line that follows the black line a few hours late means the version only reacts once the rise is already in the observations. Grey band: 24 hours around the observed peak. Numbers inside each panel: RMSE in that period at 1, 3 and 6 hours lead.",
+        "Black: observed water level. Orange lines, pale to vivid: the forecast valid at each hour that was issued 1, 3 and 6 hours earlier. A forecast is issued every hour.",
+        "A red-orange line that follows the black line a few hours late means the version only reacts once the rise is already in the observations. Grey band: 24 hours around the observed peak. Numbers inside each panel: RMSE in that period at 1, 3 and 6 hours lead.",
         "Above each column: the 6 h RMSE of that version at the station over the whole two test years.",
         "",
         "The sixth column uses the observed rainfall of the next 6 hours. It cannot be run in real time and shows how far a perfect rainfall forecast would go.",

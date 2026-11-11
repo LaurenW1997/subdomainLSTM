@@ -27,7 +27,7 @@ OUT = REPO / "deliverables" / "11_figures"
 plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9, "axes.titlesize": 9.5, "axes.labelsize": 9,
                      "xtick.labelsize": 8.5, "ytick.labelsize": 8.5, "legend.fontsize": 8.5, "axes.linewidth": 0.6,
                      "xtick.major.width": 0.6, "ytick.major.width": 0.6, "axes.spines.top": False, "axes.spines.right": False})
-LEAD_COL = {1: "#9ecae1", 3: "#3182bd", 6: "#08306b"}
+LEAD_COL = {1: "#f6cdb8", 3: "#ee9468", 6: "#d6450c"}   # warm ramp, pale -> vivid with lead time; 6 h must stand apart from the black observation
 TYPE_ORDER = ["tide gauge", "marsh", "estuary / tidal channel", "lake", "river / canal", "urban creek (Houston)"]
 TYPE_LABEL = {"tide gauge": "tide gauge", "marsh": "marsh (USGS)", "estuary / tidal channel": "estuary / tidal channel", "lake": "lake",
               "river / canal": "river", "urban creek (Houston)": "urban creek (Houston)"}

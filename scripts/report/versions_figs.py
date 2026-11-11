@@ -118,7 +118,7 @@ def lead() -> Path:
     return out
 
 
-LEAD_COL = {1: "#9ecae1", 3: "#3182bd", 6: "#08306b"}        # one hue, light -> dark with lead time
+LEAD_COL = {1: "#f6cdb8", 3: "#ee9468", 6: "#d6450c"}        # one warm hue, pale -> vivid with lead time; the 6 h line must stand apart from the black observation
 
 
 def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> float:
