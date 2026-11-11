@@ -1,6 +1,15 @@
 """Operational inference: pull the last 72 h of observations from the live USGS / NOAA
-APIs (plus HRRR wind and USGS discharge when the model uses them), run the trained
+APIs (plus HRRR wind, HRRR rainfall and USGS discharge when the model uses them), run the trained
 global LSTM, write 1-6 h water-level forecasts for every station.
+
+Which inputs are built is read from the training switches stored in best.pt:
+  --wind / --future-wind      HRRR 10 m wind (hrrr_wind.py)
+  --discharge                 USGS discharge of the upstream gauge
+  --rain / --future-rain      HRRR rainfall (hrrr_rain.py): past hours from the 1 h lead of the hourly cycles, the 6
+                              target hours from one cycle issued `lag` h before the origin (--rain-fc hrrr_lag<L>_p<km>)
+  --fill ffill                a missing hour takes the last valid level (FILL_EXTRA_H more hours are fetched for this)
+  --delta-norm / --delta-feat forecast change scaled by the station's typical 6 h change (scale saved in best.pt)
+Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --stations) stop it.
 
 Only sources with a real-time feed are forecast (USGS NWIS IV, NOAA CO-OPS). CRMS and
 USACE stations in the model are listed in the output with status "no_realtime_source".
@@ -11,7 +20,7 @@ wind_coverage.csv, a discharge model q_norm.csv (both written by build_extras.py
 Output: <out>/<cycle>/forecast.csv, manifest.json, raw/ (verbatim API payloads).
   forecast.csv columns: source, station_id, name, lat, lon, domains, datum, cycle_utc,
   last_obs_utc, last_obs_m, fcst_1h_m .. fcst_6h_m, input_valid_frac, wind_valid_frac,
-  q_valid_frac, status
+  q_valid_frac, rain_valid_frac, rain_past72h_mm, rain_next6h_mm, status
 Usage: python forecast.py --model RUN_DIR [--cycle 2026-11-08T12] [--out DIR] [--sources USGS NOAA_COOPS]
 """
 from __future__ import annotations
@@ -37,6 +46,7 @@ REPO = HERE.parents[1]
 HORIZON = 6
 MIN_INPUT_VALID = 0.7
 MAX_STALE_H = 3
+FILL_EXTRA_H = 24        # extra hours fetched before the window so that a gap at its start can be filled from the last valid level
 CFS = 0.028316846592
 USGS_URL = "https://waterservices.usgs.gov/nwis/iv/"
 NOAA_URL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
@@ -135,6 +145,7 @@ def main() -> None:
     ap.add_argument("--out", default="/data/ywan245/subdomainLSTM/operational")
     ap.add_argument("--sources", nargs="*", default=["USGS", "NOAA_COOPS"])
     ap.add_argument("--wind-cache", help="HRRR cache dir (default <out>/wind)")
+    ap.add_argument("--rain-cache", help="HRRR rainfall cache dir (default <out>/rain)")
     a = ap.parse_args()
 
     cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.now("UTC").tz_localize(None).floor("h") - pd.Timedelta(hours=1)
@@ -144,16 +155,33 @@ def main() -> None:
     args = ck["args"]
     lookback = int(args.get("lookback", 72))
     use_wind, use_future, use_q = bool(args.get("wind")), bool(args.get("wind") and args.get("future_wind")), bool(args.get("discharge"))
-    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=args["hidden"], layers=args["layers"], n_future=ck.get("n_future", 0))
+    use_rain = bool(args.get("rain")); use_future_rain = bool(use_rain and args.get("future_rain"))
+    rain_form = args.get("future_rain_form", "hourly")
+    ffill, delta_norm, delta_feat = args.get("fill", "zero") == "ffill", bool(args.get("delta_norm")), bool(args.get("delta_feat"))
+    unsupported = [k for k in ("long_feat", "downstream", "upstream_stage", "stations") if args.get(k)]
+    if unsupported:
+        raise SystemExit(f"model trained with {unsupported}: forecast.py does not build these inputs")
+    if use_future_rain and not args.get("rain_fc"):
+        raise SystemExit("model trained with OBSERVED rainfall in the 6 target hours: not available in real time")
+    n_feat_expected = 6 + 3 * use_wind + 2 * use_q + 2 * use_rain + delta_feat
+    n_future_expected = 2 * HORIZON * use_future + (0 if not use_future_rain else (HORIZON if rain_form == "hourly" else 1))
+    assert (ck.get("n_feat", 6), ck.get("n_future", 0)) == (n_feat_expected, n_future_expected), \
+        f"checkpoint expects n_feat {ck.get('n_feat')} / n_future {ck.get('n_future')}, this script builds {n_feat_expected} / {n_future_expected}"
+    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=args["hidden"], layers=args["layers"], n_future=ck.get("n_future", 0),
+                       delta_scale=delta_norm)
     model.load_state_dict(ck["state_dict"]); model.eval()
+    if delta_feat and not delta_norm:
+        raise SystemExit("--delta-feat without --delta-norm: the scale is not stored in the checkpoint")
+    rscale = model.rscale.numpy() if delta_norm else None
     st = pd.read_csv(run_dir / "stations.csv", dtype={"station_id": str})
     assert len(st) == ck["n_stations"], "stations.csv does not match the checkpoint"
-    log.info("cycle %s UTC, model %s (%d stations, lookback %d h, wind=%s future_wind=%s discharge=%s)",
-             cycle, run_dir.name, len(st), lookback, use_wind, use_future, use_q)
+    log.info("cycle %s UTC, model %s (%d stations, lookback %d h, wind=%s future_wind=%s discharge=%s rain=%s future_rain=%s fill=%s scaled_change=%s)",
+             cycle, run_dir.name, len(st), lookback, use_wind, use_future, use_q, use_rain, use_future_rain, args.get("fill", "zero"), delta_norm)
 
     index = pd.date_range(cycle - pd.Timedelta(hours=lookback - 1), cycle, freq="1h")
     future_index = pd.date_range(cycle + pd.Timedelta(hours=1), periods=HORIZON, freq="1h")
-    begin, end = index[0] - pd.Timedelta(hours=1), cycle + pd.Timedelta(minutes=59)
+    long_index = pd.date_range(index[0] - pd.Timedelta(hours=FILL_EXTRA_H if ffill else 0), cycle, freq="1h")
+    begin, end = long_index[0] - pd.Timedelta(hours=1), cycle + pd.Timedelta(minutes=59)
     series: dict[tuple[str, str], pd.Series] = {}
     manifest_extra: dict = {}
 
@@ -213,6 +241,17 @@ def main() -> None:
     if use_q:
         q, qinfo = fetch_discharge(st, run_dir, index, raw_dir)
         manifest_extra["discharge"] = qinfo
+    rain_p = rain_f = None
+    if use_rain:
+        from hrrr_rain import box_cells, lag_of, station_rain
+        t = time.time()
+        rain_p, rain_f, rprov = station_rain(st, index, cycle, Path(a.rain_cache) if a.rain_cache else Path(a.out) / "rain",
+                                             past_cells=box_cells(args.get("rain_var", "p15")), future_cells=box_cells(args.get("rain_fc")),
+                                             lag=lag_of(args.get("rain_fc")), want_future=use_future_rain)
+        manifest_extra["rain"] = {"source": "HRRR conus wrfsfc, APCP 1 h accumulation, box mean around the station", "seconds": round(time.time() - t),
+                                  "past_valid_frac": float(np.isfinite(rain_p).mean()), "future_available": rain_f is not None,
+                                  "trained_with": {"past": f"AORC {args.get('rain_var', 'p15')}", "future": args.get("rain_fc"), "form": rain_form}, **rprov}
+        log.info("rain: past valid %.3f, future %s, %d s", np.isfinite(rain_p).mean(), rprov["future"] or "NOT AVAILABLE", time.time() - t)
 
     # ---- windows -> model
     tf = time_features(index)
@@ -222,12 +261,14 @@ def main() -> None:
         rec = {"source": r.source, "station_id": r.station_id, "name": r["name"], "lat": r.lat, "lon": r.lon,
                "domains": r.domains, "datum": r.datum, "cycle_utc": cycle, "last_obs_utc": None, "last_obs_m": np.nan,
                **{f"fcst_{h}h_m": np.nan for h in range(1, HORIZON + 1)}, "input_valid_frac": 0.0,
-               "wind_valid_frac": np.nan, "q_valid_frac": np.nan, "status": ""}
+               "wind_valid_frac": np.nan, "q_valid_frac": np.nan, "rain_valid_frac": np.nan, "rain_past72h_mm": np.nan, "rain_next6h_mm": np.nan,
+               "status": ""}
         if r.source not in a.sources:
             rec["status"] = "no_realtime_source"; recs.append(rec); continue
         if key not in series:
             rec["status"] = "no_data_returned"; recs.append(rec); continue
-        h = to_hourly(series[key]).reindex(index)
+        h_long = to_hourly(series[key]).reindex(long_index)
+        h = h_long.reindex(index)
         valid = h.notna()
         rec["input_valid_frac"] = float(valid.mean())
         if valid.any():
@@ -237,9 +278,11 @@ def main() -> None:
             rec["status"] = "insufficient_input"; recs.append(rec); continue
         if (cycle - rec["last_obs_utc"]) > pd.Timedelta(hours=MAX_STALE_H):
             rec["status"] = "stale"; recs.append(rec); continue
-        x = ((h.to_numpy(np.float32) - r.mean_m) / r.std_m)
+        if ffill:      # as in training (--fill ffill): a missing hour takes the last valid level; the mask channel still marks it
+            h = h_long.ffill().reindex(index).bfill()
+        x = np.nan_to_num((h.to_numpy(np.float32) - r.mean_m) / r.std_m)
         m = valid.to_numpy(np.float32)
-        parts = [np.nan_to_num(x)[:, None], m[:, None], tf]
+        parts = [x[:, None], m[:, None], tf]
         fut = np.zeros(0, np.float32)
         if use_wind and wind_off[i]:                  # wind switched off for this station at training time
             L = len(index)
@@ -261,12 +304,26 @@ def main() -> None:
             qm = np.isfinite(q[i])
             rec["q_valid_frac"] = float(qm.mean())
             parts += [np.nan_to_num(q[i])[:, None], qm.astype(np.float32)[:, None]]
+        if use_rain:   # log1p(mm/h) and its mask, then (head input) the next 6 h as hourly values or as one total
+            rm = np.isfinite(rain_p[i])
+            rec["rain_valid_frac"] = float(rm.mean())
+            if rm.mean() < MIN_INPUT_VALID or (use_future_rain and (rain_f is None or not np.isfinite(rain_f[i]).all())):
+                rec["status"] = "insufficient_rain"; recs.append(rec); continue
+            mm = np.nan_to_num(np.clip(rain_p[i], 0, None))
+            rec["rain_past72h_mm"] = float(mm.sum())
+            parts += [np.log1p(mm)[:, None], rm.astype(np.float32)[:, None]]
+            if use_future_rain:
+                fm = np.clip(rain_f[i], 0, None)
+                rec["rain_next6h_mm"] = float(fm.sum())
+                fut = np.concatenate([fut, np.log1p(fm) if rain_form == "hourly" else np.log1p(fm.sum(keepdims=True))]).astype(np.float32)
+        if delta_feat:   # level relative to the newest hour, in units of the station's typical 6 h change (last channel, as in training)
+            parts.append(np.clip((x - x[-1]) / rscale[i], -20, 20)[:, None].astype(np.float32))
         feats.append(np.concatenate(parts, 1)); futs.append(fut)
         rows_idx.append(i); rec["status"] = "ok"; recs.append(rec)
     df = pd.DataFrame(recs)
     if feats:
         with torch.no_grad():
-            f = torch.from_numpy(np.stack(feats)); fu = torch.from_numpy(np.stack(futs)) if use_future else None
+            f = torch.from_numpy(np.stack(feats).astype(np.float32)); fu = torch.from_numpy(np.stack(futs)) if ck.get("n_future", 0) else None
             pred = model(f, torch.tensor(rows_idx, dtype=torch.long), fu).numpy()
         mean = st.loc[rows_idx, "mean_m"].to_numpy(); std = st.loc[rows_idx, "std_m"].to_numpy()
         pred = pred * std[:, None] + mean[:, None]
