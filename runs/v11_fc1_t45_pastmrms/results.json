@@ -1,0 +1,14 @@
+{
+ "test": {
+  "rmse_model_m": [
+   0.019856167626720815,
+   0.034924904213212975,
+   0.04481962417457721,
+   0.05425846003625197,
+   0.0626813308727846,
+   0.07019881854764873
+  ],
+  "n_samples": 2305441
+ },
+ "note": "look-back rainfall from /data/ywan245/subdomainLSTM/data/precip/mrms_p15.npy"
+}

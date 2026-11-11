@@ -128,11 +128,13 @@ def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> 
     return float(np.sqrt((e ** 2).mean()) * 100) if len(e) else np.nan
 
 
-def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | None = None, figsize=(13.0, 4.9), out: Path | None = None) -> Path:
+def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | None = None, figsize=(13.0, 4.9), out: Path | None = None,
+                data_dir: Path | None = None) -> Path:
     """Two event windows (rows) x versions (columns). Black: observation. Blue lines, light to dark: the forecast valid at
     each hour that was issued 1, 3 and 6 h earlier (hourly origins). Grey band: 24 h around the observed peak."""
-    obs = pd.read_csv(OUT / "data" / f"{sid}_obs.csv", parse_dates=["time"])
-    fc = pd.read_csv(OUT / "data" / f"{sid}_fc.csv", parse_dates=["origin", "valid"])
+    data_dir = data_dir or OUT / "data"
+    obs = pd.read_csv(data_dir / f"{sid}_obs.csv", parse_dates=["time"])
+    fc = pd.read_csv(data_dir / f"{sid}_fc.csv", parse_dates=["origin", "valid"])
     wins = list(dict.fromkeys(obs.window))
     vers = vers or MAIN
     leads = (1, 3, 6)
@@ -179,6 +181,19 @@ def stations() -> None:
         sid = f.stem[:-3]; r = scr.loc[sid]
         whole = {k: float(per[run].loc[per[run].station_id == sid, "rmse_6h_cm"].iloc[0]) for k, run, _, _ in MAIN}
         print("->", station_fig(sid, f"{str(r['name']).title() if str(r['name']).isupper() else r['name']} ({r.source.replace('NOAA_COOPS', 'NOAA')} {sid})", whole))
+
+
+REF_VERS = [("base", "v10_dnorm_x_p50", "6 h-change scaling,\ngap filling", ""),
+            ("ds", "v13_ds", "+ water level at the next\ngauge downstream", ""),
+            ("ds_us", "v13_ds_us", "+ next gauge downstream\nand next gauge upstream", "")]
+
+
+def refgauge(sid: str = "08076700", name: str = "Greens Bayou at Ley Rd, Houston, TX") -> Path:
+    """One station that has a gauge upstream on the same river: forecasts without and with the reference-gauge inputs."""
+    per = load_runs([r for _, r, _, _ in REF_VERS])
+    whole = {k: float(per[run].loc[per[run].station_id == sid, "rmse_6h_cm"].iloc[0]) for k, run, _, _ in REF_VERS}
+    return station_fig(sid, f"{name} (USGS {sid})", whole, vers=REF_VERS, figsize=(7.6, 4.9), out=OUT / f"refgauge_{sid}.png",
+                       data_dir=REPO / "deliverables" / "19_reference_gauge" / "data_lag")
 
 
 EXTENT = [-99.3, -88.0, 25.6, 31.4]
@@ -283,7 +298,7 @@ def explain() -> Path:
 
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr", "explain"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr", "explain", "refgauge"]); a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "bars":
         print("->", bars())
@@ -295,6 +310,8 @@ def main() -> None:
         print("->", detail_btr())
     elif a.cmd == "explain":
         print("->", explain())
+    elif a.cmd == "refgauge":
+        print("->", refgauge())
     else:
         stations()
 

@@ -177,18 +177,21 @@ def main() -> None:
                           ("v9_fc1_h45", "HRRR rainfall as 6 hourly values, 45 km", "v9_fc1_t45"),
                           ("v9_fc0_h15", "HRRR cycle issued at forecast time instead of 1 h earlier", "v9_fc1_t45"),
                           ("v7_rain_p15_hrrr1", "Model trained on observed rainfall, run with HRRR rainfall", "v6_wind_q_sameorig"),
-                          ("v10_dnorm_x", "Error scaled all the way to the 6 h change instead of half-way (tide gauges 0.4 cm worse)", "v10_dnorm_x_p50")]:
+                          ("v10_dnorm_x", "Error scaled all the way to the 6 h change instead of half-way (tide gauges 0.4 cm worse)", "v10_dnorm_x_p50"),
+                          ("v12_lb720_e12", "Look-back 720 h (30 days) instead of 72 h; 12 training epochs each, training takes 9 times as long", "v12_lb72_e12"),
+                          ("v12_long", "Mean level and rainfall total of the last 7 and 30 days as extra inputs", "v11_fc1_t45"),
+                          ("v13_ds", "Water level at the next gauge downstream (or the nearest tide gauge) as input", "v10_dnorm_x_p50")]:
         a, b = pooled_nc(run, ref)
         rows.append((lab, f"{a:.2f}", f"{b:.2f}", False))
     y = 1.05
     for lab, a, b, bold in rows:
-        text(sl, 0.5, y, 7.9, 0.3, lab, size=12, bold=bold); text(sl, 8.4, y, 2.4, 0.3, a, size=12, bold=bold, align=PP_ALIGN.RIGHT); text(sl, 10.9, y, 1.9, 0.3, b, size=12, bold=bold, align=PP_ALIGN.RIGHT)
-        y += 0.4
-    text(sl, 0.5, y + 0.15, 12.3, 1.6, [
-        "Reference: the operational version for the first three rows and the eighth; the version of the same kind for the others. Same stations in both columns.",
+        text(sl, 0.5, y, 8.3, 0.3, lab, size=11.5, bold=bold); text(sl, 8.8, y, 2.2, 0.3, a, size=11.5, bold=bold, align=PP_ALIGN.RIGHT); text(sl, 11.0, y, 1.8, 0.3, b, size=11.5, bold=bold, align=PP_ALIGN.RIGHT)
+        y += 0.33
+    text(sl, 0.5, y + 0.12, 12.3, 1.6, [
+        "Reference: the operational version for the first three rows and the eighth; the version of the same kind for the others (for the last three rows: the version with 6 h-change scaling and gap filling, with or without HRRR rainfall). Same stations in both columns.",
         "Separate models for tidal stations and for river stations were also trained and were not better than the single model on the same stations.",
         "Network size and the form of the inputs are not what limits the forecast. The limit is information the inputs do not contain: rainfall of the coming hours, and gate and reservoir operation.",
-    ], size=12)
+    ], size=11.5)
 
     # ---- 8 how to read
     sl = new("How to read the station slides")
@@ -223,11 +226,81 @@ def main() -> None:
              f"6 h-change scaling and gap filling {vals['base'] - vals['q']:+.1f} cm; HRRR rainfall on top of that {vals['base_fc'] - vals['base']:+.1f} cm "
              f"(observed rainfall would give {vals['base_obs'] - vals['base']:+.1f} cm).", size=11.5)
 
+    # ---- forecast lag and a second gauge on the same river
+    mp = pd.read_csv(REPO / "config" / "station_downstream_map.csv", dtype=str).fillna("")
+    has_us = set(mp.station_id[mp.us_station_id != ""])
+    ref = load_runs(["v10_dnorm_x_p50", "v13_ds", "v13_ds_us", "v11_fc1_t45", "v13_fc_ds_us"])
+    us = ref["v10_dnorm_x_p50"].station_id.isin(has_us).to_numpy()
+
+    def cnt(a, b, sel):
+        dd = ref[b].rmse_6h_cm.to_numpy()[sel] - ref[a].rmse_6h_cm.to_numpy()[sel]; return int((dd <= -0.5).sum()), int((dd >= 0.5).sum())
+
+    lag = pd.read_csv(REPO / "deliverables" / "19_reference_gauge" / "lag_table.csv", dtype={"station_id": str})
+    lus = lag[lag.upstream_ref != ""]
+    sl = new("The 6 h forecast runs late: a gauge upstream helps at 127 stations, the lag stays on average")
+    yb = picture(sl, F / "refgauge_08076700.png", 0.3, 1.0, 7.5, 4.95)
+    text(sl, 0.3, yb + 0.1, 7.5, 1.3, [
+        "The station with the largest gain: Greens Bayou at Ley Rd, with a gauge 11.5 km upstream on the same bayou. Here the 6 h forecast (red-orange) also rises earlier: "
+        "its lag goes from 2 to 1 h during Beryl and from 4 to 2 h in May 2024. This station is the exception; over all stations with an upstream gauge the lag does not change."], size=11)
+    bu, wu = cnt("v10_dnorm_x_p50", "v13_ds_us", us); br, wr = cnt("v11_fc1_t45", "v13_fc_ds_us", us)
+    text(sl, 8.0, 1.0, 5.0, 6.1, [
+        "On the station slides the 6 h forecast often follows the observation a few hours late. Tested: give the model the water level at the next gauge "
+        "downstream (sees tide and surge first) and at the next gauge upstream (sees a flood wave first) on the same river.",
+        "",
+        f"6 h RMSE, all stations: {pooled(ref['v10_dnorm_x_p50']):.2f} cm without, {pooled(ref['v13_ds']):.2f} cm with the downstream gauge, "
+        f"{pooled(ref['v13_ds_us']):.2f} cm with both. With HRRR rainfall: {pooled(ref['v11_fc1_t45']):.2f} to {pooled(ref['v13_fc_ds_us']):.2f} cm.",
+        "",
+        f"The gain is at the {int(us.sum())} stations that have a gauge upstream: {pooled(ref['v10_dnorm_x_p50'][us]):.1f} to {pooled(ref['v13_ds_us'][us]):.1f} cm, "
+        f"{bu} better and {wu} worse by 0.5 cm or more (with HRRR rainfall {pooled(ref['v11_fc1_t45'][us]):.1f} to {pooled(ref['v13_fc_ds_us'][us]):.1f} cm, {br} better, {wr} worse). "
+        "The downstream gauge alone changes nothing.",
+        "",
+        f"Lag of the 6 h forecast behind the observation, mean over {len(lag)} event periods at {lag.station_id.nunique()} stations: "
+        f"{lag.lag_base.mean():.1f} h without, {lag.lag_ds.mean():.1f} h with the downstream gauge, {lag.lag_ds_us.mean():.1f} h with both. "
+        f"At the stations with an upstream gauge: {lus.lag_base.mean():.1f} h and {lus.lag_ds_us.mean():.1f} h. Mississippi at Baton Rouge during Francine: 3 h in all three.",
+        "",
+        "On average the upstream gauge improves the height of the forecast, not its timing. The lag comes from what has not happened yet at forecast time: "
+        "with the observed rainfall of the next 6 h as input, the lag at the urban creeks drops from 4-5 h to nearly zero.",
+        "",
+        "Lag: the shift, 0 to 8 h, at which the forecast fits the observation best.",
+    ], size=11.5)
+
+    # ---- rainfall inputs in real time
+    pr = load_runs(["v11_fc1_t45_pastaorc", "v11_fc1_t45_pastmrms", "v11_fc1_t45_pasthrrr", "v11_fc1_t45_pastnone"])
+    sl = new("Rainfall in real time: where the two rainfall inputs come from")
+    rows = [("Rainfall of the past 72 h taken from", "Available in real time", "All stations", "Urban creeks", "Stations worse", True)]
+    for run, lab, rt in [("v11_fc1_t45_pastaorc", "AORC reanalysis (used for training)", "no"),
+                         ("v11_fc1_t45_pastmrms", "MRMS radar and gauge analysis, 1 km", "yes, 16 min after the hour"),
+                         ("v11_fc1_t45_pasthrrr", "HRRR short-range forecast, 1 to 6 h lead", "yes"),
+                         ("v11_fc1_t45_pastnone", "No rainfall of the past 72 h", "-")]:
+        x = pr[run]; dd = x.rmse_6h_cm.to_numpy() - pr["v11_fc1_t45_pastaorc"].rmse_6h_cm.to_numpy()
+        rows.append((lab, rt, f"{pooled(x):.2f}", f"{x.rmse_6h_cm[x.type == 'urban creek (Houston)'].median():.1f}",
+                     "-" if run.endswith("aorc") else f"{int((dd >= 0.5).sum())} of {len(x)}", False))
+    y = 1.05
+    text(sl, 7.6, y - 0.05, 3.2, 0.3, "6 h RMSE (cm)", size=12, bold=True, align=PP_ALIGN.CENTER); y += 0.3
+    for lab, rt, a_, u_, w_, bold in rows:
+        text(sl, 0.5, y, 4.4, 0.3, lab, size=12, bold=bold); text(sl, 4.9, y, 2.8, 0.3, rt, size=12, bold=bold)
+        text(sl, 7.6, y, 1.5, 0.3, a_, size=12, bold=bold, align=PP_ALIGN.RIGHT); text(sl, 9.2, y, 1.6, 0.3, u_, size=12, bold=bold, align=PP_ALIGN.RIGHT)
+        text(sl, 10.9, y, 1.9, 0.3, w_, size=12, bold=bold, align=PP_ALIGN.RIGHT)
+        y += 0.4
+    text(sl, 0.5, y + 0.2, 12.3, 3.6, [
+        "The same trained model (6 h-change scaling, gap filling, HRRR rainfall) in every row; only the source of the past rainfall is changed, without retraining. "
+        "Stations worse: by 0.5 cm or more than with the training product.",
+        "",
+        "Past 72 h. The model was trained with AORC, which is not produced in real time. MRMS replaces it at almost no cost: hourly correlation with AORC 0.93 over the two test years, "
+        "3 hours missing in two years. A short-range HRRR forecast does not: hourly correlation 0.33, and half of the gain from rainfall is lost. "
+        "The forecast script therefore uses MRMS and falls back to HRRR only for hours MRMS does not have.",
+        "",
+        "Next 6 h. HRRR precipitation forecast, the cycle issued 1 h before forecast time, total of the 45 km around the station - exactly as in training.",
+        "",
+        "HRRR is still produced. NWS replaced NAM by RRFS on 3 November 2026 and intends RRFS to replace HRRR later; when that is announced, the next-6 h rainfall "
+        "input has to be retrained with RRFS forecasts, and an archive of them has to be collected first.",
+    ], size=12)
+
     # ---- closing: options
     sl = new("Where this leaves the choice")
     a0, a1, a2, a3 = t.loc["v6_wind_q", "all"], t.loc["v10_dnorm_x_p50", "all"], t.loc["v11_fc1_t45", "all"], t.loc["v11_rain_obs", "all"]
     u0, u1, u2, u3 = (t.loc[x, "urban creek (Houston)"] for x in ("v6_wind_q", "v10_dnorm_x_p50", "v11_fc1_t45", "v11_rain_obs"))
-    text(sl, 0.5, 1.05, 12.3, 6.0, [
+    text(sl, 0.5, 1.0, 12.3, 6.1, [
         f"From water level only to the operational version: {t.loc['v3_obs','all']:.1f} to {a0:.1f} cm over all stations, nearly all of it from wind and at tide gauges, estuaries and lakes.",
         "",
         "Three ways forward:",
@@ -244,7 +317,10 @@ def main() -> None:
         "a better short-range rainfall forecast (radar-based nowcast) can replace HRRR later without changing the model.",
         "",
         "B is contained in C, so B can be put in place first and rainfall added afterwards.",
-    ], size=13)
+        "",
+        "Status, 11 November 2026: C is the proposed next version. The forecast script builds all of its inputs (past rainfall from MRMS, next 6 h from HRRR); "
+        "a live cycle at 20:00 UTC gave forecasts at 418 stations in under a minute. It runs beside the operational version and does not replace it yet.",
+    ], size=12)
 
     out = F / "version_comparison.pptx"
     try:
