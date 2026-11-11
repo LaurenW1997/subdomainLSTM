@@ -131,6 +131,35 @@ def fetch_discharge(st: pd.DataFrame, run_dir: Path, index: pd.DatetimeIndex, ra
     return q, info
 
 
+def fetch_levels(st: pd.DataFrame, sources: list[str], begin: pd.Timestamp, end: pd.Timestamp, raw_dir: Path) -> dict[tuple[str, str], pd.Series]:
+    """Water level in metres on each station's own datum, {(source, station_id): series at the native time step}."""
+    series: dict[tuple[str, str], pd.Series] = {}
+    # USGS: feet above gauge datum -> metres (+ NAVD88 offset where the census has it)
+    if "USGS" in sources:
+        usgs = st[st.source == "USGS"]
+        cen = census("USGS", only_active=False).set_index("station_id")
+        raw = fetch_usgs(usgs.station_id.tolist(), begin, end, raw_dir)
+        for sid in usgs.station_id:
+            s = raw.get(sid)
+            if s is None or s.empty:
+                continue
+            s = s * FT
+            row = cen.loc[sid] if sid in cen.index else None
+            if row is not None and extra(row, "alt_ft") and str(row.get("datum", "")) == "NAVD88":
+                s = s + float(extra(row, "alt_ft")) * FT
+            series[("USGS", sid)] = s
+        log.info("USGS: %d/%d stations returned data", sum(1 for k in series if k[0] == "USGS"), len(usgs))
+    if "NOAA_COOPS" in sources:
+        noaa = st[st.source == "NOAA_COOPS"]
+        for _, r in noaa.iterrows():
+            datum = "MSL" if str(r.datum).upper().startswith("MSL") else "NAVD"
+            s = fetch_noaa(r.station_id, datum, begin, end, raw_dir)
+            if not s.empty:
+                series[("NOAA_COOPS", r.station_id)] = s
+        log.info("NOAA: %d/%d stations returned data", sum(1 for k in series if k[0] == "NOAA_COOPS"), len(noaa))
+    return series
+
+
 # ----------------------------------------------------------------------------- features
 def time_features(index: pd.DatetimeIndex) -> np.ndarray:
     hours = index.hour.to_numpy() + index.minute.to_numpy() / 60
@@ -184,33 +213,9 @@ def main() -> None:
     future_index = pd.date_range(cycle + pd.Timedelta(hours=1), periods=HORIZON, freq="1h")
     long_index = pd.date_range(index[0] - pd.Timedelta(hours=FILL_EXTRA_H if ffill else 0), cycle, freq="1h")
     begin, end = long_index[0] - pd.Timedelta(hours=1), cycle + pd.Timedelta(minutes=59)
-    series: dict[tuple[str, str], pd.Series] = {}
     manifest_extra: dict = {}
 
-    # USGS: feet above gauge datum -> metres (+ NAVD88 offset where the census has it)
-    if "USGS" in a.sources:
-        usgs = st[st.source == "USGS"]
-        cen = census("USGS", only_active=False).set_index("station_id")
-        raw = fetch_usgs(usgs.station_id.tolist(), begin, end, raw_dir)
-        for sid in usgs.station_id:
-            s = raw.get(sid)
-            if s is None or s.empty:
-                continue
-            s = s * FT
-            row = cen.loc[sid] if sid in cen.index else None
-            if row is not None and extra(row, "alt_ft") and str(row.get("datum", "")) == "NAVD88":
-                s = s + float(extra(row, "alt_ft")) * FT
-            series[("USGS", sid)] = s
-        log.info("USGS: %d/%d stations returned data", sum(1 for k in series if k[0] == "USGS"), len(usgs))
-
-    if "NOAA_COOPS" in a.sources:
-        noaa = st[st.source == "NOAA_COOPS"]
-        for _, r in noaa.iterrows():
-            datum = "MSL" if str(r.datum).upper().startswith("MSL") else "NAVD"
-            s = fetch_noaa(r.station_id, datum, begin, end, raw_dir)
-            if not s.empty:
-                series[("NOAA_COOPS", r.station_id)] = s
-        log.info("NOAA: %d/%d stations returned data", sum(1 for k in series if k[0] == "NOAA_COOPS"), len(noaa))
+    series = fetch_levels(st, a.sources, begin, end, raw_dir)
 
     # ---- wind (HRRR) and discharge (USGS 00060) for all stations at once
     u_p = v_p = u_f = v_f = q = None

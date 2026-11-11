@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -66,6 +67,7 @@ class HRRRRain:
         self.boxes = tuple(sorted(set(boxes)))
         self.cells: pd.DataFrame | None = None
         self.idx: dict[int, tuple[np.ndarray, np.ndarray]] = {}
+        self._lock = threading.Lock()      # the cell and box tables are built once, by whichever download thread comes first
         p = self.cache / "hrrr_rain_cells.csv"
         if p.exists():
             c = pd.read_csv(p, dtype={"station_id": str})
@@ -100,13 +102,14 @@ class HRRRRain:
             return None
         g = pygrib.fromstring(b)
         v = np.ma.filled(np.asarray(g.values, np.float32), np.nan)
-        if self.cells is None:
-            lat, lon = g.latlons()
-            lon = ((lon + 180) % 360) - 180
-            self.cells = nearest_cells(self.st, lat.astype(np.float32), lon.astype(np.float32))
-            self.cells.to_csv(self.cache / "hrrr_rain_cells.csv", index=False)
-        if not self.idx:
-            self._boxes(v.shape)
+        with self._lock:
+            if self.cells is None:
+                lat, lon = g.latlons()
+                lon = ((lon + 180) % 360) - 180
+                self.cells = nearest_cells(self.st, lat.astype(np.float32), lon.astype(np.float32))
+                self.cells.to_csv(self.cache / "hrrr_rain_cells.csv", index=False)
+            if len(self.idx) < len(self.boxes):
+                self._boxes(v.shape)
         out = {nb: v[self.idx[nb][0], self.idx[nb][1]].mean((1, 2)).astype(np.float32) for nb in self.boxes}
         np.savez(p, key=self.key, cycle=str(cycle), lead=lead, **{f"b{nb}": a for nb, a in out.items()})
         return out
