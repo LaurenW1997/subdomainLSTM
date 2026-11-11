@@ -30,7 +30,8 @@ def load(run: Path, dataset: Path, device):
                        use_rain=ck["args"].get("rain", False), use_future_rain=ck["args"].get("future_rain", False), rain_var=ck["args"].get("rain_var", "p15"),
                        rain_fc=ck["args"].get("rain_fc"), future_rain_form=ck["args"].get("future_rain_form", "hourly"),
                        fill=ck["args"].get("fill", "zero"), delta_norm=ck["args"].get("delta_norm", False), delta_feat=ck["args"].get("delta_feat", False),
-                       delta_power=ck["args"].get("delta_power", 1.0), long_feat=ck["args"].get("long_feat", False))
+                       delta_power=ck["args"].get("delta_power", 1.0), long_feat=ck["args"].get("long_feat", False),
+                       neighbor_map=local(ck["args"].get("neighbor_map")), use_ds=ck["args"].get("downstream", False), use_us=ck["args"].get("upstream_stage", False))
     model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
                        n_future=ck.get("n_future", 0), delta_scale=ck["args"].get("delta_norm", False)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()

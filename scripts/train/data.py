@@ -30,7 +30,7 @@ class StationMatrix:
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
                  fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
-                 long_feat: bool = False):
+                 long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -111,7 +111,23 @@ class StationMatrix:
                 fut = np.load(d / f"{rain_fc}.npy", mmap_mode="r")[self.rows].astype(np.float32) if rain_fc else r
                 self.futmask = np.isfinite(fut)
                 self.fut_mm = np.nan_to_num(np.clip(fut, 0, None))
-        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0)
+        # EXPERIMENT (--downstream / --upstream-stage): water level at a reference gauge that sees a change first -
+        # the next gauge downstream (tide, surge travelling up the river) and / or upstream (flood wave coming down).
+        # Per reference: its level (z-score), its level relative to the newest hour in its own 6 h-change units, its mask.
+        self.nbr = []
+        if neighbor_map and (use_ds or use_us):
+            nm = pd.read_csv(neighbor_map, dtype=str).fillna("")
+            row_of = {(a, str(b)): k for k, (a, b) in enumerate(zip(self.stations.source, self.stations.station_id))}
+            for pref, on in (("ds", use_ds), ("us", use_us)):
+                if not on:
+                    continue
+                rows = np.full(self.S, -1, np.int64)
+                for a, b, c, d2 in zip(nm.source, nm.station_id, nm[f"{pref}_source"], nm[f"{pref}_station_id"]):
+                    k, j = row_of.get((a, b)), row_of.get((c, d2))
+                    if k is not None and j is not None:
+                        rows[k] = j
+                self.nbr.append(rows)
+        self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0) + 3 * len(self.nbr)
         n_fr = 0 if not self.use_future_rain else (HORIZON if future_rain_form == "hourly" else 1)
         # EXPERIMENT (--long-feat): summaries of the last 7 and 30 days given to the head instead of a longer look-back:
         # mean level relative to the newest hour (in 6 h-change units) and, with rainfall, the rain totals. Placed FIRST
@@ -146,6 +162,11 @@ class StationMatrix:
         if self.delta_feat:   # recent level relative to the last hour, in units of the station's typical 6 h change (kept last)
             rel = (self.norm_filled[s[:, None], idx_in] - self.norm_filled[s, t0][:, None]) / self.rscale[s][:, None]
             parts.append(np.clip(rel, -20, 20)[..., None])
+        for rows in self.nbr:
+            j = rows[s]; has = (j >= 0).astype(np.float32)[:, None]; jj = np.where(j >= 0, j, 0)
+            lev = self.norm_filled[jj[:, None], idx_in]
+            rel = np.clip((lev - lev[:, -1:]) / self.rscale[jj][:, None], -20, 20)
+            parts += [(lev * has)[..., None], (rel * has)[..., None], (self.mask[jj[:, None], idx_in].astype(np.float32) * has)[..., None]]
         feats = np.concatenate(parts, -1)
         fut_parts = []
         if self.long_feat:
