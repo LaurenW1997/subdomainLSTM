@@ -48,10 +48,12 @@ def main() -> None:
         out[f"err_{h}h_cm"] = 100 * (out[f"fcst_{h}h_m"] - obs)
     out.round(4).to_csv(d / "verification.csv", index=False)
     res = {"cycle_utc": str(cycle), "scored_utc": str(pd.Timestamp.now("UTC").tz_localize(None).floor("min")), "leads": {}}
+    now = pd.Timestamp.now("UTC").tz_localize(None)
     print(f"cycle {cycle} UTC, {len(out)} stations with a forecast")
     for h in range(1, HORIZON + 1):
         e = out[f"err_{h}h_cm"].dropna()
-        if len(e) < 10:
+        # the hourly value is the mean over [-30, +30) min around the hour: wait until that window (plus reporting delay) has passed
+        if len(e) < 10 or now < hours[h - 1] + pd.Timedelta(minutes=75):
             print(f"  +{h} h ({hours[h - 1]:%H:%M} UTC): not observed yet"); continue
         r = {"n": int(len(e)), "rmse_cm": round(float(np.sqrt((e ** 2).mean())), 2), "median_abs_cm": round(float(e.abs().median()), 2),
              "by_type": {t: {"n": int(x.notna().sum()), "rmse_cm": round(float(np.sqrt((x.dropna() ** 2).mean())), 2)}

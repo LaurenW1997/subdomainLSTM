@@ -91,13 +91,17 @@ def fetch_noaa(station: str, datum: str, begin: pd.Timestamp, end: pd.Timestamp,
     params = {"product": "water_level", "application": "LSU_subdomainLSTM_operational", "station": station,
               "datum": datum, "units": "metric", "time_zone": "gmt", "format": "json",
               "begin_date": begin.strftime("%Y%m%d %H:%M"), "end_date": end.strftime("%Y%m%d %H:%M")}
-    r = get(NOAA_URL, params)
-    (raw_dir / f"noaa_{station}.json").write_text(r.text, encoding="utf-8")
-    time.sleep(NOAA_PAUSE)
-    try:
-        j = r.json()
-    except ValueError:
-        log.error("NOAA %s: non-JSON reply", station); return pd.Series(dtype=float)
+    for attempt in range(4):     # CO-OPS answers {"message": "Forbidden"} while another client of the same host is downloading
+        r = get(NOAA_URL, params)
+        (raw_dir / f"noaa_{station}.json").write_text(r.text, encoding="utf-8")
+        time.sleep(NOAA_PAUSE)
+        try:
+            j = r.json()
+        except ValueError:
+            log.error("NOAA %s: non-JSON reply", station); return pd.Series(dtype=float)
+        if j.get("message") != "Forbidden":
+            break
+        time.sleep(5 * (attempt + 1))
     if "data" not in j:
         log.warning("NOAA %s: %s", station, (j.get("error") or {}).get("message") or j.get("message") or j); return pd.Series(dtype=float)
     df = pd.DataFrame(j["data"])
