@@ -1,9 +1,9 @@
 """Figures for the version comparison (deliverable 17): every model version side by side.
 
   bars     : 6 h RMSE of each version, one panel per station type (pooled RMSE for all stations, median station per type)
-  lead     : median RMSE vs lead time for the five main versions, three station types
-  maps     : 6 h RMSE at every station for the five main versions, and the change at every station for three steps
-  stations : one figure per station in deliverables/17_versions/data: two event windows (rows) x five versions (columns),
+  lead     : median RMSE vs lead time for the six main versions, three station types
+  maps     : 6 h RMSE at every station for the six main versions, and the change at every station for three steps
+  stations : one figure per station in deliverables/17_versions/data: two event windows (rows) x six versions (columns),
              observation and the 1-6 h forecast issued at every 00/06/12/18 UTC origin
 Stations: operational only (CRMS excluded), >= 720 test samples in every version.
 Usage: python versions_figs.py bars | lead | maps | stations
@@ -27,7 +27,8 @@ plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9, "axes.tit
                      "xtick.labelsize": 8.5, "ytick.labelsize": 8.5, "legend.fontsize": 9, "axes.linewidth": 0.6,
                      "xtick.major.width": 0.6, "ytick.major.width": 0.6, "axes.spines.top": False, "axes.spines.right": False})
 BLUE, GREY, INK = "#2a78d6", "#a3a39c", "#1a1a19"
-# every version in the order it was built: (run, label, usable in real time)
+# every version in the order it was built: (run, label, usable in real time).
+# "new training" = gaps filled with the last valid value + change and loss scaled half-way to the station's 6 h change + change-unit input channel
 LADDER = [("v3_obs", "Water level only", True),
           ("v3_wind_past", "+ wind, past 72 h", True),
           ("v3_wind", "+ wind, next 6 h (forecast)", True),
@@ -35,13 +36,17 @@ LADDER = [("v3_obs", "Water level only", True),
           ("v6_wind_q", "discharge from the same river, wind off at 15 inland rivers  [operational]", True),
           ("v7_rain_p15_past", "+ rainfall, past 72 h (observed)", True),
           ("v9_fc1_t45", "+ rainfall, next 6 h from HRRR forecast", True),
-          ("v7_rain_p15", "+ rainfall, next 6 h observed  [not available in real time]", False)]
-# the five versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-5, validated)
+          ("v7_rain_p15", "+ rainfall, next 6 h observed  [not available in real time]", False),
+          ("v10_dnorm_x_p50", "operational inputs, new training", True),
+          ("v11_fc1_t45", "new training + rainfall, next 6 h from HRRR forecast", True),
+          ("v11_rain_obs", "new training + rainfall, next 6 h observed  [not available in real time]", False)]
+# the six versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-6, validated)
 MAIN = [("wl", "v3_obs", "Water level only", "#2a78d6"),
         ("wind", "v3_wind", "+ wind", "#eb6834"),
         ("q", "v6_wind_q", "+ upstream discharge\n(current operational)", "#1baf7a"),
-        ("rain_fc", "v9_fc1_t45", "+ rainfall, next 6 h\nfrom HRRR forecast", "#eda100"),
-        ("rain_obs", "v7_rain_p15", "+ rainfall, next 6 h observed\n(upper bound, not real time)", "#e87ba4")]
+        ("base", "v10_dnorm_x_p50", "operational inputs,\nnew training", "#eda100"),
+        ("base_fc", "v11_fc1_t45", "new training + rainfall,\nnext 6 h from HRRR forecast", "#e87ba4"),
+        ("base_obs", "v11_rain_obs", "new training + rainfall, next 6 h\nobserved (upper bound, not real time)", "#008300")]
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"),
          ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks (Houston)")]
 
@@ -77,7 +82,7 @@ def bars() -> Path:
         rows.append(row)
     tab = pd.DataFrame(rows); tab["n_stations"] = n_all
     OUT.mkdir(parents=True, exist_ok=True); tab.to_csv(OUT / "versions_table.csv", index=False)
-    fig, axes = plt.subplots(1, len(panels), figsize=(13.0, 3.5), sharey=True, gridspec_kw={"wspace": 0.12})
+    fig, axes = plt.subplots(1, len(panels), figsize=(13.0, 4.5), sharey=True, gridspec_kw={"wspace": 0.12})
     y = np.arange(len(LADDER))[::-1]
     for ax, (key, title, sub) in zip(axes, panels):
         v = tab[key].to_numpy()
@@ -120,7 +125,7 @@ def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> 
     return float(np.sqrt((e ** 2).mean()) * 100) if len(e) else np.nan
 
 
-def station_fig(sid: str, title: str) -> Path:
+def station_fig(sid: str, title: str, whole: dict | None = None) -> Path:
     obs = pd.read_csv(OUT / "data" / f"{sid}_obs.csv", parse_dates=["time"])
     fc = pd.read_csv(OUT / "data" / f"{sid}_fc.csv", parse_dates=["origin", "valid"])
     wins = list(dict.fromkeys(obs.window))
@@ -147,7 +152,8 @@ def station_fig(sid: str, title: str) -> Path:
             ax.xaxis.set_minor_locator(mdates.DayLocator())
             ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
             if i == 0:
-                ax.set_title(col_title, loc="left", fontsize=9, linespacing=1.25)
+                extra = "" if not whole else "\n" + f"whole test period: {whole[key]:.1f} cm"
+                ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25)
             if j == 0:
                 name = w.replace("hurricane ", "Hurricane ").replace("high water", "Highest water outside the hurricane")
                 ax.set_ylabel(f"{name}, {o.index[0].year}" + "\n" + "water level (m)", fontsize=8.5, linespacing=1.3)
@@ -162,9 +168,11 @@ def station_fig(sid: str, title: str) -> Path:
 
 def stations() -> None:
     scr = pd.read_csv(OUT / "data" / "station_screen.csv", dtype={"station_id": str}).set_index("station_id")
+    per = load_runs([r for _, r, _, _ in MAIN])
     for f in sorted((OUT / "data").glob("*_fc.csv")):
         sid = f.stem[:-3]; r = scr.loc[sid]
-        print("->", station_fig(sid, f"{str(r['name']).title() if str(r['name']).isupper() else r['name']} ({r.source.replace('NOAA_COOPS', 'NOAA')} {sid})"))
+        whole = {k: float(per[run].loc[per[run].station_id == sid, "rmse_6h_cm"].iloc[0]) for k, run, _, _ in MAIN}
+        print("->", station_fig(sid, f"{str(r['name']).title() if str(r['name']).isupper() else r['name']} ({r.source.replace('NOAA_COOPS', 'NOAA')} {sid})", whole))
 
 
 EXTENT = [-99.3, -88.0, 25.6, 31.4]
@@ -183,7 +191,7 @@ def _base(ax):
 
 
 def maps() -> tuple[Path, Path]:
-    """(1) 6 h RMSE at every station for the five main versions; (2) change at every station for three steps."""
+    """(1) 6 h RMSE at every station for the six main versions; (2) change at every station for four steps."""
     import cartopy.crs as ccrs
     from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
     d = load_runs([r for _, r, _, _ in MAIN])
@@ -191,35 +199,36 @@ def maps() -> tuple[Path, Path]:
     n = len(next(iter(d.values())))
     # ---- (1) absolute RMSE, one map per version
     cmap = LinearSegmentedColormap.from_list("seq", SEQ); norm = LogNorm(1, 40)
-    fig = plt.figure(figsize=(13.0, 5.5))
+    fig = plt.figure(figsize=(13.0, 6.0))
     for k, (key, run, title, _) in enumerate(MAIN):
         ax = fig.add_subplot(2, 3, k + 1, projection=pc); _base(ax)
         x = d[run].sort_values("rmse_6h_cm")
         sc = ax.scatter(x.lon, x.lat, c=x.rmse_6h_cm.clip(1, 40), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
-        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} stations above 10 cm", loc="left", fontsize=9)
-    cax = fig.add_axes([0.70, 0.30, 0.25, 0.03])
+        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} above 10 cm", loc="left", fontsize=9)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.95, bottom=0.13, wspace=0.03, hspace=0.12)
+    cax = fig.add_axes([0.20, 0.07, 0.28, 0.025])
     cb = fig.colorbar(sc, cax=cax, orientation="horizontal", ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_xticklabels(["1", "2", "5", "10", "20", "40"])
     cb.set_label("6 h RMSE (cm), January 2024 to December 2025"); cb.outline.set_linewidth(0.5)
-    fig.text(0.70, 0.19, f"{n} operational stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="top", linespacing=1.4)
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.95, bottom=0.02, wspace=0.03, hspace=0.12)
+    fig.text(0.53, 0.085, f"{n} operational stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="center", linespacing=1.4)
     out1 = OUT / "versions_map_rmse.png"
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
-    steps = [("v6_wind_q", "v3_obs", "Wind and upstream discharge" + "\n" + "operational minus water level only"),
-             ("v9_fc1_t45", "v6_wind_q", "Rainfall with HRRR forecast" + "\n" + "minus operational"),
-             ("v7_rain_p15", "v6_wind_q", "Rainfall, next 6 h observed (upper bound)" + "\n" + "minus operational")]
+    steps = [("v6_wind_q", "v3_obs", "(a) Wind and upstream discharge: operational minus water level only"),
+             ("v10_dnorm_x_p50", "v6_wind_q", "(b) New training, same inputs, minus operational"),
+             ("v11_fc1_t45", "v6_wind_q", "(c) New training + HRRR rainfall, minus operational"),
+             ("v11_rain_obs", "v6_wind_q", "(d) New training + observed rainfall (upper bound), minus operational")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
-    fig = plt.figure(figsize=(13.0, 3.1))
+    fig = plt.figure(figsize=(13.0, 6.6))
     for k, (a, b, title) in enumerate(steps):
-        ax = fig.add_subplot(1, 3, k + 1, projection=pc); _base(ax)
+        ax = fig.add_subplot(2, 2, k + 1, projection=pc); _base(ax)
         diff = d[a].rmse_6h_cm.to_numpy() - d[b].rmse_6h_cm.to_numpy()
         o = np.argsort(np.abs(diff))
-        sc = ax.scatter(d[a].lon.to_numpy()[o], d[a].lat.to_numpy()[o], c=np.clip(diff[o], -5, 5), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
-        ax.set_title(title + f"   —   {(diff <= -0.5).sum()} better, {(diff >= 0.5).sum()} worse by 0.5 cm or more", loc="left", fontsize=9, linespacing=1.3)
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.88, bottom=0.2, wspace=0.03)
-    cax = fig.add_axes([0.35, 0.10, 0.30, 0.035])
+        sc = ax.scatter(d[a].lon.to_numpy()[o], d[a].lat.to_numpy()[o], c=np.clip(diff[o], -5, 5), s=16, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
+        ax.set_title(title + "\n" + f"{(diff <= -0.5).sum()} stations better, {(diff >= 0.5).sum()} worse by 0.5 cm or more", loc="left", fontsize=10.5, linespacing=1.3)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.93, bottom=0.12, wspace=0.03, hspace=0.2)
+    cax = fig.add_axes([0.30, 0.06, 0.40, 0.022])
     cb = fig.colorbar(sc, cax=cax, orientation="horizontal", extend="both", ticks=[-5, -2.5, 0, 2.5, 5]); cb.outline.set_linewidth(0.5)
-    cb.set_label("change in 6 h RMSE (cm): blue = smaller error, orange = larger error")
+    cb.ax.tick_params(labelsize=10); cb.set_label("change in 6 h RMSE (cm): blue = smaller error, orange = larger error", fontsize=10.5)
     out2 = OUT / "versions_map_change.png"
     fig.savefig(out2, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     return out1, out2
