@@ -18,6 +18,7 @@ import torch
 
 LOOKBACK = 72   # hours of input
 HORIZON = 6     # hours ahead
+LONG_HOURS = 720  # length of the long-history summaries (--long-feat)
 FC_STRIDE = 6   # hours between the origins a forecast-rain product was extracted for (hrrr_precip.py --stride)
 MIN_INPUT_VALID = 0.7
 WIND_SCALE = 10.0   # m/s -> O(1)
@@ -28,7 +29,8 @@ class StationMatrix:
                  use_future_wind: bool = False, use_q: bool = False, stations: Path | str | None = None,
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
-                 fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0):
+                 fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
+                 long_feat: bool = False):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -111,12 +113,17 @@ class StationMatrix:
                 self.fut_mm = np.nan_to_num(np.clip(fut, 0, None))
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0)
         n_fr = 0 if not self.use_future_rain else (HORIZON if future_rain_form == "hourly" else 1)
-        self.n_future = (2 * HORIZON if self.use_future_wind else 0) + n_fr
+        # EXPERIMENT (--long-feat): summaries of the last 7 and 30 days given to the head instead of a longer look-back:
+        # mean level relative to the newest hour (in 6 h-change units) and, with rainfall, the rain totals. Placed FIRST
+        # in the future vector so that the existing layout (wind, then rainfall last) stays valid for the other scripts.
+        self.long_feat = long_feat
+        self.n_long = 0 if not long_feat else (2 + (2 if use_rain else 0))
+        self.n_future = self.n_long + (2 * HORIZON if self.use_future_wind else 0) + n_fr
 
     def split_range(self, split: str) -> tuple[int, int]:
         """Index range of forecast-origin times t0 (last observed hour) for a split."""
         if split == "train":
-            return self.lookback, self.t_train_end - HORIZON
+            return max(self.lookback, LONG_HOURS if getattr(self, "long_feat", False) else 0), self.t_train_end - HORIZON
         if split == "val":
             return self.t_train_end, self.t_val_end - HORIZON
         return self.t_val_end, min(self.T, self.t_end) - HORIZON - 1
@@ -141,6 +148,16 @@ class StationMatrix:
             parts.append(np.clip(rel, -20, 20)[..., None])
         feats = np.concatenate(parts, -1)
         fut_parts = []
+        if self.long_feat:
+            idx_long = t0[:, None] + np.arange(-LONG_HOURS + 1, 1)[None, :]                    # [B, 720]
+            lv = self.norm_filled[s[:, None], idx_long]; last = lv[:, -1:]
+            r = self.rscale[s][:, None]
+            fut_parts.append(np.clip((lv[:, -168:].mean(1, keepdims=True) - last) / r, -20, 20))
+            fut_parts.append(np.clip((lv.mean(1, keepdims=True) - last) / r, -20, 20))
+            if self.use_rain:
+                mm = np.expm1(self.rain[s[:, None], idx_long])                                # rain is stored as log1p(mm/h)
+                fut_parts.append(np.log1p(mm[:, -168:].sum(1, keepdims=True)) / 3.0)
+                fut_parts.append(np.log1p(mm.sum(1, keepdims=True)) / 3.0)
         if self.use_future_wind:
             fut_parts += [self.u[s[:, None], idx_out], self.v[s[:, None], idx_out]]
         if self.use_future_rain:
