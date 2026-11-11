@@ -28,7 +28,7 @@ plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9, "axes.tit
                      "xtick.major.width": 0.6, "ytick.major.width": 0.6, "axes.spines.top": False, "axes.spines.right": False})
 BLUE, GREY, INK = "#2a78d6", "#a3a39c", "#1a1a19"
 # every version in the order it was built: (run, label, usable in real time).
-# "new training" = gaps filled with the last valid value + change and loss scaled half-way to the station's 6 h change + change-unit input channel
+# "6 h-change scaling + gap filling" = gaps filled with the last valid value + change and loss scaled half-way to the station's 6 h change + change-unit input channel
 LADDER = [("v3_obs", "Water level only", True),
           ("v3_wind_past", "+ wind, past 72 h", True),
           ("v3_wind", "+ wind, next 6 h (forecast)", True),
@@ -37,16 +37,16 @@ LADDER = [("v3_obs", "Water level only", True),
           ("v7_rain_p15_past", "+ rainfall, past 72 h (observed)", True),
           ("v9_fc1_t45", "+ rainfall, next 6 h from HRRR forecast", True),
           ("v7_rain_p15", "+ rainfall, next 6 h observed  [not available in real time]", False),
-          ("v10_dnorm_x_p50", "operational inputs, new training", True),
-          ("v11_fc1_t45", "new training + rainfall, next 6 h from HRRR forecast", True),
-          ("v11_rain_obs", "new training + rainfall, next 6 h observed  [not available in real time]", False)]
+          ("v10_dnorm_x_p50", "operational inputs; error scaled by the 6 h change, gaps filled with the last observation", True),
+          ("v11_fc1_t45", "the same + rainfall, next 6 h from HRRR forecast", True),
+          ("v11_rain_obs", "the same + rainfall, next 6 h observed  [not available in real time]", False)]
 # the six versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-6, validated)
 MAIN = [("wl", "v3_obs", "Water level only", "#2a78d6"),
         ("wind", "v3_wind", "+ wind", "#eb6834"),
         ("q", "v6_wind_q", "+ upstream discharge\n(current operational)", "#1baf7a"),
-        ("base", "v10_dnorm_x_p50", "operational inputs,\nnew training", "#eda100"),
-        ("base_fc", "v11_fc1_t45", "new training + rainfall,\nnext 6 h from HRRR forecast", "#e87ba4"),
-        ("base_obs", "v11_rain_obs", "new training + rainfall, next 6 h\nobserved (upper bound, not real time)", "#008300")]
+        ("base", "v10_dnorm_x_p50", "operational inputs with\n6 h-change scaling,\ngap filling", "#eda100"),
+        ("base_fc", "v11_fc1_t45", "6 h-change scaling,\ngap filling + rainfall\nfrom HRRR forecast", "#e87ba4"),
+        ("base_obs", "v11_rain_obs", "6 h-change scaling,\ngap filling + observed rainfall\n(upper bound, not real time)", "#008300")]
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"),
          ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks (Houston)")]
 
@@ -125,15 +125,16 @@ def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> 
     return float(np.sqrt((e ** 2).mean()) * 100) if len(e) else np.nan
 
 
-def station_fig(sid: str, title: str, whole: dict | None = None) -> Path:
+def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | None = None, figsize=(13.0, 4.9), out: Path | None = None) -> Path:
     obs = pd.read_csv(OUT / "data" / f"{sid}_obs.csv", parse_dates=["time"])
     fc = pd.read_csv(OUT / "data" / f"{sid}_fc.csv", parse_dates=["origin", "valid"])
     wins = list(dict.fromkeys(obs.window))
-    fig, axes = plt.subplots(len(wins), len(MAIN), figsize=(13.0, 4.9), sharey="row", gridspec_kw={"wspace": 0.12, "hspace": 0.32})
+    vers = vers or MAIN
+    fig, axes = plt.subplots(len(wins), len(vers), figsize=figsize, sharey="row", gridspec_kw={"wspace": 0.12, "hspace": 0.32})
     for i, w in enumerate(wins):
         o = obs[obs.window == w].set_index("time").obs
         f = fc[fc.window == w]
-        for j, (key, _, col_title, _) in enumerate(MAIN):
+        for j, (key, _, col_title, _) in enumerate(vers):
             ax = axes[i, j]
             for org, g in f.groupby("origin"):
                 g = g.sort_values("lead")
@@ -143,7 +144,7 @@ def station_fig(sid: str, title: str, whole: dict | None = None) -> Path:
                 ax.plot(t, v, color=BLUE, lw=0.9, zorder=3, solid_capstyle="round")
                 ax.plot(t[-1], v[-1], "o", color=BLUE, ms=2.6, zorder=4)
             ax.plot(o.index, o.values, color=INK, lw=1.1, zorder=5)
-            if j == len(MAIN) - 1:                      # head-room so the RMSE label never sits on the data (row shares the y axis)
+            if j == len(vers) - 1:                      # head-room so the RMSE label never sits on the data (row shares the y axis)
                 lo_, hi_ = ax.get_ylim(); ax.set_ylim(lo_, hi_ + 0.20 * (hi_ - lo_))
             ax.text(0.03, 0.95, f"6 h RMSE {window_rmse(f, o, key):.1f} cm", transform=ax.transAxes, va="top", ha="left", fontsize=8.5, color=INK,
                     bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.8), zorder=6)
@@ -159,9 +160,9 @@ def station_fig(sid: str, title: str, whole: dict | None = None) -> Path:
                 ax.set_ylabel(f"{name}, {o.index[0].year}" + "\n" + "water level (m)", fontsize=8.5, linespacing=1.3)
     from matplotlib.lines import Line2D
     fig.legend([Line2D([], [], color=INK, lw=1.1), Line2D([], [], color=BLUE, lw=0.9, marker="o", ms=2.6, markevery=[1])],
-               ["observed", "forecast for the next 1 to 6 h, issued every 6 h (dot = 6 h ahead)"], loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.01))
+               ["observed", "forecast for the next 1 to 6 h, issued every 6 h (dot = 6 h ahead)"], loc="lower center", ncol=2 if len(vers) > 2 else 1, frameon=False, bbox_to_anchor=(0.5, -0.01 if len(vers) > 2 else -0.07))
     fig.suptitle(title, x=0.012, ha="left", fontsize=10.5, y=1.0)
-    out = OUT / f"station_{sid}.png"
+    out = out or OUT / f"station_{sid}.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     return out
 
@@ -214,9 +215,9 @@ def maps() -> tuple[Path, Path]:
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
     steps = [("v6_wind_q", "v3_obs", "(a) Wind and upstream discharge: operational minus water level only"),
-             ("v10_dnorm_x_p50", "v6_wind_q", "(b) New training, same inputs, minus operational"),
-             ("v11_fc1_t45", "v6_wind_q", "(c) New training + HRRR rainfall, minus operational"),
-             ("v11_rain_obs", "v6_wind_q", "(d) New training + observed rainfall (upper bound), minus operational")]
+             ("v10_dnorm_x_p50", "v6_wind_q", "(b) 6 h-change scaling and gap filling, same inputs, minus operational"),
+             ("v11_fc1_t45", "v6_wind_q", "(c) 6 h-change scaling, gap filling + HRRR rainfall, minus operational"),
+             ("v11_rain_obs", "v6_wind_q", "(d) 6 h-change scaling, gap filling + observed rainfall (upper bound), minus operational")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
     fig = plt.figure(figsize=(13.0, 6.6))
     for k, (a, b, title) in enumerate(steps):
@@ -266,9 +267,18 @@ def detail_btr() -> Path:
     return out
 
 
+def explain() -> Path:
+    """Before / after picture for the slide that explains the 6 h-change scaling and gap filling: Mississippi River at Baton Rouge."""
+    per = load_runs([MAIN[2][1], MAIN[3][1]])
+    whole = {k: float(per[run].loc[per[run].station_id == "07374000", "rmse_6h_cm"].iloc[0]) for k, run in (("q", MAIN[2][1]), ("base", MAIN[3][1]))}
+    vers = [("q", MAIN[2][1], "Operational version", None),
+            ("base", MAIN[3][1], "Same inputs, error scaled by the 6 h change," + "\n" + "gaps filled with the last observation", None)]
+    return station_fig("07374000", "Mississippi River at Baton Rouge, LA (USGS 07374000)", whole, vers=vers, figsize=(6.6, 4.9), out=OUT / "explain_scaling.png")
+
+
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr", "explain"]); a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "bars":
         print("->", bars())
@@ -278,6 +288,8 @@ def main() -> None:
         print("->", maps())
     elif a.cmd == "btr":
         print("->", detail_btr())
+    elif a.cmd == "explain":
+        print("->", explain())
     else:
         stations()
 
