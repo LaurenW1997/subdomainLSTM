@@ -5,8 +5,9 @@ global LSTM, write 1-6 h water-level forecasts for every station.
 Which inputs are built is read from the training switches stored in best.pt:
   --wind / --future-wind      HRRR 10 m wind (hrrr_wind.py)
   --discharge                 USGS discharge of the upstream gauge
-  --rain / --future-rain      HRRR rainfall (hrrr_rain.py): past hours from the 1 h lead of the hourly cycles, the 6
-                              target hours from one cycle issued `lag` h before the origin (--rain-fc hrrr_lag<L>_p<km>)
+  --rain / --future-rain      past hours: MRMS radar rainfall (mrms_rain.py), hours MRMS lacks from the 1 h lead of the
+                              hourly HRRR cycles (hrrr_rain.py); the 6 target hours: one HRRR cycle issued `lag` h
+                              before the origin (--rain-fc hrrr_lag<L>_p<km>)
   --fill ffill                a missing hour takes the last valid level (FILL_EXTRA_H more hours are fetched for this)
   --delta-norm / --delta-feat forecast change scaled by the station's typical 6 h change (scale saved in best.pt)
 Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --stations) stop it.
@@ -145,7 +146,8 @@ def main() -> None:
     ap.add_argument("--out", default="/data/ywan245/subdomainLSTM/operational")
     ap.add_argument("--sources", nargs="*", default=["USGS", "NOAA_COOPS"])
     ap.add_argument("--wind-cache", help="HRRR cache dir (default <out>/wind)")
-    ap.add_argument("--rain-cache", help="HRRR rainfall cache dir (default <out>/rain)")
+    ap.add_argument("--rain-cache", help="rainfall cache dir (default <out>/rain)")
+    ap.add_argument("--past-rain", choices=["mrms", "hrrr"], default="mrms", help="product for the look-back rainfall (hrrr = HRRR only)")
     a = ap.parse_args()
 
     cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.now("UTC").tz_localize(None).floor("h") - pd.Timedelta(hours=1)
@@ -245,13 +247,23 @@ def main() -> None:
     if use_rain:
         from hrrr_rain import box_cells, lag_of, station_rain
         t = time.time()
-        rain_p, rain_f, rprov = station_rain(st, index, cycle, Path(a.rain_cache) if a.rain_cache else Path(a.out) / "rain",
-                                             past_cells=box_cells(args.get("rain_var", "p15")), future_cells=box_cells(args.get("rain_fc")),
-                                             lag=lag_of(args.get("rain_fc")), want_future=use_future_rain)
-        manifest_extra["rain"] = {"source": "HRRR conus wrfsfc, APCP 1 h accumulation, box mean around the station", "seconds": round(time.time() - t),
+        rain_cache = Path(a.rain_cache) if a.rain_cache else Path(a.out) / "rain"
+        past_km = 3 * box_cells(args.get("rain_var", "p15"))
+        rain_p = np.full((len(st), len(index)), np.nan, np.float32); mprov = None
+        if a.past_rain == "mrms":
+            from mrms_rain import station_mrms
+            rain_p, mprov = station_mrms(st, index, rain_cache, cells=past_km if past_km % 2 else past_km + 1)
+        gap = ~np.isfinite(rain_p).any(0)          # hours with no MRMS file (all hours when --past-rain hrrr): HRRR 1 h lead
+        hp, rain_f, rprov = station_rain(st, index[gap], cycle, rain_cache,
+                                         past_cells=box_cells(args.get("rain_var", "p15")), future_cells=box_cells(args.get("rain_fc")),
+                                         lag=lag_of(args.get("rain_fc")), want_future=use_future_rain)
+        rain_p[:, gap] = hp
+        manifest_extra["rain"] = {"source": "past: MRMS MultiSensor QPE 01H (gaps: HRRR APCP 1 h lead); next 6 h: HRRR APCP; box mean around the station",
+                                  "past_product": a.past_rain, "mrms": mprov, "past_hours_from_hrrr": int(gap.sum()), "seconds": round(time.time() - t),
                                   "past_valid_frac": float(np.isfinite(rain_p).mean()), "future_available": rain_f is not None,
                                   "trained_with": {"past": f"AORC {args.get('rain_var', 'p15')}", "future": args.get("rain_fc"), "form": rain_form}, **rprov}
-        log.info("rain: past valid %.3f, future %s, %d s", np.isfinite(rain_p).mean(), rprov["future"] or "NOT AVAILABLE", time.time() - t)
+        log.info("rain: past valid %.3f (%d of %d hours from HRRR), future %s, %d s", np.isfinite(rain_p).mean(), gap.sum(), len(index),
+                 rprov["future"] or "NOT AVAILABLE", time.time() - t)
 
     # ---- windows -> model
     tf = time_features(index)

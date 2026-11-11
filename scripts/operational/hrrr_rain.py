@@ -129,12 +129,13 @@ def station_rain(stations: pd.DataFrame, past: pd.DatetimeIndex, origin: pd.Time
     hr = HRRRRain(stations, cache_dir, (past_cells, future_cells) if want_future else (past_cells,))
     S = len(hr.st)
     out = np.full((S, len(past)), np.nan, np.float32); prov_p = {}
-    first = hr.past_hour(past[-1], past_cells)       # alone first, so that the cells file exists before threads start
-    with ThreadPoolExecutor(8) as ex:
-        res = list(ex.map(lambda t: hr.past_hour(t, past_cells), past[:-1]))
-    for i, r in enumerate(res + [first]):
-        if r is not None:
-            out[:, i] = r[0]; prov_p[str(past[i])] = r[1]
+    if len(past):
+        first = hr.past_hour(past[-1], past_cells)       # alone first, so that the cells file exists before threads start
+        with ThreadPoolExecutor(8) as ex:
+            res = list(ex.map(lambda t: hr.past_hour(t, past_cells), past[:-1]))
+        for i, r in enumerate(res + [first]):
+            if r is not None:
+                out[:, i] = r[0]; prov_p[str(past[i])] = r[1]
     fut = None; prov_f = {}
     if want_future:
         for older in range(0, MAX_OLDER + 1):
