@@ -4,7 +4,7 @@
   lead     : median RMSE vs lead time for the six main versions, three station types
   maps     : 6 h RMSE at every station for the six main versions, and the change at every station for three steps
   stations : one figure per station in deliverables/17_versions/data: two event windows (rows) x six versions (columns),
-             observation and the 1-6 h forecast issued at every 00/06/12/18 UTC origin
+             observation and the forecast valid at each hour for 1, 3 and 6 h lead (continuous lines, hourly origins)
 Stations: operational only (CRMS excluded), >= 720 test samples in every version.
 Usage: python versions_figs.py bars | lead | maps | stations
 Also writes deliverables/17_versions/versions_table.csv (bars) for the slides.
@@ -118,49 +118,54 @@ def lead() -> Path:
     return out
 
 
+LEAD_COL = {1: "#9ecae1", 3: "#3182bd", 6: "#08306b"}        # one hue, light -> dark with lead time
+
+
 def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> float:
-    x = fc[fc.lead == lead_h]
+    x = fc[(fc.lead == lead_h) & fc.valid.isin(obs.index)]
     e = x[key].to_numpy() - obs.reindex(x.valid).to_numpy()
     e = e[np.isfinite(e)]
     return float(np.sqrt((e ** 2).mean()) * 100) if len(e) else np.nan
 
 
 def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | None = None, figsize=(13.0, 4.9), out: Path | None = None) -> Path:
+    """Two event windows (rows) x versions (columns). Black: observation. Blue lines, light to dark: the forecast valid at
+    each hour that was issued 1, 3 and 6 h earlier (hourly origins). Grey band: 24 h around the observed peak."""
     obs = pd.read_csv(OUT / "data" / f"{sid}_obs.csv", parse_dates=["time"])
     fc = pd.read_csv(OUT / "data" / f"{sid}_fc.csv", parse_dates=["origin", "valid"])
     wins = list(dict.fromkeys(obs.window))
     vers = vers or MAIN
+    leads = (1, 3, 6)
     fig, axes = plt.subplots(len(wins), len(vers), figsize=figsize, sharey="row", gridspec_kw={"wspace": 0.12, "hspace": 0.32})
     for i, w in enumerate(wins):
         o = obs[obs.window == w].set_index("time").obs
-        f = fc[fc.window == w]
+        f = fc[(fc.window == w) & fc.valid.isin(o.index)]
+        pk = o.idxmax()
         for j, (key, _, col_title, _) in enumerate(vers):
             ax = axes[i, j]
-            for org, g in f.groupby("origin"):
-                g = g.sort_values("lead")
-                t = [org] + list(g.valid); v = [o.get(org, np.nan)] + list(g[key])
-                if org < o.index[0]:
-                    t, v = t[1:], v[1:]
-                ax.plot(t, v, color=BLUE, lw=0.9, zorder=3, solid_capstyle="round")
-                ax.plot(t[-1], v[-1], "o", color=BLUE, ms=2.6, zorder=4)
-            ax.plot(o.index, o.values, color=INK, lw=1.1, zorder=5)
+            ax.axvspan(pk - pd.Timedelta(hours=12), pk + pd.Timedelta(hours=12), color="#000000", alpha=0.05, lw=0)
+            for h in leads:
+                g = f[f.lead == h].sort_values("valid")
+                ax.plot(g.valid, g[key], color=LEAD_COL[h], lw=0.9, zorder=4, label=f"{h} h ahead")
+            ax.plot(o.index, o.values, color=INK, lw=1.1, zorder=5, label="observed")
             if j == len(vers) - 1:                      # head-room so the RMSE label never sits on the data (row shares the y axis)
-                lo_, hi_ = ax.get_ylim(); ax.set_ylim(lo_, hi_ + 0.20 * (hi_ - lo_))
-            ax.text(0.03, 0.95, f"6 h RMSE {window_rmse(f, o, key):.1f} cm", transform=ax.transAxes, va="top", ha="left", fontsize=8.5, color=INK,
-                    bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.8), zorder=6)
+                lo_, hi_ = ax.get_ylim(); ax.set_ylim(lo_, hi_ + 0.30 * (hi_ - lo_))
+            ax.text(0.03, 0.96, "RMSE (cm)" + "\n" + "   ".join(f"{h} h {window_rmse(f, o, key, h):.1f}" for h in leads), transform=ax.transAxes, va="top", ha="left",
+                    fontsize=7.8, color=INK, linespacing=1.25, bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85), zorder=6)
             ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))
             ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
             ax.xaxis.set_minor_locator(mdates.DayLocator())
             ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
             if i == 0:
-                extra = "" if not whole else "\n" + f"whole test period: {whole[key]:.1f} cm"
+                extra = "" if not whole else "\n" + f"whole test period, 6 h: {whole[key]:.1f} cm"
                 ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25)
             if j == 0:
                 name = w.replace("hurricane ", "Hurricane ").replace("high water", "Highest water outside the hurricane")
                 ax.set_ylabel(f"{name}, {o.index[0].year}" + "\n" + "water level (m)", fontsize=8.5, linespacing=1.3)
     from matplotlib.lines import Line2D
-    fig.legend([Line2D([], [], color=INK, lw=1.1), Line2D([], [], color=BLUE, lw=0.9, marker="o", ms=2.6, markevery=[1])],
-               ["observed", "forecast for the next 1 to 6 h, issued every 6 h (dot = 6 h ahead)"], loc="lower center", ncol=2 if len(vers) > 2 else 1, frameon=False, bbox_to_anchor=(0.5, -0.01 if len(vers) > 2 else -0.07))
+    handles = [Line2D([], [], color=INK, lw=1.1)] + [Line2D([], [], color=LEAD_COL[h], lw=1.2) for h in leads]
+    fig.legend(handles, ["observed"] + [f"forecast issued {h} h earlier" for h in leads], loc="lower center", ncol=4 if len(vers) > 2 else 2, frameon=False,
+               bbox_to_anchor=(0.5, -0.01 if len(vers) > 2 else -0.07))
     fig.suptitle(title, x=0.012, ha="left", fontsize=10.5, y=1.0)
     out = out or OUT / f"station_{sid}.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)

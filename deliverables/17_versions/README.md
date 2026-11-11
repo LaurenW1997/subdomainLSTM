@@ -11,11 +11,11 @@
   - 第 6 页：变化量地图，四步各让哪些站变好或变差。
   - 第 7 页：试过但没有可测差别的改动。
   - 第 8 页：怎么看站点页。
-  - 第 9–26 页：18 个站，一站一页，六个版本并排、两个事件窗口（飓风、飓风以外的最高水位），每列标题下是该版本在该站的全年 6 小时 RMSE。
+  - 第 9–26 页：18 个站，一站一页，六个版本并排、两个事件窗口（飓风、飓风以外的最高水位）。画法：黑线观测，三条蓝线由浅到深是提前 1、3、6 小时的预报（每小时起报一次，连续线），灰底是峰值前后 24 小时；每列标题下是该版本在该站的全年 6 小时 RMSE。
   - 第 27 页：三条路（保持现状 / 输入不变、换缩放和缺测填法 / 再加 HRRR 降雨）和各自的数字。
 - `versions_bars.png`、`versions_lead.png`、`versions_map_rmse.png`、`versions_map_change.png`、`explain_scaling.png`、`station_<站号>.png`：幻灯片里的图。
 - `versions_table.csv`：版本表的数字。`stations_summary.csv`：18 个站各版本全年 6 小时 RMSE。
-- `data/`：`station_screen.csv`（所有业务站的完整度筛查）、`<站号>_obs.csv` 和 `<站号>_fc.csv`（窗口内的观测和各版本每 6 小时起报的 1–6 小时预报）。
+- `data/`：`station_screen.csv`（所有业务站的完整度筛查）、`windows.csv`（每个站的两个窗口）、`<站号>_obs.csv` 和 `<站号>_fc.csv`（窗口内的观测和各版本每小时起报的 1–6 小时预报）。
 
 ## 版本
 
@@ -43,4 +43,4 @@
 
 ## 脚本
 
-`scripts/report/screen_complete_stations.py`（筛查）、`extract_versions.py`（sv7 上抽取各版本预报）、`versions_figs.py`（图）、`slides_versions.py`（幻灯片）。
+`scripts/report/screen_complete_stations.py`（筛查）、`extract_versions.py`（选窗口，每 6 小时起报）、`extract_versions_hourly.py`（sv7 上按每小时起报抽取各版本预报；带 HRRR 降雨的版本从 HRRR 逐小时周期取雨）、`versions_figs.py`（图）、`slides_versions.py`（幻灯片）。
