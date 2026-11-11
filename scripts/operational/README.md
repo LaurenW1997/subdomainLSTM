@@ -41,7 +41,8 @@ python forecast.py --model ... --cycle 2026-11-08T17
 - 未来 6 小时：起报时已经发布的最新 HRRR 周期的 f01–f06；周期还没出来就退到上一个周期（f02–f07）。
 - 每站取最近格点（`<out>/wind/hrrr_cells.csv`，格点距离中位 1.2 km、最大 2.1 km），每个有效小时存一个 `<out>/wind/hrrr/<时刻>_f<FF>.npz`。
   第一次跑要下 78 个小时（约 15 秒），之后每个周期只下新的 7 个小时。
-- 没选系统驱动 ROMS 用的 NAM，因为 NAM 只有 3 小时一场、NOMADS 只留两天，不够拼 72 小时逐时。HRRR 和 AORC 都是数值模式产品，分辨率也接近。
+- 没选系统驱动 ROMS 用的大气强迫（原来是 NAM；NWS 在 2026-11-03 用 RRFS 取代了 NAM，组里的系统 11-04 起改取 RRFS 13 km、3 小时一场，仍放在 `NAM` 分支名下）：3 小时一场、NOMADS 只留两天，不够拼 72 小时逐时。HRRR 和 AORC 都是数值模式产品，分辨率也接近。
+- HRRR 目前照常发布，NWS 还没有公布它的退役日期，但 RRFS 最终会取代它。到时风和未来 6 小时降雨都要换成 RRFS 3 km，其中降雨那一段需要用 RRFS 的预报重新训练。
 
 ## 降雨（`mrms_rain.py`、`hrrr_rain.py`）
 
