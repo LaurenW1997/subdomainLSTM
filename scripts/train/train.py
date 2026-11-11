@@ -18,8 +18,10 @@ from data import HORIZON, StationMatrix, to_torch
 from model import GlobalLSTM
 
 
-def evaluate(model, sm: StationMatrix, split: str, device, batch: int = 4096, stride: int = 6, t_hi: int | None = None):
+def evaluate(model, sm: StationMatrix, split: str, device, batch: int | None = None, stride: int = 6, t_hi: int | None = None):
     model.eval()
+    if batch is None:      # keep batch x look-back constant: 4096 x 720 steps does not fit on a 40 GB GPU
+        batch = max(256, 4096 * 72 // max(sm.lookback, 72))
     S, T0 = sm.eval_origins(split, stride, t_hi=t_hi)
     std = sm.stations["std_m"].to_numpy(np.float32)
     se = np.zeros((sm.S, HORIZON)); n = np.zeros((sm.S, HORIZON))
@@ -65,6 +67,7 @@ def main() -> None:
     ap.add_argument("--fill", default="zero", choices=["zero", "ffill"], help="EXPERIMENT: fill missing hours with the station mean (zero) or the last valid value (ffill)")
     ap.add_argument("--delta-norm", action="store_true", help="EXPERIMENT: predict and score the change in units of each station's typical 6 h change")
     ap.add_argument("--delta-power", type=float, default=1.0, help="EXPERIMENT: 1 = scale by the 6 h-change std, 0 = by the level std, in between = geometric mix")
+    ap.add_argument("--eval-only", action="store_true", help="skip training: load <out>/best.pt and write the val / test results")
     ap.add_argument("--neighbor-map", help="EXPERIMENT: CSV from scripts/data/downstream_map.py (reference gauges on the same river)")
     ap.add_argument("--downstream", action="store_true", help="EXPERIMENT: water level at the next gauge downstream (or nearest tide gauge) as input")
     ap.add_argument("--upstream-stage", action="store_true", help="EXPERIMENT: water level at the next gauge upstream on the same river as input")
@@ -94,7 +97,7 @@ def main() -> None:
     sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.epochs * a.steps, pct_start=0.1)
 
     best, history = np.inf, []
-    for ep in range(a.epochs):
+    for ep in range(0 if a.eval_only else a.epochs):
         model.train(); t0 = time.time(); losses = []
         for _ in range(a.steps):
             f, fu, s, y, ym = to_torch(sm.sample_train(a.batch, rng), device)
