@@ -46,7 +46,7 @@ TRIED = [("v12_lb720", "look-back 720 h instead of 72 h", "30 days of history as
          ("v12_long", "+ 7-day and 30-day summaries", "mean level and rainfall totals of the last 7 and 30 days", "yes"),
          ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)")]
 HILITE = RGBColor(0xFB, 0xE3, 0xD3)
-LIVE_TAG, LIVE_WHEN = "20261111T20", "11 November 2026, 20:00 UTC"
+LIVE_TAG, LIVE_WHEN = "20261112T12", "12 November 2026, 12:00 UTC"
 
 
 def hilite(sl, x, y, w, h):
@@ -391,15 +391,17 @@ def main() -> None:
     ], size=11.5)
 
     # ---- one live forecast, checked afterwards: stations
-    sl = new(f"A live forecast, issued {LIVE_WHEN} and checked afterwards")
+    sl = new(f"A forecast from the real-time data services for {LIVE_WHEN}, checked afterwards")
     yb = picture(sl, F / f"live_{LIVE_TAG}_stations.png", 0.3, 0.95, 12.7, 5.3)
     text(sl, 0.5, yb + 0.12, 12.3, 0.9, [
-        "Black: observed, 48 h before the forecast time and the 6 h after it. Red-orange: the forecast as it was issued, before those 6 h were known. Numbers: error at 1, 3 and 6 h. "
-        "Eight stations with large changes in those 6 h, two per type, all with a complete record. The forecast was issued a day after heavy rain in Texas: rivers rising or falling, the tide coming in. "
-        "The miss at San Bernard River (21 cm at 6 h) is the kind of error a rising river still gives."], size=11.5)
+        "Black: observed, 48 h before the forecast time and the 6 h after it. Red-orange: the forecast of the model that is run (scaling + gap filling + HRRR rainfall, trained with missing hours). "
+        "Numbers: error at 1, 3 and 6 h. The forecast script was run the same day at 20:14 UTC for the forecast time 12:00 UTC, with inputs dated no later than 12:00 UTC "
+        "(gauges and MRMS up to 12:00, HRRR wind from the 12:00 cycle, HRRR rainfall from the 11:00 cycle), so that the 6 h could be checked at once. "
+        "Eight stations with large changes in those 6 h, from all five types, all with a complete record: the tide going out, Texas rivers still rising or falling after the rain of 11 November. "
+        "Largest miss here: Bay Waveland, 9.6 cm at 6 h, where the fall stopped earlier than forecast."], size=11.5)
 
     # ---- the same live forecast at all stations
-    sl = new(f"The same live forecast at all {ver['6']['n']} stations: 1, 3 and 6 hours ahead")
+    sl = new(f"The same forecast at all {ver['6']['n']} stations: 1, 3 and 6 hours ahead")
     yb = picture(sl, F / f"live_{LIVE_TAG}_scatter.png", 0.5, 0.95, 12.3, 4.5)
     bt = ver["6"]["by_type"]
     text(sl, 0.5, yb + 0.15, 12.3, 1.6, [
@@ -407,8 +409,8 @@ def main() -> None:
         f"RMSE over all stations: {ver['1']['rmse_cm']:.1f} cm at 1 h, {ver['2']['rmse_cm']:.1f} at 2 h, {ver['3']['rmse_cm']:.1f} at 3 h, {ver['4']['rmse_cm']:.1f} at 4 h, {ver['5']['rmse_cm']:.1f} at 5 h, {ver['6']['rmse_cm']:.1f} at 6 h; "
         f"half of the stations are within {ver['1']['median_abs_cm']:.1f}, {ver['3']['median_abs_cm']:.1f} and {ver['6']['median_abs_cm']:.1f} cm at 1, 3 and 6 h. "
         f"At 6 h by type: tide gauges {bt['tide gauge']['rmse_cm']:.1f}, estuaries {bt['estuary / tidal channel']['rmse_cm']:.1f}, lakes {bt['lake']['rmse_cm']:.1f}, rivers {bt['river / canal']['rmse_cm']:.1f}, urban creeks {bt['urban creek (Houston)']['rmse_cm']:.1f} cm.",
-        "418 of the 457 stations got a forecast (the others returned no or too little data); the whole run took under a minute. One forecast time with little rain ahead: it shows that the chain works, it is not a statistic. "
-        "The statistic is on slide 30.",
+        "418 of the 457 stations got a forecast (the others returned no or too little data); the whole run took under a minute. Largest miss: Colorado River near Bay City, 33 cm at 6 h "
+        "(the river fell 43 cm, the forecast 10 cm). One forecast time with no rain ahead: it shows that the chain works, it is not a statistic. The statistic is on slide 30.",
     ], size=11.5)
 
     # ---- a gauge that has stopped reporting
@@ -458,7 +460,7 @@ def main() -> None:
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "The version that is run: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (slides 30 to 32). "
+        "The version that is run: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and on one forecast from the real-time services on 12 November 2026 (slides 30 to 32). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between C and that number is rainfall-forecast error, not model error: "

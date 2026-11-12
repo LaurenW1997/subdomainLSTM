@@ -8,10 +8,10 @@
 
 ```bash
 cd scripts/operational
-# 风 + 流量模型（当前）
+# 水位 + 风 + 流量的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v6_wind_q --out /data/ywan245/subdomainLSTM/operational
-# 6 h-change scaling + gap filling + HRRR rainfall（实际运行的一版，输出放在单独的目录）
-python forecast.py --model /data/ywan245/subdomainLSTM/runs/v11_fc1_t45 --out /data/ywan245/subdomainLSTM/operational_rain
+# 6 h-change scaling + gap filling + HRRR rainfall，按缺测训练（实际运行的模型，输出放在单独的目录）
+python forecast.py --model /data/ywan245/subdomainLSTM/runs/v14_stale25 --out /data/ywan245/subdomainLSTM/operational_rain
 # 只用水位的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v2_e40 --out /data/ywan245/subdomainLSTM/operational_v2
 # 指定起报时刻（UTC 整点）
@@ -38,7 +38,8 @@ python forecast.py --model ... --cycle 2026-11-08T17
 
 - 来源 `s3://noaa-hrrr-bdp-pds`（AWS 公开、免账号，约 1 小时延迟），只按 `.idx` 的字节范围下载 10 m 的 UGRD / VGRD 两条 GRIB 消息（各约 1 MB），用 pygrib 解。
 - 过去 72 小时：每小时的分析场（f00）；缺哪个小时就退到最近一个周期的短时预报（最多 f06）。
-- 未来 6 小时：起报时已经发布的最新 HRRR 周期的 f01–f06；周期还没出来就退到上一个周期（f02–f07）。
+- 未来 6 小时：起报整点那个 HRRR 周期的 f01–f06；周期还没出来就退到上一个周期（f02–f07）。补跑过去的时刻时也只用起报整点及更早的周期
+  （2026-11-12 之前补跑会取到起报后一小时的周期，已改）。
 - 每站取最近格点（`<out>/wind/hrrr_cells.csv`，格点距离中位 1.2 km、最大 2.1 km），每个有效小时存一个 `<out>/wind/hrrr/<时刻>_f<FF>.npz`。
   第一次跑要下 78 个小时（约 15 秒），之后每个周期只下新的 7 个小时。
 - 没选系统驱动 ROMS 用的大气强迫（原来是 NAM；NWS 在 2026-11-03 用 RRFS 取代了 NAM，组里的系统 11-04 起改取 RRFS 13 km、3 小时一场，仍放在 `NAM` 分支名下）：3 小时一场、NOMADS 只留两天，不够拼 72 小时逐时。HRRR 和 AORC 都是数值模式产品，分辨率也接近。
