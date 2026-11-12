@@ -34,12 +34,12 @@ WHAT = {"v3_obs": ("72 h of water level at the station", "yes"),
         "v9_fc1_t45": ("past rainfall + HRRR forecast total of the next 6 h", "yes (MRMS, HRRR)"),
         "v7_rain_p15": ("past rainfall + observed rainfall of the next 6 h", "NO  -  upper bound"),
         "v10_dnorm_x_p50": ("error scaled by 6 h change; gaps take the last value", "yes  -  no new data"),
-        "v11_fc1_t45": ("the row above + past rainfall + HRRR forecast, next 6 h", "yes (MRMS, HRRR)"),
-        "v14_stale25": ("the row above; newest 1-3 h missing in 25% of samples", "yes (MRMS, HRRR)"),
-        "v11_rain_obs": ("scaling + gap filling + past and observed future rainfall", "NO  -  upper bound")}
+        "v11_fc1_t45": ("past rainfall + HRRR forecast total of the next 6 h", "yes (MRMS, HRRR)"),
+        "v14_stale25": ("newest 1-3 h of level removed in 25% of samples", "yes (MRMS, HRRR)"),
+        "v11_rain_obs": ("past rainfall + observed rainfall of the next 6 h", "NO  -  upper bound")}
 SHORT = {"v3_obs": "Water level only", "v3_wind_past": "+ wind, past 72 h", "v3_wind": "+ wind, next 6 h", "v3_wind_q": "+ upstream discharge",
          "v6_wind_q": "refined discharge and wind (no rainfall)", "v7_rain_p15_past": "+ rainfall, past 72 h", "v9_fc1_t45": "+ rainfall, HRRR forecast",
-         "v7_rain_p15": "+ rainfall, observed future", "v10_dnorm_x_p50": "6 h-change scaling + gap filling", "v11_fc1_t45": "scaling + gap filling + HRRR rainfall", "v14_stale25": "+ training with missing recent hours",
+         "v7_rain_p15": "+ rainfall, observed future", "v10_dnorm_x_p50": "6 h-change scaling + gap filling", "v11_fc1_t45": "scaling + gap filling + HRRR rainfall", "v14_stale25": "scaling + gap filling + HRRR rainfall,\ntrained with missing hours",
          "v11_rain_obs": "scaling + gap filling + observed rainfall"}
 # additions tried on top of the current version: run, name, what it adds, real time
 TRIED = [("v12_lb720", "look-back 720 h instead of 72 h", "30 days of history as input; training 9 times as long", "yes"),
@@ -115,14 +115,15 @@ def main() -> None:
         if k in (5, 8, 12):
             y += 0.08                                        # blocks: built step by step / rainfall / scaling and gap filling / tried on top of the current version
         cur = run == CURRENT
+        two = "\n" in name                                  # a name on two lines: the row is taller
         if cur:
-            hilite(sl, 0.42, y - 0.01, 12.45, 0.28)
-        for (x, w, _, al), v in zip(cols, [name, what, rt, f"{a_:.1f}", f"{u_:.1f}", f"{tg_:.1f}"]):
+            hilite(sl, 0.42, y - 0.01, 12.45, 0.28 + 0.17 * two)
+        for (x, w, _, al), v in zip(cols, [name.split("\n") if two else name, what, rt, f"{a_:.1f}", f"{u_:.1f}", f"{tg_:.1f}"]):
             text(sl, x, y, w, 0.3, v, size=10, bold=cur, align=al)
-        y += 0.285
+        y += 0.285 + 0.17 * two
     text(sl, 0.5, y + 0.05, 12.3, 1.2, [
         "Highlighted: the version that is run for the forecast - 6 h-change scaling, gap filling, HRRR rainfall, trained with missing hours. First block: each row keeps everything above it and adds one input, ending with water level + wind + discharge. "
-        "Second block: rainfall added to that. Third block: the same models with the error scaled by the 6 h change and gaps filled with the last observation (next slide); "
+        "Second block: rainfall added to that. Third block: water level + wind + discharge and the two rainfall versions again, with the error scaled by the 6 h change and gaps filled with the last observation (next slide); "
         "in the highlighted row the model is also trained to cope with a gauge that has stopped reporting (slide before the last). "
         "Fourth block: three more additions tried on top of scaling + gap filling + HRRR rainfall; they changed nothing and were dropped.",
         "Every rainfall row has the rainfall of the past 72 h as input; the rows differ in where the rainfall of the next 6 h comes from. In real time the past 72 h come from MRMS radar rainfall.",
@@ -197,12 +198,12 @@ def main() -> None:
         "",
         f"(a) Water level + wind + discharge: {c1} stations better, {d1} worse. The gain follows the coast and the bays.",
         "",
-        f"(b) The same with 6 h-change scaling and gap filling: {c2} better, {d2} worse. Inland rivers are added to the gain; no station is worse than with water level only.",
+        f"(b) 6 h-change scaling + gap filling, no rainfall: {c2} better, {d2} worse. Inland rivers are added to the gain; no station is worse than with water level only.",
         "",
-        f"(c) With HRRR rainfall added to (b): {c3} better, {d3} worse. Houston and the creeks around Baton Rouge turn blue. "
+        f"(c) Scaling + gap filling + HRRR rainfall, trained with missing hours: {c3} better, {d3} worse. Houston and the creeks around Baton Rouge turn blue. "
         "The two dark orange stations are Pearl River navigation locks, where gate operation sets the level and rainfall only misleads the model.",
         "",
-        f"(d) With observed rainfall instead: {c4} better, {d4} worse. Same places as (c), several times stronger. The difference between (c) and (d) is the error of the rainfall forecast.",
+        f"(d) Scaling + gap filling + observed rainfall of the next 6 h: {c4} better, {d4} worse. Same places as (c), several times stronger. The difference between (c) and (d) is the error of the rainfall forecast.",
         "",
         "Better / worse: by 0.5 cm or more. Colour scale limited to 5 cm in both directions.",
     ], size=12)
@@ -244,7 +245,7 @@ def main() -> None:
         "A red-orange line that follows the black line a few hours late means the version only reacts once the rise is already in the observations. Grey band: 24 hours around the observed peak. Numbers inside each panel: RMSE in that period at 1, 3 and 6 hours lead.",
         "Above each column: the 6 h RMSE of that version at the station over the whole two test years.",
         "",
-        "The fifth column, with its heading in bold, is the version that is run: 6 h-change scaling, gap filling and HRRR rainfall. Columns one to four have no rainfall.",
+        "The fifth column, with its heading in bold, is the version that is run: 6 h-change scaling, gap filling and HRRR rainfall, trained with missing hours. Columns one to four have no rainfall.",
         "The sixth column uses the observed rainfall of the next 6 hours. It cannot be run in real time and shows how far a perfect rainfall forecast would go.",
         "",
         "Stations: 18, picked by type, with a complete record. A station is shown only if the observation and the inputs of all six versions have no missing hour in both periods.",
@@ -430,10 +431,10 @@ def main() -> None:
     sl = new("When a gauge stops reporting: the model is now trained for it")
     cx = [(0.5, 3.5, PP_ALIGN.LEFT), (3.9, 2.85, PP_ALIGN.RIGHT), (6.8, 3.05, PP_ALIGN.RIGHT), (9.95, 2.85, PP_ALIGN.RIGHT)]
     y = 1.0
-    hilite(sl, 9.9, y - 0.02, 2.95, 3.7)
-    for (x, w, al), h in zip(cx, ["6 h RMSE (cm)", "Water level + wind + discharge", "Scaling + gap filling + HRRR rainfall", "The same, trained with missing hours"]):
+    hilite(sl, 9.9, y - 0.02, 2.95, 3.9)
+    for (x, w, al), h in zip(cx, ["6 h RMSE (cm)", "Water level + wind + discharge", "Scaling + gap filling + HRRR rainfall", ["Scaling + gap filling + HRRR rainfall,", "trained with missing hours"]]):
         text(sl, x, y, w, 0.3, h, size=11, bold=True, align=al)
-    y += 0.4
+    y += 0.6
     for grp, glab in (("all", "All forecasts, 2024 to 2025"), ("hurricane periods", "Hurricanes Beryl and Francine")):
         text(sl, 0.5, y, 6, 0.3, glab, size=12, bold=True); y += 0.33
         for k, klab in ((0, "newest observation at forecast time"), (1, "gauge silent for 1 h"), (2, "gauge silent for 2 h"), (3, "gauge silent for 3 h")):
