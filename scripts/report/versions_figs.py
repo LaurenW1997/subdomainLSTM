@@ -219,6 +219,51 @@ def _base(ax):
         sp.set_linewidth(0.5); sp.set_edgecolor("#7a7a74")
 
 
+# one colour per station type, the same in every figure (categorical slots in fixed order)
+TYPE_COL = {"tide gauge": "#2a78d6", "estuary / tidal channel": "#1baf7a", "lake": "#eda100", "river / canal": "#eb6834",
+            "urban creek (Houston)": "#e87ba4", "marsh": "#008300"}
+TYPE_LAB = {"tide gauge": "Tide gauge", "estuary / tidal channel": "Estuary / tidal channel", "lake": "Lake", "river / canal": "River",
+            "urban creek (Houston)": "Urban creek (Houston)", "marsh": "Marsh"}
+DOMAINS = [("Louisiana100m", -94.11, -88.39, 28.74, 31.14), ("Texas100m", -99.03, -95.24, 25.85, 29.13), ("Galveston100m", -96.71, -94.04, 28.74, 31.16)]
+
+
+def stationmap() -> Path:
+    """Where the stations are: (a) all stations the model is trained on, (b) the stations with a real-time feed, which are
+    the ones a forecast is issued for. Same colours in both panels; the three 100 m model domains as boxes."""
+    import cartopy.crs as ccrs
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Rectangle
+    st = pd.read_csv(REPO / "runs" / "v6_wind_q" / "stations.csv", dtype={"station_id": str})
+    g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
+    st = st.merge(g[["source", "station_id", "type"]], on=["source", "station_id"], how="left")
+    rt = st.source.isin(["USGS", "NOAA_COOPS"])
+    pc = ccrs.PlateCarree()
+    fig = plt.figure(figsize=(13.0, 4.6))
+    panels = [(st, f"(a) Training: {len(st)} stations  (USGS {int((st.source == 'USGS').sum())}, NOAA {int((st.source == 'NOAA_COOPS').sum())}, "
+                   f"CRMS {int((st.source == 'CRMS').sum())}, USACE {int((st.source == 'USACE_MVN').sum())})"),
+              (st[rt], f"(b) Forecast in real time: {int(rt.sum())} stations  (USGS {int((st.source == 'USGS').sum())}, NOAA {int((st.source == 'NOAA_COOPS').sum())})")]
+    for k, (x, title) in enumerate(panels):
+        ax = fig.add_subplot(1, 2, k + 1, projection=pc); _base(ax)
+        for name, x0, x1, y0, y1 in DOMAINS:
+            ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, fill=False, edgecolor="#52524e", lw=0.8, ls=(0, (4, 2)), transform=pc, zorder=3))
+            ax.text(x0 + 0.08, y0 + 0.08, name, transform=pc, fontsize=8, color="#52524e", ha="left", va="bottom", zorder=6,
+                    bbox=dict(facecolor="white", edgecolor="none", pad=1.0, alpha=0.8))
+        for t in ["marsh", "river / canal", "urban creek (Houston)", "estuary / tidal channel", "lake", "tide gauge"]:      # rarer types on top
+            y = x[x.type == t]
+            ax.scatter(y.lon, y.lat, s=11, color=TYPE_COL[t], edgecolor="white", linewidth=0.25, transform=pc, zorder=5)
+        ax.set_title(title, loc="left", fontsize=10)
+    order = ["tide gauge", "estuary / tidal channel", "lake", "river / canal", "urban creek (Houston)", "marsh"]
+    h = [Line2D([], [], marker="o", ls="", markerfacecolor=TYPE_COL[t], markeredgecolor="white", markeredgewidth=0.3, markersize=6.5) for t in order]
+    lab = [f"{TYPE_LAB[t]}  ({int((st.type == t).sum())} / {int(((st.type == t) & rt).sum())})" for t in order]
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.92, bottom=0.17, wspace=0.03)
+    fig.legend(h, lab, loc="lower center", ncol=6, frameon=False, fontsize=9.5, handletextpad=0.2, columnspacing=1.5, bbox_to_anchor=(0.5, 0.045))
+    fig.text(0.5, 0.012, "Numbers in the legend: stations used for training / stations forecast in real time.  Dashed boxes: the three 100 m model domains.",
+             ha="center", fontsize=9, color=INK)
+    out = OUT / "stations_map.png"
+    fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
+    return out
+
+
 def maps() -> tuple[Path, Path]:
     """(1) 6 h RMSE at every station for the six main versions; (2) change at every station for four steps."""
     import cartopy.crs as ccrs
@@ -322,7 +367,7 @@ def explain() -> Path:
 
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr", "explain", "refgauge"]); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["bars", "lead", "stations", "maps", "btr", "explain", "refgauge", "stationmap"]); a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     if a.cmd == "bars":
         print("->", bars())
@@ -336,6 +381,8 @@ def main() -> None:
         print("->", explain())
     elif a.cmd == "refgauge":
         print("->", refgauge())
+    elif a.cmd == "stationmap":
+        print("->", stationmap())
     else:
         stations()
 

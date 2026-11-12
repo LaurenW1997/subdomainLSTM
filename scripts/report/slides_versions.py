@@ -45,6 +45,7 @@ TRIED = [("v12_lb720", "look-back 720 h instead of 72 h", "30 days of history as
          ("v12_long", "+ 7-day and 30-day summaries", "mean level and rainfall totals of the last 7 and 30 days", "yes"),
          ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)")]
 HILITE = RGBColor(0xFB, 0xE3, 0xD3)
+LIVE_TAG, LIVE_WHEN = "20261111T20", "11 November 2026, 20:00 UTC"
 
 
 def hilite(sl, x, y, w, h):
@@ -85,6 +86,16 @@ def main() -> None:
 
     def med(key, tname):
         return float(np.median(r6[key][typ == tname]))
+
+    # ---- where the stations are
+    sl = new("The stations: all of them for training, those with a real-time feed for the forecast")
+    yb = picture(sl, F / "stations_map.png", 0.3, 1.0, 12.7, 4.6)
+    text(sl, 0.5, yb + 0.2, 12.3, 1.6, [
+        "(a) One model is trained on all 1010 stations in the three 100 m domains. The 552 CRMS marsh stations are read out from loggers and published months later, "
+        "so they add training data but cannot be forecast in real time.",
+        "(b) A forecast is issued for the 457 USGS and NOAA stations, which report in real time: tide gauges, estuaries, lakes, rivers and the Houston creeks.",
+        f"All error numbers on the following slides are for the {n_st} of these 457 stations that have enough observations in the test period (January 2024 to December 2025). CRMS stations are not in any of the numbers.",
+    ], size=12)
 
     # ---- 1 the versions as a table
     sl = new("Every model version so far; the current version is highlighted")
@@ -321,42 +332,79 @@ def main() -> None:
         "input has to be retrained with RRFS forecasts, and an archive of them has to be collected first.",
     ], size=12)
 
-    # ---- the current version run as a real-time forecast
+    # ---- the current version run as a real-time forecast: 32 past forecast times
     import json
     hc = pd.read_csv(REPO / "deliverables" / "20_operational_rain" / "hindcast_check_summary.csv").set_index("cycles")
-    ver = json.loads((REPO / "deliverables" / "20_operational_rain" / "20261111T20_verification.json").read_text())["leads"]
-    sl = new("The current version run as a real-time forecast")
-    ev = [("all cycles", "All 32 cycles"), ("2024-05", "Flood, 2 to 3 May 2024"), ("2024-07", "Hurricane Beryl, 8 to 9 July 2024"),
-          ("2024-09", "Hurricane Francine, 11 to 12 September 2024"), ("2025-10", "Calm period, 10 to 11 October 2025")]
-    cx = [(0.5, 4.6, PP_ALIGN.LEFT), (5.2, 1.8, PP_ALIGN.RIGHT), (7.1, 1.8, PP_ALIGN.RIGHT), (9.1, 1.8, PP_ALIGN.RIGHT), (11.0, 1.8, PP_ALIGN.RIGHT)]
-    y = 1.0
-    text(sl, 5.2, y, 3.7, 0.3, "Previous version (no rainfall)", size=12, bold=True, align=PP_ALIGN.CENTER)
-    hilite(sl, 9.05, y - 0.02, 3.8, 2.75)
-    text(sl, 9.1, y, 3.7, 0.3, "Current version", size=12, bold=True, align=PP_ALIGN.CENTER); y += 0.33
-    for (x, w, al), h in zip(cx, ["6 h RMSE (cm)", "training inputs", "real-time inputs", "training inputs", "real-time inputs"]):
-        text(sl, x, y, w, 0.3, h, size=12, bold=True, align=al)
-    y += 0.4
+    ver = json.loads((REPO / "deliverables" / "20_operational_rain" / f"{LIVE_TAG}_verification.json").read_text())["leads"]
+    ra = hc.loc["all cycles"]
+
+    def cost(k, h):
+        d_, l_ = ra[f"{k} data {h}h"], ra[f"{k} live {h}h"]
+        return f"{l_ - d_:+.1f} cm ({100 * (l_ / d_ - 1):+.0f}%)"
+
+    sl = new("Can it run in real time? The whole forecast chain on 32 past forecast times")
+    cx = [(0.5, 3.4, PP_ALIGN.LEFT), (3.9, 1.45, PP_ALIGN.RIGHT), (5.4, 1.45, PP_ALIGN.RIGHT), (6.9, 1.7, PP_ALIGN.RIGHT),
+          (8.75, 1.35, PP_ALIGN.RIGHT), (10.1, 1.35, PP_ALIGN.RIGHT), (11.3, 1.5, PP_ALIGN.RIGHT)]
+    y = 0.95
+    text(sl, 3.9, y, 4.7, 0.3, "Previous version (no rainfall)", size=11.5, bold=True, align=PP_ALIGN.CENTER)
+    hilite(sl, 8.7, y - 0.02, 4.15, 2.95)
+    text(sl, 8.75, y, 4.05, 0.3, "Current version", size=11.5, bold=True, align=PP_ALIGN.CENTER); y += 0.3
+    head = ["RMSE (cm)", "training inputs", "real-time inputs", "cost of real time", "training inputs", "real-time inputs", "cost of real time"]
+    for (x, w, al), h in zip(cx, head):
+        text(sl, x, y, w, 0.3, h, size=11, bold=True, align=al)
+    y += 0.34
+    for h in (1, 3, 6):
+        vals = [f"All 32 forecast times, {h} h ahead", f"{ra[f'old data {h}h']:.1f}", f"{ra[f'old live {h}h']:.1f}", cost("old", h),
+                f"{ra[f'new data {h}h']:.1f}", f"{ra[f'new live {h}h']:.1f}", cost("new", h)]
+        for (x, w, al), v in zip(cx, vals):
+            text(sl, x, y, w, 0.3, v, size=11.5, bold=True, align=al)
+        y += 0.31
+    y += 0.1
+    ev = [("2024-05", "Flood, 2 to 3 May 2024, 6 h ahead"), ("2024-07", "Hurricane Beryl, 8 to 9 July 2024, 6 h ahead"),
+          ("2024-09", "Hurricane Francine, 11 to 12 Sep 2024, 6 h ahead"), ("2025-10", "Calm period, 10 to 11 October 2025, 6 h ahead")]
     for key, lab in ev:
         r = hc.loc[key]
-        for (x, w, al), v in zip(cx, [lab, f"{r['old data 6h']:.1f}", f"{r['old live 6h']:.1f}", f"{r['new data 6h']:.1f}", f"{r['new live 6h']:.1f}"]):
-            text(sl, x, y, w, 0.3, v, size=12, bold=(key == "all cycles"), align=al)
-        y += 0.38
-    ra = hc.loc["all cycles"]
-    text(sl, 0.5, y + 0.25, 12.3, 3.4, [
-        f"The forecast script was run for 32 past forecast times with the inputs the real-time system would have had: water level and discharge from the USGS and NOAA services, HRRR wind, "
+        vals = [lab, f"{r['old data 6h']:.1f}", f"{r['old live 6h']:.1f}", f"{r['old live 6h'] - r['old data 6h']:+.1f} cm",
+                f"{r['new data 6h']:.1f}", f"{r['new live 6h']:.1f}", f"{r['new live 6h'] - r['new data 6h']:+.1f} cm"]
+        for (x, w, al), v in zip(cx, vals):
+            text(sl, x, y, w, 0.3, v, size=11.5, align=al)
+        y += 0.31
+    text(sl, 0.5, y + 0.3, 12.3, 2.9, [
+        "What was done. The forecast script was run for 32 past forecast times exactly as it would run live: water level and discharge from the USGS and NOAA services, HRRR wind, "
         f"MRMS rainfall for the past 72 h, HRRR rainfall forecast for the next 6 h. {int(ra['pairs']):,} forecasts at 447 stations, scored against the observations. "
         "Training inputs: the same model fed from the training dataset (AORC wind and rainfall), same stations and times.",
         "",
-        f"Real-time inputs cost the current version {100 * (ra['new live 6h'] / ra['new data 6h'] - 1):.1f}% (lead 1 h: {ra['new data 1h']:.1f} and {ra['new live 1h']:.1f} cm; 3 h: {ra['new data 3h']:.1f} and {ra['new live 3h']:.1f} cm). "
-        f"With real-time inputs the current version is {100 * (1 - ra['new live 6h'] / ra['old live 6h']):.0f}% below the previous version. "
-        "The forecast times are floods and hurricanes by choice, so the numbers are much larger than the whole-period RMSE on the other slides.",
+        f"What it costs to go from training inputs to real-time inputs, current version: {cost('new', 1)} at 1 h, {cost('new', 3)} at 3 h, {cost('new', 6)} at 6 h. "
+        "The largest cost is in the May 2024 flood, where HRRR wind and MRMS rainfall differed most from the training products; the current version is still well below the previous one there.",
         "",
-        f"One live forecast, 11 November 2026, 20:00 UTC: 418 stations, under a minute. Scored afterwards: RMSE {ver['1']['rmse_cm']:.1f} cm at 1 h, {ver['3']['rmse_cm']:.1f} cm at 3 h, {ver['6']['rmse_cm']:.1f} cm at 6 h "
-        "(one forecast during a recession after rain, not a statistic).",
+        f"What the lead time costs: the error grows from {ra['new live 1h']:.1f} cm at 1 h to {ra['new live 3h']:.1f} cm at 3 h and {ra['new live 6h']:.1f} cm at 6 h. "
+        f"Against the previous version the two are equal at 1 h ({ra['new live 1h']:.1f} and {ra['old live 1h']:.1f} cm) and at 3 h ({ra['new live 3h']:.1f} and {ra['old live 3h']:.1f} cm); "
+        f"the gain is at 6 h, {ra['old live 6h'] - ra['new live 6h']:.1f} cm lower ({100 * (1 - ra['new live 6h'] / ra['old live 6h']):.0f}%).",
         "",
-        "A fault found by this check and fixed: during daylight-saving time the USGS service returned data ending one hour before the requested time, so the newest hour was averaged from half of its readings "
-        "(too low by tens of cm on a fast rise). The numbers above are after the fix. Training data were not affected.",
-    ], size=12)
+        "These forecast times are floods and hurricanes by choice, so the numbers are several times larger than the whole-period RMSE on the other slides. "
+        "The check also found a fault, now fixed: in daylight-saving months the USGS service returned data ending one hour early, which made the newest hour too low on a fast rise.",
+    ], size=11.5)
+
+    # ---- one live forecast, checked afterwards: stations
+    sl = new(f"A live forecast, issued {LIVE_WHEN} and checked afterwards")
+    yb = picture(sl, F / f"live_{LIVE_TAG}_stations.png", 0.3, 0.95, 12.7, 5.3)
+    text(sl, 0.5, yb + 0.12, 12.3, 0.9, [
+        "Black: observed, 48 h before the forecast time and the 6 h after it. Red-orange: the forecast as it was issued, before those 6 h were known. Numbers: error at 1, 3 and 6 h. "
+        "Eight stations with large changes in those 6 h, two per type, all with a complete record. The forecast was issued a day after heavy rain in Texas: rivers rising or falling, the tide coming in. "
+        "The miss at San Bernard River (21 cm at 6 h) is the kind of error a rising river still gives."], size=11.5)
+
+    # ---- the same live forecast at all stations
+    sl = new(f"The same live forecast at all {ver['6']['n']} stations: 1, 3 and 6 hours ahead")
+    yb = picture(sl, F / f"live_{LIVE_TAG}_scatter.png", 0.5, 0.95, 12.3, 4.5)
+    bt = ver["6"]["by_type"]
+    text(sl, 0.5, yb + 0.15, 12.3, 1.6, [
+        "Each dot is a station: how much the water level changed after the forecast time (horizontal) against how much the forecast said it would change (vertical). On the line = exact.",
+        f"RMSE over all stations: {ver['1']['rmse_cm']:.1f} cm at 1 h, {ver['2']['rmse_cm']:.1f} at 2 h, {ver['3']['rmse_cm']:.1f} at 3 h, {ver['4']['rmse_cm']:.1f} at 4 h, {ver['5']['rmse_cm']:.1f} at 5 h, {ver['6']['rmse_cm']:.1f} at 6 h; "
+        f"half of the stations are within {ver['1']['median_abs_cm']:.1f}, {ver['3']['median_abs_cm']:.1f} and {ver['6']['median_abs_cm']:.1f} cm at 1, 3 and 6 h. "
+        f"At 6 h by type: tide gauges {bt['tide gauge']['rmse_cm']:.1f}, estuaries {bt['estuary / tidal channel']['rmse_cm']:.1f}, lakes {bt['lake']['rmse_cm']:.1f}, rivers {bt['river / canal']['rmse_cm']:.1f}, urban creeks {bt['urban creek (Houston)']['rmse_cm']:.1f} cm.",
+        "418 of the 457 stations got a forecast (the others returned no or too little data); the whole run took under a minute. One forecast time with little rain ahead: it shows that the chain works, it is not a statistic. "
+        "The statistic is the previous slide.",
+    ], size=11.5)
 
     # ---- closing: where things stand
     sl = new("Where things stand")
@@ -373,7 +421,7 @@ def main() -> None:
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "Current version: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (previous slide). "
+        "Current version: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (previous three slides). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     st_ = pd.read_csv(REPO / "runs" / "v11_fc1_t45" / "stale_origin.csv")
     so = st_[(st_.group == "all") & (st_.lead_h == 6)].set_index("hours_without_data").rmse_cm
