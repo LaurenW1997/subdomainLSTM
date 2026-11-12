@@ -78,8 +78,7 @@ def main() -> None:
     def new(title):
         nonlocal n
         n += 1; sl = prs.slides.add_slide(blank)
-        text(sl, 0.5, 0.3, 12.3, 0.5, title, size=17, bold=True)
-        text(sl, 12.5, 7.05, 0.6, 0.3, str(n), size=10, align=PP_ALIGN.RIGHT)
+        text(sl, 0.5, 0.3, 12.3, 0.5, title, size=17, bold=True)       # no page numbers: slides are added and removed by hand
         return sl
 
     def count(a, b):
@@ -124,7 +123,7 @@ def main() -> None:
     text(sl, 0.5, y + 0.05, 12.3, 1.2, [
         "Highlighted: the version that is run for the forecast - 6 h-change scaling, gap filling, HRRR rainfall, trained with missing hours. First block: each row keeps everything above it and adds one input, ending with water level + wind + discharge. "
         "Second block: rainfall added to that. Third block: water level + wind + discharge and the two rainfall versions again, with the error scaled by the 6 h change and gaps filled with the last observation; "
-        "in the highlighted row the model is also trained to cope with a gauge that has stopped reporting (slide before the last). "
+        "in the highlighted row the model is also trained to cope with a gauge that has stopped reporting (see the slide on a gauge that stops reporting). "
         "Fourth block: three more additions tried on top of scaling + gap filling + HRRR rainfall; they changed nothing and were dropped.",
         "Every rainfall row has the rainfall of the past 72 h as input; the rows differ in where the rainfall of the next 6 h comes from. In real time the past 72 h come from MRMS radar rainfall.",
         f"Test period January 2024 to December 2025, {n_st} stations with real-time data (USGS and NOAA; CRMS marsh stations are used for training only and are left out). "
@@ -176,6 +175,37 @@ def main() -> None:
         f"(d) Scaling + gap filling + observed rainfall of the next 6 h: {c4} better, {d4} worse. Same places as (c), several times stronger. The difference between (c) and (d) is the error of the rainfall forecast.",
         "",
         "Better / worse: by 0.5 cm or more. Colour scale limited to 5 cm in both directions.",
+    ], size=12)
+
+    # ---- the version that is run: RMSE by station type, hurricane periods and the rest
+    ev = pd.read_csv(REPO / "deliverables" / "22_rmse_by_type_and_period.csv").set_index("type")
+    sl = new("The version that is run: RMSE by station type, in the hurricanes and in the rest of the test period")
+    cx = [(0.5, 3.3, PP_ALIGN.LEFT), (3.9, 1.0, PP_ALIGN.RIGHT), (5.4, 1.0, PP_ALIGN.RIGHT), (6.5, 1.0, PP_ALIGN.RIGHT), (7.6, 1.0, PP_ALIGN.RIGHT),
+          (9.3, 1.0, PP_ALIGN.RIGHT), (10.4, 1.0, PP_ALIGN.RIGHT), (11.5, 1.0, PP_ALIGN.RIGHT)]
+    y = 1.0
+    text(sl, 5.4, y, 3.2, 0.3, "Hurricanes Beryl and Francine", size=12, bold=True, align=PP_ALIGN.RIGHT)
+    text(sl, 9.3, y, 3.2, 0.3, "Rest of 2024 and 2025", size=12, bold=True, align=PP_ALIGN.RIGHT); y += 0.34
+    for (x, w, al), h in zip(cx, ["RMSE (cm)", "stations", "1 h ahead", "3 h ahead", "6 h ahead", "1 h ahead", "3 h ahead", "6 h ahead"]):
+        text(sl, x, y, w, 0.3, h, size=12, bold=True, align=al)
+    y += 0.4
+    for name, r in ev.iterrows():
+        tot = name == "All stations"
+        if tot:
+            y += 0.08
+        vals = [name, f"{int(r.stations)}"] + [f"{r[f'hurricane_{L}h_cm']:.1f}" for L in (1, 3, 6)] + [f"{r[f'other_{L}h_cm']:.1f}" for L in (1, 3, 6)]
+        for (x, w, al), v in zip(cx, vals):
+            text(sl, x, y, w, 0.3, v, size=12, bold=tot, align=al)
+        y += 0.34
+    al_ = ev.loc["All stations"]; uc_ = ev.loc["Urban creeks (Houston)"]; es_ = ev.loc["Estuaries / tidal channels"]
+    text(sl, 0.5, y + 0.3, 12.3, 2.6, [
+        "Scaling + gap filling + HRRR rainfall, trained with missing hours. RMSE over all forecasts of the stations of a type (not the median station); stations with real-time data, January 2024 to December 2025.",
+        "Hurricane periods: Beryl, 7 to 11 July 2024, at the stations of the Texas and Galveston domains; Francine, 10 to 14 September 2024, at the stations of the Louisiana domain. "
+        "Rest: every other forecast of the two years; it still contains other floods, such as May 2024.",
+        "",
+        f"Over all stations the 6 h error in the hurricanes is {al_.hurricane_6h_cm / al_.other_6h_cm:.1f} times that of the rest ({al_.hurricane_6h_cm:.1f} against {al_.other_6h_cm:.1f} cm). "
+        f"The largest errors are at urban creeks ({uc_.hurricane_6h_cm:.1f} cm) and estuaries ({es_.hurricane_6h_cm:.1f} cm); lakes and rivers grow least. "
+        f"At 1 h ahead no type exceeds {ev.hurricane_1h_cm.max():.1f} cm, also in the hurricanes.",
+        f"Marsh: {int(ev.loc['Marsh', 'stations'])} stations and {int(ev.loc['Marsh', 'n_hurricane'])} forecasts in the hurricane periods, so those numbers are uncertain.",
     ], size=12)
 
     # ---- 7 tried and set aside
@@ -439,7 +469,7 @@ def main() -> None:
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "The version that is run: C. The forecast script builds all of its inputs in real time; one forecast from the real-time services, for 12 November 2026, was checked against the observations (slides 29 and 30). "
+        "The version that is run: C. The forecast script builds all of its inputs in real time; one forecast from the real-time services, for 12 November 2026, was checked against the observations. "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between C and that number is rainfall-forecast error, not model error: "
