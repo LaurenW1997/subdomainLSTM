@@ -137,7 +137,7 @@ def window_rmse(fc: pd.DataFrame, obs: pd.Series, key: str, lead_h: int = 6) -> 
 
 
 def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | None = None, figsize=(13.0, 4.9), out: Path | None = None,
-                data_dir: Path | None = None) -> Path:
+                data_dir: Path | None = None, bold_key: str | None = None) -> Path:
     """Two event windows (rows) x versions (columns). Black: observation. Blue lines, light to dark: the forecast valid at
     each hour that was issued 1, 3 and 6 h earlier (hourly origins). Grey band: 24 h around the observed peak."""
     data_dir = data_dir or OUT / "data"
@@ -168,14 +168,14 @@ def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | No
             ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
             if i == 0:
                 extra = "" if not whole else "\n" + f"whole test period, 6 h: {whole[key]:.1f} cm"
-                ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25, fontweight="bold" if key == CURRENT_KEY and len(vers) > 3 else "normal")
+                ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25, fontweight="bold" if (key == bold_key or (key == CURRENT_KEY and len(vers) > 3)) else "normal")
             if j == 0:
                 name = w.replace("hurricane ", "Hurricane ").replace("high water", "Highest water outside the hurricane")
                 ax.set_ylabel(f"{name}, {o.index[0].year}" + "\n" + "water level (m)", fontsize=8.5, linespacing=1.3)
     from matplotlib.lines import Line2D
     handles = [Line2D([], [], color=INK, lw=1.1)] + [Line2D([], [], color=LEAD_COL[h], lw=1.2) for h in leads]
     fig.legend(handles, ["observed"] + [f"forecast issued {h} h earlier" for h in leads], loc="lower center", ncol=4 if len(vers) > 2 else 2, frameon=False,
-               bbox_to_anchor=(0.5, -0.01 if len(vers) > 2 else -0.07))
+               bbox_to_anchor=(0.5, (-0.01 if len(vers) > 3 else -0.04) if len(vers) > 2 else -0.07))
     fig.suptitle(title, x=0.012, ha="left", fontsize=10.5, y=1.0)
     out = out or OUT / f"station_{sid}.png"
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
@@ -357,12 +357,19 @@ def detail_btr() -> Path:
 
 
 def explain() -> Path:
-    """Before / after picture for the slide that explains the 6 h-change scaling and gap filling: Mississippi River at Baton Rouge."""
-    per = load_runs([MAIN[2][1], MAIN[3][1]])
-    whole = {k: float(per[run].loc[per[run].station_id == "07374000", "rmse_6h_cm"].iloc[0]) for k, run in (("q", MAIN[2][1]), ("base", MAIN[3][1]))}
-    vers = [("q", MAIN[2][1], "Previous version (no rainfall)", None),
-            ("base", MAIN[3][1], "Same inputs, error scaled by the 6 h change," + "\n" + "gaps filled with the last observation", None)]
-    return station_fig("07374000", "Mississippi River at Baton Rouge, LA (USGS 07374000)", whole, vers=vers, figsize=(6.6, 4.9), out=OUT / "explain_scaling.png")
+    """Mississippi River at Baton Rouge for the slide that explains the 6 h-change scaling and gap filling: the previous
+    version, the same inputs with scaling and gap filling, and the newest version (the model file in use, with rainfall).
+    Data: deliverables/17_versions/data_btr (extract_versions_hourly.py on sv7, keys q, base, inuse)."""
+    runs = [("q", "v6_wind_q", "Previous version" + "\n" + "(no rainfall)"),
+            ("base", "v10_dnorm_x_p50", "Same inputs, error scaled by the" + "\n" + "6 h change, gaps take the last value"),
+            ("inuse", "v14_stale25", "CURRENT VERSION (model in use):" + "\n" + "the same + rainfall")]
+    whole = {}
+    for k, run, _ in runs:
+        d_ = pd.read_csv(REPO / "runs" / run / "per_station_test.csv", dtype={"station_id": str})
+        whole[k] = float(d_.loc[d_.station_id == "07374000", "rmse_6h_cm"].iloc[0])
+    vers = [(k, run, title, None) for k, run, title in runs]
+    return station_fig("07374000", "Mississippi River at Baton Rouge, LA (USGS 07374000)", whole, vers=vers, figsize=(9.4, 4.9), out=OUT / "explain_scaling.png",
+                       data_dir=OUT / "data_btr", bold_key="inuse")
 
 
 def main() -> None:

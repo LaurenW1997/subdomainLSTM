@@ -134,7 +134,8 @@ def main() -> None:
     # ---- 2 the 6 h-change scaling and gap filling, explained
     sl = new("Same inputs as the previous version, trained differently: 6 h-change scaling and gap filling")
     b_b, b_w = count("base", "q")
-    text(sl, 0.5, 1.0, 6.9, 6.1, [
+    btr = {r_: pd.read_csv(REPO / "runs" / r_ / "per_station_test.csv", dtype={"station_id": str}).set_index("station_id").loc["07374000"] for r_ in ("v6_wind_q", "v10_dnorm_x_p50", "v14_stale25")}
+    text(sl, 0.5, 1.0, 5.6, 6.1, [
         "Inputs: water level, wind, upstream discharge, as in the previous version (no rainfall yet). No new data source. Three things change:",
         "",
         "1.  Gap filling. A missing hour in the input used to be replaced by the station's long-term mean level; it now takes the last valid observation. "
@@ -151,12 +152,14 @@ def main() -> None:
         f"tide gauges {med('q','tide gauge'):.1f} to {med('base','tide gauge'):.1f} cm.",
         "",
         "Scaling all the way to the 6 h change gives the same overall number but makes tide gauges 0.4 cm worse; half-way keeps the gain at the rivers without that cost.",
-    ], size=11.5)
-    yb = picture(sl, F / "explain_scaling.png", 7.6, 1.0, 5.4, 4.6)
-    text(sl, 7.6, yb + 0.1, 5.4, 1.4, [
-        "Example. Left: previous version. Right: same inputs with the three changes. At high river (bottom) the observed level is smooth; "
-        "the 6 h forecast of the previous version (red-orange line) wanders several cm around it, the other one follows it. Whole test period: 4.8 to 2.5 cm.",
-        "The current version is this one with rainfall added."], size=11)
+    ], size=10.5)
+    yb = picture(sl, F / "explain_scaling.png", 6.3, 1.0, 6.75, 4.6)
+    text(sl, 6.3, yb + 0.1, 6.75, 1.6, [
+        "Example, Mississippi at Baton Rouge. Left: previous version. Middle: same inputs with the three changes. Right: the current version as now in use, which adds rainfall. "
+        "At high river (bottom) the observed level is smooth; the 6 h forecast of the previous version (red-orange line) wanders several cm around it, the other two follow it.",
+        f"Whole test period, 6 h RMSE: {btr['v6_wind_q'].rmse_6h_cm:.1f}, {btr['v10_dnorm_x_p50'].rmse_6h_cm:.1f} and {btr['v14_stale25'].rmse_6h_cm:.1f} cm; "
+        f"at 1 h: {btr['v6_wind_q'].rmse_1h_cm:.1f}, {btr['v10_dnorm_x_p50'].rmse_1h_cm:.1f} and {btr['v14_stale25'].rmse_1h_cm:.1f} cm. "
+        "Rainfall adds little at a river this size; the gain here comes from the scaling and gap filling."], size=10.5)
 
     # ---- 3 bars
     sl = new("What each version does, by station type")
