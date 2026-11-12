@@ -61,6 +61,64 @@ def pooled_nc(run: str, ref: str = "v6_wind_q") -> tuple[float, float]:
     d = load_runs([ref, run]); return pooled(d[run]), pooled(d[ref])
 
 
+STORM_TITLE = "In the hurricanes: better overall, but too high at some stations"
+
+
+def storm_slide(sl) -> None:
+    """Body of the slide that compares the versions station by station in the hurricane periods (runs/<run>/storm_station.csv,
+    eval_storm_station.py). Module level so that it can also be added to a deck that was edited by hand."""
+    runs = [("v3_obs", ["Water level only"]), ("v6_wind_q", ["Water level + wind + discharge"]), ("v10_dnorm_x_p50", ["6 h-change scaling + gap filling, no rainfall"]),
+            ("v14_stale25", ["Scaling + gap filling + HRRR rainfall,", "trained with missing hours"]), ("v11_rain_obs", ["Scaling + gap filling + observed rainfall  (upper bound)"])]
+    d = {r: pd.read_csv(REPO / "runs" / r / "storm_station.csv", dtype={"station_id": str}).set_index(["source", "station_id"]) for r, _ in runs}
+    wl, run, obs = d["v3_obs"], d["v14_stale25"].reindex(d["v3_obs"].index), d["v11_rain_obs"].reindex(d["v3_obs"].index)
+    pool = {r: float(np.sqrt((x.n * x.rmse_6h_cm ** 2).sum() / x.n.sum())) for r, x in d.items()}
+    worse = run.rmse_6h_cm > wl.rmse_6h_cm
+    clear = (run.rmse_6h_cm > wl.rmse_6h_cm + 1) & (run.rmse_6h_cm > 1.1 * wl.rmse_6h_cm)
+    y = 1.0
+    text(sl, 0.5, y, 5.4, 0.3, "6 h RMSE in the hurricane periods, all forecasts (cm)", size=11.5, bold=True); y += 0.38
+    for r, lab in runs:
+        cur = r == "v14_stale25"
+        if cur:
+            hilite(sl, 0.42, y - 0.01, 5.5, 0.47)
+        text(sl, 0.5, y, 4.5, 0.3, lab if len(lab) > 1 else lab[0], size=11.5, bold=cur)
+        text(sl, 4.9, y, 0.9, 0.3, f"{pool[r]:.1f}", size=11.5, bold=cur, align=PP_ALIGN.RIGHT)
+        y += 0.32 + 0.17 * (len(lab) > 1)
+    cx = [(6.5, 2.6, PP_ALIGN.LEFT), (9.0, 0.9, PP_ALIGN.RIGHT), (9.95, 1.2, PP_ALIGN.RIGHT), (11.2, 1.6, PP_ALIGN.RIGHT)]
+    y = 1.0
+    text(sl, 6.5, y, 6.3, 0.3, "Stations where the version that is run is worse than water level only", size=11.5, bold=True); y += 0.38
+    for (x, w, al), h in zip(cx, ["", "stations", "worse", "clearly worse"]):
+        text(sl, x, y, w, 0.3, h, size=11, bold=True, align=al)
+    y += 0.3
+    types = [("river / canal", "Rivers / canals"), ("estuary / tidal channel", "Estuaries / tidal channels"), ("tide gauge", "Tide gauges"), ("lake", "Lakes"),
+             ("marsh", "Marsh"), ("urban creek (Houston)", "Urban creeks (Houston)"), (None, "All stations")]
+    for key, lab in types:
+        m = np.ones(len(wl), bool) if key is None else (wl.type == key).to_numpy()
+        tot = key is None
+        vals = [lab, f"{int(m.sum())}", f"{int(worse[m].sum())}" + (f"  ({100 * worse.mean():.0f}%)" if tot else ""), f"{int(clear[m].sum())}" + (f"  ({100 * clear.mean():.0f}%)" if tot else "")]
+        for (x, w, al), v in zip(cx, vals):
+            text(sl, x, y, w, 0.3, v, size=11.5, bold=tot, align=al)
+        y += 0.29
+    c = clear.to_numpy()
+    fixed = int((obs.rmse_6h_cm[c] < wl.rmse_6h_cm[c]).sum())
+    uc = (wl.type == "urban creek (Houston)").to_numpy()
+    ei = ("NOAA_COOPS", "8764314")
+    text(sl, 0.5, 3.75, 12.3, 3.5, [
+        f"Hurricane periods as in the table by station type: Beryl in the Texas and Galveston domains, Francine in the Louisiana domain. {len(wl)} stations with real-time data, a forecast every hour, "
+        f"{int(wl.n.sum()):,} forecasts. Clearly worse: by more than 1 cm and more than 10%.",
+        "",
+        f"Too high, not too late. At {100 * (run.bias_6h_cm[c] > 0).mean():.0f}% of the {int(c.sum())} clearly worse stations the forecast is too high on average. The versions with wind and rainfall see hurricane wind and a large "
+        f"rainfall forecast and forecast a rise; the station rose less. These stations moved less in the hurricanes than the others (median range {wl.obs_range_cm[c].median():.0f} cm against "
+        f"{wl.obs_range_cm.median():.0f} cm). Water level only follows the gauge, so it stays close where little happens.",
+        "",
+        f"Half of it is the rainfall forecast: with observed instead of HRRR rainfall, {fixed} of the {int(c.sum())} are no longer worse. The other half stays: the training years hold few hurricanes, and one model for all "
+        f"stations responds too strongly to extreme wind and rain at some of them, most visibly at tide gauges (Eugene Island: {wl.rmse_6h_cm[ei]:.1f} cm with water level only, {run.rmse_6h_cm[ei]:.1f} cm with the version "
+        f"that is run, {obs.rmse_6h_cm[ei]:.1f} cm with observed rainfall).",
+        "",
+        f"Each station has one hurricane and under 100 forecasts, so part of the station-by-station difference is chance, and a few hours 1 m too high near the peak decide the RMSE of the period. "
+        f"Water level only does not forecast too high, but it misses the large rises: urban creeks, median station, {wl.rmse_6h_cm[uc].median():.1f} cm against {run.rmse_6h_cm[uc].median():.1f} cm.",
+    ], size=11.5)
+
+
 def main() -> None:
     tab = pd.read_csv(F / "versions_table.csv")
     t = tab.set_index("run")
@@ -267,6 +325,9 @@ def main() -> None:
              f"Whole test period, step by step: wind {vals['wind'] - vals['wl']:+.1f} cm; discharge and wind refinements {vals['q'] - vals['wind']:+.1f} cm; "
              f"6 h-change scaling and gap filling {vals['base'] - vals['q']:+.1f} cm; HRRR rainfall and training with missing hours on top of that {vals['base_fc'] - vals['base']:+.1f} cm "
              f"(observed rainfall would give {vals['base_obs'] - vals['base']:+.1f} cm).", size=11.5)
+
+    # ---- hurricane periods, station by station
+    storm_slide(new(STORM_TITLE))
 
     # ---- forecast lag and a second gauge on the same river
     mp = pd.read_csv(REPO / "config" / "station_downstream_map.csv", dtype=str).fillna("")
