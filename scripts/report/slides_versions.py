@@ -172,20 +172,23 @@ def main() -> None:
         f"Stations above 10 cm: {above['wl']} with water level only, {above['q']} in the previous version, {above['base']} with 6 h-change scaling and gap filling, {above['base_fc']} in the current version (HRRR rainfall added), {above['base_obs']} with observed rainfall. "
         "The dark stations sit in the same two places in every map: the Houston creeks and the small rivers north and east of Baton Rouge."], size=12)
 
-    sl = new("Station by station: what each step changed")
+    sl = new("Station by station: each version against water level only")
     picture(sl, F / "versions_map_change.png", 0.3, 1.0, 8.6, 5.9)
-    b1, w1 = count("q", "wl"); b2, w2 = count("base", "q"); b3, w3 = count("base_fc", "q"); b4, w4 = count("base_obs", "q")
+    c1, d1 = count("q", "wl"); c2, d2 = count("base", "wl"); c3, d3 = count("base_fc", "wl"); c4, d4 = count("base_obs", "wl")
+    b2, w2 = count("base", "q"); b3, w3 = count("base_fc", "q")            # against the previous version: used on the closing slide
     text(sl, 9.1, 1.05, 3.9, 5.9, [
-        f"(a) Wind and discharge: {b1} stations better, {w1} worse. The gain follows the coast and the bays.",
+        "All four maps show the 6 h RMSE minus that of the water-level-only version, so they can be compared with each other.",
         "",
-        f"(b) 6 h-change scaling and gap filling: {b2} better, {w2} worse. The gain is at inland rivers; the coast does not change.",
+        f"(a) Previous version, with wind and discharge: {c1} stations better, {d1} worse. The gain follows the coast and the bays.",
         "",
-        f"(c) The same with HRRR rainfall: {b3} better, {w3} worse. The gain is in Houston and around Baton Rouge, where the rain-fed creeks are. "
+        f"(b) The same with 6 h-change scaling and gap filling: {c2} better, {d2} worse. Inland rivers are added to the gain; no station is worse than with water level only.",
+        "",
+        f"(c) Current version, with HRRR rainfall added: {c3} better, {d3} worse. Houston and the creeks around Baton Rouge turn blue. "
         "The two dark orange stations are Pearl River navigation locks, where gate operation sets the level and rainfall only misleads the model.",
         "",
-        f"(d) The same with observed rainfall: {b4} better, {w4} worse. Same places as (c), several times stronger. The difference between (c) and (d) is the error of the rainfall forecast.",
+        f"(d) With observed rainfall instead: {c4} better, {d4} worse. Same places as (c), several times stronger. The difference between (c) and (d) is the error of the rainfall forecast.",
         "",
-        "Colour scale limited to 5 cm in both directions.",
+        "Better / worse: by 0.5 cm or more. Colour scale limited to 5 cm in both directions.",
     ], size=12)
 
     # ---- 7 tried and set aside

@@ -257,10 +257,11 @@ def maps() -> tuple[Path, Path]:
     out1 = OUT / "versions_map_rmse.png"
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
-    steps = [("v6_wind_q", "v3_obs", "(a) Wind and upstream discharge: previous version minus water level only"),
-             ("v10_dnorm_x_p50", "v6_wind_q", "(b) 6 h-change scaling and gap filling, no rainfall, minus previous version"),
-             ("v11_fc1_t45", "v6_wind_q", "(c) CURRENT VERSION (6 h-change scaling, gap filling + HRRR rainfall) minus previous version"),
-             ("v11_rain_obs", "v6_wind_q", "(d) 6 h-change scaling, gap filling + observed rainfall (upper bound), minus previous version")]
+    # every panel against the same base, water level only, so that the four maps can be compared with each other
+    steps = [("v6_wind_q", "v3_obs", "(a) Previous version (+ wind, upstream discharge; no rainfall)"),
+             ("v10_dnorm_x_p50", "v3_obs", "(b) No rainfall, with 6 h-change scaling and gap filling"),
+             ("v11_fc1_t45", "v3_obs", "(c) CURRENT VERSION (scaling, gap filling + HRRR rainfall)"),
+             ("v11_rain_obs", "v3_obs", "(d) With observed rainfall instead (upper bound, not real time)")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
     fig = plt.figure(figsize=(13.0, 6.6))
     for k, (a, b, title) in enumerate(steps):
@@ -272,7 +273,7 @@ def maps() -> tuple[Path, Path]:
     fig.subplots_adjust(left=0.01, right=0.99, top=0.93, bottom=0.12, wspace=0.03, hspace=0.2)
     cax = fig.add_axes([0.30, 0.06, 0.40, 0.022])
     cb = fig.colorbar(sc, cax=cax, orientation="horizontal", extend="both", ticks=[-5, -2.5, 0, 2.5, 5]); cb.outline.set_linewidth(0.5)
-    cb.ax.tick_params(labelsize=10); cb.set_label("change in 6 h RMSE (cm): blue = smaller error, orange = larger error", fontsize=10.5)
+    cb.ax.tick_params(labelsize=10); cb.set_label("6 h RMSE minus that of water level only (cm): blue = smaller error, orange = larger error", fontsize=10.5)
     out2 = OUT / "versions_map_change.png"
     fig.savefig(out2, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     return out1, out2
