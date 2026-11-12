@@ -337,60 +337,10 @@ def main() -> None:
         "input has to be retrained with RRFS forecasts, and an archive of them has to be collected first.",
     ], size=12)
 
-    # ---- the current version run as a real-time forecast: 32 past forecast times
     import json
-    hc = pd.read_csv(REPO / "deliverables" / "20_operational_rain" / "hindcast_check_stale_summary.csv").set_index("cycles")      # the model file that is run
     ver = json.loads((REPO / "deliverables" / "20_operational_rain" / f"{LIVE_TAG}_verification.json").read_text())["leads"]
-    ra = hc.loc["all cycles"]
 
-    def cost(k, h):
-        d_, l_ = ra[f"{k} data {h}h"], ra[f"{k} live {h}h"]
-        return f"{l_ - d_:+.1f} cm ({100 * (l_ / d_ - 1):+.0f}%)"
-
-    sl = new("Can it run in real time? The whole forecast chain on 32 past forecast times")
-    cx = [(0.5, 3.4, PP_ALIGN.LEFT), (3.9, 1.45, PP_ALIGN.RIGHT), (5.4, 1.45, PP_ALIGN.RIGHT), (6.9, 1.7, PP_ALIGN.RIGHT),
-          (8.75, 1.35, PP_ALIGN.RIGHT), (10.1, 1.35, PP_ALIGN.RIGHT), (11.3, 1.5, PP_ALIGN.RIGHT)]
-    y = 0.95
-    text(sl, 3.9, y, 4.7, 0.3, "Water level + wind + discharge", size=11.5, bold=True, align=PP_ALIGN.CENTER)
-    hilite(sl, 8.7, y - 0.02, 4.15, 2.95)
-    text(sl, 8.75, y, 4.05, 0.3, "Scaling + gap filling + HRRR rainfall", size=11.5, bold=True, align=PP_ALIGN.CENTER); y += 0.3
-    head = ["RMSE (cm)", "training inputs", "real-time inputs", "cost of real time", "training inputs", "real-time inputs", "cost of real time"]
-    for (x, w, al), h in zip(cx, head):
-        text(sl, x, y, w, 0.3, h, size=11, bold=True, align=al)
-    y += 0.34
-    for h in (1, 3, 6):
-        vals = [f"All 32 forecast times, {h} h ahead", f"{ra[f'old data {h}h']:.1f}", f"{ra[f'old live {h}h']:.1f}", cost("old", h),
-                f"{ra[f'new data {h}h']:.1f}", f"{ra[f'new live {h}h']:.1f}", cost("new", h)]
-        for (x, w, al), v in zip(cx, vals):
-            text(sl, x, y, w, 0.3, v, size=11.5, bold=True, align=al)
-        y += 0.31
-    y += 0.1
-    ev = [("2024-05", "Flood, 2 to 3 May 2024, 6 h ahead"), ("2024-07", "Hurricane Beryl, 8 to 9 July 2024, 6 h ahead"),
-          ("2024-09", "Hurricane Francine, 11 to 12 Sep 2024, 6 h ahead"), ("2025-10", "Calm period, 10 to 11 October 2025, 6 h ahead")]
-    for key, lab in ev:
-        r = hc.loc[key]
-        vals = [lab, f"{r['old data 6h']:.1f}", f"{r['old live 6h']:.1f}", f"{r['old live 6h'] - r['old data 6h']:+.1f} cm",
-                f"{r['new data 6h']:.1f}", f"{r['new live 6h']:.1f}", f"{r['new live 6h'] - r['new data 6h']:+.1f} cm"]
-        for (x, w, al), v in zip(cx, vals):
-            text(sl, x, y, w, 0.3, v, size=11.5, align=al)
-        y += 0.31
-    text(sl, 0.5, y + 0.3, 12.3, 2.9, [
-        "What was done. The forecast script was run for 32 past forecast times exactly as it would run live, with the model file that is run now (trained with missing hours): water level and discharge from the USGS and NOAA services, HRRR wind, "
-        f"MRMS rainfall for the past 72 h, HRRR rainfall forecast for the next 6 h. {int(ra['pairs']):,} forecasts at 447 stations, scored against the observations. "
-        "Training inputs: the same model fed from the training dataset (AORC wind and rainfall), same stations and times.",
-        "",
-        f"What it costs to go from training inputs to real-time inputs, for scaling + gap filling + HRRR rainfall: {cost('new', 1)} at 1 h, {cost('new', 3)} at 3 h, {cost('new', 6)} at 6 h. "
-        "The largest cost is in the May 2024 flood, where HRRR wind and MRMS rainfall differed most from the training products; the model with rainfall is still well below the one without there.",
-        "",
-        f"What the lead time costs: the error grows from {ra['new live 1h']:.1f} cm at 1 h to {ra['new live 3h']:.1f} cm at 3 h and {ra['new live 6h']:.1f} cm at 6 h. "
-        f"Against water level + wind + discharge the two are within 0.3 cm of each other at 1 h ({ra['new live 1h']:.1f} and {ra['old live 1h']:.1f} cm) and at 3 h ({ra['new live 3h']:.1f} and {ra['old live 3h']:.1f} cm); "
-        f"the gain is at 6 h, {ra['old live 6h'] - ra['new live 6h']:.1f} cm lower ({100 * (1 - ra['new live 6h'] / ra['old live 6h']):.0f}%).",
-        "",
-        "These forecast times are floods and hurricanes by choice, so the numbers are several times larger than the whole-period RMSE on the other slides. "
-        "The check also found a fault, now fixed: in daylight-saving months the USGS service returned data ending one hour early, which made the newest hour too low on a fast rise.",
-    ], size=11.5)
-
-    # ---- one live forecast, checked afterwards: stations
+    # ---- one forecast from the real-time services, checked afterwards: stations
     sl = new(f"A forecast from the real-time data services for {LIVE_WHEN}, checked afterwards")
     yb = picture(sl, F / f"live_{LIVE_TAG}_stations.png", 0.3, 0.95, 12.7, 5.3)
     text(sl, 0.5, yb + 0.12, 12.3, 0.9, [
@@ -400,7 +350,7 @@ def main() -> None:
         "Eight stations with large changes in those 6 h, from all five types, all with a complete record: the tide going out, Texas rivers still rising or falling after the rain of 11 November. "
         "Largest miss here: Bay Waveland, 9.6 cm at 6 h, where the fall stopped earlier than forecast."], size=11.5)
 
-    # ---- the same live forecast at all stations
+    # ---- the same forecast at all stations
     sl = new(f"The same forecast at all {ver['6']['n']} stations: 1, 3 and 6 hours ahead")
     yb = picture(sl, F / f"live_{LIVE_TAG}_scatter.png", 0.5, 0.95, 12.3, 4.5)
     bt = ver["6"]["by_type"]
@@ -410,7 +360,7 @@ def main() -> None:
         f"half of the stations are within {ver['1']['median_abs_cm']:.1f}, {ver['3']['median_abs_cm']:.1f} and {ver['6']['median_abs_cm']:.1f} cm at 1, 3 and 6 h. "
         f"At 6 h by type: tide gauges {bt['tide gauge']['rmse_cm']:.1f}, estuaries {bt['estuary / tidal channel']['rmse_cm']:.1f}, lakes {bt['lake']['rmse_cm']:.1f}, rivers {bt['river / canal']['rmse_cm']:.1f}, urban creeks {bt['urban creek (Houston)']['rmse_cm']:.1f} cm.",
         "418 of the 457 stations got a forecast (the others returned no or too little data); the whole run took under a minute. Largest miss: Colorado River near Bay City, 33 cm at 6 h "
-        "(the river fell 43 cm, the forecast 10 cm). One forecast time with no rain ahead: it shows that the chain works, it is not a statistic. The statistic is on slide 30.",
+        "(the river fell 43 cm, the forecast 10 cm). One forecast time with no rain ahead: it shows that the chain works, it is not a statistic.",
     ], size=11.5)
 
     # ---- a gauge that has stopped reporting
@@ -460,7 +410,7 @@ def main() -> None:
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "The version that is run: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and on one forecast from the real-time services on 12 November 2026 (slides 30 to 32). "
+        "The version that is run: C. The forecast script builds all of its inputs in real time; one forecast from the real-time services, for 12 November 2026, was checked against the observations (slides 30 and 31). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between C and that number is rainfall-forecast error, not model error: "
