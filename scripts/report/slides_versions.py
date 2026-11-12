@@ -123,43 +123,13 @@ def main() -> None:
         y += 0.285 + 0.17 * two
     text(sl, 0.5, y + 0.05, 12.3, 1.2, [
         "Highlighted: the version that is run for the forecast - 6 h-change scaling, gap filling, HRRR rainfall, trained with missing hours. First block: each row keeps everything above it and adds one input, ending with water level + wind + discharge. "
-        "Second block: rainfall added to that. Third block: water level + wind + discharge and the two rainfall versions again, with the error scaled by the 6 h change and gaps filled with the last observation (next slide); "
+        "Second block: rainfall added to that. Third block: water level + wind + discharge and the two rainfall versions again, with the error scaled by the 6 h change and gaps filled with the last observation; "
         "in the highlighted row the model is also trained to cope with a gauge that has stopped reporting (slide before the last). "
         "Fourth block: three more additions tried on top of scaling + gap filling + HRRR rainfall; they changed nothing and were dropped.",
         "Every rainfall row has the rainfall of the past 72 h as input; the rows differ in where the rainfall of the next 6 h comes from. In real time the past 72 h come from MRMS radar rainfall.",
         f"Test period January 2024 to December 2025, {n_st} stations with real-time data (USGS and NOAA; CRMS marsh stations are used for training only and are left out). "
         "All stations: RMSE over all forecasts. Urban creeks, tide gauges: the median station of that type. Same network in every row unless stated: 2-layer LSTM, hidden size 128, 72 h look-back, one model for all stations.",
     ], size=10)
-
-    # ---- 2 the 6 h-change scaling and gap filling, explained
-    sl = new("Water level, wind and discharge again, trained differently: 6 h-change scaling and gap filling")
-    b_b, b_w = count("base", "q")
-    btr = {r_: pd.read_csv(REPO / "runs" / r_ / "per_station_test.csv", dtype={"station_id": str}).set_index("station_id").loc["07374000"] for r_ in ("v6_wind_q", "v10_dnorm_x_p50", "v14_stale25")}
-    text(sl, 0.5, 1.0, 5.6, 6.1, [
-        "Inputs: water level, wind, upstream discharge. No rainfall yet and no new data source. Three things change in how the model is trained:",
-        "",
-        "1.  Gap filling. A missing hour in the input used to be replaced by the station's long-term mean level; it now takes the last valid observation. "
-        "When the newest hour was missing, the forecast could be off by 0.5 to 1 m: at Baton Rouge the mean is 6.8 m and the river stood at 2.8 m.",
-        "",
-        "2.  6 h-change scaling. The error at each station used to be measured against the spread of its water level over the years. "
-        "At Baton Rouge that spread is 3.3 m, so a 5 cm error counted as next to nothing and the model did not learn the small movements. "
-        "The error is now measured half-way towards the spread of the 6 h change: 4.9 cm at Baton Rouge, 18 cm at a typical tide gauge (level spread 21 cm, so little changes there).",
-        "",
-        "3.  A second view of the water level as input: the last 72 h relative to the newest hour, in the same unit, so that small movements at large rivers are visible to the network.",
-        "",
-        f"6 h RMSE: all stations {t.loc['v6_wind_q','all']:.1f} to {t.loc['v10_dnorm_x_p50','all']:.1f} cm; the {int(big.sum())} rivers whose level ranges over metres, median "
-        f"{np.median(r6['q'][big]):.1f} to {np.median(r6['base'][big]):.1f} cm. {b_b} stations better, {b_w} worse by 0.5 cm or more; "
-        f"tide gauges {med('q','tide gauge'):.1f} to {med('base','tide gauge'):.1f} cm.",
-        "",
-        "Scaling all the way to the 6 h change gives the same overall number but makes tide gauges 0.4 cm worse; half-way keeps the gain at the rivers without that cost.",
-    ], size=10.5)
-    yb = picture(sl, F / "explain_scaling.png", 6.3, 1.0, 6.75, 4.6)
-    text(sl, 6.3, yb + 0.1, 6.75, 1.6, [
-        "Example, Mississippi at Baton Rouge. Left: water level + wind + discharge as trained before. Middle: the same inputs with the three changes. Right: with HRRR rainfall added, which is the version that is run. "
-        "At high river (bottom) the observed level is smooth; the 6 h forecast in the left column (red-orange line) wanders several cm around it, the other two follow it.",
-        f"Whole test period, 6 h RMSE: {btr['v6_wind_q'].rmse_6h_cm:.1f}, {btr['v10_dnorm_x_p50'].rmse_6h_cm:.1f} and {btr['v14_stale25'].rmse_6h_cm:.1f} cm; "
-        f"at 1 h: {btr['v6_wind_q'].rmse_1h_cm:.1f}, {btr['v10_dnorm_x_p50'].rmse_1h_cm:.1f} and {btr['v14_stale25'].rmse_1h_cm:.1f} cm. "
-        "Rainfall adds little at a river this size; the gain here comes from the scaling and gap filling."], size=10.5)
 
     # ---- 3 bars
     sl = new("What each version does, by station type")
@@ -463,13 +433,13 @@ def main() -> None:
         "",
         "Three options were compared:",
         f"A.  Water level + wind + discharge, without rainfall. All stations {a0:.1f} cm, urban creeks {u0:.1f} cm.",
-        f"B.  Same inputs, with 6 h-change scaling and gap filling. All stations {a1:.1f} cm ({100 * (a1 / a0 - 1):+.0f}%); large rivers much better (Mississippi at Baton Rouge 4.8 to 2.5 cm); "
+        f"B.  Same inputs, with 6 h-change scaling and gap filling. All stations {a1:.1f} cm ({100 * (a1 / a0 - 1):+.0f}%); large rivers much better (the {int(big.sum())} rivers whose level ranges over metres: median {np.median(r6['q'][big]):.1f} to {np.median(r6['base'][big]):.1f} cm); "
         f"{b2} stations better, {w2} worse; urban creeks {u1:.1f} cm. No new data.",
         f"C.  B with rainfall (MRMS for the past 72 h, HRRR forecast for the next 6 h), trained to cope with missing hours. All stations {a2:.1f} cm ({100 * (a2 / a0 - 1):+.0f}%), urban creeks {u2:.1f} cm ({100 * (u2 / u0 - 1):+.0f}%); {b3} stations better, {w3} worse.",
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "The version that is run: C. The forecast script builds all of its inputs in real time; one forecast from the real-time services, for 12 November 2026, was checked against the observations (slides 30 and 31). "
+        "The version that is run: C. The forecast script builds all of its inputs in real time; one forecast from the real-time services, for 12 November 2026, was checked against the observations (slides 29 and 30). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between C and that number is rainfall-forecast error, not model error: "
