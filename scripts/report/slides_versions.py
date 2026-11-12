@@ -376,8 +376,8 @@ def main() -> None:
     n_sn = len(arrive)
     if n_sn >= 6 and minute_at(0.5) is not None:
         m50, m90 = minute_at(0.5), minute_at(0.9)
-        arr = (f"Asked every 5 min for an hour: half of the USGS gauges had the {hour0:%H}:00 reading {m50:.0f} min after the hour"
-               + (f", nine in ten after {m90:.0f} min. " if m90 is not None else f"; nine in ten was not reached within {arrive[-1][0]:.0f} min. "))
+        arr = (f"Asked again every 5 min until {arrive[-1][0]:.0f} min after the hour: half of the USGS gauges had the {hour0:%H}:00 reading after {m50:.0f} min"
+               + (f", nine in ten after {m90:.0f} min. " if m90 is not None else f", {100 * arrive[-1][1]:.0f}% after {arrive[-1][0]:.0f} min. "))
     else:
         arr = f"{arrive[0][0]:.0f} min after {hour0:%H}:00 no USGS gauge had the reading of that hour. "
     text(sl, 0.5, y + 0.3, 12.3, 2.7, [
