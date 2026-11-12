@@ -56,7 +56,6 @@ def main() -> None:
         storm |= (T0 >= i0) & (T0 < i1) & in_dom[S]
     print(f"{a.run}: fill={'last value' if ffill else 'station mean'}, {len(S)} origins at {len(np.unique(S))} operational stations, {int(storm.sum())} of them in the hurricane periods", flush=True)
     std = st.std_m.to_numpy(np.float32)
-    dch = sm.n_feat - 1 - 3 * len(sm.nbr) if sm.delta_feat else None      # change-unit channel
     groups = {"all": np.ones(len(S), bool), "hurricane periods": storm}
     for t in sorted(set(typ[oper])):
         groups[t] = typ[S] == t
@@ -69,11 +68,7 @@ def main() -> None:
                 s, t0 = S[i:i + a.batch], T0[i:i + a.batch]
                 feats, fut, s, y, ym = sm.window(s, t0)
                 if k:
-                    feats[:, -k:, 1] = 0.0
-                    feats[:, -k:, 0] = feats[:, -k - 1, 0][:, None] if ffill else 0.0
-                    if dch is not None:
-                        lev = feats[:, :, 0]
-                        feats[:, :, dch] = np.clip((lev - lev[:, -1:]) / sm.rscale[s][:, None], -20, 20)
+                    sm.drop_newest(feats, s, k)
                 f, fu, sx, _, _ = to_torch((feats, fut, s, y, ym), device)
                 err = (model(f, sx, fu).numpy() - y) * std[s][:, None]
                 se[i:i + a.batch] = err ** 2; ok[i:i + a.batch] = ym

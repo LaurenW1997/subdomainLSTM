@@ -67,6 +67,7 @@ def main() -> None:
     ap.add_argument("--fill", default="zero", choices=["zero", "ffill"], help="EXPERIMENT: fill missing hours with the station mean (zero) or the last valid value (ffill)")
     ap.add_argument("--delta-norm", action="store_true", help="EXPERIMENT: predict and score the change in units of each station's typical 6 h change")
     ap.add_argument("--delta-power", type=float, default=1.0, help="EXPERIMENT: 1 = scale by the 6 h-change std, 0 = by the level std, in between = geometric mix")
+    ap.add_argument("--stale-aug", type=float, default=0.0, help="EXPERIMENT: share of training samples with the newest 1-3 h of water level removed (gauge stopped reporting)")
     ap.add_argument("--eval-only", action="store_true", help="skip training: load <out>/best.pt and write the val / test results")
     ap.add_argument("--neighbor-map", help="EXPERIMENT: CSV from scripts/data/downstream_map.py (reference gauges on the same river)")
     ap.add_argument("--downstream", action="store_true", help="EXPERIMENT: water level at the next gauge downstream (or nearest tide gauge) as input")
@@ -81,7 +82,7 @@ def main() -> None:
     sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations, no_wind_stations=a.no_wind_stations,
                        use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form,
                        fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat, delta_power=a.delta_power, long_feat=a.long_feat,
-                       neighbor_map=a.neighbor_map, use_ds=a.downstream, use_us=a.upstream_stage)
+                       neighbor_map=a.neighbor_map, use_ds=a.downstream, use_us=a.upstream_stage, stale_aug=a.stale_aug)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     n_val = len(sm.eval_origins("val", a.eval_stride)[0])
     assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"

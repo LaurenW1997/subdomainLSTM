@@ -19,6 +19,7 @@ import torch
 LOOKBACK = 72   # hours of input
 HORIZON = 6     # hours ahead
 LONG_HOURS = 720  # length of the long-history summaries (--long-feat)
+STALE_MAX = 3   # a station is still forecast while its newest observation is at most this many hours old (forecast.py MAX_STALE_H)
 FC_STRIDE = 6   # hours between the origins a forecast-rain product was extracted for (hrrr_precip.py --stride)
 MIN_INPUT_VALID = 0.7
 WIND_SCALE = 10.0   # m/s -> O(1)
@@ -30,7 +31,8 @@ class StationMatrix:
                  no_wind_stations: Path | str | None = None, use_rain: bool = False, use_future_rain: bool = False,
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
                  fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
-                 long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False):
+                 long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False,
+                 stale_aug: float = 0.0):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -58,6 +60,9 @@ class StationMatrix:
         self.mask = np.isfinite(self.norm)
         self.norm_filled = np.nan_to_num(self.norm, nan=0.0)
         self.fill, self.delta_norm, self.delta_feat = fill, delta_norm, delta_feat
+        # EXPERIMENT (--stale-aug p): in a share p of the training samples the newest 1 .. STALE_MAX hours of water level are
+        # removed, as when a gauge has stopped reporting, so that the model learns to forecast from an older last value
+        self.stale_aug = float(stale_aug)
         if fill == "ffill":   # EXPERIMENT: a missing hour takes the last valid value instead of the station mean (the mask channel still marks it)
             idx = np.where(self.mask, np.arange(self.T, dtype=np.int32)[None, :], 0).astype(np.int32)
             np.maximum.accumulate(idx, axis=1, out=idx)
@@ -189,6 +194,21 @@ class StationMatrix:
         ym = np.isfinite(y)
         return feats, future, s, np.nan_to_num(y, nan=0.0), ym
 
+    def drop_newest(self, feats: np.ndarray, s: np.ndarray, k) -> np.ndarray:
+        """In place: remove the newest k[i] hours of water level from sample i, exactly as the forecast script sees a gauge
+        that has not reported for k hours: mask 0, level = last value before the gap (--fill ffill) or the station mean,
+        change-unit channel rebuilt from the filled series. Wind, rainfall, discharge and reference gauges are untouched."""
+        k = np.broadcast_to(np.asarray(k), (len(s),))
+        for kk in np.unique(k[k > 0]):
+            i = np.where(k == kk)[0]
+            feats[i, -kk:, 1] = 0.0
+            feats[i, -kk:, 0] = feats[i, -kk - 1, 0][:, None] if self.fill == "ffill" else 0.0
+        if self.delta_feat and (k > 0).any():
+            i = np.where(k > 0)[0]; dch = self.n_feat - 1 - 3 * len(self.nbr)
+            lev = feats[i, :, 0]
+            feats[i, :, dch] = np.clip((lev - lev[:, -1:]) / self.rscale[s[i]][:, None], -20, 20)
+        return feats
+
     def _ok(self, s: np.ndarray, t0: np.ndarray) -> np.ndarray:
         idx_in = t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]
         ok = self.mask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
@@ -218,7 +238,11 @@ class StationMatrix:
             ok = self._ok(s, t0)
             out_s.append(s[ok][:need]); out_t.append(t0[ok][:need])
             need -= int(ok.sum())
-        return self.window(np.concatenate(out_s)[:batch], np.concatenate(out_t)[:batch])
+        b = self.window(np.concatenate(out_s)[:batch], np.concatenate(out_t)[:batch])
+        if self.stale_aug > 0:
+            k = np.where(rng.random(batch) < self.stale_aug, rng.integers(1, STALE_MAX + 1, batch), 0)
+            self.drop_newest(b[0], b[2], k)
+        return b
 
     def eval_origins(self, split: str, stride: int = 6, t_lo: int | None = None, t_hi: int | None = None):
         """All (station, t0) pairs on a regular stride with a usable input window."""
