@@ -43,7 +43,9 @@ SHORT = {"v3_obs": "Water level only", "v3_wind_past": "+ wind, past 72 h", "v3_
 # additions tried on top of the current version: run, name, what it adds, real time
 TRIED = [("v12_lb720", "look-back 720 h instead of 72 h", "30 days of history as input; training 9 times as long", "yes"),
          ("v12_long", "+ 7-day and 30-day summaries", "mean level and rainfall totals of the last 7 and 30 days", "yes"),
-         ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)")]
+         ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)"),
+         ("v14_stale25", "current version, trained for silent gauges", "newest 1-3 h of level removed in 25% of training samples", "yes  -  MODEL FILE IN USE")]
+IN_USE = "v14_stale25"
 HILITE = RGBColor(0xFB, 0xE3, 0xD3)
 LIVE_TAG, LIVE_WHEN = "20261111T20", "11 November 2026, 20:00 UTC"
 
@@ -101,8 +103,8 @@ def main() -> None:
     sl = new("Every model version so far; the current version is highlighted")
     cols = [(0.5, 3.05, "Version", PP_ALIGN.LEFT), (3.6, 3.7, "What it adds or changes", PP_ALIGN.LEFT), (7.35, 1.95, "Available in real time", PP_ALIGN.LEFT),
             (9.3, 1.1, "All stations", PP_ALIGN.RIGHT), (10.45, 1.1, "Urban creeks", PP_ALIGN.RIGHT), (11.6, 1.2, "Tide gauges", PP_ALIGN.RIGHT)]
-    y = 0.95
-    text(sl, 9.3, y - 0.05, 3.5, 0.3, "6 h RMSE (cm)", size=10, bold=True, align=PP_ALIGN.CENTER); y += 0.26
+    y = 0.9
+    text(sl, 9.3, y - 0.05, 3.5, 0.3, "6 h RMSE (cm)", size=10, bold=True, align=PP_ALIGN.CENTER); y += 0.25
     for x, w, h, al in cols:
         text(sl, x, y, w, 0.3, h, size=10, bold=True, align=al)
     y += 0.33
@@ -113,16 +115,17 @@ def main() -> None:
     for k, (run, name, what, rt, a_, u_, tg_) in enumerate(lines):
         if k in (5, 8, 11):
             y += 0.08                                        # blocks: built step by step / rainfall / scaling and gap filling / tried on top of the current version
-        cur = run == CURRENT
+        cur = run in (CURRENT, IN_USE)
         if cur:
-            hilite(sl, 0.42, y - 0.01, 12.45, 0.29)
+            hilite(sl, 0.42, y - 0.01, 12.45, 0.28)
         for (x, w, _, al), v in zip(cols, [name, what, rt, f"{a_:.1f}", f"{u_:.1f}", f"{tg_:.1f}"]):
             text(sl, x, y, w, 0.3, v, size=10, bold=cur, align=al)
-        y += 0.3
-    text(sl, 0.5, y + 0.08, 12.3, 1.2, [
+        y += 0.285
+    text(sl, 0.5, y + 0.05, 12.3, 1.2, [
         "Highlighted: the current version. First block: each row keeps everything above it and adds one input; its last row is the previous version, which has no rainfall. Second block: rainfall added to the previous version. "
         "Third block: the previous version and the two rainfall versions again, with the error scaled by the 6 h change and gaps filled with the last observation (next slide). "
-        "Fourth block: additions tried on top of the current version; none of them replaced it.",
+        "Fourth block: additions tried on top of the current version. The first three changed nothing and were dropped. The last one is the current version trained once more so that it copes "
+        "with a gauge that has stopped reporting (slide before the last); with complete input it is the same within 0.1 cm, so it is the model file in use and the figures on the following slides were not redrawn.",
         "Every rainfall row has the rainfall of the past 72 h as input; the rows differ in where the rainfall of the next 6 h comes from. In real time the past 72 h come from MRMS radar rainfall.",
         f"Test period January 2024 to December 2025, {n_st} stations with real-time data (USGS and NOAA; CRMS marsh stations are used for training only and are left out). "
         "All stations: RMSE over all forecasts. Urban creeks, tide gauges: the median station of that type. Same network in every row unless stated: 2-layer LSTM, hidden size 128, 72 h look-back, one model for all stations.",
@@ -406,6 +409,38 @@ def main() -> None:
         "The statistic is the previous slide.",
     ], size=11.5)
 
+    # ---- a gauge that has stopped reporting
+    so = {r_: pd.read_csv(REPO / "runs" / r_ / "stale_origin.csv") for r_ in ("v6_wind_q", "v11_fc1_t45", "v14_stale25")}
+
+    def sv(run, group, lead, k):
+        t_ = so[run]; return float(t_[(t_.group == group) & (t_.lead_h == lead) & (t_.hours_without_data == k)].rmse_cm.iloc[0])
+
+    sl = new("When a gauge stops reporting: the model is now trained for it")
+    cx = [(0.5, 4.3, PP_ALIGN.LEFT), (4.9, 2.4, PP_ALIGN.RIGHT), (7.4, 2.4, PP_ALIGN.RIGHT), (9.95, 2.85, PP_ALIGN.RIGHT)]
+    y = 1.0
+    hilite(sl, 9.9, y - 0.02, 2.95, 3.7)
+    for (x, w, al), h in zip(cx, ["6 h RMSE (cm)", "Previous version (no rainfall)", "Current version", "Current version, trained for it"]):
+        text(sl, x, y, w, 0.3, h, size=12, bold=True, align=al)
+    y += 0.4
+    for grp, glab in (("all", "All forecasts, 2024 to 2025"), ("hurricane periods", "Hurricanes Beryl and Francine")):
+        text(sl, 0.5, y, 6, 0.3, glab, size=12, bold=True); y += 0.33
+        for k, klab in ((0, "newest observation at forecast time"), (1, "gauge silent for 1 h"), (2, "gauge silent for 2 h"), (3, "gauge silent for 3 h")):
+            for (x, w, al), v in zip(cx, ["      " + klab, f"{sv('v6_wind_q', grp, 6, k):.1f}", f"{sv('v11_fc1_t45', grp, 6, k):.1f}", f"{sv('v14_stale25', grp, 6, k):.1f}"]):
+                text(sl, x, y, w, 0.3, v, size=12, align=al)
+            y += 0.31
+        y += 0.1
+    text(sl, 0.5, y + 0.2, 12.3, 2.6, [
+        "A station is still forecast while its newest observation is at most 3 h old. The newest 1, 2 or 3 hours of water level were removed from every test forecast, the way the forecast script fills a gap; wind, rainfall and discharge were left as they are.",
+        "",
+        f"Without preparation one silent hour was enough to throw the model off: {sv('v11_fc1_t45', 'all', 6, 0):.1f} to {sv('v11_fc1_t45', 'all', 6, 1):.1f} cm in the current version "
+        f"({sv('v6_wind_q', 'all', 6, 0):.1f} to {sv('v6_wind_q', 'all', 6, 1):.1f} cm in the previous one, which fills gaps with the station mean). The model had hardly seen such input in training.",
+        "",
+        f"Trained with the newest 1 to 3 hours removed in a quarter of the samples, the same model loses {sv('v14_stale25', 'all', 6, 1) - sv('v14_stale25', 'all', 6, 0):.1f} cm per silent hour instead: "
+        f"{sv('v14_stale25', 'all', 6, 0):.1f}, {sv('v14_stale25', 'all', 6, 1):.1f}, {sv('v14_stale25', 'all', 6, 2):.1f}, {sv('v14_stale25', 'all', 6, 3):.1f} cm. "
+        f"At 1 h lead: {sv('v14_stale25', 'all', 1, 0):.1f} cm with a fresh observation, {sv('v14_stale25', 'all', 1, 3):.1f} cm after 3 silent hours ({sv('v11_fc1_t45', 'all', 1, 3):.1f} cm before). "
+        "With complete input nothing is lost (first row of each block). Everything else about the model is unchanged, so this is the model file in use.",
+    ], size=12)
+
     # ---- closing: where things stand
     sl = new("Where things stand")
     a0, a1, a2, a3 = t.loc["v6_wind_q", "all"], t.loc["v10_dnorm_x_p50", "all"], t.loc["v11_fc1_t45", "all"], t.loc["v11_rain_obs", "all"]
@@ -421,19 +456,18 @@ def main() -> None:
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "Current version: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (previous three slides). "
+        "Current version: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (the three slides before the previous one). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
-    st_ = pd.read_csv(REPO / "runs" / "v11_fc1_t45" / "stale_origin.csv")
-    so = st_[(st_.group == "all") & (st_.lead_h == 6)].set_index("hours_without_data").rmse_cm
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between the current version and that number is rainfall-forecast error, not model error: "
         "a better short-range rainfall forecast (radar-based nowcast) can replace HRRR later without changing the model.",
         "",
+        "Done since the choice: the model is trained to cope with a gauge that has stopped reporting (previous slide), and that model file is the one in use.",
+        "",
         "Open points:",
-        f"1.  When a gauge has not reported for the newest hour the forecast gets much worse: 6 h RMSE {so[0]:.1f} cm with complete input, {so[1]:.1f} cm with 1 h missing, {so[3]:.1f} cm with 3 h missing. "
-        "The model has hardly seen this case in training; it can be trained with such gaps.",
-        "2.  Rainfall should be switched off at gate-controlled stations such as the Pearl River locks, where it misleads the model.",
-        "3.  HRRR will be replaced by RRFS at a date not yet announced; the next-6 h rainfall input then has to be retrained with RRFS forecasts.",
+        "1.  Rainfall should be switched off at gate-controlled stations such as the Pearl River locks, where it misleads the model.",
+        "2.  HRRR will be replaced by RRFS at a date not yet announced; the next-6 h rainfall input then has to be retrained with RRFS forecasts.",
+        "3.  The forecast is started by hand; it is not scheduled and not connected to the group's website.",
     ], size=12)
 
     out = F / "version_comparison.pptx"
