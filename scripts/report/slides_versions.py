@@ -340,7 +340,7 @@ def main() -> None:
 
     # ---- the current version run as a real-time forecast: 32 past forecast times
     import json
-    hc = pd.read_csv(REPO / "deliverables" / "20_operational_rain" / "hindcast_check_summary.csv").set_index("cycles")
+    hc = pd.read_csv(REPO / "deliverables" / "20_operational_rain" / "hindcast_check_stale_summary.csv").set_index("cycles")      # the model file that is run
     ver = json.loads((REPO / "deliverables" / "20_operational_rain" / f"{LIVE_TAG}_verification.json").read_text())["leads"]
     ra = hc.loc["all cycles"]
 
@@ -376,7 +376,7 @@ def main() -> None:
             text(sl, x, y, w, 0.3, v, size=11.5, align=al)
         y += 0.31
     text(sl, 0.5, y + 0.3, 12.3, 2.9, [
-        "What was done. The forecast script was run for 32 past forecast times exactly as it would run live: water level and discharge from the USGS and NOAA services, HRRR wind, "
+        "What was done. The forecast script was run for 32 past forecast times exactly as it would run live, with the model file that is run now (trained with missing hours): water level and discharge from the USGS and NOAA services, HRRR wind, "
         f"MRMS rainfall for the past 72 h, HRRR rainfall forecast for the next 6 h. {int(ra['pairs']):,} forecasts at 447 stations, scored against the observations. "
         "Training inputs: the same model fed from the training dataset (AORC wind and rainfall), same stations and times.",
         "",
@@ -384,7 +384,7 @@ def main() -> None:
         "The largest cost is in the May 2024 flood, where HRRR wind and MRMS rainfall differed most from the training products; the model with rainfall is still well below the one without there.",
         "",
         f"What the lead time costs: the error grows from {ra['new live 1h']:.1f} cm at 1 h to {ra['new live 3h']:.1f} cm at 3 h and {ra['new live 6h']:.1f} cm at 6 h. "
-        f"Against water level + wind + discharge the two are equal at 1 h ({ra['new live 1h']:.1f} and {ra['old live 1h']:.1f} cm) and at 3 h ({ra['new live 3h']:.1f} and {ra['old live 3h']:.1f} cm); "
+        f"Against water level + wind + discharge the two are within 0.3 cm of each other at 1 h ({ra['new live 1h']:.1f} and {ra['old live 1h']:.1f} cm) and at 3 h ({ra['new live 3h']:.1f} and {ra['old live 3h']:.1f} cm); "
         f"the gain is at 6 h, {ra['old live 6h'] - ra['new live 6h']:.1f} cm lower ({100 * (1 - ra['new live 6h'] / ra['old live 6h']):.0f}%).",
         "",
         "These forecast times are floods and hurricanes by choice, so the numbers are several times larger than the whole-period RMSE on the other slides. "
