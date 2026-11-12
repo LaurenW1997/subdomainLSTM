@@ -2,7 +2,7 @@
 
 把从开始到现在的每个版本放在一起比，帮助决定下一步。只用业务站（USGS 和 NOAA，443 个；CRMS 只用于训练，不出现在这里），测试期 2024-01 到 2025-12。
 
-- `version_comparison.pptx`：34 页（幻灯片上不标页码，下面按顺序列出），白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的模型（scaling + gap filling + HRRR rainfall，并按最近 1–3 小时缺测训练，`runs/v14_stale25`）在表格、条形图、地图、站点图里用加粗和浅橙色底标出，所有图表里高亮的都是这一个模型的数字。
+- `version_comparison.pptx`：35 页（幻灯片上不标页码，下面按顺序列出），白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的模型（scaling + gap filling + HRRR rainfall，并按最近 1–3 小时缺测训练，`runs/v14_stale25`）在表格、条形图、地图、站点图里用加粗和浅橙色底标出，所有图表里高亮的都是这一个模型的数字。
   - 站点分布图，训练用的站（含 CRMS，1010 个）和有实时数据、出预报的站（457 个）各一张。
   - 版本表，分四块：逐步加输入（到 water level + wind + discharge 为止）；在它上面加降雨；按 6 小时变化量缩放误差、缺测用最近观测填之后重做，其中高亮的一行还按缺测训练；另外试过的三项（720 小时回看、7 天和 30 天摘要、上下游水位站）。
   - 各版本按站点类型的 6 小时 RMSE 条形图。
@@ -13,6 +13,7 @@
   - 试过但没有可测差别的改动。
   - 怎么看站点页。
   - 18 个站，一站一页，六个版本并排、两个事件窗口（飓风、飓风以外的最高水位）。画法：黑线观测，三条线由浅到深是提前 1、3、6 小时的预报（每小时起报一次，连续线），灰底是峰值前后 24 小时；每列标题下是该版本在该站的全年 6 小时 RMSE。
+  - 飓风期间逐站对比：合在一起每一步都在变好，但实际运行的模型在 28% 的站上不如只用水位，原因是报高（数字来自 `runs/<目录>/storm_station.csv`，说明见 `../23_hurricane_station_compare.md`）。
   - 预报滞后和同一条河上的参考水位站。上游站让有上游站的 127 个站变好，但平均滞后不变（2.5 小时）。
   - 实时降雨的来源。过去 72 小时用 MRMS 代替 AORC 几乎不掉精度，未来 6 小时用 HRRR 预报；HRRR 以后会被 RRFS 取代的说明。
   - 用实时接口对 2026-11-12 12:00 UTC 做的一轮预报，8 个站的过程线（实际运行的模型；当天 20:14 UTC 补跑，输入不晚于 12:00 UTC）。
