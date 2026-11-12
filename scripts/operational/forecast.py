@@ -253,7 +253,9 @@ def main() -> None:
             manifest_extra["wind_off_stations"] = int(wind_off.sum())
             log.info("wind input switched off at %d stations (%s)", wind_off.sum(), nwf.name)
         t = time.time()
-        u_p, v_p, u_f, v_f, prov = station_wind(st, index, future_index, Path(a.wind_cache) if a.wind_cache else Path(a.out) / "wind")
+        # now=cycle: the wind of the next 6 h comes from the HRRR cycle of the forecast hour or an earlier one, also when a past
+        # forecast time is run later (without it such a run took the cycle issued one hour after the forecast time)
+        u_p, v_p, u_f, v_f, prov = station_wind(st, index, future_index, Path(a.wind_cache) if a.wind_cache else Path(a.out) / "wind", now=cycle)
         manifest_extra["wind"] = {"source": "HRRR conus wrfsfc, 10 m UGRD/VGRD, nearest cell", "seconds": round(time.time() - t),
                                   "past_valid_frac": float(np.isfinite(u_p).mean()), "future_valid_frac": float(np.isfinite(u_f).mean()),
                                   "past_fhr_counts": pd.Series(list(prov["past"].values())).value_counts().to_dict() if prov["past"] else {},

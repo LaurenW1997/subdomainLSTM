@@ -40,7 +40,7 @@ def stations_fig(tag: str, sids: list[str]) -> Path:
         ax.axvspan(cycle, ft[-1], color="#000000", alpha=0.05, lw=0)
         ax.axvline(cycle, color="#7a7a74", lw=0.6)
         ax.plot(o.index, o.values, color=INK, lw=1.2, zorder=4, label="observed")
-        ax.plot(ft, fv, color=FC, lw=1.6, zorder=5, label="forecast issued at 20:00 UTC")
+        ax.plot(ft, fv, color=FC, lw=1.6, zorder=5, label=f"forecast issued at {cycle:%H:%M} UTC")
         name = str(r["name"]).title() if str(r["name"]).isupper() else str(r["name"])
         ax.set_title(name + chr(10) + TYPE_LAB.get(r["type"], r["type"]), loc="left", fontsize=8.6, linespacing=1.25)
         e = [abs(r[f"err_{h}h_cm"]) for h in (1, 3, 6)]
