@@ -33,19 +33,21 @@ LADDER = [("v3_obs", "Water level only", True),
           ("v3_wind_past", "+ wind, past 72 h", True),
           ("v3_wind", "+ wind, next 6 h (forecast)", True),
           ("v3_wind_q", "+ upstream discharge", True),
-          ("v6_wind_q", "discharge from the same river, wind off at 15 inland rivers  [operational]", True),
-          ("v7_rain_p15_past", "+ rainfall, past 72 h (observed)", True),
-          ("v9_fc1_t45", "+ rainfall, next 6 h from HRRR forecast", True),
-          ("v7_rain_p15", "+ rainfall, next 6 h observed  [not available in real time]", False),
-          ("v10_dnorm_x_p50", "operational inputs; error scaled by the 6 h change, gaps filled with the last observation", True),
-          ("v11_fc1_t45", "the same + rainfall, next 6 h from HRRR forecast", True),
-          ("v11_rain_obs", "the same + rainfall, next 6 h observed  [not available in real time]", False)]
+          ("v6_wind_q", "discharge from the same river, wind off at 15 inland rivers  [previous version, no rainfall]", True),
+          ("v7_rain_p15_past", "+ rainfall of the past 72 h only", True),
+          ("v9_fc1_t45", "+ rainfall: past 72 h and HRRR forecast for the next 6 h", True),
+          ("v7_rain_p15", "+ rainfall: past 72 h and observed next 6 h  [not available in real time]", False),
+          ("v10_dnorm_x_p50", "no rainfall; error scaled by the 6 h change, gaps filled with the last observation", True),
+          ("v11_fc1_t45", "the same + rainfall: past 72 h and HRRR forecast for the next 6 h  [CURRENT VERSION]", True),
+          ("v11_rain_obs", "the same + rainfall: past 72 h and observed next 6 h  [not available in real time]", False)]
+CURRENT, CURRENT_KEY = "v11_fc1_t45", "base_fc"          # the version in use; drawn in bold / highlighted everywhere
+HILITE = "#fbe3d3"
 # the six versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-6, validated)
 MAIN = [("wl", "v3_obs", "Water level only", "#2a78d6"),
         ("wind", "v3_wind", "+ wind", "#eb6834"),
-        ("q", "v6_wind_q", "+ upstream discharge\n(current operational)", "#1baf7a"),
-        ("base", "v10_dnorm_x_p50", "operational inputs with\n6 h-change scaling,\ngap filling", "#eda100"),
-        ("base_fc", "v11_fc1_t45", "6 h-change scaling,\ngap filling + rainfall\nfrom HRRR forecast", "#e87ba4"),
+        ("q", "v6_wind_q", "+ upstream discharge\n(previous version,\nno rainfall)", "#1baf7a"),
+        ("base", "v10_dnorm_x_p50", "no rainfall, with\n6 h-change scaling,\ngap filling", "#eda100"),
+        ("base_fc", "v11_fc1_t45", "CURRENT VERSION:\n6 h-change scaling, gap\nfilling + HRRR rainfall", "#e87ba4"),
         ("base_obs", "v11_rain_obs", "6 h-change scaling,\ngap filling + observed rainfall\n(upper bound, not real time)", "#008300")]
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"),
          ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks (Houston)")]
@@ -86,11 +88,16 @@ def bars() -> Path:
     y = np.arange(len(LADDER))[::-1]
     for ax, (key, title, sub) in zip(axes, panels):
         v = tab[key].to_numpy()
+        yc = y[list(tab.run).index(CURRENT)]
+        ax.axhspan(yc - 0.5, yc + 0.5, color=HILITE, lw=0, zorder=0)
         ax.barh(y, v, height=0.62, color=[BLUE if rt else GREY for rt in tab.real_time], edgecolor="none")
         for yy, vv in zip(y, v):
             ax.text(vv + v.max() * 0.03, yy, f"{vv:.1f}", va="center", ha="left", fontsize=8.5, color=INK)
         ax.set_xlim(0, v.max() * 1.25); ax.set_title(title + "\n" + sub, loc="left", fontsize=9, linespacing=1.3)
         ax.set_yticks(y); ax.set_yticklabels(tab.version, fontsize=9)
+        for lbl, r_ in zip(ax.get_yticklabels(), tab.run):
+            if r_ == CURRENT:
+                lbl.set_fontweight("bold")
         ax.tick_params(axis="y", length=0); ax.grid(axis="x", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
         ax.set_xlabel("6 h RMSE (cm)")
     out = OUT / "versions_bars.png"
@@ -107,7 +114,8 @@ def lead() -> Path:
     for ax, (t, lab) in zip(axes, sel):
         for key, r, title, col in MAIN:
             x = d[r][d[r].type == t]
-            ax.plot(leads, [x[f"rmse_{h}h_cm"].median() for h in leads], color=col, lw=1.8, marker="o", ms=4, label=title.replace("\n", " "))
+            ax.plot(leads, [x[f"rmse_{h}h_cm"].median() for h in leads], color=col, lw=3.0 if key == CURRENT_KEY else 1.6, marker="o", ms=5.5 if key == CURRENT_KEY else 3.5,
+                    zorder=5 if key == CURRENT_KEY else 3, label=title.replace("\n", " "))
         ax.set_title(f"{lab} (n = {(d['v3_obs'].type == t).sum()})", loc="left"); ax.set_xticks(leads); ax.set_xlabel("Lead time (h)")
         ax.set_ylim(bottom=0); ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
     axes[0].set_ylabel("RMSE (cm), median station")
@@ -160,7 +168,7 @@ def station_fig(sid: str, title: str, whole: dict | None = None, vers: list | No
             ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
             if i == 0:
                 extra = "" if not whole else "\n" + f"whole test period, 6 h: {whole[key]:.1f} cm"
-                ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25)
+                ax.set_title(col_title + extra, loc="left", fontsize=8.8, linespacing=1.25, fontweight="bold" if key == CURRENT_KEY and len(vers) > 3 else "normal")
             if j == 0:
                 name = w.replace("hurricane ", "Hurricane ").replace("high water", "Highest water outside the hurricane")
                 ax.set_ylabel(f"{name}, {o.index[0].year}" + "\n" + "water level (m)", fontsize=8.5, linespacing=1.3)
@@ -225,19 +233,19 @@ def maps() -> tuple[Path, Path]:
         ax = fig.add_subplot(2, 3, k + 1, projection=pc); _base(ax)
         x = d[run].sort_values("rmse_6h_cm")
         sc = ax.scatter(x.lon, x.lat, c=x.rmse_6h_cm.clip(1, 40), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
-        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} above 10 cm", loc="left", fontsize=9)
+        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} above 10 cm", loc="left", fontsize=9, fontweight="bold" if key == CURRENT_KEY else "normal")
     fig.subplots_adjust(left=0.01, right=0.99, top=0.95, bottom=0.13, wspace=0.03, hspace=0.12)
     cax = fig.add_axes([0.20, 0.07, 0.28, 0.025])
     cb = fig.colorbar(sc, cax=cax, orientation="horizontal", ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_xticklabels(["1", "2", "5", "10", "20", "40"])
     cb.set_label("6 h RMSE (cm), January 2024 to December 2025"); cb.outline.set_linewidth(0.5)
-    fig.text(0.53, 0.085, f"{n} operational stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="center", linespacing=1.4)
+    fig.text(0.53, 0.085, f"{n} USGS and NOAA stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="center", linespacing=1.4)
     out1 = OUT / "versions_map_rmse.png"
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
-    steps = [("v6_wind_q", "v3_obs", "(a) Wind and upstream discharge: operational minus water level only"),
-             ("v10_dnorm_x_p50", "v6_wind_q", "(b) 6 h-change scaling and gap filling, same inputs, minus operational"),
-             ("v11_fc1_t45", "v6_wind_q", "(c) 6 h-change scaling, gap filling + HRRR rainfall, minus operational"),
-             ("v11_rain_obs", "v6_wind_q", "(d) 6 h-change scaling, gap filling + observed rainfall (upper bound), minus operational")]
+    steps = [("v6_wind_q", "v3_obs", "(a) Wind and upstream discharge: previous version minus water level only"),
+             ("v10_dnorm_x_p50", "v6_wind_q", "(b) 6 h-change scaling and gap filling, no rainfall, minus previous version"),
+             ("v11_fc1_t45", "v6_wind_q", "(c) CURRENT VERSION (6 h-change scaling, gap filling + HRRR rainfall) minus previous version"),
+             ("v11_rain_obs", "v6_wind_q", "(d) 6 h-change scaling, gap filling + observed rainfall (upper bound), minus previous version")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
     fig = plt.figure(figsize=(13.0, 6.6))
     for k, (a, b, title) in enumerate(steps):
@@ -245,7 +253,7 @@ def maps() -> tuple[Path, Path]:
         diff = d[a].rmse_6h_cm.to_numpy() - d[b].rmse_6h_cm.to_numpy()
         o = np.argsort(np.abs(diff))
         sc = ax.scatter(d[a].lon.to_numpy()[o], d[a].lat.to_numpy()[o], c=np.clip(diff[o], -5, 5), s=16, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
-        ax.set_title(title + "\n" + f"{(diff <= -0.5).sum()} stations better, {(diff >= 0.5).sum()} worse by 0.5 cm or more", loc="left", fontsize=10.5, linespacing=1.3)
+        ax.set_title(title + "\n" + f"{(diff <= -0.5).sum()} stations better, {(diff >= 0.5).sum()} worse by 0.5 cm or more", loc="left", fontsize=10.5, linespacing=1.3, fontweight="bold" if a == CURRENT else "normal")
     fig.subplots_adjust(left=0.01, right=0.99, top=0.93, bottom=0.12, wspace=0.03, hspace=0.2)
     cax = fig.add_axes([0.30, 0.06, 0.40, 0.022])
     cb = fig.colorbar(sc, cax=cax, orientation="horizontal", extend="both", ticks=[-5, -2.5, 0, 2.5, 5]); cb.outline.set_linewidth(0.5)
@@ -262,7 +270,7 @@ def detail_btr() -> Path:
     wins = [("2024-01-07", "(a) Storm surge reaching Baton Rouge at low river stage"),
             ("2024-11-01", "(b) Low river: the tide is visible at Baton Rouge"),
             ("2025-04-30", "(c) High river: slow and smooth")]
-    series = [("wl", "Water level only", "#2a78d6"), ("oper", "Water level + wind + upstream discharge (operational)", "#1baf7a")]
+    series = [("wl", "Water level only", "#2a78d6"), ("oper", "Water level + wind + upstream discharge (previous version)", "#1baf7a")]
     fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.5), gridspec_kw={"wspace": 0.2})
     for ax, (t0, title) in zip(axes, wins):
         w = d.loc[pd.Timestamp(t0):pd.Timestamp(t0) + pd.Timedelta(days=4)]
@@ -271,7 +279,7 @@ def detail_btr() -> Path:
         for key, lab, col in series:
             ax.plot(w.index, w[key], color=col, lw=1.3, label=lab + ", 6 h ahead", zorder=4)
             txt.append(f"{lab.split(' (')[0].split(' + ')[-1] if key == 'oper' else 'water level only'}: {np.sqrt(((w[key] - w.obs) ** 2).mean()) * 100:.1f} cm")
-        ax.set_title(f"{title}" + "\n" + f"6 h RMSE  water level only {np.sqrt(((w.wl - w.obs) ** 2).mean()) * 100:.1f} cm,  operational {np.sqrt(((w.oper - w.obs) ** 2).mean()) * 100:.1f} cm",
+        ax.set_title(f"{title}" + "\n" + f"6 h RMSE  water level only {np.sqrt(((w.wl - w.obs) ** 2).mean()) * 100:.1f} cm,  previous version {np.sqrt(((w.oper - w.obs) ** 2).mean()) * 100:.1f} cm",
                      loc="left", fontsize=9, linespacing=1.35)
         ax.xaxis.set_major_locator(mdates.DayLocator())
         ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
@@ -291,7 +299,7 @@ def explain() -> Path:
     """Before / after picture for the slide that explains the 6 h-change scaling and gap filling: Mississippi River at Baton Rouge."""
     per = load_runs([MAIN[2][1], MAIN[3][1]])
     whole = {k: float(per[run].loc[per[run].station_id == "07374000", "rmse_6h_cm"].iloc[0]) for k, run in (("q", MAIN[2][1]), ("base", MAIN[3][1]))}
-    vers = [("q", MAIN[2][1], "Operational version", None),
+    vers = [("q", MAIN[2][1], "Previous version (no rainfall)", None),
             ("base", MAIN[3][1], "Same inputs, error scaled by the 6 h change," + "\n" + "gaps filled with the last observation", None)]
     return station_fig("07374000", "Mississippi River at Baton Rouge, LA (USGS 07374000)", whole, vers=vers, figsize=(6.6, 4.9), out=OUT / "explain_scaling.png")
 
