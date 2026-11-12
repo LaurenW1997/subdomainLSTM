@@ -35,17 +35,16 @@ WHAT = {"v3_obs": ("72 h of water level at the station", "yes"),
         "v7_rain_p15": ("past rainfall + observed rainfall of the next 6 h", "NO  -  upper bound"),
         "v10_dnorm_x_p50": ("error scaled by 6 h change; gaps take the last value", "yes  -  no new data"),
         "v11_fc1_t45": ("the row above + past rainfall + HRRR forecast, next 6 h", "yes (MRMS, HRRR)"),
-        "v11_rain_obs": ("the row above + past and observed future rainfall", "NO  -  upper bound")}
+        "v14_stale25": ("the row above; newest 1-3 h missing in 25% of samples", "yes (MRMS, HRRR)"),
+        "v11_rain_obs": ("scaling + gap filling + past and observed future rainfall", "NO  -  upper bound")}
 SHORT = {"v3_obs": "Water level only", "v3_wind_past": "+ wind, past 72 h", "v3_wind": "+ wind, next 6 h", "v3_wind_q": "+ upstream discharge",
          "v6_wind_q": "refined discharge and wind (no rainfall)", "v7_rain_p15_past": "+ rainfall, past 72 h", "v9_fc1_t45": "+ rainfall, HRRR forecast",
-         "v7_rain_p15": "+ rainfall, observed future", "v10_dnorm_x_p50": "6 h-change scaling + gap filling", "v11_fc1_t45": "scaling + gap filling + HRRR rainfall",
+         "v7_rain_p15": "+ rainfall, observed future", "v10_dnorm_x_p50": "6 h-change scaling + gap filling", "v11_fc1_t45": "scaling + gap filling + HRRR rainfall", "v14_stale25": "+ training with missing recent hours",
          "v11_rain_obs": "scaling + gap filling + observed rainfall"}
 # additions tried on top of the current version: run, name, what it adds, real time
 TRIED = [("v12_lb720", "look-back 720 h instead of 72 h", "30 days of history as input; training 9 times as long", "yes"),
          ("v12_long", "+ 7-day and 30-day summaries", "mean level and rainfall totals of the last 7 and 30 days", "yes"),
-         ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)"),
-         ("v14_stale25", "+ training with missing recent hours", "newest 1-3 h of level removed in 25% of training samples", "yes (MRMS, HRRR)")]
-IN_USE = "v14_stale25"
+         ("v13_fc_ds_us", "+ gauges up- and downstream", "water level at the next gauges on the same river", "yes (USGS, NOAA)")]
 HILITE = RGBColor(0xFB, 0xE3, 0xD3)
 LIVE_TAG, LIVE_WHEN = "20261111T20", "11 November 2026, 20:00 UTC"
 
@@ -113,19 +112,19 @@ def main() -> None:
         x_ = load_runs(["v11_fc1_t45", run])[run]
         lines.append((run, name, what, rt, pooled(x_), float(x_.rmse_6h_cm[x_.type == "urban creek (Houston)"].median()), float(x_.rmse_6h_cm[x_.type == "tide gauge"].median())))
     for k, (run, name, what, rt, a_, u_, tg_) in enumerate(lines):
-        if k in (5, 8, 11):
+        if k in (5, 8, 12):
             y += 0.08                                        # blocks: built step by step / rainfall / scaling and gap filling / tried on top of the current version
-        cur = run in (CURRENT, IN_USE)
+        cur = run == CURRENT
         if cur:
             hilite(sl, 0.42, y - 0.01, 12.45, 0.28)
         for (x, w, _, al), v in zip(cols, [name, what, rt, f"{a_:.1f}", f"{u_:.1f}", f"{tg_:.1f}"]):
             text(sl, x, y, w, 0.3, v, size=10, bold=cur, align=al)
         y += 0.285
     text(sl, 0.5, y + 0.05, 12.3, 1.2, [
-        "Highlighted: the version that is run for the forecast, scaling + gap filling + HRRR rainfall. First block: each row keeps everything above it and adds one input, ending with water level + wind + discharge. "
-        "Second block: rainfall added to that. Third block: the same three models with the error scaled by the 6 h change and gaps filled with the last observation (next slide). "
-        "Fourth block: additions tried on top of scaling + gap filling + HRRR rainfall. The first three changed nothing and were dropped. The last one trains the same model so that it copes with a gauge that has "
-        "stopped reporting (slide before the last); with complete input it is the same within 0.1 cm, so this is the model file that is run, and the figures on the following slides were not redrawn.",
+        "Highlighted: the version that is run for the forecast - 6 h-change scaling, gap filling, HRRR rainfall, trained with missing hours. First block: each row keeps everything above it and adds one input, ending with water level + wind + discharge. "
+        "Second block: rainfall added to that. Third block: the same models with the error scaled by the 6 h change and gaps filled with the last observation (next slide); "
+        "in the highlighted row the model is also trained to cope with a gauge that has stopped reporting (slide before the last). "
+        "Fourth block: three more additions tried on top of scaling + gap filling + HRRR rainfall; they changed nothing and were dropped.",
         "Every rainfall row has the rainfall of the past 72 h as input; the rows differ in where the rainfall of the next 6 h comes from. In real time the past 72 h come from MRMS radar rainfall.",
         f"Test period January 2024 to December 2025, {n_st} stations with real-time data (USGS and NOAA; CRMS marsh stations are used for training only and are left out). "
         "All stations: RMSE over all forecasts. Urban creeks, tide gauges: the median station of that type. Same network in every row unless stated: 2-layer LSTM, hidden size 128, 72 h look-back, one model for all stations.",
@@ -168,7 +167,7 @@ def main() -> None:
         f"Wind helps the tidal types: tide gauges {t.loc['v3_obs','tide gauge']:.1f} to {t.loc['v3_wind','tide gauge']:.1f} cm, estuaries {t.loc['v3_obs','estuary / tidal channel']:.1f} to {t.loc['v3_wind','estuary / tidal channel']:.1f} cm, lakes {t.loc['v3_obs','lake']:.1f} to {t.loc['v3_wind','lake']:.1f} cm. Upstream discharge changes the medians by 0.1 cm or less.",
         f"The 6 h-change scaling and gap filling help rivers ({t.loc['v6_wind_q','river / canal']:.1f} to {t.loc['v10_dnorm_x_p50','river / canal']:.1f} cm) and do not cost the tidal types anything.",
         f"Rainfall helps urban creeks, and how much depends on where the rainfall of the next 6 h comes from: {t.loc['v6_wind_q','urban creek (Houston)']:.1f} cm without rainfall, "
-        f"{t.loc['v11_fc1_t45','urban creek (Houston)']:.1f} cm with scaling, gap filling and the HRRR forecast (highlighted), {t.loc['v11_rain_obs','urban creek (Houston)']:.1f} cm if the rainfall were known exactly (grey bars, not available in real time).",
+        f"{t.loc['v14_stale25','urban creek (Houston)']:.1f} cm with scaling, gap filling and the HRRR forecast (highlighted), {t.loc['v11_rain_obs','urban creek (Houston)']:.1f} cm if the rainfall were known exactly (grey bars, not available in real time).",
         "Without the scaling and gap filling, HRRR rainfall made rivers and tide gauges slightly worse; with them it does not.",
     ], size=11.5)
 
@@ -265,7 +264,7 @@ def main() -> None:
         summary.append({"sid": sid, "type": r.type, **vals})
         text(sl, 0.5, yb + 0.12, 12.3, 0.6,
              f"Whole test period, step by step: wind {vals['wind'] - vals['wl']:+.1f} cm; discharge and wind refinements {vals['q'] - vals['wind']:+.1f} cm; "
-             f"6 h-change scaling and gap filling {vals['base'] - vals['q']:+.1f} cm; HRRR rainfall on top of that {vals['base_fc'] - vals['base']:+.1f} cm "
+             f"6 h-change scaling and gap filling {vals['base'] - vals['q']:+.1f} cm; HRRR rainfall and training with missing hours on top of that {vals['base_fc'] - vals['base']:+.1f} cm "
              f"(observed rainfall would give {vals['base_obs'] - vals['base']:+.1f} cm).", size=11.5)
 
     # ---- forecast lag and a second gauge on the same river
@@ -307,14 +306,14 @@ def main() -> None:
     ], size=11.5)
 
     # ---- rainfall inputs in real time
-    pr = load_runs(["v11_fc1_t45_pastaorc", "v11_fc1_t45_pastmrms", "v11_fc1_t45_pasthrrr", "v11_fc1_t45_pastnone"])
+    pr = load_runs(["v14_stale25_pastaorc", "v14_stale25_pastmrms", "v14_stale25_pasthrrr", "v14_stale25_pastnone"])
     sl = new("Rainfall in real time: where the two rainfall inputs come from")
     rows = [("Rainfall of the past 72 h taken from", "Available in real time", "All stations", "Urban creeks", "Stations worse", True)]
-    for run, lab, rt in [("v11_fc1_t45_pastaorc", "AORC reanalysis (used for training)", "no"),
-                         ("v11_fc1_t45_pastmrms", "MRMS radar and gauge analysis, 1 km", "yes, 16 min after the hour"),
-                         ("v11_fc1_t45_pasthrrr", "HRRR short-range forecast, 1 to 6 h lead", "yes"),
-                         ("v11_fc1_t45_pastnone", "No rainfall of the past 72 h", "-")]:
-        x = pr[run]; dd = x.rmse_6h_cm.to_numpy() - pr["v11_fc1_t45_pastaorc"].rmse_6h_cm.to_numpy()
+    for run, lab, rt in [("v14_stale25_pastaorc", "AORC reanalysis (used for training)", "no"),
+                         ("v14_stale25_pastmrms", "MRMS radar and gauge analysis, 1 km", "yes, 16 min after the hour"),
+                         ("v14_stale25_pasthrrr", "HRRR short-range forecast, 1 to 6 h lead", "yes"),
+                         ("v14_stale25_pastnone", "No rainfall of the past 72 h", "-")]:
+        x = pr[run]; dd = x.rmse_6h_cm.to_numpy() - pr["v14_stale25_pastaorc"].rmse_6h_cm.to_numpy()
         rows.append((lab, rt, f"{pooled(x):.2f}", f"{x.rmse_6h_cm[x.type == 'urban creek (Houston)'].median():.1f}",
                      "-" if run.endswith("aorc") else f"{int((dd >= 0.5).sum())} of {len(x)}", False))
     y = 1.05
@@ -325,7 +324,7 @@ def main() -> None:
         text(sl, 10.9, y, 1.9, 0.3, w_, size=12, bold=bold, align=PP_ALIGN.RIGHT)
         y += 0.4
     text(sl, 0.5, y + 0.2, 12.3, 3.6, [
-        "The same trained model (scaling + gap filling + HRRR rainfall) in every row; only the source of the past rainfall is changed, without retraining. "
+        "The same trained model (scaling + gap filling + HRRR rainfall, trained with missing hours) in every row; only the source of the past rainfall is changed, without retraining. "
         "Stations worse: by 0.5 cm or more than with the training product.",
         "",
         "Past 72 h. The model was trained with AORC, which is not produced in real time. MRMS replaces it at almost no cost: hourly correlation with AORC 0.93 over the two test years, "
@@ -446,8 +445,8 @@ def main() -> None:
 
     # ---- closing: where things stand
     sl = new("Where things stand")
-    a0, a1, a2, a3 = t.loc["v6_wind_q", "all"], t.loc["v10_dnorm_x_p50", "all"], t.loc["v11_fc1_t45", "all"], t.loc["v11_rain_obs", "all"]
-    u0, u1, u2, u3 = (t.loc[x, "urban creek (Houston)"] for x in ("v6_wind_q", "v10_dnorm_x_p50", "v11_fc1_t45", "v11_rain_obs"))
+    a0, a1, a2, a3 = t.loc["v6_wind_q", "all"], t.loc["v10_dnorm_x_p50", "all"], t.loc["v14_stale25", "all"], t.loc["v11_rain_obs", "all"]
+    u0, u1, u2, u3 = (t.loc[x, "urban creek (Houston)"] for x in ("v6_wind_q", "v10_dnorm_x_p50", "v14_stale25", "v11_rain_obs"))
     text(sl, 0.5, 1.0, 12.3, 2.9, [
         f"From water level only to water level + wind + discharge: {t.loc['v3_obs','all']:.1f} to {a0:.1f} cm over all stations, nearly all of it from wind and at tide gauges, estuaries and lakes.",
         "",
@@ -455,19 +454,17 @@ def main() -> None:
         f"A.  Water level + wind + discharge, without rainfall. All stations {a0:.1f} cm, urban creeks {u0:.1f} cm.",
         f"B.  Same inputs, with 6 h-change scaling and gap filling. All stations {a1:.1f} cm ({100 * (a1 / a0 - 1):+.0f}%); large rivers much better (Mississippi at Baton Rouge 4.8 to 2.5 cm); "
         f"{b2} stations better, {w2} worse; urban creeks {u1:.1f} cm. No new data.",
-        f"C.  B with rainfall: MRMS for the past 72 h, HRRR forecast for the next 6 h. All stations {a2:.1f} cm ({100 * (a2 / a0 - 1):+.0f}%), urban creeks {u2:.1f} cm ({100 * (u2 / u0 - 1):+.0f}%); {b3} stations better, {w3} worse.",
+        f"C.  B with rainfall (MRMS for the past 72 h, HRRR forecast for the next 6 h), trained to cope with missing hours. All stations {a2:.1f} cm ({100 * (a2 / a0 - 1):+.0f}%), urban creeks {u2:.1f} cm ({100 * (u2 / u0 - 1):+.0f}%); {b3} stations better, {w3} worse.",
     ], size=12)
     hilite(sl, 0.42, 3.05, 12.45, 0.62)
     text(sl, 0.5, 3.09, 12.3, 0.6, [
-        "The version that is run: C, scaling + gap filling + HRRR rainfall. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (slides 30 to 32). "
+        "The version that is run: C. The forecast script builds all of its inputs in real time and has been checked on 32 past forecast times and one live forecast (slides 30 to 32). "
         "It is run from a separate directory and is not connected to the group's forecast website."], size=12, bold=True)
     text(sl, 0.5, 3.95, 12.3, 2.5, [
         f"With exact rainfall the same model reaches {a3:.1f} cm over all stations and {u3:.1f} cm at urban creeks. The distance between C and that number is rainfall-forecast error, not model error: "
         "a better short-range rainfall forecast (radar-based nowcast) can replace HRRR later without changing the model.",
         "",
-        "Done since the choice: C is trained to cope with a gauge that has stopped reporting (slide 33), and that model file is the one that is run.",
-        "",
-        "Open points:",
+                "Open points:",
         "1.  Rainfall should be switched off at gate-controlled stations such as the Pearl River locks, where it misleads the model.",
         "2.  HRRR will be replaced by RRFS at a date not yet announced; the next-6 h rainfall input then has to be retrained with RRFS forecasts.",
         "3.  The forecast is started by hand; it is not scheduled and not connected to the group's website.",

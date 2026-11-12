@@ -2,7 +2,7 @@
 
 把从开始到现在的每个版本放在一起比，帮助决定下一步。只用业务站（USGS 和 NOAA，443 个；CRMS 只用于训练，不出现在这里），测试期 2024-01 到 2025-12。
 
-- `version_comparison.pptx`：34 页，白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的那一版（scaling + gap filling + HRRR rainfall）在表格、条形图、地图、站点图里用加粗和浅橙色底标出。2026-11-12 新增：站点分布图（第 1 页，训练站和实时预报站各一张）、按实时方式跑的回算表（1/3/6 小时各自的代价）、实跑一轮的站点图和散点图、水位站断档一页；版本表最后一行是同一模型按断档训练的结果，即实际运行的模型文件。**下面逐页说明里的页码是加这些页之前的编号，现在各页顺延：原第 1–28 页是现在的第 2–29 页，之后是回算、实跑两页、断档、现状。**
+- `version_comparison.pptx`：34 页，白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的那一版（scaling + gap filling + HRRR rainfall，并按最近 1–3 小时缺测训练过，`runs/v14_stale25`）在表格、条形图、地图、站点图里用加粗和浅橙色底标出；所有图表里高亮的都是这一个模型的数字（2026-11-12 下午全部重画）。2026-11-12 新增：站点分布图（第 1 页，训练站和实时预报站各一张）、按实时方式跑的回算表（1/3/6 小时各自的代价）、实跑一轮的站点图和散点图、水位站断档一页；**下面逐页说明里的页码是加这些页之前的编号，现在各页顺延：原第 1–28 页是现在的第 2–29 页，之后是回算、实跑两页、断档、现状。**
   - 第 1 页：版本表，11 行，分三块：逐步加输入（到水位 + 风 + 流量的模型为止）；在水位 + 风 + 流量的模型上加降雨；按 6 小时变化量缩放误差、缺测用最近观测填之后，重做水位 + 风 + 流量的模型和两个降雨版本。
   - 第 2 页：逐条解释这个版本改了什么：缺测的填法、衡量误差的尺子、多一个水位的表达方式，各自的数字，右边是 Baton Rouge 密西西比河的前后对比图。
   - 第 3 页：各版本按站点类型的 6 小时 RMSE 条形图。
