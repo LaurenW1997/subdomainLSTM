@@ -363,6 +363,64 @@ def main() -> None:
         "(the river fell 43 cm, the forecast 10 cm). One forecast time with no rain ahead: it shows that the chain works, it is not a statistic.",
     ], size=11.5)
 
+    # ---- what 1, 3 and 6 h forecasts cost: computing and timing
+    so_ = pd.read_csv(REPO / "runs" / "v14_stale25" / "stale_origin.csv")
+    so_ = so_[so_.group == "all"].pivot(index="lead_h", columns="hours_without_data", values="rmse_cm")
+    age = pd.read_csv(REPO / "deliverables" / "20_operational_rain" / "data_age_20261112.csv", dtype={"station_id": str}, parse_dates=["snapshot_utc", "asked_utc", "newest_utc"])
+    snaps = sorted(age.snapshot_utc.unique())
+    a0 = age[age.snapshot_utc == snaps[0]]
+    med_age = {src: float(g.age_min.median()) for src, g in a0.groupby("source")}
+    hour0 = pd.Timestamp(snaps[0]).floor("h")
+    arrive = []                                   # (minutes past the hour, share of answering USGS gauges with a reading of that hour)
+    for t_ in snaps:
+        g = age[(age.snapshot_utc == t_) & (age.source == "USGS") & age.newest_utc.notna()]
+        arrive.append(((pd.Timestamp(g.asked_utc.iloc[0]) - hour0).total_seconds() / 60, float((g.newest_utc >= hour0).mean())))
+    arrive = [x for x in arrive if x[0] < 75]
+
+    def minute_at(share):
+        m_ = [m for m, f in arrive if f >= share]
+        return min(m_) if m_ else None
+
+    sl = new("1, 3 and 6 h forecasts: the computing cost is the same, the timing is not")
+    y = 0.95
+    text(sl, 0.5, y, 12.3, 0.3, "Computing", size=12, bold=True)
+    text(sl, 0.5, y + 0.3, 12.3, 1.2, [
+        "One model gives all six lead times in one pass, so offering 1 h, 3 h or 6 h costs the same. Training: once, about 40 min on one A100 GPU. "
+        "One forecast for the 457 stations: about 50 s, of which USGS water level 6 s, NOAA water level 37 s (54 gauges one after another, the service refuses parallel requests), "
+        "HRRR wind 4 s, discharge 2 s, rainfall and the network itself under 1 s each. "
+        "The only input that grows with the lead time is the HRRR wind forecast: 1, 3 or 6 forecast hours, about 2 MB and under 1 s each."], size=11.5)
+    y = 2.35
+    text(sl, 0.5, y, 12.3, 0.3, "Accuracy", size=12, bold=True); y += 0.33
+    cx = [(0.5, 3.6, PP_ALIGN.LEFT), (4.1, 2.7, PP_ALIGN.RIGHT), (6.9, 2.7, PP_ALIGN.RIGHT), (9.7, 2.7, PP_ALIGN.RIGHT)]
+    for (x, w, al), h in zip(cx, ["RMSE (cm), stations with real-time data", "newest hour in hand", "newest 1 h not yet in", "newest 2 h not yet in"]):
+        text(sl, x, y, w, 0.3, h, size=11, bold=True, align=al)
+    y += 0.32
+    for L in (1, 3, 6):
+        for (x, w, al), v in zip(cx, [f"{L} h ahead", f"{so_.loc[L, 0]:.1f}", f"{so_.loc[L, 1]:.1f}", f"{so_.loc[L, 2]:.1f}"]):
+            text(sl, x, y, w, 0.3, v, size=11.5, align=al)
+        y += 0.3
+    text(sl, 0.5, y + 0.02, 12.3, 0.3, "Scaling + gap filling + HRRR rainfall, trained with missing hours; all forecasts of 2024 and 2025. Lead time counted from the forecast hour.", size=10.5)
+    y += 0.5
+    text(sl, 0.5, y, 12.3, 0.3, "Timing", size=12, bold=True)
+    n_sn = len(arrive)
+    if n_sn >= 6 and minute_at(0.5) is not None:
+        m50, m90 = minute_at(0.5), minute_at(0.9)
+        arr = (f"Asked every 5 min for an hour: half of the USGS gauges had the {hour0:%H}:00 reading {m50:.0f} min after the hour"
+               + (f", nine in ten after {m90:.0f} min. " if m90 is not None else f"; nine in ten was not reached within {arrive[-1][0]:.0f} min. "))
+    else:
+        arr = f"{arrive[0][0]:.0f} min after {hour0:%H}:00 no USGS gauge had the reading of that hour. "
+    text(sl, 0.5, y + 0.3, 12.3, 2.7, [
+        f"What a short lead time needs is speed, not computing. Measured on {hour0:%d %B %Y}, {pd.Timestamp(snaps[0]):%H:%M} UTC: the newest reading was "
+        f"{med_age['NOAA_COOPS']:.0f} min old at the NOAA tide gauges and {med_age['USGS']:.0f} min old at the USGS gauges (median). " + arr +
+        "Wind and rainfall do not hold the run back: the script takes the newest MRMS hour and HRRR cycle that are published.",
+        "",
+        "If the forecast waits until the USGS readings of the forecast hour are in, it leaves about an hour after it: the 1 h forecast is then already in the past, "
+        "the 3 h forecast has about 2 h left, the 6 h forecast about 5 h.",
+        "",
+        "A 1 h forecast is therefore useful only if the run starts a few minutes after the hour, without the newest hour at the USGS gauges. "
+        "The model is trained for that; the price is the middle column of the table. It also needs an hourly scheduled run; the forecast is started by hand so far.",
+    ], size=11.5)
+
     # ---- a gauge that has stopped reporting
     so = {r_: pd.read_csv(REPO / "runs" / r_ / "stale_origin.csv") for r_ in ("v6_wind_q", "v11_fc1_t45", "v14_stale25")}
 

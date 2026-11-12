@@ -2,7 +2,7 @@
 
 把从开始到现在的每个版本放在一起比，帮助决定下一步。只用业务站（USGS 和 NOAA，443 个；CRMS 只用于训练，不出现在这里），测试期 2024-01 到 2025-12。
 
-- `version_comparison.pptx`：33 页，白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的模型（scaling + gap filling + HRRR rainfall，并按最近 1–3 小时缺测训练，`runs/v14_stale25`）在表格、条形图、地图、站点图里用加粗和浅橙色底标出，所有图表里高亮的都是这一个模型的数字。
+- `version_comparison.pptx`：34 页，白底黑字 Times New Roman。每个版本都按内容命名（water level + wind + discharge、6 h-change scaling + gap filling、scaling + gap filling + HRRR rainfall 等），不用 previous / current / operational 这类相对的叫法；实际运行的模型（scaling + gap filling + HRRR rainfall，并按最近 1–3 小时缺测训练，`runs/v14_stale25`）在表格、条形图、地图、站点图里用加粗和浅橙色底标出，所有图表里高亮的都是这一个模型的数字。
   - 第 1 页：站点分布图，训练用的站（含 CRMS，1010 个）和有实时数据、出预报的站（457 个）各一张。
   - 第 2 页：版本表，分四块：逐步加输入（到 water level + wind + discharge 为止）；在它上面加降雨；按 6 小时变化量缩放误差、缺测用最近观测填之后重做，其中高亮的一行还按缺测训练；另外试过的三项（720 小时回看、7 天和 30 天摘要、上下游水位站）。
   - 第 3 页：逐条解释 6 h-change scaling 和 gap filling 改了什么，右边是 Baton Rouge 密西西比河的三列对比图。
@@ -17,8 +17,9 @@
   - 第 29 页：实时降雨的来源。过去 72 小时用 MRMS 代替 AORC 几乎不掉精度，未来 6 小时用 HRRR 预报；HRRR 以后会被 RRFS 取代的说明。
   - 第 30 页：用实时接口对 2026-11-12 12:00 UTC 做的一轮预报，8 个站的过程线（实际运行的模型；当天 20:14 UTC 补跑，输入不晚于 12:00 UTC）。
   - 第 31 页：同一轮预报在全部站的散点图，提前 1、3、6 小时（RMSE 0.8 / 2.5 / 3.9 cm，418 个站）。
-  - 第 32 页：水位站断档时的表现，按缺测训练前后对比。
-  - 第 33 页：现状。比较过的三个方案和数字，实际运行的是第三个（加粗高亮）；待办三项：闸控站关降雨、HRRR 将被 RRFS 取代、预报是手动启动的。
+  - 第 32 页：1、3、6 小时预报各自的成本。计算成本相同（一个模型一次算出全部提前量，一轮约 50 秒）；随提前量变的是精度和出报速度：USGS 水位的最新读数中位约 50 分钟旧（`../20_operational_rain/data_age_20261112.csv`），等数据到齐再跑，1 小时预报发出时已过期；表里给出最新 1、2 小时水位没到时各提前量的 RMSE。
+  - 第 33 页：水位站断档时的表现，按缺测训练前后对比。
+  - 第 34 页：现状。比较过的三个方案和数字，实际运行的是第三个（加粗高亮）；待办三项：闸控站关降雨、HRRR 将被 RRFS 取代、预报是手动启动的。
   - 32 个历史起报时刻的回算表（训练输入和实时输入对比）2026-11-12 从幻灯片里拿掉了，数字保留在 `../20_operational_rain.md`。
 - `versions_bars.png`、`versions_lead.png`、`versions_map_rmse.png`、`versions_map_change.png`、`explain_scaling.png`、`station_<站号>.png`：幻灯片里的图。
 - `versions_table.csv`：版本表的数字。`stations_summary.csv`：18 个站各版本全年 6 小时 RMSE。
