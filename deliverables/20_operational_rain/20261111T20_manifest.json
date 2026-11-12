@@ -1,0 +1,119 @@
+{
+ "cycle_utc": "2026-11-11 20:00:00",
+ "model": "/data/ywan245/subdomainLSTM/runs/v11_fc1_t45",
+ "checkpoint_args": {
+  "dataset": "/work/yixuan97/subdomainLSTM/data/dataset_v6",
+  "out": "/work/yixuan97/subdomainLSTM/runs/v11_fc1_t45",
+  "epochs": 40,
+  "steps": 2000,
+  "batch": 1024,
+  "hidden": 128,
+  "layers": 2,
+  "lr": 0.001,
+  "lookback": 72,
+  "eval_stride": 6,
+  "seed": 0,
+  "wind": true,
+  "future_wind": true,
+  "discharge": true,
+  "test_end": "2025-12-31T17",
+  "stations": null,
+  "no_wind_stations": "/work/yixuan97/subdomainLSTM/repo/config/stations_wind_hurts.csv",
+  "rain": true,
+  "future_rain": true,
+  "rain_var": "p15",
+  "rain_fc": "hrrr_lag1_p45",
+  "future_rain_form": "total",
+  "fill": "ffill",
+  "delta_norm": true,
+  "delta_power": 0.5,
+  "delta_feat": true
+ },
+ "lookback_h": 72,
+ "horizon_h": 6,
+ "n_feat": 14,
+ "n_future": 13,
+ "n_stations": 1010,
+ "status_counts": {
+  "no_realtime_source": 553,
+  "ok": 418,
+  "no_data_returned": 33,
+  "insufficient_input": 5,
+  "no_wind_in_training": 1
+ },
+ "sources": [
+  "USGS",
+  "NOAA_COOPS"
+ ],
+ "wind_off_stations": 15,
+ "wind": {
+  "source": "HRRR conus wrfsfc, 10 m UGRD/VGRD, nearest cell",
+  "seconds": 0,
+  "past_valid_frac": 1.0,
+  "future_valid_frac": 1.0,
+  "past_fhr_counts": {
+   "0": 72
+  },
+  "future_fhr": {
+   "2026-11-11 21:00:00": 1,
+   "2026-11-11 22:00:00": 2,
+   "2026-11-11 23:00:00": 3,
+   "2026-11-12 00:00:00": 4,
+   "2026-11-12 01:00:00": 5,
+   "2026-11-12 02:00:00": 6
+  },
+  "cells": "/data/ywan245/subdomainLSTM/operational/wind/hrrr_cells.csv"
+ },
+ "discharge": {
+  "n_gauges": 87,
+  "n_gauges_with_data": 80,
+  "gauges_without_data": [
+   "02479160",
+   "07377300",
+   "07377500",
+   "07381482",
+   "08067650",
+   "08077600",
+   "08162500"
+  ]
+ },
+ "rain": {
+  "source": "past: MRMS MultiSensor QPE 01H (gaps: HRRR APCP 1 h lead); next 6 h: HRRR APCP; box mean around the station",
+  "past_product": "mrms",
+  "mrms": {
+   "products": {
+    "MultiSensor_QPE_01H_Pass1_00.00": 72
+   },
+   "hours_missing": [],
+   "box_km": 15,
+   "cells": "/data/ywan245/subdomainLSTM/operational_rain/rain/mrms_cells.csv"
+  },
+  "past_hours_from_hrrr": 0,
+  "seconds": 10,
+  "past_valid_frac": 1.0,
+  "future_available": true,
+  "trained_with": {
+   "past": "AORC p15",
+   "future": "hrrr_lag1_p45",
+   "form": "total"
+  },
+  "past_lead_counts": {},
+  "past_hours_missing": 0,
+  "future": {
+   "cycle": "2026-11-11 19:00:00",
+   "leads": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "hours_before_origin": 1
+  },
+  "cells": "/data/ywan245/subdomainLSTM/operational_rain/rain/hrrr_rain_cells.csv",
+  "past_box_km": 15,
+  "future_box_km": 45
+ },
+ "generated_utc": "2026-11-11 21:18:07"
+}

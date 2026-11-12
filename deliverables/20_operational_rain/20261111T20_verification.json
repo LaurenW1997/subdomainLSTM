@@ -1,0 +1,168 @@
+{
+ "cycle_utc": "2026-11-11 20:00:00",
+ "scored_utc": "2026-11-12 03:17:00",
+ "leads": {
+  "1": {
+   "n": 417,
+   "rmse_cm": 1.19,
+   "median_abs_cm": 0.25,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 40,
+     "rmse_cm": 2.93
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 0.99
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 0.72
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 1.36
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 0.52
+    }
+   }
+  },
+  "2": {
+   "n": 418,
+   "rmse_cm": 1.85,
+   "median_abs_cm": 0.42,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 41,
+     "rmse_cm": 3.78
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 1.3
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 1.47
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 2.18
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 0.96
+    }
+   }
+  },
+  "3": {
+   "n": 418,
+   "rmse_cm": 2.57,
+   "median_abs_cm": 0.56,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 41,
+     "rmse_cm": 4.66
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 1.66
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 2.22
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 2.82
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 1.82
+    }
+   }
+  },
+  "4": {
+   "n": 417,
+   "rmse_cm": 3.11,
+   "median_abs_cm": 0.79,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 40,
+     "rmse_cm": 5.79
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 1.74
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 2.69
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 2.84
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 2.62
+    }
+   }
+  },
+  "5": {
+   "n": 417,
+   "rmse_cm": 3.6,
+   "median_abs_cm": 0.91,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 40,
+     "rmse_cm": 6.52
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 2.11
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 3.06
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 3.5
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 3.28
+    }
+   }
+  },
+  "6": {
+   "n": 417,
+   "rmse_cm": 3.99,
+   "median_abs_cm": 1.18,
+   "by_type": {
+    "estuary / tidal channel": {
+     "n": 40,
+     "rmse_cm": 6.47
+    },
+    "lake": {
+     "n": 12,
+     "rmse_cm": 2.63
+    },
+    "river / canal": {
+     "n": 242,
+     "rmse_cm": 3.44
+    },
+    "tide gauge": {
+     "n": 51,
+     "rmse_cm": 3.92
+    },
+    "urban creek (Houston)": {
+     "n": 71,
+     "rmse_cm": 4.16
+    }
+   }
+  }
+ }
+}
