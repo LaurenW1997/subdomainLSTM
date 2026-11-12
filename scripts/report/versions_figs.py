@@ -33,21 +33,21 @@ LADDER = [("v3_obs", "Water level only", True),
           ("v3_wind_past", "+ wind, past 72 h", True),
           ("v3_wind", "+ wind, next 6 h (forecast)", True),
           ("v3_wind_q", "+ upstream discharge", True),
-          ("v6_wind_q", "discharge from the same river, wind off at 15 inland rivers  [previous version, no rainfall]", True),
+          ("v6_wind_q", "discharge from the same river, wind off at 15 inland rivers", True),
           ("v7_rain_p15_past", "+ rainfall of the past 72 h only", True),
           ("v9_fc1_t45", "+ rainfall: past 72 h and HRRR forecast for the next 6 h", True),
           ("v7_rain_p15", "+ rainfall: past 72 h and observed next 6 h  [not available in real time]", False),
           ("v10_dnorm_x_p50", "no rainfall; error scaled by the 6 h change, gaps filled with the last observation", True),
-          ("v11_fc1_t45", "the same + rainfall: past 72 h and HRRR forecast for the next 6 h  [CURRENT VERSION]", True),
+          ("v11_fc1_t45", "the same + rainfall: past 72 h and HRRR forecast for the next 6 h", True),
           ("v11_rain_obs", "the same + rainfall: past 72 h and observed next 6 h  [not available in real time]", False)]
 CURRENT, CURRENT_KEY = "v11_fc1_t45", "base_fc"          # the version in use; drawn in bold / highlighted everywhere
 HILITE = "#fbe3d3"
 # the six versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-6, validated)
 MAIN = [("wl", "v3_obs", "Water level only", "#2a78d6"),
         ("wind", "v3_wind", "+ wind", "#eb6834"),
-        ("q", "v6_wind_q", "+ upstream discharge\n(previous version,\nno rainfall)", "#1baf7a"),
-        ("base", "v10_dnorm_x_p50", "no rainfall, with\n6 h-change scaling,\ngap filling", "#eda100"),
-        ("base_fc", "v11_fc1_t45", "CURRENT VERSION:\n6 h-change scaling, gap\nfilling + HRRR rainfall", "#e87ba4"),
+        ("q", "v6_wind_q", "+ upstream discharge\n(no rainfall)", "#1baf7a"),
+        ("base", "v10_dnorm_x_p50", "+ 6 h-change scaling,\ngap filling\n(no rainfall)", "#eda100"),
+        ("base_fc", "v11_fc1_t45", "6 h-change scaling,\ngap filling\n+ HRRR rainfall", "#e87ba4"),
         ("base_obs", "v11_rain_obs", "6 h-change scaling,\ngap filling + observed rainfall\n(upper bound, not real time)", "#008300")]
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"),
          ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks (Houston)")]
@@ -280,10 +280,10 @@ def maps() -> tuple[Path, Path]:
     sizes = np.array([7, 10, 14, 19, 27, 38])
     labels = ["< 2.5", "2.5 - 5", "5 - 7.5", "7.5 - 10", "10 - 20", "> 20"]
     cmap = ListedColormap(cols); norm = BoundaryNorm(edges, cmap.N)
-    names = {"wl": "Water level only", "wind": "+ wind", "q": "+ upstream discharge (previous version, no rainfall)",
-             "base": "No rainfall, with 6 h-change scaling and gap filling",
-             "base_fc": "CURRENT VERSION: scaling + gap filling + HRRR rainfall",
-             "base_obs": "+ observed rainfall instead (upper bound, not real time)"}
+    names = {"wl": "Water level only", "wind": "+ wind", "q": "+ upstream discharge (no rainfall)",
+             "base": "+ 6 h-change scaling and gap filling (no rainfall)",
+             "base_fc": "6 h-change scaling + gap filling + HRRR rainfall",
+             "base_obs": "The same with observed rainfall (upper bound, not real time)"}
     fig = plt.figure(figsize=(13.0, 6.5))
     for k, (key, run, title, _) in enumerate(MAIN):
         ax = fig.add_subplot(2, 3, k + 1, projection=pc); _base(ax)
@@ -303,10 +303,10 @@ def maps() -> tuple[Path, Path]:
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
     # every panel against the same base, water level only, so that the four maps can be compared with each other
-    steps = [("v6_wind_q", "v3_obs", "(a) Previous version (+ wind, upstream discharge; no rainfall)"),
-             ("v10_dnorm_x_p50", "v3_obs", "(b) No rainfall, with 6 h-change scaling and gap filling"),
-             ("v11_fc1_t45", "v3_obs", "(c) CURRENT VERSION (scaling, gap filling + HRRR rainfall)"),
-             ("v11_rain_obs", "v3_obs", "(d) With observed rainfall instead (upper bound, not real time)")]
+    steps = [("v6_wind_q", "v3_obs", "(a) Water level + wind + upstream discharge"),
+             ("v10_dnorm_x_p50", "v3_obs", "(b) The same with 6 h-change scaling and gap filling"),
+             ("v11_fc1_t45", "v3_obs", "(c) 6 h-change scaling + gap filling + HRRR rainfall"),
+             ("v11_rain_obs", "v3_obs", "(d) The same with observed rainfall (upper bound, not real time)")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
     fig = plt.figure(figsize=(13.0, 6.6))
     for k, (a, b, title) in enumerate(steps):
@@ -331,7 +331,7 @@ def detail_btr() -> Path:
     wins = [("2024-01-07", "(a) Storm surge reaching Baton Rouge at low river stage"),
             ("2024-11-01", "(b) Low river: the tide is visible at Baton Rouge"),
             ("2025-04-30", "(c) High river: slow and smooth")]
-    series = [("wl", "Water level only", "#2a78d6"), ("oper", "Water level + wind + upstream discharge (previous version)", "#1baf7a")]
+    series = [("wl", "Water level only", "#2a78d6"), ("oper", "Water level + wind + upstream discharge", "#1baf7a")]
     fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.5), gridspec_kw={"wspace": 0.2})
     for ax, (t0, title) in zip(axes, wins):
         w = d.loc[pd.Timestamp(t0):pd.Timestamp(t0) + pd.Timedelta(days=4)]
@@ -340,7 +340,7 @@ def detail_btr() -> Path:
         for key, lab, col in series:
             ax.plot(w.index, w[key], color=col, lw=1.3, label=lab + ", 6 h ahead", zorder=4)
             txt.append(f"{lab.split(' (')[0].split(' + ')[-1] if key == 'oper' else 'water level only'}: {np.sqrt(((w[key] - w.obs) ** 2).mean()) * 100:.1f} cm")
-        ax.set_title(f"{title}" + "\n" + f"6 h RMSE  water level only {np.sqrt(((w.wl - w.obs) ** 2).mean()) * 100:.1f} cm,  previous version {np.sqrt(((w.oper - w.obs) ** 2).mean()) * 100:.1f} cm",
+        ax.set_title(f"{title}" + "\n" + f"6 h RMSE  water level only {np.sqrt(((w.wl - w.obs) ** 2).mean()) * 100:.1f} cm,  water level + wind + discharge {np.sqrt(((w.oper - w.obs) ** 2).mean()) * 100:.1f} cm",
                      loc="left", fontsize=9, linespacing=1.35)
         ax.xaxis.set_major_locator(mdates.DayLocator())
         ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
@@ -360,9 +360,9 @@ def explain() -> Path:
     """Mississippi River at Baton Rouge for the slide that explains the 6 h-change scaling and gap filling: the previous
     version, the same inputs with scaling and gap filling, and the newest version (the model file in use, with rainfall).
     Data: deliverables/17_versions/data_btr (extract_versions_hourly.py on sv7, keys q, base, inuse)."""
-    runs = [("q", "v6_wind_q", "Previous version" + "\n" + "(no rainfall)"),
+    runs = [("q", "v6_wind_q", "Water level + wind" + "\n" + "+ discharge"),
             ("base", "v10_dnorm_x_p50", "Same inputs, error scaled by the" + "\n" + "6 h change, gaps take the last value"),
-            ("inuse", "v14_stale25", "CURRENT VERSION (model in use):" + "\n" + "the same + rainfall")]
+            ("inuse", "v14_stale25", "The same with HRRR rainfall" + "\n" + "(the version that is run)")]
     whole = {}
     for k, run, _ in runs:
         d_ = pd.read_csv(REPO / "runs" / run / "per_station_test.csv", dtype={"station_id": str})

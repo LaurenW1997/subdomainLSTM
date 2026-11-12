@@ -10,7 +10,7 @@
 cd scripts/operational
 # 风 + 流量模型（当前）
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v6_wind_q --out /data/ywan245/subdomainLSTM/operational
-# 6 h-change scaling + gap filling + HRRR rainfall（候选的下一版，输出放在单独的目录）
+# 6 h-change scaling + gap filling + HRRR rainfall（实际运行的一版，输出放在单独的目录）
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v11_fc1_t45 --out /data/ywan245/subdomainLSTM/operational_rain
 # 只用水位的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v2_e40 --out /data/ywan245/subdomainLSTM/operational_v2
