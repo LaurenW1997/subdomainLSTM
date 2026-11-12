@@ -227,18 +227,33 @@ def maps() -> tuple[Path, Path]:
     pc = ccrs.PlateCarree()
     n = len(next(iter(d.values())))
     # ---- (1) absolute RMSE, one map per version
-    cmap = LinearSegmentedColormap.from_list("seq", SEQ); norm = LogNorm(1, 40)
-    fig = plt.figure(figsize=(13.0, 6.0))
+    # Six classes with boundaries where the stations are (half of them lie between 2.5 and 7.5 cm), one hue light -> dark,
+    # and a marker that grows with the class: a station that moves to another class changes both colour and size.
+    from matplotlib.colors import BoundaryNorm, ListedColormap
+    edges = [0, 2.5, 5, 7.5, 10, 20, 1e9]
+    cols = ["#cde2fb", "#86b6ef", "#3987e5", "#256abf", "#184f95", "#0d366b"]      # wide steps at the low end, where most stations are
+    sizes = np.array([7, 10, 14, 19, 27, 38])
+    labels = ["< 2.5", "2.5 - 5", "5 - 7.5", "7.5 - 10", "10 - 20", "> 20"]
+    cmap = ListedColormap(cols); norm = BoundaryNorm(edges, cmap.N)
+    names = {"wl": "Water level only", "wind": "+ wind", "q": "+ upstream discharge (previous version, no rainfall)",
+             "base": "No rainfall, with 6 h-change scaling and gap filling",
+             "base_fc": "CURRENT VERSION: scaling + gap filling + HRRR rainfall",
+             "base_obs": "+ observed rainfall instead (upper bound, not real time)"}
+    fig = plt.figure(figsize=(13.0, 6.5))
     for k, (key, run, title, _) in enumerate(MAIN):
         ax = fig.add_subplot(2, 3, k + 1, projection=pc); _base(ax)
         x = d[run].sort_values("rmse_6h_cm")
-        sc = ax.scatter(x.lon, x.lat, c=x.rmse_6h_cm.clip(1, 40), s=11, cmap=cmap, norm=norm, edgecolor="#1a1a19", linewidth=0.15, transform=pc, zorder=5)
-        ax.set_title(title.replace("\n", " ") + f"   —   {(x.rmse_6h_cm > 10).sum()} above 10 cm", loc="left", fontsize=9, fontweight="bold" if key == CURRENT_KEY else "normal")
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.95, bottom=0.13, wspace=0.03, hspace=0.12)
-    cax = fig.add_axes([0.20, 0.07, 0.28, 0.025])
-    cb = fig.colorbar(sc, cax=cax, orientation="horizontal", ticks=[1, 2, 5, 10, 20, 40]); cb.ax.set_xticklabels(["1", "2", "5", "10", "20", "40"])
-    cb.set_label("6 h RMSE (cm), January 2024 to December 2025"); cb.outline.set_linewidth(0.5)
-    fig.text(0.53, 0.085, f"{n} USGS and NOAA stations (CRMS excluded)." + "\n" + "Darker = larger error; stations with larger error drawn on top.", fontsize=9, va="center", linespacing=1.4)
+        cls = np.clip(np.digitize(x.rmse_6h_cm.to_numpy(), edges[1:-1]), 0, len(cols) - 1)
+        ax.scatter(x.lon, x.lat, c=[cols[c] for c in cls], s=sizes[cls], edgecolor="#1a1a19", linewidth=0.2, transform=pc, zorder=5)
+        n10 = int((x.rmse_6h_cm > 10).sum()); n5 = int((x.rmse_6h_cm < 5).sum())
+        ax.set_title(names[key], loc="left", fontsize=9.5, fontweight="bold" if key == CURRENT_KEY else "normal", pad=16)
+        ax.text(0.0, 1.02, f"{n10} stations above 10 cm, {n5} below 5 cm", transform=ax.transAxes, ha="left", va="bottom", fontsize=9, color=INK)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.93, bottom=0.12, wspace=0.03, hspace=0.24)
+    from matplotlib.lines import Line2D
+    handles = [Line2D([], [], marker="o", ls="", markerfacecolor=c, markeredgecolor="#1a1a19", markeredgewidth=0.3, markersize=np.sqrt(sz) * 1.15) for c, sz in zip(cols, sizes)]
+    fig.legend(handles, labels, loc="lower left", bbox_to_anchor=(0.10, 0.015), ncol=6, frameon=False, fontsize=10, handletextpad=0.2, columnspacing=1.6,
+               title="6 h RMSE (cm), January 2024 to December 2025", title_fontsize=10)
+    fig.text(0.62, 0.05, f"{n} USGS and NOAA stations (CRMS excluded)." + "\n" + "Darker and larger = larger error; stations with larger error drawn on top.", fontsize=9.5, va="center", linespacing=1.4)
     out1 = OUT / "versions_map_rmse.png"
     fig.savefig(out1, dpi=300, bbox_inches="tight", pad_inches=0.05); plt.close(fig)
     # ---- (2) change maps
