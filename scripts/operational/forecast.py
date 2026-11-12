@@ -52,16 +52,24 @@ CFS = 0.028316846592
 USGS_URL = "https://waterservices.usgs.gov/nwis/iv/"
 NOAA_URL = "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
 NOAA_PAUSE = 0.6
+USGS_PAD_H = 2            # hours added on both sides of a USGS request (see fetch_usgs)
 
 
 # ----------------------------------------------------------------------------- live data
 def fetch_usgs(sites: list[str], begin: pd.Timestamp, end: pd.Timestamp, raw_dir: Path, param: str = "00065", tag: str = "usgs") -> dict[str, pd.Series]:
-    """One USGS IV parameter (00065 gauge height ft, 00060 discharge cfs) for many sites per call."""
+    """One USGS IV parameter (00065 gauge height ft, 00060 discharge cfs) for many sites per call.
+
+    The service does not honour the requested UTC window exactly: while daylight-saving time is in force at a site it
+    returns data from one hour before `begin` to one hour before `end` (seen 2024-07: endDT 12:59Z -> last reading
+    11:45Z). The newest hour would then be averaged from the first half of its readings only. So the request is padded
+    by USGS_PAD_H on both sides and the readings, whose own time stamps carry the correct offset, are cut to
+    [begin, end] here."""
     out: dict[str, pd.Series] = {}
+    pad = pd.Timedelta(hours=USGS_PAD_H)
     for i in range(0, len(sites), 80):
         chunk = sites[i:i + 80]
         r = get(USGS_URL, {"format": "json", "sites": ",".join(chunk), "parameterCd": param,
-                           "startDT": begin.strftime("%Y-%m-%dT%H:%MZ"), "endDT": end.strftime("%Y-%m-%dT%H:%MZ"),
+                           "startDT": (begin - pad).strftime("%Y-%m-%dT%H:%MZ"), "endDT": (end + pad).strftime("%Y-%m-%dT%H:%MZ"),
                            "siteStatus": "all"})
         (raw_dir / f"{tag}_{i // 80:02d}.json").write_text(r.text, encoding="utf-8")
         if r.status_code != 200:
@@ -82,7 +90,9 @@ def fetch_usgs(sites: list[str], begin: pd.Timestamp, end: pd.Timestamp, raw_dir
                 parts.append(pd.Series(v.values, index=t))
             if parts:
                 s = pd.concat(parts)
-                out[site] = pd.concat([out[site], s]) if site in out else s
+                s = s[(s.index >= begin) & (s.index <= end)]
+                if not s.empty:
+                    out[site] = pd.concat([out[site], s]) if site in out else s
     return out
 
 
