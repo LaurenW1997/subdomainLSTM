@@ -73,6 +73,7 @@ def main() -> None:
     ap.add_argument("--downstream", action="store_true", help="EXPERIMENT: water level at the next gauge downstream (or nearest tide gauge) as input")
     ap.add_argument("--upstream-stage", action="store_true", help="EXPERIMENT: water level at the next gauge upstream on the same river as input")
     ap.add_argument("--long-feat", action="store_true", help="EXPERIMENT: 7-day and 30-day summaries (mean level, rain totals) as extra head inputs")
+    ap.add_argument("--init-state", action="store_true", help="EXPERIMENT: the LSTM starts from a state of its own for every station instead of from zero")
     ap.add_argument("--delta-feat", action="store_true", help="EXPERIMENT: extra input channel, recent level relative to the last hour in 6 h-change units")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -90,7 +91,7 @@ def main() -> None:
     t_hi = int(np.searchsorted(sm.time.values, np.datetime64(a.test_end))) if a.test_end else None
     print(f"device={device} stations={sm.S} hours={sm.T} lookback={sm.lookback} n_feat={sm.n_feat} n_future={sm.n_future} "
           f"train_end_idx={sm.t_train_end} t_end={sm.t_end} test_t_hi={t_hi}", flush=True)
-    model = GlobalLSTM(sm.S, n_feat=sm.n_feat, hidden=a.hidden, layers=a.layers, n_future=sm.n_future, delta_scale=a.delta_norm).to(device)
+    model = GlobalLSTM(sm.S, n_feat=sm.n_feat, hidden=a.hidden, layers=a.layers, n_future=sm.n_future, delta_scale=a.delta_norm, init_state=a.init_state).to(device)
     if a.delta_norm:
         model.rscale.copy_(torch.from_numpy(sm.rscale).to(device))
     print(f"params={sum(p.numel() for p in model.parameters()):,}", flush=True)

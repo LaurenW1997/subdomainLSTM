@@ -213,7 +213,7 @@ def main() -> None:
     assert (ck.get("n_feat", 6), ck.get("n_future", 0)) == (n_feat_expected, n_future_expected), \
         f"checkpoint expects n_feat {ck.get('n_feat')} / n_future {ck.get('n_future')}, this script builds {n_feat_expected} / {n_future_expected}"
     model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=args["hidden"], layers=args["layers"], n_future=ck.get("n_future", 0),
-                       delta_scale=delta_norm)
+                       delta_scale=delta_norm, init_state=args.get("init_state", False))
     model.load_state_dict(ck["state_dict"]); model.eval()
     if delta_feat and not delta_norm:
         raise SystemExit("--delta-feat without --delta-norm: the scale is not stored in the checkpoint")

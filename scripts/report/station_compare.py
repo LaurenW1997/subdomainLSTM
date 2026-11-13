@@ -33,7 +33,7 @@ def load(run: Path, dataset: Path, device):
                        delta_power=ck["args"].get("delta_power", 1.0), long_feat=ck["args"].get("long_feat", False),
                        neighbor_map=local(ck["args"].get("neighbor_map")), use_ds=ck["args"].get("downstream", False), use_us=ck["args"].get("upstream_stage", False))
     model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
-                       n_future=ck.get("n_future", 0), delta_scale=ck["args"].get("delta_norm", False)).to(device)
+                       n_future=ck.get("n_future", 0), delta_scale=ck["args"].get("delta_norm", False), init_state=ck["args"].get("init_state", False)).to(device)
     model.load_state_dict(ck["state_dict"]); model.eval()
     return sm, model
 
