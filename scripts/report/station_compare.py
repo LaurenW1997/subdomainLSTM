@@ -20,7 +20,26 @@ from data import HORIZON, StationMatrix, to_torch  # noqa: E402
 from model import GlobalLSTM  # noqa: E402
 
 
+class Mean(torch.nn.Module):
+    """Mean of the forecasts of several models with the same inputs (the same settings trained with other random seeds)."""
+
+    def __init__(self, models):
+        super().__init__(); self.models = torch.nn.ModuleList(models)
+
+    def forward(self, feats, station, future=None):
+        return torch.stack([m(feats, station, future) for m in self.models]).mean(0)
+
+
+def build(ck, device):
+    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
+                       n_future=ck.get("n_future", 0), delta_scale=ck["args"].get("delta_norm", False), init_state=ck["args"].get("init_state", False)).to(device)
+    model.load_state_dict(ck["state_dict"]); model.eval()
+    return model
+
+
 def load(run: Path, dataset: Path, device):
+    """Inputs and model of a run folder. With member_*.pt next to best.pt (as in the folder forecast.py runs from) the model is the
+    mean of best.pt and all members."""
     ck = torch.load(run / "best.pt", map_location=device)
     def local(p):   # trained on another machine: same file under this repo's config/
         return None if not p else (p if Path(p).exists() else str(Path(__file__).resolve().parents[2] / "config" / Path(p).name))
@@ -32,9 +51,10 @@ def load(run: Path, dataset: Path, device):
                        fill=ck["args"].get("fill", "zero"), delta_norm=ck["args"].get("delta_norm", False), delta_feat=ck["args"].get("delta_feat", False),
                        delta_power=ck["args"].get("delta_power", 1.0), long_feat=ck["args"].get("long_feat", False),
                        neighbor_map=local(ck["args"].get("neighbor_map")), use_ds=ck["args"].get("downstream", False), use_us=ck["args"].get("upstream_stage", False))
-    model = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"],
-                       n_future=ck.get("n_future", 0), delta_scale=ck["args"].get("delta_norm", False), init_state=ck["args"].get("init_state", False)).to(device)
-    model.load_state_dict(ck["state_dict"]); model.eval()
+    model = build(ck, device)
+    members = sorted(run.glob("member_*.pt"))
+    if members:
+        model = Mean([model] + [build(torch.load(m, map_location=device), device) for m in members])
     return sm, model
 
 

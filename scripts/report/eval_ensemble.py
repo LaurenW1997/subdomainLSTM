@@ -24,18 +24,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from data import HORIZON, to_torch  # noqa: E402
 from eval_storm_station import run as storm_run  # noqa: E402
 from model import GlobalLSTM  # noqa: E402
-from station_compare import load  # noqa: E402
+from station_compare import Mean, load  # noqa: E402
 
 SAME = ("lookback", "wind", "future_wind", "discharge", "rain", "future_rain", "rain_var", "rain_fc", "future_rain_form", "fill",
         "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations")   # inputs every member must share
-
-
-class Mean(torch.nn.Module):
-    def __init__(self, models):
-        super().__init__(); self.models = torch.nn.ModuleList(models)
-
-    def forward(self, feats, station, future=None):
-        return torch.stack([m(feats, station, future) for m in self.models]).mean(0)
 
 
 def main() -> None:
