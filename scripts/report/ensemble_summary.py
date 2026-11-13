@@ -56,13 +56,24 @@ def main() -> None:
     for t in sorted(set(wl.type)):
         m = (wl.type == t).to_numpy()
         print(f"  {t:26s} n {int(m.sum()):3d}  6 h all forecasts: run {np.sqrt((run.n[m] * run.rmse_6h_cm[m] ** 2).sum() / run.n[m].sum()):5.1f}  mean of 5 {np.sqrt((mean.n[m] * mean.rmse_6h_cm[m] ** 2).sum() / mean.n[m].sum()):5.1f}")
-    for lab, x in [("model that is run", run), ("mean of 5", mean)]:
-        worse = x.rmse_6h_cm > wl.rmse_6h_cm
-        clear = (x.rmse_6h_cm > wl.rmse_6h_cm + 1) & (x.rmse_6h_cm > 1.1 * wl.rmse_6h_cm)
-        print(f"  {lab}: worse than water level only at {int(worse.sum())} stations ({100 * worse.mean():.0f}%), clearly worse at {int(clear.sum())}; "
-              f"mean 6 h bias at the clearly worse stations {x.bias_6h_cm[clear].mean():+.1f} cm")
+    # every single model next to the mean: how much of the station-by-station picture depends on the seed
     ei = ("NOAA_COOPS", "8764314")
-    print(f"  Eugene Island 6 h: water level only {wl.rmse_6h_cm[ei]:.1f}, model that is run {run.rmse_6h_cm[ei]:.1f}, mean of 5 {mean.rmse_6h_cm[ei]:.1f} cm")
+    single = [("model that is run (seed 0)", run)] + [(f"seed {i + 1}", pd.read_csv(REPO / "runs" / s / "storm_station.csv", dtype={"station_id": str})
+                                                        .set_index(["source", "station_id"]).reindex(wl.index)) for i, s in enumerate(SEEDS)]
+    clear = {}
+    print(f"\n  {'':28s} 1 h    3 h    6 h   worse than water level only / clearly worse   Eugene Island 6 h (bias)")
+    for lab, x in single + [("mean of 5", mean)]:
+        p = [np.sqrt((x.n * x[f"rmse_{h}h_cm"] ** 2).sum() / x.n.sum()) for h in (1, 3, 6)]
+        worse = x.rmse_6h_cm > wl.rmse_6h_cm
+        clear[lab] = (x.rmse_6h_cm > wl.rmse_6h_cm + 1) & (x.rmse_6h_cm > 1.1 * wl.rmse_6h_cm)
+        print(f"  {lab:28s} {p[0]:5.2f} {p[1]:6.2f} {p[2]:6.2f}   {int(worse.sum()):4d} / {int(clear[lab].sum()):3d}   bias at the clearly worse {x.bias_6h_cm[clear[lab]].mean():+.1f} cm"
+              f"   {x.rmse_6h_cm[ei]:5.1f} ({x.bias_6h_cm[ei]:+.1f})")
+    k = pd.concat([clear[lab] for lab, _ in single], axis=1).sum(1)
+    print(f"  Eugene Island with water level only: {wl.rmse_6h_cm[ei]:.1f} cm")
+    print(f"  clearly worse than water level only in k of the 5 single models: {k.value_counts().sort_index().to_dict()}")
+    always = (k == len(single)).to_numpy()
+    print(f"  in all 5: {int(always.sum())} stations {wl.type[always].value_counts().to_dict()}; mean 6 h bias of the mean of 5 there {mean.bias_6h_cm[always].mean():+.1f} cm, "
+          f"{100 * (mean.bias_6h_cm[always] > 0).mean():.0f}% too high; of the {int(clear['mean of 5'].sum())} clearly worse for the mean of 5, {int((clear['mean of 5'].to_numpy() & always).sum())} are among them")
     dd = mean.rmse_6h_cm - run.rmse_6h_cm
     print(f"  mean of 5 against the model that is run, per station: better at {int((dd < 0).sum())}, worse at {int((dd > 0).sum())}; by more than 1 cm: {int((dd < -1).sum())} better, {int((dd > 1).sum())} worse")
 
