@@ -10,7 +10,9 @@
 cd scripts/operational
 # 水位 + 风 + 流量的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v6_wind_q --out /data/ywan245/subdomainLSTM/operational
-# 6 h-change scaling + gap filling + HRRR rainfall，按缺测训练（实际运行的模型，输出放在单独的目录）
+# 6 h-change scaling + gap filling + HRRR rainfall，按缺测训练，5 个随机种子的模型取平均（实际运行的模型，2026-11-13 起，输出放在单独的目录）
+python forecast.py --model /data/ywan245/subdomainLSTM/runs/v15r_mean5 --out /data/ywan245/subdomainLSTM/operational_mean5
+# 同样的设置，单个模型（种子 0；2026-11-12 到 11-13 运行的是这一个）
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v14_stale25 --out /data/ywan245/subdomainLSTM/operational_rain
 # 只用水位的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v2_e40 --out /data/ywan245/subdomainLSTM/operational_v2
@@ -26,6 +28,7 @@ python forecast.py --model ... --cycle 2026-11-08T17
 | 文件 | 用途 | 来源 |
 |---|---|---|
 | `best.pt` | 权重 + 训练参数 | train.py |
+| `member_*.pt`（可选） | 同样设置、换随机种子训练的其他模型（各自的 `best.pt` 改名放进来）。有这些文件时，预报是 `best.pt` 和全部 `member_*.pt` 的平均；`forecast.csv` 多出 `member_min_{h}h_m`、`member_max_{h}h_m` 两组列，是各模型里最低和最高的预报（只反映模型之间的分歧，不是完整的预报误差）。输入设置和 `best.pt` 不一致的文件会让脚本报错停下 | train.py `--seed` |
 | `stations.csv` | 训练时的站点顺序（= embedding 编号）、mean/std | dataset 目录 |
 | `wind_coverage.csv` | 每站训练期有风的比例；为 0 的站（离岸、AORC 无格点）不出预报，标 `no_wind_in_training` | build_extras.py |
 | `q_norm.csv` | 每个流量控制站训练期 log1p(Q) 的均值 / 标准差，实时流量按同样方式标准化 | build_extras.py |
