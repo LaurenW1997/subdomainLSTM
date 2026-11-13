@@ -87,7 +87,8 @@ def scatter_fig(tag: str) -> Path:
 def main() -> None:
     import matplotlib.ticker  # noqa: F401
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tag", required=True); ap.add_argument("--stations", nargs="+", required=True)
+    ap.add_argument("--tag", required=True, help="prefix of the files in deliverables/20_operational_rain, e.g. 20261112T12 or 20261112T12_mean_of_5")
+    ap.add_argument("--stations", nargs="+", required=True)
     a = ap.parse_args()
     print("->", stations_fig(a.tag, a.stations))
     print("->", scatter_fig(a.tag))

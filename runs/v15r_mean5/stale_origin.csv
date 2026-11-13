@@ -1,0 +1,169 @@
+group,hours_without_data,lead_h,rmse_cm,n
+all,0,1,2.09,1247235
+all,0,3,5.26,1246419
+all,0,6,8.4,1245929
+hurricane periods,0,1,4.38,6853
+hurricane periods,0,3,12.42,6844
+hurricane periods,0,6,28.69,6837
+estuary / tidal channel,0,1,2.42,121914
+estuary / tidal channel,0,3,5.82,121831
+estuary / tidal channel,0,6,8.87,121828
+estuary / tidal channel | hurricane periods,0,1,5.7,649
+estuary / tidal channel | hurricane periods,0,3,18.88,647
+estuary / tidal channel | hurricane periods,0,6,42.15,646
+lake,0,1,1.28,33175
+lake,0,3,2.54,33148
+lake,0,6,3.61,33136
+lake | hurricane periods,0,1,1.86,183
+lake | hurricane periods,0,3,5.4,182
+lake | hurricane periods,0,6,6.68,181
+marsh,0,1,0.99,24065
+marsh,0,3,1.44,24034
+marsh,0,6,2.14,24001
+marsh | hurricane periods,0,1,0.93,141
+marsh | hurricane periods,0,3,1.33,141
+marsh | hurricane periods,0,6,4.37,141
+river / canal,0,1,1.47,715977
+river / canal,0,3,4.22,715386
+river / canal,0,6,7.48,714938
+river / canal | hurricane periods,0,1,1.76,3948
+river / canal | hurricane periods,0,3,5.88,3942
+river / canal | hurricane periods,0,6,12.83,3938
+tide gauge,0,1,2.49,148673
+tide gauge,0,3,3.72,148669
+tide gauge,0,6,4.85,148664
+tide gauge | hurricane periods,0,1,4.18,806
+tide gauge | hurricane periods,0,3,7.44,805
+tide gauge | hurricane periods,0,6,13.87,805
+urban creek (Houston),0,1,3.27,203431
+urban creek (Houston),0,3,8.67,203351
+urban creek (Houston),0,6,12.97,203362
+urban creek (Houston) | hurricane periods,0,1,8.59,1126
+urban creek (Houston) | hurricane periods,0,3,23.81,1127
+urban creek (Houston) | hurricane periods,0,6,57.06,1126
+all,1,1,3.27,1247235
+all,1,3,5.95,1246419
+all,1,6,8.95,1245929
+hurricane periods,1,1,7.74,6853
+hurricane periods,1,3,15.13,6844
+hurricane periods,1,6,29.95,6837
+estuary / tidal channel,1,1,3.93,121914
+estuary / tidal channel,1,3,6.59,121831
+estuary / tidal channel,1,6,9.31,121828
+estuary / tidal channel | hurricane periods,1,1,13.29,649
+estuary / tidal channel | hurricane periods,1,3,24.64,647
+estuary / tidal channel | hurricane periods,1,6,44.8,646
+lake,1,1,2.05,33175
+lake,1,3,3.0,33148
+lake,1,6,3.88,33136
+lake | hurricane periods,1,1,3.38,183
+lake | hurricane periods,1,3,6.61,182
+lake | hurricane periods,1,6,8.32,181
+marsh,1,1,1.22,24065
+marsh,1,3,1.69,24034
+marsh,1,6,2.31,24001
+marsh | hurricane periods,1,1,1.33,141
+marsh | hurricane periods,1,3,1.51,141
+marsh | hurricane periods,1,6,4.35,141
+river / canal,1,1,2.67,715977
+river / canal,1,3,4.97,715386
+river / canal,1,6,8.12,714938
+river / canal | hurricane periods,1,1,3.46,3948
+river / canal | hurricane periods,1,3,7.32,3942
+river / canal | hurricane periods,1,6,13.86,3938
+tide gauge,1,1,3.26,148673
+tide gauge,1,3,4.13,148669
+tide gauge,1,6,5.08,148664
+tide gauge | hurricane periods,1,1,6.27,806
+tide gauge | hurricane periods,1,3,8.5,805
+tide gauge | hurricane periods,1,6,14.32,805
+urban creek (Houston),1,1,4.74,203431
+urban creek (Houston),1,3,9.48,203351
+urban creek (Houston),1,6,13.6,203362
+urban creek (Houston) | hurricane periods,1,1,13.8,1126
+urban creek (Houston) | hurricane periods,1,3,28.21,1127
+urban creek (Houston) | hurricane periods,1,6,58.83,1126
+all,2,1,4.28,1247235
+all,2,3,6.65,1246419
+all,2,6,9.49,1245929
+hurricane periods,2,1,11.82,6853
+hurricane periods,2,3,17.06,6844
+hurricane periods,2,6,30.02,6837
+estuary / tidal channel,2,1,5.09,121914
+estuary / tidal channel,2,3,7.34,121831
+estuary / tidal channel,2,6,9.73,121828
+estuary / tidal channel | hurricane periods,2,1,18.4,649
+estuary / tidal channel | hurricane periods,2,3,27.56,647
+estuary / tidal channel | hurricane periods,2,6,44.91,646
+lake,2,1,2.57,33175
+lake,2,3,3.35,33148
+lake,2,6,4.09,33136
+lake | hurricane periods,2,1,4.26,183
+lake | hurricane periods,2,3,7.43,182
+lake | hurricane periods,2,6,10.0,181
+marsh,2,1,1.49,24065
+marsh,2,3,1.92,24034
+marsh,2,6,2.47,24001
+marsh | hurricane periods,2,1,1.9,141
+marsh | hurricane periods,2,3,2.13,141
+marsh | hurricane periods,2,6,4.57,141
+river / canal,2,1,3.68,715977
+river / canal,2,3,5.76,715386
+river / canal,2,6,8.78,714938
+river / canal | hurricane periods,2,1,5.68,3948
+river / canal | hurricane periods,2,3,8.97,3942
+river / canal | hurricane periods,2,6,15.06,3938
+tide gauge,2,1,3.83,148673
+tide gauge,2,3,4.49,148669
+tide gauge,2,6,5.29,148664
+tide gauge | hurricane periods,2,1,8.31,806
+tide gauge | hurricane periods,2,3,10.02,805
+tide gauge | hurricane periods,2,6,14.76,805
+urban creek (Houston),2,1,6.1,203431
+urban creek (Houston),2,3,10.26,203351
+urban creek (Houston),2,6,14.14,203362
+urban creek (Houston) | hurricane periods,2,1,22.12,1126
+urban creek (Houston) | hurricane periods,2,3,31.12,1127
+urban creek (Houston) | hurricane periods,2,6,57.86,1126
+all,3,1,5.24,1247235
+all,3,3,7.35,1246419
+all,3,6,10.04,1245929
+hurricane periods,3,1,15.33,6853
+hurricane periods,3,3,18.91,6844
+hurricane periods,3,6,30.55,6837
+estuary / tidal channel,3,1,5.99,121914
+estuary / tidal channel,3,3,7.88,121831
+estuary / tidal channel,3,6,10.06,121828
+estuary / tidal channel | hurricane periods,3,1,24.17,649
+estuary / tidal channel | hurricane periods,3,3,31.2,647
+estuary / tidal channel | hurricane periods,3,6,45.67,646
+lake,3,1,3.04,33175
+lake,3,3,3.64,33148
+lake,3,6,4.28,33136
+lake | hurricane periods,3,1,5.39,183
+lake | hurricane periods,3,3,7.04,182
+lake | hurricane periods,3,6,9.64,181
+marsh,3,1,1.74,24065
+marsh,3,3,2.1,24034
+marsh,3,6,2.61,24001
+marsh | hurricane periods,3,1,2.81,141
+marsh | hurricane periods,3,3,2.86,141
+marsh | hurricane periods,3,6,5.16,141
+river / canal,3,1,4.7,715977
+river / canal,3,3,6.59,715386
+river / canal,3,6,9.46,714938
+river / canal | hurricane periods,3,1,7.33,3948
+river / canal | hurricane periods,3,3,10.39,3942
+river / canal | hurricane periods,3,6,16.29,3938
+tide gauge,3,1,4.31,148673
+tide gauge,3,3,4.79,148669
+tide gauge,3,6,5.51,148664
+tide gauge | hurricane periods,3,1,9.82,806
+tide gauge | hurricane periods,3,3,11.05,805
+tide gauge | hurricane periods,3,6,15.46,805
+urban creek (Houston),3,1,7.31,203431
+urban creek (Houston),3,3,11.02,203351
+urban creek (Houston),3,6,14.7,203362
+urban creek (Houston) | hurricane periods,3,1,28.83,1126
+urban creek (Houston) | hurricane periods,3,3,33.74,1127
+urban creek (Houston) | hurricane periods,3,6,57.91,1126

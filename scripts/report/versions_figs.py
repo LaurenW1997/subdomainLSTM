@@ -40,15 +40,16 @@ LADDER = [("v3_obs", "Water level only", True),
           ("v10_dnorm_x_p50", "no rainfall; error scaled by the 6 h change, gaps filled with the last observation", True),
           ("v11_fc1_t45", "scaling + gap filling + rainfall: past 72 h and HRRR forecast for the next 6 h", True),
           ("v14_stale25", "scaling + gap filling + rainfall (past 72 h, HRRR next 6 h), trained with missing hours", True),
+          ("v15r_mean5", "scaling + gap filling + rainfall (past 72 h, HRRR next 6 h), trained with missing hours, mean of 5 models", True),
           ("v11_rain_obs", "scaling + gap filling + rainfall: past 72 h and observed next 6 h  [not available in real time]", False)]
-CURRENT, CURRENT_KEY = "v14_stale25", "base_fc"          # the version in use; drawn in bold / highlighted everywhere
+CURRENT, CURRENT_KEY = "v15r_mean5", "base_fc"           # the version in use (mean of five models that differ in the random seed); drawn in bold / highlighted everywhere
 HILITE = "#fbe3d3"
 # the six versions drawn at the stations: key in the data files, run, column title, colour (categorical slots 1-6, validated)
 MAIN = [("wl", "v3_obs", "Water level only", "#2a78d6"),
         ("wind", "v3_wind", "Water level + wind", "#eb6834"),
         ("q", "v6_wind_q", "Water level + wind\n+ discharge\n(no rainfall)", "#1baf7a"),
         ("base", "v10_dnorm_x_p50", "6 h-change scaling,\ngap filling\n(no rainfall)", "#eda100"),
-        ("base_fc", "v14_stale25", "6 h-change scaling,\ngap filling + HRRR rainfall,\ntrained with missing hours", "#e87ba4"),
+        ("base_fc", "v15r_mean5", "Scaling, gap filling + HRRR\nrainfall, trained with missing\nhours, mean of 5 models", "#e87ba4"),
         ("base_obs", "v11_rain_obs", "6 h-change scaling,\ngap filling + observed rainfall\n(upper bound, not real time)", "#008300")]
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"),
          ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks (Houston)")]
@@ -283,7 +284,7 @@ def maps() -> tuple[Path, Path]:
     cmap = ListedColormap(cols); norm = BoundaryNorm(edges, cmap.N)
     names = {"wl": "Water level only", "wind": "Water level + wind", "q": "Water level + wind + discharge (no rainfall)",
              "base": "6 h-change scaling + gap filling (no rainfall)",
-             "base_fc": "Scaling + gap filling + HRRR rainfall, trained with missing hours",
+             "base_fc": "Scaling + gap filling + HRRR rainfall," + "\n" + "trained with missing hours, mean of 5 models",
              "base_obs": "Scaling + gap filling + observed rainfall (upper bound, not real time)"}
     fig = plt.figure(figsize=(13.0, 6.5))
     for k, (key, run, title, _) in enumerate(MAIN):
@@ -306,7 +307,7 @@ def maps() -> tuple[Path, Path]:
     # every panel against the same base, water level only, so that the four maps can be compared with each other
     steps = [("v6_wind_q", "v3_obs", "(a) Water level + wind + upstream discharge"),
              ("v10_dnorm_x_p50", "v3_obs", "(b) 6 h-change scaling + gap filling, no rainfall"),
-             ("v14_stale25", "v3_obs", "(c) Scaling + gap filling + HRRR rainfall, trained with missing hours"),
+             ("v15r_mean5", "v3_obs", "(c) Scaling + gap filling + HRRR rainfall, trained with missing hours, mean of 5"),
              ("v11_rain_obs", "v3_obs", "(d) Scaling + gap filling + observed rainfall (upper bound, not real time)")]
     cmap = LinearSegmentedColormap.from_list("div", DIV); norm = Normalize(-5, 5)
     fig = plt.figure(figsize=(13.0, 6.6))
