@@ -17,4 +17,9 @@ module load pytorch/2.10.0
 ROOT=/work/yixuan97/subdomainLSTM
 cd $ROOT/repo/scripts/report
 export OMP_NUM_THREADS=16
-python eval_ensemble.py --runs-dir $ROOT/runs --runs $RUNS --dataset $ROOT/data/${DATASET:-dataset_v6} --out $ROOT/runs/$OUT
+# `module load pytorch` rewrites the launcher ~/.local/bin/modules/pytorch/2.10.0/python every time it is loaded. When several
+# jobs start within the same minute the launcher ends up with its command line repeated, and a job that is already running then
+# runs its python command again after it has finished (13 Nov 2026: five trainings ran twice and the second pass overwrote
+# best.pt). So the container is called directly here and the launcher is not used.
+PY="singularity exec -B /work,/project,/usr/local/packages,/var/scratch, --nv --pwd $PWD /project/containers/images/pytorch-2.10.0.sif python"
+$PY eval_ensemble.py --runs-dir $ROOT/runs --runs $RUNS --dataset $ROOT/data/${DATASET:-dataset_v6} --out $ROOT/runs/$OUT
