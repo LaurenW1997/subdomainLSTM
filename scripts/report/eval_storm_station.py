@@ -26,12 +26,8 @@ from station_compare import load  # noqa: E402
 REPO = Path(__file__).resolve().parents[2]
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--run", required=True); ap.add_argument("--dataset", required=True); ap.add_argument("--batch", type=int, default=4096)
-    a = ap.parse_args()
-    device = torch.device("cpu"); torch.set_num_threads(16)
-    sm, model = load(REPO / "runs" / a.run, Path(a.dataset), device)
+def run(sm, model, out_csv: Path, device, label: str, batch: int = 4096) -> None:
+    """Write the per-station table for one model (or a mean of models: anything called as model(feats, station, future))."""
     st = sm.stations.reset_index(drop=True)
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     typ = st[["source", "station_id"]].astype(str).merge(g[["source", "station_id", "type"]], on=["source", "station_id"], how="left").type.fillna("other").to_numpy()
@@ -48,12 +44,12 @@ def main() -> None:
     std, mean = st.std_m.to_numpy(np.float32), st.mean_m.to_numpy(np.float32)
     err = np.zeros((len(S), HORIZON), np.float32); ok = np.zeros((len(S), HORIZON), bool); obs = np.zeros((len(S), HORIZON), np.float32)
     with torch.no_grad():
-        for i in range(0, len(S), a.batch):
-            s, t0 = S[i:i + a.batch], T0[i:i + a.batch]
+        for i in range(0, len(S), batch):
+            s, t0 = S[i:i + batch], T0[i:i + batch]
             feats, fut, s, y, ym = sm.window(s, t0)
             f, fu, sx, _, _ = to_torch((feats, fut, s, y, ym), device)
-            err[i:i + a.batch] = (model(f, sx, fu).numpy() - y) * std[s][:, None]; ok[i:i + a.batch] = ym
-            obs[i:i + a.batch] = y * std[s][:, None] + mean[s][:, None]
+            err[i:i + batch] = (model(f, sx, fu).cpu().numpy() - y) * std[s][:, None]; ok[i:i + batch] = ym
+            obs[i:i + batch] = y * std[s][:, None] + mean[s][:, None]
     rows = []
     for s in np.unique(S):
         m = S == s
@@ -66,8 +62,17 @@ def main() -> None:
         o = obs[m, 5][ok[m, 5]]; r["obs_range_cm"] = round(100 * float(o.max() - o.min()), 1)
         rows.append(r)
     d = pd.DataFrame(rows)
-    d.to_csv(REPO / "runs" / a.run / "storm_station.csv", index=False)
-    print(a.run, len(d), "stations;", len(S), "forecasts; pooled 6 h RMSE", round(100 * float(np.sqrt((err[:, 5][ok[:, 5]] ** 2).mean())), 2), "cm", flush=True)
+    d.to_csv(out_csv, index=False)
+    print(label, len(d), "stations;", len(S), "forecasts; pooled 6 h RMSE", round(100 * float(np.sqrt((err[:, 5][ok[:, 5]] ** 2).mean())), 2), "cm", flush=True)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run", required=True); ap.add_argument("--dataset", required=True); ap.add_argument("--batch", type=int, default=4096)
+    a = ap.parse_args()
+    device = torch.device("cpu"); torch.set_num_threads(16)
+    sm, model = load(REPO / "runs" / a.run, Path(a.dataset), device)
+    run(sm, model, REPO / "runs" / a.run / "storm_station.csv", device, a.run, a.batch)
 
 
 if __name__ == "__main__":
