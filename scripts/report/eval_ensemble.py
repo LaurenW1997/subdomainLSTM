@@ -53,7 +53,7 @@ def main() -> None:
     models = [first]
     for r in runs[1:]:
         ck = torch.load(r / "best.pt", map_location=device)
-        diff = [k for k in SAME if ck["args"].get(k) != ref.get(k)]
+        diff = [k for k in SAME if (ck["args"].get(k) or None) != (ref.get(k) or None)]      # a switch that is off may be absent in an older model file
         assert not diff, f"{r.name} was trained with other inputs: {diff}"
         assert (pd.read_csv(r / "stations.csv", dtype=str).station_id.to_numpy() == ids).all(), f"{r.name}: other station order"
         m = GlobalLSTM(ck["n_stations"], n_feat=ck.get("n_feat", 6), hidden=ck["args"]["hidden"], layers=ck["args"]["layers"], n_future=ck.get("n_future", 0),
