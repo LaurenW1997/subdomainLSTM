@@ -182,9 +182,14 @@ def time_features(index: pd.DatetimeIndex) -> np.ndarray:
                      np.sin(2 * np.pi * doy / 365.25), np.cos(2 * np.pi * doy / 365.25)], 1).astype(np.float32)
 
 
+# settings that decide the inputs: every member_*.pt must share them with best.pt
+SAME_INPUTS = ("lookback", "wind", "future_wind", "discharge", "rain", "future_rain", "rain_var", "rain_fc", "future_rain_form", "fill",
+               "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations", "hidden", "layers")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", required=True, help="run dir with best.pt and stations.csv")
+    ap.add_argument("--model", required=True, help="run dir with best.pt and stations.csv; member_*.pt next to best.pt are further models with the same inputs (other random seeds) and the forecast is then the mean of all of them")
     ap.add_argument("--cycle", help="forecast origin, UTC hour, e.g. 2026-11-08T12 (default: last full hour - 1)")
     ap.add_argument("--out", default="/data/ywan245/subdomainLSTM/operational")
     ap.add_argument("--sources", nargs="*", default=["USGS", "NOAA_COOPS"])
@@ -218,10 +223,24 @@ def main() -> None:
     if delta_feat and not delta_norm:
         raise SystemExit("--delta-feat without --delta-norm: the scale is not stored in the checkpoint")
     rscale = model.rscale.numpy() if delta_norm else None
+    # further models trained with the same settings and another random seed: the forecast is the mean of all members
+    models, member_files = [model], sorted(run_dir.glob("member_*.pt"))
+    for mf in member_files:
+        mk = torch.load(mf, map_location="cpu")
+        diff = [k for k in SAME_INPUTS if (mk["args"].get(k) or None) != (args.get(k) or None)]
+        assert not diff and (mk["n_stations"], mk.get("n_feat", 6), mk.get("n_future", 0)) == (ck["n_stations"], ck.get("n_feat", 6), ck.get("n_future", 0)), \
+            f"{mf.name} was not trained with the same inputs as best.pt: {diff}"
+        m_ = GlobalLSTM(mk["n_stations"], n_feat=mk.get("n_feat", 6), hidden=mk["args"]["hidden"], layers=mk["args"]["layers"], n_future=mk.get("n_future", 0),
+                        delta_scale=delta_norm, init_state=mk["args"].get("init_state", False))
+        m_.load_state_dict(mk["state_dict"]); m_.eval()
+        assert not delta_norm or np.allclose(m_.rscale.numpy(), rscale), f"{mf.name}: other 6 h-change scale than best.pt"
+        models.append(m_)
     st = pd.read_csv(run_dir / "stations.csv", dtype={"station_id": str})
     assert len(st) == ck["n_stations"], "stations.csv does not match the checkpoint"
     log.info("cycle %s UTC, model %s (%d stations, lookback %d h, wind=%s future_wind=%s discharge=%s rain=%s future_rain=%s fill=%s scaled_change=%s)",
              cycle, run_dir.name, len(st), lookback, use_wind, use_future, use_q, use_rain, use_future_rain, args.get("fill", "zero"), delta_norm)
+    if member_files:
+        log.info("forecast = mean of %d models (best.pt and %s)", len(models), ", ".join(f.name for f in member_files))
 
     index = pd.date_range(cycle - pd.Timedelta(hours=lookback - 1), cycle, freq="1h")
     future_index = pd.date_range(cycle + pd.Timedelta(hours=1), periods=HORIZON, freq="1h")
@@ -357,14 +376,20 @@ def main() -> None:
     if feats:
         with torch.no_grad():
             f = torch.from_numpy(np.stack(feats).astype(np.float32)); fu = torch.from_numpy(np.stack(futs)) if ck.get("n_future", 0) else None
-            pred = model(f, torch.tensor(rows_idx, dtype=torch.long), fu).numpy()
+            sidx = torch.tensor(rows_idx, dtype=torch.long)
+            each = np.stack([m_(f, sidx, fu).numpy() for m_ in models])        # [members, stations, leads]
         mean = st.loc[rows_idx, "mean_m"].to_numpy(); std = st.loc[rows_idx, "std_m"].to_numpy()
-        pred = pred * std[:, None] + mean[:, None]
+        each = each * std[None, :, None] + mean[None, :, None]
+        pred = each.mean(0)
         for h in range(HORIZON):
             df.loc[rows_idx, f"fcst_{h+1}h_m"] = pred[:, h]
+        if len(models) > 1:      # lowest and highest member: how far the models disagree (not the full forecast error)
+            for h in range(HORIZON):
+                df.loc[rows_idx, f"member_min_{h+1}h_m"] = each[:, :, h].min(0)
+                df.loc[rows_idx, f"member_max_{h+1}h_m"] = each[:, :, h].max(0)
     df["valid_time_6h_utc"] = cycle + pd.Timedelta(hours=HORIZON)
     df.to_csv(out / "forecast.csv", index=False)
-    manifest = {"cycle_utc": str(cycle), "model": str(run_dir), "checkpoint_args": args, "lookback_h": lookback,
+    manifest = {"cycle_utc": str(cycle), "model": str(run_dir), "members": ["best.pt"] + [f.name for f in member_files], "checkpoint_args": args, "lookback_h": lookback,
                 "horizon_h": HORIZON, "n_feat": ck.get("n_feat", 6), "n_future": ck.get("n_future", 0),
                 "n_stations": int(len(df)), "status_counts": df.status.value_counts().to_dict(),
                 "sources": a.sources, **manifest_extra, "generated_utc": str(pd.Timestamp.now("UTC").tz_localize(None).floor("s"))}
