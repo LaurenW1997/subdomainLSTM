@@ -20,6 +20,7 @@ LOOKBACK = 72   # hours of input
 HORIZON = 6     # hours ahead
 LONG_HOURS = 720  # length of the long-history summaries (--long-feat)
 STALE_MAX = 3   # a station is still forecast while its newest observation is at most this many hours old (forecast.py MAX_STALE_H)
+SPLIT_H = 2     # --future-rain-form split: the 6 target hours are given as two totals, hours 1 .. SPLIT_H and SPLIT_H + 1 .. 6
 FC_STRIDE = 6   # hours between the origins a forecast-rain product was extracted for (hrrr_precip.py --stride)
 MIN_INPUT_VALID = 0.7
 WIND_SCALE = 10.0   # m/s -> O(1)
@@ -32,12 +33,17 @@ class StationMatrix:
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
                  fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
                  long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False,
-                 stale_aug: float = 0.0):
+                 stale_aug: float = 0.0, rain_split_obs: str = "none"):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
         self.use_rain, self.use_future_rain, self.rain_var = use_rain, use_rain and use_future_rain, rain_var
         self.rain_fc, self.future_rain_form = rain_fc, future_rain_form      # future-rain source (None = observed) and form (hourly / 6 h total)
+        # EXPERIMENT (form "split"): the rainfall of the target hours as two totals (hours 1-2 and 3-6); rain_split_obs names the part
+        # that is taken from the observed rainfall instead of the forecast product: none / early (1-2) / late (3-6) / both.
+        # How much of the gap between forecast and observed rainfall would a perfect 2 h nowcast close?
+        self.rain_split_obs = rain_split_obs
+        assert future_rain_form != "split" or (rain_fc and rain_split_obs in ("none", "early", "late", "both")), "form split needs --rain-fc"
         self.values = np.load(d / "values.npy", mmap_mode="r")          # [S, T] metres
         self.time = pd.to_datetime(np.load(d / "time.npy"))
         self.stations = pd.read_csv(d / "stations.csv", index_col="row", dtype={"station_id": str})
@@ -116,6 +122,8 @@ class StationMatrix:
                 fut = np.load(d / f"{rain_fc}.npy", mmap_mode="r")[self.rows].astype(np.float32) if rain_fc else r
                 self.futmask = np.isfinite(fut)
                 self.fut_mm = np.nan_to_num(np.clip(fut, 0, None))
+                if future_rain_form == "split":
+                    self.obs_mm = np.nan_to_num(np.clip(r, 0, None))
         # EXPERIMENT (--downstream / --upstream-stage): water level at a reference gauge that sees a change first -
         # the next gauge downstream (tide, surge travelling up the river) and / or upstream (flood wave coming down).
         # Per reference: its level (z-score), its level relative to the newest hour in its own 6 h-change units, its mask.
@@ -133,7 +141,7 @@ class StationMatrix:
                         rows[k] = j
                 self.nbr.append(rows)
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0) + 3 * len(self.nbr)
-        n_fr = 0 if not self.use_future_rain else (HORIZON if future_rain_form == "hourly" else 1)
+        n_fr = 0 if not self.use_future_rain else {"hourly": HORIZON, "total": 1, "split": 2}[future_rain_form]
         # EXPERIMENT (--long-feat): summaries of the last 7 and 30 days given to the head instead of a longer look-back:
         # mean level relative to the newest hour (in 6 h-change units) and, with rainfall, the rain totals. Placed FIRST
         # in the future vector so that the existing layout (wind, then rainfall last) stays valid for the other scripts.
@@ -188,7 +196,13 @@ class StationMatrix:
             fut_parts += [self.u[s[:, None], idx_out], self.v[s[:, None], idx_out]]
         if self.use_future_rain:
             mm = self.fut_mm[s[:, None], idx_out]
-            fut_parts.append(np.log1p(mm) if self.future_rain_form == "hourly" else np.log1p(mm.sum(1, keepdims=True)))
+            if self.future_rain_form == "split":
+                ob = self.obs_mm[s[:, None], idx_out]
+                early = (ob if self.rain_split_obs in ("early", "both") else mm)[:, :SPLIT_H].sum(1, keepdims=True)
+                late = (ob if self.rain_split_obs in ("late", "both") else mm)[:, SPLIT_H:].sum(1, keepdims=True)
+                fut_parts += [np.log1p(early), np.log1p(late)]
+            else:
+                fut_parts.append(np.log1p(mm) if self.future_rain_form == "hourly" else np.log1p(mm.sum(1, keepdims=True)))
         future = np.concatenate(fut_parts, 1).astype(np.float32) if fut_parts else np.zeros((len(s), 0), np.float32)
         y = self.norm[s[:, None], idx_out]
         ym = np.isfinite(y)
@@ -222,6 +236,8 @@ class StationMatrix:
             ok &= self.rmask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
             if self.use_future_rain:
                 ok &= self.futmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
+                if self.future_rain_form == "split":   # the same samples whichever part is observed: both sources must exist
+                    ok &= self.rmask[s[:, None], t0[:, None] + np.arange(1, HORIZON + 1)[None, :]].all(1)
                 if self.rain_fc:   # forecast product extracted for 6-hourly origins only: the valid hours of other origins would mix cycles
                     ok &= (t0 % FC_STRIDE) == 0      # time axis starts at 00 UTC, so this is 00/06/12/18 UTC
         return ok

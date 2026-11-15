@@ -50,7 +50,8 @@ def load(run: Path, dataset: Path, device):
                        rain_fc=ck["args"].get("rain_fc"), future_rain_form=ck["args"].get("future_rain_form", "hourly"),
                        fill=ck["args"].get("fill", "zero"), delta_norm=ck["args"].get("delta_norm", False), delta_feat=ck["args"].get("delta_feat", False),
                        delta_power=ck["args"].get("delta_power", 1.0), long_feat=ck["args"].get("long_feat", False),
-                       neighbor_map=local(ck["args"].get("neighbor_map")), use_ds=ck["args"].get("downstream", False), use_us=ck["args"].get("upstream_stage", False))
+                       neighbor_map=local(ck["args"].get("neighbor_map")), use_ds=ck["args"].get("downstream", False), use_us=ck["args"].get("upstream_stage", False),
+                       rain_split_obs=ck["args"].get("rain_split_obs", "none"))
     model = build(ck, device)
     members = sorted(run.glob("member_*.pt"))
     if members:

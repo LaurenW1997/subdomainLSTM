@@ -63,7 +63,9 @@ def main() -> None:
     ap.add_argument("--future-rain", action="store_true", help="also feed the rain of the 6 target hours to the head")
     ap.add_argument("--rain-var", default="p15", choices=["p", "p15"], help="rain at the station cell (p) or 15 km box mean (p15)")
     ap.add_argument("--rain-fc", help="future rain from a forecast product instead of observed: file stem in the dataset dir, e.g. hrrr_lag1_p45")
-    ap.add_argument("--future-rain-form", default="hourly", choices=["hourly", "total"], help="future rain as 6 hourly values or one 6 h total")
+    ap.add_argument("--future-rain-form", default="hourly", choices=["hourly", "total", "split"], help="future rain as 6 hourly values, one 6 h total, or two totals (hours 1-2, 3-6)")
+    ap.add_argument("--rain-split-obs", default="none", choices=["none", "early", "late", "both"],
+                    help="EXPERIMENT, with --future-rain-form split: the part taken from observed rainfall instead of --rain-fc (hours 1-2 / 3-6 / both)")
     ap.add_argument("--fill", default="zero", choices=["zero", "ffill"], help="EXPERIMENT: fill missing hours with the station mean (zero) or the last valid value (ffill)")
     ap.add_argument("--delta-norm", action="store_true", help="EXPERIMENT: predict and score the change in units of each station's typical 6 h change")
     ap.add_argument("--delta-power", type=float, default=1.0, help="EXPERIMENT: 1 = scale by the 6 h-change std, 0 = by the level std, in between = geometric mix")
@@ -83,7 +85,7 @@ def main() -> None:
     sm = StationMatrix(Path(a.dataset), lookback=a.lookback, use_wind=a.wind, use_future_wind=a.future_wind, use_q=a.discharge, stations=a.stations, no_wind_stations=a.no_wind_stations,
                        use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form,
                        fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat, delta_power=a.delta_power, long_feat=a.long_feat,
-                       neighbor_map=a.neighbor_map, use_ds=a.downstream, use_us=a.upstream_stage, stale_aug=a.stale_aug)
+                       neighbor_map=a.neighbor_map, use_ds=a.downstream, use_us=a.upstream_stage, stale_aug=a.stale_aug, rain_split_obs=a.rain_split_obs)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     n_val = len(sm.eval_origins("val", a.eval_stride)[0])
     assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"
