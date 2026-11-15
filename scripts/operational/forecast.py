@@ -10,7 +10,7 @@ Which inputs are built is read from the training switches stored in best.pt:
                               before the origin (--rain-fc hrrr_lag<L>_p<km>)
   --fill ffill                a missing hour takes the last valid level (FILL_EXTRA_H more hours are fetched for this)
   --delta-norm / --delta-feat forecast change scaled by the station's typical 6 h change (scale saved in best.pt)
-Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --stations) stop it.
+Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --partners, --stations) stop it.
 
 Only sources with a real-time feed are forecast (USGS NWIS IV, NOAA CO-OPS). CRMS and
 USACE stations in the model are listed in the output with status "no_realtime_source".
@@ -208,7 +208,7 @@ def main() -> None:
     use_rain = bool(args.get("rain")); use_future_rain = bool(use_rain and args.get("future_rain"))
     rain_form = args.get("future_rain_form", "hourly")
     ffill, delta_norm, delta_feat = args.get("fill", "zero") == "ffill", bool(args.get("delta_norm")), bool(args.get("delta_feat"))
-    unsupported = [k for k in ("long_feat", "downstream", "upstream_stage", "stations") if args.get(k)]
+    unsupported = [k for k in ("long_feat", "downstream", "upstream_stage", "stations", "partners") if args.get(k)]
     if unsupported:
         raise SystemExit(f"model trained with {unsupported}: forecast.py does not build these inputs")
     if use_future_rain and not args.get("rain_fc"):

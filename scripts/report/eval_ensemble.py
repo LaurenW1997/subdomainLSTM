@@ -27,7 +27,7 @@ from model import GlobalLSTM  # noqa: E402
 from station_compare import Mean, load  # noqa: E402
 
 SAME = ("lookback", "wind", "future_wind", "discharge", "rain", "future_rain", "rain_var", "rain_fc", "future_rain_form", "rain_split_obs", "fill",
-        "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations")   # inputs every member must share
+        "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations", "partners")   # inputs every member must share
 
 
 def main() -> None:

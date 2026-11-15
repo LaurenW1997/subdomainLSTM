@@ -33,7 +33,7 @@ class StationMatrix:
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
                  fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
                  long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False,
-                 stale_aug: float = 0.0, rain_split_obs: str = "none"):
+                 stale_aug: float = 0.0, rain_split_obs: str = "none", partner_map: Path | str | None = None, n_partners: int = 0):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -128,9 +128,9 @@ class StationMatrix:
         # the next gauge downstream (tide, surge travelling up the river) and / or upstream (flood wave coming down).
         # Per reference: its level (z-score), its level relative to the newest hour in its own 6 h-change units, its mask.
         self.nbr = []
+        row_of = {(a, str(b)): k for k, (a, b) in enumerate(zip(self.stations.source, self.stations.station_id))}
         if neighbor_map and (use_ds or use_us):
             nm = pd.read_csv(neighbor_map, dtype=str).fillna("")
-            row_of = {(a, str(b)): k for k, (a, b) in enumerate(zip(self.stations.source, self.stations.station_id))}
             for pref, on in (("ds", use_ds), ("us", use_us)):
                 if not on:
                     continue
@@ -139,6 +139,17 @@ class StationMatrix:
                     k, j = row_of.get((a, b)), row_of.get((c, d2))
                     if k is not None and j is not None:
                         rows[k] = j
+                self.nbr.append(rows)
+        # EXPERIMENT (--partner-map, --partners K): water level at up to K partner stations, the stations whose recent changes say
+        # most about this station's next 6 hours (scripts/data/partner_map.py). Same three channels per partner as a reference gauge.
+        if partner_map and n_partners > 0:
+            pm = pd.read_csv(partner_map, dtype=str).fillna("")
+            for j in range(1, int(n_partners) + 1):
+                rows = np.full(self.S, -1, np.int64)
+                for a, b, c, d2 in zip(pm.source, pm.station_id, pm[f"p{j}_source"], pm[f"p{j}_station_id"]):
+                    k, jj = row_of.get((a, b)), row_of.get((c, d2))
+                    if k is not None and jj is not None:
+                        rows[k] = jj
                 self.nbr.append(rows)
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0) + 3 * len(self.nbr)
         n_fr = 0 if not self.use_future_rain else {"hourly": HORIZON, "total": 1, "split": 2}[future_rain_form]
