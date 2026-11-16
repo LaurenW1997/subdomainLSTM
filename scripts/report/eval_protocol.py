@@ -10,6 +10,9 @@ Next to the RMSE over all forecasts this writes what a small change in the avera
               forecast 6 h rise.
 All of it on the test origins of train.py at 00/06/12/18 UTC (the hours the forecast rainfall was extracted for), stations
 with real-time data (no CRMS). RMSE in cm.
+--partner-late K: the newest K hours of every partner station are removed from the input (their data have not arrived yet);
+--own-late K: the newest K hours of the station itself. Both exactly as the forecast script would see them
+(data.py drop_newest, drop_newest_partners). The forecasts, the observations and the event definitions stay the same.
 Output: <out>/protocol_station.csv   one row per model (each member, "mean") and station
 Usage (GPU or CPU): python eval_protocol.py --runs-dir RUNS --runs v14_stale25 v15r_seed1 ... --dataset DATA/dataset_v6 --out RUNS/protocol_<name>
 """
@@ -39,6 +42,7 @@ def main() -> None:
     ap.add_argument("--runs-dir", required=True); ap.add_argument("--runs", nargs="+", required=True); ap.add_argument("--dataset", required=True)
     ap.add_argument("--out", required=True); ap.add_argument("--test-end", default="2025-12-31T17"); ap.add_argument("--stride", type=int, default=6)
     ap.add_argument("--batch", type=int, default=4096); ap.add_argument("--event-q", type=float, default=0.99); ap.add_argument("--rise-q", type=float, default=0.95)
+    ap.add_argument("--partner-late", type=int, default=0); ap.add_argument("--own-late", type=int, default=0)
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -80,10 +84,14 @@ def main() -> None:
     with torch.no_grad():
         for i in range(0, n, a.batch):
             feats, fut, s, yy, mm = sm.window(S[i:i + a.batch], T0[i:i + a.batch])
+            if a.own_late > 0:
+                sm.drop_newest(feats, s, a.own_late)
+            if a.partner_late > 0:
+                sm.drop_newest_partners(feats, s, a.partner_late)
             f, fu, sx, _, _ = to_torch((feats, fut, s, yy, mm), device)
             p = torch.stack([m(f, sx, fu) for m in models]).cpu().numpy()
             pred[:N, i:i + a.batch] = p; pred[N, i:i + a.batch] = p.mean(0); y[i:i + a.batch] = yy; ym[i:i + a.batch] = mm
-    print(f"{len(a.runs)} models, {n} forecasts at {len(np.unique(S))} stations", flush=True)
+    print(f"{len(a.runs)} models, {n} forecasts at {len(np.unique(S))} stations; newest hours removed: own {a.own_late}, partner stations {a.partner_late}", flush=True)
 
     last = sm.norm[S, T0]                                                         # NaN when the newest hour is missing
     d6 = np.where(ym[:, -1], y[:, -1], np.nan) - last

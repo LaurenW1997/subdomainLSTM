@@ -76,6 +76,7 @@ def main() -> None:
     ap.add_argument("--upstream-stage", action="store_true", help="EXPERIMENT: water level at the next gauge upstream on the same river as input")
     ap.add_argument("--partner-map", help="EXPERIMENT: CSV from scripts/data/partner_map.py (the stations whose recent changes say most about this station's next 6 h)")
     ap.add_argument("--partners", type=int, default=0, help="EXPERIMENT: number of partner stations of --partner-map whose water level is given as input")
+    ap.add_argument("--partner-stale-aug", type=float, default=0.0, help="EXPERIMENT: probability, for every partner station of a training sample, that its newest 1-3 h are removed (its data arrive late)")
     ap.add_argument("--long-feat", action="store_true", help="EXPERIMENT: 7-day and 30-day summaries (mean level, rain totals) as extra head inputs")
     ap.add_argument("--init-state", action="store_true", help="EXPERIMENT: the LSTM starts from a state of its own for every station instead of from zero")
     ap.add_argument("--delta-feat", action="store_true", help="EXPERIMENT: extra input channel, recent level relative to the last hour in 6 h-change units")
@@ -88,7 +89,7 @@ def main() -> None:
                        use_rain=a.rain, use_future_rain=a.future_rain, rain_var=a.rain_var, rain_fc=a.rain_fc, future_rain_form=a.future_rain_form,
                        fill=a.fill, delta_norm=a.delta_norm, delta_feat=a.delta_feat, delta_power=a.delta_power, long_feat=a.long_feat,
                        neighbor_map=a.neighbor_map, use_ds=a.downstream, use_us=a.upstream_stage, stale_aug=a.stale_aug, rain_split_obs=a.rain_split_obs,
-                       partner_map=a.partner_map, n_partners=a.partners)
+                       partner_map=a.partner_map, n_partners=a.partners, partner_stale_aug=a.partner_stale_aug)
     sm.stations.reset_index().to_csv(out / "stations.csv", index=False)   # embedding order of this run
     n_val = len(sm.eval_origins("val", a.eval_stride)[0])
     assert n_val > 0, "no usable validation origins - check the input availability / origin alignment"

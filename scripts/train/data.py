@@ -33,7 +33,8 @@ class StationMatrix:
                  rain_var: str = "p15", rain_fc: str | None = None, future_rain_form: str = "hourly",
                  fill: str = "zero", delta_norm: bool = False, delta_feat: bool = False, delta_power: float = 1.0,
                  long_feat: bool = False, neighbor_map: Path | str | None = None, use_ds: bool = False, use_us: bool = False,
-                 stale_aug: float = 0.0, rain_split_obs: str = "none", partner_map: Path | str | None = None, n_partners: int = 0):
+                 stale_aug: float = 0.0, rain_split_obs: str = "none", partner_map: Path | str | None = None, n_partners: int = 0,
+                 partner_stale_aug: float = 0.0):
         d = Path(dataset_dir)
         self.lookback = int(lookback)
         self.use_wind, self.use_future_wind, self.use_q = use_wind, use_wind and use_future_wind, use_q
@@ -69,6 +70,9 @@ class StationMatrix:
         # EXPERIMENT (--stale-aug p): in a share p of the training samples the newest 1 .. STALE_MAX hours of water level are
         # removed, as when a gauge has stopped reporting, so that the model learns to forecast from an older last value
         self.stale_aug = float(stale_aug)
+        # EXPERIMENT (--partner-stale-aug p): the same for every partner station on its own: with probability p its newest
+        # 1 .. STALE_MAX hours are removed (in real time the newest hours of another gauge may not have arrived yet)
+        self.partner_stale_aug = float(partner_stale_aug)
         if fill == "ffill":   # EXPERIMENT: a missing hour takes the last valid value instead of the station mean (the mask channel still marks it)
             idx = np.where(self.mask, np.arange(self.T, dtype=np.int32)[None, :], 0).astype(np.int32)
             np.maximum.accumulate(idx, axis=1, out=idx)
@@ -151,6 +155,7 @@ class StationMatrix:
                     if k is not None and jj is not None:
                         rows[k] = jj
                 self.nbr.append(rows)
+        self.n_partner_slots = int(n_partners) if (partner_map and n_partners > 0) else 0     # the last entries of self.nbr
         self.n_feat = 6 + (3 if use_wind else 0) + (2 if use_q else 0) + (2 if use_rain else 0) + (1 if delta_feat else 0) + 3 * len(self.nbr)
         n_fr = 0 if not self.use_future_rain else {"hourly": HORIZON, "total": 1, "split": 2}[future_rain_form]
         # EXPERIMENT (--long-feat): summaries of the last 7 and 30 days given to the head instead of a longer look-back:
@@ -234,6 +239,25 @@ class StationMatrix:
             feats[i, :, dch] = np.clip((lev - lev[:, -1:]) / self.rscale[s[i]][:, None], -20, 20)
         return feats
 
+    def drop_newest_partners(self, feats: np.ndarray, s: np.ndarray, k) -> np.ndarray:
+        """In place: remove the newest k[i, j] hours of partner station j from sample i (k: scalar, [B] or [B, n_partners]), as the
+        forecast script would see a partner that has not reported for k hours: mask 0, level = last value before the gap
+        (--fill ffill) or the station mean, change channel rebuilt from the filled series. The station's own channels are untouched."""
+        P = self.n_partner_slots
+        k = np.asarray(k); k = np.broadcast_to(k[..., None] if k.ndim < 2 else k, (len(s), P))
+        for j in range(P):
+            rows = self.nbr[len(self.nbr) - P + j]; pj = rows[s]
+            c = self.n_feat - 3 * (P - j)                                   # level, change, mask of this partner
+            for kk in np.unique(k[:, j][k[:, j] > 0]):
+                i = np.where((k[:, j] == kk) & (pj >= 0))[0]
+                if not len(i):
+                    continue
+                feats[i, -kk:, c + 2] = 0.0
+                feats[i, -kk:, c] = feats[i, -kk - 1, c][:, None] if self.fill == "ffill" else 0.0
+                lev = feats[i, :, c]
+                feats[i, :, c + 1] = np.clip((lev - lev[:, -1:]) / self.rscale[pj[i]][:, None], -20, 20)
+        return feats
+
     def _ok(self, s: np.ndarray, t0: np.ndarray) -> np.ndarray:
         idx_in = t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]
         ok = self.mask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
@@ -269,6 +293,10 @@ class StationMatrix:
         if self.stale_aug > 0:
             k = np.where(rng.random(batch) < self.stale_aug, rng.integers(1, STALE_MAX + 1, batch), 0)
             self.drop_newest(b[0], b[2], k)
+        if self.partner_stale_aug > 0 and self.n_partner_slots:
+            P = self.n_partner_slots
+            k = np.where(rng.random((batch, P)) < self.partner_stale_aug, rng.integers(1, STALE_MAX + 1, (batch, P)), 0)
+            self.drop_newest_partners(b[0], b[2], k)
         return b
 
     def eval_origins(self, split: str, stride: int = 6, t_lo: int | None = None, t_hi: int | None = None):
