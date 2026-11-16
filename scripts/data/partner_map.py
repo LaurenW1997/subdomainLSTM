@@ -15,6 +15,10 @@ and that timing does not carry over to other years (deliverables/27_partner_stat
 when it lies downstream or upstream of the station along the river network, or within --near-km of it (default 0 = never);
 --max-km-river then no longer applies to the river and creek stations of that table. Tide gauges, estuaries, lakes, marsh
 and stations that are not in the table keep the distance rule.
+--min-gain-unlinked: at those river and creek stations a partner that is not on the same network (a tide gauge, estuary or
+lake station) must explain at least this share instead of --min-gain. Without the far creeks many inland stations would
+otherwise fill their four places with distant tidal stations that explain 1-3 %; in the round with the 50 km rule such
+partners brought nothing in the test years.
 Output: config/station_partners.csv   source, station_id, name, type, n_partners, own_r2, r2_with_partners,
                                       p<j>_source, p<j>_station_id, p<j>_name, p<j>_type, p<j>_km, p<j>_gain   (j = 1 .. k)
 Usage : python partner_map.py --dataset DATA/dataset_v6 [--out FILE --k 4 --max-km 150 --max-km-river 50 --min-gain 0.01 --workers 32]
@@ -71,16 +75,17 @@ def one(s):
     if ok.sum() >= a.min_n:
         r_own = r_full = r2(own[ok], y[ok])
     for _ in range(a.k):
-        best = (a.min_gain, None)
+        best = (0.0, None)
         for j in cand:
             if j in picked:
                 continue
+            need = a.min_gain_unlinked if (G["link"] is not None and G["in_net"][s] and not G["link"][s][j]) else a.min_gain
             m = ok & V[j]
             if m.sum() < a.min_n:
                 continue
             r0 = r2(base[m], y[m]); r1 = r2(np.column_stack([base[m], F[j][m]]), y[m])
             g = (r1 - r0) / max(1 - r0, 1e-9)
-            if g > best[0]:
+            if g > best[0] and g >= need:
                 best = (g, j, r1)
         if best[1] is None:
             break
@@ -93,7 +98,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--out", default=str(REPO / "config" / "station_partners.csv"))
     ap.add_argument("--k", type=int, default=4); ap.add_argument("--max-km", type=float, default=150.0); ap.add_argument("--max-km-river", type=float, default=1e9); ap.add_argument("--min-gain", type=float, default=0.01)
-    ap.add_argument("--network"); ap.add_argument("--near-km", type=float, default=0.0)
+    ap.add_argument("--network"); ap.add_argument("--near-km", type=float, default=0.0); ap.add_argument("--min-gain-unlinked", type=float, default=0.03)
     ap.add_argument("--min-n", type=int, default=2000); ap.add_argument("--stride", type=int, default=5); ap.add_argument("--workers", type=int, default=32)
     a = ap.parse_args()
     d = Path(a.dataset)
