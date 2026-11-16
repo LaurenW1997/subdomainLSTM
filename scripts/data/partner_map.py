@@ -11,6 +11,10 @@ partners themselves (they are in the training).
 --max-km-river: a candidate that is a river or creek (any type other than tide gauge, estuary / tidal channel, lake, marsh)
 is used only within this distance. Far-away creeks are related to a station only through the weather passing over both,
 and that timing does not carry over to other years (deliverables/27_partner_stations.md).
+--network FILE (config/station_river_network.csv from river_network.py): a candidate that is a river or creek is used only
+when it lies downstream or upstream of the station along the river network, or within --near-km of it (default 0 = never);
+--max-km-river then no longer applies to the river and creek stations of that table. Tide gauges, estuaries, lakes, marsh
+and stations that are not in the table keep the distance rule.
 Output: config/station_partners.csv   source, station_id, name, type, n_partners, own_r2, r2_with_partners,
                                       p<j>_source, p<j>_station_id, p<j>_name, p<j>_type, p<j>_km, p<j>_gain   (j = 1 .. k)
 Usage : python partner_map.py --dataset DATA/dataset_v6 [--out FILE --k 4 --max-km 150 --max-km-river 50 --min-gain 0.01 --workers 32]
@@ -19,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from multiprocessing import Pool
 from pathlib import Path
 
@@ -55,7 +60,10 @@ def one(s):
     ok = np.isfinite(y) & np.isfinite(own).all(1)
     d = km(G["lat"][s], G["lon"][s], G["lat"][G["cand"]], G["lon"][G["cand"]])
     lim = np.where(G["tidal"][G["cand"]], a.max_km, min(a.max_km, a.max_km_river))
-    cand = [int(j) for j in G["cand"][d <= lim] if j != s]
+    keep = d <= lim
+    if G["link"] is not None and G["in_net"][s]:      # rivers and creeks: only along the network (or very near)
+        keep = np.where(G["tidal"][G["cand"]], keep, (d <= a.max_km) & (G["link"][s][G["cand"]] | (d <= a.near_km)))
+    cand = [int(j) for j in G["cand"][keep] if j != s]
     dist = {int(j): float(dd) for j, dd in zip(G["cand"], d)}
     F = {j: feats(j, t) for j in cand}
     V = {j: np.isfinite(F[j]).all(1) for j in cand}
@@ -85,6 +93,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--out", default=str(REPO / "config" / "station_partners.csv"))
     ap.add_argument("--k", type=int, default=4); ap.add_argument("--max-km", type=float, default=150.0); ap.add_argument("--max-km-river", type=float, default=1e9); ap.add_argument("--min-gain", type=float, default=0.01)
+    ap.add_argument("--network"); ap.add_argument("--near-km", type=float, default=0.0)
     ap.add_argument("--min-n", type=int, default=2000); ap.add_argument("--stride", type=int, default=5); ap.add_argument("--workers", type=int, default=32)
     a = ap.parse_args()
     d = Path(a.dataset)
@@ -97,6 +106,20 @@ def main() -> None:
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     typ = st[["source", "station_id"]].astype(str).merge(g[["source", "station_id", "type"]], on=["source", "station_id"], how="left").type.fillna("other").to_numpy()
     G.update(x=x, t=np.arange(25, t_end - H, a.stride), a=a, lat=st.lat.to_numpy(float), lon=st.lon.to_numpy(float), cand=np.where((st.source != "CRMS").to_numpy())[0], tidal=np.isin(typ, list(TIDAL)))
+    G.update(link=None, in_net=None)
+    if a.network:
+        net = pd.read_csv(a.network, dtype=str).fillna("")
+        row = {(x, y): k for k, (x, y) in enumerate(zip(st.source.astype(str), st.station_id.astype(str)))}
+        link = np.zeros((len(st), len(st)), bool); in_net = np.zeros(len(st), bool)
+        for r in net.itertuples():
+            k = row.get((r.source, r.station_id))
+            if k is None:
+                continue
+            in_net[k] = typ[k] not in TIDAL          # the rule is for river and creek stations; the others keep the distance rule
+            for j in re.findall(r"(\S+) \(", r.down + " | " + r.up):
+                if (r.source, j) in row:
+                    link[k, row[(r.source, j)]] = link[row[(r.source, j)], k] = True
+        G.update(link=link, in_net=in_net)
     with Pool(a.workers) as pool:                       # fork: the workers share x
         res = pool.map(one, range(len(st)), chunksize=4)
     rows = []
