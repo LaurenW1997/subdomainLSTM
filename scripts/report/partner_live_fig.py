@@ -5,8 +5,8 @@ One row per station, one column per model. Black: observed hourly level. Three l
 forecast valid at each hour that was issued 1, 3 and 6 h earlier (a forecast from every hour). Grey band: 24 h around the
 observed peak. RMSE per lead over the window in every panel.
 Input : deliverables/33_partner_live_test/hourly_fc.csv (operational/extract_hourly_test.py on sv7)
-Output: deliverables/33_partner_live_test/stations_<n>.png, four stations each
-Usage : python partner_live_fig.py [--stations 07374000 8767816 ...]
+Output: deliverables/33_partner_live_test/stations_<n>.png, four stations each (--per-figure 2 --prefix stations_wide: two each, for slides)
+Usage : python partner_live_fig.py [--stations 07374000 8767816 ...] [--per-figure 2 --prefix stations_wide]
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ LEADS = (1, 3, 6)
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--stations", nargs="+", default=DEFAULT); ap.add_argument("--src", default=str(D / "hourly_fc.csv"))
-    ap.add_argument("--begin", default="2026-11-15T00"); ap.add_argument("--end", default="2026-11-17T12"); ap.add_argument("--per-figure", type=int, default=4)
+    ap.add_argument("--begin", default="2026-11-15T00"); ap.add_argument("--end", default="2026-11-17T12"); ap.add_argument("--per-figure", type=int, default=4); ap.add_argument("--prefix", default="stations", help="file name: <prefix>_<n>.png")
     a = ap.parse_args()
     d = pd.read_csv(a.src, dtype={"station_id": str}, parse_dates=["origin", "valid"])
     d = d[(d.valid >= pd.Timestamp(a.begin)) & (d.valid <= pd.Timestamp(a.end))]
@@ -62,7 +62,8 @@ def main() -> None:
                         color=INK, linespacing=1.25, bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85), zorder=6)
                 ax.xaxis.set_major_locator(mdates.DayLocator()); ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b"))
                 ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=[6, 12, 18]))
-                ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True); ax.margins(x=0.01)
+                ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True)
+                ax.set_xlim(pd.Timestamp(a.begin) - pd.Timedelta(hours=1), pd.Timestamp(a.end) + pd.Timedelta(hours=1))      # the same days in every panel
                 if i == 0:
                     ax.set_title(title, loc="left", fontsize=9.6, linespacing=1.25, fontweight="bold" if key == "run" else "normal", pad=22)
                 if j == 0:
@@ -72,7 +73,7 @@ def main() -> None:
         h = [Line2D([], [], color=INK, lw=1.15)] + [Line2D([], [], color=LEAD_COL[v], lw=1.3) for v in LEADS]
         fig.legend(h, ["observed"] + [f"forecast issued {v} h earlier" for v in LEADS], loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.005), fontsize=9.5)
         fig.subplots_adjust(left=0.065, right=0.99, top=1 - 0.75 / (2.45 * len(ids) + 0.9), bottom=0.62 / (2.45 * len(ids) + 0.9))
-        out = D / f"stations_{k // a.per_figure + 1}.png"
+        out = D / f"{a.prefix}_{k // a.per_figure + 1}.png"
         fig.savefig(out, dpi=250); plt.close(fig)
         print("->", out)
 

@@ -230,7 +230,7 @@ def main() -> None:
          f"Against the river-network round the {net['h6'] - b['h6']:.2f} cm are within the differences between seeds; what the rule changes is that it needs fewer partners "
          "(157 instead of 86 stations without partner, at no cost) and no longer depends on the registered station types."),
         "",
-        "The version that is run has not been changed: the forecast script does not build partner inputs yet.",
+        "The version that is run has not been changed.",
     ], size=11.5)
 
     # ---- 5 late partner data
@@ -302,6 +302,52 @@ def main() -> None:
         "No general rule; single stations like that one are found with the validation year.",
     ], size=11)
 
+    # ---- the forecast script with partner stations, tested on past forecast times from the live services
+    T = REPO / "deliverables" / "33_partner_live_test"
+    if (T / "verification_summary.csv").exists():
+        v = pd.read_csv(T / "verification_summary.csv")
+        g_ = lambda by, grp, model: v[(v.group_by == by) & (v.group.astype(str) == grp) & (v.model == model)].iloc[0]
+        f3 = lambda r: [f"{r.rmse_1h_cm:.2f}", f"{r.rmse_3h_cm:.2f}", f"{r.rmse_6h_cm:.2f}"]
+        A, B, AL, BL = (g_("all", "all", m) for m in ("no partners", "partners", "no partners, USGS 1 h late", "partners, USGS 1 h late"))
+        sl = new("Partner stations in the forecast script: ten past forecast times from the live data services")
+        cols = [(0.5, 5.2, L), (5.8, 0.8, R), (6.7, 0.8, R), (7.6, 0.8, R)]
+        y = table(sl, 1.0, cols, [f"RMSE (cm), {int(A.n):,} forecasts at 418 stations", "1 h", "3 h", "6 h"],
+                  [["Data complete: no partner stations  (the version that is run)"] + f3(A), ["Data complete: with partner stations"] + f3(B),
+                   ["Newest hour of every USGS gauge removed: no partner stations"] + f3(AL), ["Newest hour of every USGS gauge removed: with partner stations"] + f3(BL)], size=11.5, hl=0, step=0.31)
+        cols2 = [(9.0, 1.6, L), (10.4, 1.2, R), (11.6, 1.2, R)]
+        table(sl, 1.0, cols2, [["6 h RMSE (cm),", "data complete"], ["no partner", "stations"], ["with partner", "stations"]],
+              [[lab, f"{g_('behaviour', k, 'no partners').rmse_6h_cm:.2f}", f"{g_('behaviour', k, 'partners').rmse_6h_cm:.2f}"] for k, lab in (("tidal", "Tidal"), ("weakly tidal", "Weakly tidal"), ("no tide", "No tide"))], size=11.5, step=0.31)
+        hr = pd.read_csv(T / "hourly_rmse.csv").pivot(index="lead", columns="model", values="rmse_cm") if (T / "hourly_rmse.csv").exists() else None
+        text(sl, 0.5, y + 0.3, 12.3, 4.2, [
+            "What was done. The forecast script now builds the partner inputs from the same live readings. It was run for the forecast times 15 November 00 UTC to 17 November 06 UTC 2026, every 6 hours, with the five models of the "
+            "last row of the results slide and with the version that is run. Six hours later the observations were fetched and both were scored on the same forecasts.",
+            "",
+            f"Result: {A.rmse_6h_cm:.2f} to {B.rmse_6h_cm:.2f} cm at 6 h ({100 * (B.rmse_6h_cm / A.rmse_6h_cm - 1):+.1f}%), {A.rmse_3h_cm:.2f} to {B.rmse_3h_cm:.2f} cm at 3 h. In the test years the same comparison gives 8.42 to 8.03 cm. "
+            "The gain is again at the stations with tide.",
+            "",
+            "Data hygiene, checked item by item:",
+            "-  The period is outside everything used before: training 2010-2022, validation 2023, test 2024-2025; partners and tide classes come from the training period only.",
+            "-  Both models read the same saved water levels and discharge: no difference in any of 10,100 station rows.",
+            "-  No input later than the forecast time: newest reading 55 min after the hour at most (used up to 29 min); wind and rainfall forecasts from HRRR cycles issued at or before the forecast time.",
+            "-  The forecast script fills an old gap differently from the training arrays (it cannot reach back further than 24 h). Measured on the test years: no change (8.03 and 8.03 cm).",
+            "-  Run afterwards, the services return complete data. In real time part of the USGS readings of the newest hour have not arrived: with that hour removed at every USGS gauge the gain remains "
+            f"({AL.rmse_6h_cm:.2f} to {BL.rmse_6h_cm:.2f} cm).",
+            "",
+            "What it is not: independent evidence of accuracy. Two and a half days, one rain event at Houston (15 November 18 UTC, creeks rose by more than 1 m in 6 h; neither model forecast it). "
+            "It shows that the whole chain works on live data and that the direction agrees with the test years."
+            + (f" With a forecast from every hour instead of every 6 h (next slides): {hr.loc[6, 'run']:.2f} to {hr.loc[6, 'partners']:.2f} cm at 6 h." if hr is not None else ""),
+        ], size=11.5)
+        for n_, cap in enumerate(["Mississippi River at Baton Rouge: the two models are alike. Lake Charles: the 6 h line follows the tide more closely with partner stations (the tide gauge at Calcasieu Pass, 52 km seaward).",
+                                  "Vermilion Bay and Sims Bayou: without partner stations the 6 h forecast overshoots on 16 November; with them it stays closer to the observation.",
+                                  "Atchafalaya River at Butte La Rose: a rise forecast on 16 November that did not happen is largely gone with partner stations. Spring Creek: the rise is forecast with both.",
+                                  "Buffalo Bayou at Piney Point: the rise of more than 1 m in 6 h is late in both models - the rainfall forecast, not the partner stations. Comite River: both forecast a rise that did not come."], 1):
+            f_ = T / f"stations_wide_{n_}.png"
+            if not f_.exists():
+                continue
+            sl = new(f"The same test, a forecast from every hour: stations ({n_} of 4)")
+            yb = picture(sl, f_, 0.3, 0.9, 12.7, 5.85)
+            text(sl, 0.5, yb + 0.05, 12.3, 0.7, [cap + "  Left: the version that is run. Right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for."], size=11)
+
     # ---- 7 summary
     sl = new("After the group meeting: what was added, and what is open")
     text(sl, 0.5, 1.0, 12.3, 6.2, [
@@ -319,7 +365,7 @@ def main() -> None:
         "for station forecasts at these lead times).",
         "",
         "Open:",
-        "-  Partner-station input is not in the forecast script yet; the version that is run is unchanged, started by hand, not connected to the group's website.",
+        "-  Partner-station input is in the forecast script and was tested on past forecast times, not yet in real time. It has not replaced the version that is run, which is started by hand and not connected to the group's website.",
         "-  A partner without data for more than 3 h.",
         "-  The hurricane numbers rest on two storms.",
         "-  The rainfall forecast: a radar-based nowcast for hours 1-2, several HRRR cycles for hours 3-6.",

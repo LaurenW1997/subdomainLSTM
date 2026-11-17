@@ -75,6 +75,32 @@
 - **这两天半里有一场 Houston 的暴雨**（11 月 15 日 18 UTC 起报的那一轮）：Buffalo Bayou at Piney Point 6 小时涨了 117 cm，Brays Bayou at Houston 涨了 111 cm，两个模型都几乎没报出来（误差 −115、−126 cm），那一轮的 6 h RMSE 是 20.4 和 20.3 cm。这正是 `25_rain_split.md` 说的：城市溪流缺的是未来几小时的降雨，伙伴站帮不上。去掉这一轮，其余 9 个时刻是 5.75 → 5.35 cm（−7%）。
 - **伙伴站长时间没数据的情况在实时数据里不少。** 有伙伴的 2,669 个预报里，642 个（24%）至少有一个伙伴站超过 3 小时没有数据或完全没有返回（有些站已经停测）。这些情况测试期里同样存在，已经包含在上面的数字里。数据齐全时 91% 的伙伴位置最新一小时有数据；USGS 晚 1 小时时是 31%。
 
+## 逐小时起报的图
+
+站点图按版本对比幻灯片里的样式画：黑线是实况，三条暖色线是提前 1、3、6 小时发出的预报（每条线把各个整点的预报连起来），灰带是实况最高点前后 24 小时，每个子图里标出各提前量的 RMSE；左列是实际运行的模型，右列是伙伴站模型。这种画法需要每小时起报一次，所以另外补跑了 2026-11-14 18 UTC 到 11-17 06 UTC 每个整点的预报（61 个时刻，两个模型，输入的取法和上面相同：整段水位只取一次，每个时刻只用不晚于它的读数）。
+
+| RMSE（cm），61 个起报时刻，418 个站，每个提前量约 25,400 个预报 | 1 h | 3 h | 6 h |
+|---|---|---|---|
+| 实际运行的模型 | 2.06 | 4.85 | 7.74 |
+| 伙伴站模型 | 1.99 | 4.62 | 7.51 |
+
+模型训练时只用 00、06、12、18 UTC 起报，其余整点不在训练范围内，所以这张表只作参考，主要结果还是上面每 6 小时一次的那张。两者方向一致（6 小时 −3.0% 对 −3.2%）。
+
+图：`33_partner_live_test/stations_1.png`、`stations_2.png`（各 4 个站），幻灯片用的是每张 2 个站的 `stations_wide_1.png` 到 `stations_wide_4.png`。8 个站：
+
+| 站 | 6 h RMSE（cm），逐小时起报 | 说明 |
+|---|---|---|
+| Mississippi River at Baton Rouge | 2.2 → 2.0 | 两个模型差不多 |
+| Lake Charles | 6.6 → 4.6 | 伙伴站是 52 km 外海边的 Calcasieu Pass，6 小时线贴近实况 |
+| Vermilion Bay near Cypremort Point | 11.9 → 9.5 | 16 日那段平缓的水位，实际运行的模型报成了涨潮 |
+| Sims Bayou at Houston | 9.4 → 7.8 | |
+| Atchafalaya River at Butte La Rose | 6.0 → 3.2 | 16 日报了一次没发生的上涨，伙伴站模型里基本没有 |
+| Spring Ck nr Spring | 7.8 → 7.3 | 16 日的涨水两个模型都报出来了 |
+| Buffalo Bayou at Piney Point | 26.7 → 29.5 | 6 小时涨 1 米多，两个模型都晚；伙伴站模型更差一些 |
+| Comite River near Comite | 5.5 → 5.8 | 水位基本没动，两个模型都报了上涨 |
+
+后两个是特意放进去的：伙伴站帮不上的暴雨涨水，和伙伴站模型没有变好的站。
+
 ## 怎么看这个结果
 
 1. **伙伴站输入在实时数据接口上跑通了**，两个模型用完全相同的输入、同一批预报比较，伙伴站模型更好，幅度和测试期相符。
@@ -93,7 +119,9 @@
 |---|---|
 | `33_partner_live_test/verification_summary.csv` | 四组的 RMSE：全部、按登记的类型、按实测的类别、按起报时刻 |
 | `33_partner_live_test/verification_long.csv` | 每组、每个起报时刻、每个站的实况、预报和各提前量的误差 |
+| `33_partner_live_test/hourly_rmse.csv`、`hourly_fc.csv` | 逐小时起报：两个模型各提前量的 RMSE；14 个站每个起报时刻、每个提前量的预报和实况 |
+| `33_partner_live_test/stations_*.png` | 8 个站的图（`scripts/report/partner_live_fig.py`） |
 | sv7 `/data/ywan245/subdomainLSTM/partner_test_20261117/` | 四组的全部输出（预报、取数记录、存下来的水位和流量） |
 | sv7 `/data/ywan245/subdomainLSTM/runs/v21_behaviour_mean5/` | 5 个伙伴站模型和伙伴站表 |
-| `scripts/operational/forecast.py`、`verify_cycles.py` | 预报脚本、多个时刻多组输出的打分脚本 |
+| `scripts/operational/forecast.py`、`verify_cycles.py`、`fetch_levels_span.py`、`extract_hourly_test.py` | 预报脚本、多个时刻多组输出的打分脚本、整段水位一次取回、逐小时预报的整理 |
 | `scripts/report/eval_protocol.py --rt-fill`、`scripts/train/data.py`（`rt_fill`） | 按实时脚本的方式填缺测的检验 |
