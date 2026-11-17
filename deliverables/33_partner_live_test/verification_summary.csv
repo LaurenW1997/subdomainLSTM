@@ -1,0 +1,81 @@
+group_by,group,model,n,rmse_1h_cm,rmse_2h_cm,rmse_3h_cm,rmse_4h_cm,rmse_5h_cm,rmse_6h_cm
+all,all,no partners,4162,1.873,3.344,4.99,7.348,8.628,8.447
+all,all,partners,4162,1.79,3.067,4.606,7.012,8.332,8.179
+all,all,"no partners, USGS 1 h late",4162,2.993,4.055,5.558,7.706,8.928,8.783
+all,all,"partners, USGS 1 h late",4162,2.846,3.7,5.092,7.322,8.615,8.524
+type,estuary / tidal channel,no partners,420,2.784,4.344,5.763,7.346,8.294,9.0
+type,estuary / tidal channel,partners,420,2.76,4.034,4.974,6.468,7.734,8.753
+type,estuary / tidal channel,"no partners, USGS 1 h late",420,4.283,5.152,6.594,7.855,8.448,9.032
+type,estuary / tidal channel,"partners, USGS 1 h late",420,4.061,4.556,5.256,6.452,7.66,8.723
+type,lake,no partners,120,1.979,2.996,3.879,4.588,4.694,5.063
+type,lake,partners,120,1.87,2.662,3.285,3.804,3.871,4.291
+type,lake,"no partners, USGS 1 h late",120,2.63,3.689,4.532,5.078,5.123,5.494
+type,lake,"partners, USGS 1 h late",120,2.274,3.104,3.711,4.231,4.285,4.724
+type,marsh,no partners,10,0.118,0.16,0.249,0.286,0.279,0.344
+type,marsh,partners,10,0.106,0.151,0.234,0.28,0.25,0.315
+type,marsh,"no partners, USGS 1 h late",10,0.169,0.194,0.254,0.293,0.268,0.325
+type,marsh,"partners, USGS 1 h late",10,0.163,0.189,0.241,0.29,0.234,0.295
+type,river / canal,no partners,2393,1.349,2.416,3.45,4.263,6.072,5.518
+type,river / canal,partners,2393,1.301,2.265,3.195,3.937,5.786,5.18
+type,river / canal,"no partners, USGS 1 h late",2393,2.341,3.273,4.285,5.049,6.72,6.293
+type,river / canal,"partners, USGS 1 h late",2393,2.311,3.091,4.019,4.763,6.485,6.052
+type,tide gauge,no partners,509,2.583,4.029,4.977,5.487,5.771,6.132
+type,tide gauge,partners,509,2.514,3.69,4.389,4.858,5.189,5.696
+type,tide gauge,"no partners, USGS 1 h late",509,2.576,4.022,4.972,5.485,5.77,6.13
+type,tide gauge,"partners, USGS 1 h late",509,2.497,3.666,4.4,4.906,5.236,5.75
+type,urban creek (Houston),no partners,710,2.095,4.644,8.118,14.077,15.617,15.376
+type,urban creek (Houston),partners,710,1.856,4.157,7.725,13.852,15.393,15.165
+type,urban creek (Houston),"no partners, USGS 1 h late",710,4.153,5.542,8.5,14.134,15.637,15.441
+type,urban creek (Houston),"partners, USGS 1 h late",710,3.791,4.949,8.065,13.89,15.356,15.165
+behaviour,no tide,no partners,2433,1.469,2.982,4.942,8.155,9.835,9.342
+behaviour,no tide,partners,2433,1.363,2.75,4.744,8.022,9.696,9.193
+behaviour,no tide,"no partners, USGS 1 h late",2433,2.762,3.737,5.493,8.481,10.142,9.73
+behaviour,no tide,"partners, USGS 1 h late",2433,2.749,3.586,5.353,8.392,10.033,9.622
+behaviour,tidal,no partners,1439,2.466,3.968,5.185,6.123,6.67,7.048
+behaviour,tidal,partners,1439,2.384,3.581,4.411,5.218,5.881,6.425
+behaviour,tidal,"no partners, USGS 1 h late",1439,3.455,4.623,5.726,6.457,6.844,7.174
+behaviour,tidal,"partners, USGS 1 h late",1439,3.147,3.995,4.717,5.407,6.03,6.587
+behaviour,weakly tidal,no partners,290,1.434,2.793,4.361,5.548,6.023,6.735
+behaviour,weakly tidal,partners,290,1.476,2.822,4.37,5.534,6.012,6.791
+behaviour,weakly tidal,"no partners, USGS 1 h late",290,2.299,3.582,5.237,6.48,6.963,7.583
+behaviour,weakly tidal,"partners, USGS 1 h late",290,1.929,3.07,4.627,5.79,6.336,7.125
+cycle_utc,2026-11-15 00:00:00,no partners,417,1.078,1.692,2.039,2.342,2.938,3.213
+cycle_utc,2026-11-15 00:00:00,partners,417,0.969,1.547,1.887,2.188,2.735,2.999
+cycle_utc,2026-11-15 00:00:00,"no partners, USGS 1 h late",417,2.143,2.861,3.279,3.64,4.093,4.272
+cycle_utc,2026-11-15 00:00:00,"partners, USGS 1 h late",417,1.77,2.439,2.905,3.322,3.862,4.111
+cycle_utc,2026-11-15 06:00:00,no partners,416,1.243,2.044,3.175,4.06,4.917,6.064
+cycle_utc,2026-11-15 06:00:00,partners,416,1.254,1.952,3.027,3.873,4.82,6.072
+cycle_utc,2026-11-15 06:00:00,"no partners, USGS 1 h late",416,1.646,2.346,3.478,4.339,5.105,6.256
+cycle_utc,2026-11-15 06:00:00,"partners, USGS 1 h late",416,1.611,2.171,3.166,3.937,4.816,6.034
+cycle_utc,2026-11-15 12:00:00,no partners,417,2.359,4.444,5.918,6.84,6.225,6.127
+cycle_utc,2026-11-15 12:00:00,partners,417,2.094,3.92,5.302,6.301,5.927,6.229
+cycle_utc,2026-11-15 12:00:00,"no partners, USGS 1 h late",417,3.109,4.941,6.436,7.279,6.662,6.582
+cycle_utc,2026-11-15 12:00:00,"partners, USGS 1 h late",417,2.691,4.145,5.475,6.444,6.223,6.703
+cycle_utc,2026-11-15 18:00:00,no partners,417,1.781,3.915,8.837,17.495,20.39,20.374
+cycle_utc,2026-11-15 18:00:00,partners,417,1.507,3.553,8.713,17.459,20.268,20.253
+cycle_utc,2026-11-15 18:00:00,"no partners, USGS 1 h late",417,2.86,3.997,8.736,17.237,20.074,20.137
+cycle_utc,2026-11-15 18:00:00,"partners, USGS 1 h late",417,3.003,3.82,8.728,17.266,19.983,20.045
+cycle_utc,2026-11-16 00:00:00,no partners,416,3.05,5.293,6.99,8.174,8.681,9.446
+cycle_utc,2026-11-16 00:00:00,partners,416,3.058,5.139,6.436,7.405,7.874,8.638
+cycle_utc,2026-11-16 00:00:00,"no partners, USGS 1 h late",416,5.518,6.956,8.726,9.822,10.284,10.922
+cycle_utc,2026-11-16 00:00:00,"partners, USGS 1 h late",416,5.406,6.698,7.989,8.929,9.45,10.203
+cycle_utc,2026-11-16 06:00:00,no partners,417,2.021,3.874,5.475,6.356,6.392,6.972
+cycle_utc,2026-11-16 06:00:00,partners,417,2.023,3.386,4.465,5.264,5.418,6.093
+cycle_utc,2026-11-16 06:00:00,"no partners, USGS 1 h late",417,3.187,4.596,5.952,6.739,6.959,7.586
+cycle_utc,2026-11-16 06:00:00,"partners, USGS 1 h late",417,3.002,4.034,4.995,5.836,6.219,6.927
+cycle_utc,2026-11-16 12:00:00,no partners,416,1.721,2.849,3.787,4.056,4.194,4.54
+cycle_utc,2026-11-16 12:00:00,partners,416,1.633,2.664,3.63,3.916,4.066,4.356
+cycle_utc,2026-11-16 12:00:00,"no partners, USGS 1 h late",416,2.816,3.557,4.229,4.365,4.544,4.991
+cycle_utc,2026-11-16 12:00:00,"partners, USGS 1 h late",416,2.622,3.354,4.089,4.252,4.384,4.703
+cycle_utc,2026-11-16 18:00:00,no partners,417,1.692,2.587,3.17,3.735,4.143,4.508
+cycle_utc,2026-11-16 18:00:00,partners,417,1.626,2.353,2.826,3.306,3.729,4.251
+cycle_utc,2026-11-16 18:00:00,"no partners, USGS 1 h late",417,2.55,3.312,3.738,4.089,4.438,4.829
+cycle_utc,2026-11-16 18:00:00,"partners, USGS 1 h late",417,2.256,2.914,3.305,3.672,4.071,4.606
+cycle_utc,2026-11-17 00:00:00,no partners,416,1.734,2.621,3.107,3.601,4.129,4.302
+cycle_utc,2026-11-17 00:00:00,partners,416,1.699,2.459,2.802,3.236,3.735,4.003
+cycle_utc,2026-11-17 00:00:00,"no partners, USGS 1 h late",416,2.312,2.984,3.434,3.883,4.384,4.576
+cycle_utc,2026-11-17 00:00:00,"partners, USGS 1 h late",416,2.174,2.607,2.972,3.44,3.974,4.28
+cycle_utc,2026-11-17 06:00:00,no partners,413,1.179,2.227,2.926,3.719,9.429,3.964
+cycle_utc,2026-11-17 06:00:00,partners,413,1.1,1.816,2.196,2.732,9.037,2.902
+cycle_utc,2026-11-17 06:00:00,"no partners, USGS 1 h late",413,2.004,2.88,3.589,4.284,9.639,4.29
+cycle_utc,2026-11-17 06:00:00,"partners, USGS 1 h late",413,2.019,2.6,3.051,3.493,9.282,3.459

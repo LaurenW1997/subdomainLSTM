@@ -14,6 +14,8 @@ python forecast.py --model /data/ywan245/subdomainLSTM/runs/v6_wind_q --out /dat
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v15r_mean5 --out /data/ywan245/subdomainLSTM/operational_mean5
 # 同样的设置，单个模型（种子 0；2026-11-12 到 11-13 运行的是这一个）
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v14_stale25 --out /data/ywan245/subdomainLSTM/operational_rain
+# 伙伴站输入的模型（按实测有没有潮和上游方向选伙伴站，5 个种子取平均；测试用，没有替换实际运行的模型）
+python forecast.py --model /data/ywan245/subdomainLSTM/runs/v21_behaviour_mean5 --out <自己名下的新目录>
 # 只用水位的模型
 python forecast.py --model /data/ywan245/subdomainLSTM/runs/v2_e40 --out /data/ywan245/subdomainLSTM/operational_v2
 # 指定起报时刻（UTC 整点）
@@ -22,6 +24,12 @@ python forecast.py --model ... --cycle 2026-11-08T17
 
 脚本从 `best.pt` 里的训练参数自动判断要不要风、未来风、流量、降雨、缺测填充方式、是否按 6 小时变化量缩放，不用再传开关。
 模型用了脚本不支持的训练开关（7 天 / 30 天摘要、上下游参考水位站、站点子集、未来 6 小时用实测雨）时，脚本直接报错停下，不会悄悄喂错输入。
+
+## 伙伴站输入
+
+模型用 `--partners` 训练时，脚本从同一批实时水位里取每个站的伙伴站（模型目录里的 `station_partners.csv`，没有就用 `config/` 下训练时用的那张表），按训练代码的方式做成输入：伙伴站的水位、相对它最新一小时的变化、有没有数据。伙伴站没有返回数据或最新几小时没到，就标记为没有数据，和训练时一样。`forecast.csv` 多三列：`n_partners`、`n_partners_reporting`（最新一小时有数据的伙伴站个数）、`partner_max_age_h`（最久没报数的伙伴站已经多少小时没有数据）。
+
+两个只用于测试的选项：`--inputs-from DIR` 让这次运行直接读另一次运行存下来的水位和流量（每次运行都会存 `levels.pkl`、`discharge.npz`），两个模型因此读到完全相同的数据；`--usgs-late H` 把所有 USGS 站最新 H 小时去掉，当作还没有到。多个起报时刻、多组输出一起打分用 `verify_cycles.py`。测试的做法和结果见 `deliverables/33_partner_live_test.md`。
 
 ## 模型目录要有的文件
 
