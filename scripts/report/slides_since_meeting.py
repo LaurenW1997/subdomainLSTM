@@ -151,6 +151,20 @@ def main() -> None:
             "of 11 November; at Runge the river had been rising for hours.",
         ], size=12)
 
+    # ---- how the delay between two gauges is used: it is not given, and nothing after the forecast time is read
+    sl = new("Only data up to the forecast time are used: what the partner has already done, the station does next")
+    yb = 0.95
+    if (T / "example_tide.png").exists():
+        yb = picture(sl, T / "example_tide.png", 0.9, 0.9, 11.5, 3.35) + 0.15
+    text(sl, 0.5, yb, 12.3, 3.3, [
+        "Observed water level at the two gauges of the tide example, 15 to 17 November. Lake Charles follows Calcasieu Pass about 5 h later (dashed: the line of the pass moved 4.8 h later).",
+        "",
+        "-  The model reads the past 72 h of both gauges up to the forecast time. No reading from after the forecast time.",
+        "-  Because the pass leads by about 5 h, its level now is roughly the level at Lake Charles 5 h from now: the next hours have already been measured, at another place.",
+        "-  The delay is not given to the model and no line is shifted. The LSTM learns it from the training years 2010-2022, for every link, and it may change with wind and river flow.",
+        "-  What follows: a partner that reports late shortens the lead. Two hours late leaves about 3 h of it; 6 h late leaves none, and the forecast is then worse than without partners (slide on late data).",
+    ], size=13)
+
     # ---- 5 the rules
     sl = new("How the partners of a station are chosen")
     text(sl, 0.5, 1.05, 12.3, 6.0, [
