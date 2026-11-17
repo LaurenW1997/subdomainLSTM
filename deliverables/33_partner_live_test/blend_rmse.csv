@@ -1,0 +1,361 @@
+model,subset,method,lead,n,rmse_cm
+run,all forecast times,new,1,24580,2.071
+run,all forecast times,mean2,1,24580,2.587
+run,all forecast times,anchor2,1,24580,2.188
+run,all forecast times,mean3,1,24580,3.119
+run,all forecast times,anchor3,1,24580,2.331
+run,all forecast times,change2,1,24580,2.292
+run,all forecast times,change3,1,24580,2.554
+run,forecast times 00 06 12 18 UTC,new,1,4166,1.872
+run,forecast times 00 06 12 18 UTC,mean2,1,4166,2.247
+run,forecast times 00 06 12 18 UTC,anchor2,1,4166,1.869
+run,forecast times 00 06 12 18 UTC,mean3,1,4166,2.651
+run,forecast times 00 06 12 18 UTC,anchor3,1,4166,1.914
+run,forecast times 00 06 12 18 UTC,change2,1,4166,1.911
+run,forecast times 00 06 12 18 UTC,change3,1,4166,2.077
+run,tidal,new,1,8496,2.405
+run,tidal,mean2,1,8496,2.99
+run,tidal,anchor2,1,8496,2.452
+run,tidal,mean3,1,8496,3.446
+run,tidal,anchor3,1,8496,2.489
+run,tidal,change2,1,8496,2.518
+run,tidal,change3,1,8496,2.679
+run,weakly tidal,new,1,1711,1.624
+run,weakly tidal,mean2,1,1711,2.029
+run,weakly tidal,anchor2,1,1711,1.657
+run,weakly tidal,mean3,1,1711,2.454
+run,weakly tidal,anchor3,1,1711,1.718
+run,weakly tidal,change2,1,1711,1.679
+run,weakly tidal,change3,1,1711,1.797
+run,no tide,new,1,14373,1.897
+run,no tide,mean2,1,14373,2.381
+run,no tide,anchor2,1,14373,2.076
+run,no tide,mean3,1,14373,2.983
+run,no tide,anchor3,1,14373,2.297
+run,no tide,change2,1,14373,2.213
+run,no tide,change3,1,14373,2.555
+run,all forecast times,new,2,24575,3.602
+run,all forecast times,mean2,2,24575,3.998
+run,all forecast times,anchor2,2,24575,3.824
+run,all forecast times,mean3,2,24575,4.427
+run,all forecast times,anchor3,2,24575,4.032
+run,all forecast times,change2,2,24575,3.992
+run,all forecast times,change3,2,24575,4.397
+run,forecast times 00 06 12 18 UTC,new,2,4167,3.342
+run,forecast times 00 06 12 18 UTC,mean2,2,4167,3.508
+run,forecast times 00 06 12 18 UTC,anchor2,2,4167,3.352
+run,forecast times 00 06 12 18 UTC,mean3,2,4167,3.793
+run,forecast times 00 06 12 18 UTC,anchor3,2,4167,3.398
+run,forecast times 00 06 12 18 UTC,change2,2,4167,3.429
+run,forecast times 00 06 12 18 UTC,change3,2,4167,3.599
+run,tidal,new,2,8496,3.999
+run,tidal,mean2,2,8496,4.32
+run,tidal,anchor2,2,8496,4.053
+run,tidal,mean3,2,8496,4.62
+run,tidal,anchor3,2,8496,4.101
+run,tidal,change2,2,8496,4.188
+run,tidal,change3,2,8496,4.484
+run,weakly tidal,new,2,1711,2.887
+run,weakly tidal,mean2,2,1711,3.18
+run,weakly tidal,anchor2,2,1711,2.982
+run,weakly tidal,mean3,2,1711,3.526
+run,weakly tidal,anchor3,2,1711,3.072
+run,weakly tidal,change2,2,1711,3.039
+run,weakly tidal,change3,2,1711,3.223
+run,no tide,new,2,14368,3.427
+run,no tide,mean2,2,14368,3.885
+run,no tide,anchor2,2,14368,3.774
+run,no tide,mean3,2,14368,4.407
+run,no tide,anchor3,2,14368,4.091
+run,no tide,change2,2,14368,3.974
+run,no tide,change3,2,14368,4.466
+run,all forecast times,new,3,24570,4.91
+run,all forecast times,mean2,3,24570,5.228
+run,all forecast times,anchor2,3,24570,5.118
+run,all forecast times,mean3,3,24570,5.567
+run,all forecast times,anchor3,3,24570,5.308
+run,all forecast times,change2,3,24570,5.328
+run,all forecast times,change3,3,24570,5.784
+run,forecast times 00 06 12 18 UTC,new,3,4165,4.988
+run,forecast times 00 06 12 18 UTC,mean2,3,4165,5.123
+run,forecast times 00 06 12 18 UTC,anchor2,3,4165,5.018
+run,forecast times 00 06 12 18 UTC,mean3,3,4165,5.313
+run,forecast times 00 06 12 18 UTC,anchor3,3,4165,5.029
+run,forecast times 00 06 12 18 UTC,change2,3,4165,5.173
+run,forecast times 00 06 12 18 UTC,change3,3,4165,5.386
+run,tidal,new,3,8496,5.076
+run,tidal,mean2,3,8496,5.303
+run,tidal,anchor2,3,8496,5.113
+run,tidal,mean3,3,8496,5.539
+run,tidal,anchor3,3,8496,5.157
+run,tidal,change2,3,8496,5.332
+run,tidal,change3,3,8496,5.774
+run,weakly tidal,new,3,1711,4.01
+run,weakly tidal,mean2,3,1711,4.244
+run,weakly tidal,anchor2,3,1711,4.106
+run,weakly tidal,mean3,3,1711,4.523
+run,weakly tidal,anchor3,3,1711,4.194
+run,weakly tidal,change2,3,1711,4.192
+run,weakly tidal,change3,3,1711,4.404
+run,no tide,new,3,14363,4.908
+run,no tide,mean2,3,14363,5.289
+run,no tide,anchor2,3,14363,5.228
+run,no tide,mean3,3,14363,5.695
+run,no tide,anchor3,3,14363,5.511
+run,no tide,change2,3,14363,5.446
+run,no tide,change3,3,14363,5.932
+run,all forecast times,new,4,24566,6.047
+run,all forecast times,mean2,4,24566,6.283
+run,all forecast times,anchor2,4,24566,6.187
+run,all forecast times,mean3,4,24566,6.538
+run,all forecast times,anchor3,4,24566,6.342
+run,all forecast times,change2,4,24566,6.409
+run,all forecast times,change3,4,24566,6.889
+run,forecast times 00 06 12 18 UTC,new,4,4164,7.346
+run,forecast times 00 06 12 18 UTC,mean2,4,4164,7.397
+run,forecast times 00 06 12 18 UTC,anchor2,4,4164,7.361
+run,forecast times 00 06 12 18 UTC,mean3,4,4164,7.415
+run,forecast times 00 06 12 18 UTC,anchor3,4,4164,7.321
+run,forecast times 00 06 12 18 UTC,change2,4,4164,7.579
+run,forecast times 00 06 12 18 UTC,change3,4,4164,7.804
+run,tidal,new,4,8496,5.92
+run,tidal,mean2,4,8496,6.108
+run,tidal,anchor2,4,8496,5.939
+run,tidal,mean3,4,8496,6.273
+run,tidal,anchor3,4,8496,5.973
+run,tidal,change2,4,8496,6.232
+run,tidal,change3,4,8496,6.81
+run,weakly tidal,new,4,1711,5.021
+run,weakly tidal,mean2,4,1711,5.202
+run,weakly tidal,anchor2,4,1711,5.106
+run,weakly tidal,mean3,4,1711,5.411
+run,weakly tidal,anchor3,4,1711,5.172
+run,weakly tidal,change2,4,1711,5.208
+run,weakly tidal,change3,4,1711,5.415
+run,no tide,new,4,14359,6.231
+run,no tide,mean2,4,14359,6.499
+run,no tide,anchor2,4,14359,6.443
+run,no tide,mean3,4,14359,6.809
+run,no tide,anchor3,4,14359,6.673
+run,no tide,change2,4,14359,6.638
+run,no tide,change3,4,14359,7.09
+run,all forecast times,new,5,24561,7.083
+run,all forecast times,mean2,5,24561,7.241
+run,all forecast times,anchor2,5,24561,7.179
+run,all forecast times,change2,5,24561,7.405
+run,all forecast times,change3,5,24561,7.916
+run,forecast times 00 06 12 18 UTC,new,5,4163,8.627
+run,forecast times 00 06 12 18 UTC,mean2,5,4163,8.685
+run,forecast times 00 06 12 18 UTC,anchor2,5,4163,8.674
+run,forecast times 00 06 12 18 UTC,change2,5,4163,8.92
+run,forecast times 00 06 12 18 UTC,change3,5,4163,9.192
+run,tidal,new,5,8495,6.626
+run,tidal,mean2,5,8495,6.738
+run,tidal,anchor2,5,8495,6.629
+run,tidal,change2,5,8495,6.979
+run,tidal,change3,5,8495,7.665
+run,weakly tidal,new,5,1711,5.899
+run,weakly tidal,mean2,5,1711,6.023
+run,weakly tidal,anchor2,5,1711,5.952
+run,weakly tidal,change2,5,1711,6.064
+run,weakly tidal,change3,5,1711,6.275
+run,no tide,new,5,14355,7.464
+run,no tide,mean2,5,14355,7.65
+run,no tide,anchor2,5,14355,7.613
+run,no tide,change2,5,14355,7.785
+run,no tide,change3,5,14355,8.231
+run,all forecast times,new,6,24557,7.853
+run,all forecast times,change2,6,24557,8.178
+run,all forecast times,change3,6,24557,8.728
+run,forecast times 00 06 12 18 UTC,new,6,4164,8.445
+run,forecast times 00 06 12 18 UTC,change2,6,4164,8.854
+run,forecast times 00 06 12 18 UTC,change3,6,4164,9.215
+run,tidal,new,6,8494,7.141
+run,tidal,change2,6,8494,7.515
+run,tidal,change3,6,8494,8.308
+run,weakly tidal,new,6,1711,6.624
+run,weakly tidal,change2,6,1711,6.796
+run,weakly tidal,change3,6,1711,7.019
+run,no tide,new,6,14352,8.374
+run,no tide,change2,6,14352,8.689
+run,no tide,change3,6,14352,9.144
+partners,all forecast times,new,1,24580,2.0
+partners,all forecast times,mean2,1,24580,2.48
+partners,all forecast times,anchor2,1,24580,2.111
+partners,all forecast times,mean3,1,24580,2.978
+partners,all forecast times,anchor3,1,24580,2.261
+partners,all forecast times,change2,1,24580,2.255
+partners,all forecast times,change3,1,24580,2.536
+partners,forecast times 00 06 12 18 UTC,new,1,4166,1.789
+partners,forecast times 00 06 12 18 UTC,mean2,1,4166,2.135
+partners,forecast times 00 06 12 18 UTC,anchor2,1,4166,1.776
+partners,forecast times 00 06 12 18 UTC,mean3,1,4166,2.503
+partners,forecast times 00 06 12 18 UTC,anchor3,1,4166,1.835
+partners,forecast times 00 06 12 18 UTC,change2,1,4166,1.842
+partners,forecast times 00 06 12 18 UTC,change3,1,4166,2.064
+partners,tidal,new,1,8496,2.301
+partners,tidal,mean2,1,8496,2.796
+partners,tidal,anchor2,1,8496,2.319
+partners,tidal,mean3,1,8496,3.168
+partners,tidal,anchor3,1,8496,2.364
+partners,tidal,change2,1,8496,2.392
+partners,tidal,change3,1,8496,2.57
+partners,weakly tidal,new,1,1711,1.63
+partners,weakly tidal,mean2,1,1711,2.023
+partners,weakly tidal,anchor2,1,1711,1.64
+partners,weakly tidal,mean3,1,1711,2.433
+partners,weakly tidal,anchor3,1,1711,1.7
+partners,weakly tidal,change2,1,1711,1.693
+partners,weakly tidal,change3,1,1711,1.818
+partners,no tide,new,1,14373,1.842
+partners,no tide,mean2,1,14373,2.327
+partners,no tide,anchor2,1,14373,2.03
+partners,no tide,mean3,1,14373,2.92
+partners,no tide,anchor3,1,14373,2.257
+partners,no tide,change2,1,14373,2.229
+partners,no tide,change3,1,14373,2.588
+partners,all forecast times,new,2,24575,3.446
+partners,all forecast times,mean2,2,24575,3.819
+partners,all forecast times,anchor2,2,24575,3.679
+partners,all forecast times,mean3,2,24575,4.224
+partners,all forecast times,anchor3,2,24575,3.907
+partners,all forecast times,change2,2,24575,3.906
+partners,all forecast times,change3,2,24575,4.345
+partners,forecast times 00 06 12 18 UTC,new,2,4167,3.066
+partners,forecast times 00 06 12 18 UTC,mean2,2,4167,3.208
+partners,forecast times 00 06 12 18 UTC,anchor2,2,4167,3.103
+partners,forecast times 00 06 12 18 UTC,mean3,2,4167,3.465
+partners,forecast times 00 06 12 18 UTC,anchor3,2,4167,3.182
+partners,forecast times 00 06 12 18 UTC,change2,2,4167,3.198
+partners,forecast times 00 06 12 18 UTC,change3,2,4167,3.447
+partners,tidal,new,2,8496,3.635
+partners,tidal,mean2,2,8496,3.888
+partners,tidal,anchor2,2,8496,3.707
+partners,tidal,mean3,2,8496,4.142
+partners,tidal,anchor3,2,8496,3.807
+partners,tidal,change2,2,8496,3.85
+partners,tidal,change3,2,8496,4.206
+partners,weakly tidal,new,2,1711,2.804
+partners,weakly tidal,mean2,2,1711,3.116
+partners,weakly tidal,anchor2,2,1711,2.914
+partners,weakly tidal,mean3,2,1711,3.443
+partners,weakly tidal,anchor3,2,1711,3.011
+partners,weakly tidal,change2,2,1711,3.028
+partners,weakly tidal,change3,2,1711,3.252
+partners,no tide,new,2,14368,3.401
+partners,no tide,mean2,2,14368,3.854
+partners,no tide,anchor2,2,14368,3.743
+partners,no tide,mean3,2,14368,4.354
+partners,no tide,anchor3,2,14368,4.057
+partners,no tide,change2,2,14368,4.029
+partners,no tide,change3,2,14368,4.536
+partners,all forecast times,new,3,24570,4.685
+partners,all forecast times,mean2,3,24570,4.993
+partners,all forecast times,anchor2,3,24570,4.918
+partners,all forecast times,mean3,3,24570,5.314
+partners,all forecast times,anchor3,3,24570,5.136
+partners,all forecast times,change2,3,24570,5.191
+partners,all forecast times,change3,3,24570,5.692
+partners,forecast times 00 06 12 18 UTC,new,3,4165,4.604
+partners,forecast times 00 06 12 18 UTC,mean2,3,4165,4.736
+partners,forecast times 00 06 12 18 UTC,anchor2,3,4165,4.689
+partners,forecast times 00 06 12 18 UTC,mean3,3,4165,4.883
+partners,forecast times 00 06 12 18 UTC,anchor3,3,4165,4.722
+partners,forecast times 00 06 12 18 UTC,change2,3,4165,4.855
+partners,forecast times 00 06 12 18 UTC,change3,3,4165,5.133
+partners,tidal,new,3,8496,4.478
+partners,tidal,mean2,3,8496,4.682
+partners,tidal,anchor2,3,8496,4.589
+partners,tidal,mean3,3,8496,4.914
+partners,tidal,anchor3,3,8496,4.725
+partners,tidal,change2,3,8496,4.805
+partners,tidal,change3,3,8496,5.342
+partners,weakly tidal,new,3,1711,3.87
+partners,weakly tidal,mean2,3,1711,4.12
+partners,weakly tidal,anchor2,3,1711,3.992
+partners,weakly tidal,mean3,3,1711,4.376
+partners,weakly tidal,anchor3,3,1711,4.086
+partners,weakly tidal,change2,3,1711,4.164
+partners,weakly tidal,change3,3,1711,4.444
+partners,no tide,new,3,14363,4.888
+partners,no tide,mean2,3,14363,5.259
+partners,no tide,anchor2,3,14363,5.198
+partners,no tide,mean3,3,14363,5.634
+partners,no tide,anchor3,3,14363,5.471
+partners,no tide,change2,3,14363,5.511
+partners,no tide,change3,3,14363,6.016
+partners,all forecast times,new,4,24566,5.785
+partners,all forecast times,mean2,4,24566,6.018
+partners,all forecast times,anchor2,4,24566,5.957
+partners,all forecast times,mean3,4,24566,6.273
+partners,all forecast times,anchor3,4,24566,6.154
+partners,all forecast times,change2,4,24566,6.236
+partners,all forecast times,change3,4,24566,6.772
+partners,forecast times 00 06 12 18 UTC,new,4,4164,7.011
+partners,forecast times 00 06 12 18 UTC,mean2,4,4164,7.091
+partners,forecast times 00 06 12 18 UTC,anchor2,4,4164,7.087
+partners,forecast times 00 06 12 18 UTC,mean3,4,4164,7.095
+partners,forecast times 00 06 12 18 UTC,anchor3,4,4164,7.07
+partners,forecast times 00 06 12 18 UTC,change2,4,4164,7.324
+partners,forecast times 00 06 12 18 UTC,change3,4,4164,7.605
+partners,tidal,new,4,8496,5.183
+partners,tidal,mean2,4,8496,5.387
+partners,tidal,anchor2,4,8496,5.314
+partners,tidal,mean3,4,8496,5.594
+partners,tidal,anchor3,4,8496,5.477
+partners,tidal,change2,4,8496,5.573
+partners,tidal,change3,4,8496,6.268
+partners,weakly tidal,new,4,1711,4.821
+partners,weakly tidal,mean2,4,1711,5.018
+partners,weakly tidal,anchor2,4,1711,4.938
+partners,weakly tidal,mean3,4,1711,5.225
+partners,weakly tidal,anchor3,4,1711,5.027
+partners,weakly tidal,change2,4,1711,5.145
+partners,weakly tidal,change3,4,1711,5.455
+partners,no tide,new,4,14359,6.213
+partners,no tide,mean2,4,14359,6.464
+partners,no tide,anchor2,4,14359,6.41
+partners,no tide,mean3,4,14359,6.75
+partners,no tide,anchor3,4,14359,6.636
+partners,no tide,change2,4,14359,6.708
+partners,no tide,change3,4,14359,7.189
+partners,all forecast times,new,5,24561,6.806
+partners,all forecast times,mean2,5,24561,6.988
+partners,all forecast times,anchor2,5,24561,6.954
+partners,all forecast times,change2,5,24561,7.222
+partners,all forecast times,change3,5,24561,7.795
+partners,forecast times 00 06 12 18 UTC,new,5,4163,8.331
+partners,forecast times 00 06 12 18 UTC,mean2,5,4163,8.447
+partners,forecast times 00 06 12 18 UTC,anchor2,5,4163,8.458
+partners,forecast times 00 06 12 18 UTC,change2,5,4163,8.712
+partners,forecast times 00 06 12 18 UTC,change3,5,4163,9.038
+partners,tidal,new,5,8495,5.848
+partners,tidal,mean2,5,8495,6.025
+partners,tidal,anchor2,5,8495,6.001
+partners,tidal,change2,5,8495,6.279
+partners,tidal,change3,5,8495,7.083
+partners,weakly tidal,new,5,1711,5.645
+partners,weakly tidal,mean2,5,1711,5.814
+partners,weakly tidal,anchor2,5,1711,5.758
+partners,weakly tidal,change2,5,1711,5.978
+partners,weakly tidal,change3,5,1711,6.319
+partners,no tide,new,5,14355,7.431
+partners,no tide,mean2,5,14355,7.619
+partners,no tide,anchor2,5,14355,7.582
+partners,no tide,change2,5,14355,7.852
+partners,no tide,change3,5,14355,8.337
+partners,all forecast times,new,6,24557,7.617
+partners,all forecast times,change2,6,24557,8.033
+partners,all forecast times,change3,6,24557,8.631
+partners,forecast times 00 06 12 18 UTC,new,6,4164,8.177
+partners,forecast times 00 06 12 18 UTC,change2,6,4164,8.674
+partners,forecast times 00 06 12 18 UTC,change3,6,4164,9.083
+partners,tidal,new,6,8494,6.438
+partners,tidal,change2,6,8494,6.876
+partners,tidal,change3,6,8494,7.754
+partners,weakly tidal,new,6,1711,6.386
+partners,weakly tidal,change2,6,1711,6.739
+partners,weakly tidal,change3,6,1711,7.103
+partners,no tide,new,6,14352,8.36
+partners,no tide,change2,6,14352,8.776
+partners,no tide,change3,6,14352,9.267
