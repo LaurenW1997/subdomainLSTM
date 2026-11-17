@@ -174,7 +174,7 @@ def main() -> None:
         f"{n_st} stations, about 1.25 million forecasts, the same forecasts in every row. Last column: stations where all five single models are worse than all five of the version that is run.",
         "",
         f"-  Last row against the version that is run: {100 * (par['h6'] / run['h6'] - 1):+.1f}% at 6 h, hurricanes {run['storm']:.1f} to {par['storm']:.1f} cm; {pag['better']} stations better and {pag['worse']} worse by more than 0.5 cm.",
-        f"-  Who gains: stations that feel the tide, about 10% (tide gauges {run['tide gauge']:.2f} to {par['tide gauge']:.2f} cm), and river stations with a gauge upstream.",
+        f"-  Who gains: tidally influenced stations, about 10% (tide gauges {run['tide gauge']:.2f} to {par['tide gauge']:.2f} cm), and river stations with a gauge upstream.",
         f"-  Urban creeks gain little ({run[uc]:.2f} to {par[uc]:.2f} cm): neighbouring creeks rise together, none earlier. They lack the rainfall of the next hours.",
         "-  Choosing partners by distance alone made 24 stations clearly worse: creeks far apart are related only through the weather passing over both.",
     ], size=BODY)

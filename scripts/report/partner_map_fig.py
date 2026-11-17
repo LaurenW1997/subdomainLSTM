@@ -13,7 +13,7 @@ Input : --map (config/station_partners_behaviour.csv), runs/v6_wind_q/stations.c
 Output: --out (deliverables/31_partner_map.png)
 Usage : python partner_map_fig.py [--map config/station_partners_behaviour.csv --out deliverables/31_partner_map.png --layout tall|wide|talk]
 --layout talk: one map for presenting. Only the links along the river network from upstream are drawn (arrows); the stations
-that feel the tide (tidal and weakly tidal together) are dots without their links; two examples are drawn thick and named.
+with tide (tidal and weakly tidal together) are dots without their links; two examples are drawn thick and named.
 """
 from __future__ import annotations
 
@@ -97,7 +97,7 @@ def talk(st: pd.DataFrame, links: dict, pos: dict, out: Path) -> None:
          Line2D([], [], marker="o", ls="", markerfacecolor="white", markeredgecolor=INK, markersize=8)]
     lab = [f"No tide  ({n(~tide)} stations): partners only from upstream on its own river",
            f"From the partner upstream to the station  ({len(links['up'])} links)",
-           f"Feels the tide  ({n(tide)} stations): partners are tidal stations along the coast\nand the stations on its own river  (these links are not drawn)",
+           f"Tidally influenced  ({n(tide)} stations): partners are tidal stations along the coast\nand the stations on its own river  (these links are not drawn)",
            f"Hollow: no partner  ({n(~has)} stations, {n(~has & ~tide)} of them without tide), forecast as before"]
     ax.legend(h, lab, loc="lower right", bbox_to_anchor=(0.995, 0.012), frameon=True, framealpha=0.94, edgecolor="none", fontsize=12, handletextpad=0.5, labelspacing=0.7, borderpad=0.6)
     fig.savefig(out, dpi=220); plt.close(fig)

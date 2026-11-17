@@ -220,7 +220,7 @@ def main() -> None:
         "",
         f"With partners chosen by river network: {run['h6']:.2f} to {net['h6']:.2f} cm at 6 h ({100 * (net['h6'] / run['h6'] - 1):+.1f}%), hurricanes {run['storm']:.1f} to {net['storm']:.1f} cm, "
         f"lag {run['lag']:.2f} to {net['lag']:.2f} h. All outside the differences between seeds.",
-        f"Who gains: stations that feel the tide, about 10% (tide gauges {run['tide gauge']:.2f} to {net['tide gauge']:.2f} cm, estuaries {run['estuary / tidal channel']:.2f} to {net['estuary / tidal channel']:.2f} cm), "
+        f"Who gains: tidally influenced stations, about 10% (tide gauges {run['tide gauge']:.2f} to {net['tide gauge']:.2f} cm, estuaries {run['estuary / tidal channel']:.2f} to {net['estuary / tidal channel']:.2f} cm), "
         "and river stations with a gauge upstream on the same river.",
         "What did not work: choosing partners by correlation and distance alone. Creeks 60-150 km apart are related only through the weather that passes over both; that timing does not hold in other years, "
         "and 24 stations became clearly worse. Each tightening of the rule (50 km, then the river network) removed part of them.",
