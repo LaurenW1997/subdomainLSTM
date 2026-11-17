@@ -295,13 +295,42 @@ def main() -> None:
     for n_, f_ in enumerate(figs, 1):
         sl = new(("The eight stations of the forecast check of 12 November, both models, in two periods" if two else "The eight stations of the forecast check of 12 November, both models, 15 to 17 November") + f"  ({n_} of {len(figs)})")
         yb = picture(sl, f_, 0.2, 0.85, 12.93, 5.9)
-        text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["The stations were fixed before this test: they are the eight of the forecast check shown earlier (one forecast, 12 November 12 UTC). In each pair, left: the version that is run; "
-                                             "right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for, a forecast from every hour."], size=11.5)
+        note = {3: "  W Mustang Ck has no partner station: both columns get the same input, and the difference between them is only that the model was trained again.",
+                4: "  Big Ck has no partner station (the same input in both columns); San Bernard Rv has one."}.get(n_, "") if len(figs) == 4 else ""
+        text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["The stations were fixed before this test: the eight of the forecast check shown earlier (one forecast, 12 November 12 UTC). In each pair, left: the version that is run; "
+                                             "right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for." + note], size=11.5)
     if (T / "stations_wide_4.png").exists():
         sl = new("Where partner stations do not help: two stations picked to show it")
         yb = picture(sl, T / "stations_wide_4.png", 0.3, 0.9, 12.7, 5.85)
         text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["These two were chosen as counter-examples; they are not typical. Buffalo Bayou: the rise of more than 1 m in 6 h is late in both models (rainfall forecast). Comite River: both forecast a rise "
                                              "that did not come. The left column, the version that is run, has the same errors: they do not come from the partner stations."], size=11.5)
+
+    # ---- how many stations are worse
+    bw = T / "station_better_worse.csv"
+    if bw.exists():
+        z = pd.read_csv(bw, dtype={"station_id": str})
+        def cnt(t, has):
+            y = z[(z.n_partners > 0) == has].dropna(subset=[f"{t}_run", f"{t}_partners"]); d = y[f"{t}_partners"] - y[f"{t}_run"]
+            return [f"{len(y)}", f"{int((d < 0).sum())}", f"{int((d > 0).sum())}", f"{int((d < -0.5).sum())}", f"{int((d > 0.5).sum())}"]
+        sl = new("How many stations are worse with partner stations: by more than 0.5 cm, 3 of 286 in the test years")
+        cols = [(0.5, 6.3, L), (6.9, 1.0, R), (8.0, 1.0, R), (9.0, 1.0, R), (10.1, 1.3, R), (11.5, 1.3, R)]
+        rows = []
+        for t, lab in (("test", "Test years 2024-2025 (about 2,800 forecasts per station)"), ("nov10to12", "10 to 12 November, a forecast every hour (49 per station)"),
+                       ("nov14to17", "14 to 17 November, a forecast every hour (61 per station)")):
+            rows.append([lab + ": stations with partners"] + cnt(t, True))
+            rows.append(["     stations without partner: the same input in both versions"] + cnt(t, False))
+        y = table(sl, 1.05, cols, ["6 h RMSE with partner stations against the version that is run", "stations", "better", "worse", ["better by", "> 0.5 cm"], ["worse by", "> 0.5 cm"]], rows, size=12.5, step=0.33)
+        ty = z.dropna(subset=["test_run"]); cw = ty[ty.test_clearly_worse.astype(str) == "True"]
+        w5 = ty[(ty.test_partners - ty.test_run > 0.5) & (ty.n_partners > 0)]
+        nm = lambda q: ", ".join(f"{r.name.split(',')[0]} ({r.test_run:.1f} to {r.test_partners:.1f} cm)" for r in q.itertuples())
+        text(sl, 0.5, y + 0.3, 12.3, 3.4, [
+            "-  The rows without partner show how much is chance: these stations get the same input from both versions, and the two differ only because the model was trained again. "
+            "In a few days of forecasts, 10 to 20 of about 150 such stations still move by more than 0.5 cm in either direction; in the test years, one.",
+            f"-  Test years, stations with partners worse by more than 0.5 cm: {nm(w5)}.",
+            f"-  Clearly worse (all five single models worse than all five of the version that is run): {len(cw)} stations, {int((cw.n_partners > 0).sum())} of them with partners.",
+            "-  A few days do not tell which stations are worse: of the 33 stations with partners that are worse by more than 0.5 cm in at least one of the two periods of November, one is worse in the test years; "
+            "3 are worse in both periods (2 of them Houston bayous during rain, both better in the test years).",
+        ], size=13)
 
     # ---- 11 the jagged lines
     if (T / "blend_rmse.csv").exists():
