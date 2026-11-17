@@ -226,7 +226,9 @@ def main() -> None:
         "and 24 stations became clearly worse. Each tightening of the rule (50 km, then the river network) removed part of them.",
         f"Urban creeks gain little ({run['urban creek (Houston)']:.2f} to {net['urban creek (Houston)']:.2f} cm): neighbouring creeks rise together, none of them earlier. What they lack is the rainfall of the next hours.",
         ("The round with partners by measured tide and upstream direction (next slides) is being trained; its row will be added." if pending else
-         f"Latest rule (measured tide, upstream direction): {b['h6']:.2f} cm at 6 h, {bag['better']} stations better and {bag['worse']} worse by more than 0.5 cm."),
+         f"Last row, partners by measured tide and upstream direction: {b['h6']:.2f} cm at 6 h ({100 * (b['h6'] / run['h6'] - 1):+.1f}%), {bag['better']} stations better and {bag['worse']} worse by more than 0.5 cm. "
+         f"Against the river-network round the {net['h6'] - b['h6']:.2f} cm are within the differences between seeds; what the rule changes is that it needs fewer partners "
+         "(157 instead of 86 stations without partner, at no cost) and no longer depends on the registered station types."),
         "",
         "The version that is run has not been changed: the forecast script does not build partner inputs yet.",
     ], size=11.5)
@@ -260,6 +262,7 @@ def main() -> None:
         f"Better than without partners up to 2 h, level at 3 h, worse at 6 h ({n_[4]:.2f} cm; a delay that long was not in the training).",
         f"Closest to real time, station and partners both 1 h late: {a_[5]:.2f} to {n_[5]:.2f} cm ({100 * (n_[5] / a_[5] - 1):+.1f}%). Half of the USGS gauges have the reading of the hour after 32 minutes, nine in ten after 57 minutes.",
         "",
+        "The partners by measured tide and upstream direction behave like the partners by river network when the data are late (last row).",
         "Open: a partner without data for more than 3 h. Either train with longer gaps, or fall back to the version without partners for those stations.",
     ], size=11.5)
 
@@ -308,7 +311,7 @@ def main() -> None:
         "2.  A way to compare versions that is not fooled by the seed: five seeds each, the largest changes, the hurricanes, the lag.",
         f"3.  Where the remaining error is: with observed instead of HRRR rainfall for the next 6 h the same model reaches {sp[3]['h6']:.2f} instead of {sp[0]['h6']:.2f} cm, and the lag falls from {sp[0]['lag']:.1f} to {sp[3]['lag']:.1f} h. "
         "The rainfall forecast is the largest lever, in the hurricanes mainly hours 3-6.",
-        f"4.  Partner stations: {run['h6']:.2f} to {net['h6']:.2f} cm with partners chosen by river network, about 10% at stations with tide; trained so that late partner data do not hurt for one to two hours.",
+        f"4.  Partner stations: {run['h6']:.2f} to {b['h6']:.2f} cm at 6 h, about 10% at stations with tide; trained so that late partner data do not hurt for one to two hours.",
         "5.  Two tables that are useful beyond this model: every station classed by its measured tide (config/station_behaviour.csv), and the stations upstream and downstream of every USGS station on the river network, "
         "with the lakes and reservoirs between them (config/station_river_network.csv, config/station_reservoirs_between.csv).",
         "",
@@ -333,6 +336,7 @@ def main() -> None:
     at = list(ids).index(anchor) if anchor is not None else len(ids)
     for k, el in enumerate(new_els):
         ids.insert(at + k, el)
+    prs.part.rename_slide_parts([el.rId for el in ids])      # python-pptx numbers the slide files only when the deck is opened: after replacing slides two would share a name
     try:
         prs.save(str(dst)); out = dst
     except PermissionError:
