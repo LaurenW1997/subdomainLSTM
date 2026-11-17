@@ -124,11 +124,30 @@ def main() -> None:
         "",
         "What stays the same: one LSTM for all stations, the same training, no new data source. The partners are stations of the same real-time feed.",
         "",
-        "Example: Lake Charles lies 52 km inland of the tide gauge at Calcasieu Pass. With Calcasieu Pass as partner its 6 h RMSE in the test years falls from 5.4 to 3.6 cm.",
-        "",
         "Difference to a ConvLSTM: a ConvLSTM needs the stations on a regular grid and lets every grid cell see its neighbours. Gauges are not a grid, and a neighbour in distance is often not "
         "connected by water. Here the connections are chosen station by station.",
     ], size=14)
+
+    # ---- the example, right after the idea: what the partner shows, and what the forecast gains
+    if (T / "example_tide.png").exists():
+        sl = new("The example: the tide reaches Calcasieu Pass first and Lake Charles about 5 hours later")
+        yb = picture(sl, T / "example_tide.png", 0.3, 0.95, 12.7, 3.9)
+        text(sl, 0.5, yb + 0.25, 12.3, 2.4, [
+            "Observed water level at the two gauges, 15 to 17 November 2026 (6-minute readings). Dashed: the line of Calcasieu Pass moved 4.8 h later.",
+            "",
+            "-  Lake Charles lies 52 km inland of the pass. What the pass does now, Lake Charles does about 5 h later.",
+            "-  For a forecast 6 h ahead this is the information that was missing: the model no longer has to guess the next tide from Lake Charles alone.",
+            "-  The same holds for a surge: it arrives at the coast first.",
+        ], size=BODY)
+    if (T / "lake_charles_1.png").exists():
+        sl = new("The example in the forecast: Lake Charles with Calcasieu Pass as partner")
+        yb = picture(sl, T / "lake_charles_1.png", 0.3, 0.95, 12.7, 3.95)
+        text(sl, 0.5, yb + 0.25, 12.3, 2.4, [
+            "The same days. Left: the version that is run. Right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for.",
+            "",
+            "-  16 November: without the partner the 6 h forecast rises too early and falls too late; with it the line stays on the observation.",
+            "-  These days: 6.6 to 4.6 cm at 6 h, 4.8 to 2.9 cm at 3 h.  Test years 2024-2025: 5.4 to 3.6 cm at 6 h.",
+        ], size=BODY)
 
     # ---- 5 the rules
     sl = new("How the partners of a station are chosen")
@@ -265,10 +284,6 @@ def main() -> None:
         yb = picture(sl, f_, 0.2, 0.85, 12.93, 5.9)
         text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["The stations were fixed before this test: they are the eight of the forecast check shown earlier. In each pair, left: the version that is run; right: with partner stations. "
                                              "Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for, a forecast from every hour."], size=11.5)
-    if (T / "stations_wide_1.png").exists():
-        sl = new("The example of the idea: Lake Charles with the tide gauge at Calcasieu Pass as partner")
-        yb = picture(sl, T / "stations_wide_1.png", 0.3, 0.9, 12.7, 5.85)
-        text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["15 to 17 November. Lake Charles: 6.6 to 4.6 cm at 6 h. Mississippi River at Baton Rouge, with no tide and a small daily change: the two models are alike. Left: the version that is run. Right: with partner stations."], size=11.5)
     if (T / "stations_wide_4.png").exists():
         sl = new("Where partner stations do not help: two stations picked to show it")
         yb = picture(sl, T / "stations_wide_4.png", 0.3, 0.9, 12.7, 5.85)
