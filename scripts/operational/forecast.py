@@ -10,7 +10,16 @@ Which inputs are built is read from the training switches stored in best.pt:
                               before the origin (--rain-fc hrrr_lag<L>_p<km>)
   --fill ffill                a missing hour takes the last valid level (FILL_EXTRA_H more hours are fetched for this)
   --delta-norm / --delta-feat forecast change scaled by the station's typical 6 h change (scale saved in best.pt)
-Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --partners, --stations) stop it.
+  --partners K                water level of up to K partner stations of every station (station_partners.csv in the model
+                              dir, else config/<file the model was trained with>): the same live readings, never later
+                              than the forecast time; a partner that has not reported is marked as missing, as in training
+Switches this script does not build inputs for (--long-feat, --downstream, --upstream-stage, --stations) stop it.
+
+For tests on past forecast times (all outputs are written, nothing is sent anywhere):
+  --inputs-from DIR   take the water levels and discharge that another run saved for this cycle (DIR/<cycle>/levels.pkl,
+                      discharge.npz) instead of asking the services again: two models then get exactly the same readings
+  --usgs-late H       drop the newest H hours of every USGS gauge, as if they had not arrived yet (run afterwards, the
+                      services return complete data; in real time half of the USGS gauges report an hour only after 32 min)
 
 Only sources with a real-time feed are forecast (USGS NWIS IV, NOAA CO-OPS). CRMS and
 USACE stations in the model are listed in the output with status "no_realtime_source".
@@ -21,7 +30,8 @@ wind_coverage.csv, a discharge model q_norm.csv (both written by build_extras.py
 Output: <out>/<cycle>/forecast.csv, manifest.json, raw/ (verbatim API payloads).
   forecast.csv columns: source, station_id, name, lat, lon, domains, datum, cycle_utc,
   last_obs_utc, last_obs_m, fcst_1h_m .. fcst_6h_m, input_valid_frac, wind_valid_frac,
-  q_valid_frac, rain_valid_frac, rain_past72h_mm, rain_next6h_mm, status
+  q_valid_frac, rain_valid_frac, rain_past72h_mm, rain_next6h_mm, status; with partner stations also n_partners,
+  n_partners_reporting (newest hour present), partner_max_age_h (hours since the oldest partner last reported)
 Usage: python forecast.py --model RUN_DIR [--cycle 2026-11-08T12] [--out DIR] [--sources USGS NOAA_COOPS]
 """
 from __future__ import annotations
@@ -175,6 +185,43 @@ def fetch_levels(st: pd.DataFrame, sources: list[str], begin: pd.Timestamp, end:
 
 
 # ----------------------------------------------------------------------------- features
+def partner_rows(st: pd.DataFrame, pm: pd.DataFrame, k: int) -> np.ndarray:
+    """[k, S] row in stations.csv of partner j of every station, -1 where it has none (same rule as train/data.py)."""
+    row_of = {(a, str(b)): i for i, (a, b) in enumerate(zip(st.source, st.station_id))}
+    rows = np.full((k, len(st)), -1, np.int64)
+    for j in range(k):
+        for a, b, c, d in zip(pm.source, pm.station_id, pm[f"p{j + 1}_source"], pm[f"p{j + 1}_station_id"]):
+            i, p = row_of.get((a, b)), row_of.get((c, d))
+            if i is not None and p is not None:
+                rows[j, i] = p
+    return rows
+
+
+def partner_block(i: int, rows: np.ndarray, hourly: dict, st: pd.DataFrame, index: pd.DatetimeIndex, rscale: np.ndarray, ffill: bool) -> tuple[np.ndarray, dict]:
+    """Input channels of the partner stations of station i, [L, 3 * k], exactly as train/data.py window(): for every partner its
+    level (z-score with its own mean / std, a missing hour filled with its last valid level when ffill), that level relative to
+    its newest hour in units of the partner's 6 h-change scale, and its mask. A place without partner is all zeros. A partner
+    that returned nothing is level 0 (its mean) with mask 0. `hourly`: {row: hourly level on the long index}."""
+    L = len(index); out = np.zeros((L, 3 * rows.shape[0]), np.float32); n = rep = 0; age = []
+    for j in range(rows.shape[0]):
+        p = int(rows[j, i])
+        if p < 0:
+            continue
+        n += 1
+        hl = hourly.get(p)
+        if hl is None:
+            age.append(np.nan); continue
+        h = hl.reindex(index); valid = h.notna()
+        filled = hl.ffill().reindex(index).bfill() if ffill else h
+        x = np.nan_to_num((filled.to_numpy(np.float32) - st.mean_m.iloc[p]) / st.std_m.iloc[p])
+        out[:, 3 * j] = x
+        out[:, 3 * j + 1] = np.clip((x - x[-1]) / rscale[p], -20, 20)
+        out[:, 3 * j + 2] = valid.to_numpy(np.float32)
+        rep += int(valid.iloc[-1])
+        age.append(float((index[-1] - h.dropna().index[-1]) / pd.Timedelta(hours=1)) if valid.any() else np.nan)
+    return out, {"n_partners": n, "n_partners_reporting": rep, "partner_max_age_h": (np.nan if (not age or np.isnan(age).any()) else max(age))}
+
+
 def time_features(index: pd.DatetimeIndex) -> np.ndarray:
     hours = index.hour.to_numpy() + index.minute.to_numpy() / 60
     doy = index.day_of_year.to_numpy() + hours / 24
@@ -184,7 +231,7 @@ def time_features(index: pd.DatetimeIndex) -> np.ndarray:
 
 # settings that decide the inputs: every member_*.pt must share them with best.pt
 SAME_INPUTS = ("lookback", "wind", "future_wind", "discharge", "rain", "future_rain", "rain_var", "rain_fc", "future_rain_form", "fill",
-               "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations", "hidden", "layers")
+               "delta_norm", "delta_power", "delta_feat", "long_feat", "downstream", "upstream_stage", "stations", "hidden", "layers", "partners")
 
 
 def main() -> None:
@@ -196,6 +243,8 @@ def main() -> None:
     ap.add_argument("--wind-cache", help="HRRR cache dir (default <out>/wind)")
     ap.add_argument("--rain-cache", help="rainfall cache dir (default <out>/rain)")
     ap.add_argument("--past-rain", choices=["mrms", "hrrr"], default="mrms", help="product for the look-back rainfall (hrrr = HRRR only)")
+    ap.add_argument("--inputs-from", help="TEST: out dir of another run; its saved water levels and discharge of this cycle are used instead of the services")
+    ap.add_argument("--usgs-late", type=int, default=0, help="TEST: drop the newest H hours of every USGS gauge (data that had not arrived yet)")
     a = ap.parse_args()
 
     cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.now("UTC").tz_localize(None).floor("h") - pd.Timedelta(hours=1)
@@ -208,12 +257,13 @@ def main() -> None:
     use_rain = bool(args.get("rain")); use_future_rain = bool(use_rain and args.get("future_rain"))
     rain_form = args.get("future_rain_form", "hourly")
     ffill, delta_norm, delta_feat = args.get("fill", "zero") == "ffill", bool(args.get("delta_norm")), bool(args.get("delta_feat"))
-    unsupported = [k for k in ("long_feat", "downstream", "upstream_stage", "stations", "partners") if args.get(k)]
+    n_partners = int(args.get("partners") or 0) if args.get("partner_map") else 0
+    unsupported = [k for k in ("long_feat", "downstream", "upstream_stage", "stations") if args.get(k)]
     if unsupported:
         raise SystemExit(f"model trained with {unsupported}: forecast.py does not build these inputs")
     if use_future_rain and not args.get("rain_fc"):
         raise SystemExit("model trained with OBSERVED rainfall in the 6 target hours: not available in real time")
-    n_feat_expected = 6 + 3 * use_wind + 2 * use_q + 2 * use_rain + delta_feat
+    n_feat_expected = 6 + 3 * use_wind + 2 * use_q + 2 * use_rain + delta_feat + 3 * n_partners
     n_future_expected = 2 * HORIZON * use_future + (0 if not use_future_rain else (HORIZON if rain_form == "hourly" else 1))
     assert (ck.get("n_feat", 6), ck.get("n_future", 0)) == (n_feat_expected, n_future_expected), \
         f"checkpoint expects n_feat {ck.get('n_feat')} / n_future {ck.get('n_future')}, this script builds {n_feat_expected} / {n_future_expected}"
@@ -228,6 +278,8 @@ def main() -> None:
     for mf in member_files:
         mk = torch.load(mf, map_location="cpu")
         diff = [k for k in SAME_INPUTS if (mk["args"].get(k) or None) != (args.get(k) or None)]
+        if Path(str(mk["args"].get("partner_map") or "")).name != Path(str(args.get("partner_map") or "")).name:
+            diff.append("partner_map")
         assert not diff and (mk["n_stations"], mk.get("n_feat", 6), mk.get("n_future", 0)) == (ck["n_stations"], ck.get("n_feat", 6), ck.get("n_future", 0)), \
             f"{mf.name} was not trained with the same inputs as best.pt: {diff}"
         m_ = GlobalLSTM(mk["n_stations"], n_feat=mk.get("n_feat", 6), hidden=mk["args"]["hidden"], layers=mk["args"]["layers"], n_future=mk.get("n_future", 0),
@@ -248,7 +300,21 @@ def main() -> None:
     begin, end = long_index[0] - pd.Timedelta(hours=1), cycle + pd.Timedelta(minutes=59)
     manifest_extra: dict = {}
 
-    series = fetch_levels(st, a.sources, begin, end, raw_dir)
+    src_dir = Path(a.inputs_from) / cycle.strftime("%Y%m%dT%H") if a.inputs_from else None
+    if src_dir is not None:                         # the readings another run saved for this cycle: both runs see the same data
+        series = pd.read_pickle(src_dir / "levels.pkl")
+        manifest_extra["inputs_from"] = str(src_dir)
+        log.info("water levels of %d stations taken from %s", len(series), src_dir)
+    else:
+        series = fetch_levels(st, a.sources, begin, end, raw_dir)
+    pd.to_pickle(series, out / "levels.pkl")
+    assert all(s.index.max() <= end for s in series.values() if len(s)), "a reading later than the forecast time"
+    if a.usgs_late > 0:                             # the newest hours of the USGS gauges have not arrived: hours after cycle - H are missing
+        cut = cycle - pd.Timedelta(hours=a.usgs_late) + pd.Timedelta(minutes=29)
+        series = {k: (s[s.index <= cut] if k[0] == "USGS" else s) for k, s in series.items()}
+        series = {k: s for k, s in series.items() if len(s)}
+        manifest_extra["usgs_late_h"] = a.usgs_late
+        log.info("TEST: USGS readings after %s removed", cut)
 
     # ---- wind (HRRR) and discharge (USGS 00060) for all stations at once
     u_p = v_p = u_f = v_f = q = None
@@ -281,8 +347,16 @@ def main() -> None:
                                   "future_fhr": prov["future"], "cells": prov["cells"]}
         log.info("wind: past valid %.3f, future valid %.3f, %d s", np.isfinite(u_p).mean(), np.isfinite(u_f).mean(), time.time() - t)
     if use_q:
-        q, qinfo = fetch_discharge(st, run_dir, index, raw_dir)
+        if src_dir is not None and (src_dir / "discharge.npz").exists():
+            z = np.load(src_dir / "discharge.npz", allow_pickle=True)
+            assert list(z["station_id"]) == st.station_id.tolist(), "discharge of the other run is for another station list"
+            q, qinfo = z["q"], json.loads(str(z["info"]))
+        else:
+            q, qinfo = fetch_discharge(st, run_dir, index, raw_dir)
+        np.savez(out / "discharge.npz", q=q, station_id=st.station_id.to_numpy(str), info=json.dumps(qinfo))
         manifest_extra["discharge"] = qinfo
+        if a.usgs_late > 0:                         # discharge comes from USGS gauges too: its newest hours have not arrived either
+            q = q.copy(); q[:, -a.usgs_late:] = np.nan
     rain_p = rain_f = None
     if use_rain:
         from hrrr_rain import box_cells, lag_of, station_rain
@@ -304,6 +378,20 @@ def main() -> None:
                                   "trained_with": {"past": f"AORC {args.get('rain_var', 'p15')}", "future": args.get("rain_fc"), "form": rain_form}, **rprov}
         log.info("rain: past valid %.3f (%d of %d hours from HRRR), future %s, %d s", np.isfinite(rain_p).mean(), gap.sum(), len(index),
                  rprov["future"] or "NOT AVAILABLE", time.time() - t)
+
+    # ---- partner stations: the same live readings of the other stations, on the hourly grid
+    prow = hourly_all = None
+    if n_partners:
+        if not delta_norm:
+            raise SystemExit("--partners without --delta-norm: the 6 h-change scale of the partners is not stored in the checkpoint")
+        pmf = run_dir / "station_partners.csv"
+        if not pmf.exists():
+            pmf = REPO / "config" / Path(str(args["partner_map"])).name
+        prow = partner_rows(st, pd.read_csv(pmf, dtype=str).fillna(""), n_partners)
+        row_of_key = {(s_, str(i_)): k_ for k_, (s_, i_) in enumerate(zip(st.source, st.station_id))}
+        hourly_all = {row_of_key[k_]: to_hourly(s_).reindex(long_index) for k_, s_ in series.items() if k_ in row_of_key and k_[0] in a.sources}
+        manifest_extra["partners"] = {"file": str(pmf), "per_station": n_partners, "stations_with_partner": int((prow >= 0).any(0).sum())}
+        log.info("partner stations from %s: %d stations have at least one", pmf.name, manifest_extra["partners"]["stations_with_partner"])
 
     # ---- windows -> model
     tf = time_features(index)
@@ -368,8 +456,11 @@ def main() -> None:
                 fm = np.clip(rain_f[i], 0, None)
                 rec["rain_next6h_mm"] = float(fm.sum())
                 fut = np.concatenate([fut, np.log1p(fm) if rain_form == "hourly" else np.log1p(fm.sum(keepdims=True))]).astype(np.float32)
-        if delta_feat:   # level relative to the newest hour, in units of the station's typical 6 h change (last channel, as in training)
+        if delta_feat:   # level relative to the newest hour, in units of the station's typical 6 h change (last own channel, as in training)
             parts.append(np.clip((x - x[-1]) / rscale[i], -20, 20)[:, None].astype(np.float32))
+        if n_partners:   # after the station's own channels, as in training
+            pb, pinfo = partner_block(i, prow, hourly_all, st, index, rscale, ffill)
+            parts.append(pb); rec.update(pinfo)
         feats.append(np.concatenate(parts, 1)); futs.append(fut)
         rows_idx.append(i); rec["status"] = "ok"; recs.append(rec)
     df = pd.DataFrame(recs)
