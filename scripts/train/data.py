@@ -258,6 +258,38 @@ class StationMatrix:
                 feats[i, :, c + 1] = np.clip((lev - lev[:, -1:]) / self.rscale[pj[i]][:, None], -20, 20)
         return feats
 
+    def _rt_filled(self, j: np.ndarray, t0: np.ndarray, extra: int) -> np.ndarray:
+        """Level of stations j over the look-back as the forecast script fills it: a missing hour takes the last valid level of
+        the window or of the `extra` hours before it, a gap at the start then the first valid level, nothing at all = 0.
+        (The training arrays fill a gap with the last valid level however old it is.)"""
+        L = self.lookback
+        idx = t0[:, None] + np.arange(-L - extra + 1, 1)[None, :]
+        v = self.norm[j[:, None], np.clip(idx, 0, None)]
+        pos = np.where(np.isfinite(v), np.arange(v.shape[1])[None, :], -1); np.maximum.accumulate(pos, axis=1, out=pos)
+        f = np.take_along_axis(v, np.clip(pos, 0, None), 1); f[pos < 0] = np.nan
+        f = f[:, extra:]
+        pos = np.where(np.isfinite(f), np.arange(L)[None, :], L); pos = np.minimum.accumulate(pos[:, ::-1], axis=1)[:, ::-1]
+        g = np.take_along_axis(f, np.clip(pos, None, L - 1), 1); g[pos >= L] = np.nan
+        return np.nan_to_num(g).astype(np.float32)
+
+    def rt_fill(self, feats: np.ndarray, s: np.ndarray, t0: np.ndarray, own: bool = True, partners: bool = True, extra: int = 24) -> np.ndarray:
+        """In place: the level channels of a batch from window() rebuilt with the gap filling of the forecast script (see
+        _rt_filled), for the station itself and / or its partner stations; the masks are unchanged. Needs --fill ffill."""
+        assert self.fill == "ffill"
+        P = self.n_partner_slots
+        if own:
+            lev = self._rt_filled(s, t0, extra); feats[:, :, 0] = lev
+            if self.delta_feat:
+                feats[:, :, self.n_feat - 1 - 3 * len(self.nbr)] = np.clip((lev - lev[:, -1:]) / self.rscale[s][:, None], -20, 20)
+        if partners:
+            for j in range(P):
+                pj = self.nbr[len(self.nbr) - P + j][s]; has = (pj >= 0).astype(np.float32)[:, None]; jj = np.where(pj >= 0, pj, 0)
+                c = self.n_feat - 3 * (P - j)
+                lev = self._rt_filled(jj, t0, extra)
+                feats[:, :, c] = lev * has
+                feats[:, :, c + 1] = np.clip((lev - lev[:, -1:]) / self.rscale[jj][:, None], -20, 20) * has
+        return feats
+
     def _ok(self, s: np.ndarray, t0: np.ndarray) -> np.ndarray:
         idx_in = t0[:, None] + np.arange(-self.lookback + 1, 1)[None, :]
         ok = self.mask[s[:, None], idx_in].mean(1) >= MIN_INPUT_VALID
