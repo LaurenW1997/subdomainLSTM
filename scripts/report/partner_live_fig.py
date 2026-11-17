@@ -44,6 +44,8 @@ def main() -> None:
     ap.add_argument("--narrow", action="store_true", help="with several periods: a figure as wide as a slide (13 in), column titles on three lines")
     a = ap.parse_args()
     periods = a.period or [["", a.src, a.begin, a.end]]
+    pm = pd.read_csv(REPO / "config" / "station_partners_behaviour.csv", dtype=str)          # stations without partner are marked in the figure
+    n_par = dict(zip(pm.station_id, pd.to_numeric(pm.n_partners, errors="coerce").fillna(0).astype(int)))
     cols = COLS_NARROW if a.narrow else COLS
     data = []
     for lab, src, b, e in periods:
@@ -92,7 +94,12 @@ def main() -> None:
                     if j == 0:
                         ax.set_ylabel("water level (m)", fontsize=9)
                         name = str(x.name.iloc[0]); name = name.title() if name.isupper() else name
-                        ax.text(0.0, 1.03, f"{name}  ({x.source.iloc[0].replace('NOAA_COOPS', 'NOAA')} {sid})", transform=ax.transAxes, fontsize=9.8, color=INK, va="bottom")
+                        none = n_par.get(sid, 0) == 0
+                        ax.text(0.0, 1.03, f"{name}  ({x.source.iloc[0].replace('NOAA_COOPS', 'NOAA')} {sid})" + ("   -   no partner station" if none else ""), transform=ax.transAxes,
+                                fontsize=9.8, color=INK, va="bottom")
+                    elif n_par.get(sid, 0) == 0:                # the right panel of a station without partner: say that nothing differs in the input
+                        ax.text(0.98, 0.96, "no partner station:\nsame input as on the left", transform=ax.transAxes, va="top", ha="right", fontsize=8.6, color="#b3261e", linespacing=1.25,
+                                bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85), zorder=6)
         h = [Line2D([], [], color=INK, lw=1.15)] + [Line2D([], [], color=LEAD_COL[v], lw=1.3) for v in LEADS]
         fig.legend(h, ["observed"] + [f"forecast issued {v} h earlier" for v in LEADS], loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.005), fontsize=9.5)
         fig.subplots_adjust(left=0.065 if not many else (0.055 if a.narrow else 0.04), right=0.99, top=1 - ((1.4 if a.narrow else 1.15) if many else 0.75) / H, bottom=0.62 / H)
