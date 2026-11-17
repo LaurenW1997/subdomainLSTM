@@ -1,0 +1,21 @@
+group,case,stations,rmse_1h_cm,rmse_3h_cm,rmse_6h_cm,single_6h_min,single_6h_max,event_6h_cm,storm_6h_cm,lag_h,rmse_6h_tide_cm,rmse_6h_estuary_cm,rmse_6h_lake_cm,rmse_6h_marsh_cm,rmse_6h_river_cm,rmse_6h_urban_cm
+no partner stations (the model that is run),on time,443,2.15,5.29,8.418,8.63,8.697,52.733,28.687,2.431,4.863,8.9,3.611,2.154,7.507,12.982
+no partner stations (the model that is run),station and partners 1 h late,443,3.352,6.001,8.976,9.195,9.297,55.077,29.942,2.649,5.092,9.351,3.882,2.316,8.156,13.613
+"partner stations (rivers and creeks within 50 km), trained with their data complete",on time,443,2.108,5.098,8.145,8.382,8.43,51.738,25.714,2.306,4.376,8.006,3.208,1.935,7.371,12.683
+"partner stations (rivers and creeks within 50 km), trained with their data complete",partners 1 h late,443,2.152,5.286,8.507,8.797,8.863,53.246,26.797,2.628,5.201,9.046,4.117,2.411,7.632,12.894
+"partner stations (rivers and creeks within 50 km), trained with their data complete",partners 2 h late,443,2.243,5.622,9.072,9.31,9.541,54.146,27.314,2.959,6.667,10.774,5.626,3.138,7.965,13.15
+"partner stations (rivers and creeks within 50 km), trained with their data complete",partners 3 h late,443,2.335,5.949,9.487,9.726,9.959,54.403,27.32,3.052,7.849,12.154,6.702,3.62,8.137,13.281
+"partner stations (rivers and creeks within 50 km), trained with their data complete",partners 6 h late,443,2.513,6.412,9.911,10.132,10.385,55.129,27.676,3.172,9.133,13.62,7.17,3.826,8.257,13.425
+"partner stations (rivers and creeks within 50 km), trained with their data complete",station and partners 1 h late,443,3.305,5.881,8.915,9.186,9.315,54.264,26.782,2.683,5.226,9.179,4.173,2.424,8.181,13.325
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",on time,443,2.113,5.117,8.171,8.331,8.464,51.817,27.031,2.279,4.364,8.077,3.223,1.937,7.377,12.748
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",partners 1 h late,443,2.123,5.18,8.289,8.475,8.595,52.635,27.138,2.408,4.525,8.358,3.422,2.042,7.481,12.844
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",partners 2 h late,443,2.139,5.234,8.372,8.608,8.668,52.642,26.469,2.465,4.733,8.68,3.583,2.137,7.529,12.88
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",partners 3 h late,443,2.152,5.297,8.473,8.732,8.788,52.778,26.357,2.531,4.973,9.021,3.743,2.206,7.589,12.948
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",partners 6 h late,443,2.206,5.488,8.742,9.01,9.103,53.278,26.492,2.71,5.778,10.044,4.171,2.438,7.72,13.051
+"partner stations (rivers and creeks within 50 km), trained with their newest hours missing",station and partners 1 h late,443,3.226,5.753,8.731,8.949,9.079,54.2,27.412,2.522,4.624,8.599,3.579,2.117,8.057,13.275
+"partner stations by river network, trained with their newest hours missing",on time,443,2.092,5.059,8.066,8.248,8.311,51.521,26.265,2.302,4.344,8.022,3.227,1.938,7.306,12.506
+"partner stations by river network, trained with their newest hours missing",partners 1 h late,443,2.112,5.146,8.212,8.408,8.498,52.181,26.943,2.404,4.53,8.328,3.433,2.047,7.407,12.697
+"partner stations by river network, trained with their newest hours missing",partners 2 h late,443,2.132,5.221,8.338,8.567,8.633,52.357,27.269,2.467,4.742,8.679,3.58,2.141,7.47,12.866
+"partner stations by river network, trained with their newest hours missing",partners 3 h late,443,2.147,5.295,8.464,8.706,8.761,52.754,27.5,2.533,4.983,9.059,3.723,2.209,7.539,12.996
+"partner stations by river network, trained with their newest hours missing",partners 6 h late,443,2.206,5.498,8.734,9.012,9.088,52.681,27.441,2.66,5.729,10.025,4.059,2.412,7.676,13.139
+"partner stations by river network, trained with their newest hours missing",station and partners 1 h late,443,3.197,5.71,8.643,8.875,8.975,53.902,27.662,2.553,4.627,8.549,3.58,2.118,7.974,13.113

@@ -23,13 +23,17 @@ K = ["source", "station_id"]
 CASES = ["on time", "partners 1 h late", "partners 2 h late", "partners 3 h late", "partners 6 h late", "station and partners 1 h late"]
 GROUPS = {
     "no partner stations (the model that is run)": {"on time": "hrrr_total", "station and partners 1 h late": "hrrr_total_ownlate1"},
-    "partner stations, trained with their data complete": {"on time": "partners4_river50", "partners 1 h late": "partners4_river50_late1", "partners 2 h late": "partners4_river50_late2",
+    "partner stations (rivers and creeks within 50 km), trained with their data complete": {"on time": "partners4_river50", "partners 1 h late": "partners4_river50_late1", "partners 2 h late": "partners4_river50_late2",
                                                            "partners 3 h late": "partners4_river50_late3", "partners 6 h late": "partners4_river50_late6",
                                                            "station and partners 1 h late": "partners4_river50_ownlate1_late1"},
-    "partner stations, trained with their newest hours missing": {"on time": "partners4_river50_lateaug", "partners 1 h late": "partners4_river50_lateaug_late1",
+    "partner stations (rivers and creeks within 50 km), trained with their newest hours missing": {"on time": "partners4_river50_lateaug", "partners 1 h late": "partners4_river50_lateaug_late1",
                                                                   "partners 2 h late": "partners4_river50_lateaug_late2", "partners 3 h late": "partners4_river50_lateaug_late3",
                                                                   "partners 6 h late": "partners4_river50_lateaug_late6",
                                                                   "station and partners 1 h late": "partners4_river50_lateaug_ownlate1_late1"},
+    "partner stations by river network, trained with their newest hours missing": {"on time": "partners4_network_lateaug", "partners 1 h late": "partners4_network_lateaug_late1",
+                                                                                   "partners 2 h late": "partners4_network_lateaug_late2", "partners 3 h late": "partners4_network_lateaug_late3",
+                                                                                   "partners 6 h late": "partners4_network_lateaug_late6",
+                                                                                   "station and partners 1 h late": "partners4_network_lateaug_ownlate1_late1"},
 }
 TYPES = ["tide gauge", "estuary / tidal channel", "lake", "marsh", "river / canal", "urban creek (Houston)"]
 
