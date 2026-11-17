@@ -153,7 +153,7 @@ def main() -> None:
     talk_map = F / "partner_map_talk.png"
     yb = picture(sl, talk_map if talk_map.exists() else F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
     text(sl, 0.5, yb + 0.02, 12.3, 0.5, [
-        f"The {len(rt)} stations with real-time data. Colour: what the station's own water level does. All links, including those between tidal stations, are on the last slide."], size=11.5)
+        f"The {len(rt)} stations with real-time data. Colour: what the station's own water level does. For a tidally influenced station only its first partner is drawn; all links are on the last slide."], size=11.5)
 
     # ---- 6 results in the test years
     rounds = [("hrrr_total", "No partner stations  (the version that is run)"), ("partners4", "Partners: any station within 150 km"),
