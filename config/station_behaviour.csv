@@ -1,0 +1,1011 @@
+source,station_id,name,type,usgs_site_type,behaviour,tide_rms_cm,tide_share,tide_share_6h,d6_p50,d6_p99,rise_p999,flash,std_cm,ftype,nhd_tidal,stream_order,drainage_km2,km_to_outlet,gnis_name
+USACE_MVN,Pass_Manchac,Pass Manchac near Pontchatoula (85420),river / canal,SITE,tidal,2.39,0.522,0.388,3.658,14.326,23.774,3.917,21.058,,,,,,
+NOAA_COOPS,8741533,Pascagoula NOAA Lab,tide gauge,tidal,tidal,15.058,0.919,0.893,16.4,51.1,52.0,3.116,22.173,,,,,,
+NOAA_COOPS,8747437,Bay Waveland Yacht Club,tide gauge,tidal,tidal,16.687,0.861,0.829,19.6,56.9,61.6,2.903,26.412,,,,,,
+NOAA_COOPS,8760721,Pilottown,tide gauge,tidal,tidal,10.065,0.922,0.906,9.6,36.9,41.2,3.844,22.442,,,,,,
+NOAA_COOPS,8760922,"Pilots Station East, S.W. Pass",tide gauge,tidal,tidal,13.202,0.964,0.953,13.2,43.9,44.0,3.326,22.328,,,,,,
+NOAA_COOPS,8761305,Shell Beach,tide gauge,tidal,tidal,13.821,0.851,0.806,16.6,46.2,53.9,2.783,24.764,,,,,,
+NOAA_COOPS,8761724,Grand Isle,tide gauge,tidal,tidal,11.92,0.956,0.938,12.1,39.9,39.1,3.298,18.608,,,,,,
+NOAA_COOPS,8761927,New Canal Station,tide gauge,tidal,tidal,3.87,0.669,0.556,5.6,17.1,28.7,3.054,21.0,,,,,,
+NOAA_COOPS,8761955,Carrollton,tide gauge,nontidal,tidal,5.152,0.733,0.667,4.5,26.8,34.9,5.956,134.373,,,,,,
+NOAA_COOPS,8762075,"Port Fourchon, Belle Pass",tide gauge,tidal,tidal,13.322,0.955,0.941,13.6,43.3,42.772,3.184,19.653,,,,,,
+NOAA_COOPS,8762482,"West Bank 1, Bayou Gauche",tide gauge,nontidal,tidal,1.218,0.454,0.303,2.2,7.7,11.5,3.5,16.83,,,,,,
+NOAA_COOPS,8764044,"Berwick, Atchafalaya River",tide gauge,tidal,tidal,4.587,0.583,0.556,4.0,31.7,44.0,7.925,46.197,,,,,,
+NOAA_COOPS,8764227,"LAWMA, Amerada Pass",tide gauge,tidal,tidal,14.074,0.81,0.796,16.4,61.6,74.693,3.756,22.822,,,,,,
+NOAA_COOPS,8764314,"Eugene Island, North of, Atchafalaya Bay",tide gauge,tidal,tidal,17.315,0.843,0.829,19.5,71.5,88.104,3.667,23.961,,,,,,
+NOAA_COOPS,8766072,Freshwater Canal Locks,tide gauge,tidal,tidal,18.81,0.827,0.824,20.8,85.4,104.268,4.106,27.853,,,,,,
+NOAA_COOPS,8767816,Lake Charles,tide gauge,tidal,tidal,12.486,0.869,0.841,15.7,49.5,58.811,3.153,23.583,,,,,,
+NOAA_COOPS,8767961,Bulk Terminal,tide gauge,tidal,tidal,12.068,0.881,0.849,15.0,46.7,55.5,3.113,22.797,,,,,,
+NOAA_COOPS,8768094,Calcasieu Pass,tide gauge,tidal,tidal,16.889,0.887,0.875,18.3,74.0,88.731,4.044,25.582,,,,,,
+NOAA_COOPS,8770475,Port Arthur,tide gauge,tidal,tidal,9.756,0.87,0.831,11.2,37.7,42.668,3.366,21.709,,,,,,
+NOAA_COOPS,8770520,Rainbow Bridge,tide gauge,tidal,tidal,9.42,0.886,0.838,11.0,34.9,41.8,3.173,20.977,,,,,,
+NOAA_COOPS,8770613,"Morgans Point, Barbours Cut",tide gauge,tidal,tidal,13.257,0.891,0.842,16.0,45.6,53.0,2.85,25.45,,,,,,
+NOAA_COOPS,8770777,Manchester,tide gauge,tidal,tidal,15.851,0.877,0.842,19.7,58.5,69.7,2.97,29.073,,,,,,
+NOAA_COOPS,8770808,High Island,tide gauge,tidal,tidal,12.821,0.815,0.785,15.8,48.7,61.169,3.082,22.873,,,,,,
+NOAA_COOPS,8770822,"Texas Point, Sabine Pass",tide gauge,tidal,tidal,17.808,0.9,0.89,19.3,80.1,96.967,4.15,26.01,,,,,,
+NOAA_COOPS,8770971,Rollover Pass,tide gauge,tidal,tidal,13.12,0.812,0.782,16.2,49.2,63.624,3.037,22.378,,,,,,
+NOAA_COOPS,8771013,"Eagle Point, Galveston Bay",tide gauge,tidal,tidal,11.422,0.884,0.83,13.6,37.8,41.7,2.779,23.354,,,,,,
+NOAA_COOPS,8771341,"Galveston Bay Entrance, North Jetty",tide gauge,tidal,tidal,16.392,0.923,0.91,17.0,67.1,79.437,3.947,24.631,,,,,,
+NOAA_COOPS,8771367,Sabine Offshore Light,tide gauge,tidal,tidal,23.272,0.908,0.901,25.8,98.3,126.478,3.81,28.174,,,,,,
+NOAA_COOPS,8771450,Galveston Pier 21,tide gauge,tidal,tidal,14.354,0.922,0.899,14.3,57.4,68.006,4.014,23.808,,,,,,
+NOAA_COOPS,8771486,Galveston Railroad Bridge,tide gauge,tidal,tidal,12.832,0.921,0.894,13.2,49.6,58.492,3.758,22.191,,,,,,
+NOAA_COOPS,8771972,San Luis Pass,tide gauge,tidal,tidal,12.282,0.922,0.896,12.4,48.9,59.9,3.944,22.391,,,,,,
+NOAA_COOPS,8772471,Freeport Harbor,tide gauge,tidal,tidal,16.944,0.946,0.937,18.0,66.2,80.709,3.678,23.965,,,,,,
+NOAA_COOPS,8772985,Sargent,tide gauge,tidal,tidal,7.537,0.885,0.85,7.8,31.1,41.6,3.987,19.198,,,,,,
+NOAA_COOPS,8773037,Seadrift,tide gauge,tidal,tidal,2.029,0.32,0.26,3.3,17.9,23.434,5.424,16.096,,,,,,
+NOAA_COOPS,8773146,Matagorda City,tide gauge,tidal,tidal,3.732,0.688,0.62,5.0,16.7,21.799,3.34,17.43,,,,,,
+NOAA_COOPS,8773259,Port Lavaca,tide gauge,tidal,tidal,9.12,0.866,0.805,11.3,30.2,37.1,2.673,20.938,,,,,,
+NOAA_COOPS,8773701,Port O'Connor,tide gauge,tidal,tidal,7.845,0.908,0.86,9.0,25.6,30.742,2.844,17.856,,,,,,
+NOAA_COOPS,8773767,Matagorda Bay Entrance Channel,tide gauge,tidal,tidal,12.216,0.909,0.886,13.1,46.1,45.487,3.519,19.941,,,,,,
+NOAA_COOPS,8774230,Aransas Wildlife Refuge,tide gauge,tidal,tidal,2.079,0.438,0.345,3.1,14.4,25.176,4.645,16.358,,,,,,
+NOAA_COOPS,8774513,Copano Bay,tide gauge,tidal,tidal,3.224,0.63,0.541,4.2,12.1,14.982,2.881,14.729,,,,,,
+NOAA_COOPS,8774770,Rockport,tide gauge,tidal,tidal,3.047,0.82,0.719,4.1,10.9,13.9,2.658,15.729,,,,,,
+NOAA_COOPS,8775222,Viola Turning Basin,tide gauge,tidal,tidal,7.323,0.871,0.84,8.7,24.7,30.6,2.839,14.388,,,,,,
+NOAA_COOPS,8775237,Port Aransas,tide gauge,tidal,tidal,10.414,0.928,0.917,9.9,39.8,46.108,4.02,18.334,,,,,,
+NOAA_COOPS,8775241,"Aransas, Aransas Pass",tide gauge,tidal,tidal,14.334,0.951,0.945,13.4,54.7,63.9,4.082,20.618,,,,,,
+NOAA_COOPS,8775283,"Enbridge, Ingleside",tide gauge,tidal,tidal,6.928,0.944,0.916,8.1,20.669,23.8,2.552,13.928,,,,,,
+NOAA_COOPS,8775296,"USS Lexington, Corpus Christi Bay",tide gauge,tidal,tidal,6.585,0.909,0.874,7.7,21.1,24.4,2.74,16.418,,,,,,
+NOAA_COOPS,8775792,Packery Channel,tide gauge,tidal,tidal,3.581,0.817,0.742,4.2,13.1,18.3,3.119,14.838,,,,,,
+NOAA_COOPS,8776139,S. Bird Island,tide gauge,nontidal,tidal,1.378,0.573,0.476,1.8,7.2,9.8,4.0,14.192,,,,,,
+NOAA_COOPS,8776604,Baffin Bay,tide gauge,nontidal,weakly tidal,0.681,0.155,0.139,1.4,8.1,12.9,5.786,14.994,,,,,,
+NOAA_COOPS,8777812,Rincon Del San Jose,tide gauge,nontidal,weakly tidal,1.279,0.108,0.085,3.3,21.3,21.4,6.454,17.544,,,,,,
+NOAA_COOPS,8778490,Port Mansfield,tide gauge,nontidal,weakly tidal,0.993,0.25,0.196,1.6,11.4,16.1,7.125,13.779,,,,,,
+NOAA_COOPS,8779280,Realitos Peninsula,tide gauge,tidal,tidal,5.678,0.884,0.838,6.9,18.5,21.7,2.681,14.308,,,,,,
+NOAA_COOPS,8779748,South Padre Island CG Station,tide gauge,tidal,tidal,13.792,0.968,0.96,13.9,47.7,56.1,3.432,19.393,,,,,,
+NOAA_COOPS,8779749,SPI Brazos Santiago,tide gauge,tidal,tidal,14.987,0.967,0.96,15.0,52.9,61.8,3.527,19.902,,,,,,
+NOAA_COOPS,8779770,Port Isabel,tide gauge,tidal,tidal,13.729,0.967,0.959,13.6,49.4,58.706,3.632,19.527,,,,,,
+USGS,02479000,"PASCAGOULA RIVER AT MERRILL, MS",river / canal,ST,no tide,0.259,0.007,0.001,2.896,43.129,89.436,14.895,178.114,ArtificialPath,0.0,7.0,17060.469,123.646,Pascagoula River
+USGS,02475000,"LEAF RIVER NR MCLAIN, MS",river / canal,ST,no tide,0.402,0.008,0.002,2.972,57.133,114.793,19.226,155.133,ArtificialPath,0.0,6.0,9072.157,145.869,Leaf River
+USGS,02479130,"BLACK CREEK NR BROOKLYN, MS",river / canal,ST,no tide,0.681,0.008,0.004,1.6,66.675,182.364,41.665,71.864,StreamRiver,0.0,5.0,928.492,180.43,Black Creek
+USGS,02479155,"CYPRESS CREEK NR JANICE, MS",river / canal,ST,no tide,0.712,0.006,0.004,0.838,84.911,202.719,101.301,50.487,StreamRiver,0.0,3.0,138.042,153.213,Cypress Creek
+USGS,02479160,"BLACK CREEK NR WIGGINS, MS",river / canal,ST,no tide,0.534,0.01,0.003,2.057,61.292,135.931,29.793,107.487,StreamRiver,0.0,5.0,1815.747,119.738,Black Creek
+USGS,02479500,"ESCATAWPA RIVER NEAR WILMER, AL",river / canal,ST,no tide,0.5,0.006,0.002,2.972,61.784,157.575,20.791,101.187,StreamRiver,0.0,5.0,1317.906,103.296,Escatawpa River
+USGS,02479300,"RED CREEK AT VESTRY, MS",river / canal,ST,no tide,0.421,0.01,0.003,2.438,44.12,97.365,18.094,86.607,StreamRiver,0.0,5.0,1152.208,82.432,Red Creek
+USGS,02479310,"PASCAGOULA RIVER AT GRAHAM FERRY, MS",river / canal,ST,weakly tidal,2.062,0.417,0.151,4.191,22.784,37.186,5.436,138.184,ArtificialPath,1.0,7.0,21195.108,50.437,Pascagoula River
+USGS,0248018020,"ESCATAWPA RIVER AT I-10 NR ORANGE GROVE, MS",river / canal,ST,tidal,11.539,0.774,0.735,12.802,48.616,48.463,3.798,32.031,ArtificialPath,1.0,6.0,2520.959,27.413,Escatawpa River
+USGS,02480590,"TCHOUTACABOUFFA RIVER NR D'IBERVILLE, MS",river / canal,ST,tidal,17.861,0.804,0.741,21.869,68.351,97.272,3.125,38.357,ArtificialPath,1.0,5.0,540.554,16.882,Tchoutacabouffa River
+USGS,02481130,"BILOXI RIVER NR LYMAN, MS",river / canal,ST,tidal,9.383,0.468,0.326,12.725,73.053,170.498,5.741,78.955,StreamRiver,1.0,5.0,653.308,15.505,Biloxi River
+USGS,02481000,"BILOXI RIVER AT WORTHAM, MS",river / canal,ST,no tide,1.023,0.009,0.005,1.295,90.458,242.213,69.829,71.062,StreamRiver,0.0,4.0,250.825,30.743,Biloxi River
+USGS,02481299,"OLD FORT BAYOU AT OCEAN SPRINGS, MS",estuary / tidal channel,ES,tidal,17.02,0.864,0.83,19.202,61.722,69.22,3.214,26.429,ArtificialPath,1.0,3.0,117.536,0.0,Old Fort Bayou
+USGS,02481510,"WOLF RIVER NR LANDON, MS",river / canal,ST,no tide,0.914,0.01,0.005,1.676,74.524,212.585,44.455,75.966,StreamRiver,0.0,5.0,802.12,29.413,Wolf River
+USGS,02489500,"Pearl River near Bogalusa, LA",river / canal,ST,no tide,0.232,0.015,0.002,2.134,25.574,54.282,11.987,145.91,ArtificialPath,0.0,6.0,16946.032,127.685,Pearl River
+USGS,02481521,"WOLF RIVER AT BELLE FERRY ROAD NEAR LONG BEACH, MS",estuary / tidal channel,ST-TS,tidal,13.773,0.75,0.682,16.993,55.647,65.366,3.275,45.027,ArtificialPath,1.0,1.0,1.427,11.896, 
+USGS,02481660,"JOURDAN RIVER NR BAY ST LOUIS, MS",river / canal,ST,tidal,17.572,0.806,0.789,21.412,64.604,68.275,3.017,30.5,ArtificialPath,1.0,4.0,544.258,16.278,Jourdan River
+USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",river / canal,ST,no tide,0.082,0.007,0.001,0.762,12.497,26.67,16.4,68.886,ArtificialPath,0.0,6.0,17312.438,111.845,Pearl River
+USGS,02491500,"Bogue Chitto River at Franklinton, LA",river / canal,ST,no tide,0.401,0.008,0.003,1.067,47.396,110.033,44.437,64.999,ArtificialPath,0.0,5.0,2566.524,146.504,Bogue Chitto
+USGS,02491800,"Bogue Chitto at Enon, LA",river / canal,ST,no tide,0.527,0.014,0.004,1.219,48.54,106.69,39.813,65.298,ArtificialPath,0.0,5.0,2848.075,120.405,Bogue Chitto
+USGS,02492000,"Bogue Chitto River near Bush, LA",river / canal,ST,no tide,0.181,0.007,0.001,1.524,26.822,59.86,17.6,71.553,ArtificialPath,0.0,5.0,3130.628,85.682,Bogue Chitto
+USGS,02492110,"EAST PEARL RIVER AB WILSON SL AT WALKIAH BLUFF, MS",river / canal,ST,no tide,0.105,0.008,0.001,1.753,15.164,34.591,8.652,112.211,ArtificialPath,0.0,6.0,17422.613,78.978,Pearl River
+USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,river / canal,ST,no tide,1.092,0.017,0.014,0.838,14.859,179.209,17.726,90.577,CanalDitch,0.0,1.0,17321.667,86.811, 
+USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,river / canal,ST,no tide,0.467,0.008,0.006,0.457,13.411,33.527,29.334,63.016,StreamRiver,0.0,5.0,20505.714,68.428, 
+USGS,02492343,"EAST HOBOLOCHITTO CREEK NR CAESAR, MS",river / canal,ST,no tide,0.656,0.012,0.004,1.829,61.646,132.085,33.706,71.887,StreamRiver,0.0,4.0,243.617,87.854,East Hobolochitto Creek
+USGS,02492360,"WEST HOBOLOCHITTO CREEK NR MCNEILL, MS",river / canal,ST,no tide,0.728,0.008,0.004,1.219,70.714,183.556,58.001,64.453,StreamRiver,0.0,4.0,453.188,90.445,West Hobolochitto Creek
+USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",river / canal,ST,no tide,0.203,0.007,0.001,2.362,30.367,61.101,12.856,110.654,ArtificialPath,1.0,6.0,18465.592,49.536,Pearl River
+USGS,02492700,"Pearl River at I-10 near Slidell, LA",river / canal,ST,weakly tidal,0.289,0.14,0.054,0.686,5.41,10.592,7.889,33.463,ArtificialPath,1.0,5.0,21987.398,20.727,West Pearl River
+USGS,02492600,"Pearl River at Pearl River, LA",river / canal,ST,no tide,0.146,0.027,0.002,1.753,14.326,26.899,8.174,113.623,ArtificialPath,1.0,5.0,21886.487,37.716,West Pearl River
+USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,river / canal,ST,no tide,0.982,0.011,0.008,0.305,6.096,20.269,20.001,99.291,ArtificialPath,1.0,3.0,20768.478,50.503, 
+USGS,07374000,"Mississippi River at Baton Rouge, LA",river / canal,ST,weakly tidal,1.168,0.394,0.106,2.896,13.564,20.181,4.684,331.714,ArtificialPath,1.0,10.0,2880681.864,392.184,Mississippi River
+USGS,073745245,"Caernarvon Canal Sector Gate at Caernarvon, La",river / canal,ST,tidal,2.148,0.59,0.401,3.581,10.897,18.176,3.043,19.329,,,,,,
+USGS,073745235,"Bayou Dupre Sector Gate near Violet, LA",river / canal,ST,tidal,9.581,0.787,0.749,10.82,35.281,39.091,3.261,18.435,ArtificialPath,1.0,3.0,529.798,16.274, 
+USGS,073745253,"Reggio Canal near Wills Point, LA",river / canal,ST-CA,tidal,1.696,0.566,0.334,2.743,10.516,19.624,3.833,19.372,,,,,,
+USGS,07374525,"Mississippi River at Belle Chasse, LA",river / canal,ST,tidal,6.406,0.77,0.723,5.639,31.166,42.08,5.527,92.164,ArtificialPath,1.0,10.0,2881390.388,142.344,Mississippi River
+USGS,073745257,Crooked B. NW of L. Cuatro Caballo near Delacroix,estuary / tidal channel,ES,tidal,6.774,0.78,0.702,9.144,23.546,30.632,2.575,20.62,,,,,,
+USGS,073745258,"Cow Bayou at American Bay nr Pointe-A-La-Hache, LA",estuary / tidal channel,ES,tidal,13.547,0.84,0.794,15.697,47.701,59.176,3.039,25.599,Coastline,0.0,-9.0,0.449,0.0, 
+USGS,07374526,"Black Bay nr Snake Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,ES,tidal,14.787,0.861,0.829,16.459,53.035,59.375,3.222,25.473,,,,,,
+USGS,073745275,"Black Bay nr Stone Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,ES,tidal,14.663,0.865,0.828,15.545,54.254,60.046,3.49,24.478,,,,,,
+USGS,07374527,"Northeast Bay Gardene near Point-A-LA-Hache, LA",estuary / tidal channel,ES,tidal,14.679,0.865,0.827,16.307,52.349,61.844,3.21,25.591,,,,,,
+USGS,07375000,"Tchefuncte River near Folsom, LA",river / canal,ST,no tide,0.391,0.007,0.002,0.762,44.806,108.946,58.801,57.527,StreamRiver,0.0,4.0,249.027,133.756,Tchefuncte River
+USGS,07374581,"Bayou Liberty near Slidell,LA",river / canal,ST,tidal,3.49,0.436,0.336,5.486,23.546,52.964,4.292,22.814,StreamRiver,1.0,2.0,65.578,42.643,Liberty Bayou
+USGS,07375050,"Tchefuncte River near Covington, LA",river / canal,ST,no tide,0.478,0.006,0.002,1.143,61.036,136.512,53.4,79.785,StreamRiver,1.0,4.0,379.32,109.659,Tchefuncte River
+USGS,07375170,"Bogue Falaya at Covington, LA",river / canal,ST,no tide,0.738,0.008,0.004,0.914,74.981,177.35,81.999,51.42,StreamRiver,1.0,4.0,229.586,107.066,Bogue Falaya
+USGS,07375105,Bogue Falaya River near Camp Covington,river / canal,ST,no tide,0.959,0.012,0.006,0.61,75.657,210.22,124.092,50.623,StreamRiver,0.0,4.0,184.964,116.561,Bogue Falaya
+USGS,07375175,"Bogue Falaya River at Boston St. at Covington, LA",river / canal,ST,weakly tidal,3.583,0.341,0.198,5.944,42.52,96.012,7.154,37.606,StreamRiver,1.0,4.0,334.928,104.162,Bogue Falaya
+USGS,07375222,"Abita River north of Abita Springs, LA",river / canal,ST,no tide,1.045,0.01,0.006,1.6,90.817,236.719,56.754,83.717,StreamRiver,0.0,4.0,110.543,110.499,Abita River
+USGS,07375410,"Tangipahoa River at Tangipahoa, La",river / canal,ST,no tide,0.5,0.009,0.005,0.61,41.224,92.148,67.626,41.865,ArtificialPath,0.0,5.0,892.375,178.374,Tangipahoa River
+USGS,07375230,"Tchefuncte River at Madisonville, LA",river / canal,ST,tidal,4.361,0.665,0.553,6.477,18.593,25.058,2.871,21.451,ArtificialPath,1.0,5.0,1067.717,81.321,Tchefuncte River
+USGS,07375300,"Tangipahoa River near Kentwood, LA",river / canal,ST,no tide,0.452,0.008,0.004,0.914,48.235,108.585,52.751,47.445,StreamRiver,0.0,4.0,629.399,187.137,Tangipahoa River
+USGS,07375280,"TANGIPAHOA RIVER AT OSYKA, MS",river / canal,ST,no tide,0.514,0.011,0.006,0.61,44.751,98.691,73.411,35.115,StreamRiver,0.0,4.0,408.82,202.476,Tangipahoa River
+USGS,07375450,"Tangipahoa R nr Tickfaw, La.",river / canal,ST,no tide,0.603,0.017,0.008,0.914,43.727,83.019,47.821,42.402,ArtificialPath,0.0,5.0,1296.856,134.127,Tangipahoa River
+USGS,07375480,"CHAPPEPEELA CREEK SOUTHEAST OF LORANGER, LA.",river / canal,ST,no tide,0.672,0.013,0.005,0.838,63.779,130.39,76.092,54.72,StreamRiver,0.0,4.0,236.483,129.129,Chappepeela Creek
+USGS,07375430,"Tangipahoa River near Amite, LA",river / canal,ST,no tide,0.38,0.007,0.003,0.61,40.794,112.006,66.899,45.445,ArtificialPath,0.0,5.0,1233.5,155.567,Tangipahoa River
+USGS,07375500,"Tangipahoa River at Robert, LA",river / canal,ST,no tide,0.499,0.013,0.004,1.372,46.025,99.29,33.555,77.558,ArtificialPath,0.0,5.0,1678.238,114.129,Tangipahoa River
+USGS,07375650,"Tangipahoa River near Ponchatoula, LA",river / canal,ST,no tide,0.56,0.047,0.01,2.438,29.032,65.608,11.906,71.385,StreamRiver,1.0,5.0,1823.646,101.707,Tangipahoa River
+USGS,07375800,"Tickfaw River at Liverpool, LA",river / canal,ST,no tide,0.402,0.008,0.004,0.457,40.615,108.223,88.872,36.772,StreamRiver,0.0,4.0,230.611,231.016,Tickfaw River
+USGS,07375960,"Tickfaw River at Montpelier, LA",river / canal,ST,no tide,0.435,0.01,0.004,0.61,45.465,93.319,74.583,58.959,StreamRiver,0.0,4.0,570.439,189.268,Tickfaw River
+USGS,07376300,"Tickfaw River Near Springfield, La.",river / canal,ST,tidal,3.032,0.64,0.48,4.724,12.954,18.184,2.742,21.427,ArtificialPath,1.0,5.0,1287.263,109.09,Tickfaw River
+USGS,07376000,"Tickfaw River at Holden, LA",river / canal,ST,no tide,0.345,0.007,0.002,0.991,44.729,90.277,45.155,79.651,StreamRiver,0.0,4.0,650.539,150.575,Tickfaw River
+USGS,07376500,"Natalbany River at Baptist, LA",river / canal,ST,no tide,0.983,0.011,0.007,0.762,82.448,191.506,108.202,53.975,StreamRiver,1.0,4.0,204.16,127.499,Natalbany River
+USGS,07377000,"Amite River near Darlington, LA",river / canal,ST,no tide,0.546,0.008,0.004,0.914,57.302,135.59,62.668,58.263,StreamRiver,0.0,5.0,1520.677,267.903,Amite River
+USGS,07377150,"Amite River at Grangeville, LA",river / canal,ST,no tide,0.518,0.009,0.003,1.219,52.375,131.633,42.959,58.34,ArtificialPath,0.0,5.0,1926.497,242.06,Amite River
+USGS,07377210,"Sandy Creek nr Pride, LA",river / canal,ST,no tide,1.41,0.014,0.008,0.914,107.5,220.972,117.566,75.578,StreamRiver,0.0,4.0,181.198,229.223,Sandy Creek
+USGS,07377230,"Little Sandy Creek at Peairs Rd SE of Milldale, LA",river / canal,ST,no tide,1.569,0.024,0.01,0.61,102.413,170.03,167.951,55.259,StreamRiver,0.0,3.0,39.442,221.7,Little Sandy Creek
+USGS,07377243,"Sandy Ck at Alph. Forbes nr Greenwell Springs, LA",river / canal,ST,no tide,0.814,0.008,0.004,0.838,84.43,193.046,100.718,75.884,StreamRiver,0.0,4.0,212.195,218.786,Sandy Creek
+USGS,07377500,"Comite River near Olive Branch, LA",river / canal,ST,no tide,0.884,0.013,0.008,0.457,58.369,172.212,127.616,42.573,StreamRiver,0.0,4.0,377.842,240.442,Comite River
+USGS,07377300,"Amite River at Magnolia, LA",river / canal,ST,no tide,0.445,0.009,0.002,1.6,56.814,107.216,35.503,91.966,ArtificialPath,0.0,6.0,2431.999,200.398,Amite River
+USGS,07377750,"Comite River near Zachary, LA",river / canal,ST,no tide,1.19,0.015,0.007,1.448,89.154,202.565,61.584,70.806,StreamRiver,0.0,4.0,591.489,220.749,Comite River
+USGS,07377754,"Comite River near Baker, LA",river / canal,ST,no tide,0.735,0.01,0.005,0.991,68.275,151.714,68.924,58.879,StreamRiver,0.0,4.0,736.77,213.679,Comite River
+USGS,07377600,"Comite R. at Pt. Hudson-Pride Rd near Milldale, LA",river / canal,ST,no tide,0.782,0.013,0.007,0.686,55.702,146.947,81.235,41.532,StreamRiver,0.0,4.0,419.009,230.61,Comite River
+USGS,07377760,"Comite River at Comite Dr near Baton Rouge, LA",river / canal,ST,no tide,0.86,0.009,0.004,0.914,82.09,190.114,89.777,64.538,StreamRiver,0.0,4.0,743.134,208.582,Comite River
+USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",river / canal,ST,no tide,1.329,0.017,0.008,4.191,132.74,264.73,31.673,134.567,StreamRiver,0.0,4.0,774.022,204.519,Comite River
+USGS,07378000,"Comite River near Comite, LA",river / canal,ST,no tide,1.955,0.013,0.007,1.372,143.651,366.249,104.734,117.56,StreamRiver,0.0,4.0,904.47,201.961,Comite River
+USGS,07378008,"Hurricane Creek at Baton Rouge, LA",river / canal,ST,no tide,1.57,0.019,0.014,0.838,93.538,162.433,111.597,46.672,StreamRiver,0.0,2.0,33.36,201.253,Hurricane Creek
+USGS,07378075,"Beaver Bayou at Denham Road nr Baton Rouge, LA",river / canal,ST,no tide,0.731,0.011,0.009,0.305,53.855,144.684,176.693,15.486,StreamRiver,0.0,1.0,5.94,206.134,Beaver Bayou
+USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",river / canal,ST,no tide,2.311,0.016,0.01,1.981,150.791,363.275,76.112,123.224,StreamRiver,0.0,4.0,972.243,197.097,Comite River
+USGS,07378100,"Beaver Bayou at Wax Rd near Baton Rouge, LA",river / canal,ST,no tide,1.258,0.021,0.016,1.067,74.005,135.775,69.372,24.671,StreamRiver,0.0,3.0,32.405,196.934,Beaver Bayou
+USGS,07378083,"Beaver Bayou at Hooper Road near Baton Rouge, LA",river / canal,ST,no tide,1.723,0.015,0.011,0.305,121.006,256.529,396.883,37.763,StreamRiver,0.0,2.0,15.178,204.875,Beaver Bayou
+USGS,07378500,"Amite River near Denham Springs, LA",river / canal,ST,no tide,1.289,0.017,0.007,2.591,91.288,215.758,35.235,132.524,ArtificialPath,0.0,6.0,3529.796,188.796,Amite River
+USGS,07378745,"Alligator Bayou near Kleinpeter, LA",river / canal,ST,weakly tidal,1.146,0.119,0.068,2.286,25.984,58.274,11.367,68.765,StreamRiver,1.0,3.0,133.696,175.626,Bayou Manchac
+USGS,07378746,"Bayou Manchac at Alligator B. near Kleinpeter, LA",river / canal,ST,no tide,1.462,0.062,0.037,2.896,43.663,125.428,15.079,75.255,StreamRiver,1.0,3.0,133.696,175.626,Bayou Manchac
+USGS,07378810,"Bayou Fountain at Bluebonnet Blvd near  B.R., LA",river / canal,ST,no tide,0.816,0.017,0.009,2.743,53.552,147.4,19.522,62.788,StreamRiver,1.0,3.0,68.255,180.641,Bayou Fountain
+USGS,07378748,"Bluff Swamp near Kleinpeter, LA",river / canal,ST,no tide,0.91,0.053,0.036,1.295,34.468,57.374,26.608,61.893,StreamRiver,1.0,3.0,149.869,174.953,Bayou Manchac
+USGS,07379000,"Ward Creek at Government St at Baton Rouge, LA",river / canal,ST,no tide,0.896,0.012,0.01,0.076,71.857,139.955,943.018,13.684,StreamRiver,0.0,2.0,14.637,191.534,Ward Creek
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",river / canal,ST,no tide,3.473,0.024,0.019,0.61,172.942,326.013,283.704,46.418,StreamRiver,0.0,2.0,22.615,186.043,Ward Creek
+USGS,07379075,Old Ward Crk Div. at Highland Rd. nr Baton Rouge,river / canal,ST,no tide,2.078,0.04,0.027,3.734,77.8,212.899,20.837,70.05,StreamRiver,1.0,3.0,114.592,171.599, 
+USGS,07379100,"North Branch Ward Creek at Baton Rouge, LA",river / canal,ST,no tide,1.637,0.017,0.015,0.61,92.964,193.251,152.503,20.565,StreamRiver,0.0,2.0,22.911,186.043, 
+USGS,07379960,"Dawson Cr. at Bluebonnet Blvd near Baton Rouge, LA",river / canal,ST,no tide,4.184,0.063,0.035,11.963,144.178,263.268,12.052,73.798,StreamRiver,1.0,2.0,40.703,183.035,Dawson Creek
+USGS,07380102,"Welsh Gully at J. Broussard Rd nr Prairieville, LA",river / canal,ST,no tide,1.634,0.03,0.023,3.048,71.192,177.859,23.357,62.88,StreamRiver,1.0,2.0,5.938,166.769,Welsh Gully
+USGS,07380101,"Bayou Manchac near Little Prairie, LA",river / canal,ST,weakly tidal,1.847,0.187,0.1,3.658,28.924,80.046,7.908,47.446,StreamRiver,1.0,4.0,392.798,161.081,Bayou Manchac
+USGS,07380126,"Henderson Bayou near Port Vincent, LA",river / canal,ST,weakly tidal,2.515,0.157,0.113,4.115,44.806,112.624,10.889,32.479,StreamRiver,1.0,3.0,13.622,157.31,Henderson Bayou
+USGS,07380120,"Amite River at Port Vincent, LA",river / canal,ST,tidal,2.489,0.555,0.35,3.962,14.554,33.584,3.673,33.967,ArtificialPath,1.0,6.0,4192.654,152.172,Amite River
+USGS,07380200,"Amite River near French Settlement, LA",river / canal,ST,tidal,2.481,0.632,0.457,3.81,11.43,16.612,3.0,25.562,ArtificialPath,1.0,6.0,4734.907,133.838,Amite River
+USGS,07380212,"Airline Canal at Blind River near Gramercy, LA",river / canal,ST-CA,tidal,2.077,0.467,0.35,2.819,12.192,15.164,4.324,22.987,StreamRiver,1.0,1.0,2.53,138.386, 
+USGS,07380127,"Henderson Bayou Pump Station near Port Vincent, LA",river / canal,ST,tidal,2.332,0.378,0.246,3.886,20.193,45.644,5.196,30.401,StreamRiver,1.0,3.0,24.533,154.112, 
+USGS,07380215,"Amite River at Hwy 22 near Maurepas, LA",river / canal,ST,tidal,2.649,0.699,0.507,4.115,10.82,14.82,2.63,23.046,ArtificialPath,1.0,6.0,4907.488,101.333,Amite River
+USGS,073802220,"Panama Canal at Hwy 44 near Gonzales, LA",river / canal,ST,no tide,1.4,0.082,0.049,2.362,30.632,113.995,12.968,33.346,,,,,,
+USGS,0738022295,"Grand Goudine at Babin Rd Near Duplessis, LA",river / canal,ST,no tide,0.686,0.012,0.008,0.457,47.549,141.082,104.001,26.834,StreamRiver,1.0,1.0,11.853,160.019,Grand Goudine Bayou
+USGS,0738022395,"Black Bayou at Hwy 621 near Prairieville, LA",river / canal,ST,weakly tidal,2.45,0.076,0.056,3.962,60.081,166.385,15.163,27.169,StreamRiver,1.0,3.0,17.762,157.639, 
+USGS,073802225,"Bayou Conway near Sorrento, LA",river / canal,ST,no tide,0.985,0.025,0.02,0.61,52.73,73.872,86.5,46.639,StreamRiver,1.0,2.0,28.728,152.667, 
+USGS,073802245,"Black Bayou E of Gonzales, LA",river / canal,ST,weakly tidal,2.545,0.261,0.182,4.267,29.755,63.756,6.973,22.244,StreamRiver,1.0,3.0,47.194,148.919, 
+USGS,073802280,"New River north of Sorrento, La",river / canal,ST,weakly tidal,2.294,0.266,0.193,4.191,24.258,35.044,5.788,18.229,StreamRiver,1.0,4.0,166.008,140.572,New River
+USGS,073802273,"Bayou Francois at Hwy 61 Near Gonzales, LA",river / canal,ST,weakly tidal,2.47,0.257,0.182,4.115,26.975,69.908,6.556,23.06,StreamRiver,1.0,2.0,33.98,149.224,Bayou Francois
+USGS,073802284,"New River Canal east of Sorrento, LA",river / canal,ST,tidal,2.349,0.426,0.311,3.658,15.697,32.653,4.292,23.377,CanalDitch,1.0,4.0,376.564,131.268, 
+USGS,073802282,"New River Canal near Sorrento, LA",river / canal,ST,tidal,2.424,0.425,0.311,3.658,15.719,36.565,4.298,24.805,CanalDitch,1.0,4.0,376.564,131.268, 
+USGS,073802332,Inner Harbor Navigation Canal nr Seabrook bridge,river / canal,ST,tidal,6.189,0.789,0.715,7.925,23.317,31.478,2.942,20.05,ArtificialPath,1.0,2.0,310.614,39.536, 
+USGS,07380238,"Naomi Diversion Canal near Naomi, LA",river / canal,ST,tidal,2.283,0.338,0.288,2.362,26.67,36.059,11.29,31.09,,,,,,
+USGS,073802339,"GIWW East Storm Surge Barrier at New Orleans, LA",river / canal,ST,tidal,7.802,0.811,0.752,9.906,28.499,33.985,2.877,20.83,ArtificialPath,1.0,2.0,78.235,29.327, 
+USGS,07380251,"Barataria Bay N of Grand Isle, LA",lake,LK,tidal,11.375,0.895,0.858,12.878,36.881,40.843,2.864,19.931,,,,,,
+USGS,073802511,"Barataria Waterway at Mud Lake S of Lafitte, LA",river / canal,ST,tidal,10.51,0.903,0.862,12.116,32.766,36.985,2.704,19.022,,,,,,
+USGS,07380249,"Caminada Pass NW of Grand Isle, LA",estuary / tidal channel,ES,tidal,11.49,0.951,0.93,12.116,35.89,38.212,2.962,18.241,,,,,,
+USGS,073802512,"Hackberry Bay NW of Grand Isle, LA",estuary / tidal channel,ES,tidal,10.22,0.92,0.884,11.582,31.699,34.996,2.737,19.49,,,,,,
+USGS,07380260,"Empire Waterway south of Empire, LA",estuary / tidal channel,ES,tidal,14.061,0.941,0.918,15.088,43.282,47.701,2.869,20.112,StreamRiver,1.0,1.0,6.359,18.055, 
+USGS,07380330,"Bayou Perot at Point Legard near Cutoff, LA",estuary / tidal channel,ES,tidal,4.817,0.8,0.705,6.477,16.764,24.689,2.588,17.521,ArtificialPath,1.0,5.0,3134.064,28.343, 
+USGS,073802516,"Barataria Pass at Grand Isle, LA",river / canal,ST,tidal,12.939,0.921,0.904,13.183,48.006,43.739,3.642,20.763,,,,,,
+USGS,07380401,"Bayou Lafourche SW of Donaldsonville, LA",river / canal,ST,no tide,0.251,0.018,0.013,0.457,13.564,32.918,29.666,14.419,StreamRiver,1.0,1.0,0.886,188.73, 
+USGS,07380500,"Bayou Lafourche at Napoleonville, LA",river / canal,ST,no tide,0.156,0.01,0.006,0.381,12.344,34.404,32.4,12.236,StreamRiver,1.0,1.0,63.157,163.896, 
+USGS,07381150,"Bayou Lafourche at Lockport, LA",river / canal,ST,tidal,1.093,0.563,0.346,1.829,6.401,12.447,3.5,15.397,ArtificialPath,1.0,2.0,254.58,61.532, 
+USGS,07381000,"Bayou Lafourche at Thibodaux, LA",river / canal,ST,no tide,0.185,0.015,0.009,0.305,10.363,35.081,34.0,17.465,CanalDitch,1.0,1.0,71.708,136.293, 
+USGS,07381235,"GIWW West of Bayou Lafourche at Larose, LA",river / canal,ST,tidal,1.741,0.658,0.481,2.591,8.077,11.049,3.118,15.796,ArtificialPath,1.0,1.0,35.609,61.466, 
+USGS,07381324,"Bayou Grand Caillou at Dulac, LA",river / canal,ST,tidal,4.121,0.864,0.794,5.182,13.411,16.535,2.588,15.244,,,,,,
+USGS,073813498,"Caillou Bay SW of Cocodrie, LA",estuary / tidal channel,ES,tidal,15.187,0.89,0.88,15.469,54.94,64.062,3.552,21.822,,,,,,
+USGS,07381350,"Company Canal at Hwy 1 at Lockport, LA",river / canal,ST,tidal,1.086,0.581,0.347,1.753,6.248,11.43,3.565,16.419,CanalDitch,1.0,2.0,235.757,80.249, 
+USGS,07381349,"Caillou Lake (Sister Lake) SW of Dulac, LA",lake,LK,tidal,14.075,0.862,0.833,14.905,54.681,63.779,3.669,22.301,ArtificialPath,1.0,4.0,887.565,2.201, 
+USGS,07381427,"Bayou Grosse Tete S. of I10 at Grosse Tete, LA",river / canal,ST,no tide,0.17,0.006,0.002,1.676,23.88,44.91,14.245,35.703,StreamRiver,1.0,3.0,316.588,154.366,Bayou Grosse Tete
+USGS,07381429,"Choctaw Bayou at I-10 east of Grosse Tete, LA",river / canal,ST,no tide,0.289,0.013,0.01,1.6,15.697,42.406,9.81,22.53,StreamRiver,1.0,5.0,769.325,154.467,Choctaw Bayou
+USGS,07381412,INTRACOASTAL WATERWAY NR PORT ALLEN LA,river / canal,ST,no tide,0.303,0.009,0.01,2.438,16.548,31.511,6.786,22.039,ArtificialPath,1.0,10.0,2880682.592,161.531,Lower Grand River
+USGS,07381355,"Company Canal at Salt Barrier near Lockport, LA",river / canal,ST,tidal,1.132,0.579,0.36,1.753,6.782,12.268,3.87,15.891,,,,,,
+USGS,07381452,"Choctaw Bayou at Hwy 404 W of White Castle, LA",river / canal,ST,weakly tidal,0.526,0.162,0.085,1.067,10.377,20.003,9.727,17.84,StreamRiver,1.0,3.0,2882567.123,105.385,Choctaw Bayou
+USGS,07381460,"Bayou Milhomme near Stephensville, LA",river / canal,ST,tidal,0.776,0.377,0.282,1.067,6.325,10.168,5.928,21.555,,,,,,
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",river / canal,ST,no tide,0.302,0.04,0.027,1.143,10.592,22.708,9.267,35.031,ArtificialPath,1.0,5.0,2882343.787,118.212,Lower Grand River
+USGS,07381454,"Belle River at Hwy 70 near Pierre Part, LA",river / canal,ST,tidal,0.77,0.466,0.306,1.067,5.486,8.534,5.143,21.042,StreamRiver,1.0,1.0,2883080.082,79.234, 
+USGS,073814675,"Bayou Boeuf at Railroad Bridge at Amelia, LA",river / canal,ST,tidal,1.728,0.572,0.511,1.981,9.83,13.183,4.962,20.282,ArtificialPath,1.0,5.0,2883635.981,38.981, 
+USGS,07381482,Old River Outflow Channel below Hydropower Channel,river / canal,ST,no tide,0.718,0.031,0.017,3.429,29.642,47.923,8.645,322.461,ArtificialPath,0.0,1.0,2878497.967,229.906, 
+USGS,073815450,"Chicot Pass near Myette Point near Charenton, LA",river / canal,ST,tidal,2.184,0.456,0.396,1.981,18.136,29.566,9.154,85.628,ArtificialPath,1.0,8.0,3121112.268,66.699,Atchafalaya River
+USGS,07381490,"Atchafalaya River at Simmesport, LA",river / canal,ST,no tide,0.644,0.048,0.021,3.353,21.869,33.985,6.523,308.725,ArtificialPath,0.0,2.0,1364.655,212.311,Bayou des Glaises
+USGS,07381515,"Atchafalaya River at Butte La Rose, LA",river / canal,ST,tidal,1.22,0.33,0.213,1.829,13.411,23.719,7.333,155.169,ArtificialPath,1.0,2.0,3119740.823,125.592,Upper Grand River
+USGS,07381567,"Buffalo Cove at Round Island near Charenton, LA",river / canal,ST,tidal,0.97,0.312,0.225,1.219,11.735,23.235,9.625,96.765,StreamRiver,1.0,1.0,0.059,83.997, 
+USGS,073815925,"Crewboat Channel at Wax Lake Outlet nr Calumet, LA",river / canal,ST,tidal,9.643,0.742,0.728,10.744,49.462,62.934,4.604,21.557,Coastline,0.0,-9.0,3.388,0.0, 
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",river / canal,ST,tidal,6.308,0.626,0.6,5.563,40.081,54.331,7.206,54.25,ArtificialPath,1.0,6.0,6296.674,42.456, 
+USGS,073815963,"Murphy Lake near Bayou Sorrel, LA",lake,LK,weakly tidal,0.469,0.239,0.14,0.686,7.01,11.287,10.222,77.607,ArtificialPath,1.0,2.0,23.337,96.018, 
+USGS,073815945,"Bayou Teche E of Calumet Flood Gate at Calumet, LA",river / canal,ST,tidal,2.432,0.269,0.254,0.686,29.947,40.606,43.667,11.584,StreamRiver,1.0,6.0,6259.061,56.476,Bayou Teche
+USGS,07381600,"Lower Atchafalaya River at Morgan City, LA",river / canal,ST,tidal,4.388,0.567,0.54,3.581,31.394,44.348,8.766,50.166,ArtificialPath,1.0,8.0,3130494.43,27.807,Lower Atchafalaya River
+USGS,073816525,Mouth of Atchafalaya River at Atchafalaya Bay,river / canal,ST,tidal,14.521,0.828,0.815,16.916,60.35,72.836,3.568,21.149,,,,,,
+USGS,07382000,"Bayou Cocodrie near Clearwater, LA",river / canal,ST,no tide,0.172,0.009,0.003,1.219,19.812,56.083,16.25,119.438,StreamRiver,0.0,4.0,623.488,344.365,Bayou Cocodrie
+USGS,07381670,"GIWW at Bayou Sale Ridge near Franklin, LA",river / canal,ST,tidal,7.27,0.651,0.621,7.163,41.605,54.434,5.808,27.737,ArtificialPath,1.0,3.0,6366.066,19.516, 
+USGS,07383500,"Bayou Des Glaises Diversion Ch. at Moreauville, LA",river / canal,ST,no tide,0.613,0.01,0.005,1.219,46.33,157.702,37.998,91.914,StreamRiver,0.0,1.0,1273.894,269.13, 
+USGS,07382500,"Bayou Courtableau at Washington, LA",river / canal,ST,no tide,0.267,0.009,0.003,1.6,27.28,77.587,17.048,72.894,StreamRiver,1.0,5.0,2173.313,262.01,Bayou Boeuf
+USGS,07384400,"State Canal near Krotz Springs, LA",river / canal,ST,no tide,0.087,0.009,0.003,0.686,9.601,30.174,14.0,61.299,StreamRiver,0.0,3.0,563.746,162.281, 
+USGS,07385700,"Bayou Teche at Keystone L&D nr St. Martinville, LA",river / canal,ST,no tide,0.159,0.014,0.01,0.457,9.449,29.535,20.667,11.258,StreamRiver,1.0,5.0,3078.42,163.237,Bayou Teche
+USGS,07385702,Bayou Teche below Keystone L&D nr St. Martinville,river / canal,ST,no tide,1.11,0.041,0.025,2.438,40.928,122.497,16.785,45.638,StreamRiver,1.0,5.0,3078.42,163.237,Bayou Teche
+USGS,07385765,"Bayou Teche at Adeline Bridge near Jeanerette, LA",river / canal,ST,tidal,2.894,0.605,0.532,4.039,15.164,34.78,3.755,19.84,StreamRiver,1.0,5.0,3233.592,106.384,Bayou Teche
+USGS,07385820,"Bayou Teche W of Calumet Flood Gate at Calumet, LA",river / canal,ST,tidal,3.708,0.409,0.357,4.877,30.175,44.653,6.188,15.684,StreamRiver,1.0,6.0,6259.061,56.476,Bayou Teche
+USGS,07386600,"Vermilion River (B. Vermilion) near Carencro, LA",river / canal,ST,no tide,0.959,0.012,0.006,2.134,79.131,205.011,37.088,95.352,StreamRiver,1.0,3.0,267.584,108.122,Vermilion River
+USGS,07386850,"Vermilion River near Lafayette, LA",river / canal,ST,weakly tidal,1.611,0.122,0.077,2.743,32.842,95.401,11.972,57.335,StreamRiver,1.0,4.0,3455.632,84.174,Vermilion River
+USGS,07386940,"Vermilion River at Hwy 733 near Lafayette, LA",river / canal,ST,tidal,6.138,0.404,0.326,9.449,44.501,131.568,4.71,43.586,StreamRiver,1.0,5.0,3755.935,62.596,Vermilion River
+USGS,07386880,"Vermilion River at Surrey St. at Lafayette, LA",river / canal,ST,weakly tidal,2.19,0.169,0.118,3.353,34.138,102.822,10.182,53.89,StreamRiver,1.0,5.0,3636.832,79.432,Vermilion River
+USGS,07386980,"Vermilion River at Perry, LA",river / canal,ST,tidal,9.517,0.716,0.64,13.487,42.367,65.338,3.141,30.702,ArtificialPath,1.0,5.0,4390.336,29.974,Vermilion River
+USGS,08010000,"Bayou Des Cannes near Eunice, LA",river / canal,ST,no tide,1.375,0.012,0.005,3.81,122.418,264.575,32.131,128.9,StreamRiver,0.0,3.0,423.192,163.428,Bayou des Cannes
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",estuary / tidal channel,ES,tidal,14.535,0.822,0.78,18.623,54.864,63.703,2.946,26.977,ArtificialPath,1.0,1.0,28.291,0.381,Bayou Fearman
+USGS,07387040,"Vermilion Bay near Cypremort Point, LA",lake,LK,tidal,15.052,0.83,0.789,19.02,56.617,66.351,2.977,27.254,Coastline,0.0,-9.0,0.529,0.0, 
+USGS,08012000,"Bayou Nezpique near Basile, LA",river / canal,ST,no tide,0.52,0.01,0.003,3.81,55.474,136.449,14.56,182.408,StreamRiver,0.0,4.0,1336.478,166.253,Bayou Nezpique
+USGS,08012150,"Mermentau River At Mermentau, LA",river / canal,ST,no tide,0.265,0.034,0.024,1.219,8.763,17.242,7.188,28.245,ArtificialPath,1.0,5.0,3663.861,105.018,Mermentau River
+USGS,08013250,"Calcasieu River near Oakdale, LA",river / canal,ST,no tide,0.159,0.012,0.003,0.61,17.634,41.996,28.928,73.556,StreamRiver,0.0,5.0,1599.692,205.467,Calcasieu River
+USGS,08013000,"Calcasieu River nr Glenmora, LA",river / canal,ST,no tide,0.209,0.007,0.002,1.219,23.47,69.457,19.25,100.514,StreamRiver,0.0,5.0,1298.415,239.018,Calcasieu River
+USGS,08013500,"Calcasieu River near Oberlin, LA",river / canal,ST,no tide,0.209,0.006,0.001,1.219,31.394,90.83,25.75,121.165,StreamRiver,0.0,5.0,1973.227,167.154,Calcasieu River
+USGS,08014500,"Ouiska Chitto Creek Near Oberlin, LA",river / canal,ST,no tide,0.244,0.005,0.001,0.914,42.52,97.414,46.5,87.675,StreamRiver,0.0,5.0,1325.187,166.124,Whisky Chitto Creek
+USGS,08014881,"Bundick Lake at Spillway near DeRidder, LA",lake,LK,no tide,0.1,0.012,0.004,0.457,9.068,24.829,19.834,20.435,ArtificialPath,0.0,3.0,545.615,188.538,Bundick Creek
+USGS,08015500,"Calcasieu River near Kinder, LA",river / canal,ST,no tide,0.237,0.01,0.002,1.524,30.48,64.16,20.0,123.098,StreamRiver,0.0,6.0,4465.323,139.909,Calcasieu River
+USGS,08014800,"Bundick Creek near DeRidder, LA",river / canal,ST,no tide,0.624,0.008,0.003,1.143,72.833,172.713,63.728,91.924,StreamRiver,0.0,3.0,314.485,214.518,Bundick Creek
+USGS,08017044,"Calcasieu River at I-10 at Lake Charles, LA",river / canal,ST,tidal,13.362,0.874,0.844,16.764,53.645,66.101,3.2,24.423,ArtificialPath,1.0,6.0,8222.687,56.541,Calcasieu River
+USGS,08017095,"North Calcasieu Lake near Hackberry, LA",lake,LK,tidal,10.645,0.827,0.789,13.716,41.072,49.682,2.994,22.207,ArtificialPath,1.0,6.0,16305.073,27.795,Calcasieu River
+USGS,08017118,"Calcasieu River at Cameron, LA",estuary / tidal channel,ES,tidal,12.55,0.875,0.852,14.173,51.511,54.785,3.634,39.462,ArtificialPath,1.0,6.0,16912.813,5.554,Calcasieu River
+USGS,08026000,"Sabine Rv nr Burkeville, TX",river / canal,ST,weakly tidal,10.934,0.174,0.148,3.505,171.711,232.255,48.988,196.394,ArtificialPath,0.0,6.0,19492.31,247.358,Sabine River
+USGS,08028500,"Sabine Rv nr Bon Wier, TX",river / canal,ST,weakly tidal,2.494,0.112,0.051,4.42,55.135,111.428,12.475,178.837,ArtificialPath,0.0,6.0,21417.118,189.078,Sabine River
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",river / canal,ST,no tide,0.535,0.007,0.003,0.991,55.322,161.037,55.842,99.557,StreamRiver,0.0,5.0,965.453,240.709,Bayou Anacoco
+USGS,08029500,"Big Cow Ck nr Newton, TX",river / canal,ST,no tide,0.569,0.009,0.004,0.838,60.274,132.065,71.918,55.391,StreamRiver,0.0,3.0,376.765,183.601,Big Cow Creek
+USGS,08030520,"Sabine Rv at Intl Paper nr Orange, TX",river / canal,ST,weakly tidal,0.838,0.324,0.123,1.6,10.846,19.932,6.778,43.336,StreamRiver,1.0,6.0,24285.1,79.025, 
+USGS,08030540,"Sabine Rv (at Navy Pier) at Orange, TX",estuary / tidal channel,ST-TS,tidal,8.592,0.852,0.799,9.677,34.366,41.986,3.551,25.175,ArtificialPath,1.0,6.0,24534.125,57.25,Sabine River
+USGS,08030500,"Sabine Rv nr Ruliff, TX",river / canal,ST,no tide,0.185,0.01,0.002,2.057,22.631,43.129,11.0,123.875,StreamRiver,1.0,6.0,24108.988,94.749,Sabine River
+USGS,08030530,"Sabine Rv at I-10 nr Orange, TX",estuary / tidal channel,ST-TS,tidal,8.239,0.814,0.757,8.953,35.334,44.338,3.947,25.622,ArtificialPath,1.0,6.0,24528.419,58.811,Sabine River
+USGS,08030730,"Adams Bayou at FM 3247 nr Orange, TX",estuary / tidal channel,ST-TS,tidal,8.967,0.718,0.64,11.278,41.758,86.555,3.703,29.871,StreamRiver,1.0,2.0,164.017,60.709,Adams Bayou
+USGS,08031010,"Cow Bayou at FM 1442 nr Orangefield, TX",estuary / tidal channel,ST-TS,tidal,7.636,0.63,0.53,10.058,39.688,84.07,3.946,46.968,StreamRiver,1.0,3.0,287.258,67.97,Cow Bayou
+USGS,08030800,"Adams Bayou at SH87 nr Orange, TX",estuary / tidal channel,ST-TS,tidal,9.112,0.853,0.797,10.456,35.966,45.817,3.44,21.859,StreamRiver,1.0,2.0,164.017,60.709,Adams Bayou
+USGS,08031000,"Cow Bayou nr Mauriceville, TX",river / canal,ST,no tide,0.972,0.01,0.006,1.067,67.937,256.134,63.683,98.813,StreamRiver,1.0,3.0,232.951,77.073,Cow Bayou
+USGS,08031050,"Cow Bayou at SH 87 nr Bridge City, TX",estuary / tidal channel,ST-TS,tidal,9.396,0.867,0.816,10.998,35.814,44.945,3.256,21.738,ArtificialPath,1.0,3.0,429.103,54.082,Cow Bayou
+USGS,08033350,"Piney Ck at US 59 nr Corrigan, TX",river / canal,ST,no tide,0.453,0.01,0.004,0.61,36.195,132.23,59.376,86.296,StreamRiver,0.0,4.0,652.718,351.172,Piney Creek
+USGS,08033000,"Neches Rv nr Diboll, TX",river / canal,ST,no tide,0.2,0.01,0.003,1.067,20.955,67.769,19.64,134.987,StreamRiver,0.0,5.0,7047.933,355.066,Neches River
+USGS,08031020,"Cole Ck at I-10 nr Orange, TX",river / canal,ST,no tide,0.782,0.014,0.01,0.457,53.431,143.848,116.867,27.115,StreamRiver,1.0,1.0,24.762,68.335,Cole Creek
+USGS,08033500,"Neches Rv nr Rockland, TX",river / canal,ST,no tide,0.329,0.008,0.003,1.067,31.699,117.165,29.714,164.415,StreamRiver,0.0,5.0,9406.845,285.731,Neches River
+USGS,08040600,"Neches Rv nr Town Bluff, TX",river / canal,ST,no tide,0.768,0.01,0.005,0.838,68.047,148.23,81.192,195.083,ArtificialPath,0.0,6.0,19613.581,217.546,Neches River
+USGS,08041300,"Village Ck at US Hwy 69 nr Village Mills, TX",river / canal,ST,no tide,0.384,0.01,0.004,1.372,35.299,92.768,25.736,69.069,StreamRiver,0.0,4.0,705.657,182.332,Village Creek
+USGS,08041000,"Neches Rv at Evadale, TX",river / canal,ST,no tide,0.14,0.008,0.001,1.448,21.336,40.969,14.737,128.456,ArtificialPath,1.0,6.0,20406.096,133.947,Neches River
+USGS,08041500,"Village Ck nr Kountze, TX",river / canal,ST,no tide,0.168,0.005,0.001,1.6,31.224,74.28,19.513,108.877,StreamRiver,0.0,5.0,2231.828,150.534,Village Creek
+USGS,08041700,"Pine Island Bayou nr Sour Lake, TX",river / canal,ST,no tide,0.432,0.007,0.003,1.905,45.365,144.676,23.814,135.27,StreamRiver,0.0,4.0,1015.235,138.532,Pine Island Bayou
+USGS,08041749,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",estuary / tidal channel,ST-TS,tidal,4.603,0.474,0.406,3.962,35.052,49.982,8.846,57.673,StreamRiver,1.0,4.0,1856.494,108.829,Pine Island Bayou
+USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",estuary / tidal channel,ST-TS,tidal,6.257,0.592,0.55,5.334,37.643,44.425,7.057,42.492,ArtificialPath,1.0,6.0,25534.282,87.981,Neches River
+USGS,08041788,"Bairds Bayou at I-10 nr Beaumont, TX",river / canal,ST,tidal,11.225,0.82,0.767,13.716,41.833,48.748,3.05,24.254,ArtificialPath,1.0,3.0,220.695,86.059, 
+USGS,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",urban creek (Houston),ST,tidal,13.328,0.862,0.823,16.688,47.092,55.55,2.822,24.805,StreamRiver,1.0,2.0,70.091,0.0,West Fork Double Bayou
+USGS,08065820,"Larrison Ck at FM 1428 nr Midway, TX",river / canal,ST,no tide,0.952,0.013,0.008,0.305,56.97,199.474,186.914,34.093,StreamRiver,0.0,3.0,169.826,312.631,Larrison Creek
+USGS,08065800,"Bedias Ck nr Madisonville, TX",river / canal,ST,no tide,0.766,0.01,0.004,0.533,86.639,187.965,162.428,106.068,StreamRiver,0.0,5.0,856.452,319.181,Bedias Creek
+USGS,08065925,"Nelson Ck at FM 247 nr Huntsville, TX",river / canal,ST,no tide,0.624,0.01,0.009,0.305,28.608,175.5,93.861,12.418,StreamRiver,0.0,3.0,104.558,298.68,Nelson Creek
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",river / canal,ST,no tide,1.21,0.025,0.012,0.61,77.889,166.438,127.773,44.431,StreamRiver,0.0,3.0,194.009,275.074,Gail Creek
+USGS,08066000,"Trinity Rv at Riverside, TX",river / canal,ST,no tide,0.341,0.068,0.033,1.143,8.382,25.634,7.332,52.081,ArtificialPath,0.0,6.0,40350.96,251.045,Trinity River
+USGS,08066175,"Kickapoo Ck at Onalaska, TX",river / canal,ST,no tide,1.115,0.016,0.013,0.305,55.035,180.721,180.563,21.321,StreamRiver,0.0,3.0,170.879,229.739,Kickapoo Creek
+USGS,08066200,"Long King Ck at Livingston, TX",river / canal,ST,no tide,0.831,0.007,0.005,0.533,74.89,241.513,140.429,45.687,StreamRiver,0.0,4.0,374.377,197.15,Long King Creek
+USGS,08066380,"Big Ck at SH 150 nr Shepherd, TX",river / canal,ST,no tide,0.573,0.016,0.012,0.457,36.55,96.877,79.912,13.13,StreamRiver,0.0,3.0,74.067,173.428,Big Creek
+USGS,08066250,"Trinity Rv nr Goodrich, TX",river / canal,ST,no tide,0.587,0.014,0.004,0.762,48.692,152.382,63.897,251.293,ArtificialPath,0.0,6.0,43594.01,175.073,Trinity River
+USGS,08066300,"Menard Ck nr Rye, TX",urban creek (Houston),ST,no tide,0.507,0.012,0.006,0.686,37.871,114.32,55.216,63.51,StreamRiver,0.0,3.0,385.512,158.444,Menard Creek
+USGS,08066500,"Trinity Rv at Romayor, TX",urban creek (Houston),ST,no tide,0.403,0.018,0.005,1.524,33.376,100.576,21.9,203.523,ArtificialPath,0.0,6.0,44430.555,130.658,Trinity River
+USGS,08067000,"Trinity Rv at Liberty, TX",urban creek (Houston),ST,no tide,0.383,0.029,0.005,1.6,29.642,83.911,18.524,227.749,ArtificialPath,1.0,6.0,45242.671,59.473,Trinity River
+USGS,08067070,"CWA Canal nr Dayton, TX",urban creek (Houston),ST-CA,no tide,0.144,0.01,0.009,0.076,7.925,17.049,103.994,5.922,,,,,,
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",estuary / tidal channel,ST-TS,weakly tidal,2.56,0.27,0.181,2.057,32.385,54.284,15.741,132.179,ArtificialPath,1.0,6.0,45499.049,33.853,Trinity River
+USGS,08067118,"Lk Charlotte nr Anahuac, TX",estuary / tidal channel,ES,weakly tidal,0.67,0.151,0.075,1.372,7.849,13.716,5.722,55.347,,,,,,
+USGS,08067250,"Trinity Rv at IH 10 nr Wallisville, TX",estuary / tidal channel,ST-TS,tidal,4.598,0.426,0.374,3.353,32.976,40.072,9.836,38.798,ArtificialPath,1.0,6.0,45575.31,11.042,Trinity River
+USGS,08067280,"Turtle Bayou at I-10 nr Hankamer, TX",urban creek (Houston),ST,no tide,0.186,0.049,0.026,0.533,6.4,21.873,11.998,58.281,ArtificialPath,1.0,3.0,335.99,12.258,Turtle Bayou
+USGS,08067500,"Cedar Bayou nr Crosby, TX",urban creek (Houston),ST,no tide,0.892,0.01,0.006,0.457,67.128,221.68,146.826,65.362,StreamRiver,0.0,2.0,240.817,43.119,Cedar Bayou
+USGS,08067525,"Goose Ck at Baytown, TX",urban creek (Houston),ST,no tide,0.987,0.012,0.011,0.457,66.599,178.997,145.669,38.018,StreamRiver,1.0,1.0,35.866,10.211,Goose Creek
+USGS,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",river / canal,ST,no tide,0.474,0.009,0.005,0.533,47.778,104.456,89.589,45.234,StreamRiver,0.0,4.0,220.266,167.583, 
+USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",urban creek (Houston),ST,no tide,0.934,0.013,0.007,0.381,76.73,168.567,201.396,103.474,StreamRiver,0.0,4.0,1183.262,122.525,West Fork San Jacinto River
+USGS,08067920,"Lake Ck at Sendera Ranch Rd nr Conroe, TX",urban creek (Houston),ST,no tide,0.639,0.008,0.003,0.838,66.075,155.115,78.804,96.984,StreamRiver,0.0,4.0,822.109,115.885,Lake Creek
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",urban creek (Houston),ST,no tide,1.928,0.011,0.01,1.448,56.617,149.752,39.103,85.766,StreamRiver,0.0,5.0,2147.053,102.646,West Fork San Jacinto River
+USGS,08068275,"Spring Ck nr Tomball, TX",urban creek (Houston),ST,no tide,0.529,0.011,0.004,0.686,54.559,116.659,79.546,55.621,StreamRiver,0.0,4.0,494.687,122.018,Spring Creek
+USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",urban creek (Houston),ST,no tide,0.811,0.011,0.006,1.295,64.694,163.013,49.946,80.106,StreamRiver,0.0,5.0,2477.104,80.206,West Fork San Jacinto River
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",urban creek (Houston),ST,no tide,0.9,0.013,0.008,1.296,65.265,165.485,50.379,73.378,StreamRiver,0.0,4.0,793.46,97.863,Spring Creek
+USGS,08068325,"Willow Ck nr Tomball, TX",urban creek (Houston),ST,no tide,1.196,0.014,0.01,1.067,73.228,231.737,68.656,51.727,StreamRiver,0.0,1.0,142.585,97.863,Willow Creek
+USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",urban creek (Houston),ST,no tide,2.631,0.011,0.009,1.219,96.317,182.322,79.002,183.6,StreamRiver,0.0,2.0,40.18,106.821,Bear Branch
+USGS,08068400,"Panther Br at Gosling Rd, The Woodlands, TX",urban creek (Houston),ST,no tide,2.778,0.012,0.014,4.42,81.534,146.761,18.448,45.257,StreamRiver,0.0,2.0,71.69,103.905,Panther Branch
+USGS,08068450,"Panther Br nr Spring, TX",urban creek (Houston),ST,no tide,0.773,0.016,0.014,1.676,40.843,125.692,24.364,41.724,StreamRiver,0.0,2.0,101.879,92.338,Panther Branch
+USGS,08068500,"Spring Ck nr Spring, TX",urban creek (Houston),ST,no tide,1.0,0.013,0.008,1.372,68.275,202.962,49.779,72.004,StreamRiver,0.0,4.0,1052.349,89.051,Spring Creek
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",urban creek (Houston),ST,no tide,1.898,0.01,0.008,0.762,45.491,109.234,59.716,181.963,StreamRiver,0.0,3.0,208.559,138.998,Cypress Creek
+USGS,08068720,"Cypress Ck at Katy-Hockley Rd nr Hockley, TX",urban creek (Houston),ST,no tide,1.538,0.007,0.006,0.533,38.481,103.75,72.157,89.576,StreamRiver,0.0,3.0,270.163,136.212,Cypress Creek
+USGS,08068740,"Cypress Ck at House-Hahl Rd nr Cypress, TX",urban creek (Houston),ST,no tide,2.172,0.011,0.01,1.296,79.4,225.165,61.291,86.893,StreamRiver,0.0,3.0,332.29,126.246,Cypress Creek
+USGS,08068780,"Little Cypress Ck nr Cypress, TX",urban creek (Houston),ST,no tide,0.522,0.013,0.006,0.61,35.281,125.907,57.876,42.6,StreamRiver,0.0,2.0,123.224,121.274,Little Cypress Creek
+USGS,08068900,"Cypress Ck at Stuebner-Airline Rd nr Westfield, TX",urban creek (Houston),ST,no tide,2.201,0.011,0.008,0.076,124.206,346.04,1627.992,159.058,StreamRiver,0.0,3.0,640.879,94.316,Cypress Creek
+USGS,08068800,"Cypress Ck at Grant Rd nr Cypress, TX",urban creek (Houston),ST,no tide,1.718,0.01,0.008,0.99,76.823,234.32,77.561,72.821,StreamRiver,0.0,3.0,548.708,107.816,Cypress Creek
+USGS,08069000,"Cypress Ck nr Westfield, TX",urban creek (Houston),ST,no tide,1.888,0.011,0.009,1.219,96.088,298.495,78.814,67.428,StreamRiver,0.0,3.0,725.995,83.1,Cypress Creek
+USGS,08069500,"W Fk San Jacinto Rv nr Humble, TX",urban creek (Houston),ST,no tide,0.418,0.012,0.006,0.826,31.928,96.816,38.679,51.364,ArtificialPath,0.0,5.0,4543.454,59.36,West Fork San Jacinto River
+USGS,08070000,"E Fk San Jacinto Rv nr Cleveland, TX",urban creek (Houston),ST,no tide,0.419,0.012,0.005,0.762,40.392,88.485,52.996,62.152,StreamRiver,0.0,5.0,844.46,94.188,East Fork San Jacinto River
+USGS,08070200,"E Fk San Jacinto Rv nr New Caney, TX",urban creek (Houston),ST,no tide,0.782,0.007,0.005,0.686,44.729,142.602,65.224,80.893,StreamRiver,0.0,5.0,1019.842,62.477,East Fork San Jacinto River
+USGS,08070500,"Caney Ck nr Splendora, TX",urban creek (Houston),ST,no tide,0.59,0.007,0.004,0.381,65.303,126.046,171.4,48.973,StreamRiver,0.0,3.0,300.438,73.952,Caney Creek
+USGS,08071000,"Peach Ck at Splendora, TX",urban creek (Houston),ST,no tide,0.319,0.009,0.003,0.305,31.166,93.092,102.248,38.178,StreamRiver,0.0,3.0,302.143,76.949,Peach Creek
+USGS,08072000,"Lk Houston nr Sheldon, TX",lake,LK,no tide,0.159,0.02,0.012,0.914,8.61,26.401,9.417,31.435,ArtificialPath,0.0,6.0,7338.818,34.581,West Fork San Jacinto River
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",urban creek (Houston),ST,no tide,1.217,0.018,0.015,0.076,72.219,202.548,946.593,46.262,StreamRiver,0.0,2.0,231.192,88.379,Buffalo Bayou
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",estuary / tidal channel,ST-TS,tidal,15.274,0.844,0.792,19.38,60.35,74.634,3.114,47.092,ArtificialPath,1.0,6.0,7435.313,23.795,San Jacinto River
+USGS,08072300,"Buffalo Bayou nr Katy, TX",urban creek (Houston),ST,no tide,0.737,0.013,0.01,1.219,47.396,143.798,38.876,43.003,StreamRiver,0.0,2.0,186.933,98.005,Buffalo Bayou
+USGS,08072470,"Mason Ck at Prince Ck Court nr Houston, TX",urban creek (Houston),ST,no tide,0.607,0.017,0.016,1.067,35.701,80.69,33.466,7.981,StreamRiver,0.0,1.0,45.094,87.276,Mason Creek
+USGS,08072520,"Clodine Ditch at Noble Rd nr Addicks, TX",urban creek (Houston),ST,no tide,0.303,0.016,0.01,0.686,18.212,49.113,26.552,12.585,StreamRiver,0.0,1.0,5.484,77.794, 
+USGS,08072600,"Buffalo Bayou at State Hwy 6 nr Addicks, TX",urban creek (Houston),ST,no tide,1.224,0.01,0.008,0.838,98.699,198.088,117.74,75.156,StreamRiver,0.0,2.0,355.099,77.38,Buffalo Bayou
+USGS,08072680,"S Mayde Ck at Heathergold Dr nr Addicks, TX",urban creek (Houston),ST,no tide,1.377,0.014,0.011,1.905,90.27,206.493,47.384,55.422,StreamRiver,0.0,2.0,75.553,86.88,South Mayde Creek
+USGS,08072730,"Bear Ck nr Barker, TX",urban creek (Houston),ST,no tide,1.355,0.014,0.012,1.219,92.583,195.749,75.939,35.565,StreamRiver,0.0,2.0,80.987,81.212,Bear Creek
+USGS,08072760,"Langham Ck at W Little York Rd nr Addicks, TX",urban creek (Houston),ST,no tide,1.132,0.014,0.012,1.753,74.549,177.048,42.534,33.039,StreamRiver,0.0,2.0,75.702,87.538,Langham Creek
+USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",urban creek (Houston),ST,no tide,1.566,0.013,0.01,1.219,115.783,197.131,94.968,84.591,CanalDitch,0.0,3.0,328.126,75.068,South Mayde Creek
+USGS,08072800,"Langham Ck nr Addicks, TX",urban creek (Houston),ST,no tide,1.044,0.013,0.008,1.677,81.458,171.145,48.586,59.817,StreamRiver,0.0,3.0,142.245,80.938,Langham Creek
+USGS,08073500,"Buffalo Bayou nr Addicks, TX",urban creek (Houston),ST,no tide,2.025,0.012,0.009,1.524,152.395,289.908,99.999,104.494,StreamRiver,0.0,3.0,737.891,67.677,Buffalo Bayou
+USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",urban creek (Houston),ST,no tide,2.693,0.013,0.011,4.039,175.83,371.206,43.537,121.749,StreamRiver,0.0,3.0,759.651,63.996,Buffalo Bayou
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",urban creek (Houston),ST,no tide,2.752,0.014,0.011,3.886,172.409,372.306,44.365,117.827,StreamRiver,0.0,3.0,771.847,59.031,Buffalo Bayou
+USGS,08074000,"Buffalo Bayou at Houston, TX",estuary / tidal channel,ST-TS,weakly tidal,7.21,0.122,0.103,11.43,128.397,323.373,11.233,87.698,StreamRiver,1.0,3.0,883.453,35.097,Buffalo Bayou
+USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",urban creek (Houston),ST,no tide,1.515,0.013,0.011,0.838,98.354,231.492,117.355,47.731,StreamRiver,0.0,3.0,97.565,54.494,Whiteoak Bayou
+USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",urban creek (Houston),ST,no tide,1.282,0.015,0.013,0.686,79.553,174.464,116.018,24.287,StreamRiver,0.0,1.0,29.953,52.097,Cole Creek
+USGS,08074500,"Whiteoak Bayou at Houston, TX",urban creek (Houston),ST,no tide,2.651,0.015,0.013,2.438,159.822,377.272,65.544,46.511,StreamRiver,0.0,3.0,233.644,37.154,Whiteoak Bayou
+USGS,08074250,"Brickhouse Gully at Costa Rica St, Houston, TX",urban creek (Houston),ST,no tide,2.11,0.019,0.015,0.457,117.872,236.83,257.818,26.126,StreamRiver,0.0,2.0,29.453,49.469, 
+USGS,08074540,"Little Whiteoak Bayou at Trimble St, Houston, TX",urban creek (Houston),ST,no tide,1.969,0.012,0.011,0.457,128.321,287.335,280.672,35.661,StreamRiver,0.0,1.0,62.409,37.154,Little Whiteoak Bayou
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",estuary / tidal channel,ST-TS,tidal,14.852,0.476,0.428,19.431,109.499,292.604,5.635,49.088,StreamRiver,1.0,3.0,298.277,35.097,Whiteoak Bayou
+USGS,08074710,"Buffalo Bayou at Turning Basin, Houston, TX",estuary / tidal channel,ST-TS,tidal,15.492,0.878,0.84,19.279,57.379,67.818,2.976,28.15,ArtificialPath,1.0,4.0,1204.569,22.859,Buffalo Bayou
+USGS,08074760,"Brays Bayou at Alief, TX",urban creek (Houston),ST,no tide,1.139,0.016,0.017,2.591,64.618,158.423,24.941,23.976,StreamRiver,0.0,1.0,45.77,61.124,Brays Bayou
+USGS,08074800,"Keegans Bayou at Roark Rd nr Houston, TX",urban creek (Houston),ST,no tide,1.524,0.017,0.014,0.686,88.087,203.457,128.429,29.092,StreamRiver,0.0,1.0,65.894,56.689,Keegans Bayou
+USGS,08074810,"Brays Bayou at Gessner Dr, Houston, TX",urban creek (Houston),ST,no tide,1.825,0.012,0.011,2.286,125.509,283.097,54.904,36.657,StreamRiver,0.0,2.0,190.003,51.387,Brays Bayou
+USGS,08075000,"Brays Bayou at Houston, TX",urban creek (Houston),ST,no tide,2.513,0.012,0.011,2.819,173.306,391.369,61.468,47.309,StreamRiver,0.0,2.0,329.365,29.672,Brays Bayou
+USGS,08075110,"Brays Bayou at MLK Jr Blvd, Houston, TX",estuary / tidal channel,ST-TS,tidal,14.84,0.292,0.273,20.041,179.718,405.637,8.968,52.539,StreamRiver,0.0,2.0,329.365,29.672,Brays Bayou
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",urban creek (Houston),ST,no tide,1.65,0.014,0.012,1.448,107.942,251.817,74.557,112.311,StreamRiver,0.0,2.0,47.774,50.254,Sims Bayou
+USGS,08075500,"Sims Bayou at Houston, TX",estuary / tidal channel,ST-TS,tidal,14.552,0.638,0.601,18.821,67.361,192.234,3.579,35.484,StreamRiver,1.0,2.0,164.303,24.616,Sims Bayou
+USGS,08075605,"Berry Bayou at Nevada St, Houston, TX",urban creek (Houston),ST,no tide,0.617,0.013,0.014,0.914,29.947,83.92,32.751,9.542,,,,,,
+USGS,08075730,"Vince Bayou at Pasadena, TX",urban creek (Houston),ST,no tide,1.043,0.014,0.013,0.533,67.132,140.05,125.857,16.293,StreamRiver,0.0,1.0,25.336,18.137,Vince Bayou
+USGS,08075763,"Hunting Bayou at Hoffman St, Houston, TX",urban creek (Houston),ST,no tide,1.382,0.015,0.013,0.533,85.198,184.839,159.729,36.485,StreamRiver,0.0,2.0,17.612,34.258,Hunting Bayou
+USGS,08075770,"Hunting Bayou at IH 610, Houston, TX",urban creek (Houston),ST,no tide,1.806,0.016,0.012,0.914,109.513,242.165,119.761,41.418,StreamRiver,0.0,2.0,53.181,23.657,Hunting Bayou
+USGS,08075780,"Greens Bayou at Cutten Rd nr Houston, TX",urban creek (Houston),ST,no tide,1.114,0.014,0.011,1.143,74.6,173.862,65.273,23.12,StreamRiver,0.0,1.0,23.719,71.944,Greens Bayou
+USGS,08075900,"Greens Bayou nr US Hwy 75 nr Houston, TX",urban creek (Houston),ST,no tide,1.725,0.014,0.012,1.296,105.689,249.905,81.584,32.638,StreamRiver,0.0,3.0,96.571,58.675,Greens Bayou
+USGS,08076000,"Greens Bayou nr Houston, TX",urban creek (Houston),ST,no tide,2.17,0.015,0.011,1.219,130.378,312.424,106.94,49.406,StreamRiver,0.0,3.0,163.819,45.983,Greens Bayou
+USGS,08076180,"Garners Bayou nr Humble, TX",urban creek (Houston),ST,no tide,1.724,0.012,0.009,2.057,115.672,295.661,56.223,51.02,StreamRiver,0.0,2.0,89.821,41.047, 
+USGS,08076500,"Halls Bayou at Houston, TX",urban creek (Houston),ST,no tide,1.26,0.014,0.011,0.61,78.105,205.06,128.127,32.385,StreamRiver,0.0,1.0,100.19,40.744,Halls Bayou
+USGS,08076700,"Greens Bayou at Ley Rd, Houston, TX",estuary / tidal channel,ST-TS,tidal,11.723,0.253,0.204,18.288,157.658,361.423,8.621,76.449,StreamRiver,1.0,3.0,465.8,29.27,Greens Bayou
+USGS,08076997,"Clear Ck at Mykawa St nr Pearland, TX",urban creek (Houston),ST,no tide,0.678,0.013,0.009,0.991,37.414,143.589,37.77,40.29,StreamRiver,0.0,2.0,90.794,60.076,Clear Creek
+USGS,08077600,"Clear Ck nr Friendswood, TX",urban creek (Houston),ST,tidal,12.153,0.74,0.648,16.84,45.796,130.53,2.72,40.133,StreamRiver,1.0,3.0,291.184,25.55,Clear Creek
+USGS,08078080,"Bastrop Bayou at CR 288 nr Lake Jackson, TX",river / canal,ST,tidal,6.303,0.667,0.573,9.068,25.097,73.842,2.768,25.438,StreamRiver,1.0,2.0,104153.822,35.002,Bastrop Bayou
+USGS,08078000,"Chocolate Bayou nr Alvin, TX",river / canal,ST,no tide,1.012,0.011,0.005,1.295,87.491,239.925,67.54,89.692,StreamRiver,1.0,2.0,219.753,33.301,Chocolate Bayou
+USGS,08078940,"Oyster Ck at CR 34 nr Angleton, TX",river / canal,ST,no tide,0.461,0.01,0.006,0.457,39.95,114.25,87.382,54.973,StreamRiver,0.0,1.0,25.418,85.404,Copper Bayou
+USGS,08079005,"Oyster Ck at CR 290 nr Angleton, TX",river / canal,ST,no tide,0.248,0.009,0.003,0.686,29.642,78.492,43.222,55.493,StreamRiver,1.0,3.0,104077.75,45.581,Oyster Creek
+USGS,08078930,"Oyster Ck at CR 42 nr Rosharon, TX",river / canal,ST,no tide,0.437,0.018,0.01,0.584,25.395,88.78,43.475,40.868,StreamRiver,0.0,3.0,380.746,102.559,Oyster Creek
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",estuary / tidal channel,ST-TS,tidal,10.583,0.795,0.733,13.716,43.739,76.322,3.189,47.669,StreamRiver,1.0,3.0,104077.75,45.581,Oyster Creek
+USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",river / canal,ST,no tide,1.228,0.03,0.01,1.905,75.129,169.07,39.436,168.548,ArtificialPath,0.0,7.0,66883.654,508.753,Brazos River
+USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",river / canal,ST,no tide,0.682,0.012,0.003,2.21,76.373,167.504,34.566,193.653,ArtificialPath,0.0,7.0,87218.834,464.949,Brazos River
+USGS,08108780,"Little Brazos Rv at FM 485 nr Hearne, TX",river / canal,ST,no tide,0.454,0.012,0.004,0.533,43.35,122.606,81.286,65.368,StreamRiver,0.0,4.0,653.037,509.097, 
+USGS,08079120,"Old Brazos Rv nr Freeport, TX",estuary / tidal channel,ST-TS,tidal,16.814,0.946,0.937,17.983,65.989,79.572,3.67,24.154,ArtificialPath,1.0,7.0,104211.76,10.781, 
+USGS,08109310,"Thompsons Ck at SH 47 nr Bryan, TX",river / canal,ST,no tide,1.556,0.012,0.011,1.092,121.524,286.375,111.231,33.335,StreamRiver,0.0,3.0,121.302,452.621,Thompsons Creek
+USGS,08110000,"Yegua Ck nr Somerville, TX",river / canal,ST,no tide,0.576,0.011,0.007,0.305,45.568,134.124,149.503,103.014,StreamRiver,0.0,5.0,2626.584,422.605,Yegua Creek
+USGS,08110200,"Brazos Rv at Washington, TX",river / canal,ST,no tide,0.5,0.013,0.004,1.524,54.368,107.004,35.675,188.92,ArtificialPath,0.0,7.0,92667.817,371.165,Brazos River
+USGS,08110100,"Davidson Ck nr Lyons, TX",river / canal,ST,no tide,1.115,0.014,0.007,0.533,82.372,250.734,154.459,80.894,StreamRiver,0.0,3.0,508.814,433.103,Davidson Creek
+USGS,08111006,"Mathis Ck at US 190 nr Kurten, TX",river / canal,ST,no tide,1.008,0.012,0.01,0.508,68.033,208.206,133.891,21.845,StreamRiver,0.0,2.0,35.647,455.168,Mathis Creek
+USGS,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",river / canal,ST,no tide,0.281,0.008,0.002,0.914,39.166,89.403,42.851,124.16,StreamRiver,0.0,5.0,3468.571,498.597,Navasota River
+USGS,08111051,"Carters Ck at FM 60 nr College Station, TX",river / canal,ST,no tide,1.711,0.018,0.02,2.54,100.588,260.009,39.604,22.867,StreamRiver,0.0,2.0,58.839,443.283,Carters Creek
+USGS,08111056,"Peach Ck at SH 6 nr Millican, TX",river / canal,ST,no tide,0.53,0.011,0.008,0.584,36.432,104.693,62.38,15.353,StreamRiver,0.0,3.0,71.252,413.195,Peach Creek
+USGS,08111085,"New Year Ck at SH 105 nr Brenham, TX",river / canal,ST,no tide,0.472,0.014,0.009,0.407,25.652,106.986,63.083,49.39,StreamRiver,0.0,3.0,127.819,348.677,New Year Creek
+USGS,08111500,"Brazos Rv nr Hempstead, TX",river / canal,ST,no tide,0.455,0.008,0.002,2.438,59.333,146.976,24.333,242.348,ArtificialPath,0.0,7.0,99696.737,316.301,Brazos River
+USGS,08111700,"Mill Ck nr Bellville, TX",river / canal,ST,no tide,0.604,0.011,0.005,0.533,55.931,138.822,104.857,58.497,StreamRiver,0.0,4.0,990.145,259.399,Mill Creek
+USGS,08111850,"Brazos Rv at San Felipe, TX",river / canal,ST,no tide,0.268,0.007,0.001,1.448,43.619,111.149,30.13,170.537,ArtificialPath,0.0,7.0,101706.157,239.236,Brazos River
+USGS,08114000,"Brazos Rv at Richmond, TX",urban creek (Houston),ST,no tide,0.428,0.011,0.002,2.362,54.33,126.807,23.0,255.867,ArtificialPath,0.0,7.0,102616.895,144.991,Brazos River
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",urban creek (Houston),ST,no tide,0.462,0.013,0.004,2.057,46.695,108.402,22.697,172.513,ArtificialPath,0.0,7.0,102642.036,137.186,Brazos River
+USGS,08115000,"Big Ck nr Needville, TX",urban creek (Houston),ST,no tide,1.341,0.012,0.009,1.752,86.184,299.772,49.178,63.642,StreamRiver,0.0,2.0,109.994,147.77,Big Creek
+USGS,08116850,"Brazos Rv nr West Columbia, TX",estuary / tidal channel,ST-TS,tidal,14.135,0.792,0.714,16.459,69.925,90.693,4.248,181.308,ArtificialPath,1.0,7.0,103838.649,53.393,Brazos River
+USGS,08116400,"Dry Ck nr Rosenberg, TX",urban creek (Houston),ST,weakly tidal,5.027,0.09,0.077,1.981,93.211,223.007,47.044,43.791,StreamRiver,0.0,1.0,29.704,137.935,Dry Creek
+USGS,08116650,"Brazos Rv nr Rosharon, TX",urban creek (Houston),ST,weakly tidal,2.915,0.193,0.071,4.42,67.421,164.204,15.255,323.807,ArtificialPath,1.0,7.0,103578.176,93.284,Brazos River
+USGS,08117370,"San Bernard Rv nr Chesterville, TX",river / canal,ST,no tide,0.396,0.014,0.008,0.381,25.68,79.545,67.385,36.196,StreamRiver,0.0,4.0,414.047,170.149,San Bernard River
+USGS,08117705,"San Bernard Rv nr Sweeny, TX",estuary / tidal channel,ST-TS,tidal,11.549,0.77,0.681,14.783,54.94,108.588,3.716,82.935,StreamRiver,1.0,5.0,2314.261,49.937,San Bernard River
+USGS,08117500,"San Bernard Rv nr Boling, TX",urban creek (Houston),ST,no tide,0.696,0.009,0.003,1.067,66.69,231.46,62.514,146.912,StreamRiver,0.0,5.0,1877.829,97.158,San Bernard River
+USGS,08117855,"Caney Ck at SH 35 nr Van Vleck, TX",river / canal,ST,no tide,0.341,0.013,0.003,0.483,39.328,82.572,81.49,84.1,StreamRiver,0.0,3.0,263.817,111.656,Caney Creek
+USGS,08160800,"Redgate Ck nr Columbus, TX",river / canal,ST,no tide,0.861,0.012,0.012,0.279,39.09,159.044,139.917,18.416,StreamRiver,0.0,2.0,49.081,229.678,Redgate Creek
+USGS,08162501,"Colorado Rv nr Wadsworth, TX",estuary / tidal channel,ST-TS,tidal,8.128,0.714,0.618,10.363,35.281,54.924,3.404,44.538,ArtificialPath,1.0,6.0,98463.643,23.133,Colorado River
+USGS,08162500,"Colorado Rv nr Bay City, TX",river / canal,ST,weakly tidal,4.524,0.16,0.095,7.163,86.106,173.102,12.021,141.418,ArtificialPath,0.0,6.0,98312.968,47.496,Colorado River
+USGS,08162600,"Tres Palacios Rv nr Midfield, TX",river / canal,ST,no tide,1.034,0.007,0.003,0.991,105.634,313.384,106.636,112.284,StreamRiver,1.0,4.0,440.719,47.411,Tres Palacios River
+USGS,08161000,"Colorado Rv at Columbus, TX",river / canal,ST,no tide,0.722,0.01,0.004,0.94,67.931,190.922,72.271,101.002,ArtificialPath,0.0,6.0,96714.307,209.747,Colorado River
+USGS,08164000,"Lavaca Rv nr Edna, TX",river / canal,ST,no tide,0.814,0.011,0.005,0.381,85.42,181.724,224.204,77.792,StreamRiver,0.0,5.0,2129.064,45.448,Lavaca River
+USGS,08162000,"Colorado Rv at Wharton, TX",river / canal,ST,no tide,0.53,0.008,0.002,1.27,69.135,162.445,54.438,132.548,ArtificialPath,0.0,6.0,97652.574,100.641,Colorado River
+USGS,08164350,"Navidad Rv nr Speaks, TX",river / canal,ST,no tide,1.092,0.012,0.006,0.534,100.127,243.62,187.617,77.837,StreamRiver,0.0,4.0,1145.621,109.814,Navidad River
+USGS,08164390,"Navidad Rv at Strane Pk nr Edna, TX",river / canal,ST,no tide,0.823,0.008,0.004,0.686,94.086,201.128,137.195,85.679,StreamRiver,0.0,4.0,1470.18,67.649,Navidad River
+USGS,08164450,"Sandy Ck nr Ganado, TX",river / canal,ST,no tide,0.454,0.01,0.004,0.914,44.705,121.306,48.891,52.116,StreamRiver,0.0,4.0,761.053,72.638,Sandy Creek
+USGS,08164503,"W Mustang Ck nr Ganado, TX",river / canal,ST,no tide,0.489,0.007,0.003,1.219,54.712,137.479,44.872,65.209,StreamRiver,0.0,3.0,443.701,65.864,West Mustang Creek
+USGS,08164504,"E Mustang Ck nr Louise, TX",river / canal,ST,no tide,0.889,0.011,0.006,0.533,64.102,223.012,120.178,56.956,StreamRiver,0.0,3.0,149.058,66.479,East Mustang Creek
+USGS,08164600,"Garcitas Ck nr Inez, TX",river / canal,ST,no tide,0.542,0.012,0.006,0.305,48.076,120.684,157.733,45.742,StreamRiver,0.0,3.0,247.454,32.895,Garcitas Creek
+USGS,08164800,"Placedo Ck nr Placedo, TX",river / canal,ST,no tide,1.292,0.013,0.008,0.381,81.347,302.138,213.512,65.072,StreamRiver,0.0,3.0,178.342,16.78,Placedo Creek
+USGS,08175800,"Guadalupe Rv at Cuero, TX",river / canal,ST,no tide,0.675,0.019,0.006,2.134,50.064,114.93,23.465,89.244,StreamRiver,0.0,6.0,12789.131,163.177,Guadalupe River
+USGS,08176500,"Guadalupe Rv at Victoria, TX",river / canal,ST,no tide,0.59,0.01,0.004,2.286,64.313,135.484,28.133,117.618,StreamRiver,0.0,6.0,13500.194,62.471,Guadalupe River
+USGS,08176550,"Fifteenmile Ck nr Weser, TX",river / canal,ST,no tide,0.422,0.008,0.006,0.0,27.28,125.69,545.593,16.688,StreamRiver,0.0,4.0,435.182,121.112,Fifteenmile Creek
+USGS,08176900,"Coleto Ck at Arnold Rd Crsg nr Schroeder, TX",river / canal,ST,no tide,0.412,0.007,0.004,0.229,30.35,132.628,132.603,42.194,StreamRiver,0.0,5.0,924.498,98.803,Coleto Creek
+USGS,08177300,"Perdido Ck at FM 622 nr Fannin, TX",river / canal,ST,no tide,0.447,0.013,0.011,0.076,15.164,93.546,199.754,26.405,StreamRiver,0.0,3.0,72.64,100.909,Perdido Creek
+USGS,08177500,"Coleto Ck nr Victoria, TX",river / canal,ST,no tide,0.721,0.01,0.007,0.152,59.36,152.384,389.507,32.384,StreamRiver,0.0,5.0,1296.243,75.367,Coleto Creek
+USGS,08177520,"Guadalupe Rv nr Bloomington, TX",river / canal,ST,no tide,0.306,0.007,0.002,2.134,33.604,110.677,15.75,131.299,StreamRiver,1.0,6.0,15070.158,32.816,Guadalupe River
+USGS,08183200,"San Antonio Rv nr Floresville, TX",river / canal,ST,no tide,1.092,0.013,0.005,2.972,108.356,222.689,36.463,100.736,StreamRiver,0.0,5.0,5050.064,300.583,San Antonio River
+USGS,08183500,"San Antonio Rv nr Falls City, TX",river / canal,ST,no tide,0.419,0.014,0.007,1.143,33.299,69.864,29.136,32.784,StreamRiver,0.0,5.0,5425.466,262.186,San Antonio River
+USGS,08186500,"Ecleto Ck nr Runge, TX",river / canal,ST,no tide,0.597,0.01,0.006,0.229,42.763,145.085,186.833,38.89,StreamRiver,0.0,4.0,622.983,211.714,Ecleto Creek
+USGS,08186000,"Cibolo Ck nr Falls City, TX",river / canal,ST,no tide,0.911,0.01,0.006,0.304,75.649,195.032,248.509,47.763,StreamRiver,0.0,4.0,2144.479,244.029,Cibolo Creek
+USGS,08187500,"Escondido Ck at Kenedy, TX",river / canal,ST,no tide,0.472,0.009,0.007,0.076,19.736,124.222,258.681,19.045,StreamRiver,0.0,3.0,190.714,216.394,Escondido Creek
+USGS,08188570,"San Antonio Rv nr McFaddin, TX",river / canal,ST,no tide,0.318,0.008,0.002,1.219,39.395,100.092,32.313,96.286,StreamRiver,0.0,5.0,10715.352,35.362,San Antonio River
+USGS,08188060,"San Antonio Rv at SH 72 nr Runge, TX",river / canal,ST,no tide,0.749,0.01,0.004,1.753,80.239,172.898,45.776,89.742,StreamRiver,0.0,5.0,9215.424,197.611,San Antonio River
+USGS,08188500,"San Antonio Rv at Goliad, TX",river / canal,ST,no tide,0.557,0.007,0.002,1.219,84.811,156.975,69.564,111.336,StreamRiver,0.0,5.0,10081.378,125.025,San Antonio River
+USGS,08188590,"North end of GBRA Calhoun Canal nr Long Mott,TX",river / canal,ST-CA,no tide,1.96,0.019,0.018,0.533,130.378,188.624,244.433,44.437,,,,,,
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",estuary / tidal channel,ST-TS,weakly tidal,1.721,0.22,0.172,2.896,18.364,23.05,6.342,41.663,StreamRiver,1.0,6.0,26219.616,5.855,Guadalupe River
+USGS,08189200,"Copano Ck nr Refugio, TX",river / canal,ST,no tide,0.299,0.012,0.006,0.229,19.583,79.019,85.65,58.272,StreamRiver,0.0,2.0,223.66,16.276,Copano Creek
+USGS,08189300,"Medio Ck nr Beeville, TX",river / canal,ST,no tide,0.238,0.011,0.008,0.153,8.001,50.356,52.435,23.894,StreamRiver,0.0,4.0,557.62,89.127,Medio Creek
+USGS,08188800,"Guadalupe Rv nr Tivoli, TX",river / canal,ST,weakly tidal,1.48,0.146,0.112,2.515,21.293,29.043,8.468,59.671,StreamRiver,1.0,6.0,26203.678,15.355,Guadalupe River
+USGS,08189500,"Mission Rv at Refugio, TX",river / canal,ST,no tide,0.433,0.009,0.003,0.229,58.84,145.789,257.398,72.714,StreamRiver,1.0,5.0,1808.466,29.319,Mission River
+USGS,08189700,"Aransas Rv nr Skidmore, TX",river / canal,ST,no tide,0.824,0.008,0.005,0.305,74.737,242.618,245.204,50.565,StreamRiver,0.0,3.0,659.533,91.441,Aransas River
+USGS,08194200,"San Casimiro Ck nr Freer, TX",river / canal,ST,no tide,0.48,0.009,0.005,0.076,37.414,136.632,490.398,45.007,StreamRiver,0.0,4.0,1233.803,287.901,San Casimiro Creek
+USGS,08194500,"Nueces Rv nr Tilden, TX",river / canal,ST,no tide,0.247,0.006,0.002,0.305,31.579,80.907,103.607,103.064,StreamRiver,0.0,6.0,20997.873,215.314,Nueces River
+USGS,08206600,"Frio Rv at Tilden, TX",river / canal,ST,no tide,0.394,0.009,0.004,0.229,35.128,112.192,153.477,74.054,StreamRiver,0.0,6.0,11559.521,213.503,Frio River
+USGS,08206700,"San Miguel Ck nr Tilden, TX",river / canal,ST,no tide,0.619,0.008,0.006,0.076,47.472,136.31,622.23,39.57,StreamRiver,0.0,4.0,2026.646,218.421,San Miguel Creek
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",river / canal,ST,no tide,0.378,0.011,0.004,0.153,31.09,86.598,203.75,37.551,StreamRiver,0.0,6.0,14219.725,176.283,Frio River
+USGS,08207500,"Atascosa Rv nr McCoy, TX",river / canal,ST,no tide,0.644,0.012,0.007,0.533,50.902,139.405,95.448,47.457,StreamRiver,0.0,5.0,1332.365,233.123,Atascosa River
+USGS,08208000,"Atascosa Rv at Whitsett, TX",river / canal,ST,no tide,0.691,0.012,0.005,0.305,66.11,136.433,216.899,72.978,StreamRiver,0.0,5.0,2974.202,193.423,Atascosa River
+USGS,08210000,"Nueces Rv nr Three Rivers, TX",river / canal,ST,no tide,0.468,0.008,0.002,0.381,61.48,143.538,161.49,137.456,StreamRiver,0.0,7.0,39983.38,153.163,Nueces River
+USGS,08210400,"Lagarto Ck nr George West, TX",river / canal,ST,no tide,0.329,0.02,0.02,0.762,5.029,52.686,6.599,12.261,StreamRiver,0.0,3.0,403.031,126.613,Lagarto Creek
+USGS,08211000,"Nueces Rv nr Mathis, TX",river / canal,ST,no tide,0.706,0.014,0.009,0.457,44.806,115.305,98.002,86.214,StreamRiver,0.0,7.0,42771.993,70.728,Nueces River
+USGS,08211200,"Nueces Rv at Bluntzer, TX",river / canal,ST,no tide,0.269,0.008,0.003,0.381,30.556,86.683,80.199,80.866,StreamRiver,1.0,7.0,43043.14,43.546,Nueces River
+USGS,08211502,"Nueces Rv nr Odem, TX",river / canal,ST,tidal,7.428,0.671,0.623,9.906,29.794,40.143,3.008,19.421,ArtificialPath,1.0,7.0,43285.214,17.048,Nueces River
+USGS,08211500,"Nueces Rv at Calallen, TX",river / canal,ST,no tide,0.303,0.041,0.024,1.448,9.144,17.678,6.316,19.274,StreamRiver,1.0,7.0,43213.162,18.018,Nueces River
+USGS,08211520,"Oso Ck at Corpus Christi, TX",river / canal,ST,no tide,0.847,0.009,0.006,0.381,62.255,230.327,163.398,62.344,StreamRiver,1.0,2.0,230.086,28.653,Oso Creek
+USGS,08211900,"San Fernando Ck at Alice, TX",river / canal,ST,no tide,0.442,0.022,0.017,1.067,16.612,79.258,15.574,16.529,ArtificialPath,0.0,4.0,1302.201,67.387,San Fernando Creek
+USGS,08212300,"Tranquitas Ck at Kingsville, TX",river / canal,ST,no tide,0.368,0.008,0.009,0.229,27.965,73.809,122.336,6.571,StreamRiver,0.0,1.0,128.164,14.051,Tranquitas Creek
+USGS,08212400,"Los Olmos Ck nr Falfurrias, TX",river / canal,ST,no tide,0.177,0.01,0.005,0.0,10.287,42.898,205.741,19.787,StreamRiver,0.0,4.0,1242.99,65.573,Los Olmos Creek
+USGS,08474118,"Cameron Co Ditch 2 at FM 1847 nr Los Fresnos, TX",river / canal,ST-DCH,no tide,0.431,0.018,0.012,0.838,19.375,73.277,23.115,16.667,,,,,,
+USGS,08474300,"Old Main Drain No 2 at SH 4, Brownsville, TX",river / canal,ST-DCH,tidal,2.798,0.342,0.263,2.896,23.226,79.534,8.021,16.019,,,,,,
+USGS,292939089544400,"Wilkinson Bayou cutoff north of Wilkinson Bay, LA",estuary / tidal channel,ES,tidal,11.927,0.914,0.876,14.021,36.066,40.767,2.572,18.425,ArtificialPath,1.0,3.0,62.759,0.0, 
+USGS,291929089562600,"Barataria Bay near Grand Terre Island, LA",lake,LK,tidal,11.565,0.934,0.909,12.344,37.795,39.7,3.062,19.473,,,,,,
+USGS,292952089453800,CRMS0282-H01-RT,marsh,WE,tidal,10.352,0.857,0.8,12.497,34.138,38.1,2.732,19.854,StreamRiver,1.0,2.0,27.119,19.615, 
+USGS,292952090565300,CRMS0411-H01-RT,marsh,WE,tidal,1.385,0.49,0.409,1.524,9.144,13.164,6.0,16.842,ArtificialPath,1.0,1.0,150.559,52.913,Bayou Cocodrie
+USGS,292800090060000,"Little Lake near Bay Dosgris E of Galliano, LA",lake,LK,tidal,6.36,0.852,0.788,7.925,21.031,24.689,2.654,17.623,StreamRiver,1.0,1.0,0.32,12.508, 
+USGS,293809092361500,CRMS0609-H01-RT,marsh,WE,tidal,1.401,0.624,0.416,1.829,8.23,12.497,4.5,13.506,StreamRiver,1.0,1.0,4.578,12.822, 
+USGS,294045092492300,CRMS0615-H01-RT,marsh,WE,no tide,0.191,0.067,0.031,0.305,3.658,10.363,12.0,13.684,StreamRiver,1.0,1.0,29.545,6.248, 
+USGS,294717092250000,CRMS0568-H01-RT,marsh,WE,no tide,0.207,0.012,0.013,1.219,9.754,14.63,8.0,16.867,ArtificialPath,1.0,1.0,45.719,49.502, 
+USGS,294925089532101,"Delacroix Canal near Caernarvon, LA",river / canal,ST,tidal,2.814,0.703,0.45,4.572,11.582,14.021,2.533,15.984,,,,,,
+USGS,295231093100100,CRMS2418-H01-RT,marsh,WE,weakly tidal,0.262,0.17,0.103,0.61,3.962,7.925,6.5,12.735,StreamRiver,1.0,1.0,7.766,36.069, 
+USGS,295011091184300,"Little Bayou Long North of Duck Lake, LA",river / canal,ST,tidal,1.972,0.392,0.349,1.372,17.983,25.451,13.111,70.655,StreamRiver,1.0,1.0,3.259,49.781, 
+USGS,2951190901217,"L. Cataouatche at Whiskey Canal S of Waggaman, LA",lake,LK,tidal,2.392,0.515,0.366,3.886,14.239,18.942,3.664,18.341,,,,,,
+USGS,295744093303800,CRMS0651-H01-RT,marsh,WE,no tide,0.18,0.063,0.043,0.61,4.267,8.534,7.0,13.75,StreamRiver,1.0,1.0,144.529,19.954,Long Point Bayou
+USGS,295124089542100,"Caernarvon Outfall Channel at Caernarvon, LA",river / canal,ST,tidal,1.575,0.379,0.253,2.667,11.963,22.601,4.486,21.003,,,,,,
+USGS,295447091191500,Middle Fork Bayou Long at Bayou Long,river / canal,ST,tidal,0.684,0.272,0.2,0.762,8.839,14.173,11.6,72.47,,,,,,
+USGS,295501090190400,"Davis Pond Freshwater Diversion near Boutte, LA",river / canal,ST,weakly tidal,1.174,0.177,0.131,0.686,19.812,37.63,28.889,20.239,,,,,,
+USGS,300312091320000,Arm of Grand Lake near Crook Chene Cove,lake,LK,no tide,0.109,0.059,0.018,0.61,3.81,8.839,6.25,96.345,StreamRiver,1.0,3.0,56.612,89.242, 
+USGS,300507091355600,Bayou Darby near Lake Fausse Point Cut,river / canal,ST,tidal,1.291,0.354,0.274,1.372,14.021,25.298,10.222,114.796,StreamRiver,1.0,3.0,35.937,99.33,Bayou Darby
+USGS,300703089522700,"Y-Pipeline Cnl in Byu Sauvage NWR at N.O. East, LA",marsh,WE,no tide,0.049,0.011,0.006,0.229,3.658,10.179,16.0,19.796,StreamRiver,1.0,1.0,114.154,34.288, 
+USGS,301001089442600,"Rigolets at Hwy 90 near Slidell, LA",estuary / tidal channel,OC-CO,tidal,6.521,0.768,0.7,8.23,24.689,32.004,3.0,20.245,ArtificialPath,1.0,7.0,14581.228,12.855, 
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",lake,LK,tidal,4.086,0.771,0.634,5.944,14.478,20.683,2.436,20.401,,,,,,
+USGS,301104089253400,MISSISSIPPI SOUND AT USGS ST JOSEPH ISLAND LIGHT,estuary / tidal channel,ES,tidal,15.548,0.881,0.852,18.059,51.511,57.171,2.852,25.52,,,,,,
+USGS,301324090382400,CRMS0061-H01-RT,marsh,WE,tidal,2.683,0.603,0.471,3.658,16.154,22.534,4.417,22.782,StreamRiver,1.0,4.0,5565.174,114.342, 
+USGS,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",river / canal,ST,tidal,14.052,0.876,0.845,16.383,46.101,48.082,2.814,25.064,ArtificialPath,1.0,6.0,37131.538,0.874,Pearl River
+USGS,301655091440800,"Pontoon Bridge Canal near Butte Larose, LA",river / canal,ST,no tide,0.076,0.018,0.007,0.61,4.724,10.058,7.75,95.129,ArtificialPath,1.0,4.0,201.444,141.05, 
+USGS,301527088521500,MISSISSIPPI SOUND AT USGS EAST SHIP ISLAND LIGHT,estuary / tidal channel,OC-CO,tidal,16.324,0.908,0.881,17.45,57.683,59.638,3.306,23.887,,,,,,
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,estuary / tidal channel,ES,tidal,16.009,0.891,0.861,18.059,55.521,56.301,3.074,26.283,,,,,,
+USGS,301849088350000,"MISSISSIPPI SOUND AT USGS ROUND ISLAND LIGHT, MS",estuary / tidal channel,OC-CO,tidal,15.432,0.906,0.878,16.612,53.95,57.06,3.248,24.535,,,,,,
+USGS,302020091435700,"Lake Pelba at I-10 near Henderson, LA",lake,LK,no tide,0.05,0.015,0.003,0.61,4.267,8.23,7.0,100.773,ArtificialPath,1.0,3.0,132.485,151.08, 
+USGS,301912088583300,"MISSISSIPPI SOUND AT USGS GULFPORT LIGHT, MS",estuary / tidal channel,OC-CO,tidal,16.426,0.894,0.864,18.059,59.436,59.645,3.291,25.529,,,,,,
+USGS,302318088512600,"BILOXI BAY AT POINT CADET HARBOR AT BILOXI, MS",estuary / tidal channel,ES,tidal,16.812,0.888,0.857,18.593,60.122,62.865,3.234,25.831,Coastline,0.0,-9.0,5.825,-9999.0, 
+CRMS,BA0066-05P-RT,BA0066-05P-RT,marsh,Surface Water,tidal,2.101,0.471,0.355,2.896,14.097,20.82,4.868,16.29,,,,,,
+CRMS,BA0066-07F-RT,BA0066-07F-RT,marsh,Surface Water,tidal,2.392,0.536,0.376,4.039,14.166,19.103,3.508,19.182,,,,,,
+CRMS,BA0066-07P-RT,BA0066-07P-RT,marsh,Surface Water,tidal,2.343,0.539,0.326,3.886,13.564,15.164,3.49,19.066,,,,,,
+CRMS,BA0066-08P-RT,BA0066-08P-RT,marsh,Surface Water,weakly tidal,2.185,0.165,0.13,4.115,39.004,61.919,9.479,21.008,,,,,,
+CRMS,BA01-01,BA01-01,marsh,Surface Water,tidal,2.009,0.581,0.435,3.048,10.668,15.545,3.5,17.63,,,,,,
+CRMS,BA01-02,BA01-02,marsh,Surface Water,tidal,2.281,0.561,0.399,3.658,12.497,19.812,3.417,18.014,,,,,,
+CRMS,BA01-03,BA01-03,marsh,Surface Water,tidal,2.221,0.613,0.437,3.658,11.278,14.63,3.083,18.109,,,,,,
+CRMS,BA01-04,BA01-04,marsh,Surface Water,tidal,1.796,0.65,0.439,3.048,7.925,10.973,2.6,17.81,,,,,,
+CRMS,BA01-10,BA01-10,marsh,Surface Water,tidal,3.371,0.744,0.601,4.877,12.802,17.678,2.625,18.325,,,,,,
+CRMS,BA01-14,BA01-14,marsh,Flotant Marsh,no tide,0.175,0.081,0.045,0.305,4.877,10.363,16.0,13.182,,,,,,
+CRMS,BA01-15,BA01-15,marsh,Flotant Marsh,tidal,1.767,0.648,0.435,3.048,7.925,11.139,2.6,17.935,,,,,,
+CRMS,BA01-16,BA01-16,marsh,Marsh Well,no tide,0.175,0.081,0.045,0.305,4.877,10.363,16.0,13.182,,,,,,
+CRMS,BA02-56,BA02-56,marsh,Surface Water,tidal,2.514,0.768,0.616,3.658,9.449,13.106,2.583,15.913,,,,,,
+CRMS,BA02-57,BA02-57,marsh,Surface Water,tidal,3.964,0.786,0.685,5.486,13.716,17.983,2.5,16.673,,,,,,
+CRMS,BA03C-61,BA03C-61,marsh,,tidal,3.824,0.784,0.652,5.791,12.497,17.374,2.158,16.625,,,,,,
+CRMS,BS08-09,BS08-09,marsh,Surface Water,tidal,4.514,0.772,0.652,6.706,15.85,24.079,2.364,19.583,,,,,,
+CRMS,BS08-13,BS08-13,marsh,Surface Water,tidal,10.863,0.848,0.802,13.106,36.576,43.282,2.791,25.365,,,,,,
+CRMS,CRMS0002-H01,CRMS0002-H01,marsh,Surface Water,tidal,3.908,0.575,0.487,5.791,21.336,35.052,3.684,18.766,,,,,,
+CRMS,CRMS0003-H01,CRMS0003-H01,marsh,Surface Water,tidal,14.749,0.905,0.874,16.459,50.292,51.313,3.056,23.471,,,,,,
+CRMS,CRMS0006-H01,CRMS0006-H01,marsh,Surface Water,tidal,1.756,0.464,0.328,1.829,12.192,23.47,6.667,16.992,,,,,,
+CRMS,CRMS0008-H02,CRMS0008-H02,marsh,Surface Water,no tide,0.188,0.08,0.027,0.305,6.096,12.802,20.0,15.034,,,,,,
+CRMS,CRMS0030-H01,CRMS0030-H01,marsh,Surface Water,tidal,3.502,0.674,0.537,5.182,15.24,21.336,2.941,20.928,,,,,,
+CRMS,CRMS0033-H01,CRMS0033-H01,marsh,Surface Water,tidal,0.987,0.456,0.233,1.829,7.62,14.021,4.167,16.915,,,,,,
+CRMS,CRMS0034-H01,CRMS0034-H01,marsh,Surface Water,tidal,2.528,0.594,0.43,3.962,12.802,19.202,3.231,20.383,,,,,,
+CRMS,CRMS0035-H01,CRMS0035-H01,marsh,Surface Water,tidal,11.791,0.771,0.732,14.021,45.72,46.634,3.261,27.215,,,,,,
+CRMS,CRMS0038-H01,CRMS0038-H01,marsh,Surface Water,tidal,2.327,0.62,0.451,3.353,11.278,17.374,3.364,23.033,,,,,,
+CRMS,CRMS0039-H01,CRMS0039-H01,marsh,Surface Water,no tide,0.045,0.014,0.005,0.305,3.962,9.144,13.0,11.65,,,,,,
+CRMS,CRMS0046-H01,CRMS0046-H01,marsh,Surface Water,tidal,2.766,0.594,0.424,4.572,14.326,25.298,3.133,23.163,,,,,,
+CRMS,CRMS0047-H01,CRMS0047-H01,marsh,Surface Water,tidal,2.238,0.587,0.429,3.353,10.973,15.545,3.273,20.513,,,,,,
+CRMS,CRMS0056-H01,CRMS0056-H01,marsh,Surface Water,no tide,0.23,0.033,0.022,0.305,7.01,15.24,23.0,13.168,,,,,,
+CRMS,CRMS0058-H02,CRMS0058-H02,marsh,Surface Water,no tide,0.107,0.022,0.01,0.305,6.096,12.948,20.0,10.835,,,,,,
+CRMS,CRMS0059-H02,CRMS0059-H02,marsh,Surface Water,weakly tidal,0.326,0.159,0.075,0.61,6.401,13.106,10.5,13.534,,,,,,
+CRMS,CRMS0061-H01,CRMS0061-H01,marsh,Surface Water,tidal,2.667,0.614,0.472,3.658,15.24,22.25,4.167,23.37,,,,,,
+CRMS,CRMS0063-H01,CRMS0063-H01,marsh,Surface Water,weakly tidal,0.703,0.242,0.134,0.914,8.534,14.63,9.333,20.039,,,,,,
+CRMS,CRMS0065-H02,CRMS0065-H02,marsh,Surface Water,no tide,0.048,0.014,0.006,0.305,3.658,9.449,12.0,12.839,,,,,,
+CRMS,CRMS0086-H01,CRMS0086-H01,marsh,Surface Water,tidal,12.587,0.787,0.752,14.63,48.463,49.073,3.312,31.332,,,,,,
+CRMS,CRMS0089-H02,CRMS0089-H02,marsh,Surface Water,weakly tidal,0.282,0.149,0.07,0.305,4.877,10.363,16.0,12.98,,,,,,
+CRMS,CRMS0090-W01,CRMS0090-W01,marsh,Marsh Well,tidal,0.819,0.366,0.231,0.61,7.62,13.222,12.5,15.177,,,,,,
+CRMS,CRMS0097-H01,CRMS0097-H01,marsh,Surface Water,tidal,2.174,0.489,0.368,3.048,11.887,15.545,3.9,22.402,,,,,,
+CRMS,CRMS0103-H01,CRMS0103-H01,marsh,Surface Water,tidal,2.914,0.528,0.413,3.962,15.24,21.336,3.846,23.857,,,,,,
+CRMS,CRMS0108-H01,CRMS0108-H01,marsh,Surface Water,tidal,13.879,0.891,0.86,16.154,44.196,49.987,2.736,22.9,,,,,,
+CRMS,CRMS0114-H01,CRMS0114-H01,marsh,Surface Water,tidal,2.358,0.656,0.471,3.658,11.582,18.593,3.167,19.317,,,,,,
+CRMS,CRMS0114-W01,CRMS0114-W01,marsh,Marsh Well,no tide,0.488,0.111,0.041,0.61,8.23,18.683,13.5,12.091,,,,,,
+CRMS,CRMS0115-H01,CRMS0115-H01,marsh,Surface Water,tidal,1.608,0.537,0.32,2.134,10.973,18.898,5.143,18.662,,,,,,
+CRMS,CRMS0115-M01,CRMS0115-M01,marsh,Flotant Marsh,no tide,0.4,0.085,0.045,0.61,9.449,19.507,15.5,29.471,,,,,,
+CRMS,CRMS0117-H01,CRMS0117-H01,marsh,Surface Water,tidal,1.333,0.521,0.28,2.134,9.754,17.678,4.571,18.777,,,,,,
+CRMS,CRMS0117-W01,CRMS0117-W01,marsh,Marsh Well,no tide,0.33,0.045,0.014,0.61,8.839,21.336,14.5,15.58,,,,,,
+CRMS,CRMS0118-H01,CRMS0118-H01,marsh,Surface Water,tidal,9.012,0.801,0.754,9.449,37.49,47.56,3.968,24.361,,,,,,
+CRMS,CRMS0119-H01,CRMS0119-H01,marsh,Surface Water,tidal,12.02,0.807,0.782,14.021,47.244,55.474,3.37,21.688,,,,,,
+CRMS,CRMS0120-H01,CRMS0120-H01,marsh,Surface Water,no tide,0.449,0.113,0.043,0.61,10.363,22.86,17.0,13.285,,,,,,
+CRMS,CRMS0121-H01,CRMS0121-H01,marsh,Surface Water,tidal,6.045,0.803,0.715,8.534,19.507,25.603,2.286,20.819,,,,,,
+CRMS,CRMS0125-H01,CRMS0125-H01,marsh,Surface Water,weakly tidal,0.706,0.116,0.067,0.914,9.144,19.202,10.0,17.07,,,,,,
+CRMS,CRMS0128-M01,CRMS0128-M01,marsh,Flotant Marsh,no tide,0.275,0.035,0.021,0.61,12.192,24.079,20.0,17.242,,,,,,
+CRMS,CRMS0128-W01,CRMS0128-W01,marsh,Marsh Well,no tide,0.399,0.053,0.03,0.914,13.716,24.079,15.0,15.002,,,,,,
+CRMS,CRMS0129-H01,CRMS0129-H01,marsh,Surface Water,tidal,12.294,0.828,0.797,14.021,47.549,52.306,3.391,23.056,,,,,,
+CRMS,CRMS0131-H01,CRMS0131-H01,marsh,Surface Water,tidal,4.14,0.762,0.626,6.096,14.326,21.641,2.35,20.67,,,,,,
+CRMS,CRMS0132-H01,CRMS0132-H01,marsh,Surface Water,tidal,3.808,0.736,0.582,5.791,14.63,23.609,2.526,20.473,,,,,,
+CRMS,CRMS0135-H01,CRMS0135-H01,marsh,Surface Water,tidal,6.536,0.797,0.725,8.839,21.641,29.87,2.448,19.815,,,,,,
+CRMS,CRMS0136-H01,CRMS0136-H01,marsh,Surface Water,tidal,9.194,0.823,0.762,11.887,30.48,39.624,2.564,22.03,,,,,,
+CRMS,CRMS0139-H01,CRMS0139-H01,marsh,Surface Water,tidal,12.037,0.873,0.836,12.802,44.806,49.682,3.5,25.728,,,,,,
+CRMS,CRMS0146-H01,CRMS0146-H01,marsh,Surface Water,tidal,6.422,0.78,0.701,8.839,21.946,28.956,2.483,20.176,,,,,,
+CRMS,CRMS0147-H01,CRMS0147-H01,marsh,Surface Water,tidal,14.212,0.851,0.817,16.154,50.902,57.607,3.151,24.849,,,,,,
+CRMS,CRMS0148-H01,CRMS0148-H01,marsh,Surface Water,tidal,10.962,0.817,0.774,11.278,43.586,52.426,3.865,26.098,,,,,,
+CRMS,CRMS0153-H01,CRMS0153-H01,marsh,Surface Water,tidal,13.396,0.895,0.876,14.021,47.244,67.119,3.37,35.375,,,,,,
+CRMS,CRMS0154-H01,CRMS0154-H01,marsh,Surface Water,tidal,10.265,0.878,0.864,10.058,37.49,44.806,3.727,33.261,,,,,,
+CRMS,CRMS0156-H01,CRMS0156-H01,marsh,Surface Water,tidal,10.209,0.939,0.922,10.058,36.271,39.014,3.606,28.898,,,,,,
+CRMS,CRMS0157-H01,CRMS0157-H01,marsh,Surface Water,tidal,8.776,0.924,0.906,8.534,31.09,37.186,3.643,31.666,,,,,,
+CRMS,CRMS0159-H01,CRMS0159-H01,marsh,Surface Water,tidal,12.794,0.955,0.943,12.802,42.977,48.768,3.357,29.724,,,,,,
+CRMS,CRMS0161-H01,CRMS0161-H01,marsh,Surface Water,tidal,11.73,0.943,0.922,11.887,40.843,40.843,3.436,25.81,,,,,,
+CRMS,CRMS0162-H01,CRMS0162-H01,marsh,Surface Water,tidal,10.263,0.929,0.908,10.363,35.966,42.672,3.471,20.183,,,,,,
+CRMS,CRMS0163-H01,CRMS0163-H01,marsh,Surface Water,tidal,11.231,0.909,0.888,11.887,37.795,41.453,3.18,23.593,,,,,,
+CRMS,CRMS0164-H01,CRMS0164-H01,marsh,Surface Water,tidal,9.87,0.914,0.884,11.278,29.87,35.966,2.649,20.035,,,,,,
+CRMS,CRMS0171-H01,CRMS0171-H01,marsh,Surface Water,tidal,12.494,0.935,0.913,13.411,39.319,43.282,2.932,22.346,,,,,,
+CRMS,CRMS0172-H01,CRMS0172-H01,marsh,Surface Water,tidal,12.513,0.92,0.9,13.716,39.624,45.415,2.889,23.101,,,,,,
+CRMS,CRMS0173-H01,CRMS0173-H01,marsh,Surface Water,tidal,12.279,0.881,0.842,14.63,39.014,44.665,2.667,23.305,,,,,,
+CRMS,CRMS0174-H01,CRMS0174-H01,marsh,Surface Water,tidal,12.526,0.902,0.868,14.021,39.929,45.551,2.848,24.498,,,,,,
+CRMS,CRMS0175-H01,CRMS0175-H01,marsh,Surface Water,tidal,9.597,0.925,0.889,10.973,28.956,33.528,2.639,19.838,,,,,,
+CRMS,CRMS0176-H01,CRMS0176-H01,marsh,Surface Water,tidal,12.046,0.912,0.877,13.411,38.1,43.282,2.841,23.024,,,,,,
+CRMS,CRMS0176-H0X,CRMS0176-H0X,marsh,Surface Water,tidal,13.968,0.916,0.888,15.545,43.282,49.682,2.784,20.473,,,,,,
+CRMS,CRMS0178-H01,CRMS0178-H01,marsh,Surface Water,tidal,10.982,0.938,0.913,11.887,34.138,37.186,2.872,18.706,,,,,,
+CRMS,CRMS0179-H01,CRMS0179-H01,marsh,Surface Water,tidal,12.961,0.908,0.872,14.63,40.843,47.244,2.792,24.036,,,,,,
+CRMS,CRMS0181-H01,CRMS0181-H01,marsh,Surface Water,tidal,12.93,0.893,0.869,14.326,41.453,49.59,2.894,22.09,,,,,,
+CRMS,CRMS0185-H01,CRMS0185-H01,marsh,Surface Water,tidal,2.159,0.538,0.386,3.658,11.278,18.288,3.083,18.929,,,,,,
+CRMS,CRMS0188-H01,CRMS0188-H01,marsh,Surface Water,tidal,1.52,0.448,0.298,2.438,10.058,14.63,4.125,17.159,,,,,,
+CRMS,CRMS0188-M01,CRMS0188-M01,marsh,Flotant Marsh,weakly tidal,0.664,0.309,0.19,1.219,6.706,11.582,5.5,12.88,,,,,,
+CRMS,CRMS0189-H01,CRMS0189-H01,marsh,Surface Water,no tide,0.056,0.012,0.005,0.305,4.572,14.63,15.0,10.72,,,,,,
+CRMS,CRMS0189-M01,CRMS0189-M01,marsh,Flotant Marsh,no tide,0.073,0.013,0.008,0.305,3.962,12.802,13.0,26.918,,,,,,
+CRMS,CRMS0190-H01,CRMS0190-H01,marsh,Surface Water,tidal,3.491,0.776,0.662,4.877,12.802,16.231,2.625,18.842,,,,,,
+CRMS,CRMS0190-M01,CRMS0190-M01,marsh,Flotant Marsh,weakly tidal,0.606,0.306,0.198,0.61,6.706,12.802,11.0,10.283,,,,,,
+CRMS,CRMS0192-H01,CRMS0192-H01,marsh,Surface Water,weakly tidal,0.758,0.155,0.11,1.524,11.582,25.908,7.6,18.884,,,,,,
+CRMS,CRMS0192-M01,CRMS0192-M01,marsh,Flotant Marsh,no tide,0.044,0.013,0.007,0.305,3.353,8.534,11.0,10.684,,,,,,
+CRMS,CRMS0194-W01,CRMS0194-W01,marsh,Marsh Well,no tide,0.148,0.017,0.013,0.305,6.706,27.432,22.0,30.45,,,,,,
+CRMS,CRMS0197-W01,CRMS0197-W01,marsh,Marsh Well,no tide,0.085,0.012,0.009,0.305,4.877,19.812,16.0,24.051,,,,,,
+CRMS,CRMS0200-W01,CRMS0200-W01,marsh,Marsh Well,no tide,0.066,0.013,0.009,0.305,3.658,12.497,12.0,17.434,,,,,,
+CRMS,CRMS0206-H01,CRMS0206-H01,marsh,Surface Water,weakly tidal,0.288,0.172,0.072,0.61,4.572,10.308,7.5,18.356,,,,,,
+CRMS,CRMS0209-H01,CRMS0209-H01,marsh,Surface Water,tidal,10.753,0.879,0.83,12.802,34.747,39.624,2.714,22.19,,,,,,
+CRMS,CRMS0211-H01,CRMS0211-H01,marsh,Surface Water,tidal,1.024,0.386,0.24,1.829,8.495,14.63,4.645,19.216,,,,,,
+CRMS,CRMS0211-M01,CRMS0211-M01,marsh,Flotant Marsh,no tide,0.036,0.017,0.011,0.0,1.524,4.877,30.48,4.008,,,,,,
+CRMS,CRMS0217-H01,CRMS0217-H01,marsh,Surface Water,no tide,0.176,0.062,0.029,0.61,6.096,14.021,10.0,23.357,,,,,,
+CRMS,CRMS0218-H01,CRMS0218-H01,marsh,Surface Water,no tide,0.108,0.035,0.015,0.305,4.267,10.973,14.0,20.656,,,,,,
+CRMS,CRMS0219-M01,CRMS0219-M01,marsh,Flotant Marsh,no tide,0.115,0.019,0.013,0.305,3.658,8.839,12.0,10.641,,,,,,
+CRMS,CRMS0219-W01,CRMS0219-W01,marsh,Marsh Well,no tide,0.075,0.029,0.012,0.305,3.962,10.058,13.0,10.489,,,,,,
+CRMS,CRMS0220-H01,CRMS0220-H01,marsh,Surface Water,tidal,5.317,0.843,0.752,7.01,16.764,19.507,2.391,17.707,,,,,,
+CRMS,CRMS0220-H0X,CRMS0220-H0X,marsh,Surface Water,tidal,7.002,0.858,0.77,9.144,21.641,26.213,2.367,17.359,,,,,,
+CRMS,CRMS0224-H01,CRMS0224-H01,marsh,Surface Water,tidal,9.283,0.855,0.813,10.973,31.09,38.1,2.833,18.706,,,,,,
+CRMS,CRMS0225-H01,CRMS0225-H01,marsh,Surface Water,tidal,6.067,0.862,0.778,7.925,18.898,22.86,2.385,20.22,,,,,,
+CRMS,CRMS0226-H01,CRMS0226-H01,marsh,Surface Water,tidal,9.191,0.873,0.817,11.278,29.566,34.876,2.622,20.33,,,,,,
+CRMS,CRMS0232-H01,CRMS0232-H01,marsh,Surface Water,tidal,8.194,0.899,0.846,9.754,25.298,28.956,2.594,18.716,,,,,,
+CRMS,CRMS0234-H01,CRMS0234-H01,marsh,Surface Water,no tide,0.085,0.01,0.007,0.305,4.572,10.973,15.0,8.546,,,,,,
+CRMS,CRMS0237-H01,CRMS0237-H01,marsh,Surface Water,tidal,10.189,0.891,0.836,11.887,32.614,37.186,2.744,20.895,,,,,,
+CRMS,CRMS0237-H02,CRMS0237-H02,marsh,Surface Water,tidal,10.851,0.884,0.843,12.497,36.043,41.758,2.884,18.22,,,,,,
+CRMS,CRMS0241-W01,CRMS0241-W01,marsh,Marsh Well,weakly tidal,0.25,0.077,0.061,0.305,5.182,16.764,17.0,11.363,,,,,,
+CRMS,CRMS0248-H01,CRMS0248-H01,marsh,Surface Water,tidal,3.414,0.734,0.606,4.877,12.802,18.898,2.625,17.624,,,,,,
+CRMS,CRMS0251-H01,CRMS0251-H01,marsh,Surface Water,tidal,7.43,0.881,0.814,9.144,22.86,26.518,2.5,17.42,,,,,,
+CRMS,CRMS0253-H01,CRMS0253-H01,marsh,Surface Water,tidal,6.087,0.857,0.773,7.925,19.507,23.47,2.462,16.667,,,,,,
+CRMS,CRMS0258-H01,CRMS0258-H01,marsh,Surface Water,tidal,6.858,0.828,0.752,9.144,22.25,26.518,2.433,20.287,,,,,,
+CRMS,CRMS0260-H01,CRMS0260-H01,marsh,Surface Water,tidal,6.833,0.841,0.759,9.144,21.641,25.298,2.367,19.672,,,,,,
+CRMS,CRMS0261-H01,CRMS0261-H01,marsh,Surface Water,tidal,4.216,0.813,0.696,5.791,14.021,17.678,2.421,18.052,,,,,,
+CRMS,CRMS0263-H01,CRMS0263-H01,marsh,Surface Water,tidal,6.55,0.824,0.731,8.534,21.641,27.127,2.536,20.04,,,,,,
+CRMS,CRMS0268-H01,CRMS0268-H01,marsh,Surface Water,no tide,0.15,0.073,0.027,0.61,3.962,8.23,6.5,19.283,,,,,,
+CRMS,CRMS0268-M01,CRMS0268-M01,marsh,Flotant Marsh,no tide,0.067,0.024,0.012,0.305,3.353,7.925,11.0,13.23,,,,,,
+CRMS,CRMS0272-H01,CRMS0272-H01,marsh,Surface Water,tidal,12.774,0.903,0.866,14.63,40.538,46.33,2.771,22.767,,,,,,
+CRMS,CRMS0273-M01,CRMS0273-M01,marsh,Flotant Marsh,weakly tidal,0.332,0.225,0.135,0.61,4.267,8.757,7.0,15.042,,,,,,
+CRMS,CRMS0273-W01,CRMS0273-W01,marsh,Marsh Well,weakly tidal,0.372,0.208,0.118,0.61,5.182,9.449,8.5,11.019,,,,,,
+CRMS,CRMS0276-H01,CRMS0276-H01,marsh,Surface Water,tidal,5.303,0.792,0.689,7.315,18.288,25.431,2.5,17.178,,,,,,
+CRMS,CRMS0278-H01,CRMS0278-H01,marsh,Surface Water,tidal,1.005,0.356,0.218,1.219,8.534,14.021,7.0,15.365,,,,,,
+CRMS,CRMS0278-M01,CRMS0278-M01,marsh,Flotant Marsh,weakly tidal,0.466,0.168,0.095,0.914,7.315,12.497,8.0,11.704,,,,,,
+CRMS,CRMS0282-H01,CRMS0282-H01,marsh,Surface Water,tidal,10.354,0.856,0.8,12.497,34.138,38.1,2.732,23.601,,,,,,
+CRMS,CRMS0287-H01,CRMS0287-H01,marsh,Surface Water,no tide,0.324,0.093,0.044,0.61,7.62,16.161,12.5,12.645,,,,,,
+CRMS,CRMS0287-M01,CRMS0287-M01,marsh,Flotant Marsh,weakly tidal,0.279,0.1,0.052,0.305,6.401,13.716,21.0,9.86,,,,,,
+CRMS,CRMS0290-H01,CRMS0290-H01,marsh,Surface Water,tidal,2.652,0.565,0.526,2.438,16.764,22.25,6.875,18.535,,,,,,
+CRMS,CRMS0290-M01,CRMS0290-M01,marsh,Flotant Marsh,tidal,2.354,0.515,0.478,2.134,16.154,22.25,7.571,19.255,,,,,,
+CRMS,CRMS0292-H01,CRMS0292-H01,marsh,Surface Water,tidal,13.606,0.925,0.903,14.326,43.891,48.463,3.064,21.908,,,,,,
+CRMS,CRMS0293-H01,CRMS0293-H01,marsh,Surface Water,tidal,8.158,0.792,0.759,9.449,34.138,46.939,3.613,16.891,,,,,,
+CRMS,CRMS0294-H01,CRMS0294-H01,marsh,Surface Water,tidal,2.107,0.645,0.558,2.134,10.668,14.326,5.0,14.678,,,,,,
+CRMS,CRMS0294-M01,CRMS0294-M01,marsh,Flotant Marsh,tidal,0.477,0.263,0.225,0.61,5.791,9.754,9.5,8.818,,,,,,
+CRMS,CRMS0296-H01,CRMS0296-H01,marsh,Surface Water,tidal,2.457,0.419,0.383,2.438,15.85,44.501,6.5,16.652,,,,,,
+CRMS,CRMS0296-M01,CRMS0296-M01,marsh,Flotant Marsh,no tide,0.103,0.034,0.023,0.305,4.572,8.534,15.0,17.357,,,,,,
+CRMS,CRMS0301-H01,CRMS0301-H01,marsh,Surface Water,tidal,7.374,0.706,0.682,7.925,36.881,45.415,4.654,21.962,,,,,,
+CRMS,CRMS0301-M01,CRMS0301-M01,marsh,Flotant Marsh,tidal,1.54,0.38,0.353,1.219,13.106,17.678,10.75,11.454,,,,,,
+CRMS,CRMS0302-H01,CRMS0302-H01,marsh,Surface Water,tidal,15.425,0.857,0.844,15.85,58.522,69.948,3.692,24.504,,,,,,
+CRMS,CRMS0303-H01,CRMS0303-H01,marsh,Surface Water,tidal,14.06,0.841,0.817,15.24,53.645,66.142,3.52,23.523,,,,,,
+CRMS,CRMS0305-H01,CRMS0305-H01,marsh,Surface Water,tidal,15.044,0.838,0.819,17.678,60.35,73.762,3.414,23.339,,,,,,
+CRMS,CRMS0307-H01,CRMS0307-H01,marsh,Surface Water,tidal,11.99,0.863,0.831,13.716,40.843,50.597,2.978,20.469,,,,,,
+CRMS,CRMS0309-H01,CRMS0309-H01,marsh,Surface Water,tidal,13.189,0.854,0.832,15.24,51.206,61.874,3.36,20.329,,,,,,
+CRMS,CRMS0310-H01,CRMS0310-H01,marsh,,tidal,11.883,0.869,0.819,13.716,39.014,48.463,2.844,21.928,,,,,,
+CRMS,CRMS0311-H01,CRMS0311-H01,marsh,Surface Water,tidal,12.223,0.882,0.853,13.716,40.843,49.073,2.978,20.342,,,,,,
+CRMS,CRMS0312-H01,CRMS0312-H01,marsh,Surface Water,tidal,2.345,0.549,0.386,3.353,12.802,24.384,3.818,22.927,,,,,,
+CRMS,CRMS0312-M01,CRMS0312-M01,marsh,Flotant Marsh,tidal,1.525,0.454,0.314,2.438,10.973,18.898,4.5,13.756,,,,,,
+CRMS,CRMS0315-H01,CRMS0315-H01,marsh,Surface Water,tidal,13.016,0.842,0.789,15.545,45.415,56.083,2.922,25.675,,,,,,
+CRMS,CRMS0318-H01,CRMS0318-H01,marsh,,tidal,13.083,0.85,0.815,14.935,46.33,55.287,3.102,22.402,,,,,,
+CRMS,CRMS0319-H01,CRMS0319-H01,marsh,Surface Water,tidal,10.532,0.867,0.818,12.497,34.138,43.524,2.732,22.112,,,,,,
+CRMS,CRMS0322-H01,CRMS0322-H01,marsh,Surface Water,tidal,10.627,0.84,0.804,11.582,41.148,49.413,3.553,19.961,,,,,,
+CRMS,CRMS0324-H01,CRMS0324-H01,marsh,Surface Water,weakly tidal,0.55,0.231,0.163,0.61,5.791,15.24,9.5,23.594,,,,,,
+CRMS,CRMS0326-H01,CRMS0326-H01,marsh,Surface Water,tidal,10.652,0.855,0.818,12.497,37.49,46.634,3.0,20.07,,,,,,
+CRMS,CRMS0327-H01,CRMS0327-H01,marsh,Surface Water,tidal,4.117,0.688,0.644,4.572,20.117,25.908,4.4,17.374,,,,,,
+CRMS,CRMS0327-M01,CRMS0327-M01,marsh,Flotant Marsh,tidal,0.824,0.376,0.313,0.914,7.315,10.694,8.0,8.613,,,,,,
+CRMS,CRMS0329-H01,CRMS0329-H01,marsh,Surface Water,tidal,5.737,0.743,0.709,6.401,27.737,35.662,4.333,18.728,,,,,,
+CRMS,CRMS0331-H01,CRMS0331-H01,marsh,Surface Water,tidal,1.329,0.562,0.386,1.829,7.62,13.106,4.167,18.792,,,,,,
+CRMS,CRMS0331-M01,CRMS0331-M01,marsh,Flotant Marsh,tidal,1.333,0.556,0.384,1.829,7.925,13.106,4.333,20.062,,,,,,
+CRMS,CRMS0332-H01,CRMS0332-H01,marsh,Surface Water,tidal,11.286,0.886,0.85,12.802,37.49,44.501,2.929,20.64,,,,,,
+CRMS,CRMS0335-H01,CRMS0335-H01,marsh,Surface Water,tidal,13.975,0.879,0.845,15.545,47.549,55.474,3.059,20.759,,,,,,
+CRMS,CRMS0336-H01,CRMS0336-H01,marsh,Surface Water,tidal,13.194,0.861,0.819,15.24,45.415,54.254,2.98,23.48,,,,,,
+CRMS,CRMS0337-H01,CRMS0337-H01,marsh,Surface Water,tidal,13.328,0.867,0.828,14.935,45.72,54.559,3.061,22.48,,,,,,
+CRMS,CRMS0338-H01,CRMS0338-H01,marsh,Surface Water,tidal,13.438,0.864,0.824,15.545,46.33,52.73,2.98,22.354,,,,,,
+CRMS,CRMS0341-H01,CRMS0341-H01,marsh,Surface Water,tidal,13.956,0.875,0.835,15.85,47.549,56.998,3.0,24.426,,,,,,
+CRMS,CRMS0345-H01,CRMS0345-H01,marsh,Surface Water,tidal,12.867,0.904,0.876,13.716,43.282,48.232,3.156,20.567,,,,,,
+CRMS,CRMS0347-H01,CRMS0347-H01,marsh,Surface Water,tidal,12.782,0.904,0.881,13.716,43.891,48.158,3.2,19.87,,,,,,
+CRMS,CRMS0354-H01,CRMS0354-H01,marsh,Surface Water,tidal,9.625,0.866,0.822,11.582,32.614,40.538,2.816,20.599,,,,,,
+CRMS,CRMS0355-H01,CRMS0355-H01,marsh,Surface Water,tidal,13.82,0.878,0.839,15.545,47.244,56.083,3.039,24.886,,,,,,
+CRMS,CRMS0365-H01,CRMS0365-H01,marsh,Surface Water,tidal,9.453,0.794,0.769,10.668,42.062,51.206,3.943,20.351,,,,,,
+CRMS,CRMS0365-M01,CRMS0365-M01,marsh,Flotant Marsh,weakly tidal,0.349,0.165,0.147,0.305,6.096,9.594,20.0,7.098,,,,,,
+CRMS,CRMS0367-H01,CRMS0367-H01,marsh,Surface Water,tidal,1.017,0.508,0.301,1.829,6.706,12.192,3.667,18.203,,,,,,
+CRMS,CRMS0367-M01,CRMS0367-M01,marsh,Flotant Marsh,tidal,0.753,0.44,0.276,1.219,6.096,9.754,5.0,10.272,,,,,,
+CRMS,CRMS0369-H01,CRMS0369-H01,marsh,Surface Water,tidal,10.188,0.876,0.827,12.192,33.223,40.234,2.725,23.295,,,,,,
+CRMS,CRMS0371-H01,CRMS0371-H01,marsh,Surface Water,tidal,4.398,0.719,0.671,4.877,20.726,26.518,4.25,16.369,,,,,,
+CRMS,CRMS0371-M01,CRMS0371-M01,marsh,Flotant Marsh,tidal,0.999,0.346,0.288,0.914,8.562,12.802,9.363,12.685,,,,,,
+CRMS,CRMS0374-H01,CRMS0374-H01,marsh,Surface Water,tidal,12.92,0.887,0.866,13.716,44.806,52.73,3.267,19.107,,,,,,
+CRMS,CRMS0376-H01,CRMS0376-H01,marsh,Surface Water,tidal,14.772,0.883,0.867,15.545,52.73,60.35,3.392,22.985,,,,,,
+CRMS,CRMS0377-H01,CRMS0377-H01,marsh,Surface Water,tidal,14.399,0.854,0.833,15.545,53.645,64.008,3.451,23.653,,,,,,
+CRMS,CRMS0381-H01,CRMS0381-H01,marsh,Surface Water,no tide,0.095,0.038,0.023,0.305,3.353,8.534,11.0,11.831,,,,,,
+CRMS,CRMS0381-M01,CRMS0381-M01,marsh,Flotant Marsh,weakly tidal,0.127,0.114,0.106,0.0,1.524,7.315,30.48,12.025,,,,,,
+CRMS,CRMS0382-H01,CRMS0382-H01,marsh,Surface Water,no tide,0.102,0.036,0.02,0.305,3.658,9.754,12.0,14.36,,,,,,
+CRMS,CRMS0382-M01,CRMS0382-M01,marsh,Flotant Marsh,weakly tidal,0.345,0.128,0.123,0.0,8.23,12.802,164.592,6.84,,,,,,
+CRMS,CRMS0383-H01,CRMS0383-H01,marsh,Surface Water,tidal,13.619,0.888,0.865,14.63,48.158,52.952,3.292,25.943,,,,,,
+CRMS,CRMS0385-H01,CRMS0385-H01,marsh,Surface Water,weakly tidal,0.162,0.059,0.051,0.305,4.267,10.363,14.0,11.436,,,,,,
+CRMS,CRMS0386-H01,CRMS0386-H01,marsh,Surface Water,tidal,5.007,0.773,0.659,7.01,17.983,24.079,2.565,22.339,,,,,,
+CRMS,CRMS0387-H01,CRMS0387-H01,marsh,Surface Water,tidal,6.414,0.784,0.695,8.839,22.555,30.785,2.552,21.221,,,,,,
+CRMS,CRMS0390-H01,CRMS0390-H01,marsh,Surface Water,tidal,1.159,0.561,0.37,1.829,6.126,10.668,3.35,17.853,,,,,,
+CRMS,CRMS0392-H01,CRMS0392-H01,marsh,Surface Water,tidal,1.179,0.467,0.332,2.134,8.23,16.764,3.857,19.003,,,,,,
+CRMS,CRMS0394-H01,CRMS0394-H01,marsh,Surface Water,tidal,5.268,0.766,0.685,7.01,19.507,25.603,2.783,18.598,,,,,,
+CRMS,CRMS0394-M01,CRMS0394-M01,marsh,Flotant Marsh,tidal,4.782,0.738,0.659,6.706,17.983,22.86,2.682,19.755,,,,,,
+CRMS,CRMS0395-H01,CRMS0395-H01,marsh,Surface Water,tidal,6.21,0.801,0.728,8.23,22.25,29.356,2.704,19.996,,,,,,
+CRMS,CRMS0395-M01,CRMS0395-M01,marsh,Flotant Marsh,tidal,5.705,0.79,0.716,7.62,20.422,25.908,2.68,21.508,,,,,,
+CRMS,CRMS0396-H01,CRMS0396-H01,marsh,Surface Water,tidal,7.285,0.817,0.752,9.449,24.994,33.223,2.645,20.319,,,,,,
+CRMS,CRMS0396-M01,CRMS0396-M01,marsh,Flotant Marsh,tidal,6.868,0.8,0.735,9.144,23.774,31.699,2.6,21.784,,,,,,
+CRMS,CRMS0397-H01,CRMS0397-H01,marsh,Surface Water,tidal,8.042,0.804,0.734,10.668,26.822,37.186,2.514,21.084,,,,,,
+CRMS,CRMS0398-H01,CRMS0398-H01,marsh,Surface Water,tidal,4.602,0.828,0.745,5.791,16.459,21.031,2.842,16.421,,,,,,
+CRMS,CRMS0399-H01,CRMS0399-H01,marsh,Surface Water,tidal,9.497,0.824,0.788,10.668,38.71,47.854,3.629,18.316,,,,,,
+CRMS,CRMS0400-H01,CRMS0400-H01,marsh,Surface Water,weakly tidal,0.71,0.215,0.156,1.219,10.363,15.85,8.5,19.217,,,,,,
+CRMS,CRMS0403-H01,CRMS0403-H01,marsh,Surface Water,tidal,1.164,0.395,0.353,1.524,9.449,14.63,6.2,21.919,,,,,,
+CRMS,CRMS0409-H01,CRMS0409-H01,marsh,Surface Water,tidal,1.678,0.52,0.44,1.829,10.058,13.106,5.5,17.693,,,,,,
+CRMS,CRMS0409-M01,CRMS0409-M01,marsh,Flotant Marsh,weakly tidal,0.85,0.156,0.148,0.305,10.363,38.946,34.0,10.667,,,,,,
+CRMS,CRMS0411-H01,CRMS0411-H01,marsh,Surface Water,tidal,1.403,0.48,0.403,1.524,9.144,12.802,6.0,17.458,,,,,,
+CRMS,CRMS0414-H01,CRMS0414-H01,marsh,Surface Water,no tide,0.074,0.024,0.02,0.305,3.353,8.534,11.0,22.306,,,,,,
+CRMS,CRMS0416-H01,CRMS0416-H01,marsh,Surface Water,tidal,0.866,0.488,0.282,1.524,6.096,10.363,4.0,18.691,,,,,,
+CRMS,CRMS0421-H01,CRMS0421-H01,marsh,Surface Water,tidal,13.638,0.885,0.861,14.63,47.244,56.998,3.229,20.689,,,,,,
+CRMS,CRMS0434-H01,CRMS0434-H01,marsh,Surface Water,tidal,8.618,0.866,0.82,10.363,28.346,34.747,2.735,17.869,,,,,,
+CRMS,CRMS0461-H01,CRMS0461-H01,marsh,Surface Water,tidal,8.655,0.677,0.656,8.839,47.854,59.741,5.414,31.832,,,,,,
+CRMS,CRMS0463-H01,CRMS0463-H01,marsh,Surface Water,tidal,10.601,0.702,0.68,12.802,53.34,68.885,4.167,21.021,,,,,,
+CRMS,CRMS0463-M01,CRMS0463-M01,marsh,Flotant Marsh,tidal,10.489,0.708,0.689,12.802,52.426,66.751,4.095,21.377,,,,,,
+CRMS,CRMS0464-H01,CRMS0464-H01,marsh,Surface Water,tidal,11.331,0.758,0.744,13.411,54.864,69.19,4.091,25.3,,,,,,
+CRMS,CRMS0464-M01,CRMS0464-M01,marsh,Flotant Marsh,tidal,11.674,0.762,0.748,14.021,55.778,69.851,3.978,26.24,,,,,,
+CRMS,CRMS0465-H01,CRMS0465-H01,marsh,Surface Water,tidal,10.337,0.756,0.735,11.278,51.511,65.532,4.568,23.664,,,,,,
+CRMS,CRMS0465-M01,CRMS0465-M01,marsh,Flotant Marsh,tidal,10.238,0.739,0.719,11.887,50.902,64.618,4.282,24.902,,,,,,
+CRMS,CRMS0479-H01,CRMS0479-H01,marsh,Surface Water,tidal,9.908,0.754,0.74,10.973,49.987,64.008,4.556,22.289,,,,,,
+CRMS,CRMS0482-H01,CRMS0482-H01,marsh,Surface Water,tidal,9.45,0.663,0.643,10.058,51.816,65.297,5.152,26.492,,,,,,
+CRMS,CRMS0488-H01,CRMS0488-H01,marsh,Surface Water,weakly tidal,0.482,0.094,0.069,0.305,11.582,25.603,38.0,16.922,,,,,,
+CRMS,CRMS0488-H02,CRMS0488-H02,marsh,Surface Water,weakly tidal,0.909,0.159,0.113,0.61,14.935,30.953,24.5,11.18,,,,,,
+CRMS,CRMS0489-H01,CRMS0489-H01,marsh,Surface Water,tidal,15.546,0.788,0.776,18.593,65.837,79.248,3.541,23.271,,,,,,
+CRMS,CRMS0490-H01,CRMS0490-H01,marsh,Surface Water,tidal,8.12,0.707,0.678,7.925,41.453,53.161,5.231,21.219,,,,,,
+CRMS,CRMS0490-W01,CRMS0490-W01,marsh,Marsh Well,no tide,0.076,0.022,0.013,0.305,3.962,9.757,13.0,16.461,,,,,,
+CRMS,CRMS0493-H01,CRMS0493-H01,marsh,Surface Water,tidal,12.224,0.801,0.764,15.545,48.158,54.793,3.098,22.16,,,,,,
+CRMS,CRMS0493-H02,CRMS0493-H02,marsh,Surface Water,tidal,11.997,0.776,0.732,14.326,50.292,60.122,3.511,22.801,,,,,,
+CRMS,CRMS0494-H01,CRMS0494-H01,marsh,Surface Water,tidal,7.886,0.69,0.643,9.754,39.319,50.292,4.031,19.47,,,,,,
+CRMS,CRMS0494-H02,CRMS0494-H02,marsh,Surface Water,weakly tidal,1.467,0.185,0.151,0.61,21.031,49.326,34.5,13.179,,,,,,
+CRMS,CRMS0496-H01,CRMS0496-H01,marsh,Surface Water,tidal,12.37,0.78,0.744,14.63,50.597,59.741,3.458,21.859,,,,,,
+CRMS,CRMS0496-H02,CRMS0496-H02,marsh,Surface Water,tidal,17.338,0.809,0.792,20.422,73.762,89.916,3.612,25.386,,,,,,
+CRMS,CRMS0498-H01,CRMS0498-H01,marsh,Surface Water,tidal,1.025,0.282,0.234,0.305,15.24,21.336,50.0,13.359,,,,,,
+CRMS,CRMS0499-H01,CRMS0499-H01,marsh,Surface Water,tidal,5.034,0.753,0.647,7.01,19.812,24.384,2.826,21.186,,,,,,
+CRMS,CRMS0501-H01,CRMS0501-H01,marsh,Surface Water,tidal,5.257,0.72,0.629,6.706,24.994,35.146,3.727,21.537,,,,,,
+CRMS,CRMS0504-H01,CRMS0504-H01,marsh,Surface Water,no tide,0.293,0.085,0.046,0.61,5.791,12.497,9.5,15.592,,,,,,
+CRMS,CRMS0507-H01,CRMS0507-H01,marsh,Surface Water,tidal,5.942,0.692,0.621,7.62,28.956,39.014,3.8,21.912,,,,,,
+CRMS,CRMS0508-H01,CRMS0508-H01,marsh,Surface Water,tidal,2.354,0.474,0.413,1.829,17.983,24.689,9.833,14.589,,,,,,
+CRMS,CRMS0511-H01,CRMS0511-H01,marsh,Surface Water,no tide,0.195,0.009,0.006,0.305,5.791,30.486,19.0,22.459,,,,,,
+CRMS,CRMS0511-H02,CRMS0511-H02,marsh,Surface Water,no tide,0.178,0.053,0.041,0.305,5.182,11.582,17.0,17.934,,,,,,
+CRMS,CRMS0511-W01,CRMS0511-W01,marsh,Marsh Well,no tide,0.13,0.013,0.008,0.305,5.486,27.432,18.0,19.823,,,,,,
+CRMS,CRMS0513-H01,CRMS0513-H01,marsh,Surface Water,no tide,0.258,0.055,0.034,0.305,7.62,18.288,25.0,10.704,,,,,,
+CRMS,CRMS0514-H01,CRMS0514-H01,marsh,Surface Water,tidal,13.154,0.778,0.744,17.069,52.121,58.522,3.054,23.798,,,,,,
+CRMS,CRMS0514-H02,CRMS0514-H02,marsh,Surface Water,tidal,15.274,0.812,0.779,19.812,60.046,71.628,3.031,26.268,,,,,,
+CRMS,CRMS0517-H01,CRMS0517-H01,marsh,Surface Water,tidal,17.427,0.806,0.785,20.422,75.286,93.269,3.687,30.114,,,,,,
+CRMS,CRMS0520-H01,CRMS0520-H01,marsh,Surface Water,tidal,9.064,0.816,0.76,11.582,33.528,41.148,2.895,21.939,,,,,,
+CRMS,CRMS0522-H01,CRMS0522-H01,marsh,Surface Water,tidal,5.487,0.675,0.588,6.401,30.48,49.873,4.762,20.114,,,,,,
+CRMS,CRMS0522-W01,CRMS0522-W01,marsh,Marsh Well,tidal,1.406,0.352,0.275,1.524,11.582,24.384,7.6,18.507,,,,,,
+CRMS,CRMS0523-H01,CRMS0523-H01,marsh,Surface Water,tidal,13.778,0.841,0.81,16.764,53.035,63.398,3.164,24.23,,,,,,
+CRMS,CRMS0524-H01,CRMS0524-H01,marsh,Surface Water,tidal,11.827,0.826,0.789,14.326,45.72,56.199,3.192,21.982,,,,,,
+CRMS,CRMS0524-W01,CRMS0524-W01,marsh,Marsh Well,weakly tidal,0.679,0.124,0.1,0.305,13.716,23.588,45.0,16.398,,,,,,
+CRMS,CRMS0527-H01,CRMS0527-H01,marsh,Surface Water,tidal,13.039,0.758,0.724,16.459,51.816,58.826,3.148,22.582,,,,,,
+CRMS,CRMS0527-H02,CRMS0527-H02,marsh,Surface Water,tidal,13.899,0.809,0.782,17.374,55.169,64.922,3.175,23.412,,,,,,
+CRMS,CRMS0527-H03,CRMS0527-H03,marsh,Surface Water,tidal,15.981,0.837,0.805,19.812,59.741,70.409,3.015,24.17,,,,,,
+CRMS,CRMS0529-H01,CRMS0529-H01,marsh,Surface Water,weakly tidal,0.889,0.146,0.123,0.305,16.459,27.737,54.0,12.181,,,,,,
+CRMS,CRMS0529-H02,CRMS0529-H02,marsh,Surface Water,tidal,12.513,0.836,0.792,15.85,46.33,54.864,2.923,22.037,,,,,,
+CRMS,CRMS0530-H01,CRMS0530-H01,marsh,Surface Water,tidal,13.855,0.827,0.806,15.545,53.95,61.874,3.471,22.129,,,,,,
+CRMS,CRMS0530-W01,CRMS0530-W01,marsh,Marsh Well,weakly tidal,0.895,0.194,0.156,0.305,13.411,23.671,44.0,8.498,,,,,,
+CRMS,CRMS0531-H01,CRMS0531-H01,marsh,Surface Water,tidal,11.61,0.784,0.733,14.63,47.244,56.693,3.229,25.99,,,,,,
+CRMS,CRMS0532-H01,CRMS0532-H01,marsh,Surface Water,tidal,15.156,0.826,0.783,19.507,57.607,65.837,2.953,28.088,,,,,,
+CRMS,CRMS0535-H01,CRMS0535-H01,marsh,Surface Water,tidal,6.635,0.743,0.682,8.534,30.175,40.538,3.536,22.196,,,,,,
+CRMS,CRMS0536-H01,CRMS0536-H01,marsh,Surface Water,no tide,0.164,0.02,0.013,0.305,4.877,11.582,16.0,9.933,,,,,,
+CRMS,CRMS0536-W01,CRMS0536-W01,marsh,Marsh Well,no tide,0.072,0.016,0.009,0.305,3.962,10.668,13.0,17.283,,,,,,
+CRMS,CRMS0541-H01,CRMS0541-H01,marsh,Surface Water,tidal,13.817,0.823,0.792,15.85,54.559,60.96,3.442,23.825,,,,,,
+CRMS,CRMS0542-H01,CRMS0542-H01,marsh,Surface Water,tidal,10.166,0.746,0.713,12.802,45.11,54.254,3.524,23.143,,,,,,
+CRMS,CRMS0542-M01,CRMS0542-M01,marsh,Flotant Marsh,weakly tidal,0.181,0.066,0.051,0.305,5.486,11.142,18.0,6.515,,,,,,
+CRMS,CRMS0543-H01,CRMS0543-H01,marsh,Surface Water,tidal,11.216,0.729,0.706,14.326,49.682,58.217,3.468,22.308,,,,,,
+CRMS,CRMS0543-H02,CRMS0543-H02,marsh,Surface Water,tidal,12.82,0.723,0.691,16.459,55.169,69.314,3.352,22.993,,,,,,
+CRMS,CRMS0544-H02,CRMS0544-H02,marsh,Surface Water,tidal,14.675,0.805,0.778,17.374,60.35,75.286,3.474,25.018,,,,,,
+CRMS,CRMS0545-H01,CRMS0545-H01,marsh,Surface Water,tidal,13.398,0.794,0.758,16.764,55.169,68.885,3.291,25.098,,,,,,
+CRMS,CRMS0547-H01,CRMS0547-H01,marsh,Surface Water,tidal,9.786,0.722,0.671,11.887,42.367,50.292,3.564,23.471,,,,,,
+CRMS,CRMS0549-H01,CRMS0549-H01,marsh,Surface Water,tidal,13.277,0.776,0.739,16.764,52.121,58.329,3.109,26.037,,,,,,
+CRMS,CRMS0549-H02,CRMS0549-H02,marsh,Surface Water,tidal,14.741,0.806,0.774,19.202,59.131,67.666,3.079,26.572,,,,,,
+CRMS,CRMS0549-H03,CRMS0549-H03,marsh,Surface Water,tidal,16.407,0.838,0.796,20.726,62.179,73.535,3.0,25.796,,,,,,
+CRMS,CRMS0550-H01,CRMS0550-H01,marsh,Surface Water,tidal,12.732,0.793,0.76,16.154,52.73,64.008,3.264,24.615,,,,,,
+CRMS,CRMS0551-H01,CRMS0551-H01,marsh,Surface Water,tidal,3.456,0.612,0.537,3.962,21.031,30.48,5.308,18.382,,,,,,
+CRMS,CRMS0552-H01,CRMS0552-H01,marsh,Surface Water,tidal,10.664,0.777,0.733,13.716,41.758,48.291,3.044,23.73,,,,,,
+CRMS,CRMS0552-H02,CRMS0552-H02,marsh,Surface Water,tidal,12.786,0.806,0.765,17.069,51.206,61.834,3.0,25.369,,,,,,
+CRMS,CRMS0553-H01,CRMS0553-H01,marsh,Surface Water,no tide,0.066,0.02,0.013,0.305,3.048,9.754,10.0,17.694,,,,,,
+CRMS,CRMS0553-H02,CRMS0553-H02,marsh,Surface Water,no tide,0.088,0.034,0.023,0.305,3.353,9.144,11.0,16.108,,,,,,
+CRMS,CRMS0554-H01,CRMS0554-H01,marsh,Surface Water,no tide,0.148,0.016,0.015,0.61,7.01,11.582,11.5,18.065,,,,,,
+CRMS,CRMS0556-H01,CRMS0556-H01,marsh,Surface Water,no tide,0.056,0.014,0.009,0.305,3.353,8.534,11.0,20.229,,,,,,
+CRMS,CRMS0557-H01,CRMS0557-H01,marsh,Surface Water,weakly tidal,0.381,0.197,0.167,0.305,5.791,10.973,19.0,16.519,,,,,,
+CRMS,CRMS0560-H01,CRMS0560-H01,marsh,Surface Water,no tide,0.046,0.014,0.01,0.0,3.048,7.925,60.96,16.456,,,,,,
+CRMS,CRMS0562-H01,CRMS0562-H01,marsh,Surface Water,no tide,0.239,0.061,0.049,0.61,6.096,10.058,10.0,18.437,,,,,,
+CRMS,CRMS0565-H01,CRMS0565-H01,marsh,Surface Water,no tide,0.11,0.043,0.034,0.0,3.658,9.449,73.152,14.377,,,,,,
+CRMS,CRMS0567-H01,CRMS0567-H01,marsh,Surface Water,no tide,0.066,0.018,0.014,0.305,3.353,8.839,11.0,15.599,,,,,,
+CRMS,CRMS0568-H01,CRMS0568-H01,marsh,Surface Water,no tide,0.223,0.012,0.014,1.524,10.058,15.016,6.6,17.597,,,,,,
+CRMS,CRMS0570-H01,CRMS0570-H01,marsh,Surface Water,no tide,0.061,0.022,0.015,0.305,3.048,7.925,10.0,16.94,,,,,,
+CRMS,CRMS0571-H01,CRMS0571-H01,marsh,Surface Water,no tide,0.068,0.014,0.008,0.305,3.658,9.754,12.0,13.527,,,,,,
+CRMS,CRMS0572-H01,CRMS0572-H01,marsh,Surface Water,tidal,0.524,0.252,0.214,0.305,7.315,15.545,24.0,11.651,,,,,,
+CRMS,CRMS0574-H01,CRMS0574-H01,marsh,Surface Water,no tide,0.209,0.028,0.03,0.914,7.62,12.497,8.333,18.459,,,,,,
+CRMS,CRMS0574-H02,CRMS0574-H02,marsh,Surface Water,no tide,0.172,0.031,0.031,0.61,5.182,8.534,8.5,15.814,,,,,,
+CRMS,CRMS0575-H01,CRMS0575-H01,marsh,Surface Water,no tide,0.059,0.017,0.011,0.305,3.048,9.449,10.0,20.117,,,,,,
+CRMS,CRMS0576-H01,CRMS0576-H01,marsh,Surface Water,weakly tidal,0.332,0.117,0.08,0.305,6.706,14.095,22.0,14.405,,,,,,
+CRMS,CRMS0580-H01,CRMS0580-H01,marsh,Surface Water,weakly tidal,0.576,0.22,0.115,1.219,6.401,12.497,5.25,19.205,,,,,,
+CRMS,CRMS0580-H02,CRMS0580-H02,marsh,Surface Water,weakly tidal,0.503,0.23,0.138,1.219,5.791,12.288,4.75,11.567,,,,,,
+CRMS,CRMS0581-H01,CRMS0581-H01,marsh,Surface Water,tidal,1.135,0.239,0.232,0.914,14.021,32.918,15.333,14.043,,,,,,
+CRMS,CRMS0583-H01,CRMS0583-H01,marsh,Surface Water,no tide,0.077,0.025,0.011,0.305,3.048,9.144,10.0,18.195,,,,,,
+CRMS,CRMS0584-H01,CRMS0584-H01,marsh,Surface Water,tidal,2.25,0.691,0.609,1.219,11.278,14.021,9.25,22.862,,,,,,
+CRMS,CRMS0584-H02,CRMS0584-H02,marsh,Surface Water,no tide,1.445,0.132,0.041,0.305,26.518,34.245,87.0,16.426,,,,,,
+CRMS,CRMS0584-H03,CRMS0584-H03,marsh,Surface Water,tidal,0.656,0.329,0.287,0.61,7.315,9.449,12.0,17.392,,,,,,
+CRMS,CRMS0587-H01,CRMS0587-H01,marsh,Surface Water,no tide,0.074,0.026,0.015,0.305,3.048,9.67,10.0,23.302,,,,,,
+CRMS,CRMS0587-H02,CRMS0587-H02,marsh,Surface Water,tidal,2.475,0.563,0.512,0.305,21.933,21.731,71.96,15.099,,,,,,
+CRMS,CRMS0588-H01,CRMS0588-H01,marsh,Surface Water,weakly tidal,0.164,0.127,0.077,0.305,3.353,7.925,11.0,16.509,,,,,,
+CRMS,CRMS0588-H02,CRMS0588-H02,marsh,Surface Water,no tide,0.115,0.058,0.037,0.305,3.353,8.202,11.0,12.976,,,,,,
+CRMS,CRMS0589-H01,CRMS0589-H01,marsh,Surface Water,no tide,0.311,0.014,0.012,0.305,10.668,51.439,35.0,13.241,,,,,,
+CRMS,CRMS0590-H01,CRMS0590-H01,marsh,Surface Water,no tide,0.208,0.021,0.018,0.914,7.62,12.192,8.333,20.713,,,,,,
+CRMS,CRMS0593-H01,CRMS0593-H01,marsh,Surface Water,no tide,0.059,0.015,0.009,0.305,3.353,12.192,11.0,22.671,,,,,,
+CRMS,CRMS0593-H02,CRMS0593-H02,marsh,Surface Water,no tide,0.249,0.051,0.041,0.914,6.401,10.973,7.0,19.511,,,,,,
+CRMS,CRMS0595-H01,CRMS0595-H01,marsh,Surface Water,weakly tidal,0.264,0.077,0.063,0.61,6.401,10.973,10.5,19.318,,,,,,
+CRMS,CRMS0599-H02,CRMS0599-H02,marsh,Surface Water,tidal,5.362,0.516,0.483,3.962,40.234,50.597,10.154,23.56,,,,,,
+CRMS,CRMS0600-H01,CRMS0600-H01,marsh,Surface Water,tidal,16.994,0.873,0.866,19.812,71.628,86.258,3.615,26.662,,,,,,
+CRMS,CRMS0603-H01,CRMS0603-H01,marsh,Surface Water,weakly tidal,0.321,0.147,0.119,0.61,4.877,9.449,8.0,19.903,,,,,,
+CRMS,CRMS0604-H01,CRMS0604-H01,marsh,Surface Water,no tide,0.176,0.033,0.032,0.61,6.401,10.363,10.5,18.864,,,,,,
+CRMS,CRMS0604-H02,CRMS0604-H02,marsh,Surface Water,no tide,0.23,0.062,0.05,0.61,6.096,10.37,10.0,14.956,,,,,,
+CRMS,CRMS0605-H01,CRMS0605-H01,marsh,Surface Water,no tide,0.113,0.056,0.039,0.305,3.048,8.534,10.0,19.233,,,,,,
+CRMS,CRMS0605-H02,CRMS0605-H02,marsh,Surface Water,weakly tidal,0.253,0.11,0.064,0.305,3.658,10.058,12.0,18.12,,,,,,
+CRMS,CRMS0608-H01,CRMS0608-H01,marsh,Surface Water,weakly tidal,0.21,0.067,0.05,0.61,3.962,8.23,6.5,16.994,,,,,,
+CRMS,CRMS0609-H01,CRMS0609-H01,marsh,Surface Water,tidal,1.303,0.618,0.461,1.829,7.925,11.887,4.333,18.426,,,,,,
+CRMS,CRMS0610-H01,CRMS0610-H01,marsh,Surface Water,no tide,0.272,0.011,0.009,0.305,6.706,18.393,22.0,10.304,,,,,,
+CRMS,CRMS0610-W01,CRMS0610-W01,marsh,Marsh Well,no tide,0.096,0.012,0.009,0.305,4.267,10.973,14.0,22.13,,,,,,
+CRMS,CRMS0614-H01,CRMS0614-H01,marsh,Surface Water,no tide,0.179,0.021,0.019,0.61,5.182,9.144,8.5,17.089,,,,,,
+CRMS,CRMS0615-H01,CRMS0615-H01,marsh,Surface Water,no tide,0.174,0.058,0.028,0.305,3.658,9.144,12.0,17.273,,,,,,
+CRMS,CRMS0616-H01,CRMS0616-H01,marsh,Surface Water,tidal,2.731,0.593,0.502,3.048,15.545,20.422,5.1,16.628,,,,,,
+CRMS,CRMS0618-H01,CRMS0618-H01,marsh,Surface Water,tidal,4.396,0.594,0.539,4.877,24.994,32.309,5.125,20.476,,,,,,
+CRMS,CRMS0619-H01,CRMS0619-H01,marsh,Surface Water,no tide,0.119,0.024,0.015,0.305,3.962,10.668,13.0,11.574,,,,,,
+CRMS,CRMS0622-H01,CRMS0622-H01,marsh,Surface Water,weakly tidal,0.422,0.216,0.167,0.305,5.182,15.141,17.0,15.336,,,,,,
+CRMS,CRMS0622-W01,CRMS0622-W01,marsh,Marsh Well,no tide,0.088,0.028,0.022,0.0,3.962,11.278,79.248,18.349,,,,,,
+CRMS,CRMS0623-H01,CRMS0623-H01,marsh,Surface Water,no tide,0.207,0.021,0.018,0.914,7.62,12.192,8.333,16.795,,,,,,
+CRMS,CRMS0624-H01,CRMS0624-H01,marsh,Surface Water,no tide,0.083,0.022,0.016,0.305,3.658,10.058,12.0,18.192,,,,,,
+CRMS,CRMS0626-H01,CRMS0626-H01,marsh,Surface Water,weakly tidal,0.385,0.17,0.132,0.305,6.401,11.887,21.0,16.285,,,,,,
+CRMS,CRMS0630-H02,CRMS0630-H02,marsh,Surface Water,tidal,7.611,0.71,0.708,9.449,35.662,42.672,3.774,20.549,,,,,,
+CRMS,CRMS0632-H01,CRMS0632-H01,marsh,Surface Water,no tide,0.118,0.064,0.032,0.305,3.658,9.449,12.0,10.482,,,,,,
+CRMS,CRMS0632-H02,CRMS0632-H02,marsh,Surface Water,weakly tidal,0.274,0.168,0.103,0.61,3.962,10.048,6.5,9.674,,,,,,
+CRMS,CRMS0633-H01,CRMS0633-H01,marsh,Surface Water,tidal,2.46,0.632,0.535,3.353,12.192,15.85,3.636,14.065,,,,,,
+CRMS,CRMS0635-H01,CRMS0635-H01,marsh,Surface Water,no tide,0.09,0.036,0.022,0.305,3.353,9.449,11.0,13.636,,,,,,
+CRMS,CRMS0638-H01,CRMS0638-H01,marsh,Surface Water,weakly tidal,0.286,0.07,0.054,0.61,5.791,12.192,9.5,15.189,,,,,,
+CRMS,CRMS0639-H01,CRMS0639-H01,marsh,Surface Water,tidal,2.578,0.678,0.633,2.438,14.021,17.769,5.75,13.435,,,,,,
+CRMS,CRMS0639-W01,CRMS0639-W01,marsh,Marsh Well,no tide,0.063,0.016,0.01,0.305,3.658,11.278,12.0,12.342,,,,,,
+CRMS,CRMS0641-H01,CRMS0641-H01,marsh,Surface Water,no tide,0.126,0.038,0.028,0.305,3.962,9.144,13.0,13.959,,,,,,
+CRMS,CRMS0642-H01,CRMS0642-H01,marsh,Surface Water,tidal,2.242,0.6,0.554,2.134,12.802,18.114,6.0,15.254,,,,,,
+CRMS,CRMS0642-W01,CRMS0642-W01,marsh,Marsh Well,no tide,0.08,0.017,0.013,0.305,4.572,12.192,15.0,15.383,,,,,,
+CRMS,CRMS0644-H01,CRMS0644-H01,marsh,Surface Water,tidal,0.64,0.316,0.24,0.914,5.791,10.363,6.333,13.591,,,,,,
+CRMS,CRMS0645-H01,CRMS0645-H01,marsh,Surface Water,weakly tidal,0.387,0.187,0.141,0.61,4.877,9.144,8.0,13.212,,,,,,
+CRMS,CRMS0647-H01,CRMS0647-H01,marsh,Surface Water,no tide,0.073,0.025,0.017,0.305,2.743,9.144,9.0,11.655,,,,,,
+CRMS,CRMS0647-W01,CRMS0647-W01,marsh,Marsh Well,no tide,0.066,0.018,0.013,0.0,3.962,11.582,79.248,14.268,,,,,,
+CRMS,CRMS0648-H01,CRMS0648-H01,marsh,Surface Water,weakly tidal,0.28,0.084,0.053,0.61,6.096,11.582,10.0,15.399,,,,,,
+CRMS,CRMS0650-H01,CRMS0650-H01,marsh,Surface Water,no tide,0.13,0.04,0.022,0.305,3.658,9.144,12.0,15.391,,,,,,
+CRMS,CRMS0650-W01,CRMS0650-W01,marsh,Marsh Well,no tide,0.058,0.01,0.009,0.305,3.658,11.293,12.0,16.585,,,,,,
+CRMS,CRMS0651-H01,CRMS0651-H01,marsh,Surface Water,no tide,0.173,0.056,0.04,0.61,4.267,8.23,7.0,15.692,,,,,,
+CRMS,CRMS0655-H01,CRMS0655-H01,marsh,Surface Water,tidal,0.956,0.262,0.234,0.914,12.802,15.85,14.0,15.539,,,,,,
+CRMS,CRMS0656-H01,CRMS0656-H01,marsh,Surface Water,tidal,11.584,0.851,0.814,14.326,42.367,49.189,2.957,24.788,,,,,,
+CRMS,CRMS0656-W01,CRMS0656-W01,marsh,Marsh Well,tidal,2.642,0.322,0.305,1.219,25.603,32.918,21.0,15.819,,,,,,
+CRMS,CRMS0658-H01,CRMS0658-H01,marsh,Surface Water,tidal,6.312,0.819,0.768,7.62,24.994,30.175,3.28,18.691,,,,,,
+CRMS,CRMS0660-H01,CRMS0660-H01,marsh,Surface Water,weakly tidal,0.439,0.228,0.13,0.914,5.486,11.277,6.0,16.345,,,,,,
+CRMS,CRMS0661-H01,CRMS0661-H01,marsh,Surface Water,weakly tidal,0.439,0.097,0.088,0.914,10.049,16.458,10.99,14.845,,,,,,
+CRMS,CRMS0662-H01,CRMS0662-H01,marsh,Surface Water,tidal,1.405,0.521,0.363,2.134,8.534,15.545,4.0,17.414,,,,,,
+CRMS,CRMS0663-H01,CRMS0663-H01,marsh,Surface Water,tidal,1.389,0.635,0.42,2.438,7.01,11.887,2.875,17.853,,,,,,
+CRMS,CRMS0665-H01,CRMS0665-H01,marsh,Surface Water,tidal,1.04,0.343,0.313,0.305,14.021,28.956,46.0,14.056,,,,,,
+CRMS,CRMS0669-H01,CRMS0669-H01,marsh,Surface Water,weakly tidal,0.439,0.089,0.074,0.61,8.23,22.651,13.5,15.04,,,,,,
+CRMS,CRMS0672-H01,CRMS0672-H01,marsh,Surface Water,tidal,0.648,0.402,0.303,0.914,5.182,9.449,5.667,15.115,,,,,,
+CRMS,CRMS0677-H01,CRMS0677-H01,marsh,Surface Water,weakly tidal,0.203,0.072,0.052,0.61,4.877,10.973,8.0,13.981,,,,,,
+CRMS,CRMS0680-H01,CRMS0680-H01,marsh,Surface Water,no tide,0.143,0.044,0.036,0.305,3.658,11.582,12.0,15.218,,,,,,
+CRMS,CRMS0682-H01,CRMS0682-H01,marsh,Surface Water,weakly tidal,0.395,0.194,0.157,0.305,6.706,12.497,22.0,15.372,,,,,,
+CRMS,CRMS0683-H01,CRMS0683-H01,marsh,Surface Water,weakly tidal,0.448,0.128,0.08,1.219,7.62,14.021,6.25,14.774,,,,,,
+CRMS,CRMS0684-H01,CRMS0684-H01,marsh,Surface Water,tidal,7.838,0.857,0.813,9.144,28.651,33.833,3.133,17.759,,,,,,
+CRMS,CRMS0685-H01,CRMS0685-H01,marsh,Surface Water,tidal,7.986,0.841,0.793,9.754,28.956,35.357,2.969,18.923,,,,,,
+CRMS,CRMS0687-H01,CRMS0687-H01,marsh,Surface Water,tidal,9.049,0.838,0.803,10.973,34.442,41.363,3.139,19.768,,,,,,
+CRMS,CRMS0691-H01,CRMS0691-H01,marsh,Surface Water,no tide,0.06,0.02,0.01,0.305,3.353,9.449,11.0,16.661,,,,,,
+CRMS,CRMS0693-H01,CRMS0693-H01,marsh,Surface Water,no tide,0.083,0.033,0.018,0.305,3.353,9.449,11.0,13.279,,,,,,
+CRMS,CRMS0694-H01,CRMS0694-H01,marsh,Surface Water,no tide,0.232,0.023,0.021,0.914,9.754,17.951,10.667,12.804,,,,,,
+CRMS,CRMS0694-H02,CRMS0694-H02,marsh,Surface Water,no tide,0.154,0.021,0.017,0.61,7.62,15.85,12.5,14.238,,,,,,
+CRMS,CRMS0697-H01,CRMS0697-H01,marsh,Surface Water,tidal,3.49,0.656,0.552,4.877,15.85,21.946,3.25,18.6,,,,,,
+CRMS,CRMS0978-H01,CRMS0978-H01,marsh,Surface Water,tidal,9.116,0.852,0.798,11.582,28.956,35.357,2.5,20.593,,,,,,
+CRMS,CRMS1024-H01,CRMS1024-H01,marsh,Surface Water,tidal,14.016,0.882,0.845,16.154,46.634,52.638,2.887,23.166,,,,,,
+CRMS,CRMS1069-H01,CRMS1069-H01,marsh,Surface Water,tidal,14.811,0.902,0.876,16.459,52.121,52.121,3.167,23.212,,,,,,
+CRMS,CRMS1100-H01,CRMS1100-H01,marsh,Surface Water,no tide,0.141,0.045,0.029,0.305,5.182,10.668,17.0,17.151,,,,,,
+CRMS,CRMS1130-H01,CRMS1130-H01,marsh,Surface Water,weakly tidal,0.746,0.185,0.178,0.61,13.716,25.947,22.5,17.054,,,,,,
+CRMS,CRMS1205-H01,CRMS1205-H01,marsh,Surface Water,weakly tidal,0.399,0.159,0.166,0.61,6.401,10.668,10.5,14.85,,,,,,
+CRMS,CRMS1277-H01,CRMS1277-H01,marsh,Surface Water,no tide,0.047,0.015,0.01,0.0,3.048,7.62,60.96,15.83,,,,,,
+CRMS,CRMS1409-H01,CRMS1409-H01,marsh,Surface Water,weakly tidal,0.224,0.107,0.078,0.305,4.572,11.278,15.0,19.069,,,,,,
+CRMS,CRMS1409-H0X,CRMS1409-H0X,marsh,Surface Water,no tide,0.091,0.037,0.025,0.305,3.353,8.534,11.0,15.189,,,,,,
+CRMS,CRMS1413-H01,CRMS1413-H01,marsh,Surface Water,no tide,0.09,0.021,0.012,0.305,3.048,9.449,10.0,18.083,,,,,,
+CRMS,CRMS1413-W01,CRMS1413-W01,marsh,Marsh Well,no tide,0.084,0.019,0.016,0.305,4.572,10.363,15.0,19.143,,,,,,
+CRMS,CRMS1446-H01,CRMS1446-H01,marsh,Surface Water,no tide,0.189,0.026,0.022,0.914,6.401,10.363,7.0,21.587,,,,,,
+CRMS,CRMS1446-H0X,CRMS1446-H0X,marsh,Surface Water,no tide,0.241,0.018,0.016,0.914,8.23,13.106,9.0,16.968,,,,,,
+CRMS,CRMS1650-H01,CRMS1650-H01,marsh,Surface Water,tidal,12.732,0.813,0.767,16.459,49.378,59.131,3.0,25.862,,,,,,
+CRMS,CRMS1738-H01,CRMS1738-H01,marsh,Surface Water,tidal,1.326,0.735,0.667,0.914,9.449,12.802,10.333,12.363,,,,,,
+CRMS,CRMS1743-H01,CRMS1743-H01,marsh,Surface Water,tidal,1.972,0.362,0.34,1.219,21.336,27.737,17.5,14.1,,,,,,
+CRMS,CRMS1838-H01,CRMS1838-H01,marsh,Surface Water,no tide,0.076,0.018,0.011,0.305,3.962,12.497,13.0,16.609,,,,,,
+CRMS,CRMS1858-H01,CRMS1858-H01,marsh,Surface Water,no tide,0.057,0.016,0.01,0.305,3.353,9.754,11.0,15.226,,,,,,
+CRMS,CRMS1965-H02,CRMS1965-H02,marsh,Surface Water,weakly tidal,1.083,0.128,0.154,0.61,24.384,29.87,40.0,14.454,,,,,,
+CRMS,CRMS2041-H01,CRMS2041-H01,marsh,Surface Water,tidal,13.428,0.825,0.783,17.678,51.816,60.35,2.931,26.487,,,,,,
+CRMS,CRMS2154-H01,CRMS2154-H01,marsh,Surface Water,weakly tidal,0.302,0.068,0.055,0.914,6.706,13.106,7.333,14.758,,,,,,
+CRMS,CRMS2154-H0X,CRMS2154-H0X,marsh,Surface Water,weakly tidal,0.366,0.077,0.055,0.914,8.23,14.935,9.0,12.681,,,,,,
+CRMS,CRMS2156-H01,CRMS2156-H01,marsh,Surface Water,weakly tidal,0.293,0.072,0.061,0.914,6.401,11.582,7.0,15.631,,,,,,
+CRMS,CRMS2156-H0X,CRMS2156-H0X,marsh,Surface Water,no tide,0.167,0.086,0.043,0.61,3.658,11.226,6.0,12.406,,,,,,
+CRMS,CRMS2166-H01,CRMS2166-H01,marsh,Surface Water,tidal,2.402,0.705,0.589,3.048,11.887,16.459,3.9,15.128,,,,,,
+CRMS,CRMS2166-W01,CRMS2166-W01,marsh,Marsh Well,tidal,0.956,0.453,0.292,1.524,6.706,11.887,4.4,15.856,,,,,,
+CRMS,CRMS2189-H01,CRMS2189-H01,marsh,Surface Water,weakly tidal,0.605,0.088,0.075,0.305,14.326,19.883,47.0,6.436,,,,,,
+CRMS,CRMS2189-H02,CRMS2189-H02,marsh,Surface Water,tidal,7.754,0.805,0.757,9.144,32.309,42.367,3.533,19.831,,,,,,
+CRMS,CRMS2219-H01,CRMS2219-H01,marsh,Surface Water,no tide,0.083,0.025,0.017,0.305,3.353,10.973,11.0,15.176,,,,,,
+CRMS,CRMS2334-H01,CRMS2334-H01,marsh,Surface Water,weakly tidal,0.697,0.178,0.151,0.61,9.144,23.357,15.0,13.509,,,,,,
+CRMS,CRMS2418-H01,CRMS2418-H01,marsh,Surface Water,weakly tidal,0.233,0.144,0.089,0.61,3.962,7.925,6.5,12.699,,,,,,
+CRMS,CRMS2493-H01,CRMS2493-H01,marsh,Surface Water,weakly tidal,0.326,0.111,0.092,0.61,4.877,10.668,8.0,17.915,,,,,,
+CRMS,CRMS2568-H01,CRMS2568-H01,marsh,Surface Water,tidal,9.622,0.698,0.678,10.668,50.902,63.703,4.771,24.124,,,,,,
+CRMS,CRMS2608-H01,CRMS2608-H01,marsh,Surface Water,tidal,9.482,0.88,0.863,9.449,35.966,42.062,3.806,25.622,,,,,,
+CRMS,CRMS2614-H01,CRMS2614-H01,marsh,Surface Water,tidal,11.19,0.82,0.786,11.887,43.586,65.227,3.667,25.683,,,,,,
+CRMS,CRMS2627-H01,CRMS2627-H01,marsh,Surface Water,tidal,8.911,0.902,0.877,8.534,33.528,39.014,3.929,32.325,,,,,,
+CRMS,CRMS2634-H01,CRMS2634-H01,marsh,Surface Water,tidal,8.214,0.847,0.819,7.62,34.138,37.186,4.48,28.03,,,,,,
+CRMS,CRMS2785-H01,CRMS2785-H01,marsh,Surface Water,tidal,2.502,0.577,0.532,2.438,14.935,20.422,6.125,19.889,,,,,,
+CRMS,CRMS2785-M01,CRMS2785-M01,marsh,Flotant Marsh,weakly tidal,0.391,0.205,0.155,0.305,5.182,9.754,17.0,15.041,,,,,,
+CRMS,CRMS2825-H01,CRMS2825-H01,marsh,Surface Water,tidal,1.329,0.568,0.377,2.134,7.62,12.497,3.571,19.625,,,,,,
+CRMS,CRMS2830-H01,CRMS2830-H01,marsh,Surface Water,tidal,2.203,0.644,0.455,3.353,10.363,20.422,3.091,20.588,,,,,,
+CRMS,CRMS2854-H01,CRMS2854-H01,marsh,Surface Water,tidal,1.825,0.572,0.364,2.743,10.668,19.152,3.889,19.962,,,,,,
+CRMS,CRMS2862-H01,CRMS2862-H01,marsh,Surface Water,tidal,1.906,0.522,0.47,1.829,12.497,17.983,6.833,20.09,,,,,,
+CRMS,CRMS2862-M01,CRMS2862-M01,marsh,Flotant Marsh,weakly tidal,0.331,0.107,0.102,0.305,7.01,15.24,23.0,18.001,,,,,,
+CRMS,CRMS2881-H01,CRMS2881-H01,marsh,Surface Water,tidal,0.981,0.421,0.335,1.219,7.315,10.668,6.0,18.184,,,,,,
+CRMS,CRMS2881-H0X,CRMS2881-H0X,marsh,Surface Water,tidal,1.64,0.456,0.392,1.829,11.887,16.474,6.5,15.875,,,,,,
+CRMS,CRMS2887-H01,CRMS2887-H01,marsh,Surface Water,tidal,1.295,0.42,0.345,1.524,9.144,11.582,6.0,21.72,,,,,,
+CRMS,CRMS2939-H01,CRMS2939-H01,marsh,Surface Water,tidal,1.188,0.549,0.362,1.829,7.315,12.553,4.0,18.226,,,,,,
+CRMS,CRMS2939-M01,CRMS2939-M01,marsh,Flotant Marsh,weakly tidal,0.346,0.286,0.173,0.61,3.962,7.62,6.5,7.626,,,,,,
+CRMS,CRMS2991-M01,CRMS2991-M01,marsh,Flotant Marsh,no tide,0.068,0.027,0.019,0.305,3.353,7.315,11.0,10.443,,,,,,
+CRMS,CRMS2991-W01,CRMS2991-W01,marsh,Marsh Well,weakly tidal,0.237,0.121,0.099,0.305,5.791,12.192,19.0,18.686,,,,,,
+CRMS,CRMS3054-H01,CRMS3054-H01,marsh,Surface Water,tidal,1.875,0.593,0.435,3.048,9.754,14.654,3.2,17.742,,,,,,
+CRMS,CRMS3136-H01,CRMS3136-H01,marsh,Surface Water,weakly tidal,0.575,0.204,0.12,1.219,7.315,11.887,6.0,18.531,,,,,,
+CRMS,CRMS3166-H01,CRMS3166-H01,marsh,Surface Water,tidal,1.513,0.49,0.304,2.743,9.754,14.021,3.556,20.471,,,,,,
+CRMS,CRMS3166-M01,CRMS3166-M01,marsh,Flotant Marsh,weakly tidal,0.713,0.288,0.174,1.219,7.925,12.802,6.5,14.938,,,,,,
+CRMS,CRMS3169-H01,CRMS3169-H01,marsh,Surface Water,tidal,1.216,0.432,0.274,1.829,9.754,14.63,5.333,17.029,,,,,,
+CRMS,CRMS3169-M01,CRMS3169-M01,marsh,Flotant Marsh,tidal,1.304,0.444,0.289,1.829,10.058,14.935,5.5,18.79,,,,,,
+CRMS,CRMS3296-H01,CRMS3296-H01,marsh,Surface Water,tidal,12.086,0.836,0.785,14.935,40.843,50.597,2.735,25.7,,,,,,
+CRMS,CRMS3565-H01,CRMS3565-H01,marsh,Surface Water,tidal,6.277,0.866,0.789,7.925,19.812,23.774,2.5,18.257,,,,,,
+CRMS,CRMS3601-H01,CRMS3601-H01,marsh,Surface Water,tidal,6.358,0.803,0.719,8.23,21.946,37.186,2.667,20.061,,,,,,
+CRMS,CRMS3617-H01,CRMS3617-H01,marsh,Surface Water,tidal,6.484,0.827,0.737,8.534,21.641,26.822,2.536,19.234,,,,,,
+CRMS,CRMS3626-H01,CRMS3626-H01,marsh,Surface Water,tidal,4.166,0.691,0.588,5.791,18.593,27.737,3.21,19.583,,,,,,
+CRMS,CRMS3639-H01,CRMS3639-H01,marsh,Surface Water,tidal,4.387,0.612,0.568,4.267,22.86,28.346,5.357,16.523,,,,,,
+CRMS,CRMS3641-H01,CRMS3641-H01,marsh,Surface Water,tidal,4.942,0.652,0.599,5.486,23.165,28.042,4.222,19.843,,,,,,
+CRMS,CRMS3650-H01,CRMS3650-H01,marsh,Surface Water,tidal,11.725,0.825,0.778,14.63,40.234,46.33,2.75,23.644,,,,,,
+CRMS,CRMS3664-H01,CRMS3664-H01,marsh,Surface Water,tidal,5.214,0.655,0.61,5.791,24.689,30.175,4.263,17.039,,,,,,
+CRMS,CRMS3667-H01,CRMS3667-H01,marsh,Surface Water,weakly tidal,0.684,0.23,0.11,1.219,9.449,18.593,7.75,16.575,,,,,,
+CRMS,CRMS3667-H02,CRMS3667-H02,marsh,Surface Water,weakly tidal,0.639,0.155,0.081,0.914,11.582,25.465,12.667,14.352,,,,,,
+CRMS,CRMS3680-H01,CRMS3680-H01,marsh,Surface Water,tidal,6.979,0.811,0.731,9.449,23.165,28.346,2.452,20.431,,,,,,
+CRMS,CRMS3784-H01,CRMS3784-H01,marsh,Surface Water,tidal,9.341,0.828,0.781,11.582,31.394,37.795,2.71,19.87,,,,,,
+CRMS,CRMS3800-H01,CRMS3800-H01,marsh,Surface Water,tidal,1.267,0.399,0.237,1.524,8.534,18.634,5.6,18.682,,,,,,
+CRMS,CRMS3913-H01,CRMS3913-H01,marsh,Surface Water,tidal,2.588,0.583,0.436,4.267,13.106,20.726,3.071,20.878,,,,,,
+CRMS,CRMS3985-H01,CRMS3985-H01,marsh,Surface Water,tidal,2.208,0.538,0.392,3.658,10.973,16.459,3.0,17.352,,,,,,
+CRMS,CRMS4014-H01,CRMS4014-H01,marsh,Surface Water,tidal,10.443,0.749,0.73,11.582,51.816,64.922,4.474,23.4,,,,,,
+CRMS,CRMS4016-H01,CRMS4016-H01,marsh,Surface Water,tidal,9.812,0.695,0.674,10.973,51.206,64.922,4.667,23.761,,,,,,
+CRMS,CRMS4045-H01,CRMS4045-H01,marsh,Surface Water,tidal,5.049,0.731,0.666,6.706,22.555,38.405,3.364,18.522,,,,,,
+CRMS,CRMS4094-H01,CRMS4094-H01,marsh,Surface Water,tidal,4.1,0.617,0.515,6.096,18.898,26.822,3.1,22.211,,,,,,
+CRMS,CRMS4103-H01,CRMS4103-H01,marsh,Surface Water,tidal,2.628,0.678,0.498,4.267,10.363,15.24,2.429,17.594,,,,,,
+CRMS,CRMS4107-H01,CRMS4107-H01,marsh,Surface Water,no tide,0.106,0.022,0.021,0.305,4.572,9.754,15.0,24.009,,,,,,
+CRMS,CRMS4110-H01,CRMS4110-H01,marsh,Surface Water,tidal,9.613,0.84,0.8,11.582,32.918,38.405,2.842,19.343,,,,,,
+CRMS,CRMS4218-H01,CRMS4218-H01,marsh,Surface Water,tidal,4.7,0.837,0.744,6.401,15.24,19.202,2.381,17.113,,,,,,
+CRMS,CRMS4245-H01,CRMS4245-H01,marsh,Surface Water,tidal,3.329,0.726,0.585,4.877,13.106,18.593,2.688,17.599,,,,,,
+CRMS,CRMS4245-M01,CRMS4245-M01,marsh,Flotant Marsh,weakly tidal,1.023,0.226,0.172,0.914,12.497,20.726,13.667,11.894,,,,,,
+CRMS,CRMS4355-H01,CRMS4355-H01,marsh,Surface Water,tidal,1.668,0.505,0.314,2.743,11.278,17.983,4.111,20.184,,,,,,
+CRMS,CRMS4355-M01,CRMS4355-M01,marsh,Flotant Marsh,no tide,0.292,0.049,0.02,0.305,8.23,16.154,27.0,13.028,,,,,,
+CRMS,CRMS4406-H01,CRMS4406-H01,marsh,Surface Water,tidal,2.196,0.566,0.427,3.353,12.192,17.374,3.636,18.201,,,,,,
+CRMS,CRMS4407-H01,CRMS4407-H01,marsh,Surface Water,tidal,1.336,0.563,0.327,2.134,8.534,14.021,4.0,16.426,,,,,,
+CRMS,CRMS4448-H01,CRMS4448-H01,marsh,Surface Water,tidal,8.358,0.855,0.825,8.23,33.223,42.672,4.037,29.984,,,,,,
+CRMS,CRMS4455-H01,CRMS4455-H01,marsh,Surface Water,tidal,11.581,0.878,0.848,13.106,38.71,44.806,2.954,20.098,,,,,,
+CRMS,CRMS4529-H01,CRMS4529-H01,marsh,Surface Water,tidal,12.109,0.888,0.847,14.021,40.234,46.634,2.87,22.688,,,,,,
+CRMS,CRMS4548-H01,CRMS4548-H01,marsh,Surface Water,tidal,13.043,0.848,0.796,15.85,42.672,51.816,2.692,23.785,,,,,,
+CRMS,CRMS4551-H01,CRMS4551-H01,marsh,Surface Water,tidal,13.547,0.859,0.82,16.154,45.11,50.292,2.792,24.204,,,,,,
+CRMS,CRMS4557-H01,CRMS4557-H01,marsh,Surface Water,tidal,13.341,0.823,0.801,15.24,51.511,54.254,3.38,23.146,,,,,,
+CRMS,CRMS4572-H01,CRMS4572-H01,marsh,Surface Water,tidal,12.966,0.879,0.845,14.935,42.367,44.501,2.837,22.602,,,,,,
+CRMS,CRMS4596-H01,CRMS4596-H01,marsh,Surface Water,tidal,13.59,0.896,0.867,15.545,43.282,46.33,2.784,22.784,,,,,,
+CRMS,CRMS4626-H01,CRMS4626-H01,marsh,Surface Water,tidal,10.886,0.908,0.88,11.278,38.71,42.977,3.432,27.903,,,,,,
+CRMS,CRMS4690-H01,CRMS4690-H01,marsh,Surface Water,tidal,7.623,0.872,0.812,9.144,24.079,28.042,2.633,18.88,,,,,,
+CRMS,CRMS4779-H01,CRMS4779-H01,marsh,Surface Water,tidal,2.523,0.415,0.371,1.829,24.689,34.442,13.5,25.168,,,,,,
+CRMS,CRMS4782-H01,CRMS4782-H01,marsh,Surface Water,tidal,7.279,0.649,0.624,7.01,42.977,56.083,6.13,33.461,,,,,,
+CRMS,CRMS4808-H01,CRMS4808-H01,marsh,Surface Water,tidal,4.756,0.554,0.514,4.267,30.175,39.624,7.071,28.715,,,,,,
+CRMS,CRMS4809-H01,CRMS4809-H01,marsh,Surface Water,tidal,6.727,0.583,0.555,5.791,39.319,49.073,6.79,31.313,,,,,,
+CRMS,CRMS4809-W01,CRMS4809-W01,marsh,Marsh Well,tidal,2.345,0.459,0.408,2.438,16.764,21.946,6.875,22.683,,,,,,
+CRMS,CRMS4900-H01,CRMS4900-H01,marsh,Surface Water,tidal,4.691,0.558,0.53,4.267,32.004,43.891,7.5,39.499,,,,,,
+CRMS,CRMS4938-H01,CRMS4938-H01,marsh,Surface Water,tidal,6.843,0.613,0.593,6.706,41.758,54.254,6.227,32.352,,,,,,
+CRMS,CRMS5003-H01,CRMS5003-H01,marsh,Surface Water,tidal,6.352,0.536,0.514,5.791,42.672,55.169,7.368,35.239,,,,,,
+CRMS,CRMS5035-H01,CRMS5035-H01,marsh,Surface Water,tidal,1.725,0.521,0.473,1.829,10.973,14.935,6.0,21.065,,,,,,
+CRMS,CRMS5116-W01,CRMS5116-W01,marsh,Marsh Well,no tide,0.067,0.008,0.007,0.305,4.572,16.422,15.0,20.932,,,,,,
+CRMS,CRMS5167-H01,CRMS5167-H01,marsh,Surface Water,tidal,1.855,0.478,0.349,2.438,10.973,14.935,4.5,22.544,,,,,,
+CRMS,CRMS5255-H01,CRMS5255-H01,marsh,Surface Water,tidal,2.102,0.611,0.434,3.048,10.668,15.85,3.5,20.79,,,,,,
+CRMS,CRMS5267-H01,CRMS5267-H01,marsh,Surface Water,tidal,2.714,0.666,0.494,4.267,12.192,18.898,2.857,22.064,,,,,,
+CRMS,CRMS5373-H01,CRMS5373-H01,marsh,Surface Water,weakly tidal,0.642,0.223,0.122,0.914,8.534,15.24,9.333,20.593,,,,,,
+CRMS,CRMS5414-H01,CRMS5414-H01,marsh,Surface Water,tidal,1.122,0.385,0.243,1.524,8.839,13.411,5.8,20.704,,,,,,
+CRMS,CRMS5452-H01,CRMS5452-H01,marsh,Surface Water,tidal,2.822,0.661,0.485,4.572,12.192,17.983,2.667,22.304,,,,,,
+CRMS,CRMS5536-H01,CRMS5536-H01,marsh,Surface Water,weakly tidal,0.66,0.268,0.168,0.914,7.01,14.935,7.667,20.861,,,,,,
+CRMS,CRMS5672-W01,CRMS5672-W01,marsh,Marsh Well,no tide,0.13,0.03,0.023,0.305,4.572,14.935,15.0,22.118,,,,,,
+CRMS,CRMS5770-W01,CRMS5770-W01,marsh,Marsh Well,weakly tidal,0.253,0.11,0.096,0.305,5.791,9.449,19.0,15.359,,,,,,
+CRMS,CRMS5845-H01,CRMS5845-H01,marsh,Surface Water,tidal,2.489,0.636,0.472,3.658,11.278,15.24,3.083,22.849,,,,,,
+CRMS,CRMS5992-H01,CRMS5992-H01,marsh,Surface Water,tidal,8.029,0.677,0.644,8.839,41.453,51.816,4.69,23.508,,,,,,
+CRMS,CRMS6008-H01,CRMS6008-H01,marsh,Surface Water,tidal,7.543,0.636,0.61,7.315,41.148,49.987,5.625,23.305,,,,,,
+CRMS,CRMS6038-H01,CRMS6038-H01,marsh,Surface Water,tidal,8.293,0.637,0.618,8.23,48.158,61.265,5.852,29.243,,,,,,
+CRMS,CRMS6042-H01,CRMS6042-H01,marsh,Surface Water,tidal,7.595,0.584,0.564,7.01,47.244,60.96,6.739,36.631,,,,,,
+CRMS,CRMS6088-H01,CRMS6088-H01,marsh,Surface Water,tidal,10.643,0.641,0.609,12.192,49.682,48.463,4.075,39.701,,,,,,
+CRMS,CRMS6090-H01,CRMS6090-H01,marsh,Surface Water,tidal,10.565,0.659,0.623,11.278,49.682,47.748,4.405,43.762,,,,,,
+CRMS,CRMS6209-H01,CRMS6209-H01,marsh,Surface Water,tidal,2.75,0.524,0.41,3.658,14.326,20.588,3.917,22.552,,,,,,
+CRMS,CRMS6299-H01,CRMS6299-H01,marsh,Surface Water,tidal,1.787,0.584,0.38,2.743,9.754,20.877,3.556,18.534,,,,,,
+CRMS,CRMS6301-H01,CRMS6301-H01,marsh,Surface Water,no tide,0.158,0.046,0.029,0.305,4.572,11.887,15.0,14.135,,,,,,
+CRMS,CRMS6302-H02,CRMS6302-H02,marsh,Surface Water,tidal,3.192,0.749,0.618,4.572,13.106,17.374,2.867,19.276,,,,,,
+CRMS,CRMS6303-H01,CRMS6303-H01,marsh,Surface Water,tidal,5.666,0.857,0.781,7.315,17.983,22.25,2.458,18.362,,,,,,
+CRMS,CRMS6304-H01,CRMS6304-H01,marsh,Surface Water,tidal,11.409,0.802,0.783,13.411,48.768,60.35,3.636,22.02,,,,,,
+CRMS,CS20-106,CS20-106,marsh,Surface Water,no tide,0.164,0.014,0.013,0.61,9.107,14.63,14.94,9.649,,,,,,
+CRMS,CS20-14R,CS20-14R,marsh,Surface Water,tidal,4.126,0.85,0.786,4.877,17.069,20.117,3.5,15.133,,,,,,
+CRMS,CS20-15R,CS20-15R,marsh,Surface Water,tidal,7.973,0.8,0.764,10.058,32.004,33.833,3.182,18.29,,,,,,
+CRMS,CS27-25,CS27-25,marsh,Surface Water,tidal,1.009,0.294,0.249,1.219,11.278,14.021,9.25,17.414,,,,,,
+CRMS,DCPBA03,DCPBA03,marsh,Surface Water,weakly tidal,1.051,0.16,0.116,0.61,20.193,36.66,33.125,16.728,,,,,,
+CRMS,DCPBA04,DCPBA04,marsh,Surface Water,tidal,2.432,0.504,0.349,3.962,14.249,19.36,3.596,20.855,,,,,,
+CRMS,DCPBA05,DCPBA05,marsh,Surface Water,tidal,2.167,0.3,0.259,3.962,18.593,27.563,4.692,16.897,,,,,,
+CRMS,DCPBA06,DCPBA06,marsh,Surface Water,tidal,8.648,0.857,0.773,10.211,27.051,34.088,2.649,22.029,,,,,,
+CRMS,DCPBA07,DCPBA07,marsh,Surface Water,tidal,6.822,0.879,0.804,8.382,21.869,25.946,2.609,17.763,,,,,,
+CRMS,DCPBA08,DCPBA08,marsh,Surface Water,tidal,11.074,0.932,0.906,11.887,35.433,38.356,2.981,18.591,,,,,,
+CRMS,DCPBA09,DCPBA09,marsh,Surface Water,tidal,1.466,0.342,0.218,1.981,10.668,30.023,5.385,33.982,,,,,,
+CRMS,DCPBS03,DCPBS03,marsh,Surface Water,tidal,15.164,0.869,0.833,16.535,53.797,63.524,3.254,25.584,,,,,,
+CRMS,DCPBS04,DCPBS04,marsh,Surface Water,tidal,13.547,0.84,0.794,15.697,47.701,59.175,3.039,25.601,,,,,,
+CRMS,DCPBS05,DCPBS05,marsh,Surface Water,tidal,6.774,0.78,0.702,9.144,23.546,30.632,2.575,20.621,,,,,,
+CRMS,DCPBS06,DCPBS06,marsh,Surface Water,tidal,2.313,0.568,0.357,3.581,15.503,25.146,4.329,20.574,,,,,,
+CRMS,DCPBS09,DCPBS09,marsh,Surface Water,tidal,2.005,0.474,0.313,3.429,12.04,25.923,3.511,21.527,,,,,,
+CRMS,DCPBS10,DCPBS10,marsh,Surface Water,tidal,14.663,0.865,0.828,15.545,54.254,60.046,3.49,24.478,,,,,,
+CRMS,DCPTE03,DCPTE03,marsh,Surface Water,tidal,6.454,0.866,0.81,8.001,20.574,24.232,2.571,15.746,,,,,,
+CRMS,DCPTE09,DCPTE09,marsh,Surface Water,tidal,0.765,0.464,0.306,0.991,5.486,8.611,5.538,21.141,,,,,,
+CRMS,ME11-01R,ME11-01R,marsh,Surface Water,tidal,7.786,0.672,0.669,8.23,40.496,49.378,4.921,20.298,,,,,,
+CRMS,ME16-06,ME16-06,marsh,Surface Water,tidal,4.503,0.68,0.633,5.182,23.47,30.48,4.529,16.123,,,,,,
+CRMS,PO0063-01F-RT,PO0063-01F-RT,marsh,Surface Water,tidal,12.725,0.862,0.814,15.469,41.758,48.616,2.7,24.214,,,,,,
+CRMS,PO0063-01P-RT,PO0063-01P-RT,marsh,Surface Water,tidal,9.495,0.788,0.75,10.693,34.9,38.792,3.264,18.306,,,,,,
+CRMS,PO0063-02F-RT,PO0063-02F-RT,marsh,Surface Water,weakly tidal,6.136,0.18,0.129,8.001,24.003,31.913,3.0,96.44,,,,,,
+CRMS,PO0063-02P-RT,PO0063-02P-RT,marsh,Surface Water,tidal,4.444,0.684,0.482,5.486,19.431,21.343,3.542,18.403,,,,,,
+CRMS,PO0063-03F-RT,PO0063-03F-RT,marsh,Surface Water,tidal,12.232,0.853,0.799,14.859,41.529,48.182,2.795,24.122,,,,,,
+CRMS,PO0063-03P-RT,PO0063-03P-RT,marsh,Surface Water,tidal,7.781,0.814,0.755,9.906,28.194,33.68,2.846,20.809,,,,,,
+CRMS,PO0063-04F-RT,PO0063-04F-RT,marsh,Surface Water,tidal,4.304,0.74,0.629,5.867,16.993,25.772,2.896,20.466,,,,,,
+CRMS,PO0063-04P-RT,PO0063-04P-RT,marsh,Surface Water,tidal,6.19,0.789,0.715,7.925,23.322,31.479,2.943,20.05,,,,,,
+CRMS,PO0063-13F-RT,PO0063-13F-RT,marsh,Surface Water,tidal,2.298,0.441,0.29,3.81,11.735,21.568,3.08,20.957,,,,,,
+CRMS,PO0063-13P-RT,PO0063-13P-RT,marsh,Surface Water,tidal,2.261,0.604,0.416,3.734,11.125,16.612,2.98,18.758,,,,,,
+CRMS,PO142-01H01,PO142-01H01,marsh,Surface Water,tidal,2.318,0.604,0.437,3.658,11.278,15.545,3.083,22.816,,,,,,
+CRMS,PO142-02W01,PO142-02W01,marsh,Marsh Well,no tide,0.286,0.097,0.044,0.305,7.315,15.85,24.0,14.459,,,,,,
+CRMS,PO24-02,PO24-02,marsh,Surface Water,tidal,12.98,0.836,0.794,15.85,43.282,47.549,2.731,22.917,,,,,,
+CRMS,PO24-05,PO24-05,marsh,Surface Water,tidal,1.613,0.563,0.402,2.134,10.363,13.106,4.857,17.1,,,,,,
+CRMS,SWMP0006,SWMP0006,marsh,Surface Water,tidal,4.817,0.8,0.705,6.477,16.764,24.689,2.588,17.522,,,,,,
+CRMS,SWMP0012,SWMP0012,marsh,Surface Water,tidal,11.444,0.917,0.873,12.802,36.271,41.258,2.833,20.169,,,,,,
+CRMS,SWMP0013,SWMP0013,marsh,Surface Water,tidal,10.482,0.892,0.827,11.735,33.376,39.224,2.844,22.334,,,,,,
+CRMS,SWMP0015,SWMP0015,marsh,Surface Water,tidal,11.514,0.945,0.916,12.497,35.204,38.405,2.817,19.894,,,,,,
+CRMS,SWMP0017,SWMP0017,marsh,Surface Water,tidal,11.49,0.951,0.93,12.116,35.89,38.212,2.962,18.241,,,,,,
+CRMS,SWMP0022,SWMP0022,marsh,Surface Water,tidal,14.061,0.941,0.918,15.088,43.282,47.701,2.869,20.113,,,,,,
+CRMS,TE26-01R,TE26-01R,marsh,Surface Water,tidal,14.568,0.854,0.834,17.374,56.083,67.361,3.228,21.386,,,,,,
+CRMS,TE26-05,TE26-05,marsh,Surface Water,tidal,11.43,0.854,0.833,13.716,40.036,45.11,2.919,16.957,,,,,,
+CRMS,TE26-06,TE26-06,marsh,Surface Water,tidal,13.386,0.859,0.834,16.154,50.597,59.334,3.132,20.107,,,,,,
+CRMS,TE26-07,TE26-07,marsh,Surface Water,tidal,13.672,0.871,0.848,15.24,51.206,61.626,3.36,19.704,,,,,,
+CRMS,TE28-01,TE28-01,marsh,Surface Water,tidal,4.184,0.806,0.726,5.791,14.63,18.288,2.526,14.833,,,,,,
+CRMS,TE28-02,TE28-02,marsh,Surface Water,tidal,0.668,0.429,0.267,1.219,5.182,9.754,4.25,13.042,,,,,,
+CRMS,TE28-03,TE28-03,marsh,Surface Water,tidal,4.652,0.834,0.758,6.096,15.545,18.898,2.55,14.588,,,,,,
+CRMS,TE28-218,TE28-218,marsh,Flotant Marsh,tidal,0.67,0.426,0.265,1.219,5.182,10.058,4.25,13.052,,,,,,
+CRMS,TE45-H01,TE45-H01,marsh,Surface Water,tidal,13.515,0.878,0.838,15.24,45.11,52.62,2.96,21.771,,,,,,
+CRMS,TE45-H02,TE45-H02,marsh,Surface Water,tidal,13.749,0.869,0.826,15.85,47.244,56.083,2.981,21.893,,,,,,
+CRMS,TV21CR01-H01,TV21CR01-H01,marsh,Surface Water,tidal,14.85,0.833,0.804,17.374,58.826,68.58,3.386,25.75,,,,,,
+CRMS,TV21CR02-H01,TV21CR02-H01,marsh,Surface Water,tidal,14.889,0.849,0.819,17.374,56.998,66.959,3.281,24.007,,,,,,
