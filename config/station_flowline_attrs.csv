@@ -1,0 +1,404 @@
+source,station_id,name,type,comid,indexed,gnis_name,ftype,fcode,stream_order,levelpathid,km_to_outlet,terminalpathid,drainage_km2,nhd_tidal,elev_cm,slope,mean_flow_cfs
+USGS,02479000,"PASCAGOULA RIVER AT MERRILL, MS",river / canal,18121032,1,Pascagoula River,ArtificialPath,55800.0,7.0,290003981,123.646,290003582,17060.4693,0.0,1248.0,0.00023399,11397.354
+USGS,02475000,"LEAF RIVER NR MCLAIN, MS",river / canal,18134412,1,Leaf River,ArtificialPath,55800.0,6.0,290003981,145.869,290003582,9072.1566,0.0,1634.0,0.00016775,6073.114
+USGS,02479130,"BLACK CREEK NR BROOKLYN, MS",river / canal,18105054,1,Black Creek,StreamRiver,46006.0,5.0,290006277,180.43,290003582,928.4922,0.0,3920.0,0.00058876,651.413
+USGS,02479155,"CYPRESS CREEK NR JANICE, MS",river / canal,18105412,1,Cypress Creek,StreamRiver,46006.0,3.0,290017040,153.213,290003582,138.042,0.0,3480.0,0.00069057,98.714
+USGS,02479160,"BLACK CREEK NR WIGGINS, MS",river / canal,18107208,1,Black Creek,StreamRiver,46006.0,5.0,290006277,119.738,290003582,1815.7473,0.0,1840.0,1e-05,1295.709
+USGS,02479500,"ESCATAWPA RIVER NEAR WILMER, AL",river / canal,18094145,1,Escatawpa River,StreamRiver,46006.0,5.0,290005979,103.296,290003532,1317.906,0.0,2103.0,1e-05,985.019
+USGS,02479300,"RED CREEK AT VESTRY, MS",river / canal,18107248,1,Red Creek,StreamRiver,46006.0,5.0,290007022,82.432,290003582,1152.2079,0.0,801.0,0.0004191,857.489
+USGS,02479310,"PASCAGOULA RIVER AT GRAHAM FERRY, MS",river / canal,18121240,1,Pascagoula River,ArtificialPath,55800.0,7.0,290003981,50.437,290003582,21195.108,1.0,266.0,1e-05,14470.52
+USGS,0248018020,"ESCATAWPA RIVER AT I-10 NR ORANGE GROVE, MS",river / canal,18096319,1,Escatawpa River,ArtificialPath,55800.0,6.0,290005979,27.413,290003532,2520.9594,1.0,95.0,1e-05,1896.495
+USGS,02480590,"TCHOUTACABOUFFA RIVER NR D'IBERVILLE, MS",river / canal,18073012,1,Tchoutacabouffa River,ArtificialPath,55800.0,5.0,290011315,16.882,290009133,540.5535,1.0,86.0,0.00021007,417.826
+USGS,02481130,"BILOXI RIVER NR LYMAN, MS",river / canal,18076796,1,Biloxi River,StreamRiver,46006.0,5.0,290009133,15.505,290009133,653.3082,1.0,158.0,1e-05,501.353
+USGS,02481000,"BILOXI RIVER AT WORTHAM, MS",river / canal,18070104,1,Biloxi River,StreamRiver,46006.0,4.0,290009133,30.743,290009133,250.8246,0.0,657.0,0.00058261,192.459
+USGS,02481299,"OLD FORT BAYOU AT OCEAN SPRINGS, MS",estuary / tidal channel,18073088,1,Old Fort Bayou,ArtificialPath,55800.0,3.0,290023580,0.0,290023580,117.5364,1.0,0.0,1e-05,85.009
+USGS,02481510,"WOLF RIVER NR LANDON, MS",river / canal,18075806,1,Wolf River,StreamRiver,46006.0,5.0,290006675,29.413,290006675,802.1205,0.0,911.0,1e-05,584.592
+USGS,02489500,"Pearl River near Bogalusa, LA",river / canal,15708443,1,Pearl River,ArtificialPath,55800.0,6.0,350003395,127.685,350003395,16946.0316,0.0,2153.0,0.00013476,11167.103
+USGS,02481521,"WOLF RIVER AT BELLE FERRY ROAD NEAR LONG BEACH, MS",estuary / tidal channel,18077474,1, ,ArtificialPath,55800.0,1.0,290076862,11.896,290006675,1.4274,1.0,295.0,1e-05,0.97
+USGS,02481660,"JOURDAN RIVER NR BAY ST LOUIS, MS",river / canal,18077152,1,Jourdan River,ArtificialPath,55800.0,4.0,290009306,16.278,290009306,544.2579,1.0,82.0,1e-05,392.798
+USGS,02490193,"Pearl River at Pools Bluff near Bogalusa, LA",river / canal,933180294,1,Pearl River,ArtificialPath,55800.0,6.0,350003395,111.845,350003395,17312.4378,0.0,1842.0,8.888e-05,11719.985
+USGS,02491500,"Bogue Chitto River at Franklinton, LA",river / canal,166751301,1,Bogue Chitto,ArtificialPath,55800.0,5.0,350003482,146.504,350003472,2566.5237,0.0,3945.0,1e-05,1896.551
+USGS,02491800,"Bogue Chitto at Enon, LA",river / canal,15693037,1,Bogue Chitto,ArtificialPath,55800.0,5.0,350003482,120.405,350003472,2848.0752,0.0,2619.0,0.00036968,2108.445
+USGS,02492000,"Bogue Chitto River near Bush, LA",river / canal,15690765,1,Bogue Chitto,ArtificialPath,55800.0,5.0,350003482,85.682,350003472,3130.6275,0.0,1415.0,0.00012185,2315.148
+USGS,02492110,"EAST PEARL RIVER AB WILSON SL AT WALKIAH BLUFF, MS",river / canal,15720689,1,Pearl River,ArtificialPath,55800.0,6.0,350003395,78.978,350003395,17422.6131,0.0,1189.0,3.842e-05,11796.037
+USGS,02490200,Pearl River Navigation Canal Lock and Dam No. 3,river / canal,15707443,1, ,CanalDitch,33600.0,1.0,350004928,86.811,350003472,17321.6673,0.0,1724.0,1e-05,6.537
+USGS,02492100,Pearl River Navigation Canal Lock and Dam No. 2,river / canal,15707667,1, ,StreamRiver,46006.0,5.0,350004806,68.428,350003472,20505.7143,0.0,1015.0,0.01625954,3.271
+USGS,02492343,"EAST HOBOLOCHITTO CREEK NR CAESAR, MS",river / canal,15707813,1,East Hobolochitto Creek,StreamRiver,46006.0,4.0,350024412,87.854,350003395,243.6174,0.0,1993.0,0.00043639,174.404
+USGS,02492360,"WEST HOBOLOCHITTO CREEK NR MCNEILL, MS",river / canal,15707325,1,West Hobolochitto Creek,StreamRiver,46006.0,4.0,350004366,90.445,350003395,453.1878,0.0,2184.0,1e-05,321.708
+USGS,02492511,"East Pearl River at I-59 near Nicholson, MS",river / canal,933180029,1,Pearl River,ArtificialPath,55800.0,6.0,350003395,49.536,350003395,18465.5925,1.0,304.0,0.00026737,12484.176
+USGS,02492700,"Pearl River at I-10 near Slidell, LA",river / canal,15714487,1,West Pearl River,ArtificialPath,55800.0,5.0,350003482,20.727,350003472,21987.3978,1.0,130.0,1.282e-05,2645.32
+USGS,02492600,"Pearl River at Pearl River, LA",river / canal,15714333,1,West Pearl River,ArtificialPath,55800.0,5.0,350003482,37.716,350003472,21886.4871,1.0,385.0,1e-05,2572.861
+USGS,02492519,Pearl River Navigation Canal Lock and Dam No. 1,river / canal,15714289,1, ,ArtificialPath,55800.0,3.0,350004158,50.503,350003472,20768.4783,1.0,533.0,0.00058208,70.522
+USGS,07374000,"Mississippi River at Baton Rouge, LA",river / canal,19088319,1,Mississippi River,ArtificialPath,55800.0,10.0,350002977,392.184,350002977,2880681.8643,1.0,443.0,6.709e-05,516758.653
+USGS,073745245,"Caernarvon Canal Sector Gate at Caernarvon, La",river / canal,,1,,,,,,,,,,,,
+USGS,073745235,"Bayou Dupre Sector Gate near Violet, LA",river / canal,22770870,1, ,ArtificialPath,55800.0,3.0,350020122,16.274,350020122,529.7976,1.0,96.0,1e-05,126.684
+USGS,073745253,"Reggio Canal near Wills Point, LA",river / canal,,1,,,,,,,,,,,,
+USGS,07374525,"Mississippi River at Belle Chasse, LA",river / canal,22798749,1,Mississippi River,ArtificialPath,55800.0,10.0,350002977,142.344,350002977,2881390.3875,1.0,111.0,8.445e-05,517011.036
+USGS,073745257,Crooked B. NW of L. Cuatro Caballo near Delacroix,estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,073745258,"Cow Bayou at American Bay nr Pointe-A-La-Hache, LA",estuary / tidal channel,22771518,1, ,Coastline,56600.0,-9.0,150000002,0.0,150000002,0.4491,0.0,,,0.327
+USGS,07374526,"Black Bay nr Snake Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,073745275,"Black Bay nr Stone Island nr Pointe-A-La-Hache, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,07374527,"Northeast Bay Gardene near Point-A-LA-Hache, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,07375000,"Tchefuncte River near Folsom, LA",river / canal,18928210,1,Tchefuncte River,StreamRiver,46006.0,4.0,350003472,133.756,350003472,249.0273,0.0,1991.0,0.00097217,188.436
+USGS,07374581,"Bayou Liberty near Slidell,LA",river / canal,18930238,1,Liberty Bayou,StreamRiver,46006.0,2.0,350031779,42.643,350003472,65.5785,1.0,-1.0,0.00035798,42.411
+USGS,07375050,"Tchefuncte River near Covington, LA",river / canal,18931936,1,Tchefuncte River,StreamRiver,46006.0,4.0,350003472,109.659,350003472,379.3203,1.0,365.0,0.00040752,284.043
+USGS,07375170,"Bogue Falaya at Covington, LA",river / canal,18931908,1,Bogue Falaya,StreamRiver,46006.0,4.0,350029056,107.066,350003472,229.5864,1.0,268.0,1e-05,169.529
+USGS,07375105,Bogue Falaya River near Camp Covington,river / canal,18928006,1,Bogue Falaya,StreamRiver,46006.0,4.0,350029056,116.561,350003472,184.9644,0.0,927.0,0.00091666,137.91
+USGS,07375175,"Bogue Falaya River at Boston St. at Covington, LA",river / canal,18931952,1,Bogue Falaya,StreamRiver,46006.0,4.0,350029056,104.162,350003472,334.9278,1.0,146.0,1e-05,244.695
+USGS,07375222,"Abita River north of Abita Springs, LA",river / canal,18931942,1,Abita River,StreamRiver,46006.0,4.0,350032411,110.499,350003472,110.5434,0.0,326.0,0.00112764,77.331
+USGS,07375410,"Tangipahoa River at Tangipahoa, La",river / canal,18975327,1,Tangipahoa River,ArtificialPath,55800.0,5.0,350011084,178.374,350003472,892.3752,0.0,4761.0,1e-05,698.435
+USGS,07375230,"Tchefuncte River at Madisonville, LA",river / canal,938090190,1,Tchefuncte River,ArtificialPath,55800.0,5.0,350003472,81.321,350003472,1067.7168,1.0,-59.0,4.316e-05,770.623
+USGS,07375300,"Tangipahoa River near Kentwood, LA",river / canal,18974195,1,Tangipahoa River,StreamRiver,46006.0,4.0,350011084,187.137,350003472,629.3988,0.0,5502.0,0.00086325,496.385
+USGS,07375280,"TANGIPAHOA RIVER AT OSYKA, MS",river / canal,18972763,1,Tangipahoa River,StreamRiver,46006.0,4.0,350011084,202.476,350003472,408.8196,0.0,6762.0,0.00073293,326.527
+USGS,07375450,"Tangipahoa R nr Tickfaw, La.",river / canal,18975459,1,Tangipahoa River,ArtificialPath,55800.0,5.0,350011084,134.127,350003472,1296.8559,0.0,1330.0,0.00052613,1005.441
+USGS,07375480,"CHAPPEPEELA CREEK SOUTHEAST OF LORANGER, LA.",river / canal,18974969,1,Chappepeela Creek,StreamRiver,46006.0,4.0,350027299,129.129,350003472,236.4831,0.0,1380.0,0.00042988,178.055
+USGS,07375430,"Tangipahoa River near Amite, LA",river / canal,18975419,1,Tangipahoa River,ArtificialPath,55800.0,5.0,350011084,155.567,350003472,1233.4995,0.0,2705.0,9.908e-05,957.586
+USGS,07375500,"Tangipahoa River at Robert, LA",river / canal,18975529,1,Tangipahoa River,ArtificialPath,55800.0,5.0,350011084,114.129,350003472,1678.2381,0.0,436.0,0.00206775,1290.997
+USGS,07375650,"Tangipahoa River near Ponchatoula, LA",river / canal,18976333,1,Tangipahoa River,StreamRiver,46006.0,5.0,350011084,101.707,350003472,1823.6457,1.0,51.0,0.00016659,1395.429
+USGS,07375800,"Tickfaw River at Liverpool, LA",river / canal,20089222,1,Tickfaw River,StreamRiver,46006.0,4.0,350012903,231.016,350003472,230.6106,0.0,6348.0,0.00048484,177.57
+USGS,07375960,"Tickfaw River at Montpelier, LA",river / canal,20089890,1,Tickfaw River,StreamRiver,46006.0,4.0,350012903,189.268,350003472,570.4389,0.0,2728.0,0.00125254,434.201
+USGS,07376300,"Tickfaw River Near Springfield, La.",river / canal,20091714,1,Tickfaw River,ArtificialPath,55800.0,5.0,350012903,109.09,350003472,1287.2628,1.0,-27.0,2.67e-05,951.426
+USGS,07376000,"Tickfaw River at Holden, LA",river / canal,20090368,1,Tickfaw River,StreamRiver,46006.0,4.0,350012903,150.575,350003472,650.5389,0.0,687.0,0.00079754,492.833
+USGS,07376500,"Natalbany River at Baptist, LA",river / canal,20090348,1,Natalbany River,StreamRiver,46006.0,4.0,350024328,127.499,350003472,204.1605,1.0,455.0,0.00105579,154.238
+USGS,07377000,"Amite River near Darlington, LA",river / canal,18985872,1,Amite River,StreamRiver,46006.0,5.0,350006923,267.903,350003472,1520.6769,0.0,4454.0,1e-05,1148.463
+USGS,07377150,"Amite River at Grangeville, LA",river / canal,938070146,1,Amite River,ArtificialPath,55800.0,5.0,350006923,242.06,350003472,1926.4968,0.0,2932.0,1e-05,1447.11
+USGS,07377210,"Sandy Creek nr Pride, LA",river / canal,18986744,1,Sandy Creek,StreamRiver,46006.0,4.0,350027295,229.223,350003472,181.1979,0.0,2362.0,0.00080229,130.864
+USGS,07377230,"Little Sandy Creek at Peairs Rd SE of Milldale, LA",river / canal,18988424,1,Little Sandy Creek,StreamRiver,46006.0,3.0,350040725,221.7,350003472,39.4416,0.0,1958.0,0.00087928,27.875
+USGS,07377243,"Sandy Ck at Alph. Forbes nr Greenwell Springs, LA",river / canal,18986814,1,Sandy Creek,StreamRiver,46006.0,4.0,350027295,218.786,350003472,212.1948,0.0,1759.0,0.00050305,152.926
+USGS,07377500,"Comite River near Olive Branch, LA",river / canal,18988724,1,Comite River,StreamRiver,46006.0,4.0,350019721,240.442,350003472,377.8425,0.0,3839.0,1e-05,277.584
+USGS,07377300,"Amite River at Magnolia, LA",river / canal,167203706,1,Amite River,ArtificialPath,55800.0,6.0,350006923,200.398,350003472,2431.9989,0.0,774.0,0.00058927,1809.049
+USGS,07377750,"Comite River near Zachary, LA",river / canal,18988430,1,Comite River,StreamRiver,46006.0,4.0,350019721,220.749,350003472,591.489,0.0,2168.0,3.94e-05,427.638
+USGS,07377754,"Comite River near Baker, LA",river / canal,18988488,1,Comite River,StreamRiver,46006.0,4.0,350019721,213.679,350003472,736.7697,0.0,1604.0,0.00066306,442.481
+USGS,07377600,"Comite R. at Pt. Hudson-Pride Rd near Milldale, LA",river / canal,18988352,1,Comite River,StreamRiver,46006.0,4.0,350019721,230.61,350003472,419.0094,0.0,2961.0,0.00030177,306.609
+USGS,07377760,"Comite River at Comite Dr near Baton Rouge, LA",river / canal,18988538,1,Comite River,StreamRiver,46006.0,4.0,350019721,208.582,350003472,743.1336,0.0,1285.0,0.00062585,530.771
+USGS,07377870,"Comite River at Hooper Road near Baton Rouge, LA",river / canal,18988568,1,Comite River,StreamRiver,46006.0,4.0,350019721,204.519,350003472,774.0225,0.0,1074.0,0.00051932,551.602
+USGS,07378000,"Comite River near Comite, LA",river / canal,18988606,1,Comite River,StreamRiver,46006.0,4.0,350019721,201.961,350003472,904.4703,0.0,935.0,1e-05,637.004
+USGS,07378008,"Hurricane Creek at Baton Rouge, LA",river / canal,18991060,1,Hurricane Creek,StreamRiver,46006.0,2.0,350052137,201.253,350003472,33.3603,0.0,952.0,0.00025857,13.62
+USGS,07378075,"Beaver Bayou at Denham Road nr Baton Rouge, LA",river / canal,18988756,1,Beaver Bayou,StreamRiver,46006.0,1.0,350052126,206.134,350003472,5.94,0.0,1770.0,0.00111058,4.16
+USGS,07378050,"Comite R. at Greenwell Spg Rd near Baton Rouge, LA",river / canal,18988626,1,Comite River,StreamRiver,46006.0,4.0,350019721,197.097,350003472,972.243,0.0,768.0,1e-05,677.023
+USGS,07378100,"Beaver Bayou at Wax Rd near Baton Rouge, LA",river / canal,18988624,1,Beaver Bayou,StreamRiver,46006.0,3.0,350052126,196.934,350003472,32.4054,0.0,925.0,0.00101285,22.722
+USGS,07378083,"Beaver Bayou at Hooper Road near Baton Rouge, LA",river / canal,18988522,1,Beaver Bayou,StreamRiver,46006.0,2.0,350052126,204.875,350003472,15.1785,0.0,1733.0,0.00052857,10.648
+USGS,07378500,"Amite River near Denham Springs, LA",river / canal,18990206,1,Amite River,ArtificialPath,55800.0,6.0,350006923,188.796,350003472,3529.7955,0.0,768.0,1e-05,2574.007
+USGS,07378745,"Alligator Bayou near Kleinpeter, LA",river / canal,18991258,1,Bayou Manchac,StreamRiver,46006.0,3.0,350026160,175.626,350003472,133.6959,1.0,199.0,0.00024238,81.993
+USGS,07378746,"Bayou Manchac at Alligator B. near Kleinpeter, LA",river / canal,18991258,1,Bayou Manchac,StreamRiver,46006.0,3.0,350026160,175.626,350003472,133.6959,1.0,199.0,0.00024238,81.993
+USGS,07378810,"Bayou Fountain at Bluebonnet Blvd near  B.R., LA",river / canal,18991232,1,Bayou Fountain,StreamRiver,46006.0,3.0,350045283,180.641,350003472,68.2551,1.0,240.0,1.885e-05,43.867
+USGS,07378748,"Bluff Swamp near Kleinpeter, LA",river / canal,18991248,1,Bayou Manchac,StreamRiver,46006.0,3.0,350026160,174.953,350003472,149.8689,1.0,199.0,1e-05,92.146
+USGS,07379000,"Ward Creek at Government St at Baton Rouge, LA",river / canal,18991110,1,Ward Creek,StreamRiver,46006.0,2.0,350049468,191.534,350003472,14.6367,0.0,1080.0,0.00051086,9.799
+USGS,07379050,"Ward Creek at Essen Lane near Baton Rouge, LA",river / canal,18991152,1,Ward Creek,StreamRiver,46006.0,2.0,350049468,186.043,350003472,22.6152,0.0,383.0,0.00289049,15.082
+USGS,07379075,Old Ward Crk Div. at Highland Rd. nr Baton Rouge,river / canal,18991226,1, ,StreamRiver,46003.0,3.0,350042082,171.599,350003472,114.5916,1.0,199.0,1e-05,2.501
+USGS,07379100,"North Branch Ward Creek at Baton Rouge, LA",river / canal,18991150,1, ,StreamRiver,46006.0,2.0,350093300,186.043,350003472,22.9113,0.0,383.0,0.00126394,15.378
+USGS,07379960,"Dawson Cr. at Bluebonnet Blvd near Baton Rouge, LA",river / canal,18991194,1,Dawson Creek,StreamRiver,46006.0,2.0,350040714,183.035,350003472,40.7034,1.0,383.0,1e-05,26.822
+USGS,07380102,"Welsh Gully at J. Broussard Rd nr Prairieville, LA",river / canal,18989910,1,Welsh Gully,StreamRiver,46003.0,2.0,350093329,166.769,350003472,5.9382,1.0,190.0,0.00046853,3.876
+USGS,07380101,"Bayou Manchac near Little Prairie, LA",river / canal,18989888,1,Bayou Manchac,StreamRiver,46006.0,4.0,350026160,161.081,350003472,392.7978,1.0,90.0,0.00042498,250.547
+USGS,07380126,"Henderson Bayou near Port Vincent, LA",river / canal,15206145,1,Henderson Bayou,StreamRiver,46006.0,3.0,350045286,157.31,350003472,13.6224,1.0,94.0,0.00038701,8.973
+USGS,07380120,"Amite River at Port Vincent, LA",river / canal,18990284,1,Amite River,ArtificialPath,55800.0,6.0,350006923,152.172,350003472,4192.6536,1.0,90.0,1e-05,3006.77
+USGS,07380200,"Amite River near French Settlement, LA",river / canal,18990398,1,Amite River,ArtificialPath,55800.0,6.0,350006923,133.838,350003472,4734.9072,1.0,26.0,1e-05,3385.289
+USGS,07380212,"Airline Canal at Blind River near Gramercy, LA",river / canal,15207109,1, ,StreamRiver,46006.0,1.0,350053054,138.386,350003472,2.5299,1.0,34.0,8.023e-05,1.721
+USGS,07380127,"Henderson Bayou Pump Station near Port Vincent, LA",river / canal,18989968,1, ,StreamRiver,46006.0,3.0,350045286,154.112,350003472,24.5331,1.0,94.0,1e-05,16.21
+USGS,07380215,"Amite River at Hwy 22 near Maurepas, LA",river / canal,18990328,1,Amite River,ArtificialPath,55800.0,6.0,350006923,101.333,350003472,4907.4876,1.0,-54.0,4.149e-05,3506.626
+USGS,073802220,"Panama Canal at Hwy 44 near Gonzales, LA",river / canal,,1,,,,,,,,,,,,
+USGS,0738022295,"Grand Goudine at Babin Rd Near Duplessis, LA",river / canal,15207903,1,Grand Goudine Bayou,StreamRiver,46006.0,1.0,350053068,160.019,350003472,11.853,1.0,232.0,1e-05,7.63
+USGS,0738022395,"Black Bayou at Hwy 621 near Prairieville, LA",river / canal,15206199,1, ,StreamRiver,46006.0,3.0,350050246,157.639,350003472,17.7624,1.0,138.0,0.00059139,11.609
+USGS,073802225,"Bayou Conway near Sorrento, LA",river / canal,15206667,1, ,StreamRiver,46006.0,2.0,350047884,152.667,350003472,28.728,1.0,86.0,1e-05,18.661
+USGS,073802245,"Black Bayou E of Gonzales, LA",river / canal,15206341,1, ,StreamRiver,46006.0,3.0,350050246,148.919,350003472,47.1942,1.0,76.0,1e-05,30.779
+USGS,073802280,"New River north of Sorrento, La",river / canal,15206513,1,New River,StreamRiver,46006.0,4.0,350007569,140.572,350003472,166.0077,1.0,39.0,1.312e-05,106.651
+USGS,073802273,"Bayou Francois at Hwy 61 Near Gonzales, LA",river / canal,15206375,1,Bayou Francois,StreamRiver,46006.0,2.0,350028707,149.224,350003472,33.9804,1.0,55.0,9.181e-05,7.29
+USGS,073802284,"New River Canal east of Sorrento, LA",river / canal,15207951,1, ,CanalDitch,33600.0,4.0,350007569,131.268,350003472,376.5636,1.0,14.0,1e-05,243.333
+USGS,073802282,"New River Canal near Sorrento, LA",river / canal,15207951,1, ,CanalDitch,33600.0,4.0,350007569,131.268,350003472,376.5636,1.0,14.0,1e-05,243.333
+USGS,073802332,Inner Harbor Navigation Canal nr Seabrook bridge,river / canal,22764486,1, ,ArtificialPath,55800.0,2.0,350020122,39.536,350020122,310.6143,1.0,96.0,1e-05,35.211
+USGS,07380238,"Naomi Diversion Canal near Naomi, LA",river / canal,,1,,,,,,,,,,,,
+USGS,073802339,"GIWW East Storm Surge Barrier at New Orleans, LA",river / canal,22763532,1, ,ArtificialPath,55800.0,2.0,350025714,29.327,350020122,78.2352,1.0,96.0,1e-05,3.328
+USGS,07380251,"Barataria Bay N of Grand Isle, LA",lake,,1,,,,,,,,,,,,
+USGS,073802511,"Barataria Waterway at Mud Lake S of Lafitte, LA",river / canal,,1,,,,,,,,,,,,
+USGS,07380249,"Caminada Pass NW of Grand Isle, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,073802512,"Hackberry Bay NW of Grand Isle, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,07380260,"Empire Waterway south of Empire, LA",estuary / tidal channel,22381185,1, ,StreamRiver,46006.0,1.0,350034373,18.055,350034373,6.3594,1.0,8.0,1e-05,4.014
+USGS,07380330,"Bayou Perot at Point Legard near Cutoff, LA",estuary / tidal channel,22370513,1, ,ArtificialPath,55800.0,5.0,350011256,28.343,350011256,3134.0637,1.0,8.0,1e-05,2065.543
+USGS,073802516,"Barataria Pass at Grand Isle, LA",river / canal,,1,,,,,,,,,,,,
+USGS,07380401,"Bayou Lafourche SW of Donaldsonville, LA",river / canal,22357431,1, ,StreamRiver,46006.0,1.0,350012893,188.73,350012893,0.8865,1.0,400.0,1e-05,0.556
+USGS,07380500,"Bayou Lafourche at Napoleonville, LA",river / canal,22371265,1, ,StreamRiver,46006.0,1.0,350012893,163.896,350012893,63.1566,1.0,189.0,1e-05,39.109
+USGS,07381150,"Bayou Lafourche at Lockport, LA",river / canal,22370529,1, ,ArtificialPath,55800.0,2.0,350013523,61.532,350013523,254.5803,1.0,8.0,1e-05,97.492
+USGS,07381000,"Bayou Lafourche at Thibodaux, LA",river / canal,22366581,1, ,CanalDitch,33600.0,1.0,350012893,136.293,350012893,71.7075,1.0,189.0,1e-05,45.228
+USGS,07381235,"GIWW West of Bayou Lafourche at Larose, LA",river / canal,22370531,1, ,ArtificialPath,55800.0,1.0,350039123,61.466,350013523,35.6094,1.0,8.0,1e-05,8.653
+USGS,07381324,"Bayou Grand Caillou at Dulac, LA",river / canal,,1,,,,,,,,,,,,
+USGS,073813498,"Caillou Bay SW of Cocodrie, LA",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,07381350,"Company Canal at Hwy 1 at Lockport, LA",river / canal,11060645,1, ,CanalDitch,33600.0,2.0,350015727,80.249,350013523,235.7568,1.0,21.0,1e-05,84.347
+USGS,07381349,"Caillou Lake (Sister Lake) SW of Dulac, LA",lake,11079371,1, ,ArtificialPath,55800.0,4.0,350012893,2.201,350012893,887.5647,1.0,0.0,1e-05,478.837
+USGS,07381427,"Bayou Grosse Tete S. of I10 at Grosse Tete, LA",river / canal,18717420,1,Bayou Grosse Tete,StreamRiver,46006.0,3.0,350003160,154.366,350002528,316.5876,1.0,173.0,1e-05,200.146
+USGS,07381429,"Choctaw Bayou at I-10 east of Grosse Tete, LA",river / canal,18717126,1,Choctaw Bayou,StreamRiver,46006.0,5.0,350017755,154.467,350002528,769.3254,1.0,183.0,0.00010952,318.853
+USGS,07381412,INTRACOASTAL WATERWAY NR PORT ALLEN LA,river / canal,18719612,1,Lower Grand River,ArtificialPath,55800.0,10.0,350002699,161.531,350002528,2880682.5915,1.0,144.0,0.02410852,0.478
+USGS,07381355,"Company Canal at Salt Barrier near Lockport, LA",river / canal,,1,,,,,,,,,,,,
+USGS,07381452,"Choctaw Bayou at Hwy 404 W of White Castle, LA",river / canal,18719200,1,Choctaw Bayou,StreamRiver,46006.0,3.0,350002860,105.385,350002528,2882567.1231,1.0,44.0,1e-05,127.507
+USGS,07381460,"Bayou Milhomme near Stephensville, LA",river / canal,,1,,,,,,,,,,,,
+USGS,07381450,"Lower Grand River at Bayou Sorrel, LA",river / canal,18719534,1,Lower Grand River,ArtificialPath,55800.0,5.0,350002699,118.212,350002528,2882343.7872,1.0,39.0,1e-05,1059.289
+USGS,07381454,"Belle River at Hwy 70 near Pierre Part, LA",river / canal,11063173,1, ,StreamRiver,46006.0,1.0,350002772,79.234,350002528,2883080.0817,1.0,48.0,1e-05,9.885
+USGS,073814675,"Bayou Boeuf at Railroad Bridge at Amelia, LA",river / canal,11065419,1, ,ArtificialPath,55800.0,5.0,350002546,38.981,350002528,2883635.9811,1.0,19.0,1e-05,1896.706
+USGS,07381482,Old River Outflow Channel below Hydropower Channel,river / canal,19406818,1, ,ArtificialPath,55800.0,1.0,350003358,229.906,350002528,2878497.9666,0.0,925.0,1.489e-05,138400.235
+USGS,073815450,"Chicot Pass near Myette Point near Charenton, LA",river / canal,15181957,1,Atchafalaya River,ArtificialPath,55800.0,8.0,350002528,66.699,350002528,3121112.268,1.0,65.0,1e-05,219907.132
+USGS,07381490,"Atchafalaya River at Simmesport, LA",river / canal,15169531,1,Bayou des Glaises,ArtificialPath,55800.0,2.0,350015231,212.311,350002528,1364.6547,0.0,845.0,0.00010676,75.478
+USGS,07381515,"Atchafalaya River at Butte La Rose, LA",river / canal,15175029,1,Upper Grand River,ArtificialPath,55800.0,2.0,350003240,125.592,350002528,3119740.8228,1.0,325.0,1e-05,18.769
+USGS,07381567,"Buffalo Cove at Round Island near Charenton, LA",river / canal,15177909,1, ,StreamRiver,46006.0,1.0,350100160,83.997,350002528,0.0594,1.0,156.0,1e-05,0.038
+USGS,073815925,"Crewboat Channel at Wax Lake Outlet nr Calumet, LA",river / canal,15182533,1, ,Coastline,56600.0,-9.0,150000002,0.0,150000002,3.3885,0.0,,,2.319
+USGS,07381590,"Wax Lake Outlet at Calumet, LA",river / canal,15182085,1, ,ArtificialPath,55800.0,6.0,350010104,42.456,350008942,6296.6736,1.0,25.0,0.00018414,1.384
+USGS,073815963,"Murphy Lake near Bayou Sorrel, LA",lake,15175597,1, ,ArtificialPath,55800.0,2.0,350002586,96.018,350002528,23.337,1.0,65.0,1e-05,14.431
+USGS,073815945,"Bayou Teche E of Calumet Flood Gate at Calumet, LA",river / canal,25386921,1,Bayou Teche,StreamRiver,46006.0,6.0,350009958,56.476,350002528,6259.0608,1.0,87.0,1e-05,3434.085
+USGS,07381600,"Lower Atchafalaya River at Morgan City, LA",river / canal,15182073,1,Lower Atchafalaya River,ArtificialPath,55800.0,8.0,350002528,27.807,350002528,3130494.4305,1.0,17.0,9.685e-05,224132.621
+USGS,073816525,Mouth of Atchafalaya River at Atchafalaya Bay,river / canal,,1,,,,,,,,,,,,
+USGS,07382000,"Bayou Cocodrie near Clearwater, LA",river / canal,15145994,1,Bayou Cocodrie,StreamRiver,46006.0,4.0,350020224,344.365,350002528,623.4885,0.0,1630.0,1e-05,415.682
+USGS,07381670,"GIWW at Bayou Sale Ridge near Franklin, LA",river / canal,938080239,1, ,ArtificialPath,55800.0,3.0,350009669,19.516,350009553,6366.0663,1.0,-2.0,1e-05,40.526
+USGS,07383500,"Bayou Des Glaises Diversion Ch. at Moreauville, LA",river / canal,15166453,1, ,StreamRiver,46006.0,1.0,350015231,269.13,350002528,1273.8942,0.0,1384.0,1e-05,16.716
+USGS,07382500,"Bayou Courtableau at Washington, LA",river / canal,15148368,1,Bayou Boeuf,StreamRiver,46006.0,5.0,350009958,262.01,350002528,2173.3128,1.0,599.0,1e-05,1224.761
+USGS,07384400,"State Canal near Krotz Springs, LA",river / canal,15169467,1, ,StreamRiver,46006.0,3.0,350016244,162.281,350002528,563.7456,0.0,673.0,1e-05,136.989
+USGS,07385700,"Bayou Teche at Keystone L&D nr St. Martinville, LA",river / canal,15150946,1,Bayou Teche,StreamRiver,46006.0,5.0,350009958,163.237,350002528,3078.4203,1.0,371.0,1e-05,1775.592
+USGS,07385702,Bayou Teche below Keystone L&D nr St. Martinville,river / canal,15150946,1,Bayou Teche,StreamRiver,46006.0,5.0,350009958,163.237,350002528,3078.4203,1.0,371.0,1e-05,1775.592
+USGS,07385765,"Bayou Teche at Adeline Bridge near Jeanerette, LA",river / canal,15153858,1,Bayou Teche,StreamRiver,46006.0,5.0,350009958,106.384,350002528,3233.592,1.0,87.0,1e-05,1866.002
+USGS,07385820,"Bayou Teche W of Calumet Flood Gate at Calumet, LA",river / canal,25386921,1,Bayou Teche,StreamRiver,46006.0,6.0,350009958,56.476,350002528,6259.0608,1.0,87.0,1e-05,3434.085
+USGS,07386600,"Vermilion River (B. Vermilion) near Carencro, LA",river / canal,21897999,1,Vermilion River,StreamRiver,46006.0,3.0,350010555,108.122,350010478,267.5835,1.0,382.0,1e-05,147.538
+USGS,07386850,"Vermilion River near Lafayette, LA",river / canal,21897359,1,Vermilion River,StreamRiver,46006.0,4.0,350010555,84.174,350010478,3455.6319,1.0,349.0,1e-05,299.139
+USGS,07386940,"Vermilion River at Hwy 733 near Lafayette, LA",river / canal,21898615,1,Vermilion River,StreamRiver,46006.0,5.0,350010555,62.596,350010478,3755.9349,1.0,349.0,1e-05,450.533
+USGS,07386880,"Vermilion River at Surrey St. at Lafayette, LA",river / canal,21897353,1,Vermilion River,StreamRiver,46006.0,5.0,350010555,79.432,350010478,3636.8325,1.0,349.0,1e-05,375.249
+USGS,07386980,"Vermilion River at Perry, LA",river / canal,21906189,1,Vermilion River,ArtificialPath,55800.0,5.0,350010555,29.974,350010478,4390.3359,1.0,163.0,1e-05,839.189
+USGS,08010000,"Bayou Des Cannes near Eunice, LA",river / canal,15140365,1,Bayou des Cannes,StreamRiver,46006.0,3.0,350029700,163.428,350013689,423.1917,0.0,591.0,6.301e-05,210.9
+USGS,07387050,"Vermilion Bay(B. Fearman) nr Intracoastal City, LA",estuary / tidal channel,21906365,1,Bayou Fearman,ArtificialPath,55800.0,1.0,350046852,0.381,350046852,28.2906,1.0,0.0,1e-05,3.461
+USGS,07387040,"Vermilion Bay near Cypremort Point, LA",lake,21903539,1, ,Coastline,56600.0,-9.0,150000002,0.0,150000002,0.5292,0.0,,,0.341
+USGS,08012000,"Bayou Nezpique near Basile, LA",river / canal,15139713,1,Bayou Nezpique,StreamRiver,46006.0,4.0,350027441,166.253,350013689,1336.4775,0.0,501.0,0.00015149,884.265
+USGS,08012150,"Mermentau River At Mermentau, LA",river / canal,15096243,1,Mermentau River,ArtificialPath,55800.0,5.0,350013689,105.018,350013689,3663.8613,1.0,64.0,1e-05,2274.512
+USGS,08013250,"Calcasieu River near Oakdale, LA",river / canal,15085637,1,Calcasieu River,StreamRiver,46006.0,5.0,350007471,205.467,350007471,1599.6924,0.0,2578.0,0.00028083,1034.155
+USGS,08013000,"Calcasieu River nr Glenmora, LA",river / canal,15085941,1,Calcasieu River,StreamRiver,46006.0,5.0,350007471,239.018,350007471,1298.4147,0.0,3659.0,0.0003702,831.097
+USGS,08013500,"Calcasieu River near Oberlin, LA",river / canal,15085713,1,Calcasieu River,StreamRiver,46006.0,5.0,350007471,167.154,350007471,1973.2266,0.0,1445.0,0.0001995,1285.352
+USGS,08014500,"Ouiska Chitto Creek Near Oberlin, LA",river / canal,15078398,1,Whisky Chitto Creek,StreamRiver,46006.0,5.0,350026295,166.124,350007471,1325.187,0.0,1436.0,0.00035265,856.365
+USGS,08014881,"Bundick Lake at Spillway near DeRidder, LA",lake,25040602,1,Bundick Creek,ArtificialPath,55800.0,3.0,350027051,188.538,350007471,545.6151,0.0,2273.0,0.00224601,338.796
+USGS,08015500,"Calcasieu River near Kinder, LA",river / canal,15085965,1,Calcasieu River,StreamRiver,46006.0,6.0,350007471,139.909,350007471,4465.323,0.0,601.0,0.00177777,2884.933
+USGS,08014800,"Bundick Creek near DeRidder, LA",river / canal,15078776,1,Bundick Creek,StreamRiver,46006.0,3.0,350027051,214.518,350007471,314.4852,0.0,3571.0,0.00038402,194.332
+USGS,08017044,"Calcasieu River at I-10 at Lake Charles, LA",river / canal,3710370,1,Calcasieu River,ArtificialPath,55800.0,6.0,350007471,56.541,350007471,8222.6871,1.0,-12.0,1e-05,5163.814
+USGS,08017095,"North Calcasieu Lake near Hackberry, LA",lake,3710444,1,Calcasieu River,ArtificialPath,55800.0,6.0,350007471,27.795,350007471,16305.0732,1.0,-14.0,1e-05,6515.986
+USGS,08017118,"Calcasieu River at Cameron, LA",estuary / tidal channel,3712052,1,Calcasieu River,ArtificialPath,55800.0,6.0,350007471,5.554,350007471,16912.8126,1.0,-14.0,1e-05,6815.985
+USGS,08026000,"Sabine Rv nr Burkeville, TX",river / canal,8329788,1,Sabine River,ArtificialPath,55800.0,6.0,630002636,247.358,630002611,19492.3098,0.0,2554.0,1e-05,7948.991
+USGS,08028500,"Sabine Rv nr Bon Wier, TX",river / canal,8330800,1,Sabine River,ArtificialPath,55800.0,6.0,630002636,189.078,630002611,21417.1182,0.0,1700.0,0.00013051,9053.332
+USGS,08028000,"Bayou Anacoco near Rosepine, LA",river / canal,8330660,1,Bayou Anacoco,StreamRiver,46006.0,5.0,630006428,240.709,630002611,965.4534,0.0,3490.0,0.00039479,572.047
+USGS,08029500,"Big Cow Ck nr Newton, TX",river / canal,8330722,1,Big Cow Creek,StreamRiver,46006.0,3.0,630013841,183.601,630002611,376.7652,0.0,2452.0,0.00067081,200.873
+USGS,08030520,"Sabine Rv at Intl Paper nr Orange, TX",river / canal,8331902,1, ,StreamRiver,46006.0,6.0,630002842,79.025,630002611,24285.1005,1.0,106.0,1e-05,0.014
+USGS,08030540,"Sabine Rv (at Navy Pier) at Orange, TX",estuary / tidal channel,8332528,1,Sabine River,ArtificialPath,55800.0,6.0,630002636,57.25,630002611,24534.1251,1.0,5.0,1e-05,10768.317
+USGS,08030500,"Sabine Rv nr Ruliff, TX",river / canal,8331804,1,Sabine River,StreamRiver,46006.0,6.0,630002636,94.749,630002611,24108.9876,1.0,435.0,0.00012348,10506.078
+USGS,08030530,"Sabine Rv at I-10 nr Orange, TX",estuary / tidal channel,8332524,1,Sabine River,ArtificialPath,55800.0,6.0,630002636,58.811,630002611,24528.4191,1.0,6.0,1e-05,10765.037
+USGS,08030730,"Adams Bayou at FM 3247 nr Orange, TX",estuary / tidal channel,8332428,1,Adams Bayou,StreamRiver,46006.0,2.0,630010067,60.709,630002611,164.0169,1.0,56.0,0.00012832,97.441
+USGS,08031010,"Cow Bayou at FM 1442 nr Orangefield, TX",estuary / tidal channel,8332418,1,Cow Bayou,StreamRiver,46006.0,3.0,630006426,67.97,630002611,287.2575,1.0,65.0,0.00018244,155.757
+USGS,08030800,"Adams Bayou at SH87 nr Orange, TX",estuary / tidal channel,8332428,1,Adams Bayou,StreamRiver,46006.0,2.0,630010067,60.709,630002611,164.0169,1.0,56.0,0.00012832,97.441
+USGS,08031000,"Cow Bayou nr Mauriceville, TX",river / canal,8331928,1,Cow Bayou,StreamRiver,46006.0,3.0,630006426,77.073,630002611,232.9506,1.0,197.0,0.00048257,125.849
+USGS,08031050,"Cow Bayou at SH 87 nr Bridge City, TX",estuary / tidal channel,8332598,1,Cow Bayou,ArtificialPath,55800.0,3.0,630006426,54.082,630002611,429.1029,1.0,65.0,1e-05,234.175
+USGS,08033350,"Piney Ck at US 59 nr Corrigan, TX",river / canal,1078791,1,Piney Creek,StreamRiver,46006.0,4.0,630007510,351.172,630002611,652.7178,0.0,4895.0,0.00057206,236.954
+USGS,08033000,"Neches Rv nr Diboll, TX",river / canal,1079041,1,Neches River,StreamRiver,46006.0,5.0,630002611,355.066,630002611,7047.9333,0.0,4264.0,0.00069778,2189.256
+USGS,08031020,"Cole Ck at I-10 nr Orange, TX",river / canal,8331952,1,Cole Creek,StreamRiver,46003.0,1.0,630011923,68.335,630002611,24.7617,1.0,195.0,0.00072607,14.225
+USGS,08033500,"Neches Rv nr Rockland, TX",river / canal,1109655,1,Neches River,StreamRiver,46006.0,5.0,630002611,285.731,630002611,9406.845,0.0,3276.0,1e-05,3153.897
+USGS,08040600,"Neches Rv nr Town Bluff, TX",river / canal,1111453,1,Neches River,ArtificialPath,55800.0,6.0,630002611,217.546,630002611,19613.5812,0.0,1518.0,0.00110275,7328.949
+USGS,08041300,"Village Ck at US Hwy 69 nr Village Mills, TX",river / canal,1166585,1,Village Creek,StreamRiver,46006.0,4.0,630007863,182.332,630002611,705.6567,0.0,1681.0,0.00050649,324.414
+USGS,08041000,"Neches Rv at Evadale, TX",river / canal,1114207,1,Neches River,ArtificialPath,55800.0,6.0,630002611,133.947,630002611,20406.096,1.0,500.0,0.00012853,7731.262
+USGS,08041500,"Village Ck nr Kountze, TX",river / canal,1166409,1,Village Creek,StreamRiver,46006.0,5.0,630007863,150.534,630002611,2231.8281,0.0,1035.0,2.726e-05,1078.889
+USGS,08041700,"Pine Island Bayou nr Sour Lake, TX",river / canal,1143252,1,Pine Island Bayou,StreamRiver,46006.0,4.0,630008007,138.532,630002611,1015.2351,0.0,446.0,0.00024704,475.098
+USGS,08041749,"Pine Island Bayou abv BI Pump Plant, Beaumont, TX",estuary / tidal channel,1142812,1,Pine Island Bayou,StreamRiver,46006.0,4.0,630008007,108.829,630002611,1856.4939,1.0,160.0,1e-05,889.388
+USGS,08041780,"Neches Rv Saltwater Barrier at Beaumont, TX",estuary / tidal channel,1114345,1,Neches River,ArtificialPath,55800.0,6.0,630002611,87.981,630002611,25534.2816,1.0,63.0,0.0001025,10231.915
+USGS,08041788,"Bairds Bayou at I-10 nr Beaumont, TX",river / canal,1114363,1, ,ArtificialPath,55800.0,3.0,630012539,86.059,630002611,220.6953,1.0,109.0,1e-05,115.591
+USGS,08042558,"W Fk Double Bayou at Eagle Ferry Rd nr Anahuac, TX",urban creek (Houston),1523673,1,West Fork Double Bayou,StreamRiver,46006.0,2.0,630035587,0.0,630035587,70.0911,1.0,-3.0,0.00017041,26.896
+USGS,08065820,"Larrison Ck at FM 1428 nr Midway, TX",river / canal,1490898,1,Larrison Creek,StreamRiver,46006.0,3.0,630011229,312.631,630002519,169.8264,0.0,4562.0,0.00116331,37.181
+USGS,08065800,"Bedias Ck nr Madisonville, TX",river / canal,1491202,1,Bedias Creek,StreamRiver,46006.0,5.0,630007501,319.181,630002519,856.4517,0.0,4852.0,0.00015097,180.87
+USGS,08065925,"Nelson Ck at FM 247 nr Huntsville, TX",river / canal,1491634,1,Nelson Creek,StreamRiver,46006.0,3.0,630009416,298.68,630002519,104.5584,0.0,5561.0,0.00102033,27.32
+USGS,08066087,"Gail Ck at FM 1280 nr Lovelady, TX",river / canal,1485406,1,Gail Creek,StreamRiver,46006.0,3.0,630014707,275.074,630002519,194.0094,0.0,5600.0,0.0009969,53.71
+USGS,08066000,"Trinity Rv at Riverside, TX",river / canal,1492784,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,251.045,630002519,40350.96,0.0,3992.0,1e-05,6705.255
+USGS,08066175,"Kickapoo Ck at Onalaska, TX",river / canal,1491354,1,Kickapoo Creek,StreamRiver,46006.0,3.0,630010748,229.739,630002519,170.8794,0.0,4050.0,0.00113445,61.06
+USGS,08066200,"Long King Ck at Livingston, TX",river / canal,1487570,1,Long King Creek,StreamRiver,46006.0,4.0,630011230,197.15,630002519,374.3766,0.0,3065.0,0.00056568,153.687
+USGS,08066380,"Big Ck at SH 150 nr Shepherd, TX",river / canal,1492338,1,Big Creek,StreamRiver,46006.0,3.0,630002907,173.428,630002519,74.0673,0.0,3399.0,0.00182433,28.983
+USGS,08066250,"Trinity Rv nr Goodrich, TX",river / canal,1487840,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,175.073,630002519,43594.0101,0.0,1710.0,1e-05,7796.918
+USGS,08066300,"Menard Ck nr Rye, TX",urban creek (Houston),1494036,1,Menard Creek,StreamRiver,46006.0,3.0,630012463,158.444,630002519,385.5123,0.0,1952.0,0.00098517,160.317
+USGS,08066500,"Trinity Rv at Romayor, TX",urban creek (Houston),1513293,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,130.658,630002519,44430.5547,0.0,1212.0,1e-05,8136.96
+USGS,08067000,"Trinity Rv at Liberty, TX",urban creek (Houston),1513385,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,59.473,630002519,45242.6706,1.0,143.0,1e-05,8491.58
+USGS,08067070,"CWA Canal nr Dayton, TX",urban creek (Houston),,1,,,,,,,,,,,,
+USGS,08067100,"Trinity Rv nr Moss Bluff, TX",estuary / tidal channel,1515531,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,33.853,630002519,45499.0491,1.0,8.0,1e-05,8608.068
+USGS,08067118,"Lk Charlotte nr Anahuac, TX",estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,08067250,"Trinity Rv at IH 10 nr Wallisville, TX",estuary / tidal channel,1515433,1,Trinity River,ArtificialPath,55800.0,6.0,630002519,11.042,630002519,45575.3097,1.0,0.0,1.367e-05,8639.461
+USGS,08067280,"Turtle Bayou at I-10 nr Hankamer, TX",urban creek (Houston),1515421,1,Turtle Bayou,ArtificialPath,55800.0,3.0,630002583,12.258,630002519,335.9898,1.0,338.0,1e-05,145.924
+USGS,08067500,"Cedar Bayou nr Crosby, TX",urban creek (Houston),1558738,1,Cedar Bayou,StreamRiver,46006.0,2.0,630010533,43.119,630010533,240.8166,0.0,948.0,0.00045614,90.672
+USGS,08067525,"Goose Ck at Baytown, TX",urban creek (Houston),1558800,1,Goose Creek,StreamRiver,46006.0,1.0,630014673,10.211,630014673,35.8659,1.0,354.0,1e-05,14.198
+USGS,08067548,"W Fk San Jacinto Rv nr Huntsville, TX",river / canal,1465746,1, ,StreamRiver,46006.0,4.0,630012489,167.583,630005696,220.266,0.0,6715.0,0.000662,0.238
+USGS,08067650,"W Fk San Jacinto Rv bl Lk Conroe nr Conroe, TX",urban creek (Houston),1467944,1,West Fork San Jacinto River,StreamRiver,46006.0,4.0,630005749,122.525,630005696,1183.2624,0.0,4064.0,0.00047552,313.361
+USGS,08067920,"Lake Ck at Sendera Ranch Rd nr Conroe, TX",urban creek (Houston),1468038,1,Lake Creek,StreamRiver,46006.0,4.0,630008596,115.885,630005696,822.1086,0.0,3805.0,0.00030581,207.183
+USGS,08068000,"W Fk San Jacinto Rv nr Conroe, TX",urban creek (Houston),1468280,1,West Fork San Jacinto River,StreamRiver,46006.0,5.0,630005749,102.646,630005696,2147.0526,0.0,3093.0,0.00102693,560.456
+USGS,08068275,"Spring Ck nr Tomball, TX",urban creek (Houston),1508047,1,Spring Creek,StreamRiver,46006.0,4.0,630008412,122.018,630005696,494.6868,0.0,4066.0,0.0005336,112.905
+USGS,08068090,"W Fk San Jacinto Rv abv Lk Houston nr Porter, TX",urban creek (Houston),1468098,1,West Fork San Jacinto River,StreamRiver,46006.0,5.0,630005749,80.206,630005696,2477.1042,0.0,1827.0,0.00068237,657.758
+USGS,08068310,"Spring Ck at Kuykendahl Rd, The Woodlands, TX",urban creek (Houston),1508275,1,Spring Creek,StreamRiver,46006.0,4.0,630008412,97.863,630005696,793.4598,0.0,2877.0,0.00050297,189.179
+USGS,08068325,"Willow Ck nr Tomball, TX",urban creek (Houston),1508279,1,Willow Creek,StreamRiver,46006.0,1.0,630045084,97.863,630005696,142.5852,0.0,2877.0,0.00080717,36.753
+USGS,08068390,"Bear Br at Research Blvd, The Woodlands, TX",urban creek (Houston),1508263,1,Bear Branch,StreamRiver,46003.0,2.0,630035673,106.821,630005696,40.1796,0.0,4053.0,0.00128897,10.885
+USGS,08068400,"Panther Br at Gosling Rd, The Woodlands, TX",urban creek (Houston),1507967,1,Panther Branch,StreamRiver,46003.0,2.0,630013220,103.905,630005696,71.6895,0.0,3779.0,0.00093964,19.614
+USGS,08068450,"Panther Br nr Spring, TX",urban creek (Houston),1508045,1,Panther Branch,StreamRiver,46006.0,2.0,630013220,92.338,630005696,101.8791,0.0,2439.0,0.00155868,27.861
+USGS,08068500,"Spring Ck nr Spring, TX",urban creek (Houston),1508043,1,Spring Creek,StreamRiver,46006.0,4.0,630008412,89.051,630005696,1052.3493,0.0,2368.0,0.000216,257.692
+USGS,08068700,"Cypress Ck at Sharp Rd nr Hockley, TX",urban creek (Houston),1509333,1,Cypress Creek,StreamRiver,46003.0,3.0,630008686,138.998,630005696,208.5588,0.0,4806.0,0.00015362,37.402
+USGS,08068720,"Cypress Ck at Katy-Hockley Rd nr Hockley, TX",urban creek (Houston),1509241,1,Cypress Creek,StreamRiver,46006.0,3.0,630008686,136.212,630005696,270.1629,0.0,4552.0,0.00104193,49.394
+USGS,08068740,"Cypress Ck at House-Hahl Rd nr Cypress, TX",urban creek (Houston),1509209,1,Cypress Creek,StreamRiver,46006.0,3.0,630008686,126.246,630005696,332.2899,0.0,4123.0,1e-05,63.097
+USGS,08068780,"Little Cypress Ck nr Cypress, TX",urban creek (Houston),1508121,1,Little Cypress Creek,StreamRiver,46006.0,2.0,630026218,121.274,630005696,123.2235,0.0,4024.0,0.00112568,26.769
+USGS,08068900,"Cypress Ck at Stuebner-Airline Rd nr Westfield, TX",urban creek (Houston),1508295,1,Cypress Creek,StreamRiver,46006.0,3.0,630008686,94.316,630005696,640.8792,0.0,2465.0,0.0012756,135.703
+USGS,08068800,"Cypress Ck at Grant Rd nr Cypress, TX",urban creek (Houston),1509175,1,Cypress Creek,StreamRiver,46006.0,3.0,630008686,107.816,630005696,548.7084,0.0,3152.0,1e-05,112.264
+USGS,08069000,"Cypress Ck nr Westfield, TX",urban creek (Houston),1508289,1,Cypress Creek,StreamRiver,46006.0,3.0,630008686,83.1,630005696,725.9949,0.0,2064.0,0.00051828,158.093
+USGS,08069500,"W Fk San Jacinto Rv nr Humble, TX",urban creek (Houston),1468442,1,West Fork San Jacinto River,ArtificialPath,55800.0,5.0,630005749,59.36,630005696,4543.4538,0.0,1281.0,0.00015545,1155.456
+USGS,08070000,"E Fk San Jacinto Rv nr Cleveland, TX",urban creek (Houston),1520007,1,East Fork San Jacinto River,StreamRiver,46006.0,5.0,630007617,94.188,630005696,844.4601,0.0,3349.0,0.00060974,291.546
+USGS,08070200,"E Fk San Jacinto Rv nr New Caney, TX",urban creek (Houston),1520083,1,East Fork San Jacinto River,StreamRiver,46006.0,5.0,630007617,62.477,630005696,1019.8422,0.0,1310.0,0.00054992,360.423
+USGS,08070500,"Caney Ck nr Splendora, TX",urban creek (Houston),1520249,1,Caney Creek,StreamRiver,46006.0,3.0,630010548,73.952,630005696,300.438,0.0,2222.0,0.00091535,93.24
+USGS,08071000,"Peach Ck at Splendora, TX",urban creek (Houston),1520237,1,Peach Creek,StreamRiver,46006.0,3.0,630014680,76.949,630005696,302.1426,0.0,2685.0,0.00086587,110.068
+USGS,08072000,"Lk Houston nr Sheldon, TX",lake,1469612,1,West Fork San Jacinto River,ArtificialPath,55800.0,6.0,630005749,34.581,630005696,7338.8178,0.0,263.0,0.00807936,2158.249
+USGS,08072350,"Buffalo Bayou nr Fulshear, TX",urban creek (Houston),1440377,1,Buffalo Bayou,StreamRiver,46006.0,2.0,630005696,88.379,630005696,231.192,0.0,2692.0,0.00022219,44.333
+USGS,08072050,"San Jacinto Rv nr Sheldon, TX",estuary / tidal channel,1440433,1,San Jacinto River,ArtificialPath,55800.0,6.0,630005749,23.795,630005696,7435.3131,1.0,12.0,1.609e-05,2192.463
+USGS,08072300,"Buffalo Bayou nr Katy, TX",urban creek (Houston),1440311,1,Buffalo Bayou,StreamRiver,46006.0,2.0,630005696,98.005,630005696,186.9327,0.0,3402.0,0.00026566,35.078
+USGS,08072470,"Mason Ck at Prince Ck Court nr Houston, TX",urban creek (Houston),1440303,1,Mason Creek,StreamRiver,46003.0,1.0,630018811,87.276,630005696,45.0936,0.0,2655.0,0.00084014,8.94
+USGS,08072520,"Clodine Ditch at Noble Rd nr Addicks, TX",urban creek (Houston),1440333,1, ,StreamRiver,46003.0,1.0,630066034,77.794,630005696,5.4837,0.0,2450.0,0.00089566,1.278
+USGS,08072600,"Buffalo Bayou at State Hwy 6 nr Addicks, TX",urban creek (Houston),1440293,1,Buffalo Bayou,StreamRiver,46006.0,2.0,630005696,77.38,630005696,355.0986,0.0,1948.0,0.0121256,70.862
+USGS,08072680,"S Mayde Ck at Heathergold Dr nr Addicks, TX",urban creek (Houston),1440261,1,South Mayde Creek,StreamRiver,46006.0,2.0,630015346,86.88,630005696,75.5532,0.0,3055.0,0.00064976,15.034
+USGS,08072730,"Bear Ck nr Barker, TX",urban creek (Houston),1440237,1,Bear Creek,StreamRiver,46006.0,2.0,630016819,81.212,630005696,80.9874,0.0,2563.0,0.00059492,17.42
+USGS,08072760,"Langham Ck at W Little York Rd nr Addicks, TX",urban creek (Houston),1440211,1,Langham Creek,StreamRiver,46006.0,2.0,630017737,87.538,630005696,75.7017,0.0,2982.0,0.00044258,17.2
+USGS,08073100,"Langham Ck at Addicks Res Outflow nr Addicks, TX",urban creek (Houston),1440289,1,South Mayde Creek,CanalDitch,33600.0,3.0,630015346,75.068,630005696,328.1256,0.0,1948.0,0.00260402,72.295
+USGS,08072800,"Langham Ck nr Addicks, TX",urban creek (Houston),1440233,1,Langham Creek,StreamRiver,46006.0,3.0,630017737,80.938,630005696,142.245,0.0,2600.0,0.00057878,33.174
+USGS,08073500,"Buffalo Bayou nr Addicks, TX",urban creek (Houston),1439317,1,Buffalo Bayou,StreamRiver,46006.0,3.0,630005696,67.677,630005696,737.8911,0.0,1409.0,0.00076704,156.643
+USGS,08073600,"Buffalo Bayou at W Belt Dr, Houston, TX",urban creek (Houston),1439357,1,Buffalo Bayou,StreamRiver,46006.0,3.0,630005696,63.996,630005696,759.6513,0.0,1230.0,0.00057679,162.224
+USGS,08073700,"Buffalo Bayou at Piney Point, TX",urban creek (Houston),1439377,1,Buffalo Bayou,StreamRiver,46006.0,3.0,630005696,59.031,630005696,771.8472,0.0,927.0,0.00089393,165.373
+USGS,08074000,"Buffalo Bayou at Houston, TX",estuary / tidal channel,1440301,1,Buffalo Bayou,StreamRiver,46006.0,3.0,630005696,35.097,630005696,883.4526,1.0,9.0,0.00045258,194.926
+USGS,08074020,"Whiteoak Bayou at Alabonson Rd, Houston, TX",urban creek (Houston),1438725,1,Whiteoak Bayou,StreamRiver,46006.0,3.0,630012505,54.494,630005696,97.5654,0.0,1768.0,0.00071229,25.047
+USGS,08074150,"Cole Ck at Deihl Rd, Houston, TX",urban creek (Houston),1440227,1,Cole Creek,StreamRiver,46003.0,1.0,630066043,52.097,630005696,29.9529,0.0,1464.0,0.00141748,7.935
+USGS,08074500,"Whiteoak Bayou at Houston, TX",urban creek (Houston),1440291,1,Whiteoak Bayou,StreamRiver,46006.0,3.0,630012505,37.154,630005696,233.6445,0.0,115.0,0.00133577,61.84
+USGS,08074250,"Brickhouse Gully at Costa Rica St, Houston, TX",urban creek (Houston),1440245,1, ,StreamRiver,46006.0,2.0,630046009,49.469,630005696,29.4534,0.0,1285.0,0.00197129,8.053
+USGS,08074540,"Little Whiteoak Bayou at Trimble St, Houston, TX",urban creek (Houston),1439229,1,Little Whiteoak Bayou,StreamRiver,46006.0,1.0,630026465,37.154,630005696,62.4087,0.0,115.0,0.00176382,16.921
+USGS,08074598,"Whiteoak Bayou at Main St, Houston, TX",estuary / tidal channel,1439303,1,Whiteoak Bayou,StreamRiver,46006.0,3.0,630012505,35.097,630005696,298.2771,1.0,9.0,0.00051531,79.331
+USGS,08074710,"Buffalo Bayou at Turning Basin, Houston, TX",estuary / tidal channel,1440525,1,Buffalo Bayou,ArtificialPath,55800.0,4.0,630005696,22.859,630005696,1204.569,1.0,-7.0,1e-05,280.01
+USGS,08074760,"Brays Bayou at Alief, TX",urban creek (Houston),1439495,1,Brays Bayou,StreamRiver,46006.0,1.0,630010356,61.124,630005696,45.7695,0.0,1708.0,0.00014449,10.965
+USGS,08074800,"Keegans Bayou at Roark Rd nr Houston, TX",urban creek (Houston),1440395,1,Keegans Bayou,StreamRiver,46006.0,1.0,630026460,56.689,630005696,65.8935,0.0,1825.0,1e-05,15.646
+USGS,08074810,"Brays Bayou at Gessner Dr, Houston, TX",urban creek (Houston),1439635,1,Brays Bayou,StreamRiver,46006.0,2.0,630010356,51.387,630005696,190.0026,0.0,1204.0,0.00026406,46.231
+USGS,08075000,"Brays Bayou at Houston, TX",urban creek (Houston),1440385,1,Brays Bayou,StreamRiver,46006.0,2.0,630010356,29.672,630005696,329.3649,0.0,108.0,0.0004104,82.244
+USGS,08075110,"Brays Bayou at MLK Jr Blvd, Houston, TX",estuary / tidal channel,1440385,1,Brays Bayou,StreamRiver,46006.0,2.0,630010356,29.672,630005696,329.3649,0.0,108.0,0.0004104,82.244
+USGS,08075400,"Sims Bayou at Hiram Clarke St, Houston, TX",urban creek (Houston),1439761,1,Sims Bayou,StreamRiver,46006.0,2.0,630011823,50.254,630005696,47.7738,0.0,1189.0,1e-05,12.049
+USGS,08075500,"Sims Bayou at Houston, TX",estuary / tidal channel,1439685,1,Sims Bayou,StreamRiver,46006.0,2.0,630011823,24.616,630005696,164.3031,1.0,5.0,0.00023695,43.609
+USGS,08075605,"Berry Bayou at Nevada St, Houston, TX",urban creek (Houston),,1,,,,,,,,,,,,
+USGS,08075730,"Vince Bayou at Pasadena, TX",urban creek (Houston),1440389,1,Vince Bayou,StreamRiver,46006.0,1.0,630020091,18.137,630005696,25.3359,0.0,-5.0,0.00100039,7.714
+USGS,08075763,"Hunting Bayou at Hoffman St, Houston, TX",urban creek (Houston),1439055,1,Hunting Bayou,StreamRiver,46006.0,2.0,630016813,34.258,630005696,17.6121,0.0,998.0,0.00037715,4.617
+USGS,08075770,"Hunting Bayou at IH 610, Houston, TX",urban creek (Houston),1440277,1,Hunting Bayou,StreamRiver,46006.0,2.0,630016813,23.657,630005696,53.181,0.0,358.0,0.00085753,14.061
+USGS,08075780,"Greens Bayou at Cutten Rd nr Houston, TX",urban creek (Houston),1438277,1,Greens Bayou,StreamRiver,46003.0,1.0,630009710,71.944,630005696,23.7186,0.0,2984.0,0.00055295,6.078
+USGS,08075900,"Greens Bayou nr US Hwy 75 nr Houston, TX",urban creek (Houston),1438283,1,Greens Bayou,StreamRiver,46006.0,3.0,630009710,58.675,630005696,96.5709,0.0,1912.0,0.00101457,25.259
+USGS,08076000,"Greens Bayou nr Houston, TX",urban creek (Houston),1440183,1,Greens Bayou,StreamRiver,46006.0,3.0,630009710,45.983,630005696,163.8189,0.0,1234.0,0.00014684,43.459
+USGS,08076180,"Garners Bayou nr Humble, TX",urban creek (Houston),1438379,1, ,StreamRiver,46006.0,2.0,630030298,41.047,630005696,89.8209,0.0,969.0,0.00116949,26.891
+USGS,08076500,"Halls Bayou at Houston, TX",urban creek (Houston),1438737,1,Halls Bayou,StreamRiver,46006.0,1.0,630014193,40.744,630005696,100.1898,0.0,1193.0,0.00075644,27.486
+USGS,08076700,"Greens Bayou at Ley Rd, Houston, TX",estuary / tidal channel,1440239,1,Greens Bayou,StreamRiver,46006.0,3.0,630009710,29.27,630005696,465.7995,1.0,290.0,1e-05,130.893
+USGS,08076997,"Clear Ck at Mykawa St nr Pearland, TX",urban creek (Houston),1562342,1,Clear Creek,StreamRiver,46006.0,2.0,630005774,60.076,630005774,90.7938,0.0,997.0,0.00039028,24.749
+USGS,08077600,"Clear Ck nr Friendswood, TX",urban creek (Houston),1563092,1,Clear Creek,StreamRiver,46006.0,3.0,630005774,25.55,630005774,291.1842,1.0,7.0,1e-05,86.941
+USGS,08078080,"Bastrop Bayou at CR 288 nr Lake Jackson, TX",river / canal,1574326,1,Bastrop Bayou,StreamRiver,46006.0,2.0,630001653,35.002,630001653,104153.8221,1.0,153.0,1e-05,37.168
+USGS,08078000,"Chocolate Bayou nr Alvin, TX",river / canal,1566188,1,Chocolate Bayou,StreamRiver,46006.0,2.0,630009554,33.301,630009554,219.753,1.0,314.0,0.00015631,64.508
+USGS,08078940,"Oyster Ck at CR 34 nr Angleton, TX",river / canal,1574590,1,Copper Bayou,StreamRiver,46003.0,1.0,630063635,85.404,630001683,25.4178,0.0,773.0,0.00054054,8.751
+USGS,08079005,"Oyster Ck at CR 290 nr Angleton, TX",river / canal,1574656,1,Oyster Creek,StreamRiver,46006.0,3.0,630001683,45.581,630001683,104077.7505,1.0,98.0,1e-05,152.302
+USGS,08078930,"Oyster Ck at CR 42 nr Rosharon, TX",river / canal,1574580,1,Oyster Creek,StreamRiver,46006.0,3.0,630001683,102.559,630001683,380.7459,0.0,1014.0,0.00014149,89.771
+USGS,08079010,"Oyster Ck at FM 2004 nr Lake Jackson, TX",estuary / tidal channel,1574656,1,Oyster Creek,StreamRiver,46006.0,3.0,630001683,45.581,630001683,104077.7505,1.0,98.0,1e-05,152.302
+USGS,08098450,"Brazos Rv at FM 485 near Hearne, TX",river / canal,5557984,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,508.753,630001729,66883.6539,0.0,7328.0,1e-05,2794.516
+USGS,08108700,"Brazos Rv at SH 21 nr Bryan, TX",river / canal,5558060,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,464.949,630001729,87218.8335,0.0,6447.0,1e-05,3806.357
+USGS,08108780,"Little Brazos Rv at FM 485 nr Hearne, TX",river / canal,5557042,1, ,StreamRiver,46006.0,4.0,630007902,509.097,630001729,653.0373,0.0,7723.0,0.00011366,82.673
+USGS,08079120,"Old Brazos Rv nr Freeport, TX",estuary / tidal channel,1576378,1, ,ArtificialPath,55800.0,7.0,630001731,10.781,630001683,104211.7596,1.0,1.0,1e-05,8.14
+USGS,08109310,"Thompsons Ck at SH 47 nr Bryan, TX",river / canal,5557854,1,Thompsons Creek,StreamRiver,46003.0,3.0,630013964,452.621,630001729,121.302,0.0,6701.0,0.00127829,16.007
+USGS,08110000,"Yegua Ck nr Somerville, TX",river / canal,5570685,1,Yegua Creek,StreamRiver,46006.0,5.0,630006051,422.605,630001729,2626.5843,0.0,6101.0,3.671e-05,228.374
+USGS,08110200,"Brazos Rv at Washington, TX",river / canal,5559374,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,371.165,630001729,92667.8169,0.0,4663.0,1e-05,4391.805
+USGS,08110100,"Davidson Ck nr Lyons, TX",river / canal,5570225,1,Davidson Creek,StreamRiver,46006.0,3.0,630006439,433.103,630001729,508.8141,0.0,7014.0,1e-05,57.637
+USGS,08111006,"Mathis Ck at US 190 nr Kurten, TX",river / canal,5578217,1,Mathis Creek,StreamRiver,46006.0,2.0,630041352,455.168,630001729,35.6472,0.0,7623.0,0.00169102,5.523
+USGS,08110800,"Navasota Rv at Old San Antonio Rd nr Bryan, TX",river / canal,5577121,1,Navasota River,StreamRiver,46006.0,5.0,630004855,498.597,630001729,3468.5712,0.0,7635.0,0.00025641,583.427
+USGS,08111051,"Carters Ck at FM 60 nr College Station, TX",river / canal,5577617,1,Carters Creek,StreamRiver,46006.0,2.0,630015056,443.283,630001729,58.8393,0.0,7580.0,0.00155149,7.907
+USGS,08111056,"Peach Ck at SH 6 nr Millican, TX",river / canal,5577855,1,Peach Creek,StreamRiver,46006.0,3.0,630016442,413.195,630001729,71.2521,0.0,5460.0,0.0007162,10.755
+USGS,08111085,"New Year Ck at SH 105 nr Brenham, TX",river / canal,5559138,1,New Year Creek,StreamRiver,46006.0,3.0,630012339,348.677,630001729,127.8189,0.0,6079.0,0.00143913,18.004
+USGS,08111500,"Brazos Rv nr Hempstead, TX",river / canal,3121538,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,316.301,630001729,99696.7368,0.0,4496.0,1e-05,5590.109
+USGS,08111700,"Mill Ck nr Bellville, TX",river / canal,3122466,1,Mill Creek,StreamRiver,46006.0,4.0,630008931,259.399,630001729,990.1449,0.0,3295.0,0.00106379,135.721
+USGS,08111850,"Brazos Rv at San Felipe, TX",river / canal,3122690,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,239.236,630001729,101706.1569,0.0,2851.0,0.00059951,5864.352
+USGS,08114000,"Brazos Rv at Richmond, TX",urban creek (Houston),3123784,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,144.991,630001729,102616.8948,0.0,1400.0,1e-05,6032.285
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",urban creek (Houston),3123790,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,137.186,630001729,102642.0363,0.0,1400.0,1e-05,6038.02
+USGS,08115000,"Big Ck nr Needville, TX",urban creek (Houston),3124582,1,Big Creek,StreamRiver,46006.0,2.0,630012065,147.77,630001729,109.9935,0.0,2284.0,1e-05,23.244
+USGS,08116850,"Brazos Rv nr West Columbia, TX",estuary / tidal channel,3124654,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,53.393,630001729,103838.6493,1.0,97.0,1e-05,6282.267
+USGS,08116400,"Dry Ck nr Rosenberg, TX",urban creek (Houston),3123676,1,Dry Creek,StreamRiver,46003.0,1.0,630013584,137.935,630001729,29.7036,0.0,2296.0,0.00055169,6.53
+USGS,08116650,"Brazos Rv nr Rosharon, TX",urban creek (Houston),3124642,1,Brazos River,ArtificialPath,55800.0,7.0,630001729,93.284,630001729,103578.1758,1.0,97.0,0.00069635,6210.153
+USGS,08117370,"San Bernard Rv nr Chesterville, TX",river / canal,1605410,1,San Bernard River,StreamRiver,46006.0,4.0,630001827,170.149,630001827,414.0468,0.0,3834.0,0.00062527,60.21
+USGS,08117705,"San Bernard Rv nr Sweeny, TX",estuary / tidal channel,1607586,1,San Bernard River,StreamRiver,46006.0,5.0,630001827,49.937,630001827,2314.2609,1.0,118.0,1.479e-05,402.558
+USGS,08117500,"San Bernard Rv nr Boling, TX",urban creek (Houston),1607520,1,San Bernard River,StreamRiver,46006.0,5.0,630001827,97.158,630001827,1877.8293,0.0,1616.0,1e-05,308.024
+USGS,08117855,"Caney Ck at SH 35 nr Van Vleck, TX",river / canal,1612392,1,Caney Creek,StreamRiver,46006.0,3.0,630001844,111.656,630001844,263.817,0.0,753.0,3.195e-05,55.12
+USGS,08160800,"Redgate Ck nr Columbus, TX",river / canal,5791670,1,Redgate Creek,StreamRiver,46003.0,2.0,630032314,229.678,630001920,49.0806,0.0,5770.0,0.00287218,6.79
+USGS,08162501,"Colorado Rv nr Wadsworth, TX",estuary / tidal channel,3766368,1,Colorado River,ArtificialPath,55800.0,6.0,630001920,23.133,630001920,98463.6432,1.0,183.0,1e-05,3805.323
+USGS,08162500,"Colorado Rv nr Bay City, TX",river / canal,3765768,1,Colorado River,ArtificialPath,55800.0,6.0,630001920,47.496,630001920,98312.9679,0.0,959.0,1e-05,3774.689
+USGS,08162600,"Tres Palacios Rv nr Midfield, TX",river / canal,9355362,1,Tres Palacios River,StreamRiver,46006.0,4.0,630008360,47.411,630008360,440.7192,1.0,195.0,0.00049925,71.879
+USGS,08161000,"Colorado Rv at Columbus, TX",river / canal,5791934,1,Colorado River,ArtificialPath,55800.0,6.0,630001920,209.747,630001920,96714.3069,0.0,5104.0,0.00039311,3522.294
+USGS,08164000,"Lavaca Rv nr Edna, TX",river / canal,7842827,1,Lavaca River,StreamRiver,46006.0,5.0,630006467,45.448,630006467,2129.0643,0.0,707.0,1e-05,138.962
+USGS,08162000,"Colorado Rv at Wharton, TX",river / canal,3764246,1,Colorado River,ArtificialPath,55800.0,6.0,630001920,100.641,630001920,97652.574,0.0,2490.0,1e-05,3653.444
+USGS,08164350,"Navidad Rv nr Speaks, TX",river / canal,7846241,1,Navidad River,StreamRiver,46006.0,4.0,630006780,109.814,630006467,1145.6208,0.0,3656.0,0.00047342,97.609
+USGS,08164390,"Navidad Rv at Strane Pk nr Edna, TX",river / canal,7846429,1,Navidad River,StreamRiver,46006.0,4.0,630006780,67.649,630006467,1470.1797,0.0,1597.0,1e-05,132.888
+USGS,08164450,"Sandy Ck nr Ganado, TX",river / canal,7846335,1,Sandy Creek,StreamRiver,46006.0,4.0,630010844,72.638,630006467,761.0526,0.0,1959.0,0.00057092,89.012
+USGS,08164503,"W Mustang Ck nr Ganado, TX",river / canal,7846391,1,West Mustang Creek,StreamRiver,46006.0,3.0,630012273,65.864,630006467,443.7009,0.0,1355.0,0.00055005,60.295
+USGS,08164504,"E Mustang Ck nr Louise, TX",river / canal,7846399,1,East Mustang Creek,StreamRiver,46003.0,3.0,630020663,66.479,630006467,149.058,0.0,1340.0,0.00086158,22.415
+USGS,08164600,"Garcitas Ck nr Inez, TX",river / canal,9349285,1,Garcitas Creek,StreamRiver,46006.0,3.0,630007042,32.895,630007042,247.4541,0.0,679.0,0.00068573,14.261
+USGS,08164800,"Placedo Ck nr Placedo, TX",river / canal,9349455,1,Placedo Creek,StreamRiver,46006.0,3.0,630014345,16.78,630014345,178.3422,0.0,371.0,0.00127013,10.51
+USGS,08175800,"Guadalupe Rv at Cuero, TX",river / canal,1637447,1,Guadalupe River,StreamRiver,46006.0,6.0,630003063,163.177,630003063,12789.1314,0.0,4271.0,7.372e-05,651.527
+USGS,08176500,"Guadalupe Rv at Victoria, TX",river / canal,1639225,1,Guadalupe River,StreamRiver,46006.0,6.0,630003063,62.471,630003063,13500.1944,0.0,722.0,0.00026481,690.432
+USGS,08176550,"Fifteenmile Ck nr Weser, TX",river / canal,1638505,1,Fifteenmile Creek,StreamRiver,46003.0,4.0,630006926,121.112,630003063,435.1824,0.0,5213.0,1e-05,21.866
+USGS,08176900,"Coleto Ck at Arnold Rd Crsg nr Schroeder, TX",river / canal,1638559,1,Coleto Creek,StreamRiver,46006.0,5.0,630006926,98.803,630003063,924.498,0.0,3314.0,9.548e-05,47.498
+USGS,08177300,"Perdido Ck at FM 622 nr Fannin, TX",river / canal,1639209,1,Perdido Creek,StreamRiver,46006.0,3.0,630012081,100.909,630003063,72.6399,0.0,4230.0,0.00277236,3.822
+USGS,08177500,"Coleto Ck nr Victoria, TX",river / canal,1638907,1,Coleto Creek,StreamRiver,46006.0,5.0,630006926,75.367,630003063,1296.243,0.0,1634.0,1e-05,67.719
+USGS,08177520,"Guadalupe Rv nr Bloomington, TX",river / canal,1640519,1,Guadalupe River,StreamRiver,46006.0,6.0,630003063,32.816,630003063,15070.158,1.0,351.0,1e-05,773.51
+USGS,08183200,"San Antonio Rv nr Floresville, TX",river / canal,3836053,1,San Antonio River,StreamRiver,46006.0,5.0,630004027,300.583,630003063,5050.0638,0.0,10227.0,0.00045742,232.117
+USGS,08183500,"San Antonio Rv nr Falls City, TX",river / canal,3838221,1,San Antonio River,StreamRiver,46006.0,5.0,630004027,262.186,630003063,5425.4655,0.0,8980.0,1e-05,247.675
+USGS,08186500,"Ecleto Ck nr Runge, TX",river / canal,3838999,1,Ecleto Creek,StreamRiver,46003.0,4.0,630008887,211.714,630003063,622.9827,0.0,6593.0,0.00069455,28.192
+USGS,08186000,"Cibolo Ck nr Falls City, TX",river / canal,7852265,1,Cibolo Creek,StreamRiver,46006.0,4.0,630006953,244.029,630003063,2144.4786,0.0,7841.0,0.00117348,103.782
+USGS,08187500,"Escondido Ck at Kenedy, TX",river / canal,3839263,1,Escondido Creek,StreamRiver,46006.0,3.0,630010503,216.394,630003063,190.7145,0.0,7575.0,0.00197431,8.1
+USGS,08188570,"San Antonio Rv nr McFaddin, TX",river / canal,3840137,1,San Antonio River,StreamRiver,46006.0,5.0,630004027,35.362,630003063,10715.3523,0.0,608.0,1e-05,497.206
+USGS,08188060,"San Antonio Rv at SH 72 nr Runge, TX",river / canal,3839167,1,San Antonio River,StreamRiver,46006.0,5.0,630004027,197.611,630003063,9215.424,0.0,6013.0,1e-05,423.303
+USGS,08188500,"San Antonio Rv at Goliad, TX",river / canal,3840125,1,San Antonio River,StreamRiver,46006.0,5.0,630004027,125.025,630003063,10081.3779,0.0,3366.0,1e-05,463.433
+USGS,08188590,"North end of GBRA Calhoun Canal nr Long Mott,TX",river / canal,,1,,,,,,,,,,,,
+USGS,08188810,"Guadalupe Rv at SH 35 nr Tivoli, TX",estuary / tidal channel,1643099,1,Guadalupe River,StreamRiver,46006.0,6.0,630003063,5.855,630003063,26219.6163,1.0,46.0,6.315e-05,1295.367
+USGS,08189200,"Copano Ck nr Refugio, TX",river / canal,3159657,1,Copano Creek,StreamRiver,46003.0,2.0,630025919,16.276,630025919,223.6599,0.0,281.0,0.00060956,12.09
+USGS,08189300,"Medio Ck nr Beeville, TX",river / canal,5289427,1,Medio Creek,StreamRiver,46006.0,4.0,630008772,89.127,630008055,557.6202,0.0,3942.0,0.00101219,24.247
+USGS,08188800,"Guadalupe Rv nr Tivoli, TX",river / canal,1640227,1,Guadalupe River,StreamRiver,46006.0,6.0,630003063,15.355,630003063,26203.6782,1.0,106.0,0.00029116,1294.443
+USGS,08189500,"Mission Rv at Refugio, TX",river / canal,5289461,1,Mission River,StreamRiver,46006.0,5.0,630008055,29.319,630008055,1808.4663,1.0,145.0,0.00040666,85.002
+USGS,08189700,"Aransas Rv nr Skidmore, TX",river / canal,5297631,1,Aransas River,StreamRiver,46006.0,3.0,630010295,91.441,630010295,659.5326,0.0,2061.0,0.00092835,29.306
+USGS,08194200,"San Casimiro Ck nr Freer, TX",river / canal,10634531,1,San Casimiro Creek,StreamRiver,46003.0,4.0,630008726,287.901,630003081,1233.8028,0.0,9036.0,0.00087422,40.743
+USGS,08194500,"Nueces Rv nr Tilden, TX",river / canal,10631613,1,Nueces River,StreamRiver,46006.0,6.0,630003081,215.314,630003081,20997.873,0.0,5774.0,0.00026395,707.873
+USGS,08206600,"Frio Rv at Tilden, TX",river / canal,10664196,1,Frio River,StreamRiver,46006.0,6.0,630005297,213.503,630003081,11559.5208,0.0,6688.0,0.00092037,463.012
+USGS,08206700,"San Miguel Ck nr Tilden, TX",river / canal,10671061,1,San Miguel Creek,StreamRiver,46006.0,4.0,630006903,218.421,630003081,2026.6461,0.0,7613.0,0.00150248,78.763
+USGS,08206910,"Choke Canyon Res OWC nr Three Rivers, TX",river / canal,10664160,1,Frio River,StreamRiver,46006.0,6.0,630005297,176.283,630003081,14219.7246,0.0,4059.0,0.00466435,565.337
+USGS,08207500,"Atascosa Rv nr McCoy, TX",river / canal,10827864,1,Atascosa River,StreamRiver,46003.0,5.0,630006613,233.123,630003081,1332.3654,0.0,7640.0,0.00114831,54.651
+USGS,08208000,"Atascosa Rv at Whitsett, TX",river / canal,10828654,1,Atascosa River,StreamRiver,46006.0,5.0,630006613,193.423,630003081,2974.2021,0.0,5796.0,1e-05,121.531
+USGS,08210000,"Nueces Rv nr Three Rivers, TX",river / canal,3168766,1,Nueces River,StreamRiver,46006.0,7.0,630003081,153.163,630003081,39983.3802,0.0,3150.0,0.00014119,1461.839
+USGS,08210400,"Lagarto Ck nr George West, TX",river / canal,3168874,1,Lagarto Creek,StreamRiver,46003.0,3.0,630014061,126.613,630003081,403.0308,0.0,5921.0,0.00129976,15.581
+USGS,08211000,"Nueces Rv nr Mathis, TX",river / canal,3170312,1,Nueces River,StreamRiver,46006.0,7.0,630003081,70.728,630003081,42771.9933,0.0,1072.0,0.0005675,1574.298
+USGS,08211200,"Nueces Rv at Bluntzer, TX",river / canal,3171770,1,Nueces River,StreamRiver,46006.0,7.0,630003081,43.546,630003081,43043.1399,1.0,443.0,6.931e-05,1586.735
+USGS,08211502,"Nueces Rv nr Odem, TX",river / canal,3172502,1,Nueces River,ArtificialPath,55800.0,7.0,630003081,17.048,630003081,43285.2138,1.0,135.0,4.801e-05,1597.737
+USGS,08211500,"Nueces Rv at Calallen, TX",river / canal,3171902,1,Nueces River,StreamRiver,46006.0,7.0,630003081,18.018,630003081,43213.1625,1.0,139.0,1e-05,1594.429
+USGS,08211520,"Oso Ck at Corpus Christi, TX",river / canal,1636035,1,Oso Creek,StreamRiver,46006.0,2.0,630014640,28.653,630014640,230.0859,1.0,289.0,0.00059215,10.329
+USGS,08211900,"San Fernando Ck at Alice, TX",river / canal,1653465,1,San Fernando Creek,ArtificialPath,55800.0,4.0,630008781,67.387,630008781,1302.201,0.0,4931.0,0.00284057,49.654
+USGS,08212300,"Tranquitas Ck at Kingsville, TX",river / canal,1655121,1,Tranquitas Creek,StreamRiver,46003.0,1.0,630015882,14.051,630008781,128.1645,0.0,269.0,0.0018241,5.221
+USGS,08212400,"Los Olmos Ck nr Falfurrias, TX",river / canal,1585173,1,Los Olmos Creek,StreamRiver,46003.0,4.0,630009990,65.573,630009990,1242.99,0.0,3330.0,0.00108835,43.485
+USGS,08474118,"Cameron Co Ditch 2 at FM 1847 nr Los Fresnos, TX",river / canal,,1,,,,,,,,,,,,
+USGS,08474300,"Old Main Drain No 2 at SH 4, Brownsville, TX",river / canal,,1,,,,,,,,,,,,
+USGS,292939089544400,"Wilkinson Bayou cutoff north of Wilkinson Bay, LA",estuary / tidal channel,22383895,1, ,ArtificialPath,55800.0,3.0,350034374,0.0,350034374,62.7588,1.0,-7.0,4.05e-05,38.684
+USGS,291929089562600,"Barataria Bay near Grand Terre Island, LA",lake,,1,,,,,,,,,,,,
+USGS,292952089453800,CRMS0282-H01-RT,marsh,22379829,0, ,StreamRiver,46006.0,2.0,350036013,19.615,350025722,27.1188,1.0,8.0,1e-05,20.186
+USGS,292952090565300,CRMS0411-H01-RT,marsh,11097139,0,Bayou Cocodrie,ArtificialPath,55800.0,1.0,350037812,52.913,350002528,150.5592,1.0,27.0,1e-05,104.148
+USGS,292800090060000,"Little Lake near Bay Dosgris E of Galliano, LA",lake,22390195,1, ,StreamRiver,46006.0,1.0,350012141,12.508,350011256,0.3195,1.0,8.0,1e-05,0.214
+USGS,293809092361500,CRMS0609-H01-RT,marsh,15107417,0, ,StreamRiver,46006.0,1.0,350083532,12.822,350041189,4.5783,1.0,-4.0,1e-05,2.709
+USGS,294045092492300,CRMS0615-H01-RT,marsh,15106825,0, ,StreamRiver,46006.0,1.0,350050399,6.248,350050399,29.5452,1.0,34.0,1e-05,17.738
+USGS,294717092250000,CRMS0568-H01-RT,marsh,15110695,0, ,ArtificialPath,55800.0,1.0,350025009,49.502,350020229,45.7191,1.0,83.0,1e-05,28.44
+USGS,294925089532101,"Delacroix Canal near Caernarvon, LA",river / canal,,1,,,,,,,,,,,,
+USGS,295231093100100,CRMS2418-H01-RT,marsh,3711486,0, ,StreamRiver,46006.0,1.0,350075521,36.069,350007471,7.7661,1.0,14.0,1e-05,4.032
+USGS,295011091184300,"Little Bayou Long North of Duck Lake, LA",river / canal,15179389,1, ,StreamRiver,46006.0,1.0,350065765,49.781,350002528,3.2589,1.0,65.0,1e-05,1.664
+USGS,2951190901217,"L. Cataouatche at Whiskey Canal S of Waggaman, LA",lake,,1,,,,,,,,,,,,
+USGS,295744093303800,CRMS0651-H01-RT,marsh,3711392,0,Long Point Bayou,StreamRiver,46006.0,1.0,350067492,19.954,350007471,144.5292,1.0,-14.0,1e-05,70.073
+USGS,295124089542100,"Caernarvon Outfall Channel at Caernarvon, LA",river / canal,,1,,,,,,,,,,,,
+USGS,295447091191500,Middle Fork Bayou Long at Bayou Long,river / canal,,1,,,,,,,,,,,,
+USGS,295501090190400,"Davis Pond Freshwater Diversion near Boutte, LA",river / canal,,1,,,,,,,,,,,,
+USGS,300312091320000,Arm of Grand Lake near Crook Chene Cove,lake,15173461,1, ,StreamRiver,46006.0,3.0,350044091,89.242,350002528,56.6118,1.0,104.0,8.947e-05,35.845
+USGS,300507091355600,Bayou Darby near Lake Fausse Point Cut,river / canal,15173295,1,Bayou Darby,StreamRiver,46006.0,3.0,350038667,99.33,350002528,35.937,1.0,251.0,1e-05,22.163
+USGS,300703089522700,"Y-Pipeline Cnl in Byu Sauvage NWR at N.O. East, LA",marsh,22762892,0, ,StreamRiver,46006.0,1.0,350057788,34.288,350003472,114.1542,1.0,-25.0,1e-05,67.101
+USGS,301001089442600,"Rigolets at Hwy 90 near Slidell, LA",estuary / tidal channel,22762958,0, ,ArtificialPath,55800.0,7.0,350003472,12.855,350003472,14581.2285,1.0,-60.0,1e-05,10228.204
+USGS,301200090072400,"L Pontchartrain at Crossover 4 near Mandeville, LA",lake,,1,,,,,,,,,,,,
+USGS,301104089253400,MISSISSIPPI SOUND AT USGS ST JOSEPH ISLAND LIGHT,estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,301324090382400,CRMS0061-H01-RT,marsh,15206371,0, ,StreamRiver,46006.0,4.0,350007264,114.342,350003472,5565.1743,1.0,-53.0,1e-05,563.723
+USGS,301141089320300,"EAST PEARL RIVER AT CSX RAILROAD NR CLAIBORNE, MS",river / canal,15714553,1,Pearl River,ArtificialPath,55800.0,6.0,350003395,0.874,350003395,37131.5385,1.0,-64.0,1e-05,12763.393
+USGS,301655091440800,"Pontoon Bridge Canal near Butte Larose, LA",river / canal,15175063,1, ,ArtificialPath,55800.0,4.0,350020222,141.05,350002528,201.4443,1.0,325.0,0.00150602,122.7
+USGS,301527088521500,MISSISSIPPI SOUND AT USGS EAST SHIP ISLAND LIGHT,estuary / tidal channel,,0,,,,,,,,,,,,
+USGS,301429089145600,MISSISSIPPI SOUND AT USGS MERRILL SHELL BANK LIGHT,estuary / tidal channel,,1,,,,,,,,,,,,
+USGS,301849088350000,"MISSISSIPPI SOUND AT USGS ROUND ISLAND LIGHT, MS",estuary / tidal channel,,0,,,,,,,,,,,,
+USGS,302020091435700,"Lake Pelba at I-10 near Henderson, LA",lake,15174953,1, ,ArtificialPath,55800.0,3.0,350021920,151.08,350002528,132.4854,1.0,350.0,1e-05,32.723
+USGS,301912088583300,"MISSISSIPPI SOUND AT USGS GULFPORT LIGHT, MS",estuary / tidal channel,,0,,,,,,,,,,,,
+USGS,302318088512600,"BILOXI BAY AT POINT CADET HARBOR AT BILOXI, MS",estuary / tidal channel,18073318,1, ,Coastline,56600.0,-9.0,150000002,-9999.0,150000002,5.8248,0.0,,,3.885
