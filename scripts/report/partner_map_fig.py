@@ -11,7 +11,7 @@ CRMS stations (training only, no forecast) are not drawn.
 Input : --map (config/station_partners_behaviour.csv), runs/v6_wind_q/stations.csv, config/station_behaviour.csv,
         config/station_river_network.csv
 Output: --out (deliverables/31_partner_map.png)
-Usage : python partner_map_fig.py [--map config/station_partners_behaviour.csv --out deliverables/31_partner_map.png]
+Usage : python partner_map_fig.py [--map config/station_partners_behaviour.csv --out deliverables/31_partner_map.png --layout tall|wide]
 """
 from __future__ import annotations
 
@@ -57,6 +57,7 @@ def base(ax, extent, detail: bool) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--map", default=str(REPO / "config" / "station_partners_behaviour.csv")); ap.add_argument("--out", default=str(REPO / "deliverables" / "31_partner_map.png"))
+    ap.add_argument("--layout", choices=["tall", "wide"], default="tall", help="wide: for a slide (overview and legend left, the two enlarged panels right)")
     a = ap.parse_args()
     K = ["source", "station_id"]
     st = pd.read_csv(REPO / "runs" / "v6_wind_q" / "stations.csv", dtype={"station_id": str})
@@ -81,10 +82,19 @@ def main() -> None:
     n_links = {q: len(v) for q, v in links.items()}
 
     pc = ccrs.PlateCarree()
-    fig = plt.figure(figsize=(13.0, 12.6))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.25], hspace=0.07, wspace=0.04, left=0.01, right=0.99, top=0.965, bottom=0.085)
-    axes = [(fig.add_subplot(gs[0, :], projection=pc), "(a) All stations with real-time data and their partner stations", FULL, [], False)]
-    axes += [(fig.add_subplot(gs[1, i], projection=pc), t, e, lab, True) for i, (t, e, lab) in enumerate(ZOOMS)]
+    wide = a.layout == "wide"
+    if wide:
+        plt.rcParams.update({"font.size": 10.5, "axes.titlesize": 12, "legend.fontsize": 11})
+        fig = plt.figure(figsize=(13.0, 6.7))
+        gs = fig.add_gridspec(2, 2, width_ratios=[1.75, 1.0], height_ratios=[1.0, 1.0], hspace=0.12, wspace=0.03, left=0.005, right=0.995, top=0.955, bottom=0.01)
+        axes = [(fig.add_subplot(gs[0, 0], projection=pc), "(a) All stations with real-time data and their partner stations", FULL, [], False)]
+        axes[0][0].set_anchor("NW")
+        axes += [(fig.add_subplot(gs[i, 1], projection=pc), t, e, lab, True) for i, (t, e, lab) in enumerate(ZOOMS)]
+    else:
+        fig = plt.figure(figsize=(13.0, 12.6))
+        gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.25], hspace=0.07, wspace=0.04, left=0.01, right=0.99, top=0.965, bottom=0.085)
+        axes = [(fig.add_subplot(gs[0, :], projection=pc), "(a) All stations with real-time data and their partner stations", FULL, [], False)]
+        axes += [(fig.add_subplot(gs[1, i], projection=pc), t, e, lab, True) for i, (t, e, lab) in enumerate(ZOOMS)]
     for ax, title, ext, labels, detail in axes:
         base(ax, ext, detail)
         tr = pc._as_mpl_transform(ax)
@@ -120,11 +130,17 @@ def main() -> None:
     h2 = [Line2D([], [], marker="o", ls="", markerfacecolor=c, markeredgecolor="white", markersize=7) for c, _ in BEH.values()]
     l2 = [f"{lab}  ({int((st.behaviour == b).sum())} stations, {int(((st.behaviour == b) & (st.n_partners == 0)).sum())} without partner)" for b, (_, lab) in BEH.items()]
     h2.append(Line2D([], [], marker="o", ls="", markerfacecolor="white", markeredgecolor=INK, markersize=6.5)); l2.append("Hollow: station without partner")
-    fig.legend(h1, l1, loc="lower left", ncol=3, frameon=False, bbox_to_anchor=(0.01, 0.045), handlelength=2.2, columnspacing=1.6, title="Line: a station and one of its partners, by the reason the partner is allowed (number of links). Arrowheads in (b) and (c): from the partner to the station",
-               title_fontsize=9.5, alignment="left")
-    fig.legend(h2, l2, loc="lower left", ncol=4, frameon=False, bbox_to_anchor=(0.01, 0.0), handletextpad=0.2, columnspacing=1.4, title="Dot: a station, by what its own water level does",
-               title_fontsize=9.5, alignment="left")
-    out = Path(a.out); fig.savefig(out, dpi=220, bbox_inches="tight", pad_inches=0.06); plt.close(fig)
+    if wide:
+        fig.legend(h1, l1, loc="upper left", ncol=1, frameon=False, bbox_to_anchor=(0.005, 0.40), handlelength=2.2, title_fontsize=11, alignment="left",
+                   title="Line: a station and one of its partners, by the reason the partner\nis allowed (number of links). Arrowheads in (b), (c): partner to station")
+        fig.legend(h2, l2, loc="upper left", ncol=1, frameon=False, bbox_to_anchor=(0.37, 0.40), handletextpad=0.2, title_fontsize=11, alignment="left",
+                   title="Dot: a station, by what its own water level does")
+    else:
+        fig.legend(h1, l1, loc="lower left", ncol=3, frameon=False, bbox_to_anchor=(0.01, 0.045), handlelength=2.2, columnspacing=1.6, title="Line: a station and one of its partners, by the reason the partner is allowed (number of links). Arrowheads in (b) and (c): from the partner to the station",
+                   title_fontsize=9.5, alignment="left")
+        fig.legend(h2, l2, loc="lower left", ncol=4, frameon=False, bbox_to_anchor=(0.01, 0.0), handletextpad=0.2, columnspacing=1.4, title="Dot: a station, by what its own water level does",
+                   title_fontsize=9.5, alignment="left")
+    out = Path(a.out); fig.savefig(out, dpi=220, bbox_inches=None if wide else "tight", pad_inches=0.06); plt.close(fig)
     print(f"{len(st)} stations, links {n_links} ->", out)
 
 
