@@ -124,7 +124,7 @@ def main() -> None:
         "",
         "What stays the same: one LSTM for all stations, the same training, no new data source. The partners are stations of the same real-time feed.",
         "",
-        "Example: Lake Charles lies 52 km inland of the tide gauge at Calcasieu Pass. With Calcasieu Pass as partner its 6 h RMSE in the test years falls from 5.4 to 3.5 cm.",
+        "Example: Lake Charles lies 52 km inland of the tide gauge at Calcasieu Pass. With Calcasieu Pass as partner its 6 h RMSE in the test years falls from 5.4 to 3.6 cm.",
         "",
         "Difference to a ConvLSTM: a ConvLSTM needs the stations on a regular grid and lets every grid cell see its neighbours. Gauges are not a grid, and a neighbour in distance is often not "
         "connected by water. Here the connections are chosen station by station.",
@@ -149,10 +149,11 @@ def main() -> None:
         "Rules 1 to 3 are the fourth attempt. Before: any station within 150 km; rivers and creeks only within 50 km; only on the same river network. Each step removed stations that had become worse.",
     ], size=BODY)
 
-    sl = new("Partner stations on the map: down the rivers inland, along the coast for the tidal stations")
-    yb = picture(sl, F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
-    text(sl, 0.5, yb + 0.02, 12.3, 0.6, [
-        f"The {len(rt)} stations with real-time data. Most hollow dots are inland gauges with no gauge upstream of them: no partner, forecast as before. CRMS stations are used for training only and are not drawn."], size=11.5)
+    sl = new("Partner stations on the map: inland the gauge upstream, on the coast the other tidal stations")
+    talk_map = F / "partner_map_talk.png"
+    yb = picture(sl, talk_map if talk_map.exists() else F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
+    text(sl, 0.5, yb + 0.02, 12.3, 0.5, [
+        f"The {len(rt)} stations with real-time data. Colour: what the station's own water level does. All links, including those between tidal stations, are on the last slide."], size=11.5)
 
     # ---- 6 results in the test years
     rounds = [("hrrr_total", "No partner stations  (the version that is run)"), ("partners4", "Partners: any station within 150 km"),
@@ -325,6 +326,13 @@ def main() -> None:
         "Useful beyond this model:  every station classed by its measured tide (config/station_behaviour.csv), and the stations upstream and downstream of every USGS station "
         "on the river network (config/station_river_network.csv).",
     ], size=BODY)
+
+    # ---- backup: every partner link
+    sl = new("Backup: every partner link")
+    yb = picture(sl, F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
+    text(sl, 0.5, yb + 0.02, 12.3, 0.6, [
+        "Grey lines: a station with tide may also take a station downstream on its river, because the tide comes up the river (30 links). Green dots: weakly tidal stations, where the tide explains 5 to 20% of the 6 h change; "
+        "they choose partners like tidal stations but are not offered to others as a tidal partner."], size=11.5)
 
     prs.save(a.out)
     print(f"-> {a.out}: {len(prs.slides)} slides")

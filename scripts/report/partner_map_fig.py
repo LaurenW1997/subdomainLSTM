@@ -11,7 +11,9 @@ CRMS stations (training only, no forecast) are not drawn.
 Input : --map (config/station_partners_behaviour.csv), runs/v6_wind_q/stations.csv, config/station_behaviour.csv,
         config/station_river_network.csv
 Output: --out (deliverables/31_partner_map.png)
-Usage : python partner_map_fig.py [--map config/station_partners_behaviour.csv --out deliverables/31_partner_map.png --layout tall|wide]
+Usage : python partner_map_fig.py [--map config/station_partners_behaviour.csv --out deliverables/31_partner_map.png --layout tall|wide|talk]
+--layout talk: one map for presenting. Only the links along the river network from upstream are drawn (arrows); the stations
+that feel the tide (tidal and weakly tidal together) are dots without their links; two examples are drawn thick and named.
 """
 from __future__ import annotations
 
@@ -54,10 +56,58 @@ def base(ax, extent, detail: bool) -> None:
         sp.set_linewidth(0.5); sp.set_edgecolor("#7a7a74")
 
 
+EX_TIDE = [("NOAA_COOPS", "8768094", "Calcasieu Pass"), ("NOAA_COOPS", "8767816", "Lake Charles")]
+EX_RIVER = [("USGS", "08111500", "Hempstead"), ("USGS", "08111850", "San Felipe"), ("USGS", "08114000", "Richmond")]
+DARK_BLUE, DARK_ORANGE = "#0d3f8a", "#9c3208"
+
+
+def talk(st: pd.DataFrame, links: dict, pos: dict, out: Path) -> None:
+    """One map for a slide: colour = tide or no tide, arrows = partner upstream on the river, two named examples."""
+    plt.rcParams.update({"font.size": 12})
+    pc = ccrs.PlateCarree()
+    fig = plt.figure(figsize=(13.0, 6.72)); ax = fig.add_axes([0.004, 0.006, 0.992, 0.988], projection=pc)
+    base(ax, FULL, False); tr = pc._as_mpl_transform(ax)
+    for (x0, y0), (x1, y1) in links["up"]:
+        ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), transform=tr, arrowstyle="-|>,head_length=0.5,head_width=0.2", mutation_scale=8, color=ORANGE, lw=0.9, alpha=0.9,
+                                     shrinkA=0, shrinkB=2.0, zorder=3, clip_on=True))
+    tide = st.behaviour != "no tide"; has = st.n_partners > 0
+    for m, col in ((~tide, ORANGE), (tide, BLUE)):
+        ax.scatter(st.lon[m & has], st.lat[m & has], s=22, color=col, edgecolor="white", linewidth=0.4, transform=pc, zorder=5)
+        ax.scatter(st.lon[m & ~has], st.lat[m & ~has], s=17, facecolor="white", edgecolor=col, linewidth=0.8, transform=pc, zorder=4)
+
+    def chain(ex, col):
+        pts = [pos[(s_, i_)] for s_, i_, _ in ex]
+        for p0, p1 in zip(pts[:-1], pts[1:]):
+            ax.add_patch(FancyArrowPatch(p0, p1, transform=tr, arrowstyle="-|>,head_length=0.6,head_width=0.3", mutation_scale=14, color=col, lw=3.0, shrinkA=0, shrinkB=4, zorder=8))
+        ax.scatter([p[0] for p in pts], [p[1] for p in pts], s=62, color=col, edgecolor="white", linewidth=0.9, transform=pc, zorder=9)
+        return pts
+
+    box = dict(facecolor="white", edgecolor="none", pad=2.0, alpha=0.92)
+    lead = lambda col: dict(arrowstyle="-", color=col, lw=0.9, shrinkA=2, shrinkB=5)
+    pts = chain(EX_TIDE, DARK_BLUE)
+    ax.annotate("Tide: Calcasieu Pass to Lake Charles\nThe tide reaches the pass first, the lake 52 km inland later.\nLake Charles, 6 h RMSE in the test years: 5.4 to 3.6 cm",
+                xy=pts[0], xytext=(-94.35, 28.25), xycoords=tr, textcoords=tr, fontsize=12, color=DARK_BLUE, ha="left", va="top", linespacing=1.3, zorder=10, bbox=box, arrowprops=lead(DARK_BLUE))
+    pts = chain(EX_RIVER, DARK_ORANGE)
+    ax.annotate("River: Brazos River, Hempstead to San Felipe to Richmond\nA flood wave passes the gauge upstream first.\nEach gauge takes the gauges upstream of it.",
+                xy=pts[-1], xytext=(-97.05, 27.05), xycoords=tr, textcoords=tr, fontsize=12, color=DARK_ORANGE, ha="left", va="top", linespacing=1.3, zorder=10, bbox=box, arrowprops=lead(DARK_ORANGE))
+    n = lambda m: int(m.sum())
+    h = [Line2D([], [], marker="o", ls="", markerfacecolor=ORANGE, markeredgecolor="white", markersize=9),
+         Line2D([], [], marker=r"$\rightarrow$", ls="", color=ORANGE, markersize=15),
+         Line2D([], [], marker="o", ls="", markerfacecolor=BLUE, markeredgecolor="white", markersize=9),
+         Line2D([], [], marker="o", ls="", markerfacecolor="white", markeredgecolor=INK, markersize=8)]
+    lab = [f"No tide  ({n(~tide)} stations): partners only from upstream on its own river",
+           f"From the partner upstream to the station  ({len(links['up'])} links)",
+           f"Feels the tide  ({n(tide)} stations): partners are tidal stations along the coast\nand the stations on its own river  (these links are not drawn)",
+           f"Hollow: no partner  ({n(~has)} stations, {n(~has & ~tide)} of them without tide), forecast as before"]
+    ax.legend(h, lab, loc="lower right", bbox_to_anchor=(0.995, 0.012), frameon=True, framealpha=0.94, edgecolor="none", fontsize=12, handletextpad=0.5, labelspacing=0.7, borderpad=0.6)
+    fig.savefig(out, dpi=220); plt.close(fig)
+    print(f"{len(st)} stations, {len(links['up'])} links from upstream ->", out)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--map", default=str(REPO / "config" / "station_partners_behaviour.csv")); ap.add_argument("--out", default=str(REPO / "deliverables" / "31_partner_map.png"))
-    ap.add_argument("--layout", choices=["tall", "wide"], default="tall", help="wide: for a slide (overview and legend left, the two enlarged panels right)")
+    ap.add_argument("--layout", choices=["tall", "wide", "talk"], default="tall", help="wide: for a slide (overview and legend left, the two enlarged panels right); talk: one simplified map for presenting")
     a = ap.parse_args()
     K = ["source", "station_id"]
     st = pd.read_csv(REPO / "runs" / "v6_wind_q" / "stations.csv", dtype={"station_id": str})
@@ -81,6 +131,8 @@ def main() -> None:
             links[kind].append((pos[(ps, pi)], (r.lon, r.lat)))                 # from the partner to the station
     n_links = {q: len(v) for q, v in links.items()}
 
+    if a.layout == "talk":
+        talk(st, links, pos, Path(a.out)); return
     pc = ccrs.PlateCarree()
     wide = a.layout == "wide"
     if wide:
