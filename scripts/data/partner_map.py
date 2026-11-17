@@ -15,6 +15,16 @@ and that timing does not carry over to other years (deliverables/27_partner_stat
 when it lies downstream or upstream of the station along the river network, or within --near-km of it (default 0 = never);
 --max-km-river then no longer applies to the river and creek stations of that table. Tide gauges, estuaries, lakes, marsh
 and stations that are not in the table keep the distance rule.
+--behaviour FILE (config/station_behaviour.csv from station_behaviour.py, with --network): the rules follow what the water
+level of a station does, not the type it is registered as (deliverables/30_station_class_check.md):
+  a station without tide (tide explains less than --weak-share of its 6 h change): only stations UPSTREAM of it on the
+      river network - a flood wave comes down the river, a station downstream says nothing about it;
+  a station with tide: the stations on its river network (upstream and downstream) and, within --max-km, every station
+      that is tidal itself (tide explains at least --tidal-share of its 6 h change), whatever its registered type.
+  --max-km-river and the registered types are then not used. --min-gain-unlinked applies to partners outside the network
+  of stations that are only weakly tidal.
+--no-partner FILE (source, station_id): stations that get no partner (used for the stations where partner input did not
+help in the validation year).
 --min-gain-unlinked: at those river and creek stations a partner that is not on the same network (a tide gauge, estuary or
 lake station) must explain at least this share instead of --min-gain. Without the far creeks many inland stations would
 otherwise fill their four places with distant tidal stations that explain 1-3 %; in the round with the 50 km rule such
@@ -67,6 +77,14 @@ def one(s):
     keep = d <= lim
     if G["link"] is not None and G["in_net"][s]:      # rivers and creeks: only along the network (or very near)
         keep = np.where(G["tidal"][G["cand"]], keep, (d <= a.max_km) & (G["link"][s][G["cand"]] | (d <= a.near_km)))
+    sh = G["share"]
+    if sh is not None:                                # rules by measured behaviour
+        if sh[s] >= a.weak_share:
+            keep = (d <= a.max_km) & (G["link"][s][G["cand"]] | (sh[G["cand"]] >= a.tidal_share))
+        else:
+            keep = (d <= a.max_km) & G["up"][s][G["cand"]]
+    if G["off"] is not None and G["off"][s]:
+        keep = np.zeros(len(d), bool)
     cand = [int(j) for j in G["cand"][keep] if j != s]
     dist = {int(j): float(dd) for j, dd in zip(G["cand"], d)}
     F = {j: feats(j, t) for j in cand}
@@ -79,7 +97,10 @@ def one(s):
         for j in cand:
             if j in picked:
                 continue
-            need = a.min_gain_unlinked if (G["link"] is not None and G["in_net"][s] and not G["link"][s][j]) else a.min_gain
+            if sh is not None:
+                need = a.min_gain_unlinked if (not G["link"][s][j] and not sh[s] >= a.tidal_share) else a.min_gain
+            else:
+                need = a.min_gain_unlinked if (G["link"] is not None and G["in_net"][s] and not G["link"][s][j]) else a.min_gain
             m = ok & V[j]
             if m.sum() < a.min_n:
                 continue
@@ -99,6 +120,7 @@ def main() -> None:
     ap.add_argument("--dataset", required=True); ap.add_argument("--out", default=str(REPO / "config" / "station_partners.csv"))
     ap.add_argument("--k", type=int, default=4); ap.add_argument("--max-km", type=float, default=150.0); ap.add_argument("--max-km-river", type=float, default=1e9); ap.add_argument("--min-gain", type=float, default=0.01)
     ap.add_argument("--network"); ap.add_argument("--near-km", type=float, default=0.0); ap.add_argument("--min-gain-unlinked", type=float, default=0.03)
+    ap.add_argument("--behaviour"); ap.add_argument("--tidal-share", type=float, default=0.2); ap.add_argument("--weak-share", type=float, default=0.05); ap.add_argument("--no-partner")
     ap.add_argument("--min-n", type=int, default=2000); ap.add_argument("--stride", type=int, default=5); ap.add_argument("--workers", type=int, default=32)
     a = ap.parse_args()
     d = Path(a.dataset)
@@ -111,11 +133,11 @@ def main() -> None:
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str})
     typ = st[["source", "station_id"]].astype(str).merge(g[["source", "station_id", "type"]], on=["source", "station_id"], how="left").type.fillna("other").to_numpy()
     G.update(x=x, t=np.arange(25, t_end - H, a.stride), a=a, lat=st.lat.to_numpy(float), lon=st.lon.to_numpy(float), cand=np.where((st.source != "CRMS").to_numpy())[0], tidal=np.isin(typ, list(TIDAL)))
-    G.update(link=None, in_net=None)
+    G.update(link=None, in_net=None, share=None, up=None, off=None)
     if a.network:
         net = pd.read_csv(a.network, dtype=str).fillna("")
         row = {(x, y): k for k, (x, y) in enumerate(zip(st.source.astype(str), st.station_id.astype(str)))}
-        link = np.zeros((len(st), len(st)), bool); in_net = np.zeros(len(st), bool)
+        link = np.zeros((len(st), len(st)), bool); in_net = np.zeros(len(st), bool); up = np.zeros((len(st), len(st)), bool)
         for r in net.itertuples():
             k = row.get((r.source, r.station_id))
             if k is None:
@@ -124,7 +146,18 @@ def main() -> None:
             for j in re.findall(r"(\S+) \(", r.down + " | " + r.up):
                 if (r.source, j) in row:
                     link[k, row[(r.source, j)]] = link[row[(r.source, j)], k] = True
-        G.update(link=link, in_net=in_net)
+            for j in re.findall(r"(\S+) \(", r.up):          # up[k, j]: station j lies upstream of station k
+                if (r.source, j) in row:
+                    up[k, row[(r.source, j)]] = True
+        G.update(link=link, in_net=in_net, up=up)
+    if a.behaviour:
+        assert a.network, "--behaviour needs --network"
+        b = pd.read_csv(a.behaviour, dtype={"station_id": str})
+        sh = st[["source", "station_id"]].astype(str).merge(b[["source", "station_id", "tide_share_6h"]], on=["source", "station_id"], how="left").tide_share_6h.to_numpy(float)
+        G.update(share=np.nan_to_num(sh, nan=0.0))
+    if a.no_partner:
+        o = pd.read_csv(a.no_partner, dtype=str); key = set(zip(o.source, o.station_id))
+        G.update(off=np.array([(x, y) in key for x, y in zip(st.source.astype(str), st.station_id.astype(str))]))
     with Pool(a.workers) as pool:                       # fork: the workers share x
         res = pool.map(one, range(len(st)), chunksize=4)
     rows = []
