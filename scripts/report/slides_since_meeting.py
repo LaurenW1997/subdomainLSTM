@@ -251,26 +251,29 @@ def main() -> None:
     f3 = lambda r: [f"{r.rmse_1h_cm:.2f}", f"{r.rmse_3h_cm:.2f}", f"{r.rmse_6h_cm:.2f}"]
     A, B, AL, BL = (g_("all", "all", m) for m in ("no partners", "partners", "no partners, USGS 1 h late", "partners, USGS 1 h late"))
     hr = pd.read_csv(T / "hourly_rmse.csv").pivot(index="lead", columns="model", values="rmse_cm")
-    sl = new("Partner stations in the forecast script: tested on live data of 15 to 17 November")
+    he = (lambda f: pd.read_csv(f).pivot(index="lead", columns="model", values="rmse_cm") if f.exists() else None)(T / "hourly_rmse_10to12nov.csv")
+    sl = new("Partner stations in the forecast script: tested on live data of November 2026")
     cols = [(0.5, 6.4, L), (7.0, 0.8, R), (7.9, 0.8, R), (8.8, 0.8, R)]
-    y = table(sl, 1.05, cols, ["RMSE (cm), 418 stations, the same forecasts in both rows of a pair", "1 h", "3 h", "6 h"],
-              [[f"A forecast every 6 h (10 forecast times): the version that is run"] + f3(A), ["     with partner stations"] + f3(B),
-               ["The same, newest hour of every USGS gauge removed: the version that is run"] + f3(AL), ["     with partner stations"] + f3(BL),
-               ["A forecast every hour (61 forecast times): the version that is run"] + [r2(hr.loc[h, 'run']) for h in (1, 3, 6)], ["     with partner stations"] + [r2(hr.loc[h, 'partners']) for h in (1, 3, 6)]],
-              size=12.5, step=0.33)
+    rows_live = [["15 to 17 November, a forecast every 6 h (10 forecast times): the version that is run"] + f3(A), ["     with partner stations"] + f3(B),
+                 ["The same, newest hour of every USGS gauge removed: the version that is run"] + f3(AL), ["     with partner stations"] + f3(BL),
+                 ["14 to 17 November, a forecast every hour (61 forecast times): the version that is run"] + [r2(hr.loc[h, 'run']) for h in (1, 3, 6)],
+                 ["     with partner stations"] + [r2(hr.loc[h, 'partners']) for h in (1, 3, 6)]]
+    if he is not None:
+        rows_live += [["10 to 12 November, a forecast every hour (49 forecast times): the version that is run"] + [r2(he.loc[h, 'run']) for h in (1, 3, 6)],
+                      ["     with partner stations"] + [r2(he.loc[h, 'partners']) for h in (1, 3, 6)]]
+    y = table(sl, 1.05, cols, ["RMSE (cm), about 418 stations, the same forecasts in both rows of a pair", "1 h", "3 h", "6 h"], rows_live, size=12, step=0.3)
     cols2 = [(10.0, 1.3, L), (11.2, 0.9, R), (12.1, 0.9, R)]
     table(sl, 1.05, cols2, [["6 h RMSE (cm),", "every 6 h"], ["version", "that is run"], ["with", "partners"]],
           [[lab, f"{g_('behaviour', k, 'no partners').rmse_6h_cm:.2f}", f"{g_('behaviour', k, 'partners').rmse_6h_cm:.2f}"] for k, lab in (("tidal", "Tidal"), ("weakly tidal", "Weakly tidal"), ("no tide", "No tide"))], size=12.5, step=0.33)
     text(sl, 0.5, y + 0.3, 12.3, 3.4, [
         "The forecast script builds the partner inputs from the same live readings. Both models were run for past forecast times and scored once the observations were in.",
-        "",
         "Data hygiene:  the period is outside training, validation and test years;  both models read the same saved readings (no difference in 10,100 station rows);  no input later than the forecast time;  "
         "wind and rainfall forecasts only from HRRR cycles issued at or before the forecast time.",
         "",
         f"-  Same direction and size as in the test years ({run['h6']:.2f} to {par['h6']:.2f} cm there). The gain is again at the stations with tide.",
-        "-  One rain event at Houston on 15 November (creeks rose by more than 1 m in 6 h). Neither model forecast it: rainfall, not partner stations.",
-        "-  Two and a half days are not evidence of accuracy on their own. They show that the whole chain works on live data.",
-    ], size=BODY)
+        "-  Rain events (Texas rivers on 11 November, Houston on 15 November: rises of 1 to 3 m). Both models are hours late on them at 6 h: rainfall, not partner stations.",
+        "-  A few days are not evidence of accuracy on their own. They show that the whole chain works on live data.",
+    ], size=13)
 
     # ---- 10 station figures: the stations of the forecast check shown at the meeting
     two = sorted(T.glob("two_periods_slide_*.png")); one = sorted(T.glob("same_stations_wide_*.png"))
@@ -278,8 +281,8 @@ def main() -> None:
     for n_, f_ in enumerate(figs, 1):
         sl = new(("The eight stations of the forecast check of 12 November, both models, in two periods" if two else "The eight stations of the forecast check of 12 November, both models, 15 to 17 November") + f"  ({n_} of {len(figs)})")
         yb = picture(sl, f_, 0.2, 0.85, 12.93, 5.9)
-        text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["The stations were fixed before this test: they are the eight of the forecast check shown earlier. In each pair, left: the version that is run; right: with partner stations. "
-                                             "Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for, a forecast from every hour."], size=11.5)
+        text(sl, 0.5, yb + 0.05, 12.3, 0.7, ["The stations were fixed before this test: they are the eight of the forecast check shown earlier (one forecast, 12 November 12 UTC). In each pair, left: the version that is run; "
+                                             "right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for, a forecast from every hour."], size=11.5)
     if (T / "stations_wide_4.png").exists():
         sl = new("Where partner stations do not help: two stations picked to show it")
         yb = picture(sl, T / "stations_wide_4.png", 0.3, 0.9, 12.7, 5.85)
