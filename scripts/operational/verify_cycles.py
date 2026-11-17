@@ -55,7 +55,7 @@ def main() -> None:
         h = hourly.get(k)
         if h is not None:
             hours = pd.date_range(c + pd.Timedelta(hours=1), periods=HORIZON, freq="1h")
-            v = h.reindex(hours).to_numpy(float)
+            v = h.reindex(hours).to_numpy(float).copy()
             v[np.array([now < x + pd.Timedelta(minutes=75) for x in hours])] = np.nan       # the hour (mean over -30 .. +30 min) must have passed, plus the reporting delay
             obs[n] = v
     rows = []
