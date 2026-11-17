@@ -244,6 +244,7 @@ def main() -> None:
     ap.add_argument("--rain-cache", help="rainfall cache dir (default <out>/rain)")
     ap.add_argument("--past-rain", choices=["mrms", "hrrr"], default="mrms", help="product for the look-back rainfall (hrrr = HRRR only)")
     ap.add_argument("--inputs-from", help="TEST: out dir of another run; its saved water levels and discharge of this cycle are used instead of the services")
+    ap.add_argument("--levels-all", help="TEST: pickle of water-level readings covering many forecast times (one fetch); this run takes the readings up to its own forecast time")
     ap.add_argument("--usgs-late", type=int, default=0, help="TEST: drop the newest H hours of every USGS gauge (data that had not arrived yet)")
     a = ap.parse_args()
 
@@ -305,6 +306,10 @@ def main() -> None:
         series = pd.read_pickle(src_dir / "levels.pkl")
         manifest_extra["inputs_from"] = str(src_dir)
         log.info("water levels of %d stations taken from %s", len(series), src_dir)
+    elif a.levels_all:                              # one fetch that covers many forecast times: only the readings up to this one are taken
+        series = {k: s[(s.index >= begin) & (s.index <= end)] for k, s in pd.read_pickle(a.levels_all).items()}
+        series = {k: s for k, s in series.items() if len(s)}
+        manifest_extra["levels_all"] = str(a.levels_all)
     else:
         series = fetch_levels(st, a.sources, begin, end, raw_dir)
     pd.to_pickle(series, out / "levels.pkl")
