@@ -34,6 +34,10 @@ GROUPS = {
                                                                                    "partners 2 h late": "partners4_network_lateaug_late2", "partners 3 h late": "partners4_network_lateaug_late3",
                                                                                    "partners 6 h late": "partners4_network_lateaug_late6",
                                                                                    "station and partners 1 h late": "partners4_network_lateaug_ownlate1_late1"},
+    "partner stations by measured tide and upstream direction, trained with their newest hours missing": {
+        "on time": "partners4_behaviour_lateaug", "partners 1 h late": "partners4_behaviour_lateaug_late1", "partners 2 h late": "partners4_behaviour_lateaug_late2",
+        "partners 3 h late": "partners4_behaviour_lateaug_late3", "partners 6 h late": "partners4_behaviour_lateaug_late6",
+        "station and partners 1 h late": "partners4_behaviour_lateaug_ownlate1_late1"},
 }
 TYPES = ["tide gauge", "estuary / tidal channel", "lake", "marsh", "river / canal", "urban creek (Houston)"]
 

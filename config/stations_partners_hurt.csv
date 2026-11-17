@@ -1,0 +1,18 @@
+source,station_id,name,val_ref_cm,val_new_cm,val_pct
+NOAA_COOPS,8741533,Pascagoula NOAA Lab,5.095,5.247,2.992
+USGS,02492700,"Pearl River at I-10 near Slidell, LA",0.993,1.099,10.657
+USGS,07375960,"Tickfaw River at Montpelier, LA",2.89,3.206,10.947
+USGS,07378748,"Bluff Swamp near Kleinpeter, LA",4.054,4.159,2.607
+USGS,0738022395,"Black Bayou at Hwy 621 near Prairieville, LA",7.998,8.267,3.365
+USGS,07382500,"Bayou Courtableau at Washington, LA",2.268,2.381,4.939
+USGS,07385702,Bayou Teche below Keystone L&D nr St. Martinville,6.325,6.689,5.753
+USGS,08013250,"Calcasieu River near Oakdale, LA",1.482,1.584,6.875
+USGS,08013500,"Calcasieu River near Oberlin, LA",1.653,1.865,12.826
+USGS,08026000,"Sabine Rv nr Burkeville, TX",27.194,27.892,2.567
+USGS,08033500,"Neches Rv nr Rockland, TX",3.652,4.582,25.457
+USGS,08041000,"Neches Rv at Evadale, TX",1.492,1.529,2.462
+USGS,08110200,"Brazos Rv at Washington, TX",3.728,3.91,4.897
+USGS,08111500,"Brazos Rv nr Hempstead, TX",4.183,4.307,2.965
+USGS,08114000,"Brazos Rv at Richmond, TX",3.835,4.138,7.902
+USGS,08114100,"Brazos Rv nr Sugar Land, TX",4.15,4.28,3.131
+USGS,08116400,"Dry Ck nr Rosenberg, TX",16.798,17.364,3.364
