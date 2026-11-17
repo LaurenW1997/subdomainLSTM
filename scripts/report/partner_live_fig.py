@@ -1,11 +1,12 @@
-"""Stations of the test on past forecast times (deliverable 33): what was observed and the 1-6 h forecasts of the two models.
+"""Stations of the test on past forecast times (deliverable 33): the two models side by side, in the style of the station
+figures of the version comparison (versions_figs.station_fig).
 
-One panel per station: the observed hourly level (black) and, from every forecast time (thin grey vertical lines, every
-6 h), the forecast for the next 1 to 6 hours of the model without partner stations (blue) and with partner stations
-(orange). Both read the same water levels; the observations after a forecast time were fetched afterwards.
-Input : deliverables/33_partner_live_test/verification_long.csv (verify_cycles.py)
-Output: deliverables/33_partner_live_test/stations.png
-Usage : python partner_live_fig.py [--stations 07374000 8767816 ...] [--models "no partners" "partners"]
+One row per station, one column per model. Black: observed hourly level. Three lines in a warm ramp, pale to vivid: the
+forecast valid at each hour that was issued 1, 3 and 6 h earlier (a forecast from every hour). Grey band: 24 h around the
+observed peak. RMSE per lead over the window in every panel.
+Input : deliverables/33_partner_live_test/hourly_fc.csv (operational/extract_hourly_test.py on sv7)
+Output: deliverables/33_partner_live_test/stations_<n>.png, four stations each
+Usage : python partner_live_fig.py [--stations 07374000 8767816 ...]
 """
 from __future__ import annotations
 
@@ -20,68 +21,60 @@ import numpy as np
 import pandas as pd
 from matplotlib.lines import Line2D
 
+from versions_figs import INK, LEAD_COL  # also sets the figure style (Times New Roman, thin axes)
+
 REPO = Path(__file__).resolve().parents[2]
 D = REPO / "deliverables" / "33_partner_live_test"
-plt.rcParams.update({"font.family": "Times New Roman", "font.size": 9.5, "axes.titlesize": 10.5, "axes.linewidth": 0.6, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
-                     "axes.spines.top": False, "axes.spines.right": False})
-BLUE, ORANGE, INK = "#2a78d6", "#eb6834", "#1a1a19"
 DEFAULT = ["07374000", "8767816", "07387040", "08075500", "07381515", "08068500", "08073700", "07378000"]
-TYPE = {"tide gauge": "tide gauge", "estuary / tidal channel": "estuary", "lake": "lake", "marsh": "marsh", "river / canal": "river", "urban creek (Houston)": "urban creek"}
-LAB = {"no partners": "Scaling + gap filling + HRRR rainfall, trained with missing hours, mean of 5 models (the version that is run)",
-       "partners": "With partner stations (by measured tide and upstream direction), mean of 5 models",
-       "no partners, USGS 1 h late": "The version that is run, newest hour of the USGS gauges removed", "partners, USGS 1 h late": "With partner stations, newest hour of the USGS gauges removed"}
+COLS = [("run", "Scaling + gap filling + HRRR rainfall, trained with\nmissing hours, mean of 5 models  (the version that is run)"),
+        ("partners", "With partner stations (by measured tide and\nupstream direction), mean of 5 models")]
+LEADS = (1, 3, 6)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--stations", nargs="+", default=DEFAULT); ap.add_argument("--models", nargs=2, default=["no partners", "partners"])
-    ap.add_argument("--out", default=str(D / "stations.png")); ap.add_argument("--src", default=str(D / "verification_long.csv"))
+    ap.add_argument("--stations", nargs="+", default=DEFAULT); ap.add_argument("--src", default=str(D / "hourly_fc.csv"))
+    ap.add_argument("--begin", default="2026-11-15T00"); ap.add_argument("--end", default="2026-11-17T12"); ap.add_argument("--per-figure", type=int, default=4)
     a = ap.parse_args()
-    d = pd.read_csv(a.src, dtype={"station_id": str})
-    d["cycle_utc"] = pd.to_datetime(d.cycle_utc); d["last_obs_utc"] = pd.to_datetime(d.last_obs_utc, format="mixed")
-    n = len(a.stations); ncol = 2; nrow = -(-n // ncol)
-    fig, axes = plt.subplots(nrow, ncol, figsize=(13.0, 2.75 * nrow + 0.7), squeeze=False)
-    for ax, sid in zip(axes.ravel(), a.stations):
-        x = d[d.station_id == sid]
-        assert len(x), f"no station {sid}"
-        ref = x[x.model == a.models[0]].sort_values("cycle_utc")
-        obs = {}
-        for r in ref.itertuples():                                   # every observed hour once: the hour of each forecast time and the six hours after it
-            if pd.notna(r.last_obs_m) and r.last_obs_utc == r.cycle_utc:
-                obs[r.cycle_utc] = r.last_obs_m
-            for h in range(1, 7):
-                v = getattr(r, f"obs_{h}h_m")
-                if pd.notna(v):
-                    obs[r.cycle_utc + pd.Timedelta(hours=h)] = v
-        o = pd.Series(obs).sort_index().asfreq("1h")
-        for c in ref.cycle_utc:
-            ax.axvline(c, color="#d0cfc8", lw=0.6, zorder=1)
-        rm = {}
-        for m, col in zip(a.models, (BLUE, ORANGE)):
-            y = x[x.model == m].sort_values("cycle_utc")
-            for r in y.itertuples():
-                t = [r.last_obs_utc] + [r.cycle_utc + pd.Timedelta(hours=h) for h in range(1, 7)]
-                v = [r.last_obs_m] + [getattr(r, f"fcst_{h}h_m") for h in range(1, 7)]
-                ax.plot(t, v, color=col, lw=1.25, zorder=4 if m == a.models[1] else 3, solid_capstyle="round")
-            s = y[y.scored]
-            rm[m] = float(np.sqrt((s.err_6h_cm ** 2).mean())) if len(s) else np.nan
-        ax.plot(o.index, o.to_numpy(), color=INK, lw=1.7, zorder=2)
-        r0 = ref.iloc[0]
-        ax.set_title(f"{r0['name']}  ({TYPE.get(r0.type, r0.type)}; measured: {r0.behaviour})", loc="left", pad=14)
-        ax.text(0.0, 1.015, f"6 h RMSE of the {int(x[(x.model == a.models[0]) & x.scored].shape[0])} forecasts:  {rm[a.models[0]]:.1f} cm without partner stations,  {rm[a.models[1]]:.1f} cm with",
-                transform=ax.transAxes, fontsize=9.5, color=INK, va="bottom")
-        ax.xaxis.set_major_locator(mdates.HourLocator(byhour=[0, 12])); ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b\n%H UTC"))
-        ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=[6, 18]))
-        ax.set_ylabel("water level (m)"); ax.grid(axis="y", color="#ecebe6", lw=0.6); ax.set_axisbelow(True)
-        ax.margins(x=0.01)
-    for ax in axes.ravel()[n:]:
-        ax.set_visible(False)
-    h = [Line2D([], [], color=INK, lw=1.7), Line2D([], [], color=BLUE, lw=1.6), Line2D([], [], color=ORANGE, lw=1.6), Line2D([], [], color="#b9b8b0", lw=0.8)]
-    fig.legend(h, ["Observed", LAB.get(a.models[0], a.models[0]), LAB.get(a.models[1], a.models[1]), "Forecast times (every 6 h); each coloured line is the forecast for the next 1 to 6 hours"],
-               loc="upper left", ncol=1, frameon=False, bbox_to_anchor=(0.045, 1.0), fontsize=10, handlelength=2.4)
-    fig.subplots_adjust(left=0.055, right=0.972, top=1 - (1.25 / (2.75 * nrow + 0.7)), bottom=0.055, hspace=0.62, wspace=0.14)
-    fig.savefig(a.out, dpi=200); plt.close(fig)
-    print("->", a.out)
+    d = pd.read_csv(a.src, dtype={"station_id": str}, parse_dates=["origin", "valid"])
+    d = d[(d.valid >= pd.Timestamp(a.begin)) & (d.valid <= pd.Timestamp(a.end))]
+    for k in range(0, len(a.stations), a.per_figure):
+        ids = a.stations[k:k + a.per_figure]
+        fig, axes = plt.subplots(len(ids), len(COLS), figsize=(11.0, 2.45 * len(ids) + 0.9), sharey="row", squeeze=False, gridspec_kw={"wspace": 0.06, "hspace": 0.36})
+        for i, sid in enumerate(ids):
+            x = d[d.station_id == sid]
+            assert len(x), f"no station {sid}"
+            o = x.drop_duplicates("valid").set_index("valid").obs.sort_index().dropna()
+            pk = o.idxmax()
+            for j, (key, title) in enumerate(COLS):
+                ax = axes[i, j]
+                ax.axvspan(pk - pd.Timedelta(hours=12), pk + pd.Timedelta(hours=12), color="#000000", alpha=0.05, lw=0)
+                rm = []
+                for h in LEADS:
+                    g = x[x.lead == h].sort_values("valid")
+                    ax.plot(g.valid, g[key], color=LEAD_COL[h], lw=1.0, zorder=4)
+                    e = (g[key] - g.obs).dropna()
+                    rm.append(100 * float(np.sqrt((e ** 2).mean())))
+                ax.plot(o.index, o.values, color=INK, lw=1.15, zorder=5)
+                if j == len(COLS) - 1:                      # head-room so the RMSE label never sits on the data (the row shares the y axis)
+                    lo, hi = ax.get_ylim(); ax.set_ylim(lo, hi + 0.30 * (hi - lo))
+                ax.text(0.02, 0.96, "RMSE (cm)" + "\n" + "   ".join(f"{h} h {r:.1f}" for h, r in zip(LEADS, rm)), transform=ax.transAxes, va="top", ha="left", fontsize=8.6,
+                        color=INK, linespacing=1.25, bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85), zorder=6)
+                ax.xaxis.set_major_locator(mdates.DayLocator()); ax.xaxis.set_major_formatter(mdates.DateFormatter("%d %b"))
+                ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=[6, 12, 18]))
+                ax.grid(axis="y", color="#e3e3df", lw=0.5); ax.set_axisbelow(True); ax.margins(x=0.01)
+                if i == 0:
+                    ax.set_title(title, loc="left", fontsize=9.6, linespacing=1.25, fontweight="bold" if key == "run" else "normal", pad=22)
+                if j == 0:
+                    ax.set_ylabel("water level (m)", fontsize=9)
+                    name = str(x.name.iloc[0]); name = name.title() if name.isupper() else name
+                    ax.text(0.0, 1.03, f"{name}  ({x.source.iloc[0].replace('NOAA_COOPS', 'NOAA')} {sid})", transform=ax.transAxes, fontsize=9.8, color=INK, va="bottom")
+        h = [Line2D([], [], color=INK, lw=1.15)] + [Line2D([], [], color=LEAD_COL[v], lw=1.3) for v in LEADS]
+        fig.legend(h, ["observed"] + [f"forecast issued {v} h earlier" for v in LEADS], loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.005), fontsize=9.5)
+        fig.subplots_adjust(left=0.065, right=0.99, top=1 - 0.75 / (2.45 * len(ids) + 0.9), bottom=0.62 / (2.45 * len(ids) + 0.9))
+        out = D / f"stations_{k // a.per_figure + 1}.png"
+        fig.savefig(out, dpi=250); plt.close(fig)
+        print("->", out)
 
 
 if __name__ == "__main__":
