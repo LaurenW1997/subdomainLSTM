@@ -128,26 +128,28 @@ def main() -> None:
         "connected by water. Here the connections are chosen station by station.",
     ], size=14)
 
-    # ---- the example, right after the idea: what the partner shows, and what the forecast gains
-    if (T / "example_tide.png").exists():
-        sl = new("The example: the tide reaches Calcasieu Pass first and Lake Charles about 5 hours later")
-        yb = picture(sl, T / "example_tide.png", 0.3, 0.95, 12.7, 3.9)
-        text(sl, 0.5, yb + 0.25, 12.3, 2.4, [
-            "Observed water level at the two gauges, 15 to 17 November 2026 (6-minute readings). Dashed: the line of Calcasieu Pass moved 4.8 h later.",
-            "",
-            "-  Lake Charles lies 52 km inland of the pass. What the pass does now, Lake Charles does about 5 h later.",
-            "-  For a forecast 6 h ahead this is the information that was missing: the model no longer has to guess the next tide from Lake Charles alone.",
-            "-  The same holds for a surge: it arrives at the coast first.",
-        ], size=BODY)
-    if (T / "lake_charles_1.png").exists():
-        sl = new("The example in the forecast: Lake Charles with Calcasieu Pass as partner")
-        yb = picture(sl, T / "lake_charles_1.png", 0.3, 0.95, 12.7, 3.95)
-        text(sl, 0.5, yb + 0.25, 12.3, 2.4, [
-            "The same days. Left: the version that is run. Right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for.",
-            "",
-            "-  16 November: without the partner the 6 h forecast rises too early and falls too late; with it the line stays on the observation.",
-            "-  These days: 6.6 to 4.6 cm at 6 h, 4.8 to 2.9 cm at 3 h.  Test years 2024-2025: 5.4 to 3.6 cm at 6 h.",
-        ], size=BODY)
+    # ---- the map with two named examples, then the forecasts of the two examples
+    sl = new("Partner stations on the map: inland the gauge upstream, on the coast the other tidal stations")
+    talk_map = F / "partner_map_talk.png"
+    yb = picture(sl, talk_map if talk_map.exists() else F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
+    text(sl, 0.5, yb + 0.02, 12.3, 0.5, [
+        f"The {len(rt)} stations with real-time data. Colour: what the station's own water level does. For a tidally influenced station only its first partner is drawn; all links are on the last slide. The forecasts of the two named examples are on the next slide."], size=11.5)
+
+
+
+    ex = T / "examples_1.png"; exd = T / "hourly_fc_10to12nov.csv"
+    if ex.exists() and exd.exists():
+        e = pd.read_csv(exd, dtype={"station_id": str}); e["valid"] = pd.to_datetime(e.valid, format="mixed")
+        e = e[(e.valid >= "2026-11-11T00") & (e.valid <= "2026-11-12T22") & (e.lead == 6)].dropna(subset=["obs", "run", "partners"])
+        rm = lambda sid, col: 100 * float((((e[col] - e.obs)[e.station_id == sid]) ** 2).mean() ** 0.5)
+        sl = new("The two examples of the map in the forecast: Lake Charles (tide) and San Antonio River at Goliad (river)")
+        yb = picture(sl, ex, 0.3, 0.85, 12.7, 5.0)
+        text(sl, 0.5, yb + 0.1, 12.3, 1.6, [
+            "11 and 12 November 2026, a forecast from every hour. Left: the version that is run. Right: with partner stations. Each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for.",
+            f"-  Lake Charles, partner Calcasieu Pass 52 km seaward: {rm('8767816', 'run'):.1f} to {rm('8767816', 'partners'):.1f} cm at 6 h (test years 5.4 to 3.6 cm). Without the partner the 6 h forecast falls too early at high water on 12 November.",
+            f"-  San Antonio River at Goliad, partner the gauge at Runge 41 km upstream: {rm('08188500', 'run'):.1f} to {rm('08188500', 'partners'):.1f} cm at 6 h (test years 7.3 to 5.2 cm). Without the partner the 6 h forecast is late on the rise "
+            "of 11 November; at Runge the river had been rising for hours.",
+        ], size=12)
 
     # ---- 5 the rules
     sl = new("How the partners of a station are chosen")
@@ -167,12 +169,6 @@ def main() -> None:
         "",
         "Rules 1 to 3 are the fourth attempt. Before: any station within 150 km; rivers and creeks only within 50 km; only on the same river network. Each step removed stations that had become worse.",
     ], size=BODY)
-
-    sl = new("Partner stations on the map: inland the gauge upstream, on the coast the other tidal stations")
-    talk_map = F / "partner_map_talk.png"
-    yb = picture(sl, talk_map if talk_map.exists() else F / "partner_map_wide.png", 0.3, 0.9, 12.7, 6.0)
-    text(sl, 0.5, yb + 0.02, 12.3, 0.5, [
-        f"The {len(rt)} stations with real-time data. Colour: what the station's own water level does. For a tidally influenced station only its first partner is drawn; all links are on the last slide."], size=11.5)
 
     # ---- 6 results in the test years
     rounds = [("hrrr_total", "No partner stations  (the version that is run)"), ("partners4", "Partners: any station within 150 km"),

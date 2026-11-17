@@ -58,7 +58,7 @@ def base(ax, extent, detail: bool) -> None:
 
 
 EX_TIDE = [("NOAA_COOPS", "8768094", "Calcasieu Pass"), ("NOAA_COOPS", "8767816", "Lake Charles")]
-EX_RIVER = [("USGS", "08111500", "Hempstead"), ("USGS", "08111850", "San Felipe"), ("USGS", "08114000", "Richmond")]
+EX_RIVER = [("USGS", "08183500", "Falls City"), ("USGS", "08188060", "Runge"), ("USGS", "08188500", "Goliad")]
 DARK_BLUE, DARK_ORANGE = "#0d3f8a", "#9c3208"
 
 
@@ -92,8 +92,8 @@ def talk(st: pd.DataFrame, links: dict, pos: dict, out: Path, first: list | None
     ax.annotate("Tide: Calcasieu Pass to Lake Charles\nThe tide reaches the pass first, the lake 52 km inland later.\nLake Charles, 6 h RMSE in the test years: 5.4 to 3.6 cm",
                 xy=pts[0], xytext=(-94.35, 28.25), xycoords=tr, textcoords=tr, fontsize=12, color=DARK_BLUE, ha="left", va="top", linespacing=1.3, zorder=10, bbox=box, arrowprops=lead(DARK_BLUE))
     pts = chain(EX_RIVER, DARK_ORANGE)
-    ax.annotate("River: Brazos River, Hempstead to San Felipe to Richmond\nA flood wave passes the gauge upstream first.\nEach gauge takes the gauges upstream of it.",
-                xy=pts[-1], xytext=(-97.05, 27.05), xycoords=tr, textcoords=tr, fontsize=12, color=DARK_ORANGE, ha="left", va="top", linespacing=1.3, zorder=10, bbox=box, arrowprops=lead(DARK_ORANGE))
+    ax.annotate("River: San Antonio River, Falls City to Runge to Goliad\nA flood wave passes the gauge upstream first.\nGoliad, 6 h RMSE in the test years: 7.3 to 5.2 cm",
+                xy=pts[-1], xytext=(-97.0, 27.0), xycoords=tr, textcoords=tr, fontsize=12, color=DARK_ORANGE, ha="left", va="top", linespacing=1.3, zorder=10, bbox=box, arrowprops=lead(DARK_ORANGE))
     n = lambda m: int(m.sum())
     arrow = lambda col: Line2D([], [], marker=r"$\rightarrow$", ls="", color=col, markersize=15)
     dot = lambda col: Line2D([], [], marker="o", ls="", markerfacecolor=col, markeredgecolor="white", markersize=9)
