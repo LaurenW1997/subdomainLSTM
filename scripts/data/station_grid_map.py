@@ -85,7 +85,11 @@ def main() -> None:
     g["coops_msl_minus_navd88_m"] = np.round(g.coops_MSL_m_stnd - g.coops_NAVD88_m_stnd, 3)
     g["obs_mean_2019_2023_navd88_m"] = np.round(g.obs_mean_2019_2023_m + g.to_navd88_add_m, 3)
     g["obs_mean_2012_2016_navd88_m"] = np.round(g.obs_mean_2012_2016_m + g.to_navd88_add_m, 3)
-    g["grid_vertical_reference_assumed"] = "NAVD88 (bathymetry from NCEI DEMs; to be confirmed by the group)"
+    ref = {"Louisiana100m": "NAVD88 (bathymetry from NOAA NCEI CUDEM, referenced to NAVD88; source given by the author of the grid, 2026-11-17)",
+           "Texas100m": "NAVD88 (grid file: NCEI ninth and third arc-second DEMs, referenced to NAVD88)",
+           "Galveston100m": "NAVD88 assumed (the grid file does not state the source of the bathymetry; not confirmed)"}
+    ref["Louisiana100m_full"] = ref["Louisiana100m"]
+    g["grid_vertical_reference_assumed"] = g["domain"].map(ref)
     g["station_to_grid_ref_add_m"] = g.to_navd88_add_m        # equal to the NAVD88 conversion under that assumption
     cols = ["source", "station_id", "name", "lat", "lon", "domain", "i_xi", "j_eta", "dist_cell_km", "h_cell_m", "cell_is_water", "cell_model",
             "i_xi_water", "j_eta_water", "dist_water_km", "h_water_m", "water_cell_model", "i_xi_roms", "j_eta_roms", "dist_roms_km", "h_roms_m", "cell_lon", "cell_lat",

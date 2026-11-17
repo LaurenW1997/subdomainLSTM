@@ -27,7 +27,7 @@
 | `cell_lon`, `cell_lat` | 站点所在格点的中心坐标 |
 | `station_datum` | 站点数据的基准：`NAVD88`、`MSL`（NOAA 11 站没有 NAVD88 基准）、`gauge_datum(NGVD29;alt_ft=…)`（USGS 水尺零点高程，NGVD29，英尺）或未知 |
 | `to_navd88_add_m` | **把该站的水位值换成 NAVD88 要加的数**：NAVD88 站 0；MSL 站 = CO-OPS 的 MSL − NAVD88；水尺站 = 水尺零点的 NAVD88 高程（VDatum 把 NGVD29 转 NAVD88）。空值 = 基准未知，换不了 |
-| `grid_vertical_reference_assumed` | 网格水深的垂直基准。Texas100m 网格文件写明水深来自 NCEI 1/9 和 1/3 弧秒 DEM，这些 DEM 以 NAVD88 为基准；Louisiana、Galveston 的网格文件没写来源，**按同样假设处理，需要组里确认** |
+| `grid_vertical_reference_assumed` | 网格水深的垂直基准。**Louisiana100m：NAVD88**，水深来自 NOAA NCEI 的 CUDEM（网格作者 2026-11-17 说明；NCEI 的元数据写明 CUDEM 垂直基准是 NAVD88，EPSG:5703，单位米）。**Texas100m：NAVD88**，网格文件写明水深来自 NCEI 1/9 和 1/3 弧秒 DEM（同一套产品）。**Galveston100m：按 NAVD88 假设，未确认**，网格文件没写水深来源。列名里的 assumed 是历史原因，没有改。注意 Louisiana100m 的水深在 CUDEM 基础上改过（网格文件的 history：一块区域加深 1 m、Mississippi 河道 39,644 个点按断面数据插值、2026-02 的加深平滑和堤防修补），这些只改水深，不改零面，所以不影响基准换算，但 `h_cell_m` 在这些格点上不等于 CUDEM 的高程 |
 | `station_to_grid_ref_add_m` | 站点值换到网格基准要加的数。在"网格基准 = NAVD88"的假设下等于 `to_navd88_add_m` |
 | `obs_mean_2019_2023_navd88_m` | 该站 2019–2023 年观测水位的平均值（已换成 NAVD88）。这是站点处**当前的平均水面高出 NAVD88 零点多少**，等价于当地现在的平均海面相对 NAVD88 |
 | `obs_mean_2012_2016_navd88_m` | 同上，2012–2016 年 |
@@ -40,7 +40,7 @@
 
 模型里每个点的水位 zeta 是相对于网格的零面；站点水位是相对于站点自己的基准。要把两者对上，要走两步：
 
-1. **站点基准 → 网格基准**（几何的、固定的）：`station_to_grid_ref_add_m`。假设网格基准是 NAVD88，那 369 个 NAVD88 的 USGS 站和 43 个 NAVD88 的 NOAA 站加 0，11 个 MSL 的 NOAA 站加 CO-OPS 的 MSL − NAVD88，20 个水尺站加水尺零点高程。
+1. **站点基准 → 网格基准**（几何的、固定的）：`station_to_grid_ref_add_m`。网格基准是 NAVD88（Louisiana、Texas 已确认，Galveston 是假设），所以 369 个 NAVD88 的 USGS 站和 43 个 NAVD88 的 NOAA 站加 0，11 个 MSL 的 NOAA 站加 CO-OPS 的 MSL − NAVD88，20 个水尺站加水尺零点高程。
 2. **模式自己的平均水面 ≠ 网格零面**（动态的）：即使水深是 NAVD88 基准，模式跑出来的平均 zeta 也不是 0，而是当地平均海面相对 NAVD88 的高度再加上模式自身偏差。用同一段时间的平均值去掉这一项：`offset_obs_minus_model_m = 观测(NAVD88) − 模式 zeta`，见下一节。
 
 两个数都在这张表里，拼起来就是每个站的总偏移。
