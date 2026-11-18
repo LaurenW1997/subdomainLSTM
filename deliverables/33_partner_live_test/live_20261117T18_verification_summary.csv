@@ -1,0 +1,67 @@
+group_by,group,model,n,rmse_1h_cm,rmse_2h_cm,rmse_3h_cm,rmse_4h_cm,rmse_5h_cm,rmse_6h_cm
+all,all,"no partners, run at 18:31",414,1.51,2.07,2.986,3.409,3.758,4.223
+all,all,"partners, run at 18:31",414,1.431,1.86,2.606,2.98,3.423,3.957
+all,all,"no partners, run at 19:05",414,1.309,2.123,3.218,3.733,4.12,4.598
+all,all,"partners, run at 19:05",414,1.17,1.787,2.676,3.088,3.523,4.045
+all,all,"no partners, data complete",414,1.319,2.177,3.277,3.805,4.2,4.682
+all,all,"partners, data complete",414,1.189,1.833,2.714,3.126,3.555,4.067
+type,estuary / tidal channel,"no partners, run at 18:31",42,3.153,3.774,4.675,5.877,6.144,6.124
+type,estuary / tidal channel,"partners, run at 18:31",42,2.783,3.191,3.817,5.098,5.641,5.889
+type,estuary / tidal channel,"no partners, run at 19:05",42,2.427,3.244,4.486,5.785,6.024,6.014
+type,estuary / tidal channel,"partners, run at 19:05",42,2.136,2.736,3.68,5.057,5.589,5.84
+type,estuary / tidal channel,"no partners, data complete",42,2.319,3.135,4.339,5.685,5.927,5.931
+type,estuary / tidal channel,"partners, data complete",42,2.035,2.61,3.494,4.93,5.464,5.727
+type,lake,"no partners, run at 18:31",11,1.382,1.845,1.784,2.304,3.11,3.931
+type,lake,"partners, run at 18:31",11,1.565,1.196,1.063,1.539,2.543,2.838
+type,lake,"no partners, run at 19:05",11,1.386,1.824,1.798,2.32,3.085,3.868
+type,lake,"partners, run at 19:05",11,1.583,1.175,1.059,1.483,2.457,2.72
+type,lake,"no partners, data complete",11,1.216,1.941,1.851,2.384,3.105,3.898
+type,lake,"partners, data complete",11,1.376,1.273,1.007,1.468,2.398,2.682
+type,marsh,"no partners, run at 18:31",1,0.068,0.085,0.031,0.166,0.022,0.045
+type,marsh,"partners, run at 18:31",1,0.021,0.029,0.03,0.236,0.058,0.042
+type,marsh,"no partners, run at 19:05",1,0.055,0.08,0.03,0.172,0.004,0.013
+type,marsh,"partners, run at 19:05",1,0.025,0.039,0.018,0.229,0.061,0.056
+type,marsh,"no partners, data complete",1,0.055,0.08,0.03,0.172,0.004,0.013
+type,marsh,"partners, data complete",1,0.025,0.039,0.018,0.229,0.061,0.056
+type,river / canal,"no partners, run at 18:31",239,0.962,1.469,2.689,2.763,3.113,3.564
+type,river / canal,"partners, run at 18:31",239,0.93,1.304,2.364,2.42,2.963,3.573
+type,river / canal,"no partners, run at 19:05",239,0.801,1.368,2.666,2.747,3.093,3.529
+type,river / canal,"partners, run at 19:05",239,0.753,1.174,2.324,2.373,2.91,3.511
+type,river / canal,"no partners, data complete",239,0.785,1.328,2.629,2.686,3.031,3.468
+type,river / canal,"partners, data complete",239,0.741,1.129,2.284,2.309,2.852,3.456
+type,tide gauge,"no partners, run at 18:31",50,1.807,2.774,3.281,3.534,3.314,4.152
+type,tide gauge,"partners, run at 18:31",50,1.489,2.294,2.607,2.823,2.75,3.774
+type,tide gauge,"no partners, run at 19:05",50,1.784,2.764,3.293,3.562,3.307,4.111
+type,tide gauge,"partners, run at 19:05",50,1.459,2.289,2.631,2.837,2.685,3.667
+type,tide gauge,"no partners, data complete",50,1.784,2.764,3.293,3.562,3.307,4.111
+type,tide gauge,"partners, data complete",50,1.458,2.286,2.627,2.833,2.683,3.665
+type,urban creek (Houston),"no partners, run at 18:31",71,1.303,1.831,2.578,3.465,4.261,4.951
+type,urban creek (Houston),"partners, run at 18:31",71,1.582,2.122,2.686,3.276,3.692,4.067
+type,urban creek (Houston),"no partners, run at 19:05",71,1.342,2.804,4.052,5.128,6.011,6.763
+type,urban creek (Houston),"partners, run at 19:05",71,1.221,2.378,3.243,3.937,4.399,4.806
+type,urban creek (Houston),"no partners, data complete",71,1.553,3.15,4.478,5.585,6.478,7.229
+type,urban creek (Houston),"partners, data complete",71,1.471,2.71,3.627,4.32,4.764,5.127
+behaviour,no tide,"no partners, run at 18:31",242,0.86,1.151,2.427,2.6,3.274,3.723
+behaviour,no tide,"partners, run at 18:31",242,1.006,1.309,2.419,2.499,3.027,3.354
+behaviour,no tide,"no partners, run at 19:05",242,0.898,1.663,2.965,3.297,3.978,4.44
+behaviour,no tide,"partners, run at 19:05",242,0.853,1.452,2.609,2.743,3.265,3.581
+behaviour,no tide,"no partners, data complete",242,0.995,1.83,3.132,3.495,4.168,4.627
+behaviour,no tide,"partners, data complete",242,0.966,1.608,2.746,2.894,3.39,3.682
+behaviour,tidal,"no partners, run at 18:31",144,2.281,3.142,3.905,4.618,4.612,5.096
+behaviour,tidal,"partners, run at 18:31",144,2.02,2.623,3.041,3.796,4.132,4.921
+behaviour,tidal,"no partners, run at 19:05",144,1.878,2.86,3.829,4.602,4.575,5.066
+behaviour,tidal,"partners, run at 19:05",144,1.638,2.354,2.977,3.781,4.088,4.878
+behaviour,tidal,"no partners, data complete",144,1.815,2.805,3.75,4.526,4.502,5.007
+behaviour,tidal,"partners, data complete",144,1.571,2.284,2.868,3.681,3.995,4.804
+behaviour,weakly tidal,"no partners, run at 18:31",28,0.745,1.061,1.579,1.924,2.605,3.214
+behaviour,weakly tidal,"partners, run at 18:31",28,0.723,0.995,1.512,1.803,2.5,3.122
+behaviour,weakly tidal,"no partners, run at 19:05",28,0.459,0.818,1.324,1.792,2.564,3.197
+behaviour,weakly tidal,"partners, run at 19:05",28,0.405,0.699,1.209,1.561,2.313,2.942
+behaviour,weakly tidal,"no partners, data complete",28,0.451,0.806,1.307,1.772,2.546,3.179
+behaviour,weakly tidal,"partners, data complete",28,0.404,0.701,1.21,1.567,2.324,2.956
+cycle_utc,2026-11-17 18:00:00,"no partners, run at 18:31",414,1.51,2.07,2.986,3.409,3.758,4.223
+cycle_utc,2026-11-17 18:00:00,"partners, run at 18:31",414,1.431,1.86,2.606,2.98,3.423,3.957
+cycle_utc,2026-11-17 18:00:00,"no partners, run at 19:05",414,1.309,2.123,3.218,3.733,4.12,4.598
+cycle_utc,2026-11-17 18:00:00,"partners, run at 19:05",414,1.17,1.787,2.676,3.088,3.523,4.045
+cycle_utc,2026-11-17 18:00:00,"no partners, data complete",414,1.319,2.177,3.277,3.805,4.2,4.682
+cycle_utc,2026-11-17 18:00:00,"partners, data complete",414,1.189,1.833,2.714,3.126,3.555,4.067

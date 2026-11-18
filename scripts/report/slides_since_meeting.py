@@ -14,6 +14,7 @@ Usage : python slides_since_meeting.py [--out FILE]
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -356,10 +357,11 @@ def main() -> None:
     lv = T / "live_summary.csv"
     if lv.exists():
         z = pd.read_csv(lv)
-        sl = new("A run in real time: forecast time 17 November 18 UTC, run at 18:31 and 19:05 UTC, scored six hours later")
+        mt = json.loads((T / "live_meta.json").read_text(encoding="utf-8")) if (T / "live_meta.json").exists() else None
+        sl = new(f"Runs in real time, unattended on a schedule: {mt['n_times']} forecast times so far, {'no failed run' if mt['failed'] == 0 else str(mt['failed']) + ' failed steps'}" if mt else "Runs in real time")
         cols = [(0.5, 6.6, L), (7.2, 0.9, R), (8.2, 0.8, R), (9.1, 0.8, R), (10.0, 0.8, R)]
         y = table(sl, 1.05, cols, ["RMSE (cm), the same stations in every row", "forecasts", "1 h", "3 h", "6 h"],
-                  [[r.label, f"{int(r.n):,}", f"{r.rmse_1h_cm:.2f}", f"{r.rmse_3h_cm:.2f}", f"{r.rmse_6h_cm:.2f}"] for r in z.itertuples()], size=12.5, step=0.33)
+                  [[r.label, f"{int(r.n):,}", r2(r.rmse_1h_cm), r2(r.rmse_3h_cm), r2(r.rmse_6h_cm)] for r in z.itertuples()], size=12.5, step=0.33)
         note = T / "live_note.txt"
         if note.exists():
             text(sl, 0.5, y + 0.3, 12.3, 3.0, note.read_text(encoding="utf-8").strip().split("\n"), size=BODY)
@@ -367,7 +369,8 @@ def main() -> None:
     # ---- 13 where things stand
     sl = new("Where things stand")
     text(sl, 0.5, 1.05, 12.3, 6.2, [
-        "Running:  scaling + gap filling + HRRR rainfall, trained with missing hours, mean of 5 models. Started by hand, not connected to the group's website.",
+        "Running:  scaling + gap filling + HRRR rainfall, trained with missing hours, mean of 5 models. Started by hand; since 18 November it also runs every 6 h on a schedule for testing, "
+        "next to the version with partner stations, under my own account. Not connected to the group's website.",
         "",
         f"Tested and ready, not switched on:  partner stations. {run['h6']:.2f} to {par['h6']:.2f} cm at 6 h in the test years, about 10% at stations with tide; the forecast script supports them and gave the same direction on live data.",
         "",

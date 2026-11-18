@@ -1,0 +1,6 @@
+3 forecast times, 17 November 18 UTC to 18 November 06 UTC, run when the data were arriving and scored 7 h later. The first was started by hand, the others by cron on sv7, under my own account. Both models read the same readings.
+
+-  No failed step on the schedule so far: 8 steps, each with a forecast for 415 to 417 stations. The USGS service dropped connections several times; the retries got through.
+-  With partner stations: lower 6 h RMSE in 9 of 9 comparisons (forecast time x run time). Run 31 min after the hour: 3.86 to 3.54 cm at 6 h, 2.62 to 2.36 cm at 3 h.
+-  When to run: at 1 h the RMSE is 1.28 cm when run 31 min after the hour and 1.10 cm at 65 min (part of the newest readings have not arrived at 31 min); at 6 h it makes no difference.
+-  Few forecast times on calm days (6 h RMSE near 3.9 cm, against 8.4 cm in the test years): this shows the chain running unattended, not the accuracy. The schedule runs until 21 November.
