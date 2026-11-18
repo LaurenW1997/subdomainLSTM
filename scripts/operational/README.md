@@ -114,3 +114,9 @@ AORC 没有实时产品，业务上这样替代（依据和对比数字见 `deli
 - 伙伴站模型读实际运行的模型存下来的水位和流量，两个模型的输入相同。
 - 脚本里写了截止时间（`STOP`，2026-11-21 06 UTC），过了之后被 cron 叫起来也什么都不做。要提前停：`crontab -e` 删掉三行。
 - 这段时间不要在 sv7 的 repo 目录里 `git pull`，脚本调用的是那里的 `forecast.py` 和 `verify_cycles.py`。
+
+### 逐小时补跑（给站点图用）
+
+`hourly_fill.sh`：站点图要画提前 1、3、6 小时的连续曲线，需要每个整点都有一次预报，而定时运行是每 6 小时一次。这个脚本把从 2026-11-17 07 UTC 到两小时前、还没有预报的每个整点补出来（两个模型；数据到齐后跑，整段水位取一次，每个时刻只用不晚于它的读数），输出在 `shadow_20261117/hourly/`。cron 每 6 小时叫一次（本地 01:45、07:45、13:45、19:45），同样在 `STOP` 之后什么都不做。
+
+每次汇报结果时画图的步骤：在 sv7 上用 `extract_hourly_test.py --stations $(python scripts/report/domain_station_figs.py --ids)` 把 15 个站取出来（观测用 `hourly/levels/` 里最新的那个文件），拷到 `deliverables/33_partner_live_test/hourly_fc_schedule.csv`，再跑 `scripts/report/domain_station_figs.py`，得到三个区域各一张图（每个区域 5 个固定的站）。

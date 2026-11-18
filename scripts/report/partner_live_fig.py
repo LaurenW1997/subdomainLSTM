@@ -53,9 +53,10 @@ def main() -> None:
         d["origin"] = pd.to_datetime(d.origin, format="mixed"); d["valid"] = pd.to_datetime(d.valid, format="mixed")
         data.append((lab, d[(d.valid >= pd.Timestamp(b)) & (d.valid <= pd.Timestamp(e))], pd.Timestamp(b), pd.Timestamp(e)))
     nP, many = len(data), len(data) > 1
+    head = many or any(lab for lab, *_ in data)        # a heading above the columns: the period, or the domain for a single period
     for k in range(0, len(a.stations), a.per_figure):
         ids = a.stations[k:k + a.per_figure]
-        H = 2.45 * len(ids) + ((1.55 if a.narrow else 1.3) if many else 0.9)
+        H = 2.45 * len(ids) + ((1.55 if a.narrow else 1.3) if head else 0.9)
         fig = plt.figure(figsize=(11.0 if not many else (13.0 if a.narrow else 9.6 * nP), H))
         wr = sum([[1, 1, 0.16] for _ in range(nP)], [])[:-1]              # two columns per period, a gap between periods
         gs = fig.add_gridspec(len(ids), len(wr), width_ratios=wr, wspace=0.06, hspace=0.36)
@@ -89,7 +90,7 @@ def main() -> None:
                     ax.set_xlim(b - pd.Timedelta(hours=1), e + pd.Timedelta(hours=1))      # the same days in every panel of a period
                     if i == 0:
                         ax.set_title(title, loc="left", fontsize=9.6 if not many else (8.6 if a.narrow else 9.0), linespacing=1.25, fontweight="bold" if key == "run" else "normal", pad=22)
-                        if many and j == 0:
+                        if head and plab and j == 0:
                             ax.text(0.0, 1.0, plab, transform=ax.transAxes + matplotlib.transforms.ScaledTranslation(0, (72 if a.narrow else 56) / 72, fig.dpi_scale_trans), fontsize=11.5, fontweight="bold", color=INK, va="bottom")
                     if j == 0:
                         ax.set_ylabel("water level (m)", fontsize=9)
@@ -102,7 +103,7 @@ def main() -> None:
                                 bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85), zorder=6)
         h = [Line2D([], [], color=INK, lw=1.15)] + [Line2D([], [], color=LEAD_COL[v], lw=1.3) for v in LEADS]
         fig.legend(h, ["observed"] + [f"forecast issued {v} h earlier" for v in LEADS], loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.005), fontsize=9.5)
-        fig.subplots_adjust(left=0.065 if not many else (0.055 if a.narrow else 0.04), right=0.99, top=1 - ((1.4 if a.narrow else 1.15) if many else 0.75) / H, bottom=0.62 / H)
+        fig.subplots_adjust(left=0.065 if not many else (0.055 if a.narrow else 0.04), right=0.99, top=1 - ((1.4 if a.narrow else 1.15) if head else 0.75) / H, bottom=0.62 / H)
         out = D / f"{a.prefix}_{k // a.per_figure + 1}.png"
         fig.savefig(out, dpi=250 if (not many or a.narrow) else 190); plt.close(fig)
         print("->", out)
