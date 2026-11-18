@@ -120,3 +120,17 @@ AORC 没有实时产品，业务上这样替代（依据和对比数字见 `deli
 `hourly_fill.sh`：站点图要画提前 1、3、6 小时的连续曲线，需要每个整点都有一次预报，而定时运行是每 6 小时一次。这个脚本把从 2026-11-17 07 UTC 到两小时前、还没有预报的每个整点补出来（两个模型；数据到齐后跑，整段水位取一次，每个时刻只用不晚于它的读数），输出在 `shadow_20261117/hourly/`。cron 每 6 小时叫一次（本地 01:45、07:45、13:45、19:45），同样在 `STOP` 之后什么都不做。
 
 每次汇报结果时画图的步骤：在 sv7 上用 `extract_hourly_test.py --stations $(python scripts/report/domain_station_figs.py --ids)` 把 15 个站取出来（观测用 `hourly/levels/` 里最新的那个文件），拷到 `deliverables/33_partner_live_test/hourly_fc_schedule.csv`，再跑 `scripts/report/domain_station_figs.py`，得到三个区域各一张图（每个区域 5 个固定的站）。
+
+## 读数里的尖峰（2026-11-18 加）
+
+`forecast.py` 在把读数平均成小时值之前，先去掉孤立的错误读数（`scripts/data/common.py` 的 `despike_readings`，默认开，`--despike off` 关掉）。规则：一个读数比它前一个和后一个读数**都**高出（或低出）0.5 m 以上，而前后两个读数彼此一致（相差不到两次跳变中较小者的一半）、相隔不超过 1 小时，就去掉这一个读数。0.5 m 和训练数据的孤立尖峰过滤用的最小值相同。持续的涨落不会被动；最新的一个读数后面还没有读数，判断不了，也不动。每次运行去掉了哪些站的几个读数记在 `manifest.json` 的 `despiked_readings` 里；存下来的 `levels.pkl` 仍然是原始读数。打分用的实况（`verify_cycles.py`、`extract_hourly_test.py`、`station_rmse_hourly.py`）做同样处理。
+
+起因：2026-11-17 11:15 UTC，USGS 02481510（Wolf River nr Landon, MS）有一个 8.281 m 的读数，前后都是 1.31 m。小时平均被拉到 3.05 m，两个模型都接着报到 4.2–4.4 m（实际 1.31 m）。训练数据去过孤立尖峰，实时脚本原来没有。
+
+验证（sv7 `despike_test_20261118/`，新代码放在单独的一份 `repo_despike_20261118`，定时任务用的那份没有动）：用逐小时补跑存下来的输入把 17 日 07 时到 18 日 12 时的 30 个时刻、两个模型重跑。
+- `--despike off`：和原来的预报完全相同（差 0.0000 cm），说明改动本身不影响别的东西。
+- `--despike on`：每个模型 12,510 个站点预报里只有 54 个变了，都在两个站：Wolf River（17 日 11 时那次 6 小时预报 4.42 → 1.31 m，之后几小时各差几厘米，因为坏的小时值不再留在 72 小时输入里）和 Cole Ck at I-10 nr Orange（传感器本身不稳，最多差 5.3 cm）。其余 12,456 个预报一个数都没变。
+- 12 天存下来的读数（424 个站，约 64 万个）里共去掉 33 个：Wolf River 1 个，Cole Ck 31 个（跳 0.5–1.1 m，5 分钟后回到原值），L Pontchartrain at Crossover 4 一个（0.18 → 0.91 → 0.38 m）。
+- 构造序列的检查在 `scripts/data/test_despike.py`：持续上涨、洪峰、两个读数宽的峰、潮汐、最新读数上的尖峰、相隔几小时的读数都不会被去掉。
+
+没有解决的：连续几个读数都坏的情况；坏读数恰好是起报前最后一个读数的情况（下一个周期才能判断）。
