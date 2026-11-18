@@ -18,6 +18,7 @@ Switches this script does not build inputs for (--long-feat, --downstream, --ups
 For tests on past forecast times (all outputs are written, nothing is sent anywhere):
   --inputs-from DIR   take the water levels and discharge that another run saved for this cycle (DIR/<cycle>/levels.pkl,
                       discharge.npz) instead of asking the services again: two models then get exactly the same readings
+  --despike off       use every reading (default on: single readings more than 0.5 m from both neighbours are removed)
   --usgs-late H       drop the newest H hours of every USGS gauge, as if they had not arrived yet (run afterwards, the
                       services return complete data; in real time half of the USGS gauges report an hour only after 32 min)
 
@@ -50,7 +51,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[0] / "train"))
 sys.path.insert(0, str(HERE.parents[0] / "data"))
 from model import GlobalLSTM  # noqa: E402
-from common import FT, census, extra, get, log, to_hourly  # noqa: E402
+from common import FT, census, despike_readings, extra, get, log, to_hourly  # noqa: E402
 from data import WIND_SCALE  # noqa: E402
 
 REPO = HERE.parents[1]
@@ -246,6 +247,7 @@ def main() -> None:
     ap.add_argument("--inputs-from", help="TEST: out dir of another run; its saved water levels and discharge of this cycle are used instead of the services")
     ap.add_argument("--levels-all", help="TEST: pickle of water-level readings covering many forecast times (one fetch); this run takes the readings up to its own forecast time")
     ap.add_argument("--usgs-late", type=int, default=0, help="TEST: drop the newest H hours of every USGS gauge (data that had not arrived yet)")
+    ap.add_argument("--despike", choices=["on", "off"], default="on", help="remove single readings that stand more than 0.5 m apart from both neighbours (off: use every reading, as before 2026-11-18)")
     a = ap.parse_args()
 
     cycle = pd.Timestamp(a.cycle) if a.cycle else pd.Timestamp.now("UTC").tz_localize(None).floor("h") - pd.Timedelta(hours=1)
@@ -314,6 +316,15 @@ def main() -> None:
         series = fetch_levels(st, a.sources, begin, end, raw_dir)
     pd.to_pickle(series, out / "levels.pkl")
     assert all(s.index.max() <= end for s in series.values() if len(s)), "a reading later than the forecast time"
+    if a.despike == "on":                           # after levels.pkl is saved: the saved readings stay as they came
+        removed = {}
+        for k_ in list(series):
+            series[k_], n_ = despike_readings(series[k_])
+            if n_:
+                removed[f"{k_[0]}:{k_[1]}"] = n_
+        manifest_extra["despiked_readings"] = {"rule": "single reading more than 0.5 m from both neighbours", "stations": removed}
+        if removed:
+            log.info("single readings removed as spikes: %s", removed)
     if a.usgs_late > 0:                             # the newest hours of the USGS gauges have not arrived: hours after cycle - H are missing
         cut = cycle - pd.Timedelta(hours=a.usgs_late) + pd.Timedelta(minutes=29)
         series = {k: (s[s.index <= cut] if k[0] == "USGS" else s) for k, s in series.items()}

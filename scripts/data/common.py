@@ -15,6 +15,7 @@ import sys
 import time
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -81,6 +82,28 @@ def save_raw(path: Path, text: str) -> None:
 def load_raw(path: Path) -> str:
     with gzip.open(path, "rt", encoding="utf-8") as f:
         return f.read()
+
+
+SPIKE_MIN_JUMP_M = 0.5      # the same minimum as the isolated-spike filter of the training data (train/build_dataset.py)
+
+
+def despike_readings(s: pd.Series, min_jump: float = SPIKE_MIN_JUMP_M, max_gap: str = "1h") -> tuple[pd.Series, int]:
+    """Remove single water-level readings that stand apart from both neighbours: a transmission or sensor error such as
+    1.305, 1.305, 8.281, 1.308 m. A reading is removed only if it lies more than `min_jump` above (or below) BOTH the reading
+    before and the reading after it, while those two agree with each other (their difference is less than half of either
+    jump) and are at most `max_gap` apart. A rise or fall that stays is never touched, and neither is the newest reading
+    (it has no reading after it yet). Returns the series without those readings and how many were removed.
+    The training data had isolated spikes removed on the hourly values; without this step the forecast script would use
+    readings the model never saw."""
+    s = s[~s.index.duplicated(keep="first")].sort_index().dropna()
+    if len(s) < 3:
+        return s, 0
+    v = s.to_numpy(dtype=np.float64); t = s.index
+    up, down = v[1:-1] - v[:-2], v[1:-1] - v[2:]                      # jump from the reading before, and back to the reading after
+    bad = ((np.sign(up) == np.sign(down)) & (np.abs(up) > min_jump) & (np.abs(down) > min_jump)
+           & (np.abs(v[:-2] - v[2:]) < 0.5 * np.minimum(np.abs(up), np.abs(down))) & np.asarray((t[2:] - t[:-2]) <= pd.Timedelta(max_gap)))
+    keep = np.ones(len(v), bool); keep[1:-1] = ~bad
+    return s[keep], int(bad.sum())
 
 
 def to_hourly(s: pd.Series) -> pd.Series:

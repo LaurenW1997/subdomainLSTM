@@ -21,7 +21,7 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from forecast import HORIZON, REPO, fetch_levels, to_hourly  # noqa: E402
+from forecast import HORIZON, REPO, despike_readings, fetch_levels, to_hourly  # noqa: E402
 
 K = ["source", "station_id"]
 
@@ -46,7 +46,7 @@ def main() -> None:
     now = pd.Timestamp.now("UTC").tz_localize(None)
     raw = out / "raw_verify"; raw.mkdir(exist_ok=True)
     series = fetch_levels(st, ["USGS", "NOAA_COOPS"], t0 - pd.Timedelta(hours=1), t1 + pd.Timedelta(minutes=59), raw)
-    hourly = {k: to_hourly(s) for k, s in series.items()}
+    hourly = {k: to_hourly(despike_readings(s)[0]) for k, s in series.items()}
     g = pd.read_csv(REPO / "config" / "station_groups.csv", dtype={"station_id": str}).set_index(K).type
     b = pd.read_csv(REPO / "config" / "station_behaviour.csv", dtype={"station_id": str}).set_index(K).behaviour
     keys = list(zip(idx.get_level_values(0), idx.get_level_values(1))); cy = idx.get_level_values("cycle_utc")

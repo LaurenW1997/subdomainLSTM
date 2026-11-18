@@ -25,7 +25,7 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from forecast import HORIZON, to_hourly  # noqa: E402
+from forecast import HORIZON, despike_readings, to_hourly  # noqa: E402
 
 K = ["source", "station_id"]
 METHODS = ["new", "mean2", "mean3", "anchor2", "anchor3", "change2", "change3"]
@@ -56,7 +56,7 @@ def main() -> None:
         F[lab], O0[lab] = f, o
     hours = pd.date_range(T[0], T[-1] + pd.Timedelta(hours=HORIZON), freq="h")
     lv = pd.read_pickle(a.levels)
-    OBS = np.stack([to_hourly(lv[k]).reindex(hours).values if k in lv else np.full(len(hours), np.nan) for k in st])
+    OBS = np.stack([to_hourly(despike_readings(lv[k])[0]).reindex(hours).values if k in lv else np.full(len(hours), np.nan) for k in st])
     beh = None
     if a.behaviour:
         b = pd.read_csv(a.behaviour, dtype={"station_id": str}).set_index(K).behaviour

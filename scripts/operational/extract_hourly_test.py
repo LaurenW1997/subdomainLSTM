@@ -17,7 +17,7 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from forecast import HORIZON, to_hourly  # noqa: E402
+from forecast import HORIZON, despike_readings, to_hourly  # noqa: E402
 
 K = ["source", "station_id"]
 
@@ -28,7 +28,7 @@ def main() -> None:
     a = ap.parse_args()
     dirs = dict(x.split("=", 1) for x in a.dirs); out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     cyc = sorted(set.intersection(*[{p.name for p in Path(d).iterdir() if (p / "forecast.csv").exists()} for d in dirs.values()]))
-    obs = {k: to_hourly(s) for k, s in pd.read_pickle(a.levels).items()}
+    obs = {k: to_hourly(despike_readings(s)[0]) for k, s in pd.read_pickle(a.levels).items()}
     parts = []
     for lab, d in dirs.items():
         x = pd.concat([pd.read_csv(Path(d) / c / "forecast.csv", dtype={"station_id": str}, parse_dates=["cycle_utc"]) for c in cyc], ignore_index=True)

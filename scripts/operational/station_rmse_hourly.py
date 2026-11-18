@@ -15,7 +15,7 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from forecast import HORIZON, to_hourly  # noqa: E402
+from forecast import HORIZON, despike_readings, to_hourly  # noqa: E402
 
 K = ["source", "station_id"]
 
@@ -35,7 +35,7 @@ def main() -> None:
         parts.append(x.set_index(K + ["cycle_utc", "lead"]))
     f = parts[0][["name"]].join([p[[c for c in p.columns if c != "name"]] for p in parts], how="inner").reset_index()
     f["valid"] = f.cycle_utc + pd.to_timedelta(f.lead, unit="h")
-    obs = {k: to_hourly(s) for k, s in pd.read_pickle(a.levels).items()}
+    obs = {k: to_hourly(despike_readings(s)[0]) for k, s in pd.read_pickle(a.levels).items()}
     o = pd.concat([s.rename("obs").to_frame().assign(source=k[0], station_id=k[1]) for k, s in obs.items()]).reset_index().rename(columns={"index": "valid"})
     f = f.merge(o, on=K + ["valid"], how="left").dropna(subset=["obs"] + list(dirs))
     g = f.groupby(K + ["name", "lead"])
