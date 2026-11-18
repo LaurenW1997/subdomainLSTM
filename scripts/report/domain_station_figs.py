@@ -44,7 +44,7 @@ def main() -> None:
         have = [s for s in ids if (d.station_id == s).any()]
         if len(have) < len(ids):
             print(f"{dom}: no forecast for {sorted(set(ids) - set(have))}")
-        for extra in ([], ["--per-figure", "3"]):
+        for extra in ([], ["--per-figure", "3", "--row-height", "1.62", "--fig-width", "13.0"]):     # the second: three stations on a slide
             prefix = f"domain_{dom}" + ("_slide" if extra else "")
             cmd = [sys.executable, str(HERE / "partner_live_fig.py"), "--period", f"{dom}:  {span}", a.src, b.strftime(fmt), e.strftime(fmt), "--stations", *have,
                    "--per-figure", "5", "--prefix", prefix] if not extra else \

@@ -41,6 +41,7 @@ def main() -> None:
     ap.add_argument("--stations", nargs="+", default=DEFAULT); ap.add_argument("--src", default=str(D / "hourly_fc.csv"))
     ap.add_argument("--begin", default="2026-11-15T00"); ap.add_argument("--end", default="2026-11-17T12"); ap.add_argument("--per-figure", type=int, default=4); ap.add_argument("--prefix", default="stations", help="file name: <prefix>_<n>.png")
     ap.add_argument("--period", nargs=4, action="append", metavar=("LABEL", "SRC", "BEGIN", "END"), help="several periods next to each other; replaces --src --begin --end")
+    ap.add_argument("--row-height", type=float, default=2.45, help="height of one station row in inches"); ap.add_argument("--fig-width", type=float, help="width of the figure in inches (default 11, or by the periods)")
     ap.add_argument("--narrow", action="store_true", help="with several periods: a figure as wide as a slide (13 in), column titles on three lines")
     a = ap.parse_args()
     periods = a.period or [["", a.src, a.begin, a.end]]
@@ -56,8 +57,8 @@ def main() -> None:
     head = many or any(lab for lab, *_ in data)        # a heading above the columns: the period, or the domain for a single period
     for k in range(0, len(a.stations), a.per_figure):
         ids = a.stations[k:k + a.per_figure]
-        H = 2.45 * len(ids) + ((1.55 if a.narrow else 1.3) if head else 0.9)
-        fig = plt.figure(figsize=(11.0 if not many else (13.0 if a.narrow else 9.6 * nP), H))
+        H = a.row_height * len(ids) + ((1.55 if a.narrow else 1.3) if head else 0.9)
+        fig = plt.figure(figsize=(a.fig_width or (11.0 if not many else (13.0 if a.narrow else 9.6 * nP)), H))
         wr = sum([[1, 1, 0.16] for _ in range(nP)], [])[:-1]              # two columns per period, a gap between periods
         gs = fig.add_gridspec(len(ids), len(wr), width_ratios=wr, wspace=0.06, hspace=0.36)
         for i, sid in enumerate(ids):

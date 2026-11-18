@@ -366,6 +366,17 @@ def main() -> None:
         if note.exists():
             text(sl, 0.5, y + 0.3, 12.3, 3.0, note.read_text(encoding="utf-8").strip().split("\n"), size=BODY)
 
+    # ---- the five fixed stations of each domain (domain_station_figs.py): three on one slide, the other two on a backup slide
+    for dom in ("Louisiana100m", "Galveston100m", "Texas100m"):
+        for n_ in (1, 2):
+            f_ = T / f"domain_{dom}_slide_{n_}.png"
+            if not f_.exists():
+                continue
+            sl = new(f"{dom}: forecasts at the five fixed stations, both models  ({n_} of 2)")
+            yb = picture(sl, f_, 0.3, 0.85, 12.7, 6.05)
+            text(sl, 0.5, yb + 0.03, 12.3, 0.5, ["The same five stations of this domain every time. Left: the version that is run. Right: with partner stations. A forecast from every hour, run afterwards with the data complete; "
+                                                 "each line joins the forecasts issued 1, 3 or 6 h before the hour they are valid for."], size=11)
+
     # ---- a wrong reading and the filter added to the forecast script
     if (T / "despike_02481510.png").exists():
         sl = new("One wrong reading made both models forecast a rise of 3 m; such readings are now dropped")
@@ -407,8 +418,26 @@ def main() -> None:
         "Grey lines: a station with tide may also take a station downstream on its river, because the tide comes up the river (30 links). Green dots: weakly tidal stations, where the tide explains 5 to 20% of the 6 h change; "
         "they choose partners like tidal stations but are not offered to others as a tidal partner."], size=11.5)
 
+    # ---- order for the group meeting (casual, about 15 minutes): the main line first, the rest behind it as backup
+    main = ["Starting point", "Where the remaining error is", "Partner stations: the water level", "Partner stations on the map", "The two examples of the map",
+            "Only data up to the forecast time", "Partner stations in the test years", "Louisiana100m:|(1 of 2)", "Galveston100m:|(1 of 2)", "Texas100m:|(1 of 2)",
+            "Runs in real time", "One wrong reading", "Where things stand"]
+    ids = prs.slides._sldIdLst
+    title_of = lambda el: next((sh.text_frame.text for sh in prs.part.related_part(el.rId).slide.shapes if sh.has_text_frame and sh.text_frame.text.strip()), "")
+    els = list(ids); first = []
+    for key in main:
+        pre, _, suf = key.partition("|")
+        hit = next((el for el in els if el not in first and title_of(el).startswith(pre) and title_of(el).rstrip().endswith(suf)), None)
+        if hit is not None:
+            first.append(hit)
+    for el in els:
+        ids.remove(el)
+    for el in first + [el for el in els if el not in first]:
+        ids.append(el)
+    n_main = len(first)
+
     prs.save(a.out)
-    print(f"-> {a.out}: {len(prs.slides)} slides")
+    print(f"-> {a.out}: {len(prs.slides)} slides, the first {n_main} are the main line")
 
 
 if __name__ == "__main__":
