@@ -1,8 +1,8 @@
 """Station figures of the runs on a schedule: five fixed stations in each of the three 100 m domains, both models.
 
 Drawn every time results of the runs on a schedule are reported. The stations are fixed so that the figures of different
-days can be compared: they are the representative stations of deliverable 10 (chosen per domain and type), limited to
-stations with real-time data inside the operational grid of the domain.
+days can be compared: they are representative stations of deliverable 10 (chosen per domain and type) with real-time data,
+inside the domain as config/domains.json defines it (for Louisiana100m the full grid, up to 31.14 N).
 Style of partner_live_fig.py: observed level and continuous lines for 1, 3 and 6 h lead (a forecast from every hour, from
 operational/hourly_fill.sh on sv7), the version that is run on the left, the version with partner stations on the right.
 Input : deliverables/33_partner_live_test/hourly_fc_schedule.csv  (extract_hourly_test.py on sv7 with --stations of ALL below)
@@ -22,7 +22,7 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 T = HERE.parents[1] / "deliverables" / "33_partner_live_test"
 DOMAINS = {
-    "Louisiana100m": ["8761724", "8761927", "8747437", "07387050", "07381590"],    # Grand Isle, New Canal, Bay Waveland, Vermilion Bay, Wax Lake Outlet
+    "Louisiana100m": ["8761724", "8761927", "07387050", "07381590", "07374000"],   # Grand Isle, New Canal, Vermilion Bay, Wax Lake Outlet, Mississippi River at Baton Rouge
     "Galveston100m": ["8771450", "8770613", "08072050", "08114000", "08068310"],   # Galveston Pier 21, Morgans Point, San Jacinto Rv nr Sheldon, Brazos Rv at Richmond, Spring Ck
     "Texas100m": ["8774770", "8773259", "08188810", "08211500", "08176500"],       # Rockport, Port Lavaca, Guadalupe Rv nr Tivoli, Nueces Rv at Calallen, Guadalupe Rv at Victoria
 }

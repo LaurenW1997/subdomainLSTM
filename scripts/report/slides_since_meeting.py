@@ -366,6 +366,19 @@ def main() -> None:
         if note.exists():
             text(sl, 0.5, y + 0.3, 12.3, 3.0, note.read_text(encoding="utf-8").strip().split("\n"), size=BODY)
 
+    # ---- a wrong reading and the filter added to the forecast script
+    if (T / "despike_02481510.png").exists():
+        sl = new("One wrong reading made both models forecast a rise of 3 m; such readings are now dropped")
+        yb = picture(sl, T / "despike_02481510.png", 0.9, 0.85, 11.5, 4.7)
+        text(sl, 0.5, yb + 0.1, 12.3, 1.9, [
+            "-  17 November, 11:15 UTC: one reading of 8.28 m between readings of 1.31 m. The hourly value became 3.05 m, and the model carried the 'rise' on to 4.4 m (bottom left; the version that is run, the "
+            "version with partner stations did the same).",
+            "-  Rule added to the forecast script: a reading that jumps by more than 0.5 m and is back at the next reading is dropped. A rise that stays is kept. The training data had been cleaned this way; "
+            "the forecast script had not.",
+            "-  Checked on saved readings: the false rise is gone (bottom right); of 12,510 station forecasts only 54 change, all at the two gauges with such readings. In 12 days, 33 of about 640,000 readings are dropped.",
+            "-  Not caught: a wrong reading that is the newest one, because the next reading is needed to tell. The runs on the schedule keep the code without the rule until Friday.",
+        ], size=12)
+
     # ---- 13 where things stand
     sl = new("Where things stand")
     text(sl, 0.5, 1.05, 12.3, 6.2, [
