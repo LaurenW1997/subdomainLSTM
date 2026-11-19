@@ -1,0 +1,5 @@
+class,land (km2),of it in a leveed area (km2),"above 0.3 m, inputs observed (km2)","above 1.0 m, inputs observed (km2)","above 0.3 m, inputs forecast 6 h before (km2)","above 1.0 m, inputs forecast 6 h before (km2)"
+from observations,11910.27,0.0,6900.89,1422.6,7127.31,1844.97
+from the Ida runs,622.74,32.29,476.84,60.87,494.2,80.29
+no map: flooded in the Ida runs only with rainfall,19294.19,3663.42,,,,
+no map: dry in all Ida runs,26333.71,6576.58,,,,
