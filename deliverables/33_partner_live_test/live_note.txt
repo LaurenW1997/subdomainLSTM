@@ -1,6 +1,7 @@
-3 forecast times, 17 November 18 UTC to 18 November 06 UTC, run when the data were arriving and scored 7 h later. The first was started by hand, the others by cron on sv7, under my own account. Both models read the same readings.
+7 forecast times, 17 November 18 UTC to 19 November 06 UTC, run when the data were arriving and scored 7 h later. The first was started by hand, the others by cron on sv7, under my own account. Both models read the same readings.
 
--  No failed step on the schedule so far: 8 steps, each with a forecast for 415 to 417 stations. The USGS service dropped connections several times; the retries got through.
--  With partner stations: lower 6 h RMSE in 9 of 9 comparisons (forecast time x run time). Run 31 min after the hour: 3.86 to 3.54 cm at 6 h, 2.62 to 2.36 cm at 3 h.
--  When to run: at 1 h the RMSE is 1.28 cm when run 31 min after the hour and 1.10 cm at 65 min (part of the newest readings have not arrived at 31 min); at 6 h it makes no difference.
--  Few forecast times on calm days (6 h RMSE near 3.9 cm, against 8.4 cm in the test years): this shows the chain running unattended, not the accuracy. The schedule runs until 21 November.
+-  No failed step on the schedule so far: 20 steps, each with a forecast for 415 to 417 stations. The USGS service dropped connections several times; the retries got through.
+-  With partner stations: lower 6 h RMSE in 21 of 21 comparisons (forecast time x run time). Run 31 min after the hour: 4.45 to 3.63 cm at 6 h, 3.38 to 2.64 cm at 3 h.
+-  2 more wrong readings, each a single reading: Cypress Ck nr Cypress (42.56 m among 39.53 m) gave a forecast 1 m too high in the run 31 min after the hour; Caernarvon Outfall Channel (-0.84 m among 0.83 m) is in the observations of the scoring. The rule that drops such readings removes both; it is not yet in the code on the schedule.
+-  When to run: without these 2 station forecasts the 1 h RMSE is 1.46 cm when run 31 min after the hour and 1.27 cm at 65 min (part of the newest readings have not arrived at 31 min); at 6 h it makes no difference (4.22 and 4.28 cm).
+-  Few forecast times on calm days (6 h RMSE near 4.5 cm, against 8.4 cm in the test years): this shows the chain running unattended, not the accuracy. The schedule runs until 21 November.

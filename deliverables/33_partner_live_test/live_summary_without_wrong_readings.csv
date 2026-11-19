@@ -1,0 +1,7 @@
+label,model,n,rmse_1h_cm,rmse_3h_cm,rmse_6h_cm
+Run 31 min after the hour: the version that is run,"no partners, run 31 min after the hour",2899.0,1.457,2.923,4.216
+     with partner stations,"partners, run 31 min after the hour",2899.0,1.335,2.378,3.531
+Run 65 min after the hour: the version that is run,"no partners, run 65 min after the hour",2899.0,1.266,2.888,4.276
+     with partner stations,"partners, run 65 min after the hour",2899.0,1.14,2.313,3.523
+Data complete (run 7 h later): the version that is run,"no partners, data complete",2899.0,1.234,2.877,4.289
+     with partner stations,"partners, data complete",2899.0,1.106,2.294,3.53

@@ -1,7 +1,7 @@
 label,model,n,rmse_1h_cm,rmse_3h_cm,rmse_6h_cm
-Run 31 min after the hour: the version that is run,"no partners, run 31 min after the hour",1242.0,1.281,2.616,3.858
-     with partner stations,"partners, run 31 min after the hour",1242.0,1.224,2.36,3.543
-Run 65 min after the hour: the version that is run,"no partners, run 65 min after the hour",1242.0,1.095,2.67,3.936
-     with partner stations,"partners, run 65 min after the hour",1242.0,1.02,2.343,3.506
-Data complete (run 7 h later): the version that is run,"no partners, data complete",1242.0,1.049,2.661,3.944
-     with partner stations,"partners, data complete",1242.0,0.978,2.319,3.486
+Run 31 min after the hour: the version that is run,"no partners, run 31 min after the hour",2901.0,2.477,3.378,4.452
+     with partner stations,"partners, run 31 min after the hour",2901.0,2.06,2.635,3.628
+Run 65 min after the hour: the version that is run,"no partners, run 65 min after the hour",2901.0,1.48,2.887,4.274
+     with partner stations,"partners, run 65 min after the hour",2901.0,1.382,2.314,3.523
+Data complete (run 7 h later): the version that is run,"no partners, data complete",2901.0,1.452,2.876,4.288
+     with partner stations,"partners, data complete",2901.0,1.347,2.293,3.529
