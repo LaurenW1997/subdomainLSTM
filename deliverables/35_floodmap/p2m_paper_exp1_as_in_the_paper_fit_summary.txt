@@ -1,0 +1,7 @@
+training: Exp1_fully_coupled (265 hours); prediction area 46,252 km2; every cell uses its 8 nearest of 30 control points; flooded = deeper than 0.05 m
+Type 1 (flooded in every hour, Model-1): 26,285 km2
+Type 2 with a model: 6,500 km2 - Model-2 linear, flooded hours 870 km2 (13%); Model-3 hurdle 2,716 km2 (42%); Model-4 Tobit 2,914 km2 (45%)
+low flood risk (flooded at times, fewer than two folds with flooded and dry hours; no model): 7,746 km2
+never flooded in the training hours (no model): 5,721 km2
+on land (dry in the run without a hurricane, 24,819 km2): Type 1 6,198 km2, Type 2 with a model 6,247 km2, low flood risk 6,657 km2, never flooded 5,717 km2
+cross-validation RMSE of the Type 2 cells (m), median: Model-2 linear, flooded hours 0.113, Model-3 hurdle 0.076, Model-4 Tobit 0.070; of the model chosen 0.063
