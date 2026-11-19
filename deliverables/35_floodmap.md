@@ -158,10 +158,44 @@ sv6 上 2026-11-11 做的质量控制归档（`/home/ywan245/result_analysis/zen
 4. 北边降雨造成的淹没：现在的输入解决不了，要另定办法。
 5. 接上 LSTM 的 1–6 小时预报，定输出格式。
 
+## 第三轮（2026-11-19）：和 USGS 的风暴潮传感器比峰值
+
+没有 Francine 的模式结果，所以换一场风暴的检验做不了。改为找 Ida 的独立实测。
+
+**找到了什么。** USGS 的洪水事件数据库（Flood Event Viewer，事件 "2021 Ida"，服务地址现在是 `api.waterdata.usgs.gov/stnservices/`）里：
+
+- 高水位痕迹 655 个，但 Louisiana 只有 4 个、Mississippi 2 个，其余都在东北各州（Ida 残余造成的暴雨洪水）。不够用。
+- **临时布设的风暴潮传感器的峰值 14 个**（Louisiana 11、Mississippi 3），NAVD88，测量时间精确。这些传感器是风暴前临时装的，不在我们的站点数据里，和映射模型的任何输入都无关。存在 `35_floodmap/ida_storm_tide_peaks_usgs.csv`。
+
+**怎么比**（`scripts/p2m/storm_tide_check.py`、`storm_tide_fig.py`，sv7 新目录 `p2m/hwm_v1`）。在每个传感器周围 200 m 内取淹到的格点的峰值水面高程（传感器装在码头、电线杆上，正好落在的那个 100 m 格点可能是陆地），取中位数。模式和映射的结果在模式的基准上，统一加 0.38 m 换到 NAVD88。0.38 m 是 9 个 NOAA 潮位站在风暴前三天模式比实测低的中位数（各站 0.26–0.44 m）。
+
+**结果**（图 `35_floodmap/ida_storm_tide_peaks.png`，逐站数字 `ida_storm_tide_compare.csv`）：
+
+| | 传感器数 | 实测峰值（m） | 模式后报：平均误差 / 均方根（m） | 实测驱动的映射 | 用模式序列的映射 |
+|---|---|---|---|---|---|
+| 有遮蔽的地方（海湾、湖、水道、河口） | 10 | 1.37–3.26 | +0.06 / 0.34 | +0.06 / 0.47 | −0.12 / 0.39 |
+| 朝外海的海滩（Grand Isle、Elmer's Island） | 4 | 3.14–3.35 | −2.08 / 2.08 | −2.15 / 2.15 | −2.39 / 2.39 |
+
+- **有遮蔽的 10 个点**：实测驱动的映射平均不偏（+0.06 m），均方根 0.47 m，模式后报 0.34 m。映射比模式后报差一些，但在同一个量级。Breton Sound Marina 那个 3.26 m 的峰（淹到地面以上 2.3 m）映射给 3.80 m、模式 3.58 m；最差的是 Bay Pomme d'Or（映射 1.51 m，实测 2.13 m）和 Bayou Cumbest（映射和模式都是 2.2–2.3 m，实测 1.37 m）。
+- **朝外海的海滩 4 个点**：模式后报只有 1.0–1.4 m，传感器是 3.1–3.4 m，差 2 m。映射是从模式学的，跟着低。岛背后水道里的 NOAA 站（Grand Isle）当时的峰值比海滩上的传感器低约 1.7 m，所以这个差别是真实的，不是传感器的问题。可能的原因是海滩上的波浪增水，这里没有查证。**这是模式后报本身的问题，映射模型解决不了。**
+- **模式后报原样（不加 0.38 m）和传感器比**：有遮蔽的 10 个点平均低 0.33 m，均方根 0.47 m。也就是说 0.38 m 这个基准差在独立的数据上也成立。
+
+**分量。** 这是到目前为止唯一和模型输入完全无关的检验，而且其中几个点在淹到的陆地上。但只有 14 个点、一场风暴、只有峰值，结论只能说到"量级对、没有系统偏差（外海海滩除外）"。
+
+**下一步（再更新）。**
+
+1. 平时干的格点换成文章里的模型。
+2. 更多的独立实测：CRMS 的沼泽水位站（沿海几百个，逐小时），可以把上面这种检验从 14 个点扩大到几百个，而且有完整过程线。
+3. 北边降雨造成的淹没、外海海滩偏低：都来自模式或输入本身，要另定办法。
+4. 接上 LSTM 的 1–6 小时预报，定输出格式。换一场风暴的检验要等有另一场风暴的模式结果。
+
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/ida_storm_tide_peaks_usgs.csv` | 第三轮：USGS 14 个临时风暴潮传感器的峰值（位置、时间、NAVD88 高程、离地高度） |
+| `35_floodmap/ida_storm_tide_check.csv`、`ida_storm_tide_compare.csv`、`ida_storm_tide_summary.txt`、`ida_storm_tide_peaks.png` | 第三轮：各传感器处模式后报和两种映射的峰值（模式基准）；换到 NAVD88 后的对比；汇总；图 |
+| `scripts/p2m/storm_tide_check.py`、`storm_tide_fig.py` | 第三轮：在 sv7 上取各点的峰值；对比和画图 |
 | `35_floodmap/controls_used_39_points.csv` | 第二轮：60 个站里哪 39 个用作控制点（`used` 列） |
 | `35_floodmap/observed_inputs_stations.csv`、`observed_inputs_series.npz`、`observed_inputs_summary.txt` | 第二轮：逐站的偏移、RMSE、峰值（三组：轮流留出的控制点、从来不是输入的站、没有用的 21 个站）；各站的实测、映射、模式后报序列；汇总 |
 | `35_floodmap/metrics_Exp1_fully_coupled_39_points.csv`、`metrics_Exp1_fully_coupled_observed_inputs.csv`、`…_observed_inputs_60_points.csv` | 第二轮：39 个控制点、模式自己的序列；39 个控制点、实测驱动；60 个控制点、实测驱动（对照） |

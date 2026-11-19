@@ -1,0 +1,15 @@
+site_number,state,county,waterbody,latitude_dd,longitude_dd,peak_date_utc,peak_stage_ft,vertical_datum,peak_m,height_above_ground_ft,peak_estimated
+LAJEF06563,LA,Jefferson Parish,Lake Pontchartrain,30.04087,-90.23769,2021-08-30T00:01:00Z,6.2,NAVD88,1.89,5.0,False
+LAJEF27108,LA,Jefferson Parish,Gulf of America,29.20299,-90.037525,2021-08-29T18:08:00Z,10.3,NAVD88,3.139,8.0,False
+LAJEF27112,LA,Jefferson Parish,Gulf of America,29.20316,-90.03781,2021-08-29T17:16:00Z,10.3,NAVD88,3.139,2.0,False
+LAJEF27133,LA,Jefferson Parish,Gulf of America,29.25968,-89.94972,2021-08-29T17:54:00Z,10.8,NAVD88,3.292,10.0,False
+LAJEF27136,LA,Jefferson Parish,Gulf of America,29.26028,-89.95083,2021-08-29T17:29:00Z,11.0,NAVD88,3.353,3.5,False
+LAPLA27142,LA,Plaquemines Parish,Breton Sound Marina,29.56722,-89.76444,2021-08-29T18:06:00Z,10.7,NAVD88,3.261,7.7,False
+LAPLA27153,LA,Plaquemines Parish,Bay Pomme d'Or,29.35278,-89.53556,2021-08-29T19:18:00Z,7.0,NAVD88,2.134,4.5,False
+LASTB00004,LA,St. Bernard Parish,Mississippi River Gulf Outlet,29.85512,-89.678477,2021-08-29T18:50:00Z,7.8,NAVD88,2.377,4.5,False
+LASTT23298,LA,St. Tammany Parish,Rigolets,30.17611,-89.72722,2021-08-30T06:55:00Z,6.3,NAVD88,1.92,,False
+LASTT27187,LA,St. Tammany Parish,Lake Pontchartrain,30.335,-90.045,2021-08-30T07:00:00Z,7.74,NAVD88,2.359,4.0,False
+LATAN23291,LA,Tangipahoa Parish,Pass Manchac,30.28917,-90.40167,2021-08-30T06:20:00Z,6.5,NAVD88,1.981,3.5,False
+MSHAN06615,MS,Hancock County,East Pearl River,30.23908333,-89.6147778,2021-08-30T06:08:00Z,8.1,NAVD88,2.469,6.6,False
+MSHAR25057,MS,Harrison County,Mississippi Sound,30.36444,-89.08613,2021-08-30T05:52:00Z,6.6,NAVD88,2.012,6.6,False
+MSJAC25056,MS,Jackson County,Bayou Cumbest,30.39952,-88.45236,2021-08-30T10:55:00Z,4.5,NAVD88,1.372,,False
