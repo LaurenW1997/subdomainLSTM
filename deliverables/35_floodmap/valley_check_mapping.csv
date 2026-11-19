@@ -1,0 +1,7 @@
+field,"north of 30.5 N, above 0.1 m (km2)","north of 30.5 N, above 0.3 m (km2)","north of 30.5 N, above 1.0 m (km2)","south of 30.5 N, above 0.1 m (km2)","south of 30.5 N, above 0.3 m (km2)","south of 30.5 N, above 1.0 m (km2)"
+"Ida: numerical model (hindcast), peak",8224.79,3548.32,1077.73,18040.77,11421.06,4250.94
+"Ida: mapping from observed levels, peak",3844.48,2132.04,414.21,14410.71,10090.01,3538.48
+"Francine: mapping from observed levels, peak of 10 to 13 September",3169.32,1573.78,222.36,13926.33,9387.45,1677.38
+"Francine: mapping from observed levels, largest depth in the 42 calm hours before",1960.76,817.26,102.89,11801.85,5503.75,304.15
+"Francine: mapping from observed levels, smallest depth of the ten days",1344.82,522.45,49.63,8209.0,3084.8,92.16
+every input at its training mean (the constant term alone),1218.08,347.64,35.31,6843.84,801.41,15.85

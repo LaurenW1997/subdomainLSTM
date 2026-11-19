@@ -1,0 +1,79 @@
+land = dry throughout the run without a hurricane, east of 92.5 W; north of 30.5 N: 28487 km2; south of 30.5 N: 29673 km2
+
+flooded land per run (largest depth of the run):
+                    run  north of 30.5 N, above 0.1 m (km2)  north of 30.5 N, above 0.3 m (km2)  north of 30.5 N, above 1.0 m (km2)  south of 30.5 N, above 0.1 m (km2)  south of 30.5 N, above 0.3 m (km2)  south of 30.5 N, above 1.0 m (km2)
+     Exp1_fully_coupled                              8225.0                              3548.0                              1078.0                             18041.0                             11421.0                              4251.0
+           Exp2_no_wind                              8221.0                              3542.0                              1074.0                             16540.0                              8166.0                              1008.0
+  Exp3_no_precipitation                                28.0                                25.0                                16.0                              5235.0                              4698.0                              2647.0
+        Exp4_river_only                                24.0                                21.0                                12.0                                45.0                                33.0                                 2.0
+          Exp5_Ida_base                              8203.0                              3526.0                              1062.0                             18058.0                             11429.0                              4241.0
+     Exp6_absolute_base                                 0.0                                 0.0                                 0.0                                 0.0                                 0.0                                 0.0
+         Exp7_wind_base                                 4.0                                 3.0                                 0.0                              5194.0                              4691.0                              2682.0
+Exp8_precipitation_base                              8200.0                              3522.0                              1060.0                             16539.0                              8162.0                              1007.0
+    drought_river_storm                              8206.0                              3526.0                              1062.0                             18054.0                             11430.0                              4247.0
+ drought_river_no_storm                                 1.0                                 1.0                                 0.0                                39.0                                29.0                                 0.0
+      flood_river_storm                              8514.0                              3849.0                              1303.0                             18070.0                             11444.0                              4266.0
+   flood_river_no_storm                               399.0                               365.0                               222.0                                96.0                                59.0                                22.0
+
+flooded land in the maps:
+                                                                            field  north of 30.5 N, above 0.1 m (km2)  north of 30.5 N, above 0.3 m (km2)  north of 30.5 N, above 1.0 m (km2)  south of 30.5 N, above 0.1 m (km2)  south of 30.5 N, above 0.3 m (km2)  south of 30.5 N, above 1.0 m (km2)
+                                            Ida: numerical model (hindcast), peak                              8225.0                              3548.0                              1078.0                             18041.0                             11421.0                              4251.0
+                                          Ida: mapping from observed levels, peak                              3844.0                              2132.0                               414.0                             14411.0                             10090.0                              3538.0
+               Francine: mapping from observed levels, peak of 10 to 13 September                              3169.0                              1574.0                               222.0                             13926.0                              9387.0                              1677.0
+Francine: mapping from observed levels, largest depth in the 42 calm hours before                              1961.0                               817.0                               103.0                             11802.0                              5504.0                               304.0
+           Francine: mapping from observed levels, smallest depth of the ten days                              1345.0                               522.0                                50.0                              8209.0                              3085.0                                92.0
+                       every input at its training mean (the constant term alone)                              1218.0                               348.0                                35.0                              6844.0                               801.0                                16.0
+north of 30.5 N: of the land above 0.3 m at the peak of Francine, 52% is above 0.3 m in the calm hours already; mean depth there 0.70 m at the peak, 0.45 m in the calm hours
+south of 30.5 N: of the land above 0.3 m at the peak of Francine, 59% is above 0.3 m in the calm hours already; mean depth there 0.72 m at the peak, 0.40 m in the calm hours
+north of 30.5 N: land above 0.3 m in the map of Francine and in the map of Ida (both from observed levels): overlap 0.74; correlation of the two peak depths over that land 0.93
+south of 30.5 N: land above 0.3 m in the map of Francine and in the map of Ida (both from observed levels): overlap 0.93; correlation of the two peak depths over that land 0.89
+
+gauges north of 30.5 N with observations in both periods: 47; range of the observed level (highest minus lowest), median: Ida 3.36 m, Francine 0.86 m; Francine below half of Ida at 29 gauges
+source station_id                                               name   lat    lon  rise_ida_m  rise_francine_m
+  USGS   02481000                        BILOXI RIVER AT WORTHAM, MS 30.56 -89.12        7.64             3.29
+  USGS   07375105             Bogue Falaya River near Camp Covington 30.56 -90.15        6.74             4.56
+  USGS   07376000                        Tickfaw River at Holden, LA 30.50 -90.68        5.42             0.67
+  USGS   02490200    Pearl River Navigation Canal Lock and Dam No. 3 30.64 -89.87        5.23             1.23
+  USGS   02479155                        CYPRESS CREEK NR JANICE, MS 31.03 -89.02        5.13             0.73
+  USGS   07375000                   Tchefuncte River near Folsom, LA 30.62 -90.25        5.08             1.29
+  USGS   02479500                    ESCATAWPA RIVER NEAR WILMER, AL 30.86 -88.42        5.04             0.41
+  USGS   07375430                    Tangipahoa River near Amite, LA 30.73 -90.48        4.91             0.21
+  USGS   02475000                           LEAF RIVER NR MCLAIN, MS 31.11 -88.81        4.89             0.86
+  USGS   02479000                    PASCAGOULA RIVER AT MERRILL, MS 30.98 -88.73        4.85             0.93
+  USGS   02492343              EAST HOBOLOCHITTO CREEK NR CAESAR, MS 30.57 -89.59        4.82             1.88
+  USGS   07375500                     Tangipahoa River at Robert, LA 30.51 -90.36        4.69             1.92
+  USGS   07375410                 Tangipahoa River at Tangipahoa, La 30.88 -90.50        4.67             0.28
+  USGS   02479130                        BLACK CREEK NR BROOKLYN, MS 31.05 -89.20        4.64             1.07
+  USGS   02491500              Bogue Chitto River at Franklinton, LA 30.84 -90.16        4.59             0.43
+  USGS   02491800                           Bogue Chitto at Enon, LA 30.72 -90.08        4.51             0.81
+  USGS   07376500                     Natalbany River at Baptist, LA 30.50 -90.55        4.46             2.36
+  USGS   02492360             WEST HOBOLOCHITTO CREEK NR MCNEILL, MS 30.66 -89.69        4.23             2.26
+  USGS   07375960                    Tickfaw River at Montpelier, LA 30.69 -90.64        4.07             0.27
+  USGS   07377210                           Sandy Creek nr Pride, LA 30.67 -90.96        3.99             1.58
+  USGS   07375300                 Tangipahoa River near Kentwood, LA 30.94 -90.49        3.93             0.47
+  USGS   07377300                        Amite River at Magnolia, LA 30.53 -90.98        3.77             0.51
+  USGS   02479300                            RED CREEK AT VESTRY, MS 30.74 -88.78        3.42             2.37
+  USGS   07375800                     Tickfaw River at Liverpool, LA 30.93 -90.67        3.36             0.09
+  USGS   07377243  Sandy Ck at Alph. Forbes nr Greenwell Springs, LA 30.62 -90.98        3.14             1.16
+  USGS   02492000                   Bogue Chitto River near Bush, LA 30.63 -89.90        3.12             1.90
+  USGS   02489500                      Pearl River near Bogalusa, LA 30.79 -89.82        2.85             2.49
+  USGS   07378083   Beaver Bayou at Hooper Road near Baton Rouge, LA 30.56 -91.02        2.75             1.38
+  USGS   07378050 Comite R. at Greenwell Spg Rd near Baton Rouge, LA 30.51 -91.04        2.73             2.30
+  USGS   02479310               PASCAGOULA RIVER AT GRAHAM FERRY, MS 30.61 -88.64        2.70             1.24
+  USGS   07375280                      TANGIPAHOA RIVER AT OSYKA, MS 31.01 -90.46        2.54             0.35
+  USGS   07377000                    Amite River near Darlington, LA 30.89 -90.84        2.51             0.19
+  USGS   02492100    Pearl River Navigation Canal Lock and Dam No. 2 30.59 -89.86        1.84             0.56
+  USGS   02490193       Pearl River at Pools Bluff near Bogalusa, LA 30.71 -89.85        1.45             1.23
+  USGS   07381482 Old River Outflow Channel below Hydropower Channel 31.07 -91.65        1.40             0.44
+  USGS   07378100        Beaver Bayou at Wax Rd near Baton Rouge, LA 30.54 -91.02        1.34             0.60
+  USGS   07381490                Atchafalaya River at Simmesport, LA 30.98 -91.80        1.25             0.32
+  USGS   07378075     Beaver Bayou at Denham Road nr Baton Rouge, LA 30.59 -91.02        0.89             0.34
+  USGS   07377870   Comite River at Hooper Road near Baton Rouge, LA 30.53 -91.09        0.87             1.45
+  USGS   07377760     Comite River at Comite Dr near Baton Rouge, LA 30.56 -91.10        0.84             1.31
+  USGS   07377754                        Comite River near Baker, LA 30.60 -91.09        0.67             1.10
+  USGS   07377600 Comite R. at Pt. Hudson-Pride Rd near Milldale, LA 30.70 -91.05        0.65             0.52
+  USGS   07377500                 Comite River near Olive Branch, LA 30.76 -91.04        0.59             0.50
+  USGS   07382500                Bayou Courtableau at Washington, LA 30.62 -92.06        0.55             1.05
+  USGS   07384400                 State Canal near Krotz Springs, LA 30.57 -91.83        0.15             0.61
+  USGS   07383500 Bayou Des Glaises Diversion Ch. at Moreauville, LA 31.03 -91.98        0.12             0.64
+  USGS   07382000                 Bayou Cocodrie near Clearwater, LA 31.00 -92.38        0.11             0.84
