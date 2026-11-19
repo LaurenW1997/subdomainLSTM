@@ -62,6 +62,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--live", required=True); ap.add_argument("--fc", required=True); ap.add_argument("--crms-raw", required=True); ap.add_argument("--out", required=True)
     ap.add_argument("--train", nargs=2, default=["2016-01-01", "2024-01-01"]); ap.add_argument("--until", default="2024-12-31"); ap.add_argument("--noise", type=float, default=0.08); ap.add_argument("--d0", type=float, default=30.0)
+    ap.add_argument("--high-water-factor", type=float, default=1.0, help="share of a 6 h forecast's excess over the 95th percentile of the gauge that is kept (forecast_high_water.py); 1 = no correction")
+    ap.add_argument("--forecast-error", help="CSV of forecast_high_water.py --out-gauges: for the 6 h forecast inputs a second fit is made in which the assumed error of every gauge is the error of its 6 h forecasts at high water")
+    ap.add_argument("--forecast-variant", default=BEST, choices=list(VARIANTS), help="the variant whose levels are saved for the 6 h forecast inputs (levels.npz)")
     ap.add_argument("--hinge", type=int, default=5); ap.add_argument("--min-coverage", type=float, default=0.8); ap.add_argument("--wet", type=float, default=0.1); ap.add_argument("--high", type=float, default=1.0, help="rise of the observed level that counts as high (m)")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True); assert not (out / "summary.txt").exists(), f"{out} has results already"
@@ -88,12 +91,19 @@ def main() -> None:
     Xf = fill(X, mu, cov, lam); qs = np.nanpercentile(X[train], [95, 99], 0); hinge_of = lambda Z: np.concatenate([np.maximum(Z - q[None, :], 0) for q in qs], 1)
     HG = hinge_of(Xf); hsd = HG[train].std(0); HG = HG / hsd[None, :]          # scaled to unit spread: these terms are zero in most hours, a penalty in metres would switch them off
     jF = tt.get_indexer(tF); assert (jF >= 0).all()
-    X6 = fill(np.stack([FC[V - 6, 5, fcol[k]] for k in keys], 1), mu, cov, lam); HG6 = hinge_of(X6) / hsd[None, :]                     # Francine: forecasts issued 6 h before
+    R6 = np.stack([FC[V - 6, 5, fcol[k]] for k in keys], 1); R6 = R6 - (1 - a.high_water_factor) * np.maximum(R6 - qs[0][None, :], 0)      # the forecasts, corrected at high water (forecast_high_water.py)
+    X6 = fill(R6, mu, cov, lam); HG6 = hinge_of(X6) / hsd[None, :]                     # Francine: forecasts issued 6 h before
     wu = np.asarray(np.load(ds / "wind_u.npy", mmap_mode="r")[rs, i0:i2], np.float64).T; wv = np.asarray(np.load(ds / "wind_v.npy", mmap_mode="r")[rs, i0:i2], np.float64).T
     sp = np.hypot(wu, wv); tx, ty = np.nan_to_num(wu * sp), np.nan_to_num(wv * sp)
     W = np.stack([trail(tx, 3), trail(ty, 3), trail(tx, 12), trail(ty, 12)], 2); W = W / W[train].std(0, keepdims=True)                   # [T, S, 4]
     lat, lon = cr.lat.to_numpy(float), cr.lon.to_numpy(float); ilat = np.array([st.lat[r] for r in rin]); ilon = np.array([st.lon[r] for r in rin])
     dist = np.hypot((lon[:, None] - ilon[None, :]) * np.cos(np.deg2rad(29.7)) * 111.2, (lat[:, None] - ilat[None, :]) * 111.2)             # [S, P]
+    efac = np.ones(P)                                                    # assumed error of every gauge for forecast inputs, as a multiple of --noise
+    if a.forecast_error:
+        fe = pd.read_csv(a.forecast_error, dtype={"station_id": str}); fe = fe[fe.lead_h == 6].set_index(["source", "station_id"])
+        r6 = np.array([fe.rmse_above_threshold_m.get(k, np.nan) if fe.forecasts_above_threshold.get(k, 0) >= 30 else fe.rmse_all_m.get(k, np.nan) for k in keys]); efac = np.maximum(np.nan_to_num(r6, nan=a.noise) / a.noise, 1.0)
+        lines.append(f"fit for the 6 h forecast inputs: assumed error per gauge = error of its 6 h forecasts at high water in the test years of the water-level model (never below {a.noise} m): "
+                     f"median {np.median(efac) * a.noise:.2f} m, quartiles {np.percentile(efac, 25) * a.noise:.2f} / {np.percentile(efac, 75) * a.noise:.2f} m, largest {efac.max() * a.noise:.2f} m; above 0.2 m at {int((efac * a.noise > 0.2).sum())} of {P} gauges")
     print(f"{P} inputs, {S} sites, {T} hours; prepared in {time.time() - t00:.0f} s", flush=True)
 
     win = {k: (np.asarray((tt >= pd.Timestamp(v[0]) - PAD) & (tt < pd.Timestamp(v[1]) + PAD)), np.where((tt >= v[0]) & (tt < v[1]))[0]) for k, v in VAL.items()}
@@ -120,7 +130,11 @@ def main() -> None:
                     hourly.append((k, s, o[f_], p[f_]))
                 recs.append({"variant": v, "storm": k, "station": cr.station_id[s], "lon": lon[s], "observed_peak_m": float(o[f_].max()), "predicted_peak_m": float(p[f_].max()), "observed_rise_m": float(o[f_].max() - base),
                              "rmse_m": float(np.sqrt(np.mean((p - o)[f_] ** 2)))})
-            b, c0 = solve(tot, cols, sig2); LF[v][:, s] = c0 + F[jF][:, cols] @ b; LF6[v][:, s] = c0 + F6[:, cols] @ b
+            b, c0 = solve(tot, cols, sig2); LF[v][:, s] = c0 + F[jF][:, cols] @ b
+            if a.forecast_error:                                          # forecasts as inputs: gauges whose forecasts are poor at high water get less weight
+                sf = np.concatenate([sig2[:P] * efac ** 2] + ([np.full(2 * K, 0.05 ** 2) * np.concatenate([efac[nn], efac[nn]]) ** 2] if hinge else []) + ([np.full(4, 0.05 ** 2)] if wind else []))
+                b, c0 = solve(tot, cols, sf)
+            LF6[v][:, s] = c0 + F6[:, cols] @ b
     print(f"fits done, {time.time() - t00:.0f} s", flush=True)
 
     # The fit is low at high water in every left-out storm (a least-squares fit with imperfect inputs has less spread than the
@@ -162,7 +176,7 @@ def main() -> None:
         omF, odF, gF = obs_marsh(tF); omI, odI, gI = obs_marsh(tI)
     calmF = np.asarray(tF < FR_CALM); stormF = np.asarray((tF >= FR_STORM[0]) & (tF < FR_STORM[1])); calmI = np.arange(len(tI)) < 72; stormI = np.asarray((tI >= IDA_STORM[0]) & (tI <= IDA_STORM[1]))
     np.savez_compressed(out / "levels.npz", variant=BEST, site=cr.station_id.to_numpy(str), lat=lat, lon=lon, fitted=ok, times_francine=np.array(tF.strftime("%Y-%m-%d %H:%M"), dtype=str),
-                        times_ida=np.array(tI.strftime("%Y-%m-%d %H:%M"), dtype=str), level_francine_inputs_observed=LF[BEST], level_francine_inputs_forecast_6h=LF6[BEST], level_ida_left_out=LI[BEST],
+                        times_ida=np.array(tI.strftime("%Y-%m-%d %H:%M"), dtype=str), level_francine_inputs_observed=LF[BEST], level_francine_inputs_forecast_6h=LF6[a.forecast_variant], variant_forecast_inputs=a.forecast_variant, level_ida_left_out=LI[BEST],
                         observed_to_marsh_francine=omF, observed_level_francine=odF, marsh_surface_francine=gF, observed_to_marsh_ida=omI, observed_level_ida=odI, marsh_surface_ida=gI)      # for marsh_map.py
     rr = []; ser = {"times_francine": np.array(tF.strftime("%Y-%m-%d %H:%M"), dtype=str)}
     for v in list(VARIANTS) + [STRETCHED]:

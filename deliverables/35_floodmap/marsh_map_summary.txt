@@ -5,18 +5,18 @@ leveed areas of the grid (all): 2335 km2 of the land near the sites. The two sig
 flooded land inside the 11910 km2 the map covers, largest depth of 10 to 13 September 2024:
                                                           field  above 0.1 m (km2)  above 0.3 m (km2)  above 0.5 m (km2)  above 1.0 m (km2)  above 2.0 m (km2)  mean depth where above 0.1 m (m)
                              from observations, inputs observed            8682.40            6900.89            5222.50            1422.60               0.37                              0.64
-                  from observations, inputs forecast 6 h before            8876.96            7170.11            5574.03            2794.05              30.11                              0.75
+                  from observations, inputs forecast 6 h before            8803.28            7127.31            5468.55            1844.97               0.40                              0.66
 from observations, inputs observed, calm hours before the storm            6464.16            3361.64             474.49               0.53               0.12                              0.31
                         fitted on the Ida runs, inputs observed            8062.62            5821.41            4173.79            1097.35               0.25                              0.58
              fitted on the Ida runs, inputs forecast 6 h before            8243.26            6154.30            4564.98            1531.60               0.26                              0.64
 
-sites with land cells of the map next to them: 197 of 330; sites whose cells were taken out as behind a levee: 5, of them with 0.5 m or more observed on the marsh in Ida: 1 (these are wrongly taken out)
+sites with land cells of the map next to them: 197 of 330; sites whose cells were taken out as behind a levee: 5, of them with 0.5 m or more observed on the marsh in Ida: 1
 
 check at the sites, Francine (depth on the marsh, observed = water level relative to the surveyed marsh surface):
                                                                                          sites  rmse_depth_median_m  calm_flooded_observed  calm_flooded_map  largest_mean_error_m  largest_rms_error_m  largest_corr
 field                                                                                                                                                                                                                
 the site's own fit, surveyed marsh surface | inputs observed                             177.0                0.083                  0.684             0.662                -0.090                0.320         0.767
-the site's own fit, surveyed marsh surface | inputs forecast 6 h before                  177.0                0.090                  0.684             0.691                 0.021                0.408         0.621
-level from the nearest other sites, surveyed marsh surface | inputs forecast 6 h before  177.0                0.101                  0.684             0.671                -0.026                0.428         0.569
+the site's own fit, surveyed marsh surface | inputs forecast 6 h before                  177.0                0.082                  0.684             0.699                -0.087                0.375         0.655
+level from the nearest other sites, surveyed marsh surface | inputs forecast 6 h before  177.0                0.103                  0.684             0.671                -0.125                0.427         0.559
 level from the nearest other sites, ground of the grid | inputs observed                 177.0                0.146                  0.684             0.544                -0.194                0.431         0.620
-level from the nearest other sites, ground of the grid | inputs forecast 6 h before      177.0                0.157                  0.684             0.574                -0.088                0.464         0.550
+level from the nearest other sites, ground of the grid | inputs forecast 6 h before      177.0                0.151                  0.684             0.570                -0.187                0.463         0.548
