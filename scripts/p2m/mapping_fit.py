@@ -9,14 +9,14 @@ will be fed with forecasts and observations, which differ from the numerical mod
 many tide gauges that move together get large coefficients of opposite sign).
 Stages (each can be run alone):
   sums      one pass over every run (in parallel): the sums the regression needs, saved per run, so any run can be left out
-  fit       coefficients from all runs except --holdout (or from all with --holdout none)
+  fit       coefficients from all runs except --holdout (or from all with --holdout none), or from --train-runs only
   evaluate  the left-out run rebuilt from its own control-point series and compared with the model, cell by cell
             (--eval-inputs observed with --observed-inputs: rebuilt from the observed series instead, see observed_inputs.py)
 Missing values of the archive: a dry ocean-model cell is given the bed level (depth 0); a removed spike on a land-model
 cell takes the value of the hour before.
 Input : --ida DIR (grid_lower_mississippi_100m.nc, water_level_<run>.nc), --controls CSV (control_points.py, with best_j, best_i, best_r),
         --live FILE (station ids that have a forecast in real time; optional)
-Output: --work DIR: sums_<run>.npz / sxy_<run>.npy, coef_without_<run>.npy, eval_<run>.npz
+Output: --work DIR: sums_<run>.npz / sxy_<run>.npy, coef_without_<run>.npy (or coef_trained_on_<runs>.npy), eval_<run>.npz
 Usage : python mapping_fit.py --ida DIR --controls CSV --work DIR --stage sums fit evaluate --holdout Exp1_fully_coupled
 """
 from __future__ import annotations
@@ -75,6 +75,14 @@ class Reader:
         return y
 
 
+def training(a):
+    """The runs the coefficients are fitted on and the name their files carry (--train-runs, else all runs except --holdout)."""
+    if getattr(a, "train_runs", None):
+        bad = [r for r in a.train_runs if r not in RUNS]; assert not bad, f"unknown runs {bad}"
+        return list(a.train_runs), "trained_on_" + "+".join(a.train_runs)
+    return [r for r in RUNS if r != a.holdout], "without_" + (a.holdout if a.holdout in RUNS else "none")
+
+
 def control_series(y: np.ndarray, cj, ci, h, roms) -> np.ndarray:
     x = y[:, cj, ci].astype(np.float64)
     return np.where(roms[cj, ci][None, :], x, x - h[cj, ci][None, :].astype(np.float64))       # water surface elevation
@@ -104,7 +112,8 @@ def sums_one(args):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ida", required=True); ap.add_argument("--controls", required=True); ap.add_argument("--live"); ap.add_argument("--work", required=True)
-    ap.add_argument("--stage", nargs="+", default=["sums", "fit", "evaluate"]); ap.add_argument("--holdout", default="Exp1_fully_coupled")
+    ap.add_argument("--stage", nargs="+", default=["sums", "fit", "evaluate"]); ap.add_argument("--holdout", default="Exp1_fully_coupled", help="the run that is rebuilt in the evaluation")
+    ap.add_argument("--train-runs", nargs="+", help="fit on these runs only (default: all runs except --holdout); if --holdout is among them the evaluation is not a test on unseen data")
     ap.add_argument("--observed-inputs", help="x_observed.npy of observed_inputs.py: the left-out run is also rebuilt from the observed series of the control points")
     ap.add_argument("--eval-inputs", nargs="+", default=["exact", "noisy"], help="which inputs the evaluation uses: exact, noisy, observed")
     ap.add_argument("--eval-dir", help="where eval_<run>.npz is written (default: --work); an existing file is never replaced")
@@ -130,8 +139,8 @@ def main() -> None:
             for msg in pool.imap_unordered(sums_one, [(str(ida), r, cj, ci, xref, str(work)) for r in RUNS]):
                 print("  sums", msg, flush=True)
 
-    train = [r for r in RUNS if r != a.holdout]; tag = a.holdout if a.holdout in RUNS else "none"
-    cf = work / f"coef_without_{tag}.npy"
+    train, name = training(a); tag = a.holdout if a.holdout in RUNS else "none"
+    cf = work / f"coef_{name}.npy"; fm = work / f"fitmeta_{name}.npz"
     if "fit" in a.stage:
         t0 = time.time(); n = 0; Sx = np.zeros(P); Sxx = np.zeros((P, P)); Sy = np.zeros(N); Sxy = np.zeros((P, N))
         for r in train:
@@ -140,11 +149,13 @@ def main() -> None:
         Cxx = Sxx - n * np.outer(xm, xm); Cxy = Sxy - n * np.outer(xm, ym)
         B = np.zeros((P, N), np.float32)                                    # ridge: inputs with an independent error of `noise`; unused control points keep zero
         B[keep] = np.linalg.solve(Cxx[np.ix_(keep, keep)] + n * a.noise ** 2 * np.eye(int(keep.sum())), Cxy[keep])
-        np.save(cf, B); np.savez(work / f"fitmeta_without_{tag}.npz", xm=xm, ym=ym.astype(np.float32), n=n, runs=np.array(train), noise=a.noise)
-        print(f"fit without {tag}: {n} hours of {len(train)} runs, {time.time() - t0:.0f} s; largest |coefficient| {np.abs(B).max():.2f}")
+        np.save(cf, B); np.savez(fm, xm=xm, ym=ym.astype(np.float32), n=n, runs=np.array(train), noise=a.noise)
+        print(f"fit {name}: {n} hours of {len(train)} runs, {time.time() - t0:.0f} s; largest |coefficient| {np.abs(B).max():.2f}")
 
     if "evaluate" in a.stage and a.holdout in RUNS:
-        t0 = time.time(); B = np.load(cf); m = np.load(work / f"fitmeta_without_{tag}.npz"); xm, ym = m["xm"], m["ym"]
+        t0 = time.time(); B = np.load(cf); m = np.load(fm); xm, ym = m["xm"], m["ym"]
+        if a.holdout in train:
+            print(f"note: {a.holdout} is among the training runs; the comparison with it is not a test on unseen data")
         add = np.where(roms, h, 0).astype(np.float32).ravel(); rd = Reader(ida, a.holdout, h, roms)
         rng = np.random.default_rng(0)
         ed = Path(a.eval_dir) if a.eval_dir else work; ed.mkdir(parents=True, exist_ok=True)

@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mapping_fit import RUNS, grid  # noqa: E402
+from mapping_fit import grid, training  # noqa: E402
 
 STORM = ("2021-08-28 12:00", "2021-08-31 12:00")          # three days around the landfall (29 August, about 17 UTC)
 
@@ -70,6 +70,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ida", required=True); ap.add_argument("--dataset", required=True); ap.add_argument("--table", required=True); ap.add_argument("--fit", required=True)
     ap.add_argument("--checks", required=True); ap.add_argument("--cache", required=True); ap.add_argument("--out", required=True); ap.add_argument("--sums-dir", help="sums_<run>.npz and xref.npy, if not in --fit")
+    ap.add_argument("--train-runs", nargs="+", help="the runs the mapping model was fitted on (default: all except --holdout), as in mapping_fit.py")
     ap.add_argument("--holdout", default="Exp1_fully_coupled"); ap.add_argument("--calm-hours", type=int, default=72); ap.add_argument("--noise", type=float, default=0.12); ap.add_argument("--min-r", type=float, default=0.8)
     a = ap.parse_args()
     ida, fit, out = Path(a.ida), Path(a.fit), Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -102,9 +103,9 @@ def main() -> None:
     X = obs - xref[None, :]
 
     n = 0; Sx = np.zeros(P); Sxx = np.zeros((P, P))           # covariance of the control-point series in the training runs
-    for r in RUNS:
-        if r != a.holdout:
-            z = np.load(sd / f"sums_{r}.npz"); n += int(z["n"]); Sx += z["Sx"]; Sxx += z["Sxx"]
+    train, name = training(a)
+    for r in train:
+        z = np.load(sd / f"sums_{r}.npz"); n += int(z["n"]); Sx += z["Sx"]; Sxx += z["Sxx"]
     xm = Sx / n; C = Sxx - n * np.outer(xm, xm); lam = n * a.noise ** 2
 
     recs = []; ser = {"times": np.array(times.strftime("%Y-%m-%d %H:%M"), dtype=str)}
@@ -130,7 +131,7 @@ def main() -> None:
         cu = c[~used].copy(); cu["group"] = "not used, the model does not reproduce the amplitude"; ck = pd.concat([ck, cu[ck.columns.intersection(cu.columns)]], ignore_index=True)
     if len(ck):                                               # stations that are never an input: the full mapping model at their cells
         o2, m2, off2, nc2 = series(ck); idx = (ck.best_j.astype(int) * NX + ck.best_i.astype(int)).to_numpy()
-        B = np.load(fit / f"coef_without_{a.holdout}.npy", mmap_mode="r"); ym = np.load(fit / f"fitmeta_without_{a.holdout}.npz")["ym"]
+        B = np.load(fit / f"coef_{name}.npy", mmap_mode="r"); ym = np.load(fit / f"fitmeta_{name}.npz")["ym"]
         Bc = np.stack([np.asarray(B[:, k], np.float64) for k in idx], 1); y = (Xf - xm[None, :]) @ Bc + ym[idx][None, :].astype(np.float64)
         for k, r in enumerate(ck.itertuples()):
             j, i = int(r.best_j), int(r.best_i)
