@@ -3,7 +3,7 @@
 The CIMS export gives, for every CRMS site and hour, the water level relative to the surveyed marsh surface next to the
 gauge ("Adjusted Water Elevation to Marsh"). Positive = the marsh is under water, and by that much. This is an observation
 of flood depth on land. It is compared, hour by hour, with the depth the maps give on the land cells next to the site:
-  Francine (September 2024): mapping model from the observed water levels at the control points, and from forecasts issued 6 h before
+  Francine (September 2024): mapping model from the observed water levels at the control points, and from forecasts issued 1, 3 and 6 h before
   Ida (August 2021):         numerical model (hindcast), and mapping model from the observed water levels
 Land cells = cells that stay dry in the run without a hurricane; the site gets the land cells within --radius cells
 (median depth over them; a site without such a cell is left out). CRMS sites are not inputs of any model here.
@@ -51,7 +51,7 @@ def main() -> None:
     print(f"CRMS rows with a water level relative to the marsh: {len(d)}, stations {d.station.nunique()}")
 
     # times of the two periods
-    zi = np.load(a.inputs); tF = pd.DatetimeIndex(zi["times"]); XF = {"Francine, mapping from observed water levels": zi["lead0"], "Francine, mapping from forecasts issued 6 h before": zi["lead6"]}
+    zi = np.load(a.inputs); tF = pd.DatetimeIndex(zi["times"]); XF = {"Francine, mapping from observed water levels": zi["lead0"], **{f"Francine, mapping from forecasts issued {L} h before": zi[f"lead{L}"] for L in (1, 3, 6)}}
     nc = netCDF4.Dataset(Path(a.ida) / f"water_level_{a.holdout}.nc"); tI = pd.DatetimeIndex(netCDF4.num2date(nc["time"][:], nc["time"].units, only_use_cftime_datetimes=False)); nc.close()
     XI = np.load(a.ida_inputs); wl = np.load(a.cache, mmap_mode="r"); assert len(XI) == len(tI) == wl.shape[0]
     _, name = training(a); B = np.load(fit / f"coef_{name}.npy", mmap_mode="r"); m_ = np.load(fit / f"fitmeta_{name}.npz"); xm, ym = m_["xm"], m_["ym"]
