@@ -1,0 +1,19 @@
+CRMS sites in the export: 385; outside the grid or west of 92.5 W: 88; without a land cell within 3 cells: 60; depth that counts as flooded: 0.1 m
+
+Francine, mapping from observed water levels: 216 sites; depth on the marsh, all hours: RMSE median per site 0.18 m, mean error median -0.09 m
+  calm hours, 210 sites: share of site hours flooded, observed 0.68, map 0.51; mean depth observed 0.23 m, map 0.16 m; sites flooded at some hour: observed 179, map 123, both 116, map only 7, observed only 63; largest depth, map minus observed: mean -0.12 m, RMS 0.25 m, median observed 0.30 m, median map 0.16 m
+  storm hours, 215 sites: share of site hours flooded, observed 0.73, map 0.54; mean depth observed 0.31 m, map 0.20 m; sites flooded at some hour: observed 209, map 153, both 150, map only 3, observed only 59; largest depth, map minus observed: mean -0.31 m, RMS 0.63 m, median observed 0.66 m, median map 0.32 m
+
+Francine, mapping from forecasts issued 6 h before: 216 sites; depth on the marsh, all hours: RMSE median per site 0.18 m, mean error median -0.09 m
+  calm hours, 210 sites: share of site hours flooded, observed 0.68, map 0.51; mean depth observed 0.23 m, map 0.16 m; sites flooded at some hour: observed 179, map 122, both 115, map only 7, observed only 64; largest depth, map minus observed: mean -0.12 m, RMS 0.25 m, median observed 0.30 m, median map 0.14 m
+  storm hours, 215 sites: share of site hours flooded, observed 0.73, map 0.54; mean depth observed 0.31 m, map 0.21 m; sites flooded at some hour: observed 209, map 156, both 153, map only 3, observed only 56; largest depth, map minus observed: mean -0.25 m, RMS 0.63 m, median observed 0.66 m, median map 0.37 m
+
+Ida, mapping from observed water levels: 189 sites; depth on the marsh, all hours: RMSE median per site 0.17 m, mean error median -0.05 m
+  calm hours, 188 sites: share of site hours flooded, observed 0.32, map 0.32; mean depth observed 0.09 m, map 0.09 m; sites flooded at some hour: observed 133, map 100, both 89, map only 11, observed only 44; largest depth, map minus observed: mean -0.03 m, RMS 0.16 m, median observed 0.18 m, median map 0.12 m
+  storm hours, 189 sites: share of site hours flooded, observed 0.68, map 0.54; mean depth observed 0.38 m, map 0.28 m; sites flooded at some hour: observed 183, map 126, both 121, map only 5, observed only 62; largest depth, map minus observed: mean -0.28 m, RMS 0.50 m, median observed 0.48 m, median map 0.33 m
+
+Ida, numerical model (hindcast): 189 sites; depth on the marsh, all hours: RMSE median per site 0.18 m, mean error median -0.07 m
+  calm hours, 188 sites: share of site hours flooded, observed 0.32, map 0.23; mean depth observed 0.09 m, map 0.06 m; sites flooded at some hour: observed 133, map 60, both 50, map only 10, observed only 83; largest depth, map minus observed: mean -0.10 m, RMS 0.21 m, median observed 0.18 m, median map 0.04 m
+  storm hours, 189 sites: share of site hours flooded, observed 0.68, map 0.48; mean depth observed 0.38 m, map 0.27 m; sites flooded at some hour: observed 183, map 137, both 131, map only 6, observed only 52; largest depth, map minus observed: mean -0.20 m, RMS 0.44 m, median observed 0.48 m, median map 0.34 m
+
+ground level of the land cells in the grid minus the surveyed marsh surface (NAVD88), 208 sites: median +0.05 m, quartiles -0.06 / +0.21 m (surveyed marsh surface: median +0.26 m; grid: median +0.33 m)
