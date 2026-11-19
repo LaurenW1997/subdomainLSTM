@@ -1,0 +1,54 @@
+high-water marks inside the grid: 804 ({'2016 Aug LA Flood': 590, '2016 Mar LA Flood': 214}); with elevation (NAVD88) and height above ground: 615
+their cells: land 100%; in a leveed area 8%; in the model runs of Ida: {'flooded only with rainfall': 476, 'dry in all runs': 303, 'flooded without rainfall': 25}
+observed depth at the marks (height above ground): median 0.82 m, quartiles 0.49 / 1.35 m
+
+===== 2016 Aug LA Flood: 451 marks with elevation and height; 146 gauges in real time with a NAVD88 datum that observed the flood
+1  distance to the nearest such gauge: median 6.2 km; within 2 / 5 / 10 km: 13% / 42% / 75% of the marks
+2  the peak at the nearest gauge taken as the water level at the mark (m), by distance to the gauge (km):
+           marks  level_error_median  level_error_median_abs  level_error_rms  depth_observed_median  depth_rmse_gauge_level_surveyed_ground  depth_rmse_gauge_level_grid_ground
+bin                                                                                                                                                                             
+(0, 2]        59                0.03                    0.39             1.66                   1.11                                    0.58                                1.14
+(2, 5]       132                0.03                    1.02             2.12                   0.92                                    1.38                                1.98
+(5, 10]      146               -0.86                    3.39             5.82                   0.84                                    4.27                                2.91
+(10, 20]      84                1.47                    2.73             6.99                   0.69                                    4.92                                4.68
+(20, 500]     30                1.47                    2.86             4.80                   0.54                                    3.40                                3.24
+3  ground of the grid cell minus surveyed ground at the mark: median +0.06 m, median absolute 0.49 m, quartiles -0.39 / +0.58 m, RMS 3.84 m; within 0.3 m at 33% of the marks, more than 1 m off at 26%
+   depth with the surveyed water level and the ground of the grid: RMSE 1.31 m; marks the grid would call dry although the water stood there: 18%
+   together, marks within 5 km of a gauge (191): depth RMSE 1.19 m with the surveyed ground, 1.77 m with the ground of the grid (observed depth, median 0.98 m)
+   the gauges with most marks around them:
+                                               marks     km  level_error_median  level_error_spread
+gauge_name                                                                                         
+Amite River near Denham Springs, LA               38   5.07                1.40                1.60
+Vermilion River at Hwy 733 near Lafayette, LA     36  18.86                2.06                3.00
+Tickfaw River at Montpelier, LA                   33   3.88                0.90                8.93
+Natalbany River at Baptist, LA                    30   4.82               -1.77                4.74
+Mermentau River At Mermentau, LA                  30  17.00                0.39                2.34
+Tickfaw River at Holden, LA                       27   7.34               -3.13                7.07
+Amite River at Magnolia, LA                       26   4.51                0.09                3.13
+Tangipahoa River near Amite, LA                   15   6.29                2.48                7.94
+
+===== 2016 Mar LA Flood: 164 marks with elevation and height; 143 gauges in real time with a NAVD88 datum that observed the flood
+1  distance to the nearest such gauge: median 4.5 km; within 2 / 5 / 10 km: 27% / 59% / 80% of the marks
+2  the peak at the nearest gauge taken as the water level at the mark (m), by distance to the gauge (km):
+          marks  level_error_median  level_error_median_abs  level_error_rms  depth_observed_median  depth_rmse_gauge_level_surveyed_ground  depth_rmse_gauge_level_grid_ground
+bin                                                                                                                                                                            
+(0, 2]       44                0.22                    0.28             0.65                   1.08                                    0.49                                1.25
+(2, 5]       52               -0.09                    1.29             2.61                   0.62                                    2.07                                2.02
+(5, 10]      35               -1.11                    4.90             5.15                   0.58                                    3.23                                3.04
+(10, 20]     33               -1.05                    3.60             9.60                   0.80                                    3.60                                3.47
+3  ground of the grid cell minus surveyed ground at the mark: median +0.03 m, median absolute 0.74 m, quartiles -0.64 / +0.86 m, RMS 2.23 m; within 0.3 m at 28% of the marks, more than 1 m off at 36%
+   depth with the surveyed water level and the ground of the grid: RMSE 0.83 m; marks the grid would call dry although the water stood there: 27%
+   together, marks within 5 km of a gauge (96): depth RMSE 1.56 m with the surveyed ground, 1.71 m with the ground of the grid (observed depth, median 0.76 m)
+   the gauges with most marks around them:
+                                                   marks     km  level_error_median  level_error_spread
+gauge_name                                                                                             
+Tangipahoa River at Robert, LA                        33   1.46                0.22                1.68
+Bogue Falaya River at Boston St. at Covington, LA     15   2.82               -0.37                5.15
+Tchefuncte River near Folsom, LA                      13   4.63                2.53                4.79
+Bogue Falaya River near Camp Covington                13   5.09               -0.50                9.17
+Bogue Chitto River at Franklinton, LA                 11  12.85                0.43                9.27
+Sabine Rv nr Bon Wier, TX                              9  13.14               -0.63                3.87
+Tchefuncte River near Covington, LA                    8   3.52                0.18                3.28
+Tangipahoa River near Amite, LA                        8   3.94               -1.45                7.16
+
+gauges with a NAVD88 datum in the grid: 224; in real time: 192; of these north of 30.4 N: 74
