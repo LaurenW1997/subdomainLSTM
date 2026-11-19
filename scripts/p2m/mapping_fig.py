@@ -32,7 +32,7 @@ ERR_B = [0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 5]
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(); ap.add_argument("--input", choices=["exact", "noisy", "observed"], default="exact"); ap.add_argument("--coarse", default=str(D / "coarse_Exp1_fully_coupled.npz")); ap.add_argument("--controls", default=str(D / "controls_used.csv")); ap.add_argument("--west", type=float, default=-92.5)
+    ap = argparse.ArgumentParser(); ap.add_argument("--input", choices=["exact", "noisy", "observed"], default="exact"); ap.add_argument("--coarse", default=str(D / "coarse_Exp1_fully_coupled.npz")); ap.add_argument("--controls", default=str(D / "controls_used.csv")); ap.add_argument("--out", help="file name in the deliverable folder, if not the default of the input"); ap.add_argument("--west", type=float, default=-92.5)
     a = ap.parse_args()
     z = np.load(a.coarse); lat, lon = z["lat"], z["lon"]
     k = lon >= a.west; lon = lon[k]
@@ -62,7 +62,7 @@ def main() -> None:
         if title.startswith("(b)"):
             ax.scatter(c.lon.astype(float), c.lat.astype(float), s=13, color=INK, edgecolor="white", linewidth=0.5, zorder=5)
             ax.text(0.01, 0.02, "dots: the control points", transform=ax.transAxes, fontsize=9, color=INK, bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85))
-    out = D / {"exact": "ida_peak_flood_depth.png", "noisy": "ida_peak_flood_depth_noisy_input.png", "observed": "ida_peak_flood_depth_observed_inputs.png"}[a.input]; fig.savefig(out, dpi=220); plt.close(fig)
+    out = D / {"exact": "ida_peak_flood_depth.png", "noisy": "ida_peak_flood_depth_noisy_input.png", "observed": "ida_peak_flood_depth_observed_inputs.png"}[a.input]; out = D / a.out if a.out else out; fig.savefig(out, dpi=220); plt.close(fig)
     print("->", out)
 
 
