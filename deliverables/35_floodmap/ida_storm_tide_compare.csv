@@ -1,4 +1,4 @@
-site_number,place,latitude_dd,longitude_dd,open_gulf_beach,sensor_peak_m,offset_m,hindcast_peak_m,mapping_model_inputs_peak_m,mapping_observed_inputs_peak_m,hindcast_peak_as_archived_m
+site_number,place,latitude_dd,longitude_dd,grand_isle,sensor_peak_m,offset_m,hindcast_peak_m,mapping_model_inputs_peak_m,mapping_observed_inputs_peak_m,hindcast_peak_as_archived_m
 MSJAC25056,Bayou Cumbest,30.4,-88.452,False,1.372,-0.383,2.199,2.147,2.284,1.815
 LAJEF06563,"Lake Pontchartrain, south shore",30.041,-90.238,False,1.89,-0.383,1.895,1.865,2.017,1.511
 LASTT23298,Rigolets,30.176,-89.727,False,1.92,-0.383,1.969,1.92,2.142,1.586
@@ -9,7 +9,7 @@ LASTT27187,"Lake Pontchartrain, north shore",30.335,-90.045,False,2.359,-0.383,2
 LASTB00004,Mississippi River Gulf Outlet,29.855,-89.678,False,2.377,-0.383,2.208,1.968,2.079,1.824
 MSHAN06615,East Pearl River,30.239,-89.615,False,2.469,-0.383,2.156,2.238,2.356,1.772
 LAPLA27142,Breton Sound Marina,29.567,-89.764,False,3.261,-0.383,3.576,3.157,3.796,3.192
-LAJEF27108,"Elmer's Island, Gulf beach",29.203,-90.038,True,3.139,-0.383,1.117,0.788,0.987,0.733
-LAJEF27112,"Elmer's Island, Gulf beach (second sensor)",29.203,-90.038,True,3.139,-0.383,1.117,0.788,0.987,0.733
-LAJEF27133,"Grand Isle, Gulf beach",29.26,-89.95,True,3.292,-0.383,1.388,0.964,1.28,1.004
-LAJEF27136,"Grand Isle, Gulf beach (second sensor)",29.26,-89.951,True,3.353,-0.383,0.996,0.817,1.072,0.612
+LAJEF27108,"Grand Isle, pier at Caminada Pass",29.203,-90.038,True,3.139,-0.383,1.117,0.788,0.987,0.733
+LAJEF27112,"Grand Isle, pier at Caminada Pass (second sensor)",29.203,-90.038,True,3.139,-0.383,1.117,0.788,0.987,0.733
+LAJEF27133,"Grand Isle State Park pier, Gulf side",29.26,-89.95,True,3.292,-0.383,1.388,0.964,1.28,1.004
+LAJEF27136,"Grand Isle State Park pier, Gulf side (second sensor)",29.26,-89.951,True,3.353,-0.383,0.996,0.817,1.072,0.612

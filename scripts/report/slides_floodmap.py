@@ -52,7 +52,7 @@ def main() -> None:
     st = pd.read_csv(D / "observed_inputs_stations.csv", dtype={"station_id": str})
     lo, ck = st[st.group.str.startswith("control")], st[st.group.str.startswith("check")]
     cu = pd.read_csv(D / "controls_used_39_points.csv"); n_cp = int(cu.used.sum())
-    tide = pd.read_csv(D / "ida_storm_tide_compare.csv"); sh, be = tide[~tide.open_gulf_beach], tide[tide.open_gulf_beach]
+    tide = pd.read_csv(D / "ida_storm_tide_compare.csv"); sh, be = tide[~tide.grand_isle], tide[tide.grand_isle]
     err = lambda x, c: (float((x[c] - x.sensor_peak_m).mean()), float(np.sqrt(((x[c] - x.sensor_peak_m) ** 2).mean())))
     cell = json.loads((D / "cell_example_manchac.json").read_text(encoding="utf-8"))
     km = lambda v: f"{v:,.0f}"
@@ -213,11 +213,12 @@ def main() -> None:
     text(sl, 8.8, 1.0, 4.2, 6.2, [
         "USGS set up temporary sensors along the coast before landfall and recorded the peak (NAVD88). They are not in our gauge data, so nothing in the mapping has seen them.",
         "",
-        f"Sheltered sites ({len(sh)}; bays, lakes, passes): the mapping driven by observations has a mean error of {om:+.2f} m and an RMS of {orr:.2f} m. The hindcast: {hm:+.2f} / {hr:.2f} m. "
+        f"Away from Grand Isle ({len(sh)}; bays, lakes, passes): the mapping driven by observations has a mean error of {om:+.2f} m and an RMS of {orr:.2f} m. The hindcast: {hm:+.2f} / {hr:.2f} m. "
         f"Measured peaks: {sh.sensor_peak_m.min():.1f} to {sh.sensor_peak_m.max():.1f} m.",
         "",
-        f"Open Gulf beach ({len(be)}; Grand Isle, Elmer's Island): the hindcast is {-bm:.2f} m lower than the sensors, and the mapping follows it ({-bo:.2f} m lower). "
-        "This is a limit of the numerical model, not of the mapping (wave setup on the beach is a likely reason; not checked).",
+        f"Grand Isle ({len(be)}; State Park pier on the Gulf side, pier at Caminada Pass): the hindcast is {-bm:.2f} m lower than the sensors, and the mapping follows it "
+        f"({-bo:.2f} m lower). The regular gauges agree: at the peak the hindcast is 0.45 m low at NOAA Grand Isle (bay side) and 0.9 m low at USGS Caminada Pass, after the offset. "
+        "A limit of the hindcast, not of the mapping.",
     ], size=13)
     text(sl, 0.5, 6.15, 8.0, 1.1, [
         f"Model and mapping are moved to NAVD88 with one offset, {-float(tide.offset_m.iloc[0]):.2f} m: what the model is lower than 9 NOAA tide gauges before the storm.",
@@ -232,12 +233,12 @@ def main() -> None:
         "",
         "2.  They work with real water levels: the map keeps its shape, and at gauges they have not seen they are as close as the hindcast (test 2).",
         "",
-        "3.  At independent sensors in sheltered water the peak has the right size and no bias (test 3).",
+        "3.  At independent sensors away from Grand Isle the peak has the right size and no bias (test 3).",
     ], size=BODY)
     text(sl, 0.5, 4.7, 6.0, 2.4, [
         "-  Too shallow at the deepest places.",
         "-  Rain flooding in the northern valleys is missing.",
-        "-  Open Gulf beach 2 m too low (from the numerical model).",
+        "-  Grand Isle: the peak 0.5 to 2 m too low (from the hindcast).",
         "-  West of 92.5 W is left out (bathymetry).",
     ], size=BODY)
     text(sl, 7.0, 1.5, 5.9, 5.7, [
