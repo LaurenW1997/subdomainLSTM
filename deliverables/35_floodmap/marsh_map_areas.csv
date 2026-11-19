@@ -1,0 +1,6 @@
+field,above 0.1 m (km2),above 0.3 m (km2),above 0.5 m (km2),above 1.0 m (km2),above 2.0 m (km2),mean depth where above 0.1 m (m)
+"from observations, inputs observed",8887.21,6977.9,5240.59,1407.02,0.0,0.6289923191070557
+"from observations, inputs forecast 6 h before",9106.42,7273.74,5615.04,2790.42,29.62,0.7416711449623108
+"from observations, inputs observed, calm hours before the storm",6526.35,3342.21,479.06,0.0,0.0,0.3082624077796936
+"fitted on the Ida runs, inputs observed",8522.79,6090.96,4302.21,1110.73,1.0,0.5742248296737671
+"fitted on the Ida runs, inputs forecast 6 h before",8714.83,6439.47,4718.87,1551.49,1.13,0.6284119486808777

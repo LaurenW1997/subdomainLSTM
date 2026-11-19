@@ -16,7 +16,8 @@ on, nor the week before and after). Then Francine (after the training years) and
 A gauge is an input if it has data in real time and observations in --min-coverage of the training hours; a gauge that fails
 during a storm stays an input, its missing hours are filled from the other gauges.
 Input : --dataset DIR (values, wind_u, wind_v), --live FILE, --fc NPZ of forecast_inputs.py, --crms-raw CSV
-Output: --out DIR: validation.csv (per variant), storms.csv (per variant, storm and site), sites.csv (Francine and Ida, per variant and site), series.npz, summary.txt
+Output: --out DIR: validation.csv (per variant), storms.csv (per variant, storm and site), sites.csv (Francine and Ida, per variant and site), series.npz, summary.txt,
+        levels.npz (the level at every site and hour from the chosen variant, with the observations, for marsh_map.py)
 Usage : python marsh_obs_variants.py --dataset DIR --live FILE --fc FILE --crms-raw FILE --out DIR
 """
 from __future__ import annotations
@@ -160,6 +161,9 @@ def main() -> None:
     with np.errstate(all="ignore"):
         omF, odF, gF = obs_marsh(tF); omI, odI, gI = obs_marsh(tI)
     calmF = np.asarray(tF < FR_CALM); stormF = np.asarray((tF >= FR_STORM[0]) & (tF < FR_STORM[1])); calmI = np.arange(len(tI)) < 72; stormI = np.asarray((tI >= IDA_STORM[0]) & (tI <= IDA_STORM[1]))
+    np.savez_compressed(out / "levels.npz", variant=BEST, site=cr.station_id.to_numpy(str), lat=lat, lon=lon, fitted=ok, times_francine=np.array(tF.strftime("%Y-%m-%d %H:%M"), dtype=str),
+                        times_ida=np.array(tI.strftime("%Y-%m-%d %H:%M"), dtype=str), level_francine_inputs_observed=LF[BEST], level_francine_inputs_forecast_6h=LF6[BEST], level_ida_left_out=LI[BEST],
+                        observed_to_marsh_francine=omF, observed_level_francine=odF, marsh_surface_francine=gF, observed_to_marsh_ida=omI, observed_level_ida=odI, marsh_surface_ida=gI)      # for marsh_map.py
     rr = []; ser = {"times_francine": np.array(tF.strftime("%Y-%m-%d %H:%M"), dtype=str)}
     for v in list(VARIANTS) + [STRETCHED]:
         for field, L, om, od, g, calm, storm in ((f"Francine, inputs observed | {v}", LF[v], omF, odF, gF, calmF, stormF), (f"Francine, inputs forecast 6 h before | {v}", LF6[v], omF, odF, gF, calmF, stormF),
