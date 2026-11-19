@@ -5,7 +5,7 @@ hurricane): (a) peak depth of the numerical model, (b) peak depth of the mapping
 (c) their difference, (d) RMSE of the mapping over all 265 hours. Control points as dots.
 Input : deliverables/35_floodmap/coarse_Exp1_fully_coupled.npz (mapping_eval_summary.py), controls_used.csv
 Output: deliverables/35_floodmap/ida_peak_flood_depth.png
-Usage : python mapping_fig.py [--input exact|noisy]
+Usage : python mapping_fig.py [--input exact|noisy|observed --coarse FILE]
 """
 from __future__ import annotations
 
@@ -32,20 +32,24 @@ ERR_B = [0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 5]
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(); ap.add_argument("--input", choices=["exact", "noisy"], default="exact"); ap.add_argument("--west", type=float, default=-92.5)
+    ap = argparse.ArgumentParser(); ap.add_argument("--input", choices=["exact", "noisy", "observed"], default="exact"); ap.add_argument("--coarse", default=str(D / "coarse_Exp1_fully_coupled.npz")); ap.add_argument("--controls", default=str(D / "controls_used.csv")); ap.add_argument("--west", type=float, default=-92.5)
     a = ap.parse_args()
-    z = np.load(D / "coarse_Exp1_fully_coupled.npz"); lat, lon = z["lat"], z["lon"]
+    z = np.load(a.coarse); lat, lon = z["lat"], z["lon"]
     k = lon >= a.west; lon = lon[k]
     land = z["land_frac"][:, k] >= 0.5; water = z["water_frac"][:, k] >= 0.5
     pt, pp, rm = z["peak_true"][:, k], z[f"peak_{a.input}"][:, k], z[f"rmse_{a.input}"][:, k]
-    c = pd.read_csv(D / "controls_used.csv"); c = c[c.lon.astype(float) >= a.west]
+    c = pd.read_csv(a.controls); c = c[c.used] if "used" in c.columns else c; n_cp = len(c); c = c[c.lon.astype(float) >= a.west]
     ext = [lon[0], lon[-1], lat[0], lat[-1]]
     base = np.where(water, 1.0, np.where(land, 0.0, 0.5))
     fig, axes = plt.subplots(2, 2, figsize=(13.0, 7.6)); fig.subplots_adjust(left=0.035, right=0.965, top=0.955, bottom=0.035, wspace=0.14, hspace=0.17)
     panels = [("(a) Numerical model: peak flood depth on land during Hurricane Ida (m)", np.where(land & (pt > DEPTH_B[0]), pt, np.nan), ListedColormap(DEPTH), DEPTH_B),
-              ("(b) Mapping model from 60 control points, fitted without this run (m)", np.where(land & (pp > DEPTH_B[0]), pp, np.nan), ListedColormap(DEPTH), DEPTH_B),
+              (f"(b) Mapping model from {n_cp} control points, fitted without this run (m)", np.where(land & (pp > DEPTH_B[0]), pp, np.nan), ListedColormap(DEPTH), DEPTH_B),
               ("(c) Difference, mapping minus numerical model (m)", np.where(land & ((pt > 0.1) | (pp > 0.1)), pp - pt, np.nan), DIFF, DIFF_B),
               ("(d) RMSE of the mapping over the 265 hours, land (m)", np.where(land & (rm > ERR_B[0]), rm, np.nan), ListedColormap(ERR), ERR_B)]
+    if a.input == "observed":                                 # the inputs are observations: the difference from the hindcast is not an error of the mapping alone
+        for k, t_ in enumerate(["(a) Numerical model (hindcast): peak flood depth on land during Hurricane Ida (m)", f"(b) Mapping model driven by the observed water levels at the {n_cp} gauges (m)",
+                                "(c) Difference, mapping from observations minus hindcast (m)", "(d) RMS difference from the hindcast over the 265 hours, land (m)"]):
+            panels[k] = (t_,) + panels[k][1:]
     for ax, (title, f, cmap, bnd) in zip(axes.ravel(), panels):
         ax.imshow(base, extent=ext, origin="lower", cmap=ListedColormap([DRY, "#eceae4", WATER]), vmin=0, vmax=1, aspect="auto", interpolation="nearest")
         norm = BoundaryNorm(bnd, cmap.N if isinstance(cmap, ListedColormap) else 256, extend="neither")
@@ -58,7 +62,7 @@ def main() -> None:
         if title.startswith("(b)"):
             ax.scatter(c.lon.astype(float), c.lat.astype(float), s=13, color=INK, edgecolor="white", linewidth=0.5, zorder=5)
             ax.text(0.01, 0.02, "dots: the control points", transform=ax.transAxes, fontsize=9, color=INK, bbox=dict(facecolor="white", edgecolor="none", pad=1.5, alpha=0.85))
-    out = D / ("ida_peak_flood_depth.png" if a.input == "exact" else "ida_peak_flood_depth_noisy_input.png"); fig.savefig(out, dpi=220); plt.close(fig)
+    out = D / {"exact": "ida_peak_flood_depth.png", "noisy": "ida_peak_flood_depth_noisy_input.png", "observed": "ida_peak_flood_depth_observed_inputs.png"}[a.input]; fig.savefig(out, dpi=220); plt.close(fig)
     print("->", out)
 
 

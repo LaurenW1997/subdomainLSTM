@@ -11,6 +11,7 @@ Stages (each can be run alone):
   sums      one pass over every run (in parallel): the sums the regression needs, saved per run, so any run can be left out
   fit       coefficients from all runs except --holdout (or from all with --holdout none)
   evaluate  the left-out run rebuilt from its own control-point series and compared with the model, cell by cell
+            (--eval-inputs observed with --observed-inputs: rebuilt from the observed series instead, see observed_inputs.py)
 Missing values of the archive: a dry ocean-model cell is given the bed level (depth 0); a removed spike on a land-model
 cell takes the value of the hour before.
 Input : --ida DIR (grid_lower_mississippi_100m.nc, water_level_<run>.nc), --controls CSV (control_points.py, with best_j, best_i, best_r),
@@ -47,7 +48,13 @@ def controls(a) -> pd.DataFrame:
     c = c[(c.obs_hours >= 200) & (c.best_r >= a.min_r)].copy()
     if a.live:
         live = set(Path(a.live).read_text().split()); c = c[c.station_id.isin(live)]
-    return c.sort_values("station_id").reset_index(drop=True)
+    c = c.sort_values("station_id").reset_index(drop=True)
+    c["used"] = True                                                        # a control point whose amplitude the model does not reproduce gets no weight
+    if a.min_std_ratio is not None:
+        c["used"] &= c.best_std_ratio >= a.min_std_ratio
+    if a.max_std_ratio is not None:
+        c["used"] &= c.best_std_ratio <= a.max_std_ratio
+    return c
 
 
 class Reader:
@@ -98,14 +105,21 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ida", required=True); ap.add_argument("--controls", required=True); ap.add_argument("--live"); ap.add_argument("--work", required=True)
     ap.add_argument("--stage", nargs="+", default=["sums", "fit", "evaluate"]); ap.add_argument("--holdout", default="Exp1_fully_coupled")
+    ap.add_argument("--observed-inputs", help="x_observed.npy of observed_inputs.py: the left-out run is also rebuilt from the observed series of the control points")
+    ap.add_argument("--eval-inputs", nargs="+", default=["exact", "noisy"], help="which inputs the evaluation uses: exact, noisy, observed")
+    ap.add_argument("--eval-dir", help="where eval_<run>.npz is written (default: --work); an existing file is never replaced")
+    ap.add_argument("--sums-dir", help="read the sums of an earlier run from here (the control points of the sums stay; --min-std-ratio / --max-std-ratio choose among them)")
+    ap.add_argument("--min-std-ratio", type=float, help="use a control point only if std(model) / std(observed) of control_points.py is at least this"); ap.add_argument("--max-std-ratio", type=float)
     ap.add_argument("--min-r", type=float, default=0.8); ap.add_argument("--noise", type=float, default=0.12, help="assumed error of the inputs (m)"); ap.add_argument("--workers", type=int, default=12)
     a = ap.parse_args()
     ida, work = Path(a.ida), Path(a.work); work.mkdir(parents=True, exist_ok=True)
     h, roms, lat, lon = grid(ida); N = h.size
     c = controls(a); cj, ci = c.best_j.to_numpy(int), c.best_i.to_numpy(int); P = len(c)
-    c.to_csv(work / "controls_used.csv", index=False)
-    print(f"{P} control points, {N} cells, noise {a.noise} m")
-    ref = work / "xref.npy"
+    if not (work / "controls_used.csv").exists():
+        c.to_csv(work / "controls_used.csv", index=False)
+    keep = c.used.to_numpy(); sd = Path(a.sums_dir) if a.sums_dir and "sums" not in a.stage else work
+    print(f"{P} control points, {int(keep.sum())} of them used, {N} cells, noise {a.noise} m")
+    ref = sd / "xref.npy"
     if not ref.exists():                                                    # a fixed reference level per control point keeps the sums well conditioned
         rd = Reader(ida, "Exp6_absolute_base", h, roms); np.save(ref, control_series(rd.block(0, BLOCK), cj, ci, h, roms).mean(0))
     xref = np.load(ref)
@@ -121,36 +135,43 @@ def main() -> None:
     if "fit" in a.stage:
         t0 = time.time(); n = 0; Sx = np.zeros(P); Sxx = np.zeros((P, P)); Sy = np.zeros(N); Sxy = np.zeros((P, N))
         for r in train:
-            z = np.load(work / f"sums_{r}.npz"); n += int(z["n"]); Sx += z["Sx"]; Sxx += z["Sxx"]; Sy += z["Sy"]; Sxy += np.load(work / f"sxy_{r}.npy")
+            z = np.load(sd / f"sums_{r}.npz"); n += int(z["n"]); Sx += z["Sx"]; Sxx += z["Sxx"]; Sy += z["Sy"]; Sxy += np.load(sd / f"sxy_{r}.npy")
         xm, ym = Sx / n, Sy / n
         Cxx = Sxx - n * np.outer(xm, xm); Cxy = Sxy - n * np.outer(xm, ym)
-        B = np.linalg.solve(Cxx + n * a.noise ** 2 * np.eye(P), Cxy)        # ridge: inputs with an independent error of `noise`
-        np.save(cf, B.astype(np.float32)); np.savez(work / f"fitmeta_without_{tag}.npz", xm=xm, ym=ym.astype(np.float32), n=n, runs=np.array(train), noise=a.noise)
+        B = np.zeros((P, N), np.float32)                                    # ridge: inputs with an independent error of `noise`; unused control points keep zero
+        B[keep] = np.linalg.solve(Cxx[np.ix_(keep, keep)] + n * a.noise ** 2 * np.eye(int(keep.sum())), Cxy[keep])
+        np.save(cf, B); np.savez(work / f"fitmeta_without_{tag}.npz", xm=xm, ym=ym.astype(np.float32), n=n, runs=np.array(train), noise=a.noise)
         print(f"fit without {tag}: {n} hours of {len(train)} runs, {time.time() - t0:.0f} s; largest |coefficient| {np.abs(B).max():.2f}")
 
     if "evaluate" in a.stage and a.holdout in RUNS:
         t0 = time.time(); B = np.load(cf); m = np.load(work / f"fitmeta_without_{tag}.npz"); xm, ym = m["xm"], m["ym"]
         add = np.where(roms, h, 0).astype(np.float32).ravel(); rd = Reader(ida, a.holdout, h, roms)
         rng = np.random.default_rng(0)
-        res = {k: {"se": np.zeros(N), "pk": np.zeros(N, np.float32), "wet_both": np.zeros(N, np.int32), "wet_pred": np.zeros(N, np.int32)} for k in ("exact", "noisy")}
+        ed = Path(a.eval_dir) if a.eval_dir else work; ed.mkdir(parents=True, exist_ok=True)
+        if (ed / f"eval_{tag}.npz").exists():
+            raise SystemExit(f"{ed / f'eval_{tag}.npz'} exists; give another --eval-dir")
+        Xo = np.load(a.observed_inputs) if a.observed_inputs else None
+        assert "observed" not in a.eval_inputs or (Xo is not None and Xo.shape == (rd.T, P)), "--observed-inputs is missing or has another shape"
+        res = {k: {"se": np.zeros(N), "pk": np.zeros(N, np.float32), "wet_both": np.zeros(N, np.int32), "wet_pred": np.zeros(N, np.int32)} for k in a.eval_inputs}
         pk_true = np.zeros(N, np.float32); wet_true = np.zeros(N, np.int32); mean_true = np.zeros(N)
         for k0 in range(0, rd.T, BLOCK):
             y = rd.block(k0, min(k0 + BLOCK, rd.T)); x = control_series(y, cj, ci, h, roms) - xref[None, :]
             dt = np.maximum(y.reshape(y.shape[0], -1) + add[None, :], 0)
             pk_true = np.maximum(pk_true, dt.max(0)); wt = dt > 0.1; wet_true += wt.sum(0); mean_true += dt.sum(0, dtype=np.float64)
-            for k, xx in (("exact", x), ("noisy", x + rng.normal(0, a.noise, x.shape))):
+            for k in a.eval_inputs:
+                xx = x if k == "exact" else x + rng.normal(0, a.noise, x.shape) if k == "noisy" else Xo[k0:k0 + y.shape[0]]
                 dp = np.maximum((xx - xm[None, :]).astype(np.float32) @ B + ym[None, :] + add[None, :], 0)
                 r = res[k]; r["se"] += ((dp - dt) ** 2).sum(0, dtype=np.float64); r["pk"] = np.maximum(r["pk"], dp.max(0)); wp = dp > 0.1; r["wet_pred"] += wp.sum(0); r["wet_both"] += (wp & wt).sum(0)
         T = rd.T; shp = h.shape
-        z = np.load(work / "sums_Exp6_absolute_base.npz")                    # the run without the hurricane: which cells are water in normal conditions
-        dmin_all = np.min([np.load(work / f"sums_{r}.npz")["dmin"] for r in RUNS], 0); dmax_all = np.max([np.load(work / f"sums_{r}.npz")["dmax"] for r in RUNS], 0)
+        z = np.load(sd / "sums_Exp6_absolute_base.npz")                    # the run without the hurricane: which cells are water in normal conditions
+        dmin_all = np.min([np.load(sd / f"sums_{r}.npz")["dmin"] for r in RUNS], 0); dmax_all = np.max([np.load(sd / f"sums_{r}.npz")["dmax"] for r in RUNS], 0)
         out = {"lat": lat, "lon": lon, "peak_true": pk_true.reshape(shp), "wet_hours_true": wet_true.reshape(shp).astype(np.int16), "mean_true": (mean_true / T).astype(np.float32).reshape(shp),
                "dmin_all_runs": dmin_all.reshape(shp), "dmax_all_runs": dmax_all.reshape(shp), "dmax_no_storm": z["dmax"].reshape(shp), "hours": T}
         for k, r in res.items():
             out[f"rmse_{k}"] = np.sqrt(r["se"] / T).astype(np.float32).reshape(shp); out[f"peak_{k}"] = r["pk"].reshape(shp)
             out[f"wet_hours_pred_{k}"] = r["wet_pred"].reshape(shp).astype(np.int16); out[f"wet_hours_both_{k}"] = r["wet_both"].reshape(shp).astype(np.int16)
-        np.savez(work / f"eval_{tag}.npz", **out)
-        print(f"evaluated {tag}: {T} hours, {time.time() - t0:.0f} s -> {work / f'eval_{tag}.npz'}")
+        np.savez(ed / f"eval_{tag}.npz", **out)
+        print(f"evaluated {tag} with inputs {a.eval_inputs}: {T} hours, {time.time() - t0:.0f} s -> {ed / f'eval_{tag}.npz'}")
 
 
 if __name__ == "__main__":

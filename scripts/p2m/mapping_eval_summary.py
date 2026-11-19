@@ -2,7 +2,7 @@
 
 Reads eval_<run>.npz of mapping_fit.py and writes, for the trusted part of the grid (east of --west-limit):
   metrics_<run>.csv  per class of cell (water in normal conditions / land flooded in the run / land never wet) and input
-                     (exact control-point series of the run / the same with noise): cells, RMSE over all hours, peak depth
+                     (exact control-point series of the run / the same with noise / the observed series): cells, RMSE over all hours, peak depth
                      of the model and of the mapping, RMSE and correlation of the peak, flooded area above several depths
   coarse_<run>.npz   the fields on every --step-th cell block for drawing (peak: block maximum, RMSE: block mean)
 Classes: 'water' = depth above 0.1 m in every hour of every run; 'land' = dry (below 0.1 m) throughout the run without the
@@ -28,7 +28,8 @@ def main() -> None:
     cls = {"water in normal conditions": water & east, "land, flooded in the run (peak above 0.1 m)": land & (pt > 0.1) & east, "land, dry in the run": land & (pt <= 0.1) & east,
            "all cells east of the limit": east}
     rows = []
-    for inp in ("exact", "noisy"):
+    inputs = [k[5:] for k in z.files if k.startswith("rmse_")]
+    for inp in inputs:
         rm, pp = z[f"rmse_{inp}"], z[f"peak_{inp}"]
         for name, m in cls.items():
             n = int(m.sum())
@@ -50,9 +51,9 @@ def main() -> None:
     blk = lambda x, f: f(f(x[:ny, :nx].reshape(ny // s, s, nx // s, s), 3), 1)
     out = {"lat": lat[:ny].reshape(-1, s).mean(1), "lon": lon[:nx].reshape(-1, s).mean(1), "step": s, "hours": T,
            "water_frac": blk(water.astype(np.float32), np.mean), "land_frac": blk(land.astype(np.float32), np.mean)}
-    for k in ("peak_true", "peak_exact", "peak_noisy"):
+    for k in ["peak_true"] + [f"peak_{i}" for i in inputs]:
         out[k] = blk(np.where(land, z[k], 0).astype(np.float32), np.max)      # flood depth on land only
-    for k in ("rmse_exact", "rmse_noisy"):
+    for k in [f"rmse_{i}" for i in inputs]:
         out[k] = blk(z[k], np.mean)
     np.savez_compressed(w / f"coarse_{a.run}.npz", **out)
     print("->", w / f"coarse_{a.run}.npz")
