@@ -9,6 +9,7 @@ Where the map is given (the rest stays empty):
               the ground lies below --low m and the cell is dry in normal conditions, or
               in Ida the level of the sites around the cell was --ida-level m or more above its ground while the numerical
               model, whose grid has the levees, kept the cell dry.
+              With --leveed the leveed areas the grid was built with are used instead (leveed_mask.py).
 The same field from the mapping model fitted on the Ida runs (mapping_fit.py) is computed for the same cells.
 Check against the sites: the level of a site taken from the nearest OTHER sites and the ground of the grid cells next to it
 (what a cell without a gauge gets), compared with the observed depth on the marsh.
@@ -37,6 +38,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--levels", required=True); ap.add_argument("--ida", required=True); ap.add_argument("--eval", required=True); ap.add_argument("--fit"); ap.add_argument("--inputs"); ap.add_argument("--out", required=True)
     ap.add_argument("--train-runs", nargs="+"); ap.add_argument("--holdout", default="Exp1_fully_coupled")
+    ap.add_argument("--leveed", help="leveed_area_mask.npz of leveed_mask.py: cells in a leveed area are taken out instead of the two signs"); ap.add_argument("--open-area", nargs="+", default=[], help="names of leveed areas that stay in the map (the marsh gauges inside them flood)")
     ap.add_argument("--radius", type=float, default=10.0); ap.add_argument("--neighbours", type=int, default=4); ap.add_argument("--low", type=float, default=-0.2); ap.add_argument("--ida-level", type=float, default=0.5)
     ap.add_argument("--west-limit", type=float, default=-92.5); ap.add_argument("--step", type=int, default=4); ap.add_argument("--chunk", type=int, default=40000); ap.add_argument("--wet", type=float, default=0.1)
     a = ap.parse_args()
@@ -63,11 +65,19 @@ def main() -> None:
             ws = np.einsum("tnk,nk->tn", Lh[:, nb[c:c + a.chunk]], w[c:c + a.chunk]); p[c:c + a.chunk] = np.maximum(ws.max(0) - g[c:c + a.chunk], 0)
         return p
 
-    pI = peak(LI, stormI); below = g < a.low; kept_dry = (pI >= a.ida_level) & (hind[jj, ii] <= 0.1); cover = near & ~below & ~kept_dry
+    pI = peak(LI, stormI); below = g < a.low; kept_dry = (pI >= a.ida_level) & (hind[jj, ii] <= 0.1); signs = below | kept_dry; out_ = signs; lev_note = None
+    if a.leveed:                                                          # the leveed areas the grid was built with
+        lz = np.load(a.leveed); lm = lz["mask"].copy(); names = list(lz["area_name"])
+        if a.open_area:
+            miss = [n for n in a.open_area if n not in names]; assert not miss, f"unknown leveed areas {miss}"; lm &= ~np.isin(lz["area_id"], [names.index(n) for n in a.open_area])
+        out_ = lm[jj, ii]
+        lev_note = (f"leveed areas of the grid ({'all' if not a.open_area else 'without ' + ', '.join(a.open_area)}): {int((near & out_).sum()) / 100:.0f} km2 of the land near the sites. The two signs used before marked {int((near & signs).sum()) / 100:.0f} km2, "
+                    f"of which {int((near & signs & out_).sum()) / 100:.0f} km2 lie in a leveed area; they found {100 * (near & signs & out_).sum() / max((near & out_).sum(), 1):.0f}% of the leveed land")
+    cover = near & ~out_
     f = {"from observations, inputs observed": peak(L0, stormF), "from observations, inputs forecast 6 h before": peak(L6, stormF), "from observations, inputs observed, calm hours before the storm": peak(L0, calmF)}
     lines = [f"{S} sites; land cells east of {-a.west_limit} W: {int((land & (lon[None, :] >= a.west_limit)).sum()) / 100:.0f} km2; within {a.radius} km of a site: {near.sum() / 100:.0f} km2",
              f"taken out as behind a levee or bank: ground below {a.low} m yet dry in normal conditions {int((near & below).sum()) / 100:.0f} km2; kept dry by the numerical model in Ida while the sites around stood {a.ida_level} m or more above the ground "
-             f"{int((near & ~below & kept_dry).sum()) / 100:.0f} km2; the map covers {cover.sum() / 100:.0f} km2"]
+             f"{int((near & ~below & kept_dry).sum()) / 100:.0f} km2" + (" (not used: the leveed areas are known)" if a.leveed else "") + f"; the map covers {cover.sum() / 100:.0f} km2"] + ([lev_note] if lev_note else [])
     full = lambda v, m: np.where(m, v, 0).astype(np.float32)
     def to_grid(v):
         o = np.zeros((NY, NX), np.float32); o[jj, ii] = v; return o
@@ -86,7 +96,7 @@ def main() -> None:
 
     s_ = a.step; ny, nx = NY // s_, NX // s_; blk = lambda x, fn: fn(fn(x[:ny * s_, :nx * s_].reshape(ny, s_, nx, s_), 3), 1)
     o = {"lat": lat[:ny * s_].reshape(ny, s_).mean(1), "lon": lon[:nx * s_].reshape(nx, s_).mean(1), "land_frac": blk(land.astype(np.float32), np.mean), "water_frac": blk(water.astype(np.float32), np.mean),
-         "cover_frac": blk(to_grid(cover.astype(np.float32)), np.mean), "behind_levee_frac": blk(to_grid((near & (below | kept_dry)).astype(np.float32)), np.mean), "site_lat": slat, "site_lon": slon, "site": sid}
+         "cover_frac": blk(to_grid(cover.astype(np.float32)), np.mean), "behind_levee_frac": blk(to_grid((near & out_).astype(np.float32)), np.mean), "site_lat": slat, "site_lon": slon, "site": sid}
     for lab, v in f.items():
         o["peak | " + lab] = blk(to_grid(full(v, cover)), np.max)
     np.savez_compressed(out / "map_coarse.npz", **o)
@@ -95,7 +105,7 @@ def main() -> None:
     dss = np.hypot((slon[:, None] - slon[None, :]) * KX, (slat[:, None] - slat[None, :]) * KY); np.fill_diagonal(dss, np.inf); nbs = np.argsort(dss, 1)[:, :a.neighbours]
     wss = 1.0 / np.maximum(np.take_along_axis(dss, nbs, 1), 0.1) ** 2; wss /= wss.sum(1, keepdims=True); others = lambda L: np.einsum("tsk,sk->ts", L[:, nbs], wss)
     cell_j = np.abs(lat[:, None] - slat[None, :]).argmin(0); cell_i = np.abs(lon[:, None] - slon[None, :]).argmin(0); gcell = np.full(S, np.nan); incov = np.zeros(S, bool); flagged = np.zeros(S, bool); cg = to_grid(cover.astype(np.float32)) > 0
-    pg = to_grid((near & (below | kept_dry)).astype(np.float32)) > 0
+    pg = to_grid((near & out_).astype(np.float32)) > 0
     for s in range(S):
         j0, j1, i0, i1 = max(cell_j[s] - 3, 0), cell_j[s] + 4, max(cell_i[s] - 3, 0), cell_i[s] + 4; m = land[j0:j1, i0:i1]
         if m.any():
@@ -115,7 +125,7 @@ def main() -> None:
                                                                     "largest_corr": y[["storm_observed_largest_depth_m", "storm_map_largest_depth_m"]].dropna().corr().iloc[0, 1]}), include_groups=False)
     oi = np.nanmax(np.where(stormI[:, None], np.maximum(z["observed_to_marsh_ida"][:, ok], 0), np.nan), 0)
     lines += ["", f"sites with land cells of the map next to them: {int(incov.sum())} of {S}; sites whose cells were taken out as behind a levee: {int(flagged.sum())}, "
-              f"of them with 0.5 m or more observed on the marsh in Ida: {int((flagged & (oi >= 0.5)).sum())} (these are wrongly taken out)",
+              f"of them with 0.5 m or more observed on the marsh in Ida: {int((flagged & (oi >= 0.5)).sum())}",
               "", "check at the sites, Francine (depth on the marsh, observed = water level relative to the surveyed marsh surface):", sm_.round(3).to_string()]
     (out / "summary.txt").write_text(chr(10).join(lines), encoding="utf-8"); print(chr(10).join(lines)); print(f"-> {out}, {time.time() - t00:.0f} s")
 

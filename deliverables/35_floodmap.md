@@ -659,10 +659,46 @@ Francine 登陆前后四天，每个站湿地上的最大水深，按经度分�
 3. 图只覆盖 13443 km²，是 92.5°W 以东陆地的 23%。其余地方（城区、北边河谷、离站远的地方）没有图。
 4. 第十轮里说的最高处仍偏低 0.5 m 左右、风用的是再分析，在这张图里都还在。
 
+## 第十二轮（2026-11-19）：格点图改用建网格时的堤防保护区
+
+第十一轮没有堤防数据，用两条替代办法排除堤防后面的格点。模式作者指出数据在建网格的目录里（本地 `Louisiana100m/Elevation_Data20241204`，只读）。脚本 `scripts/p2m/leveed_mask.py`，`marsh_map.py` 加了 `--leveed`；sv7 新目录 `p2m/levee_v1`、`p2m/map_v2`。第十一轮的图和数字被这一轮替换（`marsh_map_*` 文件已更新）。
+
+### 用的是什么
+
+- `LeveedArea/layers/POLYGON.shp`：National Levee Database 的堤防保护区多边形，网格范围内 218 个。
+- `hydro_ini_head_levee-ed.txt`：建网格时写出的"堤防保护区内的格点"清单（xi、eta，从 0 起），1063895 个格点，10639 km²。
+
+核对：把多边形重新落到现在的网格上，清单里 99.4% 的格点落在多边形里，所以清单和现在的网格是同一套。出图用清单。
+
+### 替代办法漏了多少
+
+| | 面积 |
+|---|---|
+| 离 CRMS 站 10 km 以内的陆地 | 14245 km² |
+| 其中在堤防保护区里 | 2335 km² |
+| 第十一轮的替代办法标出来的 | 802 km²，其中 658 km² 确实在保护区里 |
+| **替代办法找到的比例** | **28%** |
+| **现在出图的范围** | **11910 km²**（第十一轮是 13443 km²） |
+
+也就是第十一轮的图里有约 1700 km² 其实在堤防保护区里，不该出图。
+
+### CRMS 站在不在保护区里
+
+网格内的 294 个 CRMS 站只有 6 个落在保护区里（New Orleans East Bank 4 个，New Orleans West Bank 1 个，Southeast Terrebonne 1 个）。没有哪个大的保护区里有成片被淹的湿地站，所以保护区全部排除，不留例外。那 6 个站里有的实测也有水（West Bank 那个站 Ida 时 1.9 m），是保护区里面自己的积水还是多边形把堤外的湿地也划了进去，没有查。
+
+### 图和精度
+
+图：`35_floodmap/marsh_map_francine.png`（(d) 里橙色是保护区）。出图范围内最大水深超过 0.3 / 1 m 的面积：新的图提前 6 小时 7170 / 2794 km²，用当时的实测 6901 / 1423 km²；用 Ida 模式结果学的映射 6154 / 1532 km² 和 5821 / 1097 km²。
+
+没有站的格点上的精度没有变（177 个站）：湿地水深 RMSE 中位数 0.16 m，最大水深和实测的相关系数 0.55。这是预料中的，因为检验用的 CRMS 站几乎都在保护区外。
+
+第十一轮"要注意的"第 2 条（堤防是替代办法）到这里解决了；其余几条不变。
+
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/leveed_area_mask.npz`、`leveed_area_marsh_gauges.csv`，`scripts/p2m/leveed_mask.py` | 第十二轮：堤防保护区在 100 m 网格上的掩膜（清单、多边形重新落格、每个格点属于哪个保护区）；每个 CRMS 站在不在保护区里 |
 | `35_floodmap/marsh_map_francine.png`、`marsh_map_map_coarse.npz`、`marsh_map_areas.csv`、`marsh_map_sites.csv`、`marsh_map_summary.txt` | 第十一轮：从实测学的水位铺成的格点图（Francine），出图范围，和 CRMS 实测的比对 |
 | `scripts/p2m/marsh_map.py`、`marsh_map_fig.py` | 第十一轮的脚本 |
 | `35_floodmap/marsh_obs_variants_summary.txt`、`marsh_obs_variants_validation.csv`、`marsh_obs_variants_storms.csv`、`marsh_obs_variants_sites.csv`、`marsh_obs_variants_largest_depth.png` | 第十轮：六种改法在训练期内 8 场风暴上的比较（每场轮流去掉），以及在 Francine 和 Ida 上的结果 |

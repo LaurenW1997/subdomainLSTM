@@ -52,7 +52,7 @@ def main() -> None:
     ax = axes[1, 1]; cls = np.where(water, 3, np.where(cover, 1, np.where(levee, 2, np.where(land, 0, 4)))).astype(float)
     cols = [DRY, "#5b9ad9", "#d6690f", WATER, "#eceae4"]; ax.imshow(cls, extent=ext, origin="lower", cmap=ListedColormap(cols), vmin=0, vmax=4, aspect="auto", interpolation="nearest")
     ax.scatter(z["site_lon"], z["site_lat"], s=7, color=INK, zorder=5); frame(ax, "(d) Where the map is given")
-    ax.legend(handles=[Patch(facecolor=cols[1], label="map given: land within 10 km of a marsh gauge"), Patch(facecolor=cols[2], label="taken out: behind a levee or bank"), Patch(facecolor=cols[0], edgecolor="#cfcfcd", label="no map: no marsh gauge near"),
+    ax.legend(handles=[Patch(facecolor=cols[1], label="map given: land within 10 km of a marsh gauge"), Patch(facecolor=cols[2], label="taken out: leveed area (National Levee Database)"), Patch(facecolor=cols[0], edgecolor="#cfcfcd", label="no map: no marsh gauge near"),
                        plt.Line2D([], [], marker="o", ls="", color=INK, markersize=3.5, label="marsh gauges (CRMS)")], loc="upper left", frameon=True, facecolor="white", edgecolor="none", framealpha=0.9, fontsize=9)
     fig.colorbar(im, ax=ax, fraction=0.03, pad=0.015, shrink=0.85).ax.set_visible(False)       # keeps the panel the size of the others
     out = D / "marsh_map_francine.png"; fig.savefig(out, dpi=200); plt.close(fig); print("->", out)
