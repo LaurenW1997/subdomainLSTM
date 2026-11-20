@@ -1,0 +1,7 @@
+training: Exp2_no_wind, Exp3_no_precipitation, Exp4_river_only, Exp5_Ida_base, Exp6_absolute_base, Exp7_wind_base, Exp8_precipitation_base, drought_river_storm, drought_river_no_storm, flood_river_storm, flood_river_no_storm (2915 hours); prediction area 46,252 km2; every cell uses its 8 nearest of 30 control points; flooded = deeper than 0.05 m
+Type 1 (flooded in every hour, Model-1): 20,100 km2
+Type 2 with a model: 15,961 km2 - Model-2 linear, flooded hours 1,661 km2 (10%); Model-3 hurdle 7,298 km2 (46%); Model-4 Tobit 7,002 km2 (44%)
+low flood risk (flooded at times, fewer than two folds with flooded and dry hours; no model): 4,769 km2
+never flooded in the training hours (no model): 5,422 km2
+on land (dry in the run without a hurricane, 24,819 km2): Type 1 124 km2, Type 2 with a model 15,647 km2, low flood risk 3,627 km2, never flooded 5,422 km2
+cross-validation RMSE of the Type 2 cells (m), median: Model-2 linear, flooded hours 0.119, Model-3 hurdle 0.058, Model-4 Tobit 0.061; of the model chosen 0.050
