@@ -12,16 +12,160 @@
  "epochs": 40,
  "training_minutes_per_model": 39,
  "samples_per_model": 81920000,
- "test_gauges": 443,
- "test_forecasts": 1247219,
- "rmse_all_forecasts_cm": {
-  "1": 2.15,
-  "3": 5.29,
-  "6": 8.418
+ "test_2024_2025": {
+  "gauges": 443,
+  "forecasts": 1247219,
+  "rmse_all_forecasts_cm": {
+   "1": 2.15,
+   "3": 5.29,
+   "6": 8.418
+  },
+  "rmse_median_gauge_cm": {
+   "1": 1.166,
+   "3": 3.234,
+   "6": 5.474
+  }
  },
- "rmse_median_gauge_cm": {
-  "1": 1.166,
-  "3": 3.234,
-  "6": 5.474
+ "hurricanes": {
+  "gauges": 442,
+  "forecasts": 41805,
+  "forecasts_by_storm": {
+   "Francine": 21317,
+   "Beryl": 20488
+  },
+  "table": [
+   {
+    "gauges_of": "All gauges",
+    "gauges": 442,
+    "rmse_1h_cm": 4.72,
+    "rmse_3h_cm": 13.54,
+    "rmse_6h_cm": 25.11,
+    "median_gauge_1h_cm": 1.84,
+    "median_gauge_3h_cm": 5.24,
+    "median_gauge_6h_cm": 9.86
+   },
+   {
+    "gauges_of": "Tide gauges",
+    "gauges": 53,
+    "rmse_1h_cm": 5.62,
+    "rmse_3h_cm": 8.88,
+    "rmse_6h_cm": 13.81,
+    "median_gauge_1h_cm": 3.37,
+    "median_gauge_3h_cm": 5.77,
+    "median_gauge_6h_cm": 8.94
+   },
+   {
+    "gauges_of": "Estuaries",
+    "gauges": 43,
+    "rmse_1h_cm": 6.52,
+    "rmse_3h_cm": 20.3,
+    "rmse_6h_cm": 37.51,
+    "median_gauge_1h_cm": 3.26,
+    "median_gauge_3h_cm": 7.16,
+    "median_gauge_6h_cm": 11.11
+   },
+   {
+    "gauges_of": "Lakes",
+    "gauges": 12,
+    "rmse_1h_cm": 2.64,
+    "rmse_3h_cm": 5.99,
+    "rmse_6h_cm": 8.29,
+    "median_gauge_1h_cm": 1.77,
+    "median_gauge_3h_cm": 4.21,
+    "median_gauge_6h_cm": 7.11
+   },
+   {
+    "gauges_of": "Rivers",
+    "gauges": 254,
+    "rmse_1h_cm": 2.01,
+    "rmse_3h_cm": 6.36,
+    "rmse_6h_cm": 12.51,
+    "median_gauge_1h_cm": 0.98,
+    "median_gauge_3h_cm": 3.59,
+    "median_gauge_6h_cm": 7.45
+   },
+   {
+    "gauges_of": "Urban creeks",
+    "gauges": 71,
+    "rmse_1h_cm": 8.57,
+    "rmse_3h_cm": 26.06,
+    "rmse_6h_cm": 48.41,
+    "median_gauge_1h_cm": 5.7,
+    "median_gauge_3h_cm": 17.84,
+    "median_gauge_6h_cm": 37.67
+   }
+  ]
+ },
+ "recent_week": {
+  "gauges": 418,
+  "forecast_times": 150,
+  "forecasts": 62354,
+  "first": "2026-11-14 18:00:00",
+  "last": "2026-11-20 23:00:00",
+  "left_out": [
+   "02481510"
+  ],
+  "table": [
+   {
+    "gauges_of": "All gauges",
+    "gauges": 418,
+    "rmse_1h_cm": 1.73,
+    "rmse_3h_cm": 3.79,
+    "rmse_6h_cm": 5.79,
+    "median_gauge_1h_cm": 0.7,
+    "median_gauge_3h_cm": 1.83,
+    "median_gauge_6h_cm": 3.41
+   },
+   {
+    "gauges_of": "Tide gauges",
+    "gauges": 51,
+    "rmse_1h_cm": 1.89,
+    "rmse_3h_cm": 3.9,
+    "rmse_6h_cm": 5.46,
+    "median_gauge_1h_cm": 1.49,
+    "median_gauge_3h_cm": 2.78,
+    "median_gauge_6h_cm": 4.14
+   },
+   {
+    "gauges_of": "Estuaries",
+    "gauges": 42,
+    "rmse_1h_cm": 2.4,
+    "rmse_3h_cm": 4.99,
+    "rmse_6h_cm": 7.23,
+    "median_gauge_1h_cm": 1.77,
+    "median_gauge_3h_cm": 4.29,
+    "median_gauge_6h_cm": 6.01
+   },
+   {
+    "gauges_of": "Lakes",
+    "gauges": 12,
+    "rmse_1h_cm": 1.45,
+    "rmse_3h_cm": 3.1,
+    "rmse_6h_cm": 4.87,
+    "median_gauge_1h_cm": 0.8,
+    "median_gauge_3h_cm": 1.79,
+    "median_gauge_6h_cm": 2.94
+   },
+   {
+    "gauges_of": "Rivers",
+    "gauges": 241,
+    "rmse_1h_cm": 1.45,
+    "rmse_3h_cm": 2.91,
+    "rmse_6h_cm": 4.48,
+    "median_gauge_1h_cm": 0.34,
+    "median_gauge_3h_cm": 1.03,
+    "median_gauge_6h_cm": 2.18
+   },
+   {
+    "gauges_of": "Urban creeks",
+    "gauges": 71,
+    "rmse_1h_cm": 2.06,
+    "rmse_3h_cm": 5.32,
+    "rmse_6h_cm": 8.52,
+    "median_gauge_1h_cm": 1.17,
+    "median_gauge_3h_cm": 3.31,
+    "median_gauge_6h_cm": 6.2
+   }
+  ]
  }
 }
