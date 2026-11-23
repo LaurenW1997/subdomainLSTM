@@ -1,8 +1,9 @@
-"""Slides for AGU on the water-level model that is run (mean of five LSTMs; inputs water level, wind, rainfall, river discharge).
+"""Two slides for AGU on the water-level model that is run (mean of five LSTMs; inputs water level, wind, rainfall, river discharge).
 
 Slide 1: the data and the model (numbers, map of the gauges, block diagram).
-Slide 2: validation in the hurricanes Beryl and Francine of 2024 (four gauges, all forecasts 6 h ahead against the observations, RMSE by kind of gauge).
-Slide 3: validation in real time, 14 to 20 November 2026 (six gauges, RMSE by kind of gauge).
+Slide 2: validation in two parts. The hurricanes Beryl and Francine of 2024 (three gauges with the time of landfall, every
+         forecast 6 h ahead of all gauges against the observation) and one week of forecasts made from the real-time data
+         feeds, 14 to 20 November 2026 (four gauges); one table with the RMSE of both parts.
 White background, black Times New Roman, no title page, no page numbers.
 Input : deliverables/37_agu/ (figures and agu_numbers.json of agu_figs.py)
 Output: deliverables/37_agu_lstm.pptx
@@ -16,25 +17,40 @@ from pathlib import Path
 
 from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches
+from pptx.util import Inches, Pt
 
-from slides_figures import picture, text
+from slides_figures import BLACK, FONT, picture, text
 
 REPO = Path(__file__).resolve().parents[2]
 D = REPO / "deliverables" / "37_agu"
 C, L, R = PP_ALIGN.CENTER, PP_ALIGN.LEFT, PP_ALIGN.RIGHT
+KINDS = ["Tide gauges", "Estuaries", "Lakes", "Rivers", "Urban creeks"]
 
 
-def rmse_table(sl, rows: list, x: float, y: float, w: float, size: float = 12.5, step: float = 0.255) -> None:
-    """Kinds of gauge in columns; lines: number of gauges, RMSE of all forecasts at 1, 3, 6 h, RMSE of the median gauge at 6 h (cm)."""
-    lab = 3.0; cw = (w - lab) / len(rows)
-    lines = [("RMSE (cm)", [r["gauges_of"] for r in rows], True), ("Number of gauges", [f"{r['gauges']}" for r in rows], False)]
-    lines += [(f"All forecasts, {h} h ahead", [f"{r[f'rmse_{h}h_cm']:.1f}" for r in rows], False) for h in (1, 3, 6)]
-    lines += [("Median gauge, 6 h ahead", [f"{r['median_gauge_6h_cm']:.1f}" for r in rows], False)]
-    for i, (name, cells, bold) in enumerate(lines):
-        text(sl, x, y + i * step, lab, 0.3, name, size=size, bold=bold)
+def heading(sl, x, y, w, bold: str, rest: str, size: float = 13) -> None:
+    """One line: a bold lead-in followed by plain text."""
+    tb = sl.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(0.3)); tf = tb.text_frame; tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = Inches(0.03)
+    for s, b in ((bold, True), (rest, False)):
+        r = tf.paragraphs[0].add_run(); r.text = s; r.font.name = FONT; r.font.size = Pt(size); r.font.bold = b; r.font.color.rgb = BLACK
+
+
+def rmse_table(sl, parts: list, x: float, y: float, size: float = 12, step: float = 0.25) -> None:
+    """parts: (label, table of agu_numbers.json). Lines: the two parts. Columns: number of gauges; all gauges, RMSE of all
+    forecasts at 1, 3, 6 h; the median gauge at 6 h; RMSE of all forecasts at 6 h for every kind of gauge. In cm."""
+    lab = 3.4; wd = [0.8, 0.7, 0.7, 0.7, 1.05, 1.15, 1.0, 0.75, 0.8, 1.25]; cx = [x + lab + sum(wd[:k]) for k in range(len(wd))]
+    text(sl, x, y, lab, 0.3, "RMSE (cm)", size=size, bold=True)
+    text(sl, cx[1] - 0.6, y, sum(wd[1:4]) + 0.6, 0.3, "All gauges, all forecasts", size=size, bold=True, align=R)
+    text(sl, cx[4], y, wd[4], 0.3, "Median", size=size, bold=True, align=R)
+    text(sl, cx[5], y, sum(wd[5:]), 0.3, "All forecasts 6 h ahead, by kind of gauge", size=size, bold=True, align=R)
+    for k, h in enumerate(["Gauges", "1 h", "3 h", "6 h", "gauge, 6 h"] + KINDS):
+        text(sl, cx[k], y + step, wd[k], 0.3, h, size=size, bold=True, align=R)
+    for i, (name, tab) in enumerate(parts):
+        t = {r["gauges_of"]: r for r in tab}; a = t["All gauges"]
+        cells = [f"{a['gauges']}", f"{a['rmse_1h_cm']:.1f}", f"{a['rmse_3h_cm']:.1f}", f"{a['rmse_6h_cm']:.1f}", f"{a['median_gauge_6h_cm']:.1f}"] + [f"{t[k]['rmse_6h_cm']:.1f}" for k in KINDS]
+        text(sl, x, y + (i + 2) * step, lab, 0.3, name, size=size)
         for k, c in enumerate(cells):
-            text(sl, x + lab + k * cw, y + i * step, cw - 0.05, 0.3, c, size=size, bold=bold or k == 0, align=R)
+            text(sl, cx[k], y + (i + 2) * step, wd[k], 0.3, c, size=size, align=R)
 
 
 def main() -> None:
@@ -63,20 +79,15 @@ def main() -> None:
                                   f"One set of weights for all gauges: {round(n['observations_train_2010_2022'] / 1e6):.0f} million training observations,",
                                   f"{n['training_minutes_per_model']} minutes of training per network on one NVIDIA A100 GPU."], size=12.5)
 
-    # ---- slide 2: hurricanes
-    a0 = hu["table"][0]
-    sl = new(f"Validation in hurricanes: Beryl and Francine, 2024 (test years, not used in training)")
-    text(sl, 0.5, 0.88, 12.3, 0.35, f"Beryl, 7 to 11 July (Texas and Galveston domains), and Francine, 10 to 14 September (Louisiana domain): {hu['gauges']} gauges, a forecast every hour, {hu['forecasts']:,} forecasts.", size=13.5)
-    picture(sl, D / "agu_hurricane_gauges.png", 0.5, 1.4, 8.1, 4.25); picture(sl, D / "agu_hurricane_scatter.png", 8.75, 1.35, 4.1, 4.25)
-    rmse_table(sl, hu["table"], 0.5, 5.78, 12.3)
-
-    # ---- slide 3: the week in real time
-    a1 = rw["table"][0]
-    sl = new("Validation in real time: one week of forecasts, 14 to 20 November 2026")
-    text(sl, 0.5, 0.88, 12.3, 0.35, f"Forecasts from the live data feeds (USGS, NOAA, HRRR, MRMS), every hour: {rw['gauges']} gauges, {rw['forecasts']:,} forecasts; one gauge with faulty readings left out.", size=13.5)
-    picture(sl, D / "agu_recent_gauges.png", 0.5, 1.35, 12.3, 4.3)
-    rmse_table(sl, rw["table"], 0.5, 5.78, 12.3)
-    prs.save(a.out); print("->", a.out, "| 6 h, all forecasts:", a0["rmse_6h_cm"], a1["rmse_6h_cm"])
+    # ---- slide 2: validation, hurricanes and one week in real time
+    sl = new("Validation: the hurricanes of 2024 and one week of forecasts in real time")
+    heading(sl, 0.5, 0.93, 12.3, "Hurricanes Beryl and Francine, 2024", f" (test years, not used in training): {hu['gauges']} gauges, a forecast every hour, {hu['forecasts']:,} forecasts. Times in UTC.")
+    picture(sl, D / "agu_hurricane_gauges.png", 0.5, 1.28, 9.45, 2.65); picture(sl, D / "agu_hurricane_scatter.png", 10.15, 1.2, 2.6, 2.6)
+    heading(sl, 0.5, 3.92, 12.3, "In real time, 14 to 20 November 2026", f": forecasts every hour from the live data feeds (USGS, NOAA, HRRR, MRMS), {rw['gauges']} gauges, {rw['forecasts']:,} forecasts.")
+    picture(sl, D / "agu_recent_gauges.png", 0.5, 4.24, 12.3, 2.05)
+    rmse_table(sl, [("Hurricanes Beryl and Francine, 2024", hu["table"]), ("In real time, 14 to 20 November 2026*", rw["table"])], 0.5, 6.28, step=0.245)
+    text(sl, 0.5, 7.25, 12.3, 0.22, "* One gauge with faulty readings on 17 November is left out.", size=9.5)
+    prs.save(a.out); print("->", a.out)
 
 
 if __name__ == "__main__":

@@ -37,18 +37,17 @@ GREY, LIGHT, RULE = "#8a8a84", "#efefec", "#b9b9b3"
 LEADS = (1, 3, 6)
 plt.rcParams.update({"font.family": "Times New Roman", "mathtext.fontset": "stix", "axes.linewidth": 0.6, "axes.spines.top": False, "axes.spines.right": False})
 
+# landfall, UTC: Beryl near Matagorda, Texas (NHC Tropical Cyclone Report AL022024); Francine in Terrebonne Parish, Louisiana (NHC advisory of 11 Sep 2024, 2200 UTC)
+LANDFALL = {"hurricane Beryl": pd.Timestamp("2024-07-08 08:40"), "hurricane Francine": pd.Timestamp("2024-09-11 22:00")}
 # gauges drawn, chosen for good results. Hurricanes: station, window in the data files, name, what it is
-HURRICANE = [("02481660", "hurricane Francine", "Jourdan River near Bay St. Louis, Mississippi", "tidal river, Hurricane Francine, Sep 2024"),
+HURRICANE = [("02481660", "hurricane Francine", "Jourdan River, Mississippi", "tidal river, Hurricane Francine, Sep 2024"),
              ("07380260", "hurricane Francine", "Empire Waterway, Louisiana", "tidal channel, Hurricane Francine, Sep 2024"),
-             ("08162500", "hurricane Beryl", "Colorado River near Bay City, Texas", "river, Hurricane Beryl, Jul 2024"),
-             ("08067000", "hurricane Beryl", "Trinity River at Liberty, Texas", "river, Hurricane Beryl, Jul 2024")]
+             ("08162500", "hurricane Beryl", "Colorado River near Bay City, Texas", "river, Hurricane Beryl, Jul 2024")]
 # the week of real-time forecasts: station, name, what it is
 RECENT = [("8760922", "Southwest Pass, Louisiana", "tide gauge at the mouth of the Mississippi"),
           ("07374000", "Mississippi River at Baton Rouge", "river"),
           ("08068900", "Cypress Creek, Houston, Texas", "urban creek, after rain"),
-          ("8779770", "Port Isabel, Texas", "tide gauge"),
-          ("08162000", "Colorado River at Wharton, Texas", "river"),
-          ("08210000", "Nueces River near Three Rivers, Texas", "river")]
+          ("08210000", "Nueces River, Texas", "river")]
 FAULTY = ["02481510"]                                       # Wolf River near Landon: wrong readings on 17 Nov 2026 in the input (deliverable 33), left out of the week's scores
 TYPES = [("tide gauge", "Tide gauges"), ("estuary / tidal channel", "Estuaries"), ("lake", "Lakes"), ("river / canal", "Rivers"), ("urban creek (Houston)", "Urban creeks")]
 
@@ -179,32 +178,33 @@ def read(sid: str, window: str) -> tuple[pd.Series, pd.DataFrame]:
     return o, f[["lead", "valid", KEY]].rename(columns={KEY: "value"})
 
 
-def panels(items: list, out: Path, ncol: int, figsize, day_step: int = 1) -> Path:
-    """items: (name, what, observed series, forecasts with lead, valid, value). Black: observed; warm lines, pale to vivid: the
-    forecast valid at each hour that was issued 1, 3 and 6 h earlier. The RMSE of the window is written in every panel."""
-    nrow = int(np.ceil(len(items) / ncol)); fig, axes = plt.subplots(nrow, ncol, figsize=figsize, squeeze=False, gridspec_kw={"wspace": 0.17, "hspace": 0.52})
-    for ax, (name, what, o, f) in zip(axes.ravel(), items):
+def panels(items: list, out: Path, figsize, day_step: int = 1, legend: bool = True) -> Path:
+    """One row of panels. items: (name, what, observed series, forecasts with lead, valid, value, time of landfall or None).
+    Black: observed; warm lines, pale to vivid: the forecast valid at each hour that was issued 1, 3 and 6 h earlier; dashed
+    vertical line: landfall. The RMSE of the window is written in every panel. Times are UTC."""
+    fig, axes = plt.subplots(1, len(items), figsize=figsize, squeeze=False, gridspec_kw={"wspace": 0.19})
+    for ax, (name, what, o, f, mark) in zip(axes.ravel(), items):
         for h in LEADS:
             g = f[f.lead == h].sort_values("valid"); ax.plot(g.valid, g.value, color=LEAD_COL[h], lw=1.2, zorder=4)
         ax.plot(o.index, o.values, color=INK, lw=1.4, zorder=5)
-        lo, hi = ax.get_ylim(); ax.set_ylim(lo, hi + 0.22 * (hi - lo))
+        lo, hi = ax.get_ylim(); ax.set_ylim(lo, hi + 0.24 * (hi - lo))
         r = {h: 100 * rmse(f[f.lead == h].set_index("valid").value - o.reindex(f[f.lead == h].valid.values).values) for h in LEADS}
-        ax.text(0.025, 0.965, "RMSE   " + "    ".join(f"{h} h: {r[h]:.1f} cm" for h in LEADS), transform=ax.transAxes, va="top", ha="left", fontsize=10, color=INK, zorder=6)
-        ax.set_title(name, loc="left", fontsize=11.5, fontweight="bold", pad=17); ax.text(0, 1.035, what, transform=ax.transAxes, ha="left", va="bottom", fontsize=10, color="#55554f")
+        ax.text(0.025, 0.965, "RMSE 1 / 3 / 6 h:  " + " / ".join(f"{r[h]:.1f}" for h in LEADS) + " cm", transform=ax.transAxes, va="top", ha="left", fontsize=9.5, color=INK, zorder=6)
+        if mark is not None:
+            ax.axvline(mark, color=INK, lw=0.9, ls=(0, (4, 3)), ymax=0.80, zorder=3)
+            ax.text(mark, 0.80, "landfall ", transform=ax.get_xaxis_transform(), ha="right", va="top", fontsize=9.5, color=INK, zorder=6)
+        ax.set_title(name, loc="left", fontsize=11.5, fontweight="bold", pad=17); ax.text(0, 1.04, what, transform=ax.transAxes, ha="left", va="bottom", fontsize=9.5, color="#55554f")
         ax.xaxis.set_major_locator(mdates.DayLocator(interval=day_step)); ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _: f"{mdates.num2date(x).day} {mdates.num2date(x):%b}"))
         ax.tick_params(labelsize=9.5, length=3, width=0.6); ax.grid(axis="y", color="#e6e6e2", lw=0.5); ax.set_axisbelow(True); ax.margins(x=0.01)
-    for ax in axes[:, 0]:
-        ax.set_ylabel("Water level (m)", fontsize=10.5)
-    for ax in axes.ravel()[len(items):]:
-        ax.axis("off")
-    h = [Line2D([], [], color=INK, lw=1.6)] + [Line2D([], [], color=LEAD_COL[k], lw=1.8) for k in LEADS]
-    fig.legend(h, ["Observed"] + [f"Forecast issued {k} h earlier" for k in LEADS], loc="lower center", ncol=4, frameon=False, fontsize=11 if ncol > 2 else 10,
-               bbox_to_anchor=(0.5, -0.035), columnspacing=2.2 if ncol > 2 else 1.4)
+    axes[0, 0].set_ylabel("Water level (m)", fontsize=10.5)
+    if legend:
+        h = [Line2D([], [], color=INK, lw=1.6)] + [Line2D([], [], color=LEAD_COL[k], lw=1.8) for k in LEADS] + [Line2D([], [], color=INK, lw=0.9, ls=(0, (4, 3)))]
+        fig.legend(h, ["Observed"] + [f"Forecast issued {k} h earlier" for k in LEADS] + ["Landfall"], loc="lower center", ncol=5, frameon=False, fontsize=10, bbox_to_anchor=(0.5, -0.27), columnspacing=1.5, handlelength=1.8)
     fig.savefig(out, dpi=300, bbox_inches="tight", pad_inches=0.04); plt.close(fig); return out
 
 
 def hurricane_gauges() -> Path:
-    return panels([(name, what, *read(sid, w)) for sid, w, name, what in HURRICANE], OUT / "agu_hurricane_gauges.png", ncol=2, figsize=(8.6, 4.4))
+    return panels([(name, what, *read(sid, w), LANDFALL[w]) for sid, w, name, what in HURRICANE], OUT / "agu_hurricane_gauges.png", figsize=(9.6, 1.85))
 
 
 def hurricane_scatter(lead: int = 6) -> Path:
@@ -213,15 +213,13 @@ def hurricane_scatter(lead: int = 6) -> Path:
     d = storm_pairs(); mean = pd.read_csv(REPO / "runs" / "v14_stale25" / "stations.csv").mean_m.to_numpy()[d.row.to_numpy()]
     x = (d[f"ob{lead}"] - mean).to_numpy(); y = (d[f"fc{lead}"] - mean).to_numpy(); m = np.isfinite(x) & np.isfinite(y); x, y = x[m], y[m]
     lo, hi = np.floor(min(x.min(), y.min())), np.ceil(max(x.max(), y.max()))
-    fig = plt.figure(figsize=(4.3, 4.45)); ax = fig.add_axes([0.16, 0.115, 0.80, 0.773])
-    hb = ax.hexbin(x, y, gridsize=70, extent=(lo, hi, lo, hi), mincnt=1, norm=LogNorm(vmin=1, vmax=3000), cmap=LinearSegmentedColormap.from_list("seq", SEQ), linewidths=0)
-    ax.plot([lo, hi], [lo, hi], color=INK, lw=0.8, zorder=5); ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
-    ax.set_xlabel("Observed water level (m)", fontsize=10.5); ax.set_ylabel(f"Forecast {lead} h earlier (m)", fontsize=10.5); ax.tick_params(labelsize=9.5, length=3, width=0.6)
-    ax.text(0, 1.095, f"All {d.station_id.nunique()} gauges, {lead} h ahead", transform=ax.transAxes, ha="left", va="bottom", fontsize=11.5, fontweight="bold")
-    ax.text(0, 1.035, "level relative to the mean level of each gauge", transform=ax.transAxes, ha="left", va="bottom", fontsize=10, color="#55554f")
-    ax.text(0.04, 0.96, f"{len(x):,} forecasts" + chr(10) + f"r = {np.corrcoef(x, y)[0, 1]:.2f}", transform=ax.transAxes, ha="left", va="top", fontsize=10, linespacing=1.3)
-    cax = ax.inset_axes([0.62, 0.10, 0.33, 0.035]); cb = fig.colorbar(hb, cax=cax, orientation="horizontal", ticks=[1, 10, 100, 1000]); cb.outline.set_linewidth(0.4)
-    cax.tick_params(labelsize=8, length=2, width=0.4); cax.set_title("forecasts per cell", fontsize=8.5, pad=3)
+    fig = plt.figure(figsize=(2.95, 2.9)); ax = fig.add_axes([0.20, 0.165, 0.76, 0.665])
+    hb = ax.hexbin(x, y, gridsize=60, extent=(lo, hi, lo, hi), mincnt=1, norm=LogNorm(vmin=1, vmax=3000), cmap=LinearSegmentedColormap.from_list("seq", SEQ), linewidths=0)
+    ax.plot([lo, hi], [lo, hi], color=INK, lw=0.8, zorder=5); ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_xticks(np.arange(-4, 11, 2)); ax.set_yticks(np.arange(-4, 11, 2))
+    ax.set_xlabel("Observed (m)", fontsize=10.5); ax.set_ylabel(f"Forecast {lead} h earlier (m)", fontsize=10.5); ax.tick_params(labelsize=9.5, length=3, width=0.6)
+    ax.text(0, 1.115, f"All {d.station_id.nunique()} gauges, {lead} h ahead", transform=ax.transAxes, ha="left", va="bottom", fontsize=11.5, fontweight="bold")
+    ax.text(0, 1.03, "level relative to each gauge's mean", transform=ax.transAxes, ha="left", va="bottom", fontsize=9.5, color="#55554f")
+    ax.text(0.05, 0.95, f"{len(x):,} forecasts" + chr(10) + f"r = {np.corrcoef(x, y)[0, 1]:.2f}", transform=ax.transAxes, ha="left", va="top", fontsize=9.5, linespacing=1.3)
     out = OUT / "agu_hurricane_scatter.png"; fig.savefig(out, dpi=300); plt.close(fig); return out
 
 
@@ -229,8 +227,8 @@ def recent_gauges() -> Path:
     f = realtime(); items = []
     for sid, name, what in RECENT:
         x = f[f.station_id == sid]; o = x.dropna(subset=["obs"]).drop_duplicates("valid").set_index("valid").obs.sort_index()
-        items.append((name, what, o, x[x.valid.isin(o.index)][["lead", "valid", "forecast"]].rename(columns={"forecast": "value"})))
-    return panels(items, OUT / "agu_recent_gauges.png", ncol=3, figsize=(12.6, 4.3), day_step=2)
+        items.append((name, what, o, x[x.valid.isin(o.index)][["lead", "valid", "forecast"]].rename(columns={"forecast": "value"}), None))
+    return panels(items, OUT / "agu_recent_gauges.png", figsize=(12.6, 1.5), day_step=2, legend=False)
 
 
 def main() -> None:
