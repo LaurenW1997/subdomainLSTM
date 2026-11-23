@@ -1,0 +1,27 @@
+{
+ "gauges": 1010,
+ "by_source": {
+  "CRMS": 552,
+  "USGS": 403,
+  "NOAA_COOPS": 54,
+  "USACE_MVN": 1
+ },
+ "gauges_real_time": 457,
+ "observations_train_2010_2022": 88729063,
+ "observations_all_2010_2025": 114527348,
+ "epochs": 40,
+ "training_minutes_per_model": 39,
+ "samples_per_model": 81920000,
+ "test_gauges": 443,
+ "test_forecasts": 1247219,
+ "rmse_all_forecasts_cm": {
+  "1": 2.15,
+  "3": 5.29,
+  "6": 8.418
+ },
+ "rmse_median_gauge_cm": {
+  "1": 1.166,
+  "3": 3.234,
+  "6": 5.474
+ }
+}
