@@ -1171,10 +1171,51 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 2. 不重跑：喂给映射之前，不把实测水位完全挪到模式的水位上，留下一个共同的量。这个量按水位站看是 0.44 m，按湿地站看是 0.1–0.2 m，两个数不一致，用哪个都要说明理由；如果用湿地站定，就是一次校准，是文章里没有的一步。
 3. 先向提供边界条件的那位师兄问清楚他的模型的水位零点是什么、这个 offset 准确是多少，这样用的数就不是凑出来的。
 
+### 补充七（2026-11-23）：不是控制点的水位站。更正"只有 CRMS 能检验"
+
+**更正**：前面几个补充把检验全放在 CRMS 湿地站上，并且说过陆地上能检验的只有 CRMS。这不对。数据集里 Louisiana 网格范围内还有 198 个 USGS 和 NOAA 的水位站不是控制点，2024–2025 年有 300 天以上的数据，其中很多在城镇和河上（Baton Rouge、Gonzales、Slidell、Lafayette，Amite、Pearl、Vermilion 等）。它们量的是河道、水渠、湖湾里的水位，不是陆地上的水深，但拿图上那个位置的水位去对，同样是检验；文章里留出的 C6、C7 就是这种站。第六轮用过其中 47 个，当时因为数值模式在那里和实测对不上，把它们归成"其他站"之后就没有再用。
+
+**做法**：和补充四同一套两年的输入。每个站取 300 m 以内离它最近的有模型的格点，常年有水的格点优先；图上的水位 = 格点水深 + 格点地面。每个站的固定差（基准面、模式的 0.4 m、格点地面）用平常日子里"图减实测"的中位数扣掉，也就是比去均值之后的。图上那个格点没有水（不到 0.05 m）的小时没法比，单独计数。脚本 `scripts/p2m/p2m_paper_gauges_longrun.py`（sv7）、`p2m_paper_gauges_score.py`；sv7 新目录 `p2m/gauges_v1`，新文件 `fc_v3/test_years_other_gauges_hourly.npz`。
+
+**198 个站里，图能检验多少**
+
+| | 站数 |
+|---|---|
+| 在出图范围（控制点围住的区域）之外，按文章的规则没有图 | 107 |
+| 在范围内，但 300 m 以内没有带模型的格点 | 11 |
+| 所在格点"有时干"，图上几乎从来没有水（中位数：不到 1% 的小时） | 34 |
+| 所在格点"有时干"，图上部分时间有水（中位数：52% 的小时） | 21 |
+| 所在格点常年有水：海湾和湖里（海洋模式的格点） | 10 |
+| 所在格点常年有水：内陆的水道、湖 | 15 |
+
+也就是 198 个站里，图上常年有水、能逐小时比的只有 25 个；另有 21 个只能比一部分时间。
+
+**水位的 RMSE（映射喂提前 6 小时的预报，各站的中位数；提前 1、3 小时几乎相同）**
+
+| | 平常日子 | 非飓风的高水位 | Francine | LSTM 直接预报这个站（三类日子） | 高水位时实测比平时高 |
+|---|---|---|---|---|---|
+| 海湾和湖里（10 个） | 0.09 m | 0.09 m | 0.14 m | 0.05 / 0.06 / 0.09 m | 0.28 m |
+| 内陆的水道、湖（15 个） | 0.17 m | 0.15 m | 0.25 m | 0.04 / 0.05 / 0.09 m | 0.26 m |
+| 有时干、图上部分时间有水（21 个，只算有水的小时） | 0.17 m | 0.24 m | 0.23 m | 0.03 / 0.03 / 0.05 m | 0.38 m |
+
+**看到的**
+
+1. **开阔水域里图是准的。** Barataria 湾、Rigolets、New Orleans 的 Inner Harbor Navigation Canal 这些站，平常、高水位、Francine 都在 0.1 m 上下，涨落和峰值都跟得上。这是图最可靠的部分。
+2. **内陆的水道差一些，有几个完全跟不上。** Atchafalaya 流域的 Wax Lake Outlet、Chicot Pass、Murphy Lake，图上几乎是一条平线（RMSE 0.4–0.9 m）。那里的水位由河的流量决定。
+3. **城镇和河上的站，图在站的位置上大多没有水。** 55 个"有时干"的站里 34 个几乎从来没有水，包括 Baton Rouge 的 Ward Creek、Slidell 的 Bayou Liberty 和 Pearl River、Dulac 的 Bayou Grand Caillou、Maurepas 的 Amite River。100 m 的网格分不出这些沟渠和河道，映射在那里给的是"这块地淹不淹"，不是河道里的水位。能比的 21 个，高水位时实测涨 0.4 m 左右，图的误差是 0.24 m。
+4. **一半以上的站在出图范围之外**（107 个，主要是北边），按文章的规则没有图。
+5. 有站的地方，LSTM 直接预报这个站要准得多（0.03–0.09 m）。图的用处在没有站的地方。
+
+和湿地站的结果放在一起：图在开阔水域的水位是对的；到了陆地边缘（湿地）偏干；到了内陆的河道和城镇，要么没有图，要么图上那个位置没有水。
+
+图：`35_floodmap/p2m_paper_other_gauges.png`（(a) 198 个站分成上面几类；(b) 高水位时各站的 RMSE）、`p2m_paper_other_gauges_stations.png`（五个站三类日子各四天：Barataria Pass、Rigolets、Inner Harbor Navigation Canal、Amite River near French Settlement、Wax Lake Outlet；黑是实测，由浅到深是提前 1、3、6 小时，图上断开的地方是那里没有水）。
+
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
+| `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
 | `scripts/p2m/p2m_paper_hindcast_at_sites.py` | 第十六轮补充六：数值模式自己在 CRMS 站位置的水深（结果在 sv7 `p2m/long_v1/hindcast_ida_at_sites.npz`，数字见正文） |
 | `35_floodmap/p2m_paper_too_dry*` | 第十六轮补充五：偏干的原因。`_shift_test.csv` 统一抬高输入的试验，`_best_shift_per_gauge.csv` 每个站最合适的量，`_level_offsets.csv` 30 个控制点上模式减实测，一张图 |
 | `scripts/p2m/p2m_paper_longrun_shift.py`、`p2m_paper_longrun_shift_score.py` | 同上，脚本 |
