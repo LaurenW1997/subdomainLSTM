@@ -1052,10 +1052,29 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 图：`35_floodmap/p2m_paper_leftout_ida.png`（黑：实测；蓝：数值模式；橙：映射）、`p2m_paper_leftout_francine.png`（黑：实测；由浅到深：映射喂提前 1、3、6 小时的预报）。四行是四个控制点，四列是四个版本。
 
+### 补充三（2026-11-23）：整条链在 Francine 的一张图
+
+我们的 LSTM 预报 30 个控制点的水位，喂给按文章做的映射（另外 11 组实验训练，加输入误差），得到淹没图，和 CRMS 湿地站的实测比。两个模型都没见过 Francine。脚本 `scripts/p2m/p2m_paper_francine_fig.py`。
+
+图：`35_floodmap/p2m_paper_francine_forecast_map.png`。三行是提前 1、3、6 小时；左边是风暴四天里陆地上的最大水深，圆点是 CRMS 实测的最大水深（同一套颜色），方块是映射不出图的站；右边是逐站的对比，90.8°W 以西和以东分开。
+
+| 提前 | 有图的站 | 湿地水深 RMSE（逐小时，每站的中位数） | 最大水深的 RMSE：全部 / 以西 / 以东 | 以西：实测 → 图（中位数） | 以东：实测 → 图（中位数） |
+|---|---|---|---|---|---|
+| 1 小时 | 160 | 0.20 m | 0.59 / 0.52 / 0.63 m | 0.48 → 0.06 m | 0.90 → 0.81 m |
+| 3 小时 | 160 | 0.20 m | 0.58 / 0.52 / 0.62 m | 0.48 → 0.08 m | 0.90 → 0.84 m |
+| 6 小时 | 160 | 0.20 m | 0.59 / 0.52 / 0.63 m | 0.48 → 0.08 m | 0.90 → 0.93 m |
+
+- 三个提前量几乎一样：图的误差不来自 LSTM 的预报，来自映射。
+- 90.8°W 以东，多数站落在对角线附近；以西的站贴在横轴上（实测淹了，图上没有水）。
+- 右下角那一串（实测 1.5–2.3 m，图上不到 0.7 m）是 Terrebonne 到 Barataria 海岸淹得最深的站。
+- 图上画了 177 个有实测的站，其中 21 个映射不出图（周围的陆地没有模型，或者在出图范围之外），19 个实测超过 0.3 m。淹得最深的 Terrebonne 海岸几乎全是方块。
+
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/p2m_paper_francine_forecast_map.png`、`p2m_paper_francine_forecast_map_by_lead.csv`、`p2m_paper_11runs_with_input_error_coarse_francine_leads.npz`、`p2m_paper_11runs_with_input_error_sites.csv` | 第十六轮补充三：整条链在 Francine 的图（提前 1、3、6 小时的淹没图和 CRMS 实测）、每个提前量的数字、画图用的场、每个站周围有没有模型 |
+| `scripts/p2m/p2m_paper_francine_fig.py` | 同上，脚本 |
 | `35_floodmap/p2m_paper_leftout_*` | 第十六轮补充二：留出控制点的检验（每个控制点一行的表、汇总、序列、两张图） |
 | `scripts/p2m/p2m_paper_leftout.py`、`p2m_paper_leftout_fig.py` | 同上，脚本 |
 | `35_floodmap/p2m_paper_exp1_*`、`p2m_paper_prediction_area.npz` | 第十六轮：按文章完整实现的映射模型（Exp1 训练）。`as_in_the_paper` 是文章原样，`with_input_error` 是加了输入误差假定的；各有拟合摘要、和数值模式比的指标、和 CRMS 比的结果、画图用的场、一张图 |
