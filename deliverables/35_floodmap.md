@@ -1258,10 +1258,48 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 **还要模式作者回答的**：潮汐是怎么进模式的（设置里写了 `tide_forc_hires.nc`，运行目录里没有这个文件）；`hydro_obs.txt` 和 `boundary_ij.txt` 是什么、用什么做的；开边界的插值脚本在哪。
 
+### 三、Francine 的输入做完，当晚提交运行（模式作者同意后）
+
+上面三个问题模式作者当天答了：潮汐只从开边界进来（头文件 `laida.h` 里 `SSH_TIDES`、`UV_TIDES` 都没有打开）；`hydro_obs.txt` 是密西西比河在网格北边的入流，用 Vicksburg 的实测流量做；`boundary_ij.txt` 是海洋模式和陆面模式交界的格点，和算例无关；陆地一侧的初始水头不用管，因为是冷启动、提前一个月起跑。
+
+**开边界（HYCOM）。** 用 ESPC-D-V02 的逐小时水位（带潮汐）、3 小时一次的流速、每天一次的温盐，插到南、西、东三条边上，垂向按模式自己的分层（8 层）。文件的结构和 Ida 的边界文件逐项相同（22 个变量），865 个逐小时的时刻，没有缺测。
+
+- 水位的零点：Ida 的边界来自另一个墨西哥湾模式，有自己的零点（模式水位比实测低约 0.4 m）。Francine 要沿用同一个约定，两场的结果才能放在一起用。规则是：风暴前平静的几周里，Francine 的边界平均水位 = Ida 的边界平均水位（−0.139 m）+ 这两段时间实测海面的差（17 个沿海站，2024 年比 2021 年高 0.062 m）= −0.077 m。HYCOM 原样是 −0.122 m，所以整体加 0.045 m。做出来的文件平静期平均 −0.0769 m。
+- 和 Ida 的边界比：边上的潮汐起伏（标准差）大 10–13%。HYCOM 的水位和沿海站实测在平静期的相关是 0.67–0.88。
+- 文件 2.2 GB，在 sv7 上做，传到 QBD `/work/yixuan97/Francine_case/boundary/`，两头校验码相同后才落名。脚本 `make_boundary_hycom.py`、`level_shift.py`、`hycom_fetch_opendap.py`。
+
+**河流入流。** Ida 运行里名字带"30 h"的那份入流文件，逐个格点复现出来是：入流(t) = 1.0231 × Vicksburg（USGS 07289000）30 小时以前的流量 × 该格点固定的份额，九个格点（北边界 i = 2404–2412），最大差 0.04 m³/s。30 小时和河道的传播时间对得上（Vicksburg 到 Baton Rouge 滞后 54 小时）。
+
+- 网格里没有 Old River。模式作者当年做过两种：不扣分流的和逐小时扣掉分流的，Ida 的结果是不扣的更好，两种都留着。Francine 按模式作者的意思做逐小时扣分流的：再减去 Old River Outflow Channel（USGS 07381482）当时的流量。
+- 检查：2024-08-14 到 09-19，这样算的入流和 Baton Rouge 实测流量平均只差 −16 m³/s（均方根 246）；不扣分流的话平均多 2523 m³/s。
+- 没对上的一处：用同一个站去重做 2021 年那份扣分流的文件，重做出来的分流量比原文件大 15% 左右。原来用的是哪份分流数据，模式作者不记得了，定为就用现在这版。
+- 脚本 `make_hydro_obs.py`。
+
+**大气场。** 在 QBD 上从 HRRR 切片生成（作业 1199178）：海洋模式的 7 个文件各 865 个逐小时时刻，共约 148 GB；陆面模式 865 个逐小时文件。格式、变量名、单位和 Ida 的文件相同，没有缺测。风暴在里面：最大风速 47.8 m/s（09-12 00:00，29.19°N 91.46°W），最低气压 973.6 hPa（09-11 21:00）。降雨是逐小时瞬时降雨率，没有和实测雨量对过。脚本 `make_forcing.py`。
+
+**冷启动。** 海洋从静止开始（水位、流速都是 0，温度 14 ℃、盐度 35，由程序里的解析初始场给出，不读初始文件）；这需要重新编译，模式作者编好了。温盐在运行中不变（`TS_FIXED`），所以不存在温盐要多久才调整好的问题。Ida 的经验：沿海水位 1–2 天就稳，密西西比河到 Baton Rouge 要 18 天左右；这次登陆前有 28 天。
+
+**运行目录里改了什么**（QBD `/work/yixuan97/Louisiana/Louisiana100m/Subgrid`；改之前的五个设置文件存在 `config_before_francine_20261123_1947/`）：
+
+| 文件 | 改动 |
+|---|---|
+| `ROMS/ocean_hires.in` | 起始时刻 60536（2024-08-14 00:00）；步数 518400（36 天）；开边界文件和 7 个大气场文件的路径 |
+| `namelist.hrldas` | 大气场目录；起始日期 2024-08-14；时长 864 小时 |
+| `sub_subgrid` | 账户 `loni_zxue_lonl`，72 小时；日志改名为 `francine.*` |
+| `hydro_obs.txt` | 换成 Francine 的入流；原来的另存为 `hydro_obs_Ida_dynamic_diversion_kept_20261123_1952.txt` |
+
+重启记录数、陆面模式的冷启动开关、可执行程序是模式作者自己改的。
+
+**提交前的核对**（只读）：设置里写到的每个输入文件都在，时间都覆盖 2024-08-14 00:00 到 09-19 00:00；运行结束时刻正好等于强迫文件的最后一个时刻，按模式源码里的判断不会报"数据不够"；运行目录和 `OUTPUT/` 里没有以前的输出，不会覆盖任何东西；和 19:47 的备份逐行比，只有上表这些行不同。另外查到：Ida 的冷启动那次在登陆时算崩了（2021-08-29 20:43，流速 38 m/s），后来从重启文件接着算的那次把干湿判据从 0.17 m 改成 0.22 m 才过去；现在的设置就是 0.22 m。
+
+**运行。** 作业 1199397，2026-11-23 20:33 提交即开始，23 个节点 1472 核，预计 105984 核时（账户余额 263 万）。20:37 开始积分，没有报错；第一个逐小时输出已写出。开头的速度是每小时算 27 个模式小时左右（Ida 的冷启动平均 23），照此 36 天要 32–38 小时。输出会有约 2.2 TB 的海洋逐小时文件（865 个，每个 2.6 GB）和约 0.4 TB 的陆面输出。每 3 天写一次重启文件，万一在风暴时算崩，可以从最近的重启文件接着算。
+
+后台每 15 分钟看一次：只读日志。唯一会做的动作是，模式自己已经结束（最后一步已打印，或它自己报了异常终止）、日志 30 分钟不再动、作业却还占着节点时，取消这一个作业（模式作者许可）。不删任何文件。
+
 ### 这一轮动过的服务器文件
 
-- QBD：只在 `/work/yixuan97/operational_LA_cycles/` 里新建。
-- sv7：新建 `p2m/operational_v1/`、`francine_case/`；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
+- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
+- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
 ## 文件
 
@@ -1269,6 +1307,10 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 |---|---|
 | `scripts/p2m/operational_water_level.py` | 第十七轮：把业务系统每个预报周期的逐小时水位存成和 Ida 归档同样的格式（在 QBD 上跑） |
 | `scripts/francine_case/hrrr_fetch.py` | 第十七轮：Francine 的大气场，从公开的 HRRR 取八个量 |
+| `scripts/francine_case/make_forcing.py` | 第十七轮：从 HRRR 切片生成两个模式读的大气场文件（在 QBD 上跑） |
+| `scripts/francine_case/make_boundary_hycom.py`、`level_shift.py`、`hycom_fetch_opendap.py` | 第十七轮：开边界文件（HYCOM），水位零点的常数，取 HYCOM 三维场的第二条路 |
+| `scripts/francine_case/make_hydro_obs.py` | 第十七轮：密西西比河入流（Vicksburg 30 小时以前的流量，可选扣掉 Old River 的分流） |
+| `scripts/francine_case/run_folder_check.sh` | 第十七轮：提交前对运行目录的只读核对 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
 | `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
 | `scripts/p2m/p2m_paper_hindcast_at_sites.py` | 第十六轮补充六：数值模式自己在 CRMS 站位置的水深（结果在 sv7 `p2m/long_v1/hindcast_ida_at_sites.npz`，数字见正文） |
