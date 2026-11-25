@@ -1414,7 +1414,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 - 核对：在 88 个站的格点上取 6 个时刻，和直接从原始输出读的序列比，528 个值最大差 0.0005 m，缺测的位置完全一致。
 - 网格和 Ida 归档的网格比：海陆分界完全相同；海洋格点的水深有 46394 个（0.78%）差 1 cm 以上，其中 2599 个差 0.5 m 以上，最大 2.49 m。训练时这些格点要单独对待。
-- 还没有拷到 sv7（训练在 sv7 上做）。脚本 `scripts/francine_case/pack_run.py`、`pack_run.sbatch`。
+- 已拷到 sv7 `/data/ywan245/subdomainLSTM/francine_case/packed/`（模式作者同意；经本机转，先写临时名，两头校验码相同后才落名）。和 Ida 归档的文件逐项比：变量、维度、数据类型、经纬度相同；两处不同是 Ida 的文件多一个坐标系说明的变量 `crs`，时间的起算点不同（Ida 从 2021-08-01 起算，这个文件和业务预报的打包一样从 1970-01-01 起算），按时间单位读就没有影响。脚本 `scripts/francine_case/pack_run.py`、`pack_run.sbatch`。
 
 **和别的模式比（查文献，2026-11-25）。** 没有查到针对 Francine、在路易斯安那用验潮站验证过的风暴潮模拟文章。能拿来对照的数字：
 
@@ -1436,7 +1436,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 ### 这一轮动过的服务器文件
 
 - QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列，`run_fields/` 是动图用的场（0.1 GB），`packed/` 是打包好的水位（5.5 GB）；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
-- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，`packed/` 里只有 Francine 的网格文件，共 30 MB 以内）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
+- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，`packed/` 是打包好的 Francine 水位和网格文件，5.5 GB）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
 ## 文件
 
