@@ -1408,10 +1408,35 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 脚本 `scripts/francine_case/run_error_summary.py`。
 
+### 八、打包成 Ida 归档的格式；和别的模式比
+
+**打包。** Francine 的 864 个小时（2024-08-14 00:00 到 09-18 23:00）打成一个文件 `water_level_Francine_hindcast.nc`，变量、维度、精度（1 mm）、干湿的记法都和 Ida 归档、业务预报的打包相同；5.5 GB，在 QBD `/work/yixuan97/Francine_case/packed/`（作业 1204180，14 分钟，只读输出），旁边有 `grid_Francine_hindcast.nc`。冷启动的调整期也在文件里（属性 `spin_up` 写明了），用哪些小时在读的时候定。属性 `inputs` 写了入流和 Ida 的不同。
+
+- 核对：在 88 个站的格点上取 6 个时刻，和直接从原始输出读的序列比，528 个值最大差 0.0005 m，缺测的位置完全一致。
+- 网格和 Ida 归档的网格比：海陆分界完全相同；海洋格点的水深有 46394 个（0.78%）差 1 cm 以上，其中 2599 个差 0.5 m 以上，最大 2.49 m。训练时这些格点要单独对待。
+- 还没有拷到 sv7（训练在 sv7 上做）。脚本 `scripts/francine_case/pack_run.py`、`pack_run.sbatch`。
+
+**和别的模式比（查文献，2026-11-25）。** 没有查到针对 Francine、在路易斯安那用验潮站验证过的风暴潮模拟文章。能拿来对照的数字：
+
+| 来源 | 模式和范围 | 比的是什么 | 数值 |
+|---|---|---|---|
+| NOAA 技术备忘录 NOS CS 57（2023） | NGOFS2，NOAA 在墨西哥湾北部的业务模式，34 个站 | 平常 1–3 个月的逐时水位 RMSE | 0.07–0.18 m，平均 0.10 m |
+| 同上 | STOFS-3D-Atlantic，大西洋和墨西哥湾的业务模式 | 同上 | 0.04–0.76 m，平均 0.16 m |
+| 同上 | 全球 ESTOFS，美国东岸 86 个站 | 同上 | 平均 0.18 m |
+| Pachev 等（arXiv 2603.25978） | ADCIRC 对 2003–2023 年 30 场风暴的后报，188 个站次 | 各站最高水位的 RMSE | 0.22 m |
+| Radfar 等（arXiv 2507.15021） | SFINCS，Mobile 湾 5 个站，几场风暴 | 逐时水位 RMSE | 0.05–0.09 m；Francine 只用来检验它的神经网络替代模型（中位数 0.156 m） |
+| 这次的运行 | Louisiana100m，38 个站，登陆前后各 5 天 | 逐时水位 RMSE（每站去掉平均差） | 逐站中位数 0.084 m，所有站·小时合起来 0.10 m |
+| 同上 | 同上 | 各站最高水位，模式减实测的均方根 | 0.14 m |
+
+- 结论：和业务级的模式在同一个水平，最高水位的误差比 ADCIRC 多场风暴的统计小。可以说"达到业务模式的水平"，不能说"比某个模式好"，因为不是同一场风暴、同一批站。
+- 比的时候对我们有利的三点：我们每个站去掉了平均差，别人的 RMSE 一般含偏差；38 个站是模式能代表的站（小河道上的站不在内）；Francine 的增水不大（各站最高 0.7–2.3 m），误差通常随增水变大。
+- 对我们不利的一点：NOAA 那几个数是平常日子，我们是飓风期间。
+- 要做到同一场风暴、同一批站的对比，可以去取 NOAA 存档的 STOFS 在 Francine 期间的输出，在这 38 个站上算同样的量。没有做。
+
 ### 这一轮动过的服务器文件
 
-- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列，`run_fields/` 是动图用的场（0.1 GB）；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
-- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，1 MB 以内）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
+- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列，`run_fields/` 是动图用的场（0.1 GB），`packed/` 是打包好的水位（5.5 GB）；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
+- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，`packed/` 里只有 Francine 的网格文件，共 30 MB 以内）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
 ## 文件
 
@@ -1427,6 +1452,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 | `scripts/francine_case/run_at_gauges.py`、`run_score.py`、`run_fig.py` | 同上，脚本 |
 | `35_floodmap/francine_run_mississippi_river.png`、`_numbers.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_river.py` | 第十七轮：密西西比河沿线五个站，Ida 后报和 Francine 并排 |
 | `35_floodmap/francine_run_error_summary.png`、`_overall.csv`、`_by_group.csv`、`_by_time.csv`、`_by_level.csv`、`_stations.csv`，`scripts/francine_case/run_error_summary.py` | 第十七轮：误差的分布（总的、按水体和位置、按时间、按水位高低、每站的最高水位和它出现的时间） |
+| `scripts/francine_case/pack_run.py`、`pack_run.sbatch` | 第十七轮：把 Francine 的输出打包成 Ida 归档的格式（在 QBD 上跑） |
 | `35_floodmap/francine_run_water_level_whole_grid.gif`、`francine_run_water_level_southeast_louisiana.gif`（各带一张 `_frame.png`），`scripts/francine_case/run_fields.py`、`run_fields.sbatch`、`run_animation.py` | 第十七轮：Francine 运行的两个动图，取场和画图的脚本 |
 | `35_floodmap/francine_run_validation_1.png`–`_3.png`、`_stations.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_batch.py` | 第十七轮：能验证的 38 个站逐站的图（登陆前后各 5 天，基准差取自这 10 天），每站的基准差、RMSE、最高水位，图上的数据，脚本 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
