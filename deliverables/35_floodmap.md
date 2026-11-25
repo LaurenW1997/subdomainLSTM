@@ -1332,20 +1332,22 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 模式作者指出：Wax Lake Outlet 那个站对不上是因为那里的地形不准，不是模式别的问题。所以换一个做法：先定哪些站能用来验证，再全部画出来。
 
 - **哪些站**：模式格点在 Ida 后报里能跟上实测的站（相关 0.8 以上），共 38 个。这是用另一场风暴定的，不是看了这次的结果再挑的；38 个全部画出，包括这次对不上的。
-- **基准差**：模式有自己的零点，各站也有各自的基准。每个站取风暴前平静几周（08-20 到 09-07）模式减实测的平均差，把模式整体挪过去；风暴期间就用这个常数，不再重新对齐。图上写了每个站挪了多少。
-- 图 `35_floodmap/francine_run_validation_1.png` 到 `_3.png`，从西到东，9 月 4 日到 18 日。每站的数字在 `francine_run_validation_stations.csv`。
+- **时段**：只看登陆（2024-09-11 22:00）前 5 天到后 5 天。模式作者的要求：登陆以前的几周是冷启动的调整期，不拿来验证。（第一版我用了风暴前"平静的几周"来定基准差，并且把 9 月 5–6 日内陆水道的偏差算成一类问题；按这个要求都不再算。）
+- **基准差**：模式有自己的零点，各站也有各自的基准。每个站取这 10 天里模式减实测的平均差，把模式整体挪过去。图上写了每个站挪了多少。
+- 图 `35_floodmap/francine_run_validation_1.png` 到 `_3.png`，从西到东。每站的数字在 `francine_run_validation_stations.csv`。
 
-结果：
+结果（38 个站，241 小时）：
 
-- 风暴期（9 月 7–18 日）的 RMSE 中位数 0.115 m，38 个站里 30 个在 0.15 m 以内；平静期中位数 0.100 m。
-- 风暴的最高水位，模式减实测：中位数 −0.08 m，逐站的均方根 0.21 m。
-- 基准已知的 32 个站，基准差的中位数 −0.31 m（四分位 −0.39 到 −0.17 m）。离得远的：Amerada Pass −1.05 m、Atchafalaya 河口 −1.29 m、Baton Rouge −1.23 m、Kleinpeter 附近三个站 +1.5 m。
+- RMSE 中位数 0.084 m；23 个站在 0.10 m 以内，37 个在 0.15 m 以内。
+- 相关的中位数 0.91；30 个站 0.8 以上，22 个站 0.9 以上。起伏之比的中位数 0.94。
+- 最高水位，模式减实测：中位数 −0.05 m，逐站的均方根 0.14 m，28 个站在 0.15 m 以内。
+- 基准已知的 32 个站，基准差的中位数 −0.31 m。离得远的：Amerada Pass −1.06 m、Atchafalaya 河口 −1.34 m、Baton Rouge −1.14 m、Kleinpeter 附近三个站 +1.2 到 +1.5 m。
 - 沿海和湖里的站（Sabine Pass 到 Pascagoula，Pontchartrain 湖）潮汐、增水、风暴后的落水都跟得上。
-- 对不上的有四类：
-  1. 模式在那个格点是一条平线或只会慢慢变：CRMS0651、Bayou Manchac、Davis Pond。
-  2. 9 月 5–6 日（Francine 之前）的一次过程，内陆水道里模式一下涨了 0.4–0.6 m，实测只涨 0.1–0.2 m，之后一直偏高：Lockport 的三个站（RMSE 0.37 m）、Morgan City（0.38 m）、Baton Rouge。原因没有查，可能是那两天的降雨。
-  3. 密西西比河新奥尔良段的增水偏小：Carrollton 和 Belle Chasse 实测最高 1.2 m，模式 1.0 m。
-  4. 最西边增水偏小：Port Arthur 和 Cameron 实测最高 0.85 m 左右，模式 0.67 m；Calcasieu Pass 和 Sabine Pass 潮差偏大。
+- 还对不上的：
+  1. 模式在那个格点是一条平线或只会慢慢变：CRMS0651、Bayou Manchac（唯一 RMSE 超过 0.15 m 的站，0.31 m）、Davis Pond。
+  2. 密西西比河新奥尔良段的增水偏小：Carrollton 和 Belle Chasse 实测最高 1.2 m，模式 1.05 m，而且峰出现得早。
+  3. 最西边增水偏小：Port Arthur 和 Cameron 实测最高 0.85 m 左右，模式 0.63 m；Calcasieu Pass 和 Sabine Pass 潮差偏大（起伏之比 1.2）。
+  4. Baton Rouge 的河里，模式的起伏是实测的 1.9 倍。
 
 脚本 `scripts/francine_case/run_fig_batch.py`。
 
@@ -1366,7 +1368,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 | `scripts/francine_case/run_folder_check.sh` | 第十七轮：提交前对运行目录的只读核对 |
 | `35_floodmap/francine_run_at_gauges_stations.csv`、`_summary.csv`、`_series.npz`、`_stations.png`、`_stations_fig_data.npz` | 第十七轮：Francine 的运行和站点实测比。每站一行（Ida 后报的分数并排）、分组汇总、各站的实测和模式序列、八个站的图和图上的数据 |
 | `scripts/francine_case/run_at_gauges.py`、`run_score.py`、`run_fig.py` | 同上，脚本 |
-| `35_floodmap/francine_run_validation_1.png`–`_3.png`、`_stations.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_batch.py` | 第十七轮：能验证的 38 个站逐站的图（基准差取自平静期），每站的基准差、RMSE、最高水位，图上的数据，脚本 |
+| `35_floodmap/francine_run_validation_1.png`–`_3.png`、`_stations.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_batch.py` | 第十七轮：能验证的 38 个站逐站的图（登陆前后各 5 天，基准差取自这 10 天），每站的基准差、RMSE、最高水位，图上的数据，脚本 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
 | `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
 | `scripts/p2m/p2m_paper_hindcast_at_sites.py` | 第十六轮补充六：数值模式自己在 CRMS 站位置的水深（结果在 sv7 `p2m/long_v1/hindcast_ida_at_sites.npz`，数字见正文） |
