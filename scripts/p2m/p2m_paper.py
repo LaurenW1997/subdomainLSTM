@@ -115,9 +115,12 @@ def cmd_fit(a) -> None:
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True); assert not (out / "model.npz").exists(), f"{out} has a model already"
     t00 = time.time(); ida, sums = Path(a.ida), Path(a.sums); h, roms, lat, lon = grid(ida); NY, NX = h.shape
     area = np.load(a.area)["area"]; jj, ii = np.where(area); N = len(jj); c, used = controls(sums); P = int(used.sum())
-    X = np.concatenate([np.load(sums / f"sums_{r}.npz")["X"][:, used] for r in a.train_runs]).astype(np.float64)
-    Y = np.concatenate([load_depth(ida, r, h, roms, jj, ii) for r in a.train_runs]); T = len(X); assert Y.shape[0] == T
-    fold = np.concatenate([np.minimum(np.arange(n) * a.folds // n, a.folds - 1) for n in [np.load(sums / f"sums_{r}.npz")["X"].shape[0] for r in a.train_runs]])
+    Xr = [np.load(sums / f"sums_{r}.npz")["X"][:, used] for r in a.train_runs]                                  # --hours DIR: hours_<run>.npy says which hours of a run are used (all, if there is no such file)
+    keep = [np.load(Path(a.hours) / f"hours_{r}.npy").astype(bool) if a.hours and (Path(a.hours) / f"hours_{r}.npy").exists() else np.ones(len(x), bool) for r, x in zip(a.train_runs, Xr)]
+    assert all(len(k) == len(x) and k.sum() >= a.folds for k, x in zip(keep, Xr)), "an hours file does not fit its run or leaves fewer hours than folds"
+    X = np.concatenate([x[k] for x, k in zip(Xr, keep)]).astype(np.float64)
+    Y = np.concatenate([load_depth(ida, r, h, roms, jj, ii)[k] for r, k in zip(a.train_runs, keep)]); T = len(X); assert Y.shape[0] == T
+    fold = np.concatenate([np.minimum(np.arange(n) * a.folds // n, a.folds - 1) for n in [int(k.sum()) for k in keep]])
     print(f"{N} cells in the prediction area, {P} control points, {T} training hours of {len(a.train_runs)} run(s); loaded in {time.time() - t00:.0f} s", flush=True)
     clat, clon = c.lat.to_numpy(float)[used], c.lon.to_numpy(float)[used]; cols = np.zeros((N, a.k), np.int16)
     for s0 in range(0, N, 500000):                                         # the k nearest control points of every cell
@@ -159,7 +162,8 @@ def cmd_fit(a) -> None:
     np.savez_compressed(out / "model.npz", jj=jj.astype(np.int32), ii=ii.astype(np.int32), type=typ, model=mdl, cv_rmse=cv, valid_folds=nval, cols=cols, coef_linear=B1, coef_logit=BL, coef_tobit=BT, xmean=xmean, xstd=xstd,
                         used=used, train_runs=np.array(a.train_runs), wet=a.wet, k=a.k, noise=a.noise)
     land = np.load(a.land)["dmax_no_storm"][jj, ii] <= 0.1 if a.land else np.ones(N, bool); km = lambda m: f"{int(m.sum()) / 100:,.0f} km2"
-    L = [f"training: {', '.join(a.train_runs)} ({T} hours); prediction area {km(np.ones(N, bool))}; every cell uses its {a.k} nearest of {P} control points; flooded = deeper than {a.wet} m; assumed error of the inputs {a.noise} m",
+    runs_txt = ", ".join(a.train_runs) if len(a.train_runs) <= 14 else ", ".join(a.train_runs[:12]) + f", ... ({len(a.train_runs)} runs, listed in model.npz)"
+    L = [f"training: {runs_txt} ({T} hours" + (f", hours chosen by {a.hours}" if a.hours else "") + f"); prediction area {km(np.ones(N, bool))}; every cell uses its {a.k} nearest of {P} control points; flooded = deeper than {a.wet} m; assumed error of the inputs {a.noise} m",
          f"Type 1 (flooded in every hour, Model-1): {km(typ == 1)}",
          f"Type 2 with a model: {km(typ == 2)} - " + "; ".join(f"{MODELS[k]} {km(mdl == k)} ({100 * (mdl == k).sum() / max((typ == 2).sum(), 1):.0f}%)" for k in (2, 3, 4)),
          f"low flood risk (flooded at times, fewer than two folds with flooded and dry hours; no model): {km(typ == 3)}", f"never flooded in the training hours (no model): {km(typ == 4)}",
@@ -215,6 +219,7 @@ def main() -> None:
     f.add_argument("--land", help="eval_<run>.npz of mapping_fit.py (dmax_no_storm), for the summary by land"); f.add_argument("--k", type=int, default=8); f.add_argument("--wet", type=float, default=0.05); f.add_argument("--folds", type=int, default=5)
     f.add_argument("--noise", type=float, default=0.0, help="assumed error of the inputs (m): 0 = the regressions of the paper; 0.12 = what the inputs differ by when observations or forecasts are fed in")
     f.add_argument("--ridge", type=float, default=1e-6); f.add_argument("--chunk", type=int, default=40000); f.add_argument("--threads", type=int, default=32)
+    f.add_argument("--hours", help="DIR with hours_<run>.npy (boolean, one value per hour of the run): only these hours of that run are used, e.g. to leave out hours in which the output of a run is incomplete")
     p = sub.add_parser("apply"); p.add_argument("--ida", required=True); p.add_argument("--model", required=True); p.add_argument("--inputs", required=True, help="NPY, or NPZ:key, [T, control points of the sums]"); p.add_argument("--out", required=True); p.add_argument("--tag", required=True)
     p.add_argument("--truth-run"); p.add_argument("--hours", help="NPZ:key of a boolean mask of the hours that count"); p.add_argument("--cells", help="CSV station, lat, lon: series at the land cells around these sites"); p.add_argument("--land")
     p.add_argument("--radius", type=int, default=3); p.add_argument("--chunk", type=int, default=200000)

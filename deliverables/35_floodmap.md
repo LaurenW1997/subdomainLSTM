@@ -1438,10 +1438,44 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 - QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列，`run_fields/` 是动图用的场（0.1 GB），`packed/` 是打包好的水位（5.5 GB）；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
 - sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，`packed/` 是打包好的 Francine 水位和网格文件，5.5 GB）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
+## 第十八轮（2026-11-25 起）：用更多的数据训练映射
+
+映射到现在只见过 Ida。这一轮把业务系统的预报和 Francine 的后报用上。模式作者定的做法：
+
+- **先留出 Francine。** 第一次拟合用 Ida 的 11 组实验（不含 Ida 后报）加业务预报，在没见过的 Francine 运行上检验，对应文章里用 Nicholas 做的那种检验；之后再把 Francine 加进去训练最终版。
+- **Francine 只用登陆前后各 5 天**（241 小时）。
+- **Baton Rouge 不调整**，每一场都用自己的模式水位。
+- 水深和 Ida 网格不一致的格点怎么处理，还没有定。
+
+### 一、准备
+
+脚本 `scripts/p2m/prepare_more_runs.py`，全部写在 sv7 的新目录 `p2m/more_v1/` 里，旧目录没有动：
+
+- `runs/`：一个只有链接的目录，Ida 的 12 组、业务预报的 50 个周期、Francine 登陆前后 10 天，文件名都是拟合程序认的样子。
+- `sums/`：各场在 36 个控制点格点上的水位序列（算法和 Ida 的完全一样），Ida 的沿用旧的。
+- Francine 登陆前后 10 天另存一个文件 `francine_case/packed/water_level_Francine_landfall_10_days.nc`（1.8 GB）。
+- 拟合程序 `p2m_paper.py` 加了一个选项 `--hours`：每一场可以只用指定的小时。别的没有改。
+
+**水深和 Ida 网格不一致的格点**（只算海洋模式的格点，水深要靠它换算）：业务预报 2273 个（0.04%），Francine 46394 个（0.78%）。第十七轮里业务预报写的 81419 个是把同几行里的陆地格点也算进去了，那些格点不用海洋水深，这里更正。
+
+### 二、业务预报的数据有问题
+
+业务预报的打包是原样存的，没有做过质量控制。逐小时扫了 50 个周期的 3524 个小时（`more_v1/qc_operational_hourly.csv`）：
+
+- **312 个小时陆面模式的输出整片缺测**：预测范围里的陆面格点全部是缺测。集中在 2026-10-26 到 11-05 的五个周期（20261026、20261027、20261030、20261102 全部或几乎全部，20261105 的前 23 小时），另有 20260726 的 1 个小时。查了业务系统的原始文件（只读）：`sfcheadsubrt` 在这些时刻 98% 的格点本来就是缺测，不是打包造成的。11 月 8 日的周期恢复正常。
+- 另有 376 个小时，某个建在浅水海洋格点上的控制点（Grand Isle、Caminada Pass 等，水深 0.8–0.9 m）在低水位时被判成"干"，归档里就没有它的水位。
+- 两种都去掉以后，能用的是 44 个周期共 2790 小时（6 个周期可用的不到 24 小时，整个不用）。
+- Baton Rouge 在业务预报里的水位比 Ida 的参考值平均低 2.1 m，是 2026 年秋天的低水。
+
+### 三、第一次拟合
+
+Ida 的 11 组实验（2915 小时）加业务预报的 2790 小时，共 5705 小时；Francine 不参加。和以前一样做两个版本："按文章原样"和"加输入误差（0.12 m）"。在 sv7 上，2026-11-25 15:49 开始（`more_v1/run_fit_1.sh`）。
+
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `scripts/p2m/prepare_more_runs.py` | 第十八轮：把 Ida 以外的运行准备成映射拟合程序能读的样子（子集、链接目录、控制点序列、和 Ida 网格不一致的格点） |
 | `scripts/p2m/operational_water_level.py` | 第十七轮：把业务系统每个预报周期的逐小时水位存成和 Ida 归档同样的格式（在 QBD 上跑） |
 | `scripts/francine_case/hrrr_fetch.py` | 第十七轮：Francine 的大气场，从公开的 HRRR 取八个量 |
 | `scripts/francine_case/make_forcing.py` | 第十七轮：从 HRRR 切片生成两个模式读的大气场文件（在 QBD 上跑） |
