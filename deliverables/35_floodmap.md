@@ -1376,9 +1376,41 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 脚本 `scripts/francine_case/run_fig_river.py`。
 
+### 七、误差是怎么分布的；两个动图（模式作者决定先不重跑）
+
+同样的 38 个站、登陆前后各 5 天、每站减去这 10 天的平均差。误差 = 模式减实测，逐小时。总图 `35_floodmap/francine_run_error_summary.png`（六幅），表 `francine_run_error_summary_*.csv`。
+
+**总的**：9157 个站·小时，RMSE 0.10 m，平均绝对误差 0.07 m。误差在 0.05 m 以内的占 46%，0.10 m 以内 76%，0.20 m 以内 95%；5% 到 95% 分位是 −0.16 到 +0.15 m。分布对称，中位数 +0.01 m。
+
+**按水体**：
+
+| | 站数 | RMSE（逐站的中位数） | 0.10 m 以内的小时 | 最高水位，模式减实测（中位数 / 均方根） |
+|---|---|---|---|---|
+| 外海岸和通道口 | 8 | 0.105 m | 77% | −0.05 / 0.07 m |
+| 海湾、海峡、湖 | 16 | 0.096 m | 73% | −0.07 / 0.15 m |
+| 密西西比河 | 4 | 0.076 m | 83% | −0.10 / 0.17 m |
+| 内陆水道和沼泽 | 10 | 0.075 m | 76% | +0.02 / 0.14 m |
+
+**按位置**：登陆点以东（90.5°W 以东，19 个站）最好，RMSE 中位数 0.077 m，83% 的小时在 0.10 m 以内；西边（92°W 以西，7 个站）最差，0.111 m，65%；登陆点一带（12 个站）0.104 m，70%。
+
+**按时间**：登陆前 5 天到前 1 天 RMSE 0.099 m；登陆前后各 1 天 0.141 m；登陆后 1 到 5 天 0.086 m。逐小时看，各站的均方根误差在登陆后 1 小时最大（0.24 m），半天内回落；登陆后半天里各站的平均误差是 −0.05 到 −0.07 m，即模式整体偏低。
+
+**按水位高低**：水位离本站平均值在 0.3 m 以内的时候（87% 的小时）RMSE 0.08–0.10 m，平均误差在 ±0.02 m 以内。水位比平均高 0.3 m 以上的时候（6% 的小时）模式平均偏低 0.12 m，RMSE 0.21–0.23 m；比平均低 0.3 m 以上的时候（6%）模式偏高 0.07 m，RMSE 0.15 m。也就是高水位算得不够高，低水位算得不够低，起伏略小。
+
+**最高水位**：38 个站模式减实测的中位数 −0.05 m，均方根 0.14 m。偏低最多的是 Davis Pond（−0.34 m）、Cameron（−0.24 m）、Port Arthur（−0.21 m）、Tchefuncte 河（−0.19 m）；偏高最多的是 Bay Waveland 和 Baton Rouge（都是 +0.27 m）、密西西比海峡 Merrill Shell Bank（+0.20 m）。最高水位出现的时间，18 个站和实测差 3 小时以内，中位数是模式早 1 小时。
+
+**动图**（在 QBD 上把 9 月 9–14 日的逐小时输出取出来，作业 1204176，只读输出；脚本 `run_fields.py`、`run_animation.py`）：
+
+- `35_floodmap/francine_run_water_level_whole_grid.gif`：整个网格，9 月 10 日 12:00 到 13 日 12:00，逐小时 73 帧。
+- `35_floodmap/francine_run_water_level_southeast_louisiana.gif`：路易斯安那东南部放大，9 月 11 日 00:00 到 13 日 06:00，55 帧。
+- 颜色是水位相对风暴前三天（9 月 5 日 21:00 到 8 日 23:00）平均值的变化：平时有水的地方是涨（红）落（蓝），含潮汐；平时干的地方就是积水的深度。箭头是强迫场里的风，细线是气压。
+- 能看到：登陆前后 Atchafalaya 湾被离岸风吹低 1 m 以上；Terrebonne 和 Barataria 一带、Borgne 湖和密西西比海峡涨 1 m 以上；Pontchartrain 湖先是西南角被吹低、东北涨，之后整个湖涨起来。
+
+脚本 `scripts/francine_case/run_error_summary.py`。
+
 ### 这一轮动过的服务器文件
 
-- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
+- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列，`run_fields/` 是动图用的场（0.1 GB）；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
 - sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，1 MB 以内）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
 ## 文件
@@ -1393,6 +1425,9 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 | `scripts/francine_case/run_folder_check.sh` | 第十七轮：提交前对运行目录的只读核对 |
 | `35_floodmap/francine_run_at_gauges_stations.csv`、`_summary.csv`、`_series.npz`、`_stations.png`、`_stations_fig_data.npz` | 第十七轮：Francine 的运行和站点实测比。每站一行（Ida 后报的分数并排）、分组汇总、各站的实测和模式序列、八个站的图和图上的数据 |
 | `scripts/francine_case/run_at_gauges.py`、`run_score.py`、`run_fig.py` | 同上，脚本 |
+| `35_floodmap/francine_run_mississippi_river.png`、`_numbers.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_river.py` | 第十七轮：密西西比河沿线五个站，Ida 后报和 Francine 并排 |
+| `35_floodmap/francine_run_error_summary.png`、`_overall.csv`、`_by_group.csv`、`_by_time.csv`、`_by_level.csv`、`_stations.csv`，`scripts/francine_case/run_error_summary.py` | 第十七轮：误差的分布（总的、按水体和位置、按时间、按水位高低、每站的最高水位和它出现的时间） |
+| `35_floodmap/francine_run_water_level_whole_grid.gif`、`francine_run_water_level_southeast_louisiana.gif`（各带一张 `_frame.png`），`scripts/francine_case/run_fields.py`、`run_fields.sbatch`、`run_animation.py` | 第十七轮：Francine 运行的两个动图，取场和画图的脚本 |
 | `35_floodmap/francine_run_validation_1.png`–`_3.png`、`_stations.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_batch.py` | 第十七轮：能验证的 38 个站逐站的图（登陆前后各 5 天，基准差取自这 10 天），每站的基准差、RMSE、最高水位，图上的数据，脚本 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
 | `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
