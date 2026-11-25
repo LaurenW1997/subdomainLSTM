@@ -1327,6 +1327,28 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 
 脚本 `scripts/francine_case/run_at_gauges.py`（在 QBD 上从 864 个输出文件里读各站格点，只读单点）、`run_score.py`、`run_fig.py`。实测用的是本机的 `data/dataset_v2`。
 
+### 五、能验证的站，逐站的图（考虑基准差）
+
+模式作者指出：Wax Lake Outlet 那个站对不上是因为那里的地形不准，不是模式别的问题。所以换一个做法：先定哪些站能用来验证，再全部画出来。
+
+- **哪些站**：模式格点在 Ida 后报里能跟上实测的站（相关 0.8 以上），共 38 个。这是用另一场风暴定的，不是看了这次的结果再挑的；38 个全部画出，包括这次对不上的。
+- **基准差**：模式有自己的零点，各站也有各自的基准。每个站取风暴前平静几周（08-20 到 09-07）模式减实测的平均差，把模式整体挪过去；风暴期间就用这个常数，不再重新对齐。图上写了每个站挪了多少。
+- 图 `35_floodmap/francine_run_validation_1.png` 到 `_3.png`，从西到东，9 月 4 日到 18 日。每站的数字在 `francine_run_validation_stations.csv`。
+
+结果：
+
+- 风暴期（9 月 7–18 日）的 RMSE 中位数 0.115 m，38 个站里 30 个在 0.15 m 以内；平静期中位数 0.100 m。
+- 风暴的最高水位，模式减实测：中位数 −0.08 m，逐站的均方根 0.21 m。
+- 基准已知的 32 个站，基准差的中位数 −0.31 m（四分位 −0.39 到 −0.17 m）。离得远的：Amerada Pass −1.05 m、Atchafalaya 河口 −1.29 m、Baton Rouge −1.23 m、Kleinpeter 附近三个站 +1.5 m。
+- 沿海和湖里的站（Sabine Pass 到 Pascagoula，Pontchartrain 湖）潮汐、增水、风暴后的落水都跟得上。
+- 对不上的有四类：
+  1. 模式在那个格点是一条平线或只会慢慢变：CRMS0651、Bayou Manchac、Davis Pond。
+  2. 9 月 5–6 日（Francine 之前）的一次过程，内陆水道里模式一下涨了 0.4–0.6 m，实测只涨 0.1–0.2 m，之后一直偏高：Lockport 的三个站（RMSE 0.37 m）、Morgan City（0.38 m）、Baton Rouge。原因没有查，可能是那两天的降雨。
+  3. 密西西比河新奥尔良段的增水偏小：Carrollton 和 Belle Chasse 实测最高 1.2 m，模式 1.0 m。
+  4. 最西边增水偏小：Port Arthur 和 Cameron 实测最高 0.85 m 左右，模式 0.67 m；Calcasieu Pass 和 Sabine Pass 潮差偏大。
+
+脚本 `scripts/francine_case/run_fig_batch.py`。
+
 ### 这一轮动过的服务器文件
 
 - QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
@@ -1344,6 +1366,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 | `scripts/francine_case/run_folder_check.sh` | 第十七轮：提交前对运行目录的只读核对 |
 | `35_floodmap/francine_run_at_gauges_stations.csv`、`_summary.csv`、`_series.npz`、`_stations.png`、`_stations_fig_data.npz` | 第十七轮：Francine 的运行和站点实测比。每站一行（Ida 后报的分数并排）、分组汇总、各站的实测和模式序列、八个站的图和图上的数据 |
 | `scripts/francine_case/run_at_gauges.py`、`run_score.py`、`run_fig.py` | 同上，脚本 |
+| `35_floodmap/francine_run_validation_1.png`–`_3.png`、`_stations.csv`、`_fig_data.npz`，`scripts/francine_case/run_fig_batch.py` | 第十七轮：能验证的 38 个站逐站的图（基准差取自平静期），每站的基准差、RMSE、最高水位，图上的数据，脚本 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
 | `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
 | `scripts/p2m/p2m_paper_hindcast_at_sites.py` | 第十六轮补充六：数值模式自己在 CRMS 站位置的水深（结果在 sv7 `p2m/long_v1/hindcast_ida_at_sites.npz`，数字见正文） |
