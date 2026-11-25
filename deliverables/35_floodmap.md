@@ -1301,12 +1301,36 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 - 输出：海洋 864 个逐小时文件（2024-08-14 00:00 到 09-18 23:00，每个 2.6 GB，大小全部相同），陆面 864 个逐小时文件（431 GB），都在运行目录和它的 `OUTPUT/` 里。最后一个时刻（09-19 00:00）两边都没有写出，因为结束时挂住了。
 - 水位的零点：第 5–6 天南边界上模式的平均水位 −0.085 m，边界文件同一时段 −0.080 m，往里 600 行也是 −0.085 m。
 - 风暴在里面（水位按模式自己的零点，只看水深 1 m 以上的海域）：9 月 12 日 00:00，Terrebonne 一带（29.35°N 90.45°W）涨到 1.48 m，同时登陆点西边的 Atchafalaya 湾（29.43°N 91.48°W）被离岸风吹低到 −2.45 m；03:00–06:00 最高水位移到东边的 Borgne 湖一带（29.9–30.1°N 89.31°W），1.84–1.97 m。
-- 还没有做：和站点实测比。
+### 四、Francine 的运行和站点实测比（2026-11-25）
+
+比法和当初比 Ida 后报完全一样：同一批站，每个站用同一个模式格点（第四轮为每个站选的格点：常年有水、离两个模式的交界和网格边界都远），算相关、平均差、去掉平均差以后的 RMSE、起伏之比（模式的标准差除以实测的）。Ida 用的是后报的 265 小时（2021-08-25 到 09-05）；Francine 取同样长、相对登陆时刻同样摆放的 265 小时（2024-09-07 到 09-18），另外算了风暴前平静的 18 天（08-20 到 09-07）。
+
+要注意：这些格点当初是参照 Ida 的实测挑的，所以 Ida 的分数占了便宜；Francine 在同样的格点上是一次没有挑过的检验。
+
+88 个有格点的站里，两场都能算分的 83 个（3 个站 Francine 期间实测不够，2 个没有实测）：
+
+| | 站数 | 相关的中位数（Ida / Francine） | 相关 0.8 以上的站数（Ida / Francine） | RMSE 中位数（Ida / Francine） | 起伏之比中位数（Ida / Francine） |
+|---|---|---|---|---|---|
+| 全部 | 83 | 0.74 / 0.72 | 38 / 38 | 0.140 / 0.121 m | 0.77 / 0.95 |
+| 海洋模式的格点 | 11 | 0.92 / 0.94 | 11 / 11 | 0.137 / 0.089 m | 0.75 / 0.95 |
+| 陆面模式的格点 | 72 | 0.64 / 0.63 | 27 / 27 | 0.147 / 0.141 m | 0.78 / 0.96 |
+| 30 个控制点（29 个能算） | 29 | 0.92 / 0.92 | 29 / 25 | 0.115 / 0.097 m | 0.80 / 0.96 |
+
+- **Francine 的结果不比 Ida 差，沿海更好。** 83 个站里 49 个的 RMSE 比 Ida 小，控制点 29 个里 21 个更小。平静期的 RMSE 中位数 0.119 m，和风暴期差不多。
+- **起伏的大小对了。** Ida 后报的起伏普遍偏小（中位数 0.77，海洋格点里 Grand Isle 只有 0.58），Francine 是 0.95。Grand Isle 的 RMSE 从 0.15 m 降到 0.05 m。Ida 的边界是 6 小时一次，潮汐被削平；这次边界是逐小时的。这是换边界带来的好处，不是坏处。
+- **西边潮差偏大。** Calcasieu Pass 和 Texas Point 的起伏之比是 1.20 和 1.21（Ida 是 0.78），图上能看到模式的潮差比实测大。这是 HYCOM 边界的问题，范围限于最西边。
+- **水位的零点保住了。** 基准已知的 24 个控制点上，模式减实测的平均差：Ida −0.40 m，Francine −0.35 m；逐站看 Francine 比 Ida 高 0.06 m（中位数，四分位 0.03–0.09 m）。边界上加的 0.045 m 的做法成立，剩下约 0.05 m 的差。
+- **风暴的最高水位**（比平静期平均高出多少）：控制点的中位数，实测 0.74 m，模式 0.69 m；逐站差的均方根 0.19 m，平均偏低 0.07 m。
+- **没对上的地方。** Baton Rouge 的密西西比河水位比实测低 1.15 m（Ida 低 0.69 m），河里的潮汐起伏是实测的 1.8 倍，头几天还在往下掉；相关 0.87（Ida 0.99）。Wax Lake Outlet 的格点两场都没有潮汐（模式在那里是一条平线）。Amerada Pass 和 Atchafalaya 河口的平均差从 Ida 的 −0.3 m 变成 −1.1 到 −1.3 m，RMSE 没有变，像是实测基准在两个年份之间变了，没有查。四个控制点的相关掉到 0.8 以下：Port Arthur（0.72）、Atchafalaya 河口（0.78）、Morgan City（0.78）、Bayou Manchac（0.33）。
+
+图 `35_floodmap/francine_run_at_gauges_stations.png`：八个站（Louisiana100m 固定的五个站，加沿海三个），左列 Ida 后报，右列 Francine 的运行，黑线实测，蓝线模式（已减去平均差）。
+
+脚本 `scripts/francine_case/run_at_gauges.py`（在 QBD 上从 864 个输出文件里读各站格点，只读单点）、`run_score.py`、`run_fig.py`。实测用的是本机的 `data/dataset_v2`。
 
 ### 这一轮动过的服务器文件
 
-- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
-- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
+- QBD：新建 `/work/yixuan97/operational_LA_cycles/`、`/work/yixuan97/Francine_case/`（切片、强迫文件、边界、入流；`run_at_gauges/` 是各站格点的模式序列；试做留下的 `test_roms/`、`test_ldasin/` 约 0.3 GB，`operational_LA_cycles/test`、`test2`，都没有删）。运行目录里的改动见上表，原文件都有备份；Francine 的输出写在运行目录和它的 `OUTPUT/` 里。业务系统的目录只读。
+- sv7：新建 `p2m/operational_v1/`、`francine_case/`（其中 `hycom/` 里有几个没下完的 `.part` 文件，`hycom_test/` 是试取的，都没有删；`run_at_gauges/` 是取 Ida 后报在各站格点的序列，1 MB 以内）；经模式作者当天逐次许可，删除了 `p2m/fit_v1/`（最早一版简化映射的中间结果，48 GB）和两个没传完的半截文件。
 
 ## 文件
 
@@ -1318,6 +1342,8 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 | `scripts/francine_case/make_boundary_hycom.py`、`level_shift.py`、`hycom_fetch_opendap.py` | 第十七轮：开边界文件（HYCOM），水位零点的常数，取 HYCOM 三维场的第二条路 |
 | `scripts/francine_case/make_hydro_obs.py` | 第十七轮：密西西比河入流（Vicksburg 30 小时以前的流量，可选扣掉 Old River 的分流） |
 | `scripts/francine_case/run_folder_check.sh` | 第十七轮：提交前对运行目录的只读核对 |
+| `35_floodmap/francine_run_at_gauges_stations.csv`、`_summary.csv`、`_series.npz`、`_stations.png`、`_stations_fig_data.npz` | 第十七轮：Francine 的运行和站点实测比。每站一行（Ida 后报的分数并排）、分组汇总、各站的实测和模式序列、八个站的图和图上的数据 |
+| `scripts/francine_case/run_at_gauges.py`、`run_score.py`、`run_fig.py` | 同上，脚本 |
 | `35_floodmap/p2m_paper_other_gauges*` | 第十六轮补充七：不是控制点的 198 个水位站。`_stations.csv` 每个站，`_summary.csv` 按类别和日子，`_fig_data.npz` 逐站图用的序列，两张图 |
 | `scripts/p2m/p2m_paper_gauges_longrun.py`、`p2m_paper_gauges_score.py` | 同上，脚本 |
 | `scripts/p2m/p2m_paper_hindcast_at_sites.py` | 第十六轮补充六：数值模式自己在 CRMS 站位置的水深（结果在 sv7 `p2m/long_v1/hindcast_ida_at_sites.npz`，数字见正文） |
