@@ -1344,7 +1344,7 @@ Francine，映射喂其他控制点的实测或预报水位（RMSE 的中位数�
 - 基准已知的 32 个站，基准差的中位数 −0.31 m。离得远的：Amerada Pass −1.06 m、Atchafalaya 河口 −1.34 m、Baton Rouge −1.14 m、Kleinpeter 附近三个站 +1.2 到 +1.5 m。
 - 沿海和湖里的站（Sabine Pass 到 Pascagoula，Pontchartrain 湖）潮汐、增水、风暴后的落水都跟得上。
 - 还对不上的：
-  1. 模式在那个格点是一条平线或只会慢慢变：CRMS0651、Bayou Manchac（唯一 RMSE 超过 0.15 m 的站，0.31 m）、Davis Pond。
+  1. 模式在那个格点是一条平线或只会慢慢变：CRMS0651、Bayou Manchac（唯一 RMSE 超过 0.15 m 的站，0.31 m）、Davis Pond。模式作者的解释：河道要很精确的水深才算得对，做网格的时候拿不到每一条河道的精确水深，只有密西西比河是专门优化过的；所以小的河道和水道常见"水进不去"或"进去了出不来"。这是网格的已知局限，不是这次运行的问题，Wax Lake Outlet 也是这一类。它也解释了第十六轮补充七里"198 个站有 34 个落在图上几乎没有水的格点"。映射模型学的是数值模式，所以小河道一带的淹没图会带着同样的局限，多训练几场风暴改不了这一点。
   2. 密西西比河新奥尔良段的增水偏小：Carrollton 和 Belle Chasse 实测最高 1.2 m，模式 1.05 m，而且峰出现得早。
   3. 最西边增水偏小：Port Arthur 和 Cameron 实测最高 0.85 m 左右，模式 0.63 m；Calcasieu Pass 和 Sabine Pass 潮差偏大（起伏之比 1.2）。
   4. Baton Rouge 的河里，模式的起伏是实测的 1.9 倍。
