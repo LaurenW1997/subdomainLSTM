@@ -1,0 +1,12 @@
+training: Exp2_no_wind, Exp3_no_precipitation, Exp4_river_only, Exp5_Ida_base, Exp6_absolute_base, Exp7_wind_base, Exp8_precipitation_base, drought_river_storm, drought_river_no_storm, flood_river_storm, flood_river_no_storm, operational_20260708, ... (55 runs, listed in model.npz) (5705 hours, hours chosen by more_v1/hours); prediction area 46,252 km2; every cell uses its 8 nearest of 30 control points; flooded = deeper than 0.05 m; assumed error of the inputs 0.12 m
+Type 1 (flooded in every hour, Model-1): 17,319 km2
+Type 2 with a model: 21,531 km2 - Model-2 linear, flooded hours 361 km2 (2%); Model-3 hurdle 11,000 km2 (51%); Model-4 Tobit 10,169 km2 (47%)
+low flood risk (flooded at times, fewer than two folds with flooded and dry hours; no model): 3,083 km2
+never flooded in the training hours (no model): 4,318 km2
+on land (dry in the run without a hurricane, 24,819 km2): Type 1 0 km2, Type 2 with a model 18,299 km2, low flood risk 2,201 km2, never flooded 4,318 km2
+cross-validation RMSE of the Type 2 cells (m), median: Model-2 linear, flooded hours 0.101, Model-3 hurdle 0.057, Model-4 Tobit 0.059; of the model chosen 0.055
+base: more_v1/fit_ida11_operational_with_input_error/model.npz
+other: paper_v1/fit_11runs_noise/model.npz
+cells that take the model of the other fit: 1801 of 4625173 (2273 cells marked on the grid, 1801 of them in the prediction area)
+their type before -> after: Type 1: 1734 -> 1742; Type 2 with a model: 24 -> 21; low flood risk: 43 -> 38; never flooded: 0 -> 0
+with a model before 1758, after 1763
