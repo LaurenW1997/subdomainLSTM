@@ -1,0 +1,24 @@
+
+Francine, inputs observed: 178 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 1.97 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.23 m; calm hours flooded: observed 0.69, map 0.24; largest depth of the storm days: mean error -0.03 m, RMS 0.77 m, correlation 0.04, median observed 0.76 m, map 0.68 m; sites where the map is more than 1 m off: 34
+  by longitude (sites, observed, map): (-92.5, -91.5]: 39, 0.45, 0.37; (-91.5, -90.8]: 35, 0.55, 0.31; (-90.8, -90.2]: 50, 0.94, 0.84; (-90.2, -89.6]: 45, 0.85, 0.86; (-89.6, -88.0]: 8, 0.86, 0.62
+
+Francine, inputs forecast 1 h before: 178 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 1.97 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.23 m; calm hours flooded: observed 0.69, map 0.24; largest depth of the storm days: mean error -0.01 m, RMS 0.79 m, correlation 0.05, median observed 0.76 m, map 0.68 m; sites where the map is more than 1 m off: 34
+  by longitude (sites, observed, map): (-92.5, -91.5]: 39, 0.45, 0.40; (-91.5, -90.8]: 35, 0.55, 0.30; (-90.8, -90.2]: 50, 0.94, 0.88; (-90.2, -89.6]: 45, 0.85, 0.87; (-89.6, -88.0]: 8, 0.86, 0.61
+
+Francine, inputs forecast 3 h before: 178 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 1.97 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.23 m; calm hours flooded: observed 0.69, map 0.25; largest depth of the storm days: mean error +0.03 m, RMS 0.86 m, correlation 0.07, median observed 0.76 m, map 0.67 m; sites where the map is more than 1 m off: 38
+  by longitude (sites, observed, map): (-92.5, -91.5]: 39, 0.45, 0.38; (-91.5, -90.8]: 35, 0.55, 0.33; (-90.8, -90.2]: 50, 0.94, 0.90; (-90.2, -89.6]: 45, 0.85, 0.84; (-89.6, -88.0]: 8, 0.86, 0.65
+
+Francine, inputs forecast 6 h before: 178 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 1.97 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.23 m; calm hours flooded: observed 0.69, map 0.25; largest depth of the storm days: mean error +0.01 m, RMS 0.88 m, correlation 0.07, median observed 0.76 m, map 0.59 m; sites where the map is more than 1 m off: 33
+  by longitude (sites, observed, map): (-92.5, -91.5]: 39, 0.45, 0.26; (-91.5, -90.8]: 35, 0.55, 0.39; (-90.8, -90.2]: 50, 0.94, 0.75; (-90.2, -89.6]: 45, 0.85, 1.00; (-89.6, -88.0]: 8, 0.86, 0.77
+
+Ida, inputs observed: 182 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 0.57 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.19 m; calm hours flooded: observed 0.33, map 0.20; largest depth of the storm days: mean error -0.04 m, RMS 0.79 m, correlation 0.53, median observed 0.50 m, map 0.44 m; sites where the map is more than 1 m off: 23
+  by longitude (sites, observed, map): (-92.5, -91.5]: 44, 0.24, 0.11; (-91.5, -90.8]: 46, 0.31, 0.22; (-90.8, -90.2]: 46, 1.32, 0.91; (-90.2, -89.6]: 38, 1.69, 1.32; (-89.6, -88.0]: 8, 1.70, 1.38
+
+Ida, inputs from the hindcast itself: 182 sites with a model; 2 sites without one (largest observed depth there in the storm days: median 0.57 m, above 0.3 m at 2)
+  depth on the marsh, RMSE median per site 0.17 m; calm hours flooded: observed 0.33, map 0.22; largest depth of the storm days: mean error -0.24 m, RMS 0.45 m, correlation 0.86, median observed 0.50 m, map 0.36 m; sites where the map is more than 1 m off: 7
+  by longitude (sites, observed, map): (-92.5, -91.5]: 44, 0.24, 0.07; (-91.5, -90.8]: 46, 0.31, 0.10; (-90.8, -90.2]: 46, 1.32, 1.04; (-90.2, -89.6]: 38, 1.69, 1.33; (-89.6, -88.0]: 8, 1.70, 1.13
