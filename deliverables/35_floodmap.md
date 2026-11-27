@@ -1687,12 +1687,21 @@ Francine 期间有实测的 177 个 CRMS 湿地站里，周围没有模型、出
 3. **0.35 m 在有些地方略多。** Ida 平常日子被淹的时间比例变成 59%，实测只有 35%；Francine 东边风暴期间的平均水深变成 0.53 m，实测 0.41 m；逐小时的 RMSE 在 0.2 m 左右最小。和第十六轮补充五"0.1–0.2 m 最合适"是同一个现象：映射在平常日子本来就比模式略湿，再加足 0.35 m 就过了一点。
 4. 所以：加回公布的海平面这个量，方向是对的，偏浅没了，但总的误差只小一点。0.2–0.35 m 之间各项指标互有高低，没有一个量在所有指标上都最好。要注意 Francine 的后报在这次训练里，Ida 的后报不在。
 
+**决定（模式作者，11 月 27 日）：把"加回数值模式缺的海平面"定为出图的正式一步。**
+
+- 做法：喂给映射的水位（实测或预报）照旧先按各站的差挪到模式的零点上，然后在每个控制点、每个小时统一加 **0.35 m**，再进映射（`p2m_paper.py apply --add 0.35`）。映射本身不重新拟合。
+- 0.35 m 的来历：训练用的数值模式运行里，模式的海面比当时真实的海面低这么多。Ida：2021 年 8 月的平均海平面 +0.25 m（NOAA 公布，相对 NAVD88）减去模式自己的平均水位 −0.09 m，是 0.34 m（按登陆前平静的三天算是 0.38 m）。Francine 的后报：0.35 m。
+- **这是一个固定的量，不随出图的月份变。** 出图那个月真实海面的高低已经在喂进去的实测或预报水位里了；要补的只是"各站的差"里多减掉的那一块，而那一块是按 Ida 的运行定的。所以实时出图不需要等 NOAA 公布当月的平均海平面。
+- 加了这一步之后的图（Francine，提前 6 小时的预报）：`35_floodmap/p2m_level_zero_francine_forecast_map.png`，左边是不加，右边是加 0.35 m，脚本 `scripts/p2m/p2m_level_zero_map_fig.py`。在这次训练有图的 177 个站上，最大水深的平均误差 −0.30 → −0.09 m，RMSE 0.59 → 0.54 m（西 0.61 → 0.49，东 0.57 → 0.57），相关系数 0.30 → 0.34。
+- 已知的不足照旧：东边站与站之间的高低对不上（第七节）；0.35 m 在 Ida 的平常日子略多（上面第 3 条）；河上的控制点也加了同样的量。这一步是文章里没有的，是对文章做法的补充，理由是基准面，不是用湿地站凑出来的。
+
 **这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（加回输入的试验 `level_zero_shift/`（478 MB）、`run_shift_4.sh`，水位零点检查的 `level_at_marsh_gauges/`、第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`、`p2m_run_level_at_sites.py`、`p2m_paper_v4.py`。没有删除或覆盖任何文件。QBD 没有动。
 
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/p2m_level_zero_francine_forecast_map.png`，`p2m_level_zero_plus_0.35_ida11_operational_francine_with_input_error_coarse_francine_leads.npz`、`_crms.csv`，`scripts/p2m/p2m_level_zero_map_fig.py` | 第十八轮：定为正式一步之后的 Francine 淹没图（不加 / 加 0.35 m 并排）和 CRMS 实测；画图用的场和逐站的数字；脚本 |
 | `35_floodmap/level_zero_shift_marsh_gauges.png`、`level_zero_shift_marsh_gauges.csv`，`scripts/p2m/p2m_level_zero_shift_score.py` | 第十八轮水位零点的试验：映射的输入统一加 0–0.4 m，和 CRMS 实测比（两种训练、三种输入、分东西）；图；脚本 |
 | `35_floodmap/level_zero_control_points.csv`、`level_zero_marsh_gauges.csv`、`level_zero_marsh_gauges_summary.csv`，`scripts/p2m/level_zero_check.py`、`p2m_run_level_at_sites.py` | 第十八轮水位零点：NOAA 潮位站上模式减实测和公布的平均海平面；CRMS 站位置上模式的水位、地面、水深和实测的对比（逐站和汇总）；脚本 |
 | `35_floodmap/p2m_more_data_one_storm_fit_check_with_input_error.csv`、`_as_in_the_paper.csv`，`p2m_more_data_fit_francine_only_marsh_gauge_cells_*_summary.txt`，`scripts/p2m/p2m_one_storm_fit_check.py`、`p2m_area_around_sites.py` | 第十八轮小检验：只用 Francine 后报拟合（CRMS 站周围的格点），和含 Ida 的训练一起重建 Francine 的运行和 Ida 的后报，分东西；拟合摘要；脚本 |
