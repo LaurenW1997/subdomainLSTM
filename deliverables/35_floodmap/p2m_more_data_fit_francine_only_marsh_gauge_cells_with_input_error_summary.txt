@@ -1,0 +1,7 @@
+training: Francine_landfall_10_days (241 hours); prediction area 77 km2; every cell uses its 8 nearest of 30 control points; flooded = deeper than 0.05 m; assumed error of the inputs 0.12 m
+Type 1 (flooded in every hour, Model-1): 41 km2
+Type 2 with a model: 28 km2 - Model-2 linear, flooded hours 1 km2 (4%); Model-3 hurdle 6 km2 (22%); Model-4 Tobit 21 km2 (74%)
+low flood risk (flooded at times, fewer than two folds with flooded and dry hours; no model): 6 km2
+never flooded in the training hours (no model): 2 km2
+on land (dry in the run without a hurricane, 77 km2): Type 1 41 km2, Type 2 with a model 28 km2, low flood risk 6 km2, never flooded 2 km2
+cross-validation RMSE of the Type 2 cells (m), median: Model-2 linear, flooded hours 0.084, Model-3 hurdle 0.065, Model-4 Tobit 0.057; of the model chosen 0.056

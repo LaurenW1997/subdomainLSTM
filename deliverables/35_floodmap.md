@@ -1594,12 +1594,38 @@ Francine 期间有实测的 177 个 CRMS 湿地站里，周围没有模型、出
   2. 水位零点（补充六的三条路）。这是数值模式的问题，映射改不了。
   3. 更多场风暴的运行。要新跑数值模式，按约定非必要不跑。
 
-**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`。没有删除或覆盖任何文件。QBD 没有动。
+### 七、小检验：东边学不像，是 Francine 占比太小，还是控制点水位不够（2026-11-27）
+
+起因：上面第二层只量出了"东边没学像"，原因（Francine 只占训练小时的 4%、两场风暴的关系不一样）是推断。这里做一个不跑数值模式的小检验：**只用 Francine 后报的 241 小时单独拟合一次**，范围只取 CRMS 站周围的陆地格点（7714 个，拟合不到一分钟），和含 Ida 的训练放在一起，分别去重建 Francine 的运行和 Ida 的后报（都喂该运行自己的控制点水位）。脚本 `scripts/p2m/p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`；表 `35_floodmap/p2m_more_data_one_storm_fit_check_with_input_error.csv`、`_as_in_the_paper.csv`。只比三种训练都有模型的格点：5664 个，208 个站周围（西 94、东 114）。每格三个数：逐小时 NSE / 站上最大水深的 RMSE / 相关系数；斜杠前后是"加输入误差"版，括号里是"文章原样"版。
+
+**重建 Francine 的运行**
+
+| 训练 | 以西 | 以东 |
+|---|---|---|
+| Ida 11 组 | 0.68 / 0.26 m / 0.83（0.69 / 0.24 / 0.65） | 0.60 / 0.44 m / 0.00（0.46 / 0.51 / −0.08） |
+| Ida 11 组 + 业务预报 + Francine 后报 | 0.86 / 0.13 m / 0.89（0.90 / 0.09 / 0.89） | 0.62 / 0.35 m / 0.21（0.63 / 0.36 / 0.24） |
+| 只用 Francine 后报 | 0.96 / 0.13 m / 0.94（0.98 / 0.05 / 0.97） | **0.91 / 0.24 m / 0.80（0.93 / 0.13 / 0.93）** |
+
+**重建 Ida 的后报**
+
+| 训练 | 以西 | 以东 |
+|---|---|---|
+| Ida 11 组 | 0.87 / 0.10 m / 0.94（0.88 / 0.08 / 0.94） | 0.86 / 0.29 m / 0.95（0.88 / 0.12 / 0.98） |
+| Ida 11 组 + 业务预报 + Francine 后报 | 0.84 / 0.11 m / 0.88（0.87 / 0.08 / 0.93） | 0.78 / 0.49 m / 0.88（0.83 / 0.28 / 0.94） |
+| 只用 Francine 后报 | −0.86 / 0.26 m / 0.66（−1.35 / 0.45 / 0.46） | 0.50 / 0.91 m / 0.18（0.19 / 1.16 / 0.01） |
+
+1. **控制点水位是够的。** 只用 Francine 拟合，东边也学得像（NSE 0.91，相关系数 0.80；原样版 0.93 / 0.93）。所以东边学不像不是"只靠控制点水位说不清 Francine"。
+2. **两场风暴在东边要的是两套不同的系数。** 只见过 Ida 的系数重建 Francine，东边站与站之间的相关系数是 0；只见过 Francine 的系数重建 Ida，东边也接近 0，最大水深差 0.9–1.2 m。合在一起训练是两头都让一点：Francine 在东边只从 0.44 改到 0.35 m，Ida 在东边反而从 0.29 变差到 0.49 m（这一部分变差在加业务预报时就出现了）。
+3. **所以加权不是出路，只是换一头。** 加大 Francine 的比重，Francine 会变好，Ida 会变差；对第三场没见过的风暴，没有理由认为会更好。
+4. 要注意的地方：只用 Francine 的那一行是在自己训练过的小时上看的（每个格点 9 个系数，241 小时），成绩偏乐观；它自己按时间分块的交叉验证 RMSE 中位数是 0.06 m，说明不全是凑出来的。这里的站数和算法（208 个站、全部 241 小时里的最大值、只取三种训练都有模型的格点）和上面第二层那张表（160 个有实测的站）不一样，数字不能直接对。为什么两场风暴的关系不同（风向、路径、水位高低的范围不一样等）没有检验。
+
+**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`。没有删除或覆盖任何文件。QBD 没有动。
 
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/p2m_more_data_one_storm_fit_check_with_input_error.csv`、`_as_in_the_paper.csv`，`p2m_more_data_fit_francine_only_marsh_gauge_cells_*_summary.txt`，`scripts/p2m/p2m_one_storm_fit_check.py`、`p2m_area_around_sites.py` | 第十八轮小检验：只用 Francine 后报拟合（CRMS 站周围的格点），和含 Ida 的训练一起重建 Francine 的运行和 Ida 的后报，分东西；拟合摘要；脚本 |
 | `35_floodmap/p2m_more_data_francine_forecast_map.png`、`p2m_more_data_francine_marsh_gauges.csv`，`scripts/p2m/p2m_more_data_francine_fig.py` | 第十八轮第二次拟合：三次训练并排的 Francine 淹没图（提前 6 小时）和 CRMS 实测；每个版本、每种输入、两种站集的数字；脚本 |
 | `35_floodmap/p2m_more_data_three_trainings_common_cells.csv`、`p2m_more_data_last_two_trainings_common_cells.csv` | 第十八轮第二次拟合：三次训练（和后两次训练）在共同格点上重建 Ida 后报和 Francine 运行的分数 |
 | `35_floodmap/p2m_more_data_francine_run_at_marsh_gauges_with_input_error.csv`、`_summary.csv`（另有 `as_in_the_paper` 的一份），`scripts/p2m/p2m_run_at_marsh_gauges_score.py` | 第十八轮第二次拟合：Francine 的数值模式自己、映射喂该运行自己的水位、喂实测和预报，在同样的 CRMS 站上和实测比；脚本 |
