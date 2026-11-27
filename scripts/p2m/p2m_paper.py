@@ -175,7 +175,7 @@ def cmd_fit(a) -> None:
 def cmd_apply(a) -> None:
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True); tag = a.tag; assert not (out / f"metrics_{tag}.csv").exists() and not (out / f"peak_{tag}.npz").exists(), f"{tag} exists in {out}"
     t00 = time.time(); z = np.load(a.model); model = {k: z[k] for k in z.files}; jj, ii = model["jj"], model["ii"]; N = len(jj); used = model["used"]
-    f, _, key = a.inputs.partition(":"); Xin = np.load(f)[key] if key else np.load(f); Xin = np.asarray(Xin, np.float64)[:, used]
+    f, _, key = a.inputs.partition(":"); Xin = np.load(f)[key] if key else np.load(f); Xin = np.asarray(Xin, np.float64)[:, used] + a.add
     hours = np.ones(len(Xin), bool)
     if a.hours:
         hz = np.load(a.hours.split(":")[0]); hours = np.asarray(hz[a.hours.split(":")[1]], bool)
@@ -223,6 +223,7 @@ def main() -> None:
     p = sub.add_parser("apply"); p.add_argument("--ida", required=True); p.add_argument("--model", required=True); p.add_argument("--inputs", required=True, help="NPY, or NPZ:key, [T, control points of the sums]"); p.add_argument("--out", required=True); p.add_argument("--tag", required=True)
     p.add_argument("--truth-run"); p.add_argument("--hours", help="NPZ:key of a boolean mask of the hours that count"); p.add_argument("--cells", help="CSV station, lat, lon: series at the land cells around these sites"); p.add_argument("--land")
     p.add_argument("--radius", type=int, default=3); p.add_argument("--chunk", type=int, default=200000)
+    p.add_argument("--add", type=float, default=0.0, help="one amount (m) added to the inputs at every control point and hour, e.g. the mean sea level of the month that the numerical model lacks")
     a = ap.parse_args(); (cmd_fit if a.cmd == "fit" else cmd_apply)(a)
 
 

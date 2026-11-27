@@ -1663,12 +1663,37 @@ Francine 期间有实测的 177 个 CRMS 湿地站里，周围没有模型、出
 - 没有解决的：第十六轮补充五里"统一抬高映射的输入"的试验，最合适的量是 0.1–0.2 m，比这里的 0.35 m 小。抬高映射的输入不等于模式里的水高了这么多（映射在平常日子已经比模式略湿，系数加起来也不一定是 1）。所以用 0.35 m 喂进去图会不会偏湿，要对着 CRMS 再试，不能直接下结论。
 - 要注意的地方：有"不是陆地的格点"的站只有 36 个；CRMS 的水位和网格地面都按 NAVD88，但大地水准面的版本可能差几厘米，没有核对；NOAA 的月平均是 2021 和 2024 两年的。
 
-**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（水位零点检查的 `level_at_marsh_gauges/`、第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`、`p2m_run_level_at_sites.py`。没有删除或覆盖任何文件。QBD 没有动。
+### 九、试验：把这 0.35 m 加回映射的输入（2026-11-27）
+
+做法：喂给映射的水位（已经挪到模式零点上的）在每个控制点、每个小时统一加一个量，0、0.1、0.2、0.3、0.35、0.4 m 各出一次图，什么都不重新拟合（`p2m_paper.py apply --add`，sv7 上是 `code_v12/p2m_paper_v4.py`）。和 CRMS 实测的湿地水深比，只比每个量都有图的站。两种训练都做了（都是"加输入误差"版），下面是"Ida 11 组 + 业务预报 + Francine 后报"的；"Ida 11 组"的在表里。脚本 `scripts/p2m/p2m_level_zero_shift_score.py`；表 `35_floodmap/level_zero_shift_marsh_gauges.csv`；图 `35_floodmap/level_zero_shift_marsh_gauges.png`。河上的控制点（Baton Rouge 等）也加了同样的量，没有区别对待。
+
+| | 不加 | 加 0.2 m | 加 0.35 m |
+|---|---|---|---|
+| **Francine，喂提前 6 小时的预报（160 个站）** | | | |
+| 最大水深：平均误差 | −0.27 m | −0.14 m | −0.05 m |
+| 最大水深：RMSE | 0.55 m | 0.51 m | 0.51 m |
+| 最大水深：站与站之间的相关系数 | 0.34 | 0.35 | 0.37 |
+| 逐小时水深的 RMSE（各站中位数） | 0.19 m | 0.15 m | 0.17 m |
+| 平常日子被淹的时间比例（实测 72%） | 37% | 59% | 73% |
+| **Francine，喂实测水位（160 个站）** | | | |
+| 最大水深：平均误差 / RMSE | −0.37 / 0.58 m | −0.25 / 0.52 m | −0.15 / 0.48 m |
+| **Ida，喂实测水位（162 个站）** | | | |
+| 最大水深：平均误差 / RMSE | −0.31 / 0.53 m | −0.20 / 0.47 m | −0.11 / 0.45 m |
+| 逐小时水深的 RMSE（各站中位数） | 0.17 m | 0.17 m | 0.18 m |
+| 平常日子被淹的时间比例（实测 35%） | 25% | 41% | 59% |
+
+1. **整体偏浅基本消掉了。** Francine 的最大水深平均误差从 −0.27 m 到 −0.05 m，平常日子被淹的时间比例从 37% 到 73%（实测 72%）。西边图上的最大水深中位数从 0.15 m 到 0.29 m（实测 0.48 m），西边的 RMSE 从 0.49 m 降到 0.38 m。
+2. **RMSE 只降了一点（0.55 → 0.51 m），相关系数几乎没动（0.34 → 0.37）。** 加一个统一的量只能改整体高低，改不了"哪个站深、哪个站浅"。东边站与站之间的相关系数一直是 0 左右，这是第七节那个问题（一套系数顾不了两场风暴），和零点无关。
+3. **0.35 m 在有些地方略多。** Ida 平常日子被淹的时间比例变成 59%，实测只有 35%；Francine 东边风暴期间的平均水深变成 0.53 m，实测 0.41 m；逐小时的 RMSE 在 0.2 m 左右最小。和第十六轮补充五"0.1–0.2 m 最合适"是同一个现象：映射在平常日子本来就比模式略湿，再加足 0.35 m 就过了一点。
+4. 所以：加回公布的海平面这个量，方向是对的，偏浅没了，但总的误差只小一点。0.2–0.35 m 之间各项指标互有高低，没有一个量在所有指标上都最好。要注意 Francine 的后报在这次训练里，Ida 的后报不在。
+
+**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（加回输入的试验 `level_zero_shift/`（478 MB）、`run_shift_4.sh`，水位零点检查的 `level_at_marsh_gauges/`、第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`、`p2m_run_level_at_sites.py`、`p2m_paper_v4.py`。没有删除或覆盖任何文件。QBD 没有动。
 
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/level_zero_shift_marsh_gauges.png`、`level_zero_shift_marsh_gauges.csv`，`scripts/p2m/p2m_level_zero_shift_score.py` | 第十八轮水位零点的试验：映射的输入统一加 0–0.4 m，和 CRMS 实测比（两种训练、三种输入、分东西）；图；脚本 |
 | `35_floodmap/level_zero_control_points.csv`、`level_zero_marsh_gauges.csv`、`level_zero_marsh_gauges_summary.csv`，`scripts/p2m/level_zero_check.py`、`p2m_run_level_at_sites.py` | 第十八轮水位零点：NOAA 潮位站上模式减实测和公布的平均海平面；CRMS 站位置上模式的水位、地面、水深和实测的对比（逐站和汇总）；脚本 |
 | `35_floodmap/p2m_more_data_one_storm_fit_check_with_input_error.csv`、`_as_in_the_paper.csv`，`p2m_more_data_fit_francine_only_marsh_gauge_cells_*_summary.txt`，`scripts/p2m/p2m_one_storm_fit_check.py`、`p2m_area_around_sites.py` | 第十八轮小检验：只用 Francine 后报拟合（CRMS 站周围的格点），和含 Ida 的训练一起重建 Francine 的运行和 Ida 的后报，分东西；拟合摘要；脚本 |
 | `35_floodmap/p2m_more_data_francine_forecast_map.png`、`p2m_more_data_francine_marsh_gauges.csv`，`scripts/p2m/p2m_more_data_francine_fig.py` | 第十八轮第二次拟合：三次训练并排的 Francine 淹没图（提前 6 小时）和 CRMS 实测；每个版本、每种输入、两种站集的数字；脚本 |
