@@ -1621,12 +1621,55 @@ Francine 期间有实测的 177 个 CRMS 湿地站里，周围没有模型、出
 
 **决定（模式作者，11 月 27 日）：放弃"训练时给风暴的小时加权"这条路。** 上面"可以怎么办"的第 1 条不做。剩下的是水位零点（补充六的三条路）和更多场风暴的运行（要新跑数值模式，非必要不跑），都还没有定。
 
-**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`。没有删除或覆盖任何文件。QBD 没有动。
+### 八、水位零点：0.4 m 是什么，有多少传到了湿地上（2026-11-27）
+
+起因：放弃加权之后，剩下的最大一层是数值模式偏干（水位比实测低约 0.4 m）。补充六留了两个没查的问题：这 0.4 m 到底是什么；为什么水位差 0.4 m 而湿地水深只差 0.1–0.3 m。模式作者估计提供边界条件的师兄也说不清，所以先用公开数据和现有的模式结果查。脚本 `scripts/p2m/level_zero_check.py`、`p2m_run_level_at_sites.py`；表 `35_floodmap/level_zero_control_points.csv`、`level_zero_marsh_gauges.csv`、`level_zero_marsh_gauges_summary.csv`。
+
+**第一件：0.4 m 不是基准面换算的差，是模式里没有的真实海平面。** 控制点里有 NAVD88 的 9 个 NOAA 潮位站，取 NOAA 公布的基准面和月平均海平面（公开接口，原始文件在本机 `data/noaa_datums/`），和 Ida 之前平静 72 小时的情况放在一起（9 个站平均，都相对 NAVD88）：
+
+| | 数值 |
+|---|---|
+| 模式减实测（平静 72 小时） | −0.38 m |
+| 模式自己在这 72 小时的平均水位（模式的零点） | −0.09 m |
+| 实测在这 72 小时的平均水位 | +0.29 m |
+| NOAA 公布：1983–2001 年的平均海平面 | +0.005 m（各站 −0.09 到 +0.07） |
+| NOAA 公布：2021 年全年的平均海平面 | +0.19 m |
+| NOAA 公布：2021 年 8 月的平均海平面 | +0.25 m |
+| NOAA 公布：2024 年 9 月的平均海平面（Francine 那个月） | +0.35 m |
+
+- 在这一带，NAVD88 和 1983–2001 年的平均海平面几乎是同一个面（差 0.005 m）。所以"模式用平均海平面、地面用 NAVD88"这个换算本身不产生 0.4 m。
+- 0.38 m 可以这样拆：海平面从那个年代到 2021 年升高了约 0.19 m；8 月比全年平均再高约 0.06 m（季节）；那三天比 8 月平均再高约 0.05 m；模式自己的水位在它的零点以下 0.09 m。
+- Francine 对得上：那次运行沿海控制点的平均水位在零附近（边界加过 0.045 m），2024 年 9 月的平均海平面是 +0.35 m，而之前量到的模式减实测正是 −0.35 m。
+- 也就是说，这个量可以从 NOAA 公布的数里取（风暴那个月的平均海平面减去模式自己的平均水位），不必用湿地站去凑。Ida 约 0.34–0.38 m，Francine 约 0.35 m。
+
+**第二件：这个差原样传到了湿地边上的水里；水深差得少，主要是因为水深不能小于零。** 取数值模式在每个 CRMS 站周围 300 m 内的水位（水深加格点地面），和 CRMS 实测水位比（各站的中位数）：
+
+| | Ida 平静 / 风暴三天 | Francine 平静 / 风暴四天 |
+|---|---|---|
+| 站旁不是陆地的格点（水道、水塘；36 个站有）：模式水位减实测 | −0.36 / −0.39 m | −0.29 / −0.30 m |
+| 网格地面减 CRMS 实测湿地面 | +0.05 m | +0.03 m |
+
+- 湿地旁边水道里的水位，模式比实测低 0.3–0.4 m，和控制点上一样。地面高程不是原因（第九轮已经看过，这里再确认）。
+- 风暴期间各站最大水深的中位数，三个数放在一起：实测；"只把实测水位降低这个差、地面不变、小于零取零"算出来的；模式实际的。
+
+  | | 实测 | 只降水位算出来的 | 模式实际 |
+  |---|---|---|---|
+  | Ida，东边 | 1.48 m | 1.10 m | 1.30 m |
+  | Francine，东边 | 0.90 m | 0.60 m | 0.61 m |
+  | Francine，西边 | 0.48 m | 0.18 m | 0.28 m |
+  | Ida，西边 | 0.27 m | 0.00 m | 0.11 m |
+
+  模式的水深和"只降水位"算出来的接近，还略湿一点（陆地格点上有雨水和排不走的水）。平常湿地上只有 0.1–0.3 m 的水，水位低 0.3–0.4 m，最多也只能少掉这么多，所以平均下来水深的差比水位的差小。补充六里"说不清的一点"就是这个。
+- 没有解决的：第十六轮补充五里"统一抬高映射的输入"的试验，最合适的量是 0.1–0.2 m，比这里的 0.35 m 小。抬高映射的输入不等于模式里的水高了这么多（映射在平常日子已经比模式略湿，系数加起来也不一定是 1）。所以用 0.35 m 喂进去图会不会偏湿，要对着 CRMS 再试，不能直接下结论。
+- 要注意的地方：有"不是陆地的格点"的站只有 36 个；CRMS 的水位和网格地面都按 NAVD88，但大地水准面的版本可能差几厘米，没有核对；NOAA 的月平均是 2021 和 2024 两年的。
+
+**这一轮动过的服务器文件**：全部是 sv7 `p2m/more_v1/` 下的新文件和新目录（水位零点检查的 `level_at_marsh_gauges/`、第二次拟合、换格点后的模型 `fit_ida11_operational_francine_*_composed`、应用和打分的输出、画图用的场；小检验的 `area_marsh_gauge_cells.npz`、`fit_francine_only_marsh_gauge_cells_*`、`one_storm_fit_check/`、`run_check_3.sh`），`p2m/code_v12/` 里加了 `p2m_paper_common_cells_v2.py`、`p2m_area_around_sites.py`、`p2m_one_storm_fit_check.py`、`p2m_run_level_at_sites.py`。没有删除或覆盖任何文件。QBD 没有动。
 
 ## 文件
 
 | 文件 | 内容 |
 |---|---|
+| `35_floodmap/level_zero_control_points.csv`、`level_zero_marsh_gauges.csv`、`level_zero_marsh_gauges_summary.csv`，`scripts/p2m/level_zero_check.py`、`p2m_run_level_at_sites.py` | 第十八轮水位零点：NOAA 潮位站上模式减实测和公布的平均海平面；CRMS 站位置上模式的水位、地面、水深和实测的对比（逐站和汇总）；脚本 |
 | `35_floodmap/p2m_more_data_one_storm_fit_check_with_input_error.csv`、`_as_in_the_paper.csv`，`p2m_more_data_fit_francine_only_marsh_gauge_cells_*_summary.txt`，`scripts/p2m/p2m_one_storm_fit_check.py`、`p2m_area_around_sites.py` | 第十八轮小检验：只用 Francine 后报拟合（CRMS 站周围的格点），和含 Ida 的训练一起重建 Francine 的运行和 Ida 的后报，分东西；拟合摘要；脚本 |
 | `35_floodmap/p2m_more_data_francine_forecast_map.png`、`p2m_more_data_francine_marsh_gauges.csv`，`scripts/p2m/p2m_more_data_francine_fig.py` | 第十八轮第二次拟合：三次训练并排的 Francine 淹没图（提前 6 小时）和 CRMS 实测；每个版本、每种输入、两种站集的数字；脚本 |
 | `35_floodmap/p2m_more_data_three_trainings_common_cells.csv`、`p2m_more_data_last_two_trainings_common_cells.csv` | 第十八轮第二次拟合：三次训练（和后两次训练）在共同格点上重建 Ida 后报和 Francine 运行的分数 |
